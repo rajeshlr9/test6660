@@ -52,7 +52,7 @@
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<li>
                 <a href='#!'>
-                    <span class='label suite-start-time blue darken-3'>Feb 4, 2020 09:46:13 AM</span>
+                    <span class='label suite-start-time blue darken-3'>Feb 4, 2020 03:20:20 PM</span>
 				</a>
 			</li>
 			<li>
@@ -90,7 +90,7 @@
 					<i class='material-icons'>local_offer</i> Category
 				</a>
 				<ul id='category-toggle' class='dropdown-content'>
-					<li><a href='#'>@tag5</a></li>
+					<li><a href='#'>@tag4</a></li>
 					<li class='divider'></li>
 					<li class='clear'><a href='#!' clear='true'>Clear Filters</a></li>
 				</ul>
@@ -168,7 +168,7 @@
 					<canvas id='grandchild-analysis' width='100' height='80'></canvas>
 				</div>
 				<div class='block text-small'>
-					<span class='tooltipped' data-position='top' data-tooltip='100%'><span class='strong'>4</span> step(s) passed</span>
+					<span class='tooltipped' data-position='top' data-tooltip='100%'><span class='strong'>6</span> step(s) passed</span>
 				</div>
 				<div class='block text-small'>
 					<span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> step(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
@@ -188,25 +188,25 @@
 				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='1'>
 					<div class='test-heading'>
 						<span class='test-name'>Execute Selenium Scripts from LeanFT Tool</span>
-						<span class='test-time'>Feb 4, 2020 09:46:13 AM</span>
+						<span class='test-time'>Feb 4, 2020 03:20:20 PM</span>
 						<span class='test-status right pass'>pass</span>
 					</div>
 					<div class='test-content hide'>
 <div class='scenario node' test-id='2' status='pass'>
 	<div class='category-list'>
-		<span class='category label white-text'>@tag5</span>
+		<span class='category label white-text'>@tag4</span>
 	</div>
-	<span class='duration right label'>0h 0m 38s+262ms</span>
+	<span class='duration right label'>0h 3m 48s+814ms</span>
 	<div class='desc'>
 		<b>Scenario</b>
-		<span class="desc-text">Complete adhoc move in Putty using Leanft</span>
+		<span class="desc-text">Create Order via Filezilla using Leanft and Resume order in O2S via Selenium(Work on 2 application)</span>
 	</div>
 	<ul class='steps'>
 		<li test-id='3' class='node given pass' status='pass'>
 			
 			<b>Given</b>
 			
-			<span class="bdd-step-name">Given Open Putty</span>
+			<span class="bdd-step-name">Given Open Filezilla</span>
 				<div class='pre'>passed</div>
 			
 		</li>
@@ -214,8 +214,7 @@
 			
 			<b>When</b>
 			
-			<span class="bdd-step-name">When user login to Putty</span>
-				<div class='pre'><table><tr><td>Username</td><td>Password</td><td>NodeId</td><td>NodePassword</td></tr><tr><td>yanqarf1</td><td>QA36playgnd</td><td>Mphasis04</td><td>Mphas004</td></tr></table></div>
+			<span class="bdd-step-name">When user connects to EMC customer and drop an OB order</span>
 				<div class='pre'>passed</div>
 			
 		</li>
@@ -223,16 +222,32 @@
 			
 			<b>And</b>
 			
-			<span class="bdd-step-name">And Complete adhoc move</span>
-				<div class='pre'><table><tr><td>Start_Location</td><td>ItemID</td><td>Quantity</td><td>SuggestedLoc</td></tr><tr><td>STG001R</td><td>7181E-01</td><td>1</td><td>BB2314C3</td></tr></table></div>
+			<span class="bdd-step-name">And Login to OMS using Selenium</span>
+				<div class='pre'><table><tr><td>Username</td><td>Password</td></tr><tr><td>867949</td><td>Manage16</td></tr></table></div>
 				<div class='pre'>passed</div>
 			
 		</li>
-		<li test-id='6' class='node then pass' status='pass'>
+		<li test-id='6' class='node and pass' status='pass'>
+			
+			<b>And</b>
+			
+			<span class="bdd-step-name">And Search for the dropped order using Selenium</span>
+				<div class='pre'>passed</div>
+			
+		</li>
+		<li test-id='7' class='node and pass' status='pass'>
+			
+			<b>And</b>
+			
+			<span class="bdd-step-name">And Resume the incomplete order using Selenium</span>
+				<div class='pre'>passed</div>
+			
+		</li>
+		<li test-id='8' class='node then pass' status='pass'>
 			
 			<b>Then</b>
 			
-			<span class="bdd-step-name">Then Items are moved successfully</span>
+			<span class="bdd-step-name">Then Order is placed successfully</span>
 				<div class='pre'>passed</div>
 			
 		</li>
@@ -292,7 +307,7 @@
 				
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@tag5</span>
+						<span class='category-name'>@tag4</span>
 						<span class='category-status right'>
 							<span class='label pass'>1</span>
 						</span>
@@ -315,8 +330,8 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Feb 4, 2020 09:46:13 AM</td>
-										<td class='linked' test-id='2'>Execute Selenium Scripts from LeanFT Tool.Complete adhoc move in Putty using Leanft</td>
+										<td>Feb 4, 2020 03:20:20 PM</td>
+										<td class='linked' test-id='2'>Execute Selenium Scripts from LeanFT Tool.Create Order via Filezilla using Leanft and Resume order in O2S via Selenium(Work on 2 application)</td>
 										<td><span class='test-status pass'>pass</span></td>
 									</tr>
 								</tbody>
@@ -357,25 +372,25 @@
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Steps
-					<div class='panel-lead'>4</div>
+					<div class='panel-lead'>6</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Feb 4, 2020 09:46:13 AM</div>
+					<div class='panel-lead'>Feb 4, 2020 03:20:20 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Feb 4, 2020 09:46:51 AM</div>
+			 		<div class='panel-lead'>Feb 4, 2020 03:24:10 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>38,393ms</div>
+					<div class='panel-lead'>229,501ms</div>
 				</div>
 			</div>
 			<div class='col s6'>
@@ -391,7 +406,7 @@
 							<th>Passed %</th>
 						</tr>
 						<tr>
-							<td>@tag5</td>
+							<td>@tag4</td>
 							<td>1</td>
 							<td>0</td>
 							<td>0</td>
@@ -429,7 +444,7 @@
 				infoChild: 0,
 				exceptionsChild: 0,
 				
-				passGrandChild: 4,
+				passGrandChild: 6,
 				failGrandChild: 0,
 				fatalGrandChild: 0,
 				errorGrandChild: 0,

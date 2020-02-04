@@ -55,6 +55,15 @@ public class Steps {
 		/*
 		 * seleniumDriver.quit(); if(LeanFTDriver.exists()) { LeanFTDriver.close(); }
 		 */
+		if(LeanFTDriver!=null) { 
+			LeanFTDriver.close();
+			LeanFTDriver=null;
+		}
+		if(seleniumDriver!=null) {
+			seleniumDriver.quit();
+			seleniumDriver=null;
+		}
+		
 	}
 
 	@Given("Open the InternetExplorer by leanft")
