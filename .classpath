@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/commons-csv-1.5.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/commons-io-2.6.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/commons-lang3-3.6.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/cucumber-core-1.2.5.jar" sourcepath="C:/Users/QAAutoReg1/.m2/repository/info/cukes/cucumber-core/1.2.5/cucumber-core-1.2.5-sources.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/cucumber-extentsreport-3.0.2.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/cucumber-extentsreport-3.1.1.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/cucumber-html-0.2.6.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/cucumber-java-1.2.5.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/cucumber-junit-1.2.5.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/cucumber-jvm-deps-1.0.5.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/cucumber-testng-1.2.5.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/curvesapi-1.04.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/extentreports-3.1.2.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/extentreports-4.0.9.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/extentreports-cucumber4-adapter-1.0.7.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/file-management-1.2.1.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/freemarker-2.3.29.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/gherkin-2.12.2.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/ini4j-0.5.1.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/jcommander.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/selenium-server-standalone-3.141.59.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/testng.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/Micro Focus/Unified Functional Testing/SDK/Java/com.hp.lft.common.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/Micro Focus/Unified Functional Testing/SDK/Java/com.hp.lft.report.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:\Program Files (x86)\Micro Focus\Unified Functional Testing\SDK\Java\com.hp.lft.sdk-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/Micro Focus/Unified Functional Testing/SDK/Java/com.hp.lft.reportbuilder-standalone.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:\Program Files (x86)\Micro Focus\Unified Functional Testing\SDK\Java\com.hp.lft.sdk-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/Micro Focus/Unified Functional Testing/SDK/Java/com.hp.lft.sdk-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/Micro Focus/Unified Functional Testing/SDK/Java/com.hp.lft.sdk-standalone.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:\Program Files (x86)\Micro Focus\Unified Functional Testing\SDK\Java\com.hp.lft.sdk-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/Micro Focus/Unified Functional Testing/SDK/Java/com.hp.lft.unittesting.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:\Program Files (x86)\Micro Focus\Unified Functional Testing\SDK\Java\com.hp.lft.sdk-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/Micro Focus/Unified Functional Testing/SDK/Java/com.hp.lft.verifications.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:\Program Files (x86)\Micro Focus\Unified Functional Testing\SDK\Java\com.hp.lft.sdk-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/client-combined-3.141.59.jar"/>
+	<classpathentry kind="lib" path="E:/LeanFT_Automation/LeanFT_Automation_Temp/Jar_Path/client-combined-3.141.59-sources.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>
