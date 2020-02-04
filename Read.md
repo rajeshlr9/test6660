@@ -1,1 +1,1 @@
-SampleFile
+This SampleMavenProj is a POC for combining LeanFT and Selenium capabilities in order to execute a test suite. 
