@@ -21,7 +21,8 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 
 		features = {"src\\test\\java\\featureFile\\MyTest.feature"},
 		glue = {"StepDefinition"},
-		format={"pretty","html:resources\\Reports\\cucumber-report.html"},
+		//format={"pretty","html:resources\\Reports\\cucumber-report.html"},
+		format = { "pretty","json:resources\\cucumber-reports\\cucumber-report.json" },
 		plugin = { "com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"}, 
 
 		monochrome=true
