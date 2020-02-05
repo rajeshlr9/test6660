@@ -17,13 +17,11 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 		dryRun = false,
 		
 	
-		tags={"@tag4"},
+		tags={"@tag5"},
 
-		features = {"E:\\eclipse-workspace\\SampleMavenPorj\\src\\test\\java\\featureFile\\MyTest.feature"},
+		features = {"src\\test\\java\\featureFile\\MyTest.feature"},
 		glue = {"StepDefinition"},
-		format={"pre"
-				+ ""
-				+ "tty","html:E:\\eclipse-workspace\\SampleMavenPorj\\resources\\Reports\\cucumber-report.html"},
+		format={"pretty","html:resources\\Reports\\cucumber-report.html"},
 		plugin = { "com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"}, 
 
 		monochrome=true

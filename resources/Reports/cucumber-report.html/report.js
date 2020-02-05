@@ -1,4 +1,4 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("E:/eclipse-workspace/SampleMavenPorj/src/test/java/featureFile/MyTest.feature");
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("src/test/java/featureFile/MyTest.feature");
 formatter.feature({
   "line": 1,
   "name": "Execute Selenium Scripts from LeanFT Tool",
@@ -7,113 +7,113 @@ formatter.feature({
   "keyword": "Feature"
 });
 formatter.before({
-  "duration": 200616,
+  "duration": 991725,
   "status": "passed"
 });
 formatter.scenario({
-  "line": 24,
-  "name": "Create Order via Filezilla using Leanft and Resume order in O2S via Selenium(Work on 2 application)",
+  "line": 35,
+  "name": "Complete adhoc move in Putty using Leanft",
   "description": "",
-  "id": "execute-selenium-scripts-from-leanft-tool;create-order-via-filezilla-using-leanft-and-resume-order-in-o2s-via-selenium(work-on-2-application)",
+  "id": "execute-selenium-scripts-from-leanft-tool;complete-adhoc-move-in-putty-using-leanft",
   "type": "scenario",
   "keyword": "Scenario",
   "tags": [
     {
-      "line": 23,
-      "name": "@tag4"
+      "line": 34,
+      "name": "@tag5"
     }
   ]
 });
 formatter.step({
-  "line": 25,
-  "name": "Open Filezilla",
+  "line": 36,
+  "name": "Open Putty",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 26,
-  "name": "user connects to EMC customer and drop an OB order",
-  "keyword": "When "
-});
-formatter.step({
-  "line": 27,
-  "name": "Login to OMS using Selenium",
+  "line": 37,
+  "name": "user login to Putty",
   "rows": [
     {
       "cells": [
         "Username",
-        "Password"
+        "Password",
+        "NodeId",
+        "NodePassword"
       ],
-      "line": 28
+      "line": 38
     },
     {
       "cells": [
-        "867949",
-        "Manage16"
+        "yanqarf1",
+        "QA36playgnd",
+        "Mphasis04",
+        "Mphas004"
       ],
-      "line": 29
+      "line": 39
+    }
+  ],
+  "keyword": "When "
+});
+formatter.step({
+  "line": 40,
+  "name": "Complete adhoc move",
+  "rows": [
+    {
+      "cells": [
+        "Start_Location",
+        "ItemID",
+        "Quantity",
+        "SuggestedLoc"
+      ],
+      "line": 41
+    },
+    {
+      "cells": [
+        "STG001R",
+        "7181E-01",
+        "1",
+        "BB2314C3"
+      ],
+      "line": 42
     }
   ],
   "keyword": "And "
 });
 formatter.step({
-  "line": 30,
-  "name": "Search for the dropped order using Selenium",
-  "keyword": "And "
-});
-formatter.step({
-  "line": 31,
-  "name": "Resume the incomplete order using Selenium",
-  "keyword": "And "
-});
-formatter.step({
-  "line": 32,
-  "name": "Order is placed successfully",
+  "line": 43,
+  "name": "Items are moved successfully",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "Steps.LaunchFilezilla()"
+  "location": "Steps.openPutty()"
 });
 formatter.result({
-  "duration": 3100330689,
+  "duration": 169970051,
   "status": "passed"
 });
 formatter.match({
-  "location": "Steps.orderUpload()"
+  "location": "Steps.puttyLogin(DataTable)"
 });
 formatter.result({
-  "duration": 31084314095,
+  "duration": 14474096294,
   "status": "passed"
 });
 formatter.match({
-  "location": "Steps.OMSLogin(DataTable)"
+  "location": "Steps.performAdhocmove(DataTable)"
 });
 formatter.result({
-  "duration": 34466874156,
+  "duration": 25511082300,
   "status": "passed"
 });
 formatter.match({
-  "location": "Steps.searchOrder()"
+  "location": "Steps.adhocmoveValidation()"
 });
 formatter.result({
-  "duration": 34090984799,
-  "status": "passed"
-});
-formatter.match({
-  "location": "Steps.resumeOrder()"
-});
-formatter.result({
-  "duration": 125466017574,
-  "status": "passed"
-});
-formatter.match({
-  "location": "Steps.orderCreationValidation()"
-});
-formatter.result({
-  "duration": 467709277,
+  "duration": 8507445,
   "status": "passed"
 });
 formatter.after({
-  "duration": 534180242,
+  "duration": 58824,
   "status": "passed"
 });
 });

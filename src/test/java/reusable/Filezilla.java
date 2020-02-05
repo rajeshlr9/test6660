@@ -96,7 +96,7 @@ public class Filezilla extends UnitTestClassBase {
 						.attachedText("Local site:").nativeClass("Edit").build());
 		
 		Thread.sleep(3000);
-		Setpath.setText("E:\\eclipse-workspace\\EMC\\940");
+		Setpath.setText("E:\\EMC\\940");
 		Setpath.click();
 		Thread.sleep(3000);
 		robot.keyPress(KeyEvent.VK_ENTER);
