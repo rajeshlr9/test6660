@@ -7,8 +7,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
+import com.cucumber.listener.ExtentProperties;
 import com.cucumber.listener.Reporter;
-import com.vimalselvam.cucumber.listener.ExtentProperties;
+
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.AbstractTestNGCucumberTests;

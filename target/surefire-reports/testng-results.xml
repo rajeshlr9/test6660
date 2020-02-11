@@ -2,19 +2,23 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="41723" started-at="2020-02-05T05:17:59Z" finished-at="2020-02-05T05:18:41Z">
+  <suite name="Suite" duration-ms="39925" started-at="2020-02-11T06:05:08Z" finished-at="2020-02-11T06:05:48Z">
     <groups>
       <group name="cucumber">
-        <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@13fee20c]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
+        <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@6fb554cc]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test name="Test" duration-ms="41723" started-at="2020-02-05T05:17:59Z" finished-at="2020-02-05T05:18:41Z">
+    <test name="Test" duration-ms="39925" started-at="2020-02-11T06:05:08Z" finished-at="2020-02-11T06:05:48Z">
       <class name="TestRunner.Runner">
-        <test-method status="PASS" signature="setUpClass()[pri:0, instance:TestRunner.Runner@13fee20c]" name="setUpClass" is-config="true" duration-ms="657" started-at="2020-02-05T05:17:59Z" finished-at="2020-02-05T05:18:00Z">
+        <test-method status="PASS" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@6fb554cc]" name="createExtentReport" is-config="true" duration-ms="47" started-at="2020-02-11T06:05:08Z" finished-at="2020-02-11T06:05:08Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createExtentReport -->
+        <test-method status="PASS" signature="setUpClass()[pri:0, instance:TestRunner.Runner@6fb554cc]" name="setUpClass" is-config="true" duration-ms="547" started-at="2020-02-11T06:05:08Z" finished-at="2020-02-11T06:05:09Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method status="PASS" signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@13fee20c]" name="feature" duration-ms="40562" started-at="2020-02-05T05:18:00Z" description="Runs Cucumber Feature" data-provider="features" finished-at="2020-02-05T05:18:41Z">
+        <test-method status="PASS" signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@6fb554cc]" name="feature" duration-ms="38644" started-at="2020-02-11T06:05:09Z" description="Runs Cucumber Feature" data-provider="features" finished-at="2020-02-11T06:05:48Z">
           <params>
             <param index="0">
               <value>
@@ -25,14 +29,14 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- feature -->
-        <test-method status="PASS" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@13fee20c]" name="writeExtentReport" is-config="true" duration-ms="16" started-at="2020-02-05T05:18:41Z" finished-at="2020-02-05T05:18:41Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- writeExtentReport -->
-        <test-method status="PASS" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@13fee20c]" name="tearDownClass" is-config="true" duration-ms="363" started-at="2020-02-05T05:18:41Z" finished-at="2020-02-05T05:18:41Z">
+        <test-method status="PASS" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@6fb554cc]" name="tearDownClass" is-config="true" duration-ms="593" started-at="2020-02-11T06:05:48Z" finished-at="2020-02-11T06:05:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
+        <test-method status="PASS" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@6fb554cc]" name="writeExtentReport" is-config="true" duration-ms="0" started-at="2020-02-11T06:05:48Z" finished-at="2020-02-11T06:05:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- writeExtentReport -->
       </class> <!-- TestRunner.Runner -->
     </test> <!-- Test -->
   </suite> <!-- Suite -->

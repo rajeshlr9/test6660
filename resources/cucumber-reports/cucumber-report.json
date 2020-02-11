@@ -1,0 +1,138 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 187085,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Steps.beforeClass()"
+            }
+          }
+        ],
+        "line": 35,
+        "name": "Complete adhoc move in Putty using Leanft",
+        "description": "",
+        "id": "execute-selenium-scripts-from-leanft-tool;complete-adhoc-move-in-putty-using-leanft",
+        "after": [
+          {
+            "result": {
+              "duration": 184753,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Steps.afterClass()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 112419415,
+              "status": "passed"
+            },
+            "line": 36,
+            "name": "Open Putty",
+            "match": {
+              "location": "Steps.openPutty()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 13783876286,
+              "status": "passed"
+            },
+            "line": 37,
+            "name": "user login to Putty",
+            "match": {
+              "location": "Steps.puttyLogin(DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "Username",
+                  "Password",
+                  "NodeId",
+                  "NodePassword"
+                ],
+                "line": 38
+              },
+              {
+                "cells": [
+                  "yanqarf1",
+                  "QA36playgnd",
+                  "Mphasis04",
+                  "Mphas004"
+                ],
+                "line": 39
+              }
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 24448940050,
+              "status": "passed"
+            },
+            "line": 40,
+            "name": "Complete adhoc move",
+            "match": {
+              "location": "Steps.performAdhocmove(DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "Start_Location",
+                  "ItemID",
+                  "Quantity",
+                  "SuggestedLoc"
+                ],
+                "line": 41
+              },
+              {
+                "cells": [
+                  "STG001R",
+                  "7181E-01",
+                  "1",
+                  "BB2314C3"
+                ],
+                "line": 42
+              }
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 13536425,
+              "status": "passed"
+            },
+            "line": 43,
+            "name": "Items are moved successfully",
+            "match": {
+              "location": "Steps.adhocmoveValidation()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 34,
+            "name": "@tag5"
+          }
+        ]
+      }
+    ],
+    "name": "Execute Selenium Scripts from LeanFT Tool",
+    "description": "I want to use this template for my feature file",
+    "id": "execute-selenium-scripts-from-leanft-tool",
+    "keyword": "Feature",
+    "uri": "src/test/java/featureFile/MyTest.feature"
+  }
+]
