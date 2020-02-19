@@ -1,19 +1,41 @@
 package StepDefinition;
 
 import java.awt.Robot;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import javax.imageio.ImageIO;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.configuration.ChartLocation;
+import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.hp.lft.sdk.GeneralLeanFtException;
 import com.hp.lft.sdk.ModifiableSDKConfiguration;
 import com.hp.lft.sdk.SDK;
+import com.hp.lft.sdk.stdwin.Window;
 import com.hp.lft.sdk.web.Browser;
 import com.hp.lft.sdk.web.BrowserDescription;
 import com.hp.lft.sdk.web.BrowserFactory;
@@ -26,6 +48,7 @@ import com.hp.lft.sdk.web.NumericField;
 import com.hp.lft.sdk.web.NumericFieldDescription;
 
 import cucumber.api.DataTable;
+import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
@@ -36,25 +59,79 @@ import cucumber.api.java.en.When;
 public class Steps {
 	public static WebDriver seleniumDriver;
 	public static Browser LeanFTDriver;
+	public static Window puttyApp;
 	String pageTitle;
 	public static Robot robot;
-
+	public static Scenario scenario;
 	public static String dir;
+	public static Properties prop;
+	String testRes = "";
+
+
 
 	@Before
 	public void beforeClass() throws GeneralLeanFtException {
-		dir = System.getProperty("user.dir");
-		System.out.println(dir);
+		try {
+			dir = System.getProperty("user.dir");
+			System.out.println(dir);
+			prop = new Properties();
+			FileInputStream ip = new FileInputStream(dir + "\\TestData\\config.properties");
+			try {
+				prop.load(ip);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 
+	}
+	public void before(Scenario scenario) throws Exception {
+		this.scenario = scenario;
+		System.out.println("here");
 	}
 
 	@After
 	public void afterClass() throws GeneralLeanFtException {
 		System.out.println("after");
+		System.out.println(testRes);
 		//seleniumDriver.quit();
 		/*
 		 * seleniumDriver.quit(); if(LeanFTDriver.exists()) { LeanFTDriver.close(); }
 		 */
+		if ("Failed".equals(testRes)) {
+			try {
+
+				globalFunc.Screenshots.LeanFTSnapshot(LeanFTDriver);
+				System.out.println("naka1");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("raka1");
+			}
+			try {
+
+				globalFunc.Screenshots.LeanFTSnapshot(puttyApp);
+				System.out.println("naka3");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("raka3");
+			}
+			try {
+
+				globalFunc.Screenshots.seleniumSnapshot(seleniumDriver);
+				System.out.println("naka2");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("raka3");
+			}
+
+		}
 		if(LeanFTDriver!=null) { 
 			LeanFTDriver.close();
 			LeanFTDriver=null;
@@ -63,20 +140,22 @@ public class Steps {
 			seleniumDriver.quit();
 			seleniumDriver=null;
 		}
-		
+
 	}
 
 	@Given("Open the InternetExplorer by leanft")
 	public void open_the_Firefox_and_launch_the_application_using_LeanFT() throws Throwable {
 		// Write code here that turns the phrase above into concrete actions
-
-		reusable.LeanFtInitialize.initializeLeanFt();
-		LeanFTDriver = BrowserFactory.launch(BrowserType.INTERNET_EXPLORER);
 		try {
+			reusable.LeanFtInitialize.initializeLeanFt();
+			LeanFTDriver = BrowserFactory.launch(BrowserType.INTERNET_EXPLORER);
+
 			// Navigate to the New Tours website.
 			LeanFTDriver.navigate("https://rr.secure.fedex.com/oms");
 			LeanFTDriver.sync();
+			//globalFunc.Screenshots.LeanFTSnapshot( LeanFTDriver);
 		} catch (Exception e) {
+			testRes = "Failed";
 			System.out.println(e);
 		}
 
@@ -85,14 +164,16 @@ public class Steps {
 	@Given("Open the Chrome by leanft")
 	public void open_the_Chrome_and_launch_the_application_using_LeanFT() throws Throwable {
 		// Write code here that turns the phrase above into concrete actions
-
-		reusable.LeanFtInitialize.initializeLeanFt();
-		LeanFTDriver = BrowserFactory.launch(BrowserType.CHROME);
 		try {
+			reusable.LeanFtInitialize.initializeLeanFt();
+			LeanFTDriver = BrowserFactory.launch(BrowserType.CHROME);
+
 			// Navigate to the New Tours website.
 			LeanFTDriver.navigate("https://rr.secure.fedex.com/oms");
 			LeanFTDriver.sync();
+			//globalFunc.Screenshots.LeanFTSnapshot( LeanFTDriver);
 		} catch (Exception e) {
+			testRes = "Failed";
 			System.out.println(e);
 		}
 
@@ -111,7 +192,9 @@ public class Steps {
 			Thread.sleep(5000);
 			System.out.println("page title: " + seleniumDriver.getTitle());
 			pageTitle = seleniumDriver.getTitle();
+
 		} catch (Exception e) {
+			testRes = "Failed";
 			e.printStackTrace();
 		}
 
@@ -120,43 +203,55 @@ public class Steps {
 	@Given("Open the IE by selenium")
 	public void open_the_IE_and_launch_the_application_using_Selenium() throws Throwable {
 		// Write code here that turns the phrase above into concrete actions
-		System.setProperty("webdriver.ie.driver", dir + "\\Jars\\browsers\\IEDriverServer.exe");
-		seleniumDriver = new InternetExplorerDriver();
-		// seleniumDriver= new ChromeDriver();
-		seleniumDriver.manage().window().maximize();
-		seleniumDriver.get("https://rr.secure.fedex.com/oms");
-		Thread.sleep(5000);
-		System.out.println("page title: " + seleniumDriver.getTitle());
-		pageTitle = seleniumDriver.getTitle();
-
+		try {
+			System.setProperty("webdriver.ie.driver", dir + "\\Jars\\browsers\\IEDriverServer.exe");
+			seleniumDriver = new InternetExplorerDriver();
+			// seleniumDriver= new ChromeDriver();
+			seleniumDriver.manage().window().maximize();
+			seleniumDriver.get("https://rr.secure.fedex.com/oms");
+			Thread.sleep(5000);
+			System.out.println("page title: " + seleniumDriver.getTitle());
+			pageTitle = seleniumDriver.getTitle();
+		} catch (Exception e) {
+			testRes = "Failed";
+			e.printStackTrace();
+		}
 	}
 
 	@Then("^Attach LeanFT IE browser to seleniumTest$")
 	public void AttachLeanFTIEBrowseTtoSeleniumTest() throws Throwable {
-		Thread.sleep(10000);
-		System.out.println("page title2: " + pageTitle);
-		reusable.LeanFtInitialize.initializeLeanFt();
-		// LEANFT: Attach to the browser
-		// LeanFTDriver = BrowserFactory.attach(new
-		// BrowserDescription.Builder().type(BrowserType.INTERNET_EXPLORER).openTitle("Web
-		// Single Sign On").build());
-		LeanFTDriver = BrowserFactory.attach(
-				new BrowserDescription.Builder().title("WSSO Login").type(BrowserType.INTERNET_EXPLORER).build());
-
+		try {
+			Thread.sleep(10000);
+			System.out.println("page title2: " + pageTitle);
+			reusable.LeanFtInitialize.initializeLeanFt();
+			// LEANFT: Attach to the browser
+			// LeanFTDriver = BrowserFactory.attach(new
+			// BrowserDescription.Builder().type(BrowserType.INTERNET_EXPLORER).openTitle("Web
+			// Single Sign On").build());
+			LeanFTDriver = BrowserFactory.attach(
+					new BrowserDescription.Builder().title("WSSO Login").type(BrowserType.INTERNET_EXPLORER).build());
+		} catch (Exception e) {
+			testRes = "Failed";
+			e.printStackTrace();
+		}
 	}
 
 	@Then("^Attach LeanFT Chrome browser to seleniumTest$")
 	public void AttachLeanFTChromeBrowseTtoSeleniumTest() throws Throwable {
-		Thread.sleep(20000);
-		System.out.println("page title2: " + pageTitle);
-		reusable.LeanFtInitialize.initializeLeanFt();
-		// LEANFT: Attach to the browser
-		// LeanFTDriver = BrowserFactory.attach(new
-		// BrowserDescription.Builder().type(BrowserType.INTERNET_EXPLORER).openTitle("Web
-		// Single Sign On").build());
-		LeanFTDriver = BrowserFactory
-				.attach(new BrowserDescription.Builder().title("WSSO Login").type(BrowserType.CHROME).build());
-
+		try {
+			Thread.sleep(20000);
+			System.out.println("page title2: " + pageTitle);
+			reusable.LeanFtInitialize.initializeLeanFt();
+			// LEANFT: Attach to the browser
+			// LeanFTDriver = BrowserFactory.attach(new
+			// BrowserDescription.Builder().type(BrowserType.INTERNET_EXPLORER).openTitle("Web
+			// Single Sign On").build());
+			LeanFTDriver = BrowserFactory
+					.attach(new BrowserDescription.Builder().title("WSSO Login").type(BrowserType.CHROME).build());
+		} catch (Exception e) {
+			testRes = "Failed";
+			e.printStackTrace();
+		}
 	}
 
 	@Then("Login to OMS by LeanFT")
@@ -164,19 +259,20 @@ public class Steps {
 		try {
 			LeanFTDriver.describe(NumericField.class,
 					new NumericFieldDescription.Builder().name("username").tagName("INPUT").type("number").build())
-					.setValue("867949");
+			.setValue("867949");
 			Thread.sleep(2000);
 			LeanFTDriver.describe(EditField.class,
 					new EditFieldDescription.Builder().name("password").tagName("INPUT").type("password").build())
-					.setValue("Manage16");
+			.setValue("Manage16");
 
 			Thread.sleep(2000);
 			LeanFTDriver.describe(Button.class,
 					new ButtonDescription.Builder().buttonType("submit").name(" Sign In ").tagName("INPUT").build())
-					.click();
+			.click();
 			LeanFTDriver.sync();
 
 		} catch (GeneralLeanFtException e) {
+			testRes = "Failed";
 			e.printStackTrace();
 		}
 
@@ -193,6 +289,7 @@ public class Steps {
 			seleniumDriver.findElement(By.id("orderSearchform:searchDetails")).click();
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
+			testRes = "Failed";
 			e.printStackTrace();
 		}
 
@@ -219,18 +316,26 @@ public class Steps {
 
 	@Given("Open Filezilla")
 	public void LaunchFilezilla() throws Throwable {
-
-		new ProcessBuilder("C:\\Program Files (x86)\\FileZilla FTP Client\\filezilla.exe").start();
-		Thread.sleep(3000);
-
+		try {
+			new ProcessBuilder("C:\\Program Files (x86)\\FileZilla FTP Client\\filezilla.exe").start();
+			Thread.sleep(3000);
+		}catch(Exception e) {
+			testRes = "Failed";
+			System.out.println(e);
+		}
 	}
 
 	@When("user connects to EMC customer and drop an OB order")
 	public void orderUpload() throws Throwable {
-
-		reusable.LeanFtInitialize.initializeLeanFt();
-		reusable.ModifyXML.ModifyFile();
-		reusable.Filezilla.uploadOrder();
+		try {
+			scenario.write("Enterprise code-");
+			reusable.LeanFtInitialize.initializeLeanFt();
+			reusable.ModifyXML.ModifyFile();
+			reusable.Filezilla.uploadOrder();
+		}catch(Exception e) {
+			testRes = "Failed";
+			System.out.println(e);
+		}
 
 	}
 
@@ -243,11 +348,15 @@ public class Steps {
 			seleniumDriver.manage().window().maximize();
 			seleniumDriver.get("https://rr.secure.fedex.com/oms");
 			seleniumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			reusable.OMSLogin.loginOMS(usercredentials);
 		} catch (Exception e) {
+
+			testRes = "Failed";
+			System.out.println("test red"+testRes);
 			e.printStackTrace();
 		}
 
-		reusable.OMSLogin.loginOMS(usercredentials);
+
 
 	}
 
@@ -263,6 +372,7 @@ public class Steps {
 			seleniumDriver.findElement(By.id("orderSearchform:searchDetails")).click();
 			Thread.sleep(8000);
 		} catch (InterruptedException e) {
+			testRes = "Failed";
 			e.printStackTrace();
 		}
 
@@ -274,9 +384,9 @@ public class Steps {
 		try {
 
 			seleniumDriver
-					.findElement(By.xpath(
-							"//TBODY[@id=\"orderSearchform:resultTable:tbody_element\"]/TR[1]/TD[1]/A[1]/SPAN[1]"))
-					.click();
+			.findElement(By.xpath(
+					"//TBODY[@id=\"orderSearchform:resultTable:tbody_element\"]/TR[1]/TD[1]/A[1]/SPAN[1]"))
+			.click();
 			Thread.sleep(12000);
 			if (seleniumDriver.findElement(By.id("identifyCustomerForm:callerIdNumber")).getText().equals("")) {
 				seleniumDriver.findElement(By.id("identifyCustomerForm:callerIdNumber")).sendKeys("123456");
@@ -304,7 +414,7 @@ public class Steps {
 
 			seleniumDriver.findElement(By.xpath(
 					"//TABLE[1]/TBODY[1]/TR[1]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/TABLE[3]/TBODY[1]/TR[1]/TD[3]/FORM[1]/TABLE[1]/TBODY[1]/TR[1]/TD[2]/TABLE[1]/TBODY[1]/TR[6]/TD[1]/TABLE[3]/TBODY[1]/TR[1]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/TABLE[3]/TBODY[1]/TR[1]/TD[1]/DIV[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/LABEL[1]/INPUT[1]"))
-					.click();
+			.click();
 
 			seleniumDriver.findElement(By.id("form1:submit2")).click();
 			Thread.sleep(7000);
@@ -313,6 +423,7 @@ public class Steps {
 			Thread.sleep(5000);
 
 		} catch (Exception e) {
+			testRes = "Failed";
 			Assert.fail("WebDriver couldnâ€™t locate the element");
 			seleniumDriver.close();
 		}
@@ -320,17 +431,21 @@ public class Steps {
 
 	@Then("Order is placed successfully")
 	public void orderCreationValidation() throws Throwable {
+		try {
+			String expected = seleniumDriver.findElement(By.xpath(
+					"//TABLE[1]/TBODY[1]/TR[1]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/TABLE[3]/TBODY[1]/TR[1]/TD[2]/FORM[1]/TABLE[1]/TBODY[1]/TR[1]/TD[2]/TABLE[1]/TBODY[1]/TR[4]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/SPAN[1]"))
+					.getText();
+			String actual = "Thank you for shipping with FedEx. Your shipment number is";
 
-		String expected = seleniumDriver.findElement(By.xpath(
-				"//TABLE[1]/TBODY[1]/TR[1]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/TABLE[3]/TBODY[1]/TR[1]/TD[2]/FORM[1]/TABLE[1]/TBODY[1]/TR[1]/TD[2]/TABLE[1]/TBODY[1]/TR[4]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/SPAN[1]"))
-				.getText();
-		String actual = "Thank you for shipping with FedEx. Your shipment number is";
-
-		if (expected.equals(actual)) {
-			String orderno = seleniumDriver.findElement(By.id("form1:orderNum")).getText();
-			System.out.println("order created " + orderno);
-		} else {
-			System.out.println("order not created ");
+			if (expected.equals(actual)) {
+				String orderno = seleniumDriver.findElement(By.id("form1:orderNum")).getText();
+				System.out.println("order created " + orderno);
+			} else {
+				System.out.println("order not created ");
+			}
+		} catch (Exception e) {
+			testRes = "Failed";
+			e.printStackTrace();
 		}
 
 	}
@@ -343,23 +458,36 @@ public class Steps {
 	@Given("Open Putty")
 	public void openPutty() {
 		try {
-			new ProcessBuilder("C:\\Users\\QAAutoReg1\\Desktop\\putty.exe").start();
+			new ProcessBuilder("E:\\putty.exe").start();
 		} catch (IOException e) {
+			testRes = "Failed";
 			e.printStackTrace();
+
 		}
 	}
 
 	@When("user login to Putty")
 	public void puttyLogin(DataTable usercredentials) throws Throwable {
+		try {
+			reusable.LeanFtInitialize.initializeLeanFt();
+			reusable.PuttyLogin.puttyLogin(usercredentials);
+		} catch (Exception e) {
+			testRes = "Failed";
+			e.printStackTrace();
 
-		reusable.LeanFtInitialize.initializeLeanFt();
-		reusable.PuttyLogin.puttyLogin(usercredentials);
+		}
 	}
 
 	@And("Complete adhoc move")
 	public void performAdhocmove(DataTable usercredentials) throws Throwable {
+		try {
+			//reusable.AdhocMove.adhocMove(usercredentials, puttyApp);
+			globalFunc.AdhocMove2.adhocMove(usercredentials);
+		} catch (Exception e) {
+			testRes = "Failed";
+			e.printStackTrace();
 
-		reusable.AdhocMove.adhocMove(usercredentials);
+		}
 	}
 
 	@Then("Items are moved successfully")
@@ -371,6 +499,7 @@ public class Steps {
 			rt.exec("taskkill /F /IM putty.exe");
 			System.out.println("adhoc move completed");
 		} catch (Exception e) {
+			testRes = "Failed";
 			// TODO Auto-generated catch block
 			Assert.assertTrue(false);
 			e.printStackTrace();

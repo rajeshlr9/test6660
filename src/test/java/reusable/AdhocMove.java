@@ -12,14 +12,16 @@ import com.hp.lft.sdk.Desktop;
 import com.hp.lft.sdk.GeneralLeanFtException;
 import com.hp.lft.sdk.stdwin.Window;
 import com.hp.lft.sdk.stdwin.WindowDescription;
+import com.hp.lft.sdk.web.Browser;
 
 import StepDefinition.Steps;
 import cucumber.api.DataTable;
 import unittesting.UnitTestClassBase;
 
 public class AdhocMove extends UnitTestClassBase {
+	// Window puttyApp;
 
-	public static void adhocMove(DataTable usercredentials)
+	public static void adhocMove(DataTable usercredentials,Window puttyApp)
 			throws IOException, GeneralLeanFtException, AWTException, InterruptedException {
 
 		try {
@@ -27,7 +29,7 @@ public class AdhocMove extends UnitTestClassBase {
 			Robot robot = Steps.robot;
 			robot = new Robot();
 
-			Desktop.describe(Window.class, new WindowDescription.Builder().ownedWindow(false).childWindow(false)
+			 puttyApp = Desktop.describe(Window.class, new WindowDescription.Builder().ownedWindow(false).childWindow(false)
 					.windowClassRegExp("PuTTY").windowTitleRegExp(" PuTTY").build());
 
 			for (int i = 0; i <= 8; i++) {
@@ -69,7 +71,7 @@ public class AdhocMove extends UnitTestClassBase {
 			robot.keyPress(KeyEvent.VK_DOWN);
 			robot.keyRelease(KeyEvent.VK_DOWN);
 
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 
 			Window qty = Desktop.describe(Window.class, new WindowDescription.Builder().ownedWindow(false)
 					.childWindow(false).windowClassRegExp("PuTTY").windowTitleRegExp(" PuTTY").build());
@@ -83,6 +85,11 @@ public class AdhocMove extends UnitTestClassBase {
 
 			robot.keyPress(KeyEvent.VK_F8);
 			robot.keyRelease(KeyEvent.VK_F8);
+
+			Thread.sleep(4000);
+			
+			robot.keyPress(KeyEvent.VK_TAB);
+			robot.keyRelease(KeyEvent.VK_TAB);
 
 			Thread.sleep(2000);
 
@@ -99,7 +106,18 @@ public class AdhocMove extends UnitTestClassBase {
 			Thread.sleep(2000);
 		} catch (Exception e) {
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			
+				/*try {
+					globalFunc.Screenshots.LeanFTSnapshot( LeanFTDriver);
+					System.out.println("raka");
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					System.out.println("naka");
+					e1.printStackTrace();
+				}*/
+				
+			
+			//Assert.assertTrue(false);
 		}
 
 	}

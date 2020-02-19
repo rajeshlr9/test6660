@@ -2,10 +2,12 @@ C:\Users\826920\git\SampleMavenProj\src\test\java\reusable\PuttyLogin.java
 C:\Users\826920\git\SampleMavenProj\src\test\java\StepDefinition\Steps.java
 C:\Users\826920\git\SampleMavenProj\src\test\java\unittesting\UnitTestClassBase.java
 C:\Users\826920\git\SampleMavenProj\src\test\java\TestRunner\Runner.java
-C:\Users\826920\git\SampleMavenProj\src\test\java\reusable\copyFolder.java
 C:\Users\826920\git\SampleMavenProj\src\test\java\reusable\ModifyXML.java
-C:\Users\826920\git\SampleMavenProj\src\test\java\globalFunc\DateTime.java
+C:\Users\826920\git\SampleMavenProj\src\test\java\globalFunc\Screenshots.java
+C:\Users\826920\git\SampleMavenProj\src\test\java\globalFunc\AdhocMove2.java
 C:\Users\826920\git\SampleMavenProj\src\test\java\reusable\AdhocMove.java
 C:\Users\826920\git\SampleMavenProj\src\test\java\reusable\LeanFtInitialize.java
 C:\Users\826920\git\SampleMavenProj\src\test\java\reusable\Filezilla.java
 C:\Users\826920\git\SampleMavenProj\src\test\java\reusable\OMSLogin.java
+C:\Users\826920\git\SampleMavenProj\src\test\java\reusable\copyFolder.java
+C:\Users\826920\git\SampleMavenProj\src\test\java\globalFunc\DateTime.java

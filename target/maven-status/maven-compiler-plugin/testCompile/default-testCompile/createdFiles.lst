@@ -1,11 +1,13 @@
-reusable\LeanFtInitialize.class
 unittesting\UnitTestClassBase.class
-reusable\AdhocMove.class
 reusable\Filezilla.class
 reusable\copyFolder.class
-reusable\PuttyLogin.class
-TestRunner\Runner.class
 globalFunc\DateTime.class
+globalFunc\Screenshots.class
+reusable\LeanFtInitialize.class
+reusable\AdhocMove.class
+reusable\PuttyLogin.class
+globalFunc\AdhocMove2.class
+TestRunner\Runner.class
 StepDefinition\Steps.class
 reusable\OMSLogin.class
 reusable\ModifyXML.class

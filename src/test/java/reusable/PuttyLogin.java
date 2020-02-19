@@ -54,7 +54,7 @@ public class PuttyLogin {
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
 
-
+		Thread.sleep(2000);
 		Window pwd=Desktop.describe(Window.class, new WindowDescription.Builder()
 				.ownedWindow(false).childWindow(false).windowClassRegExp("PuTTY").windowTitleRegExp(" PuTTY").build());
 
@@ -63,13 +63,13 @@ public class PuttyLogin {
 
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
-
+		Thread.sleep(2000);
 
 		Window userid=Desktop.describe(Window.class, new WindowDescription.Builder()
 				.ownedWindow(false).childWindow(false).windowClassRegExp("PuTTY").windowTitleRegExp(" PuTTY").build());
 
 		userid.sendKeys(data.get(1).get(2));
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		robot.keyPress(KeyEvent.VK_TAB);
 		robot.keyRelease(KeyEvent.VK_TAB);
@@ -79,7 +79,7 @@ public class PuttyLogin {
 				.ownedWindow(false).childWindow(false).windowClassRegExp("PuTTY").windowTitleRegExp(" PuTTY").build());
 
 		pass.sendKeys(data.get(1).get(3));
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		robot.keyPress(KeyEvent.VK_TAB);
 		robot.keyRelease(KeyEvent.VK_TAB);
