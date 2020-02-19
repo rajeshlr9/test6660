@@ -3,17 +3,15 @@ package TestRunner;
 
 import java.io.File;
 
-import org.junit.runner.RunWith;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 
 import com.cucumber.listener.ExtentProperties;
 import com.cucumber.listener.Reporter;
 
-import cucumber.api.CucumberOptions;
 
+import cucumber.api.CucumberOptions;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 
 
@@ -28,9 +26,12 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 		features = {"src\\test\\java\\featureFile\\MyTest.feature"},
 		glue = {"StepDefinition"},
 		//format={"pretty","html:resources\\Reports\\cucumber-report.html"},
-		format = { "pretty","json:resources\\cucumber-reports\\cucumber-report.json" },
-		//plugin = { "com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"}, 
-				plugin = { "com.cucumber.listener.ExtentCucumberFormatter:","html:target\\cucumber-reports" },
+		//format = { "pretty","json:resources\\cucumber-reports\\cucumber-report.json" },
+	//	plugin = { "com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"}, 
+				//format={"pretty","html:resources\\Reports\\cucumber-report.html"},
+				format = { "pretty","json:resources\\cucumber-reports\\cucumber-report.json" },
+				//plugin = { "com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"}, 
+						plugin = { "com.cucumber.listener.ExtentCucumberFormatter:","html:target\\cucumber-reports" },
 		monochrome=true
 		)
 
@@ -46,7 +47,6 @@ public class Runner extends AbstractTestNGCucumberTests {
 		config.setServerAddress(new URI("ws://localhost:5095"));
 		SDK.init(config);  
 	}
-	
 	
 	@AfterClass
     public void tearDownClass() throws Exception {  
@@ -67,10 +67,12 @@ public class Runner extends AbstractTestNGCucumberTests {
 		// Reporter.loadXMLConfig(new File("src/ConfigFiles/extent-config.xml"));
 
 	}
-	 @AfterTest
+	 //@AfterClass
+	@AfterTest
 	    public static void writeExtentReport() {
 	        Reporter.loadXMLConfig(new File("config/report.xml"));
 	    
 	    }
 
 }
+

@@ -7,7 +7,7 @@ formatter.feature({
   "keyword": "Feature"
 });
 formatter.before({
-  "duration": 991725,
+  "duration": 434356,
   "status": "passed"
 });
 formatter.scenario({
@@ -88,32 +88,32 @@ formatter.match({
   "location": "Steps.openPutty()"
 });
 formatter.result({
-  "duration": 169970051,
+  "duration": 422107939,
   "status": "passed"
 });
 formatter.match({
   "location": "Steps.puttyLogin(DataTable)"
 });
 formatter.result({
-  "duration": 14474096294,
+  "duration": 17748755016,
   "status": "passed"
 });
 formatter.match({
   "location": "Steps.performAdhocmove(DataTable)"
 });
 formatter.result({
-  "duration": 25511082300,
+  "duration": 23929078167,
   "status": "passed"
 });
 formatter.match({
   "location": "Steps.adhocmoveValidation()"
 });
 formatter.result({
-  "duration": 8507445,
+  "duration": 88101532,
   "status": "passed"
 });
 formatter.after({
-  "duration": 58824,
+  "duration": 268732,
   "status": "passed"
 });
 });

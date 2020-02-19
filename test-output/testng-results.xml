@@ -2,23 +2,23 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="62217" started-at="2020-02-18T14:21:11Z" finished-at="2020-02-18T14:22:13Z">
+  <suite name="Suite" duration-ms="63978" started-at="2020-02-19T07:43:05Z" finished-at="2020-02-19T07:44:09Z">
     <groups>
       <group name="cucumber">
-        <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@6e1567f1]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
+        <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@402a079c]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test name="Test" duration-ms="62217" started-at="2020-02-18T14:21:11Z" finished-at="2020-02-18T14:22:13Z">
+    <test name="Test" duration-ms="63978" started-at="2020-02-19T07:43:05Z" finished-at="2020-02-19T07:44:09Z">
       <class name="TestRunner.Runner">
-        <test-method status="PASS" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@6e1567f1]" name="createExtentReport" is-config="true" duration-ms="63" started-at="2020-02-18T14:21:11Z" finished-at="2020-02-18T14:21:11Z">
+        <test-method status="PASS" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@402a079c]" name="createExtentReport" is-config="true" duration-ms="47" started-at="2020-02-19T07:43:05Z" finished-at="2020-02-19T07:43:05Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createExtentReport -->
-        <test-method status="PASS" signature="setUpClass()[pri:0, instance:TestRunner.Runner@6e1567f1]" name="setUpClass" is-config="true" duration-ms="562" started-at="2020-02-18T14:21:11Z" finished-at="2020-02-18T14:21:12Z">
+        <test-method status="PASS" signature="setUpClass()[pri:0, instance:TestRunner.Runner@402a079c]" name="setUpClass" is-config="true" duration-ms="796" started-at="2020-02-19T07:43:05Z" finished-at="2020-02-19T07:43:06Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method status="PASS" signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@6e1567f1]" name="feature" duration-ms="60889" started-at="2020-02-18T14:21:12Z" description="Runs Cucumber Feature" data-provider="features" finished-at="2020-02-18T14:22:13Z">
+        <test-method status="PASS" signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@402a079c]" name="feature" duration-ms="62382" started-at="2020-02-19T07:43:06Z" description="Runs Cucumber Feature" data-provider="features" finished-at="2020-02-19T07:44:09Z">
           <params>
             <param index="0">
               <value>
@@ -29,11 +29,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- feature -->
-        <test-method status="PASS" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@6e1567f1]" name="tearDownClass" is-config="true" duration-ms="563" started-at="2020-02-18T14:22:13Z" finished-at="2020-02-18T14:22:13Z">
+        <test-method status="PASS" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@402a079c]" name="tearDownClass" is-config="true" duration-ms="547" started-at="2020-02-19T07:44:09Z" finished-at="2020-02-19T07:44:09Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-        <test-method status="PASS" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@6e1567f1]" name="writeExtentReport" is-config="true" duration-ms="15" started-at="2020-02-18T14:22:13Z" finished-at="2020-02-18T14:22:13Z">
+        <test-method status="PASS" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@402a079c]" name="writeExtentReport" is-config="true" duration-ms="16" started-at="2020-02-19T07:44:09Z" finished-at="2020-02-19T07:44:09Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- writeExtentReport -->
