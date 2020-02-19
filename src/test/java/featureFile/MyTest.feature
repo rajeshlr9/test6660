@@ -27,8 +27,6 @@ Feature: Execute Selenium Scripts from LeanFT Tool
     Given Open Filezilla
     When user connects to EMC customer and drop an OB order
     And Login to OMS using Selenium
-      | Username | Password |
-      |   867949 | Manage16 |
     And Search for the dropped order using Selenium
     And Resume the incomplete order using Selenium
     Then Order is placed successfully
@@ -38,11 +36,9 @@ Feature: Execute Selenium Scripts from LeanFT Tool
   Scenario: Complete adhoc move in Putty using Leanft
     Given Open Putty
     When user login to Putty
-      | Username | Password    | NodeId    | NodePassword |
-      | yanqarf1 | QA36playgnd | Mphasis04 | Mphas004     |
     And Complete adhoc move
       | Start_Location | ItemType | ItemID   | Quantity | SuggestedLoc |
-      | STG001R        | Normal   | 7181E-01 |        1 |              |
+      | STG001R        | Serial   | 	FC7845358674 |        1000 |              |
     Then Items are moved successfully
     
     @tag6

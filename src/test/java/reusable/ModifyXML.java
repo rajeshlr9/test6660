@@ -6,20 +6,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import com.hp.lft.sdk.GeneralLeanFtException;
 
-import com.hp.lft.sdk.*;
-import com.hp.lft.sdk.stdwin.ListBox;
-import com.hp.lft.sdk.stdwin.ListBoxDescription;
-import com.hp.lft.verifications.*;
-import com.sun.jna.platform.FileUtils;
-import com.hp.lft.sdk.Desktop.*;
-
-import unittesting.*;
+import unittesting.UnitTestClassBase;
 
 public class ModifyXML extends UnitTestClassBase {
 

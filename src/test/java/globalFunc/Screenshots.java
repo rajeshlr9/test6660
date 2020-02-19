@@ -11,13 +11,8 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
-import com.cucumber.listener.Reporter;
 import com.hp.lft.sdk.stdwin.Window;
 import com.hp.lft.sdk.web.Browser;
-import com.hp.lft.sdk.web.Image;
-
-import StepDefinition.Steps;
-import cucumber.api.Scenario;
 
 public class Screenshots {
 
@@ -25,7 +20,7 @@ public class Screenshots {
        System.out.println("screeny");
 		TakesScreenshot scrShot =((TakesScreenshot)webdriver);
         File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
-        File DestFile=new File("C:\\Users\\826920\\git\\SampleMavenProj\\resources\\Screenshots\\"+DateTime.strDate3+".jpeg");
+        File DestFile=new File("\resources\\Screenshots\\"+DateTime.strDate3+".jpeg");
         FileUtils.copyFile(SrcFile, DestFile);
        /* final byte[] screenshot = ((TakesScreenshot)webdriver).getScreenshotAs(OutputType.BYTES);
         //File DestFile=new File(Steps.dir+"\\resources\\Screenshots\\"+DateTime.strDate3+".png");
@@ -41,7 +36,7 @@ public class Screenshots {
 	//	Reporter.reportEvent("Login","Login successful", Status.Passed, img);
 		RenderedImage srcFile=leanFTDriver.getSnapshot(); 
 		//File fileObj = new File(System.getProperty("user.dir")+"\\ScreenShots\\"+vendorID+"_"+".jpg");
-		File fileObj = new File("C:\\Users\\826920\\git\\SampleMavenProj\\resources\\Screenshots\\"+DateTime.strDate3+".jpeg");
+		File fileObj = new File("resources\\Screenshots\\"+DateTime.strDate3+".jpeg");
 		try {
 		ImageIO.write(srcFile, "jpg", fileObj);
 		} catch (IOException e) {
@@ -55,7 +50,7 @@ public class Screenshots {
 		//	Reporter.reportEvent("Login","Login successful", Status.Passed, img);
 			RenderedImage srcFile=leanFTDriver.getSnapshot(); 
 			//File fileObj = new File(System.getProperty("user.dir")+"\\ScreenShots\\"+vendorID+"_"+".jpg");
-			File fileObj = new File("C:\\Users\\826920\\git\\SampleMavenProj\\resources\\Screenshots\\"+DateTime.strDate3+".jpeg");
+			File fileObj = new File("resources\\Screenshots\\"+DateTime.strDate3+".jpeg");
 			try {
 			ImageIO.write(srcFile, "jpg", fileObj);
 			} catch (IOException e) {

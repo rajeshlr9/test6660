@@ -1,40 +1,18 @@
 package StepDefinition;
 
 import java.awt.Robot;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URI;
-import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import javax.imageio.ImageIO;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.Assert;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.MediaEntityBuilder;
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.markuputils.ExtentColor;
-import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import com.aventstack.extentreports.reporter.configuration.ChartLocation;
-import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.hp.lft.sdk.GeneralLeanFtException;
-import com.hp.lft.sdk.ModifiableSDKConfiguration;
-import com.hp.lft.sdk.SDK;
 import com.hp.lft.sdk.stdwin.Window;
 import com.hp.lft.sdk.web.Browser;
 import com.hp.lft.sdk.web.BrowserDescription;
@@ -59,13 +37,13 @@ import cucumber.api.java.en.When;
 public class Steps {
 	public static WebDriver seleniumDriver;
 	public static Browser LeanFTDriver;
-	public static Window puttyApp;
+	public static Window winApp;
 	String pageTitle;
 	public static Robot robot;
 	public static Scenario scenario;
 	public static String dir;
 	public static Properties prop;
-	String testRes = "";
+	public static String testRes = "";
 
 
 
@@ -114,7 +92,7 @@ public class Steps {
 			}
 			try {
 
-				globalFunc.Screenshots.LeanFTSnapshot(puttyApp);
+				globalFunc.Screenshots.LeanFTSnapshot(winApp);
 				System.out.println("naka3");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -340,15 +318,15 @@ public class Steps {
 	}
 
 	@And("Login to OMS using Selenium")
-	public void OMSLogin(DataTable usercredentials) throws Throwable {
+	public void OMSLogin() throws Throwable {
 
 		try {
 			System.setProperty("webdriver.ie.driver", dir + "\\Jars\\browsers\\IEDriverServer.exe");
 			seleniumDriver = new InternetExplorerDriver();
 			seleniumDriver.manage().window().maximize();
-			seleniumDriver.get("https://rr.secure.fedex.com/oms");
+			seleniumDriver.get(prop.getProperty("OMSUrl"));
 			seleniumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			reusable.OMSLogin.loginOMS(usercredentials);
+			reusable.OMSLogin.loginOMS();
 		} catch (Exception e) {
 
 			testRes = "Failed";
@@ -467,10 +445,10 @@ public class Steps {
 	}
 
 	@When("user login to Putty")
-	public void puttyLogin(DataTable usercredentials) throws Throwable {
+	public void puttyLogin() throws Throwable {
 		try {
 			reusable.LeanFtInitialize.initializeLeanFt();
-			reusable.PuttyLogin.puttyLogin(usercredentials);
+			reusable.PuttyLogin.puttyLogin();
 		} catch (Exception e) {
 			testRes = "Failed";
 			e.printStackTrace();
@@ -481,12 +459,10 @@ public class Steps {
 	@And("Complete adhoc move")
 	public void performAdhocmove(DataTable usercredentials) throws Throwable {
 		try {
-			//reusable.AdhocMove.adhocMove(usercredentials, puttyApp);
-			globalFunc.AdhocMove2.adhocMove(usercredentials);
+			reusable.AdhocMove.adhocMove(usercredentials, winApp);
 		} catch (Exception e) {
 			testRes = "Failed";
 			e.printStackTrace();
-
 		}
 	}
 
