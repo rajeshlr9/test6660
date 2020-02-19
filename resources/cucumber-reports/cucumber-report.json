@@ -6,7 +6,7 @@
         "before": [
           {
             "result": {
-              "duration": 187085,
+              "duration": 1149644,
               "status": "passed"
             },
             "match": {
@@ -14,14 +14,14 @@
             }
           }
         ],
-        "line": 35,
+        "line": 38,
         "name": "Complete adhoc move in Putty using Leanft",
         "description": "",
         "id": "execute-selenium-scripts-from-leanft-tool;complete-adhoc-move-in-putty-using-leanft",
         "after": [
           {
             "result": {
-              "duration": 184753,
+              "duration": 114096,
               "status": "passed"
             },
             "match": {
@@ -34,10 +34,10 @@
         "steps": [
           {
             "result": {
-              "duration": 112419415,
+              "duration": 151886846,
               "status": "passed"
             },
-            "line": 36,
+            "line": 39,
             "name": "Open Putty",
             "match": {
               "location": "Steps.openPutty()"
@@ -46,10 +46,10 @@
           },
           {
             "result": {
-              "duration": 13783876286,
+              "duration": 21862926665,
               "status": "passed"
             },
-            "line": 37,
+            "line": 40,
             "name": "user login to Putty",
             "match": {
               "location": "Steps.puttyLogin(DataTable)"
@@ -62,7 +62,7 @@
                   "NodeId",
                   "NodePassword"
                 ],
-                "line": 38
+                "line": 41
               },
               {
                 "cells": [
@@ -71,17 +71,17 @@
                   "Mphasis04",
                   "Mphas004"
                 ],
-                "line": 39
+                "line": 42
               }
             ],
             "keyword": "When "
           },
           {
             "result": {
-              "duration": 24448940050,
+              "duration": 39943201980,
               "status": "passed"
             },
-            "line": 40,
+            "line": 43,
             "name": "Complete adhoc move",
             "match": {
               "location": "Steps.performAdhocmove(DataTable)"
@@ -90,30 +90,32 @@
               {
                 "cells": [
                   "Start_Location",
+                  "ItemType",
                   "ItemID",
                   "Quantity",
                   "SuggestedLoc"
                 ],
-                "line": 41
+                "line": 44
               },
               {
                 "cells": [
                   "STG001R",
+                  "Normal",
                   "7181E-01",
                   "1",
-                  "BB2314C3"
+                  ""
                 ],
-                "line": 42
+                "line": 45
               }
             ],
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 13536425,
+              "duration": 8162393,
               "status": "passed"
             },
-            "line": 43,
+            "line": 46,
             "name": "Items are moved successfully",
             "match": {
               "location": "Steps.adhocmoveValidation()"
@@ -123,7 +125,7 @@
         ],
         "tags": [
           {
-            "line": 34,
+            "line": 37,
             "name": "@tag5"
           }
         ]

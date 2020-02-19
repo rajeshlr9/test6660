@@ -3,14 +3,16 @@ Feature: Execute Selenium Scripts from LeanFT Tool
 
   @tag1
   Scenario: Print Hello using Selenium
-    Given Open the Chrome by selenium
+    And Login to OMS using Selenium
+      | Username | Password |
+      |   867949 | Manage16 |
     When abc
-    Then Close browser opened by selenium
+     #Then Close browser opened by selenium
 
   @tag2
   Scenario: Print Hello using LeanFT
     Given Open the Chrome by leanft
-    When abc
+    Then Login to OMS by LeanFT
   # Then Close_browser_opened_by_Leanft
   
   @tag3
@@ -31,13 +33,23 @@ Feature: Execute Selenium Scripts from LeanFT Tool
     And Resume the incomplete order using Selenium
     Then Order is placed successfully
 
-  @tag5
+    
+   @tag5
   Scenario: Complete adhoc move in Putty using Leanft
     Given Open Putty
     When user login to Putty
       | Username | Password    | NodeId    | NodePassword |
       | yanqarf1 | QA36playgnd | Mphasis04 | Mphas004     |
     And Complete adhoc move
-      | Start_Location | ItemID   | Quantity | SuggestedLoc |
-      | STG001R        | 7181E-01 |        1 | BB2314C3     |
+      | Start_Location | ItemType | ItemID   | Quantity | SuggestedLoc |
+      | STG001R        | Normal   | 7181E-01 |        1 |              |
     Then Items are moved successfully
+    
+    @tag6
+    Scenario: Complete adhoc move in Putty using Leanftq
+     And Login to OMS using Selenium
+      | Username | Password |
+      |   867949 | Manage16 |
+    And Search for the dropped order using Selenium
+    And Resume the incomplete order using Selenium
+    Then Order is placed successfully
