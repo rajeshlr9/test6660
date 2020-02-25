@@ -20,7 +20,7 @@ public class Screenshots {
 		System.out.println("screeny");
 		TakesScreenshot scrShot =((TakesScreenshot)webdriver);
 		File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
-		File DestFile=new File("\resources\\Screenshots\\"+DateTime.strDate3+".jpeg");
+		File DestFile=new File("resources\\Screenshots\\"+DateTime.strDate3+".jpeg");
 		FileUtils.copyFile(SrcFile, DestFile);
 		/* final byte[] screenshot = ((TakesScreenshot)webdriver).getScreenshotAs(OutputType.BYTES);
         //File DestFile=new File(Steps.dir+"\\resources\\Screenshots\\"+DateTime.strDate3+".png");

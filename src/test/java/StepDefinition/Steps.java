@@ -118,7 +118,7 @@ static{
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				System.out.println("raka3");
+				System.out.println("raka2");
 			}
 		}
 		if(LeanFTDriver!=null) { 
