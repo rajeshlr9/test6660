@@ -6,7 +6,9 @@
         "before": [
           {
             "result": {
-              "duration": 964091,
+
+              "duration": 55889656,
+
               "status": "passed"
             },
             "match": {
@@ -14,14 +16,17 @@
             }
           }
         ],
-        "line": 36,
-        "name": "Complete adhoc move in Putty using Leanft",
+     "line": 26,
+        "name": "Create Order via Filezilla using Leanft and Resume order in O2S via Selenium(Work on 2 application)",
+
         "description": "",
-        "id": "execute-selenium-scripts-from-leanft-tool;complete-adhoc-move-in-putty-using-leanft",
+        "id": "execute-selenium-scripts-from-leanft-tool;create-order-via-filezilla-using-leanft-and-resume-order-in-o2s-via-selenium(work-on-2-application)",
         "after": [
           {
             "result": {
-              "duration": 92382,
+
+              "duration": 606384150,
+
               "status": "passed"
             },
             "match": {
@@ -34,38 +39,47 @@
         "steps": [
           {
             "result": {
-              "duration": 133553734,
+
+
+              "duration": 3162005074,
               "status": "passed"
             },
-            "line": 37,
-            "name": "Open Putty",
+            "line": 27,
+            "name": "Open Filezilla",
+
             "match": {
-              "location": "Steps.openPutty()"
+              "location": "Steps.LaunchFilezilla()"
             },
             "keyword": "Given "
           },
           {
             "result": {
-              "duration": 15868909394,
+
+
+              "duration": 40397099098,
               "status": "passed"
             },
-            "line": 38,
-            "name": "user login to Putty",
+            "line": 28,
+            "name": "user connects to EMC customer and drop an OB order",
             "match": {
-              "location": "Steps.puttyLogin()"
+              "location": "Steps.orderUpload()"
+
             },
             "keyword": "When "
           },
           {
             "result": {
-              "duration": 44780653291,
+
+              "duration": 19994682752,
               "status": "passed"
             },
-            "line": 39,
-            "name": "Complete adhoc move",
+            "line": 29,
+            "name": "Login to OMS using Selenium",
+
             "match": {
-              "location": "Steps.performAdhocmove(DataTable)"
+              "location": "Steps.OMSLogin()"
             },
+
             "rows": [
               {
                 "cells": [
@@ -88,25 +102,55 @@
                 "line": 41
               }
             ],
+
+
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 7581255,
+
+              "duration": 25763836648,
               "status": "passed"
             },
-            "line": 42,
-            "name": "Items are moved successfully",
+            "line": 30,
+            "name": "Search for the dropped order using Selenium",
+
             "match": {
-              "location": "Steps.adhocmoveValidation()"
+              "location": "Steps.searchOrder()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 90211736296,
+              "status": "passed"
+            },
+            "line": 31,
+            "name": "Resume the incomplete order using Selenium",
+            "match": {
+              "location": "Steps.resumeOrder()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 505664826,
+              "status": "passed"
+            },
+            "line": 32,
+            "name": "Order is placed successfully",
+            "match": {
+              "location": "Steps.orderCreationValidation()"
             },
             "keyword": "Then "
           }
         ],
         "tags": [
           {
-            "line": 35,
-            "name": "@tag5"
+
+            "line": 25,
+            "name": "@tag4"
+
           }
         ]
       }

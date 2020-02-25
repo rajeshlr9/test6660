@@ -101,18 +101,41 @@ public class AdhocMove extends UnitTestClassBase {
 				Thread.sleep(2000);
 				robot.keyPress(KeyEvent.VK_TAB);
 				robot.keyRelease(KeyEvent.VK_TAB);
-
+                
 				Thread.sleep(4000);
 				
 				TextScreen teTextScreen = Desktop.describe(com.hp.lft.sdk.te.Window.class, new com.hp.lft.sdk.te.WindowDescription.Builder()
 						.shortName("A").build())
 					.describe(TextScreen.class, new TextScreenDescription());
-				String serialerr=teTextScreen.getVisibleText();
+				if(teTextScreen.exists()) {
+				teTextScreen.click();
+				Thread.sleep(1000);
+				//Capturing suggested location
+				Position position= new Position(3, 6);
+				teTextScreen.click(position);
+				teTextScreen.click(position);
+				Thread.sleep(2000);
+				}else {
+					System.out.println("unable to find textscreen");
+					System.out.println("AdhocMove failed");
+					try {
+						Runtime rt = Runtime.getRuntime();
+						rt.exec("taskkill /F /IM putty.exe");
+					} catch (Exception e) {
+						Assert.assertTrue(false);
+						e.printStackTrace();
+					}
+					Assert.assertTrue(false);
+				}
 				
-				//String serialerr= Desktop.describe(Window.class, new WindowDescription.Builder().ownedWindow(false)
-					//s	.childWindow(false).windowClassRegExp("PuTTY").windowTitleRegExp(" PuTTY").build()).getVisibleText();
+				String serialerr = Desktop.describe(com.hp.lft.sdk.te.Window.class, new com.hp.lft.sdk.te.WindowDescription.Builder()
+						.shortName("A").build())
+					.describe(TextScreen.class, new TextScreenDescription()).getVisibleText();
+				
+				String serialerr2= Desktop.describe(Window.class, new WindowDescription.Builder().ownedWindow(false)
+						.childWindow(false).windowClassRegExp("PuTTY").windowTitleRegExp(" PuTTY").build()).getVisibleText();
 				Thread.sleep(4000);
-				if(serialerr.contains("Error")) {
+				if(serialerr.contains("Error")||serialerr2.contains("Error")) {
 					System.out.println("AdhocMove failed as Serial does not exist");
 					Steps.testRes="Failed";
 					globalFunc.Screenshots.LeanFTSnapshot(putty);
@@ -164,14 +187,14 @@ public class AdhocMove extends UnitTestClassBase {
 			}else {
 				System.out.println("unable to find textscreen");
 				System.out.println("AdhocMove failed");
-				/*try {
+				try {
 					Runtime rt = Runtime.getRuntime();
 					rt.exec("taskkill /F /IM putty.exe");
 				} catch (Exception e) {
 					Assert.assertTrue(false);
 					e.printStackTrace();
 				}
-				Assert.assertTrue(false);*/
+				Assert.assertTrue(false);
 			}
 				
 			
@@ -197,10 +220,11 @@ public class AdhocMove extends UnitTestClassBase {
 			
 			String zoneconstraint= Desktop.describe(Window.class, new WindowDescription.Builder().ownedWindow(false)
 					.childWindow(false).windowClassRegExp("PuTTY").windowTitleRegExp(" PuTTY").build()).getVisibleText();
-			System.out.println("error-"+zoneconstraint);
 			
 			if(zoneconstraint.contains("Error")) {
-				System.out.println("AdhocMove failed");
+				System.out.println("AdhocMove failed due to zone constraints issue");
+				Steps.testRes="Failed";
+				globalFunc.Screenshots.LeanFTSnapshot(putty);
 				try {
 					Runtime rt = Runtime.getRuntime();
 					rt.exec("taskkill /F /IM putty.exe");

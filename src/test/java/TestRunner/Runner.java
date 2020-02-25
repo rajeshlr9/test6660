@@ -19,7 +19,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 		dryRun = false,
 		
 	
-		tags={"@tag5"},
+		tags={"@tag4"},
 
 		features = {"src\\test\\java\\featureFile\\MyTest.feature"},
 		glue = {"StepDefinition"},
