@@ -51,11 +51,11 @@ public class Steps {
 
 	Logger logger;
 
-static{
-        
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
-        System.setProperty("current.date.time", dateFormat.format(new Date()));
-    }
+	static{
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
+		System.setProperty("current.date.time", dateFormat.format(new Date()));
+	}
 
 	@Before
 	public void beforeClass() throws GeneralLeanFtException {
@@ -76,7 +76,7 @@ static{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 
 	}
 	public void before(Scenario scenario) throws Exception {
@@ -93,32 +93,37 @@ static{
 		 * seleniumDriver.quit(); if(LeanFTDriver.exists()) { LeanFTDriver.close(); }
 		 */
 		if ("Failed".equals(testRes)) {
-			try {
+			if(LeanFTDriver!=null) { 
+				try {
 
-				globalFunc.Screenshots.LeanFTSnapshot(LeanFTDriver);
-				System.out.println("naka1");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				System.out.println("raka1");
+					globalFunc.Screenshots.LeanFTSnapshot(LeanFTDriver);
+					System.out.println("naka1");
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					System.out.println("raka1");
+				}}
+			if(winApp!=null) {
+				try {
+
+					globalFunc.Screenshots.LeanFTSnapshot(winApp);
+					System.out.println("naka3");
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					System.out.println("raka3");
+				}
 			}
-			try {
+			if(seleniumDriver!=null) {
+				try {
 
-				globalFunc.Screenshots.LeanFTSnapshot(winApp);
-				System.out.println("naka3");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				System.out.println("raka3");
-			}
-			try {
-
-				globalFunc.Screenshots.seleniumSnapshot(seleniumDriver);
-				System.out.println("naka2");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				System.out.println("raka2");
+					globalFunc.Screenshots.seleniumSnapshot(seleniumDriver);
+					System.out.println("naka2");
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					System.out.println("raka2");
+				}
 			}
 		}
 		if(LeanFTDriver!=null) { 
@@ -419,7 +424,7 @@ static{
 		} catch (Exception e) {
 			testRes = "Failed";
 			Assert.fail("WebDriver couldnâ€™t locate the element");
-			seleniumDriver.close();
+			//seleniumDriver.close();
 		}
 	}
 
@@ -438,7 +443,7 @@ static{
 			} else {
 				System.out.println("order not created ");
 			}
-			
+
 		} catch (Exception e) {
 			testRes = "Failed";
 			e.printStackTrace();
