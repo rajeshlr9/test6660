@@ -4,9 +4,13 @@ import java.awt.Robot;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -45,13 +49,21 @@ public class Steps {
 	public static Properties prop;
 	public static String testRes = "";
 
+	Logger logger;
 
+static{
+        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
+        System.setProperty("current.date.time", dateFormat.format(new Date()));
+    }
 
 	@Before
 	public void beforeClass() throws GeneralLeanFtException {
 		try {
 			dir = System.getProperty("user.dir");
 			System.out.println(dir);
+			logger=Logger.getLogger("Selenium-leanFt");
+			PropertyConfigurator.configure("Log4j.properties");
 			prop = new Properties();
 			FileInputStream ip = new FileInputStream(dir + "\\TestData\\config.properties");
 			try {
@@ -108,7 +120,6 @@ public class Steps {
 				e.printStackTrace();
 				System.out.println("raka3");
 			}
-
 		}
 		if(LeanFTDriver!=null) { 
 			LeanFTDriver.close();
@@ -297,6 +308,7 @@ public class Steps {
 		try {
 			new ProcessBuilder("C:\\Program Files (x86)\\FileZilla FTP Client\\filezilla.exe").start();
 			Thread.sleep(3000);
+			logger.info("FileZilla Opened");
 		}catch(Exception e) {
 			testRes = "Failed";
 			System.out.println(e);
@@ -306,10 +318,12 @@ public class Steps {
 	@When("user connects to EMC customer and drop an OB order")
 	public void orderUpload() throws Throwable {
 		try {
-			scenario.write("Enterprise code-");
+			//scenario.write("Enterprise code-");
 			reusable.LeanFtInitialize.initializeLeanFt();
+			System.out.println("leanft initialized");
 			reusable.ModifyXML.ModifyFile();
 			reusable.Filezilla.uploadOrder();
+			logger.info("Order is dropped successfully");
 		}catch(Exception e) {
 			testRes = "Failed";
 			System.out.println(e);
@@ -327,6 +341,7 @@ public class Steps {
 			seleniumDriver.get(prop.getProperty("OMSUrl"));
 			seleniumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			reusable.OMSLogin.loginOMS();
+			logger.info("OMS Login successfull");
 		} catch (Exception e) {
 
 			testRes = "Failed";
@@ -349,6 +364,7 @@ public class Steps {
 			seleniumDriver.findElement(By.id("orderSearchform:custRef")).sendKeys("EMC" + globalFunc.DateTime.strDate6);
 			seleniumDriver.findElement(By.id("orderSearchform:searchDetails")).click();
 			Thread.sleep(8000);
+			logger.info("Order present in O2S");
 		} catch (InterruptedException e) {
 			testRes = "Failed";
 			e.printStackTrace();
@@ -399,7 +415,7 @@ public class Steps {
 
 			seleniumDriver.findElement(By.id("form1:submitPlacement")).click();
 			Thread.sleep(5000);
-
+			logger.info("Order resumed successfully");
 		} catch (Exception e) {
 			testRes = "Failed";
 			Assert.fail("WebDriver couldnâ€™t locate the element");
@@ -418,9 +434,11 @@ public class Steps {
 			if (expected.equals(actual)) {
 				String orderno = seleniumDriver.findElement(By.id("form1:orderNum")).getText();
 				System.out.println("order created " + orderno);
+				logger.info("Order is placed successfully");
 			} else {
 				System.out.println("order not created ");
 			}
+			
 		} catch (Exception e) {
 			testRes = "Failed";
 			e.printStackTrace();
@@ -437,6 +455,7 @@ public class Steps {
 	public void openPutty() {
 		try {
 			new ProcessBuilder("E:\\putty.exe").start();
+			logger.info("Putty Opened");
 		} catch (IOException e) {
 			testRes = "Failed";
 			e.printStackTrace();
@@ -449,6 +468,7 @@ public class Steps {
 		try {
 			reusable.LeanFtInitialize.initializeLeanFt();
 			reusable.PuttyLogin.puttyLogin();
+			logger.info("Putty Login successfull");
 		} catch (Exception e) {
 			testRes = "Failed";
 			e.printStackTrace();
@@ -460,6 +480,7 @@ public class Steps {
 	public void performAdhocmove(DataTable usercredentials) throws Throwable {
 		try {
 			reusable.AdhocMove.adhocMove(usercredentials, winApp);
+			logger.info("Adhocmove completed");
 		} catch (Exception e) {
 			testRes = "Failed";
 			e.printStackTrace();
@@ -474,6 +495,7 @@ public class Steps {
 
 			rt.exec("taskkill /F /IM putty.exe");
 			System.out.println("adhoc move completed");
+			logger.info("Putty closed");
 		} catch (Exception e) {
 			testRes = "Failed";
 			// TODO Auto-generated catch block

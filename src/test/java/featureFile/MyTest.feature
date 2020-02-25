@@ -38,7 +38,7 @@ Feature: Execute Selenium Scripts from LeanFT Tool
     When user login to Putty
     And Complete adhoc move
       | Start_Location | ItemType | ItemID   | Quantity | SuggestedLoc |
-      | STG001R        | Serial   | 	FC7845358674 |        1000 |              |
+      | STG001R        | Normal   | 	7181E-01 |        1 |              |
     Then Items are moved successfully
     
     @tag6
