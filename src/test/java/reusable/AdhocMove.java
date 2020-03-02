@@ -31,11 +31,12 @@ public class AdhocMove extends UnitTestClassBase {
 
 			Properties prop = Steps.prop;
 			List<List<String>> data = usercredentials.raw();
-			Robot robot = Steps.robot;
-			robot = new Robot();
 
 			 putty=Desktop.describe(Window.class, new WindowDescription.Builder().ownedWindow(false).childWindow(false)
 					.windowClassRegExp("PuTTY").windowTitleRegExp(" PuTTY").build());
+			 TextScreen teTextScreen = Desktop.describe(com.hp.lft.sdk.te.Window.class, new com.hp.lft.sdk.te.WindowDescription.Builder()
+						.shortName("A").build())
+						.describe(TextScreen.class, new TextScreenDescription());
 			int temp = 0;
 			if (prop.getProperty("RFEnv").equals("QA")) {
 				temp = 8;
@@ -46,27 +47,21 @@ public class AdhocMove extends UnitTestClassBase {
 			}
 
 			for (int i = 0; i <= temp; i++) {
-				robot.keyPress(KeyEvent.VK_DOWN);
-				robot.keyRelease(KeyEvent.VK_DOWN);
+				teTextScreen.sendKeys(com.hp.lft.sdk.Keys.DOWN);
 				Thread.sleep(1000);
 
 			}
 
-			robot.keyPress(KeyEvent.VK_ENTER);
-			robot.keyRelease(KeyEvent.VK_ENTER);
+			teTextScreen.sendKeys(com.hp.lft.sdk.Keys.RETURN);
+			Thread.sleep(2000);
+			teTextScreen.sendKeys(com.hp.lft.sdk.Keys.RETURN);
+			Thread.sleep(2000);
 
-			robot.keyPress(KeyEvent.VK_ENTER);
-			robot.keyRelease(KeyEvent.VK_ENTER);
-
-			Thread.sleep(1000);
 
 			Window startlocation = Desktop.describe(Window.class, new WindowDescription.Builder().ownedWindow(false)
 					.childWindow(false).windowClassRegExp("PuTTY").windowTitleRegExp(" PuTTY").build());
 
-			startlocation.sendKeys(data.get(1).get(0));
-
-			robot.keyPress(KeyEvent.VK_TAB);
-			robot.keyRelease(KeyEvent.VK_TAB);
+			startlocation.sendKeys(data.get(1).get(0)+com.hp.lft.sdk.Keys.TAB);
 
 			Thread.sleep(2000);
 
@@ -75,19 +70,14 @@ public class AdhocMove extends UnitTestClassBase {
 			Window item = Desktop.describe(Window.class, new WindowDescription.Builder().ownedWindow(false)
 					.childWindow(false).windowClassRegExp("PuTTY").windowTitleRegExp(" PuTTY").build());
 
-			item.sendKeys(data.get(1).get(2));
-			robot.keyPress(KeyEvent.VK_TAB);
-			robot.keyRelease(KeyEvent.VK_TAB);
+			item.sendKeys(data.get(1).get(2)+com.hp.lft.sdk.Keys.TAB);
 
 			Thread.sleep(2000);
 
 			Window qty = Desktop.describe(Window.class, new WindowDescription.Builder().ownedWindow(false)
 					.childWindow(false).windowClassRegExp("PuTTY").windowTitleRegExp(" PuTTY").build());
 
-			qty.sendKeys(data.get(1).get(3));
-			
-			robot.keyPress(KeyEvent.VK_TAB);
-			robot.keyRelease(KeyEvent.VK_TAB);
+			qty.sendKeys(data.get(1).get(3)+com.hp.lft.sdk.Keys.TAB);
 			
 			Thread.sleep(4000);
 			
@@ -97,16 +87,9 @@ public class AdhocMove extends UnitTestClassBase {
 				Window serial = Desktop.describe(Window.class, new WindowDescription.Builder().ownedWindow(false)
 						.childWindow(false).windowClassRegExp("PuTTY").windowTitleRegExp(" PuTTY").build());
 
-				serial.sendKeys(data.get(1).get(2));
-				Thread.sleep(2000);
-				robot.keyPress(KeyEvent.VK_TAB);
-				robot.keyRelease(KeyEvent.VK_TAB);
-                
+				serial.sendKeys(data.get(1).get(2)+com.hp.lft.sdk.Keys.TAB);
 				Thread.sleep(4000);
 				
-				TextScreen teTextScreen = Desktop.describe(com.hp.lft.sdk.te.Window.class, new com.hp.lft.sdk.te.WindowDescription.Builder()
-						.shortName("A").build())
-					.describe(TextScreen.class, new TextScreenDescription());
 				if(teTextScreen.exists()) {
 				teTextScreen.click();
 				Thread.sleep(1000);
@@ -150,11 +133,9 @@ public class AdhocMove extends UnitTestClassBase {
 				}
 			}
 			Thread.sleep(4000);	
-			robot.keyPress(KeyEvent.VK_F8);
-			robot.keyRelease(KeyEvent.VK_F8);
+			teTextScreen.sendKeys(com.hp.lft.sdk.Keys.F8);
 
 			Thread.sleep(4000);
-			
 			String qtyerror= Desktop.describe(Window.class, new WindowDescription.Builder().ownedWindow(false)
 					.childWindow(false).windowClassRegExp("PuTTY").windowTitleRegExp(" PuTTY").build()).getVisibleText();
 			if(qtyerror.contains("Error")) {
@@ -173,9 +154,6 @@ public class AdhocMove extends UnitTestClassBase {
 			
 			Thread.sleep(4000);
 			
-			TextScreen teTextScreen = Desktop.describe(com.hp.lft.sdk.te.Window.class, new com.hp.lft.sdk.te.WindowDescription.Builder()
-					.shortName("A").build())
-				.describe(TextScreen.class, new TextScreenDescription());
 			if(teTextScreen.exists()) {
 			teTextScreen.click();
 			Thread.sleep(1000);
@@ -198,25 +176,20 @@ public class AdhocMove extends UnitTestClassBase {
 			}
 				
 			
-			robot.keyPress(KeyEvent.VK_TAB);
-			robot.keyRelease(KeyEvent.VK_TAB);
+			teTextScreen.sendKeys(com.hp.lft.sdk.Keys.TAB);
 			Thread.sleep(2000);
 			
 			//Pasting suggested location
-			robot.mousePress(InputEvent.BUTTON3_DOWN_MASK);
-			robot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
+			teTextScreen.click(com.hp.lft.sdk.MouseButton.RIGHT);
 			
 			Thread.sleep(2000);
 			
-			robot.keyPress(KeyEvent.VK_TAB);
-			robot.keyRelease(KeyEvent.VK_TAB);
+			teTextScreen.sendKeys(com.hp.lft.sdk.Keys.TAB);
 			
 			Thread.sleep(2000);
-			robot.keyPress(KeyEvent.VK_F8);
-			robot.keyRelease(KeyEvent.VK_F8);
+			teTextScreen.sendKeys(com.hp.lft.sdk.Keys.F8);
 			Thread.sleep(1000);
-			robot.keyPress(KeyEvent.VK_F6);
-			robot.keyRelease(KeyEvent.VK_F6);
+			teTextScreen.sendKeys(com.hp.lft.sdk.Keys.F6);
 			
 			String zoneconstraint= Desktop.describe(Window.class, new WindowDescription.Builder().ownedWindow(false)
 					.childWindow(false).windowClassRegExp("PuTTY").windowTitleRegExp(" PuTTY").build()).getVisibleText();

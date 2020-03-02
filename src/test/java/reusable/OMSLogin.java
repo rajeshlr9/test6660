@@ -14,10 +14,11 @@ public class OMSLogin {
 
 	public static void loginOMS() throws InterruptedException {
 		
-		try {
+		
 			WebDriver driver= Steps.seleniumDriver;
 			Properties prop= Steps.prop;
-					
+			driver.get(prop.getProperty("OMSUrl"));
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);	
 			WebElement username = driver.findElement(By.xpath("//INPUT[@id=\"username\"]"));
 			username.sendKeys(prop.getProperty("OMSUsername"));
 
@@ -41,13 +42,5 @@ public class OMSLogin {
 				System.out.println("User is not logged in to OMS");
 				Assert.assertTrue(false);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			
-			Assert.assertTrue(false);
-			
-		}
-		
 	}
-	
 }

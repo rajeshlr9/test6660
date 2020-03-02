@@ -13,6 +13,8 @@ import com.hp.lft.sdk.stdwin.ListBox;
 import com.hp.lft.sdk.stdwin.ListBoxDescription;
 import com.hp.lft.sdk.stdwin.Window;
 import com.hp.lft.sdk.stdwin.WindowDescription;
+import com.hp.lft.sdk.te.TextScreen;
+import com.hp.lft.sdk.te.TextScreenDescription;
 
 import StepDefinition.Steps;
 
@@ -21,9 +23,9 @@ public class PuttyLogin {
 	public static void puttyLogin() throws InterruptedException, GeneralLeanFtException, AWTException {
 
 		Properties prop=Steps.prop;
-		Robot robot=Steps.robot;
-		robot=new Robot();
-		
+		 TextScreen teTextScreen = Desktop.describe(com.hp.lft.sdk.te.Window.class, new com.hp.lft.sdk.te.WindowDescription.Builder()
+					.shortName("A").build())
+					.describe(TextScreen.class, new TextScreenDescription());
 		ListBox	Sterling=Desktop.describe(Window.class, new WindowDescription.Builder()
 				.ownedWindow(false).childWindow(false).windowClassRegExp("PuTTYConfigBox").windowTitleRegExp("PuTTY Configuration").build()).describe(ListBox.class, new ListBoxDescription.Builder()
 						.attachedText("Sav&ed Sessions").nativeClass("ListBox").build());
@@ -50,8 +52,7 @@ public class PuttyLogin {
 
 		RFUsername.sendKeys(prop.getProperty("RFUsername"));
 
-		robot.keyPress(KeyEvent.VK_ENTER);
-		robot.keyRelease(KeyEvent.VK_ENTER);
+		teTextScreen.sendKeys(com.hp.lft.sdk.Keys.RETURN);
 
 		Thread.sleep(1000);
 		
@@ -60,8 +61,7 @@ public class PuttyLogin {
 
 		RFPassword.sendKeys(prop.getProperty("RFPassword"));
 
-		robot.keyPress(KeyEvent.VK_ENTER);
-		robot.keyRelease(KeyEvent.VK_ENTER);
+		teTextScreen.sendKeys(com.hp.lft.sdk.Keys.RETURN);
 		Thread.sleep(1000);
 		
 		//Node Login
@@ -71,8 +71,7 @@ public class PuttyLogin {
 		RFNodeUser.sendKeys(prop.getProperty("RFNodeUser"));
 		Thread.sleep(1000);
 
-		robot.keyPress(KeyEvent.VK_TAB);
-		robot.keyRelease(KeyEvent.VK_TAB);
+		teTextScreen.sendKeys(com.hp.lft.sdk.Keys.TAB);
 
 
 		Window RFNodePwd = Desktop.describe(Window.class, new WindowDescription.Builder()
@@ -81,8 +80,7 @@ public class PuttyLogin {
 		RFNodePwd.sendKeys(prop.getProperty("RFNodePwd"));
 		Thread.sleep(1000);
 
-		robot.keyPress(KeyEvent.VK_TAB);
-		robot.keyRelease(KeyEvent.VK_TAB);
+		teTextScreen.sendKeys(com.hp.lft.sdk.Keys.TAB);
 
 		Thread.sleep(2000);
 	}

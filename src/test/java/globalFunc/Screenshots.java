@@ -16,45 +16,29 @@ import com.hp.lft.sdk.web.Browser;
 
 public class Screenshots {
 
-	public static void seleniumSnapshot(WebDriver webdriver) throws Exception{
-		System.out.println("screeny");
-		TakesScreenshot scrShot =((TakesScreenshot)webdriver);
-		File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
-		File DestFile=new File("\resources\\Screenshots\\"+DateTime.strDate3+".jpeg");
+	public static void seleniumSnapshot(WebDriver webdriver) throws Exception {
+		TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
+		File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+		File DestFile = new File("resources\\Screenshots\\" + DateTime.strDate3 + ".jpeg");
 		FileUtils.copyFile(SrcFile, DestFile);
-		/* final byte[] screenshot = ((TakesScreenshot)webdriver).getScreenshotAs(OutputType.BYTES);
-        //File DestFile=new File(Steps.dir+"\\resources\\Screenshots\\"+DateTime.strDate3+".png");
-
-
-        scenario.embed(screenshot, "image/png"); */
 	}
 
-
-	public static void LeanFTSnapshot(Browser leanFTDriver) throws Exception{
-		//Image img = LeanFTDriver.getSnapshot();
-		//RenderedImage img = LeanFTDriver.getPage().getSnapshot();
-		//	Reporter.reportEvent("Login","Login successful", Status.Passed, img);
-		RenderedImage srcFile=leanFTDriver.getSnapshot(); 
-		//File fileObj = new File(System.getProperty("user.dir")+"\\ScreenShots\\"+vendorID+"_"+".jpg");
-		File fileObj = new File("resources\\Screenshots\\"+DateTime.strDate3+".jpeg");
+	public static void LeanFTSnapshot(Browser leanFTDriver) throws Exception {
+		RenderedImage srcFile = leanFTDriver.getSnapshot();
+		File fileObj = new File("resources\\Screenshots\\" + DateTime.strDate3 + ".jpeg");
 		try {
 			ImageIO.write(srcFile, "jpg", fileObj);
 		} catch (IOException e) {
-
 			e.printStackTrace();
 		}
 	}
-	public static void LeanFTSnapshot(Window leanFTDriver) throws Exception{
-		//Image img = LeanFTDriver.getSnapshot();
-		//RenderedImage img = LeanFTDriver.getPage().getSnapshot();
-		//	Reporter.reportEvent("Login","Login successful", Status.Passed, img);
-		RenderedImage srcFile=leanFTDriver.getSnapshot(); 
-		//File fileObj = new File(System.getProperty("user.dir")+"\\ScreenShots\\"+vendorID+"_"+".jpg");
-		File fileObj = new File("resources\\Screenshots\\"+DateTime.strDate3+".jpeg");
+
+	public static void LeanFTSnapshot(Window leanFTDriver) throws Exception {
+		RenderedImage srcFile = leanFTDriver.getSnapshot();
+		File fileObj = new File("resources\\Screenshots\\" + DateTime.strDate3 + ".jpeg");
 		try {
 			ImageIO.write(srcFile, "jpg", fileObj);
 		} catch (IOException e) {
-
 			e.printStackTrace();
 		}
 	}
