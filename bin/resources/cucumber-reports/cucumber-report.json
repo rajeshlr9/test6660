@@ -1,0 +1,207 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "before": [
+          {
+            "result": {
+<<<<<<< HEAD
+              "duration": 1575629,
+=======
+              "duration": 187085,
+>>>>>>> be7b2c3efe80b5afc71c2c21c30a6ae3152ebec4
+              "status": "passed"
+            },
+            "match": {
+              "location": "Steps.beforeClass()"
+            }
+          }
+        ],
+<<<<<<< HEAD
+        "line": 38,
+=======
+        "line": 35,
+>>>>>>> be7b2c3efe80b5afc71c2c21c30a6ae3152ebec4
+        "name": "Complete adhoc move in Putty using Leanft",
+        "description": "",
+        "id": "execute-selenium-scripts-from-leanft-tool;complete-adhoc-move-in-putty-using-leanft",
+        "after": [
+          {
+            "result": {
+<<<<<<< HEAD
+              "duration": 83302,
+=======
+              "duration": 184753,
+>>>>>>> be7b2c3efe80b5afc71c2c21c30a6ae3152ebec4
+              "status": "passed"
+            },
+            "match": {
+              "location": "Steps.afterClass()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+<<<<<<< HEAD
+              "duration": 143070670,
+              "status": "passed"
+            },
+            "line": 39,
+=======
+              "duration": 112419415,
+              "status": "passed"
+            },
+            "line": 36,
+>>>>>>> be7b2c3efe80b5afc71c2c21c30a6ae3152ebec4
+            "name": "Open Putty",
+            "match": {
+              "location": "Steps.openPutty()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+<<<<<<< HEAD
+              "duration": 21234280237,
+              "status": "passed"
+            },
+            "line": 40,
+=======
+              "duration": 13783876286,
+              "status": "passed"
+            },
+            "line": 37,
+>>>>>>> be7b2c3efe80b5afc71c2c21c30a6ae3152ebec4
+            "name": "user login to Putty",
+            "match": {
+              "location": "Steps.puttyLogin(DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "Username",
+                  "Password",
+                  "NodeId",
+                  "NodePassword"
+                ],
+<<<<<<< HEAD
+                "line": 41
+=======
+                "line": 38
+>>>>>>> be7b2c3efe80b5afc71c2c21c30a6ae3152ebec4
+              },
+              {
+                "cells": [
+                  "yanqarf1",
+                  "QA36playgnd",
+                  "Mphasis04",
+                  "Mphas004"
+                ],
+<<<<<<< HEAD
+                "line": 42
+=======
+                "line": 39
+>>>>>>> be7b2c3efe80b5afc71c2c21c30a6ae3152ebec4
+              }
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+<<<<<<< HEAD
+              "duration": 38925748473,
+              "status": "passed"
+            },
+            "line": 43,
+=======
+              "duration": 24448940050,
+              "status": "passed"
+            },
+            "line": 40,
+>>>>>>> be7b2c3efe80b5afc71c2c21c30a6ae3152ebec4
+            "name": "Complete adhoc move",
+            "match": {
+              "location": "Steps.performAdhocmove(DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "Start_Location",
+<<<<<<< HEAD
+                  "ItemType",
+=======
+>>>>>>> be7b2c3efe80b5afc71c2c21c30a6ae3152ebec4
+                  "ItemID",
+                  "Quantity",
+                  "SuggestedLoc"
+                ],
+<<<<<<< HEAD
+                "line": 44
+=======
+                "line": 41
+>>>>>>> be7b2c3efe80b5afc71c2c21c30a6ae3152ebec4
+              },
+              {
+                "cells": [
+                  "STG001R",
+<<<<<<< HEAD
+                  "Normal",
+                  "7181E-01",
+                  "1",
+                  ""
+                ],
+                "line": 45
+=======
+                  "7181E-01",
+                  "1",
+                  "BB2314C3"
+                ],
+                "line": 42
+>>>>>>> be7b2c3efe80b5afc71c2c21c30a6ae3152ebec4
+              }
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+<<<<<<< HEAD
+              "duration": 7636921,
+              "status": "passed"
+            },
+            "line": 46,
+=======
+              "duration": 13536425,
+              "status": "passed"
+            },
+            "line": 43,
+>>>>>>> be7b2c3efe80b5afc71c2c21c30a6ae3152ebec4
+            "name": "Items are moved successfully",
+            "match": {
+              "location": "Steps.adhocmoveValidation()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+<<<<<<< HEAD
+            "line": 37,
+=======
+            "line": 34,
+>>>>>>> be7b2c3efe80b5afc71c2c21c30a6ae3152ebec4
+            "name": "@tag5"
+          }
+        ]
+      }
+    ],
+    "name": "Execute Selenium Scripts from LeanFT Tool",
+    "description": "I want to use this template for my feature file",
+    "id": "execute-selenium-scripts-from-leanft-tool",
+    "keyword": "Feature",
+    "uri": "src/test/java/featureFile/MyTest.feature"
+  }
+]

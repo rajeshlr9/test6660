@@ -16,6 +16,7 @@ import com.hp.lft.sdk.web.Browser;
 
 public class Screenshots {
 
+
 	public static void seleniumSnapshot(WebDriver webdriver) throws Exception {
 		TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
 		File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);

@@ -54,11 +54,11 @@ public class Steps {
 	public static Map<Integer, Map<String, String>> ServiceMap;
 	
 
-static{
-        
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
-        System.setProperty("current.date.time", dateFormat.format(new Date()));
-    }
+	static{
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
+		System.setProperty("current.date.time", dateFormat.format(new Date()));
+	}
 
 	@Before
 	public void beforeClass() throws GeneralLeanFtException {
@@ -79,7 +79,7 @@ static{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 
 	}
 	
@@ -125,6 +125,7 @@ static{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				System.out.println("raka3");
+
 			}
 			}
 		}

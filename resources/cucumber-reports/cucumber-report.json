@@ -6,7 +6,9 @@
         "before": [
           {
             "result": {
+
               "duration": 55889656,
+
               "status": "passed"
             },
             "match": {
@@ -14,14 +16,17 @@
             }
           }
         ],
-        "line": 26,
+     "line": 26,
         "name": "Create Order via Filezilla using Leanft and Resume order in O2S via Selenium(Work on 2 application)",
+
         "description": "",
         "id": "execute-selenium-scripts-from-leanft-tool;create-order-via-filezilla-using-leanft-and-resume-order-in-o2s-via-selenium(work-on-2-application)",
         "after": [
           {
             "result": {
+
               "duration": 606384150,
+
               "status": "passed"
             },
             "match": {
@@ -34,11 +39,14 @@
         "steps": [
           {
             "result": {
+
+
               "duration": 3162005074,
               "status": "passed"
             },
             "line": 27,
             "name": "Open Filezilla",
+
             "match": {
               "location": "Steps.LaunchFilezilla()"
             },
@@ -46,6 +54,8 @@
           },
           {
             "result": {
+
+
               "duration": 40397099098,
               "status": "passed"
             },
@@ -53,28 +63,58 @@
             "name": "user connects to EMC customer and drop an OB order",
             "match": {
               "location": "Steps.orderUpload()"
+
             },
             "keyword": "When "
           },
           {
             "result": {
+
               "duration": 19994682752,
               "status": "passed"
             },
             "line": 29,
             "name": "Login to OMS using Selenium",
+
             "match": {
               "location": "Steps.OMSLogin()"
             },
+
+            "rows": [
+              {
+                "cells": [
+                  "Start_Location",
+                  "ItemType",
+                  "ItemID",
+                  "Quantity",
+                  "SuggestedLoc"
+                ],
+                "line": 40
+              },
+              {
+                "cells": [
+                  "STG001R",
+                  "Normal",
+                  "7181E-01",
+                  "1",
+                  ""
+                ],
+                "line": 41
+              }
+            ],
+
+
             "keyword": "And "
           },
           {
             "result": {
+
               "duration": 25763836648,
               "status": "passed"
             },
             "line": 30,
             "name": "Search for the dropped order using Selenium",
+
             "match": {
               "location": "Steps.searchOrder()"
             },
@@ -107,8 +147,10 @@
         ],
         "tags": [
           {
+
             "line": 25,
             "name": "@tag4"
+
           }
         ]
       }
