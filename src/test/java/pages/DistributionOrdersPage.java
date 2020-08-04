@@ -1,0 +1,1630 @@
+package pages;
+
+import java.awt.AWTException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import entity.DistributionOrders;
+import utils.Driver;
+import utils.SeleniumTestHelper;
+
+public class DistributionOrdersPage {
+	WebDriver driver;
+	
+
+	public DistributionOrdersPage() {
+		this.driver = Driver.getInstance();
+		PageFactory.initElements(driver, this);
+	}
+	String oLPN;
+	String pulllocationvalue;
+	WavesPage wavespage = new WavesPage();
+	HomePage homepage = new HomePage();
+
+	List<String> List_Shippedqty = new ArrayList<String>();
+	List<String> oLPNSlist_Shippedqty = new ArrayList<String>();
+	@FindBy(xpath = "(//label[text()='Primary Fields']//following::input[@role='combobox' and @data-ref='inputEl'])[1]")
+	public WebElement primaryField;
+	@FindBy(xpath = "//input[@name='DistributionorderID']")
+	public WebElement distributionOrderID;
+	@FindBy(xpath = "//div[text()='Sorting']/following::span[text()='Apply']")
+	public WebElement apply_Btn;
+	@FindBy(xpath = "//tr[@class='  x-grid-row']//td//div[@class='x-grid-row-checker']")
+	public WebElement distributionOrder_chkbox;
+	@FindBy(xpath = "//span[text()='View']")
+	public WebElement viewBtn;
+	@FindBy(xpath = "//a[text()='DO Lines']")
+	public WebElement DOlinesTab;
+	@FindBy(xpath = "//span[text()='More']")
+	public WebElement moreBtn;
+	@FindBy(xpath = "//a/span[text()='Wave']")
+	public WebElement waveOption;
+	@FindBy(xpath = "//input[@value='Run Wave']")
+	public WebElement runWaveBtn;
+	@FindBy(xpath = "//td[contains(@class,'fulfillmentStatus')]")
+	public WebElement DOStatus;
+	@FindBy(xpath = "//td[contains(@class,'fulfillmentStatus')]")
+	public WebElement shipConfirm;
+	@FindBy(xpath = "//a[text()='LPNs']")
+	public WebElement lPNSTab;
+	@FindBy(xpath = "//span[@id='dataForm:DODetailsMainHeader_Out_DOID']")
+	public WebElement distributionOrderIDtxt;
+	@FindBy(xpath = "//input[@id='rmButton_1SubmitWave1_100215000']")
+	public WebElement submitWaveBtn;
+	@FindBy(xpath = "//span[.='Edit Header']")
+	public WebElement editHeaderBtn;
+	@FindBy(xpath = "//select[@id='dataForm:DOEdit_HeaderTab_Drop_Shipvia']")
+	public WebElement shipViaDdl;
+	@FindBy(xpath = "//input[@id='dataForm:DOEdit_HeaderTab_InText_AccountReceivableCode']")
+	public WebElement accountReceivableCode;
+	@FindBy(xpath = "//a[@id='dataForm:AwvNbrRun']")
+	public WebElement waveNumber;
+	@FindBy(xpath = "//span[contains(text(),'Amazon Vendor Flex')]//following::td[1]")
+	public WebElement shipWaveStatus;
+	@FindBy(xpath = "//td[@class='tbl_checkBox advtbl_col advtbl_body_col']")
+	public WebElement shipWavechkbox;
+	@FindBy(xpath = "//input[@type='button' and contains(@value,'More')]")
+	public WebElement shipWavemoreBtn;
+	@FindBy(xpath = "//li/a[contains(@id,'rmButton_2LPNs')]")
+	public WebElement shipWavemoreLPNS;
+	@FindBy(xpath = "//li/a[contains(@id,'rmButton_2Tasks')]")
+	public WebElement shipWavemoreTasks;
+	// @FindBy(xpath="//input[@alt='Refresh']") public WebElement refreshBtn;
+	@FindBy(xpath = "//span[text()='Pallet Pull from Reserve']")
+	public WebElement Pallet_Pull_from_Reserve;
+	@FindBy(xpath = "//span[contains(@id,'taskIdVal')]")
+	public WebElement taskId;
+	@FindBy(xpath = "//span[text()='Pick inventory from case pick']")
+	public WebElement pickfromCasePick;
+	@FindBy(xpath = "//span[text()='Replen Case Pick from Reserve']")
+	public WebElement ReplnCasePickfromReserve;
+	@FindBy(xpath = "//span[text()='Replen Retail Active from Case pick']")
+	public WebElement ReplenRetailActivefromCasePick;
+	@FindBy(xpath = "//span[contains(text(),'50 - Pick from active')]")
+	public WebElement PickInventoryFromActive;
+	@FindBy(xpath = "//span[contains(text(),'Repl actv from resv')]")
+	public WebElement replnActvfrmReserve;
+	@FindBy(xpath = "//input[@id='checkAll_c0_dataForm:listView:dataTable']")
+	public WebElement eCom_Parcel_CheckBox;
+	@FindBy(xpath = "//span[text()='Zone Picking']")
+	public WebElement zonePickingTask;
+	@FindBy(xpath = "//span[text()='Pick inventory from active']")
+	public WebElement pickInventoryFromActive;
+	@FindBy(xpath = "//span[text()='Repln Active from Reserve']")
+	public WebElement replenishActiveFromReserve;
+	@FindBy(xpath = "//span[text()='PackingSlipReport']")
+	public WebElement printPackingSlipReport;
+	@FindBy(xpath = "//span[contains(text(),'Transaction successful.')]")
+	public WebElement transactionSuccfulMsg;
+	@FindBy(xpath = "	//span[contains(text(),'Print EPI Documents')]")
+	public WebElement printEpiDoc;
+
+	@FindBy(xpath = "//input[@id='dataForm:listView:dataTable:pager:dataTable_rfsh_but']")
+	public WebElement refreshBtn;
+
+	@FindBy(xpath = "//span[@id='dataForm:listView:dataTable:0:c0012']")
+	public WebElement Status_Updated;
+
+	@FindBy(xpath = "//input[@id='checkAll_c0_dataForm:listView:dataTable']")
+	public WebElement waveNumber_CheckBox;
+
+	@FindBy(xpath = "//input[@id='rmbuttons_1moreButton' and @type='button']")
+	public WebElement Wave_MoreBtn;
+
+	@FindBy(xpath = "//a[@id='rmButton_2LPNs1_100665000']")
+	public WebElement LPNs;
+
+	@FindBy(xpath = "//span[contains(@id,'dataTable:0:LPNList_Outbound_Link_NameText_param_out')]")
+	public WebElement LPN_One;
+
+	@FindBy(xpath = "//span[@id='dataForm:listView:dataTable:1:LPNList_Outbound_Link_NameText_param_out']")
+	public WebElement LPN_Two;
+
+	@FindBy(xpath = "//input[@id='checkAll_c1_dataForm:DODetailOrderLinesList_lv:DODetailsOrderLinelist']")
+	public WebElement check_Box;
+
+	@FindBy(xpath = "//input[@id='dataForm:DODetailOrderLinesList_Cancel']")
+	public WebElement Cancel_Line;
+
+	@FindBy(xpath = "//span[@id='dataForm:DODetailOrderLinesList_lv:DODetailsOrderLinelist:1:DODetailOrderLinesList_LineItemStatusLink_NameText']")
+	public WebElement Line_Status;
+
+	@FindBy(xpath = "//span[contains(@id,'dataTable:0:LPNList_Outbound_lpnFacilityStatus_param_out')]")
+	public WebElement LPN_Facility_Status;
+
+	@FindBy(xpath = "//*[contains(text(),'Weighed')]")
+	public WebElement fulfillment_Status;
+	@FindBy(xpath = "//input[@id='checkAll_c1_dataForm:listView:dataTable']")
+	public WebElement retail_Parcel_CheckBox;
+
+	@FindBy(xpath = "//span[text()='View Packing Slip']")
+	public WebElement ViewPackingSlip;
+	@FindBy(xpath = "//img[@id='backImage']")
+	public WebElement backBtn;
+	@FindBy(xpath = "//span[@id='dataForm:shipmentIdRepeat1:0:DODtlHdr_ShpId_OpLnk_Txt__']")
+	public WebElement shippingID;
+	@FindBy(xpath = "//span[@id='dataForm:ShpDtlGen_OutText_TrailerNumber']")
+	public WebElement trailerNumber;
+	@FindBy(xpath = "//span[text()='ools']/following-sibling::span[1]")
+	public WebElement Tools;
+	@FindBy(xpath = "(//a[text()='Customize'])[1]")
+	public WebElement Tools_Customize;
+	@FindBy(xpath = "//input[@id = 'dataForm:rowsPerPage']")
+	public WebElement Tools_Number_Of_rows_per_Page;
+	@FindBy(xpath = "//input[@id = 'dataForm:save']")
+	public WebElement Tools_Customize_save_Btn;
+	@FindBy(xpath = "//span[text()='Task Type']")
+	public WebElement Task_type_sortby;
+	@FindBy(xpath = "//input[contains(@id,'pager:next') and @class='paginationCtrlCls']")
+	public WebElement nextPageInTable;
+	@FindBy(xpath = "//input[@value='View']")
+	public WebElement viewBtnTasks;
+	@FindBy(xpath = "//span[text()='oLPN:']/../following-sibling::td[1]//span")
+	public WebElement oLPNText;
+	@FindBy(xpath = "//input[@id='dataForm:lview:dataTable:pager:dataTable_rfsh_but']")
+	public WebElement refreshBtnAfterBack;
+	@FindBy(xpath = "//input[@alt='Find Task ID']")
+	public WebElement inputTaskID;
+	@FindBy(xpath = "//input[contains(@id,'filterIdapply') and @title='Apply']")
+	public WebElement applyTaskBtn;
+
+	@FindBy(xpath = "(//input[starts-with(@id, 'combobox')])[5]")
+	public WebElement statusSearch_inputBox;
+	@FindBy(xpath = "//span[@id='dataForm:DODetailsMainHeader_Out_DOID']")
+	public WebElement DO_ID_value;
+	public String dolineStatuspath = "//span[text()='<ILPNINPUT>']/../../following-sibling::td[6]";
+
+	@FindBy(xpath = "//td[contains(text(),'No data found')]")
+	public WebElement noOLPNDataFound;
+
+	@FindBy(xpath = "//a/span[text()='Cancel']")
+	public WebElement CnclBtn;
+	@FindBy(xpath = "//span[@id='button-1006-btnInnerEl']")
+	public WebElement yesBtn;
+	@FindBy(xpath = "//input[@value='Confirm' and @id='rmButton_1Confirm1_167271101']")
+	public WebElement cnfmBtn;
+	@FindBy(xpath = "//div[contains(text(),'Messages (')]")
+	public WebElement errorMessage;
+	@FindBy(xpath = "(//div[contains(text(),'Messages (')]//following::div[@class='pop_close'])[1]")
+	public WebElement errorMessageClose;
+	@FindBy(xpath = "(//label[text()='Primary Fields']//following::input[@role='combobox' and @data-ref='inputEl'])[3]")
+	public WebElement fulfilmentStatus;
+
+	@FindBy(xpath = "//span[text()='Ship Confirm']")
+	public WebElement ViewShipConfirm;
+
+	@FindBy(xpath = "//span[@id='button-1006-btnInnerEl']")
+	public WebElement ConfirmationYes;
+	@FindBy(xpath = "//div[text()='Shipped']")
+	public WebElement fullfilmentStatusShipped;
+	@FindBy(xpath = "//span[text()='Condition:']/../../following::input[1]")
+	public WebElement firstOptionalFieldCondition;
+	@FindBy(xpath = "//span[text()='Condition:']/../../following::input[3]")
+	public WebElement firstOptionalFieldStatusValue;
+	@FindBy(xpath = "//span[text()='Add Condition']")
+	public WebElement addCondition;
+	@FindBy(xpath = "//span[text()='Condition:']/../../following::input[4]")
+	public WebElement secondOptionalFieldCondition;
+	@FindBy(xpath = "//span[text()='Condition:']/../../following::input[6]")
+	public WebElement secondOptionalFieldStatusValue;
+	@FindBy(xpath = "//span[text()='Distribution Order ID:']/../following::span[1]")
+	public WebElement orderID;
+	@FindBy(xpath = "//input[contains(@id,'checkAll_c0_dataForm:DODetailOrderLinesList')]")
+	public WebElement firstLineItemCheckBx;
+	@FindBy(xpath = "//input[@value='View Line']")
+	public WebElement viewLineBtn;
+	@FindBy(xpath = "//span[text()='External system Purchase Order:']/../following::span[1]")
+	public WebElement externalPurchaseOrderID;
+	@FindBy(xpath = "//input[contains(@id,'checkAll_c0_dataForm:DODetailOrderLinesList')]/../following::span[5]")
+	public WebElement itemNumber;
+	@FindBy(xpath = "//select[@id='dataForm:adjustReasonSelect']")
+	public WebElement rsnCode;
+	
+	public String getDolinesStatus(String donumber) {
+
+		String dolinestatusxpath = dolineStatuspath.replace("<ILPNINPUT>", donumber);
+		System.out.println(dolinestatusxpath);
+		return driver.findElement(By.xpath(dolinestatusxpath)).getText();
+	}
+
+	@FindBy(xpath = "//span[text()='Cancel']")
+	public WebElement cancelBtn;
+
+	@FindBy(xpath = "//span[text()='Yes']")
+	public WebElement confirmationYespopup;
+
+	@FindBy(xpath = "//input[@value='Confirm']")
+	public WebElement confirmBtn;
+
+	@FindBy(xpath = "//img[@id='backImage']")
+	public WebElement arrow_Sign;
+
+	@FindBy(xpath = "//a[@id='rmButton_2Tasks1_100668000']")
+	public WebElement tasks;
+
+	@FindBy(xpath = "//span[@id='dataForm:lview:dataTable:lsize']")
+	public WebElement task_Id_Text;
+
+	@FindBy(xpath = "//input[@id='checkAll_c0_dataForm:lview:dataTable']")
+	public WebElement task_Id_ChkBox;
+
+	@FindBy(xpath = "//input[@type='button' and @value='View']")
+	public WebElement task_Id_viewBtn;
+
+	@FindBy(xpath = "//span[text()='Pull Location:']/../following-sibling::td[1]//span")
+	public WebElement pullLocationValue;
+
+	@FindBy(xpath = "//span[text()='Container:']/following::div[1]//span")
+	public WebElement containerilpnValue;
+
+	@FindBy(xpath = "//td[text()=' No data found']")
+	public WebElement noDataFound;
+	@FindBy(xpath = "//a[contains(@id,'rmButton_2AllocationDetails') and text()='Allocation Details']")
+	public WebElement AllocationDetails;
+
+	@FindBy(xpath = "(//table[starts-with(@id, 'gridview')][1]/tbody/tr/td/div)[1]/div")
+	public WebElement first_checkBox;
+	@FindBy(xpath = "//span[@id='dataForm:DOHeaderFulfillmentStatus']/b/span")
+	public WebElement DO_FulFill_Status;
+	@FindBy(xpath = "//span[@id='dataForm:DODetailsHeader_OutText_DSG_Shipvia']")
+	public WebElement shipVia_Value;
+	@FindBy(xpath = "//input[contains(@id,'checkAll_c0_dataForm:')]")
+	public WebElement doFirstLineChkBox;
+
+	@FindBy(xpath = "//span[@id='button-1490-btnIconEl']")
+	public WebElement nxtBtn;
+	@FindBy(xpath = "//span[@id='dataForm:DODetailsLpnList_lv:LPNListTable:0:LPNListTPM_Link_NameText_param_out']")
+	public WebElement olpnTxt;
+	@FindBy(xpath = "//span[text()='Distribution Order' and @data-ref='textEl']/ancestor::div[5]/following-sibling::div//table[1]//td[3]")
+	public WebElement doTxt;
+
+	
+
+	public void getDoStatus(String expectedDOstatus) throws InterruptedException, IOException {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(DistributionOrders.getDOnumber());
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		String actualDOstatus = driver.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[text()='"
+				+ DistributionOrders.getDOnumber() + "']//following::td[1]")).getText();
+		SeleniumTestHelper.assertEquals(actualDOstatus, expectedDOstatus);
+		homepage.user_closes_openedwindow("Distribution Orders");
+
+	}
+
+	public void checkoLPNSstatus(String expectedDOstatus) throws InterruptedException, IOException {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(DistributionOrders.getDOnumber()); // DistributionOrders.getDOnumber()
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
+		viewBtn.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, lPNSTab, 50);
+		lPNSTab.click();
+		List<WebElement> oLPNS = driver
+				.findElements(By.xpath("//span[contains(@id,'LPNListTPM_Link_NameText_param_out')]"));
+		List<WebElement> oLPNSstatus = driver
+				.findElements(By.xpath("//span[contains(@id,'ListTPM_lpnFacilityStatus_param_out')]"));
+		String oLPNIndividual = null;
+		String oLPNStatusIndividual = null;
+		for (int i = 0; i < oLPNS.size(); i++) {
+			oLPNIndividual = oLPNS.get(i).getText();
+			oLPNStatusIndividual = oLPNSstatus.get(i).getText();
+			SeleniumTestHelper.assertEquals(oLPNStatusIndividual, expectedDOstatus);
+			System.out.println("Status : " + oLPNStatusIndividual + " verified for oLPN : " + oLPNIndividual);
+		}
+
+	}
+
+	public void runWaveTemplate(String waveTemplateDesc, String expStatus, String OrderType)
+			throws InterruptedException, IOException, AWTException {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 100);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(DistributionOrders.getDOnumber());		
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.assertEquals(DOStatus.getText(), "Released");
+		SeleniumTestHelper.waitForElementToBeClickable(driver, moreBtn, 50);
+		moreBtn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, waveOption, 50);
+		waveOption.click();
+		Thread.sleep(3000);
+		homepage.user_closes_openedwindow("Distribution Orders");
+		homepage.openWindows.click();
+
+		List<WebElement> myframes = driver.findElements(By.tagName("Iframe"));
+		System.out.println("my framecount is   " + myframes.size());
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		driver.findElement(By.xpath("//input[@alt='Find Description']")).sendKeys(waveTemplateDesc);
+		wavespage.waveNumberApplySearchBtn.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+
+		driver.findElement(By.xpath("//span[contains(text(),'" + waveTemplateDesc
+				+ "')]/ancestor::td/preceding-sibling::td[2][contains(@class,'checkBox')]")).click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, runWaveBtn, 100);
+
+		runWaveBtn.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, submitWaveBtn, 100);
+		submitWaveBtn.click();
+
+		if (SeleniumTestHelper.isElementDisplayed(waveNumber)) {
+			String waveNumberValue = waveNumber.getText();
+			DistributionOrders.setWaveNumber(waveNumberValue);
+			waveNumber.click();
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			String actualStatus = driver.findElement(By.xpath(shiwaveStatusxpath(waveTemplateDesc))).getText().trim();
+			int count = 0;
+			while (!actualStatus.equals("Ship wave completed") && (count != 20)) {
+				refreshBtn.click();
+				actualStatus = driver.findElement(By.xpath(shiwaveStatusxpath(waveTemplateDesc))).getText().trim();
+				Thread.sleep(5000);
+				count++;
+			}
+			SeleniumTestHelper.assertEquals(actualStatus, "Ship wave completed");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavechkbox, 50);
+			shipWavechkbox.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavemoreBtn, 50);
+			shipWavemoreBtn.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavemoreLPNS, 50);
+			shipWavemoreLPNS.click();
+			List<WebElement> oLPNS = driver
+					.findElements(By.xpath("//span[contains(@id,'LPNList_Outbound_Link_NameText')]"));
+			List<WebElement> olpnStatus = driver
+					.findElements(By.xpath("//span[contains(@id,'LPNList_Outbound_lpnFacilityStatus_param_out')]"));
+			List<WebElement> olpnItems = driver
+					.findElements(By.xpath("//span[contains(@id,'Case_LPN_With_PO_LPN_POLine_Item_param_out')]"));
+			List<WebElement> olpnwithqty = driver
+					.findElements(By.xpath("//span[contains(@id,'CTO_LPNListTPM_LPN_Qty_param_out2')]"));
+
+			for (int i = 0; i < olpnStatus.size(); i++) {
+				String oLPNSnum = oLPNS.get(i).getText();
+				String oLPNSinShipwave = olpnStatus.get(i).getText();
+				String[] olpnwithqtydata = olpnwithqty.get(i).getText().split("\\s+");
+				DistributionOrders.setoLPNList(oLPNSnum);
+				if (olpnItems.get(i).getText().equals("Mixed")) {
+					int noOfItem = 0;
+					String item = null;
+					noOfItem = DistributionOrders.productsForDistOrder.size();
+					System.out.println("Total noOfItem :- " + noOfItem);
+					for (int j = 0; j < noOfItem; j++) {
+						item = DistributionOrders.getProductsForDistOrder(j);
+						DistributionOrders.setoLPNForMixeditem(item, oLPNSnum);
+						System.out.println("oLPN : " + DistributionOrders.getoLPNForMixeditem(item)
+								+ " is set for item : " + item);
+					}
+
+				} else {
+					DistributionOrders.setoLPNwithitem(oLPNSnum, olpnItems.get(i).getText());
+				}
+				DistributionOrders.setoLPNwithQty(oLPNSnum, olpnwithqtydata[0]);
+				oLPN = oLPNS.get(i).getText();
+				DistributionOrders.setSingle_oLPN(oLPN);
+				System.out.println("oLPN  : " + oLPNS.get(i).getText() + ", status is : " + oLPNSinShipwave);
+				SeleniumTestHelper.assertEquals(oLPNSinShipwave, expStatus);
+			}
+
+			arrow_Sign.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavechkbox, 50);
+			shipWavechkbox.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavemoreBtn, 50);
+			shipWavemoreBtn.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavemoreTasks, 50);
+			shipWavemoreTasks.click();
+
+			WebElement activeChkbox;
+			Thread.sleep(5000);
+			System.out.println("OrderType is " + OrderType);
+			if (OrderType.equalsIgnoreCase("DFILL")) {
+				if (SeleniumTestHelper.isElementDisplayed(zonePickingTask)
+						|| SeleniumTestHelper.isElementDisplayed(pickInventoryFromActive)) {
+					System.out.println("PickInventoryFromActive.getAttribute textContent "+PickInventoryFromActive.getAttribute("textContent"));
+					if (PickInventoryFromActive.getAttribute("textContent").contains("Pick from active")) {
+						System.out.println("Task id generated is " + taskId);
+						System.out.println(PickInventoryFromActive.getText());
+						SeleniumTestHelper.assertEquals(PickInventoryFromActive.getAttribute("textContent"),
+								"50 - Pick from active");
+
+					}
+					List<WebElement> activetaskID = driver.findElements(By.xpath(
+							"//span[text()='Pick inventory from active']/../preceding-sibling::td//span[contains(@id,'taskIdVal')]"));
+					List<String> activeTaskIdStr = new ArrayList<String>();
+
+					for (WebElement ele : activetaskID) {
+						System.out.println("TaskId for Active-> " + ele.getText());
+						ele.getAttribute("textContent");
+						activeTaskIdStr.add(ele.getText().trim());
+						DistributionOrders.setActiveTasks(ele.getText().trim());
+
+					}
+					for (String active : activeTaskIdStr) {
+
+						System.out.println("Inside for loop " + active);
+						activeChkbox = driver.findElement(By.xpath(
+								"//span[text()='" + active + "']/../preceding-sibling::td//input[@type='checkbox']"));
+						SeleniumTestHelper.waitForElementToBeClickable(driver, activeChkbox, 50);
+						activeChkbox.click();
+						SeleniumTestHelper.waitForElementToBeDisplayed(driver, viewBtnTasks, 50);
+						viewBtnTasks.click();
+						DistributionOrders.setoLPNwithActive(oLPNText.getText());
+						System.out.println("Active oLPN: " + oLPNText.getText());
+						SeleniumTestHelper.waitForElementToBeDisplayed(driver, backBtn, 100);
+						backBtn.click();
+						
+						activeChkbox = null;
+					}
+					
+				}
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, backBtn, 100);
+				backBtn.click();
+			}
+			
+			
+			else if (OrderType.equalsIgnoreCase("Bulk Parcel") || OrderType.equalsIgnoreCase("NL")) {
+
+				try {
+					if (PickInventoryFromActive.getAttribute("textContent").contains("Pick from active")) {
+						System.out.println(PickInventoryFromActive.getAttribute("textContent"));
+						SeleniumTestHelper.assertEquals(PickInventoryFromActive.getAttribute("textContent"),
+								"50 - Pick from active");
+
+						List<WebElement> activetaskID = driver.findElements(By.xpath(
+								"//span[contains(text(),'Pick from active')]/../preceding-sibling::td//span[contains(@id,'taskIdVal')]"));
+						List<String> activeTaskIdStr = new ArrayList<String>();
+
+						for (WebElement ele : activetaskID) {
+							System.out.println("TaskId for Active-> " + ele.getAttribute("textContent"));
+							activeTaskIdStr.add(ele.getAttribute("textContent").trim());
+							DistributionOrders.setActiveTasks(ele.getAttribute("textContent").trim());
+						}
+						for (String active : activeTaskIdStr) {
+
+							System.out.println("Inside for loop " + active);
+							activeChkbox = driver.findElement(By.xpath("//span[text()='" + active
+									+ "']/../preceding-sibling::td//input[@type='checkbox']"));
+							SeleniumTestHelper.waitForElementToBeClickable(driver, activeChkbox, 50);
+							activeChkbox.click();
+							SeleniumTestHelper.waitForElementToBeDisplayed(driver, viewBtnTasks, 50);
+							viewBtnTasks.click();
+							DistributionOrders.setoLPNwithActive(oLPNText.getText());
+							System.out.println("Active oLPN: " + oLPNText.getText());
+						
+							SeleniumTestHelper.waitForElementToBeDisplayed(driver, backBtn, 100);
+							backBtn.click();
+							
+							
+							activeChkbox = null;
+						}
+						SeleniumTestHelper.waitForElementToBeDisplayed(driver, backBtn, 50);
+						backBtn.click();
+						Thread.sleep(3000);
+					}
+				} catch (NoSuchElementException e) {
+					System.out.println("Active Inventory task did not got generated");
+				}
+
+				if (SeleniumTestHelper.isElementDisplayed(pickfromCasePick)) {
+					List<WebElement> casePicktaskID = driver.findElements(By.xpath(
+							"//span[contains(text(),'Pick inventory from case pick')]/../preceding-sibling::td//span[contains(@id,'taskIdVal')]"));
+					List<String> casePickTaskIdStr = new ArrayList<String>();
+					System.out.println("Number of Case Pick Task ID's " + casePicktaskID.size());
+					for (WebElement ele : casePicktaskID) {
+						System.out.println("TaskId for casePick-> " + ele.getText());
+						casePickTaskIdStr.add(ele.getText().trim());
+						// DistributionOrders.casePickTasks.add(ele.getText().trim());
+						DistributionOrders.setCasePickTasks(ele.getText().trim());
+
+					}
+					for (String casePick : casePickTaskIdStr) {
+
+						System.out.println("Inside for loop " + casePick);
+						activeChkbox = driver.findElement(By.xpath(
+								"//span[text()='" + casePick + "']/../preceding-sibling::td//input[@type='checkbox']"));
+						SeleniumTestHelper.waitForElementToBeClickable(driver, activeChkbox, 50);
+						activeChkbox.click();
+						SeleniumTestHelper.waitForElementToBeDisplayed(driver, viewBtnTasks, 50);
+						viewBtnTasks.click();
+						DistributionOrders.setoLPNwithCase(oLPNText.getText());
+						System.out.println("CasePick oLPN: " + oLPNText.getText());
+						SeleniumTestHelper.waitForElementToBeDisplayed(driver, backBtn, 50);
+						backBtn.click();
+						activeChkbox = null;
+					}
+				}
+				if (SeleniumTestHelper.isElementDisplayed(replenishActiveFromReserve)) {
+					if (replnActvfrmReserve.getAttribute("textContent").contains("Repl actv from resv")) {
+						List<WebElement> replnActvfrmResrvtaskID = driver.findElements(By.xpath(
+								"//span[contains(text(),'Repl actv from resv')]/../preceding-sibling::td//span[contains(@id,'taskIdVal')]"));
+						List<String> replnActvfrmResrvTaskIdStr = new ArrayList<String>();
+						for (WebElement ele : replnActvfrmResrvtaskID) {
+							System.out.println(
+									"TaskId for Replenish Active from Reserve-> " + ele.getAttribute("textContent"));
+							replnActvfrmResrvTaskIdStr.add(ele.getAttribute("textContent").trim());
+							DistributionOrders.setReplnTasks(ele.getAttribute("textContent").trim());
+						}
+						System.out.println("Replenishment task size: " + DistributionOrders.replnTasks.size());
+					}
+				}
+				// backBtn.click();
+				// shipWavechkbox.click();
+				// SeleniumTestHelper.waitForElementToBeDisplayed(driver,
+				// shipWavemoreBtn, 50);
+				// shipWavemoreBtn.click();
+				// SeleniumTestHelper.waitForElementToBeDisplayed(driver,
+				// AllocationDetails, 50);
+				// AllocationDetails.click();
+
+				// if(DistributionOrders.oLPNwithCase.size()>0)
+				// {
+				// List<WebElement> casepickoLPN =
+				// driver.findElements(By.xpath("//span[text()='51 - Pick from
+				// case pick']/../following-sibling::td[3]/span[1]"));
+				// for(WebElement ele : casepickoLPN){
+				// System.out.println("oLPN for case pick -> " + ele.getText());
+				// DistributionOrders.setoLPNwithCase(ele.getText().trim());
+				//
+				// }
+				// }
+				/*
+				 * if(DistributionOrders.oLPNwithActive.size()>0) {
+				 * List<WebElement> ActiveoLPN = driver.findElements(By.
+				 * xpath("//span[contains(text(),'50 - Pick from active')]/../following-sibling::td[3]/span[1]"
+				 * )); for(WebElement ele : ActiveoLPN){
+				 * System.out.println("oLPN for Active -> " + ele.getText());
+				 * DistributionOrders.setoLPNwithActive(ele.getText().trim()); }
+				 * } }
+				 */
+				/*SeleniumTestHelper.waitForElementToBeDisplayed(driver, backBtn, 100);
+				backBtn.click();*/
+				/*
+				 * for(WebElement ele : reserveoLPN){
+				 * System.out.println("oLPN for Reserve -> " + ele.getText());
+				 * DistributionOrders.setoLPNwithReserve(ele.getText().trim());
+				 * 
+				 * 
+				 * }
+				 */
+
+				// if(SeleniumTestHelper.isElementDisplayed(Pallet_Pull_from_Reserve)&&SeleniumTestHelper.isElementDisplayed(pickfromCasePick))
+				// {
+				// System.out.println("Task id generated is "+ taskId);
+				// System.out.println(Pallet_Pull_from_Reserve.getText());
+				// SeleniumTestHelper.assertEquals(Pallet_Pull_from_Reserve.getText(),
+				// "Pallet Pull from Reserve");
+				// SeleniumTestHelper.assertEquals(pickfromCasePick.getText(),
+				// "Pick from case pick");
+				//
+				// List<WebElement> reservetaskID =
+				// driver.findElements(By.xpath("//span[text()='Pallet Pull from
+				// Reserve']/../preceding-sibling::td//span[contains(@id,'taskIdVal')]"));
+				// List<WebElement> casepicktaskID =
+				// driver.findElements(By.xpath("//span[text()='Pick from case
+				// pick']/../preceding-sibling::td//span[contains(@id,'taskIdVal')]"));
+				//
+				// WebElement casePickChkbox;
+				// WebElement reservePickChkbox;
+				// List<String> casepickTaskIdStr = new ArrayList<String>();
+				// List<String> reserveTaskIdStr = new ArrayList<String>();
+				// for(WebElement ele : casepicktaskID){
+				// System.out.println("TaskId for case pick -> " +
+				// ele.getText());
+				// casepickTaskIdStr.add(ele.getText().trim());
+				//
+				// }
+				// for(WebElement ele : reservetaskID){
+				// System.out.println("TaskId for Reserve -> " + ele.getText());
+				// reserveTaskIdStr.add(ele.getText().trim());
+				//
+				// }
+				//
+				// for (String casePick : casepickTaskIdStr) {
+				//
+				// System.out.println("Inside for loop " + casePick);
+				// casePickChkbox =
+				// driver.findElement(By.xpath("//span[text()='"+casePick+"']/../preceding-sibling::td//input[@type='checkbox']"));
+				// SeleniumTestHelper.waitForElementToBeClickable(driver,
+				// casePickChkbox, 50);
+				// casePickChkbox.click();
+				// SeleniumTestHelper.waitForElementToBeDisplayed(driver,
+				// viewBtnTasks, 50);
+				// viewBtnTasks.click();
+				// DistributionOrders.setoLPNwithCase(oLPNText.getText());
+				// System.out.println("Case Pick oLPN: "+ oLPNText.getText());
+				// SeleniumTestHelper.waitForElementToBeDisplayed(driver,
+				// backBtn, 50);
+				// backBtn.click();
+				// Thread.sleep(3000);
+				// casePickChkbox = null;
+				// }
+				// for (String reserve : reserveTaskIdStr) {
+				//
+				// reservePickChkbox =
+				// driver.findElement(By.xpath("//span[text()='"+reserve+"']/../preceding-sibling::td//input[@type='checkbox']"));
+				// SeleniumTestHelper.waitForElementToBeClickable(driver,
+				// reservePickChkbox, 50);
+				// reservePickChkbox.click();
+				// SeleniumTestHelper.waitForElementToBeDisplayed(driver,
+				// viewBtnTasks, 50);
+				// viewBtnTasks.click();
+				// DistributionOrders.setoLPNwithReserve(oLPNText.getText());
+				// System.out.println("Reserve Pick oLPN: "+oLPNText.getText());
+				// SeleniumTestHelper.waitForElementToBeDisplayed(driver,
+				// backBtn, 50);
+				// backBtn.click();
+				// Thread.sleep(3000);
+				// reservePickChkbox = null;
+				// }
+				//
+			}
+
+			if (OrderType.equalsIgnoreCase("NL")) {
+				backBtn.click();
+			}
+
+			// else
+			// if(OrderType.equalsIgnoreCase("NL")||OrderType.equalsIgnoreCase("DFill"))
+			// {
+			// backBtn.click();
+			// }
+			Thread.sleep(3000);
+
+			homepage.user_closes_openedwindow("ShipWaveTemplate - Waves");
+
+		}
+
+	}
+
+	public void getDOdetails() throws InterruptedException, IOException {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(DistributionOrders.getDOnumber()); // DistributionOrders.getDOnumber()
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
+		viewBtn.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		if (SeleniumTestHelper.isElementDisplayed(shippingID)) {
+
+			SeleniumTestHelper.assertTrue(shippingID.isDisplayed());
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shippingID, 50);
+			DistributionOrders.setShippingID(shippingID.getText());
+			System.out.println("Shipment ID is " + DistributionOrders.getShippingID());
+
+			// SeleniumTestHelper.waitForElementToBeClickable(driver,
+			// shippingID, 50);
+			// shippingID.click();
+			// Thread.sleep(1000);
+			// if(!(shippingID.isDisplayed())){
+			// DistributionOrders.setTrailerNumber(trailerNumber.getAttribute("textContent"));
+			// System.out.println("Trailer Number is
+			// "+DistributionOrders.getTrailerNumber());
+			// SeleniumTestHelper.assertTrue(backBtn.isDisplayed());
+			// backBtn.click();
+			// }
+
+			SeleniumTestHelper.waitForElementToBeClickable(driver, shippingID, 50);
+			shippingID.click();
+			Thread.sleep(1000);
+			// DistributionOrders.setTrailerNumber(trailerNumber.getAttribute("textContent"));
+			// System.out.println("Trailer Number is
+			// "+DistributionOrders.getTrailerNumber());
+			SeleniumTestHelper.assertTrue(backBtn.isDisplayed());
+			backBtn.click();
+
+		} else {
+			System.out.println("Shipping ID is not generated");
+		}
+
+		SeleniumTestHelper.waitForElementToBeClickable(driver, DOlinesTab, 50);
+		DOlinesTab.click();
+		List<WebElement> itemslist = driver.findElements(By.xpath("//span[contains(@id,'ItemID_Link_NameText')]"));
+		List<WebElement> OriginalOrderedqty = driver
+				.findElements(By.xpath("//span[contains(@id,'DODetailOrderLinesList_OrigOrderQtyLink_NameText')]"));
+		Thread.sleep(5000);
+		String[] shippedQty = null;
+		String itemInDOPage = null;
+		String DoID = distributionOrderIDtxt.getText();
+		for (int i = 0; i < itemslist.size(); i++) {
+			shippedQty = OriginalOrderedqty.get(i).getText().split("\\s+");
+			List_Shippedqty.add(shippedQty[0]);
+			itemInDOPage = itemslist.get(i).getText();
+			DistributionOrders.DOItemQTYUOM.put("IteminDO" + (i + 1), itemInDOPage);
+			DistributionOrders.DOItemQTYUOM.put("QtyinItem" + (i + 1), shippedQty[0]);
+			DistributionOrders.DOItemQTYUOM.put("UOMinItem" + (i + 1), shippedQty[1]);
+			DistributionOrders.DOMap.put(DoID, DistributionOrders.DOItemQTYUOM);
+			System.out.println("Items in DO page " + DistributionOrders.DOMap.get(DoID).get("IteminDO" + (i + 1)));
+			System.out.println(
+					"Qty for item in DO page " + DistributionOrders.DOMap.get(DoID).get("QtyinItem" + (i + 1)));
+			System.out.println(
+					"UOM for Items in DO page " + DistributionOrders.DOMap.get(DoID).get("UOMinItem" + (i + 1)));
+			SeleniumTestHelper.assertEquals(DistributionOrders.DOMap.get(DoID).get("IteminDO" + (i + 1)),
+					DistributionOrders.getProductsForDistOrder(i));
+			SeleniumTestHelper.assertEquals(DistributionOrders.DOMap.get(DoID).get("QtyinItem" + (i + 1)), String
+					.valueOf(DistributionOrders.getItemWithShippedQty(DistributionOrders.getProductsForDistOrder(i))));
+			SeleniumTestHelper.assertEquals(DistributionOrders.DOMap.get(DoID).get("UOMinItem" + (i + 1)),
+					DistributionOrders.getItemWithQtyUOM(DistributionOrders.getProductsForDistOrder(i)));
+			/*
+			 * SeleniumTestHelper.assertEquals(DistributionOrders.DOMap.get(DoID
+			 * ).get("IteminDO"+(i+1)), "7978767501003");
+			 * SeleniumTestHelper.assertEquals(Integer.parseInt(
+			 * DistributionOrders.DOMap.get(DoID).get("QtyinItem"+(i+1))), 8);
+			 * SeleniumTestHelper.assertEquals(DistributionOrders.DOMap.get(DoID
+			 * ).get("UOMinItem"+(i+1)), "EA");
+			 */
+		}
+		Thread.sleep(5000);
+		homepage.user_closes_openedwindow("Distribution Orders");
+		Thread.sleep(3000);
+		SeleniumTestHelper.Close_OpenedWindow("DO Detail - Distribution Order", driver);
+	}
+
+	public void getOLPNdetails() throws InterruptedException, IOException {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(DistributionOrders.getDOnumber()); // DistributionOrders.getDOnumber()
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
+		viewBtn.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, lPNSTab, 50);
+		lPNSTab.click();
+		Thread.sleep(3000);
+		List<WebElement> oLPNS = driver
+				.findElements(By.xpath("//span[contains(@id,'LPNListTPM_Link_NameText_param_out')]"));
+		List<WebElement> Qty = driver
+				.findElements(By.xpath("//span[contains(@id,'CTO_LPNListTPM_LPN_Qty_param_out')]"));
+		String[] Qunatity = null;
+		for (int i = 0; i < oLPNS.size(); i++) {
+			// String oLPNid=oLPNS.get(i).getText();
+			// DistributionOrders.setoLPNList(oLPNid);
+			Qunatity = Qty.get(i).getText().split("\\s+");
+			oLPNSlist_Shippedqty.add(Qunatity[0]);
+
+		}
+		Thread.sleep(3000);
+		homepage.user_closes_openedwindow("Distribution Orders");
+		Thread.sleep(5000);
+		SeleniumTestHelper.Close_OpenedWindow("DO Detail - Distribution Order", driver);
+
+	}
+
+	public void getOLPNdetailsfromShipWaveTemplate() throws InterruptedException {
+		List<WebElement> oLPNS = driver
+				.findElements(By.xpath("//span[contains(@id,'LPNList_Outbound_Link_NameText')]"));
+		List<WebElement> olpnStatus = driver
+				.findElements(By.xpath("//span[contains(@id,'LPNList_Outbound_lpnFacilityStatus_param_out')]"));
+		List<WebElement> olpnItems = driver
+				.findElements(By.xpath("//span[contains(@id,'Case_LPN_With_PO_LPN_POLine_Item')]"));
+
+	}
+
+	public static String shiwaveStatusxpath(String shipwavetemplate) {
+		return "//span[contains(text(),'" + shipwavetemplate + "')]//following::td[1]";
+	}
+
+	public void user_views_the_packing_slip() throws Throwable {
+
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(DistributionOrders.getDOnumber());
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, moreBtn, 50);
+		moreBtn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ViewPackingSlip, 50);
+		SeleniumTestHelper.assertEquals(ViewPackingSlip.isDisplayed(), true);
+		ViewPackingSlip.click();
+		Thread.sleep(10000);
+		SeleniumTestHelper.switchToOtherWindowAndCloseItAndComeBack(driver);
+
+	}
+
+	public WebElement CheckTask(String taskname) {
+		WebElement task = driver.findElement(By.xpath("//span[text()='" + taskname + "']"));
+		return task;
+
+	}
+
+	public void runWaveTemplateandchecknotasksgenerated(String waveTemplateDesc)
+			throws InterruptedException, IOException {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(DistributionOrders.getDOnumber());
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.assertEquals(DOStatus.getText(), "Released");
+		SeleniumTestHelper.waitForElementToBeClickable(driver, moreBtn, 50);
+		moreBtn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, waveOption, 50);
+		waveOption.click();
+		Thread.sleep(3000);
+		homepage.user_closes_openedwindow("Distribution Orders");
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		driver.findElement(By.xpath("//span[contains(text(),'" + waveTemplateDesc
+				+ "') and contains(@id,'wvdesc')]/ancestor::td/preceding-sibling::td[2]")).click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, runWaveBtn, 50);
+		runWaveBtn.click();
+		submitWaveBtn.click();
+		if (SeleniumTestHelper.isElementDisplayed(waveNumber)) {
+			waveNumber.click();
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			String actualStatus = driver.findElement(By.xpath(shiwaveStatusxpath(waveTemplateDesc))).getText().trim();
+			int count = 0;
+			while (!actualStatus.equals("Ship wave completed") && (count != 20)) {
+				refreshBtn.click();
+				actualStatus = driver.findElement(By.xpath(shiwaveStatusxpath(waveTemplateDesc))).getText().trim();
+				Thread.sleep(5000);
+				count++;
+			}
+			SeleniumTestHelper.assertEquals(actualStatus, "Ship wave completed");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavechkbox, 50);
+			shipWavechkbox.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavemoreBtn, 50);
+			shipWavemoreBtn.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavemoreLPNS, 50);
+			shipWavemoreLPNS.click();
+			try {
+				if (SeleniumTestHelper.isElementDisplayed(noDataFound)) {
+					System.out.println("oLPNS not generated due to insufficient inventory");
+					SeleniumTestHelper.assertEquals(noDataFound.isDisplayed(), true);
+				}
+			} catch (Exception e) {
+				System.out.println("oLPNS got generated due to sufficient inventory available for all items");
+				SeleniumTestHelper.fail("oLPNS got generated due to sufficient inventory available for all items");
+			}
+
+		}
+		arrow_Sign.click();
+		shipWavechkbox.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavemoreBtn, 50);
+		shipWavemoreBtn.click();
+		tasks.click();
+		Thread.sleep(3000);
+		try {
+			if (SeleniumTestHelper.isElementDisplayed(noDataFound)) {
+				System.out.println("No tasks generated due to sufficient inventory available for all items");
+				SeleniumTestHelper.assertEquals(noDataFound.isDisplayed(), true);
+			}
+		} catch (Exception e) {
+			{
+				System.out.println("Tasks got generated due to sufficient inventory available for all items");
+				SeleniumTestHelper.fail("Tasks got generated due to sufficient inventory available for all items");
+			}
+		}
+		homepage.user_closes_openedwindow("ShipWaveTemplate - Tasks");
+	}
+
+	public void runWaveTemplate_CheckTasksforAmazonOrder(String waveTemplateDesc, String expStatus, String ExpTask)
+			throws InterruptedException, IOException {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(DistributionOrders.getDOnumber());
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.assertEquals(DOStatus.getText(), "Released");
+		SeleniumTestHelper.waitForElementToBeClickable(driver, moreBtn, 50);
+		moreBtn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, waveOption, 50);
+		waveOption.click();
+		Thread.sleep(3000);
+		homepage.user_closes_openedwindow("Distribution Orders");
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		driver.findElement(By.xpath("//span[contains(text(),'" + waveTemplateDesc
+				+ "') and contains(@id,'wvdesc')]/ancestor::td/preceding-sibling::td[2]")).click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, runWaveBtn, 50);
+		runWaveBtn.click();
+		submitWaveBtn.click();
+		if (SeleniumTestHelper.isElementDisplayed(waveNumber)) {
+			waveNumber.click();
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			String actualStatus = driver.findElement(By.xpath(shiwaveStatusxpath(waveTemplateDesc))).getText().trim();
+			int count = 0;
+			while (!actualStatus.equals("Ship wave completed") && (count != 20)) {
+				refreshBtn.click();
+				actualStatus = driver.findElement(By.xpath(shiwaveStatusxpath(waveTemplateDesc))).getText().trim();
+				Thread.sleep(5000);
+				count++;
+			}
+			SeleniumTestHelper.assertEquals(actualStatus, "Ship wave completed");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavechkbox, 50);
+			shipWavechkbox.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavemoreBtn, 50);
+			shipWavemoreBtn.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavemoreTasks, 50);
+			shipWavemoreTasks.click();
+			// SeleniumTestHelper.waitForElementToBeDisplayed(driver,
+			// Pallet_Pull_from_Reserve, 50);
+
+			Thread.sleep(5000);
+			if (SeleniumTestHelper.isElementDisplayed(CheckTask(ExpTask))) {
+				System.out.println("Task id generated is " + taskId);
+				System.out.println(CheckTask(ExpTask).getText());
+				SeleniumTestHelper.assertEquals(CheckTask(ExpTask).getText(), ExpTask);
+			}
+			Thread.sleep(3000);
+			backBtn.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavechkbox, 50);
+			shipWavechkbox.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavemoreBtn, 50);
+			shipWavemoreBtn.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavemoreLPNS, 50);
+			shipWavemoreLPNS.click();
+			List<WebElement> oLPNS = driver
+					.findElements(By.xpath("//span[contains(@id,'LPNList_Outbound_Link_NameText')]"));
+			List<WebElement> olpnStatus = driver
+					.findElements(By.xpath("//span[contains(@id,'LPNList_Outbound_lpnFacilityStatus_param_out')]"));
+			List<WebElement> olpnItems = driver
+					.findElements(By.xpath("//span[contains(@id,'Case_LPN_With_PO_LPN_POLine_Item_param_out1')]"));
+			List<WebElement> olpnwithqty = driver
+					.findElements(By.xpath("//span[contains(@id,'CTO_LPNListTPM_LPN_Qty_param_out2')]"));
+
+			for (int i = 0; i < olpnStatus.size(); i++) {
+				String oLPNSnum = oLPNS.get(i).getText();
+				String oLPNSinShipwave = olpnStatus.get(i).getText();
+				String[] olpnwithqtydata = olpnwithqty.get(i).getText().split("\\s+");
+				DistributionOrders.setoLPNList(oLPNSnum);
+				DistributionOrders.setoLPNwithitem(oLPNSnum, olpnItems.get(i).getText());
+				DistributionOrders.setoLPNwithQty(oLPNSnum, olpnwithqtydata[0]);
+				System.out.println("oLPN  :" + oLPNS.get(i).getText() + "status is :" + oLPNSinShipwave);
+				SeleniumTestHelper.assertEquals(oLPNSinShipwave, expStatus);
+			}
+
+			backBtn.click();
+			shipWavechkbox.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavemoreBtn, 50);
+			shipWavemoreBtn.click();
+			AllocationDetails.click();
+			// List<WebElement> reserveoLPN =
+			// driver.findElements(By.xpath("//span[text()='Pallet Pull from
+			// Reserve']/../preceding-sibling::td//span[contains(@id,'taskIdVal')]"));
+			List<WebElement> casepickoLPN = driver.findElements(
+					By.xpath("//span[text()='51-Pick from case pick']/../following-sibling::td[3]/span[1]"));
+			List<WebElement> ActiveoLPN = driver.findElements(
+					By.xpath("//span[contains(text(),'50 - Pick from active')]/../following-sibling::td[3]/span[1]"));
+
+			for (WebElement ele : casepickoLPN) {
+				System.out.println("oLPN for case pick -> " + ele.getText());
+				DistributionOrders.setoLPNwithCase(ele.getText().trim());
+
+			}
+			/*
+			 * for(WebElement ele : reserveoLPN){
+			 * System.out.println("oLPN for Reserve -> " + ele.getText());
+			 * DistributionOrders.setoLPNwithReserve(ele.getText().trim());
+			 * 
+			 * 
+			 * }
+			 */
+			for (WebElement ele : ActiveoLPN) {
+				System.out.println("oLPN for Active -> " + ele.getText());
+				DistributionOrders.setoLPNwithActive(ele.getText().trim());
+			}
+			Thread.sleep(4000);
+			backBtn.click();
+		}
+		homepage.user_closes_openedwindow("ShipWaveTemplate - Waves");
+	}
+
+	public void runWaveTemplate_Check_Replen_Case_Pick_and_Pick_from_case_pick(String waveTemplateDesc,
+			String expStatus) throws InterruptedException, IOException {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(DistributionOrders.getDOnumber());
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.assertEquals(DOStatus.getText(), "Released");
+		SeleniumTestHelper.waitForElementToBeClickable(driver, moreBtn, 50);
+		moreBtn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, waveOption, 50);
+		waveOption.click();
+		Thread.sleep(3000);
+		homepage.user_closes_openedwindow("Distribution Orders");
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		driver.findElement(By.xpath("//span[contains(text(),'" + waveTemplateDesc
+				+ "') and contains(@id,'wvdesc')]/ancestor::td/preceding-sibling::td[2]")).click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, runWaveBtn, 50);
+		runWaveBtn.click();
+		submitWaveBtn.click();
+		if (SeleniumTestHelper.isElementDisplayed(waveNumber)) {
+			waveNumber.click();
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			String actualStatus = driver.findElement(By.xpath(shiwaveStatusxpath(waveTemplateDesc))).getText().trim();
+			int count = 0;
+			while (!actualStatus.equals("Ship wave completed") && (count != 20)) {
+				refreshBtn.click();
+				actualStatus = driver.findElement(By.xpath(shiwaveStatusxpath(waveTemplateDesc))).getText().trim();
+				Thread.sleep(5000);
+				count++;
+			}
+			SeleniumTestHelper.assertEquals(actualStatus, "Ship wave completed");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavechkbox, 50);
+			shipWavechkbox.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavemoreBtn, 50);
+			shipWavemoreBtn.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavemoreTasks, 50);
+			shipWavemoreTasks.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, ReplnCasePickfromReserve, 50);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, pickfromCasePick, 50);
+			if (SeleniumTestHelper.isElementDisplayed(ReplnCasePickfromReserve)
+					&& SeleniumTestHelper.isElementDisplayed(pickfromCasePick)) {
+				System.out.println("Task id generated is " + taskId);
+				System.out.println(ReplnCasePickfromReserve.getText());
+				SeleniumTestHelper.assertEquals(ReplnCasePickfromReserve.getText(), "Replen Case Pick from Reserve");
+				SeleniumTestHelper.assertEquals(pickfromCasePick.getText(), "Pick from case pick");
+			}
+
+			List<WebElement> reservetaskID = driver.findElements(By.xpath(
+					"//span[text()='Replen Case Pick from Reserve']/../preceding-sibling::td//span[contains(@id,'taskIdVal')]"));
+			List<WebElement> casepicktaskID = driver.findElements(By.xpath(
+					"//span[text()='Pick from case pick']/../preceding-sibling::td//span[contains(@id,'taskIdVal')]"));
+
+			WebElement casePickChkbox;
+			WebElement reservePickChkbox;
+			List<String> casepickTaskIdStr = new ArrayList<String>();
+			List<String> reserveTaskIdStr = new ArrayList<String>();
+			for (WebElement ele : casepicktaskID) {
+				System.out.println("TaskId for case pick -> " + ele.getText());
+				casepickTaskIdStr.add(ele.getText().trim());
+			}
+			for (WebElement ele : reservetaskID) {
+				System.out.println("TaskId for Reserve -> " + ele.getText());
+				reserveTaskIdStr.add(ele.getText().trim());
+				DistributionOrders.setReplnTasks(ele.getText().trim());
+
+			}
+
+			for (String casePick : casepickTaskIdStr) {
+
+				System.out.println("Inside for loop " + casePick);
+				casePickChkbox = driver.findElement(By
+						.xpath("//span[text()='" + casePick + "']/../preceding-sibling::td//input[@type='checkbox']"));
+				SeleniumTestHelper.waitForElementToBeClickable(driver, casePickChkbox, 50);
+				casePickChkbox.click();
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, viewBtnTasks, 50);
+				viewBtnTasks.click();
+				DistributionOrders.setoLPNwithCase(oLPNText.getText());
+				System.out.println("Case Pick oLPN: " + oLPNText.getText());
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, backBtn, 50);
+				backBtn.click();
+				Thread.sleep(3000);
+				casePickChkbox = null;
+			}
+			for (String reserve : reserveTaskIdStr) {
+
+				reservePickChkbox = driver.findElement(
+						By.xpath("//span[text()='" + reserve + "']/../preceding-sibling::td//input[@type='checkbox']"));
+				SeleniumTestHelper.waitForElementToBeClickable(driver, reservePickChkbox, 50);
+				reservePickChkbox.click();
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, viewBtnTasks, 50);
+				viewBtnTasks.click();
+				DistributionOrders.setoLPNwithReserve(oLPNText.getText());
+				System.out.println("Reserve Pick oLPN: " + oLPNText.getText());
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, backBtn, 50);
+				backBtn.click();
+				Thread.sleep(3000);
+				reservePickChkbox = null;
+			}
+
+			Thread.sleep(3000);
+			backBtn.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavechkbox, 50);
+			shipWavechkbox.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavemoreBtn, 50);
+			shipWavemoreBtn.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavemoreLPNS, 50);
+			shipWavemoreLPNS.click();
+			Thread.sleep(2000);
+			List<WebElement> oLPNS = driver
+					.findElements(By.xpath("//span[contains(@id,'LPNList_Outbound_Link_NameText')]"));
+			List<WebElement> olpnStatus = driver
+					.findElements(By.xpath("//span[contains(@id,'LPNList_Outbound_lpnFacilityStatus_param_out')]"));
+			List<WebElement> olpnItems = driver
+					.findElements(By.xpath("//span[contains(@id,'Case_LPN_With_PO_LPN_POLine_Item_param_out1')]"));
+			List<WebElement> olpnwithqty = driver
+					.findElements(By.xpath("//span[contains(@id,'CTO_LPNListTPM_LPN_Qty_param_out2')]"));
+			System.out.println("oLPN status size: " + olpnStatus.size());
+			for (int i = 0; i < olpnStatus.size(); i++) {
+				String oLPNSnum = oLPNS.get(i).getText();
+				String oLPNSinShipwave = olpnStatus.get(i).getText();
+				String[] olpnwithqtydata = olpnwithqty.get(i).getText().split("\\s+");
+				DistributionOrders.setoLPNList(oLPNSnum);
+				DistributionOrders.setoLPNwithitem(oLPNSnum, olpnItems.get(i).getText());
+				DistributionOrders.setoLPNwithQty(oLPNSnum, olpnwithqtydata[0]);
+				System.out.println("oLPN  :" + oLPNS.get(i).getText() + "status is :" + oLPNSinShipwave);
+				SeleniumTestHelper.assertEquals(oLPNSinShipwave, expStatus);
+			}
+		}
+		homepage.user_closes_openedwindow("ShipWaveTemplate - oLPNs");
+	}
+
+	public void runWaveTemplate_Check_Replen_to_active(String waveTemplateDesc, String expStatus)
+			throws InterruptedException, IOException {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(DistributionOrders.getDOnumber());
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.assertEquals(DOStatus.getText(), "Released");
+		SeleniumTestHelper.waitForElementToBeClickable(driver, moreBtn, 50);
+		moreBtn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, waveOption, 50);
+		waveOption.click();
+		Thread.sleep(3000);
+		homepage.user_closes_openedwindow("Distribution Orders");
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		driver.findElement(By.xpath("//span[contains(text(),'" + waveTemplateDesc
+				+ "') and contains(@id,'wvdesc')]/ancestor::td/preceding-sibling::td[2]")).click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, runWaveBtn, 50);
+		runWaveBtn.click();
+		submitWaveBtn.click();
+		if (SeleniumTestHelper.isElementDisplayed(waveNumber)) {
+			waveNumber.click();
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			String actualStatus = driver.findElement(By.xpath(shiwaveStatusxpath(waveTemplateDesc))).getText().trim();
+			int count = 0;
+			while (!actualStatus.equals("Ship wave completed") && (count != 20)) {
+				refreshBtn.click();
+				actualStatus = driver.findElement(By.xpath(shiwaveStatusxpath(waveTemplateDesc))).getText().trim();
+				Thread.sleep(5000);
+				count++;
+			}
+			SeleniumTestHelper.assertEquals(actualStatus, "Ship wave completed");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavechkbox, 50);
+			shipWavechkbox.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavemoreBtn, 50);
+			shipWavemoreBtn.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavemoreTasks, 50);
+			shipWavemoreTasks.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, ReplenRetailActivefromCasePick, 50);
+
+			if (SeleniumTestHelper.isElementDisplayed(ReplenRetailActivefromCasePick)) {
+				System.out.println("Task id generated is " + taskId);
+				System.out.println(ReplenRetailActivefromCasePick.getText());
+				SeleniumTestHelper.assertEquals(ReplenRetailActivefromCasePick.getText(),
+						"Replen Retail Active from Case pick");
+
+			}
+
+			List<WebElement> replenishtaskID = driver.findElements(By.xpath(
+					"//span[text()='Replen Retail Active from Case pick']/../preceding-sibling::td//span[contains(@id,'taskIdVal')]"));
+			List<String> replenishTaskIdStr = new ArrayList<String>();
+
+			for (WebElement ele : replenishtaskID) {
+				System.out.println("TaskId of Replen Retail Active from CasePick  -> " + ele.getText());
+				replenishTaskIdStr.add(ele.getText().trim());
+				DistributionOrders.setReplnTasks(ele.getText().trim());
+
+			}
+
+			Thread.sleep(3000);
+			backBtn.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavechkbox, 50);
+			shipWavechkbox.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavemoreBtn, 50);
+			shipWavemoreBtn.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavemoreLPNS, 50);
+			shipWavemoreLPNS.click();
+			Thread.sleep(2000);
+			List<WebElement> oLPNS = driver
+					.findElements(By.xpath("//span[contains(@id,'LPNList_Outbound_Link_NameText')]"));
+			List<WebElement> olpnStatus = driver
+					.findElements(By.xpath("//span[contains(@id,'LPNList_Outbound_lpnFacilityStatus_param_out')]"));
+			List<WebElement> olpnItems = driver
+					.findElements(By.xpath("//span[contains(@id,'Case_LPN_With_PO_LPN_POLine_Item_param_out1')]"));
+			List<WebElement> olpnwithqty = driver
+					.findElements(By.xpath("//span[contains(@id,'CTO_LPNListTPM_LPN_Qty_param_out2')]"));
+			System.out.println("oLPN status size: " + olpnStatus.size());
+			for (int i = 0; i < olpnStatus.size(); i++) {
+				String oLPNSnum = oLPNS.get(i).getText();
+				String oLPNSinShipwave = olpnStatus.get(i).getText();
+				String[] olpnwithqtydata = olpnwithqty.get(i).getText().split("\\s+");
+				DistributionOrders.setoLPNList(oLPNSnum);
+				DistributionOrders.setoLPNwithitem(oLPNSnum, olpnItems.get(i).getText());
+				DistributionOrders.setoLPNwithQty(oLPNSnum, olpnwithqtydata[0]);
+				System.out.println("oLPN  :" + oLPNS.get(i).getText() + "status is :" + oLPNSinShipwave);
+				SeleniumTestHelper.assertEquals(oLPNSinShipwave, expStatus);
+			}
+		}
+		homepage.user_closes_openedwindow("ShipWaveTemplate - oLPNs");
+	}
+
+	public void checkTaskstatus(String taskStatus) throws InterruptedException, IOException {
+		homepage.MenuItems_Configuration_Selection("Tasks");
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		for (int i = 0; i < DistributionOrders.replnTasks.size(); i++) {
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, inputTaskID, 50);
+			inputTaskID.clear();
+			inputTaskID.sendKeys(DistributionOrders.getReplnTasks(i));
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, applyTaskBtn, 50);
+			applyTaskBtn.click();
+			WebElement statusTask = driver.findElement(By.xpath("//span[contains(@id,'statusVal')]"));
+			String taskIDstatus = statusTask.getText();
+			SeleniumTestHelper.assertEquals(taskIDstatus, taskStatus);
+		}
+		homepage.user_closes_openedwindow("Tasks");
+	}
+
+	public void verifyDOLineStatusForPackedAndCancelItem(String statusPacked, String statusCancel)
+			throws InterruptedException, IOException {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(DistributionOrders.getDOnumber()); // DistributionOrders.getDOnumber()
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
+		viewBtn.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, DOlinesTab, 50);
+		DOlinesTab.click();
+		SeleniumTestHelper.assertTrue(SeleniumTestHelper
+				.isElementDisplayed(driver.findElement(By.xpath("//span[text()='" + statusPacked + "']"))));
+		SeleniumTestHelper.assertTrue(SeleniumTestHelper
+				.isElementDisplayed(driver.findElement(By.xpath("//span[text()='" + statusCancel + "']"))));
+		System.out.println("Status Canceled verified");
+		System.out.println("Status Packed verified");
+		Thread.sleep(3000);
+		homepage.user_closes_openedwindow("Distribution Orders");
+		Thread.sleep(3000);
+		SeleniumTestHelper.Close_OpenedWindow("DO Detail - Distribution Order", driver);
+	}
+
+	public void search_for_DO_with_Fulfillment_status(String fullfulmentsStatus) throws InterruptedException {
+		// driver.switchTo().frame(0);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 5);
+		primaryField.sendKeys("Fulfillment Status" + Keys.TAB + Keys.TAB);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, statusSearch_inputBox, 5);
+		statusSearch_inputBox.click();
+		statusSearch_inputBox.sendKeys(fullfulmentsStatus + Keys.ARROW_DOWN + Keys.ARROW_DOWN + Keys.ENTER);
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, first_checkBox, 5);
+		first_checkBox.click();
+		viewBtn.click();
+		driver.switchTo().frame(0);
+		shipVia_Value.click();
+		DistributionOrders.setDOnumber(DO_ID_value.getText());
+		SeleniumTestHelper.assertEquals(DO_FulFill_Status.getText(), fullfulmentsStatus);
+		homepage.user_closes_openedwindow("DO Detail - Distribution Order");
+
+	}
+
+	public void toRunWaveTemplate(String waveTemplateDesc) throws InterruptedException, IOException {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(DistributionOrders.getDOnumber());
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.assertEquals(DOStatus.getText(), "Released");
+		SeleniumTestHelper.waitForElementToBeClickable(driver, moreBtn, 50);
+		moreBtn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, waveOption, 50);
+		waveOption.click();
+		Thread.sleep(3000);
+		homepage.user_closes_openedwindow("Distribution Orders");
+		homepage.openWindows.click();
+
+		List<WebElement> myframes = driver.findElements(By.tagName("Iframe"));
+		System.out.println("my framecount is   " + myframes.size());
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		driver.findElement(By.xpath("//input[@alt='Find Description']")).sendKeys(waveTemplateDesc);
+		wavespage.waveNumberApplySearchBtn.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+
+		driver.findElement(By.xpath("//span[contains(text(),'" + waveTemplateDesc
+				+ "')]/ancestor::td/preceding-sibling::td[2][contains(@class,'checkBox')]")).click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, runWaveBtn, 100);
+
+		runWaveBtn.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, submitWaveBtn, 100);
+		submitWaveBtn.click();
+		if (SeleniumTestHelper.isElementDisplayed(waveNumber)) {
+			String waveNumberValue = waveNumber.getText();
+			DistributionOrders.setWaveNumber(waveNumberValue);
+			waveNumber.click();
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			String actualStatus = driver.findElement(By.xpath(shiwaveStatusxpath(waveTemplateDesc))).getText().trim();
+			int count = 0;
+			while (!actualStatus.equals("Ship wave completed") && (count != 20)) {
+				refreshBtn.click();
+				actualStatus = driver.findElement(By.xpath(shiwaveStatusxpath(waveTemplateDesc))).getText().trim();
+				Thread.sleep(5000);
+				count++;
+			}
+			SeleniumTestHelper.assertEquals(actualStatus, "Ship wave completed");
+			System.out.println(
+					"Status : " + actualStatus + " verified for wave number " + DistributionOrders.getWaveNumber());
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavechkbox, 50);
+			shipWavechkbox.click();
+		}
+		homepage.user_closes_openedwindow("ShipWaveTemplate - Waves");
+	}
+
+	public void cancelDOAndClickConfirmButton() throws Throwable {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(DistributionOrders.getDOnumber());
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, moreBtn, 50);
+		moreBtn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, CnclBtn, 50);
+		CnclBtn.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, yesBtn, 50);
+		yesBtn.click();
+		Thread.sleep(3000);
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, rsnCode, 50);
+		rsnCode.click();
+		rsnCode.sendKeys("SCN-Soft Cancel");
+		//rsnCode.sendKeys(Keys.TAB);
+		SeleniumTestHelper.assertTrue(true);
+		Thread.sleep(1000);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, cnfmBtn, 50);
+		cnfmBtn.click();
+		homepage.user_closes_openedwindow("Distribution Orders");
+	}
+
+	public void verifyDOAndCheckStatus(String expectedDOstatus) throws InterruptedException, IOException {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(DistributionOrders.getDOnumber());
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		String actualDOstatus = driver.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[text()='"
+				+ DistributionOrders.getDOnumber() + "']//following::td[1]")).getText();
+		SeleniumTestHelper.assertEquals(actualDOstatus, expectedDOstatus);
+		homepage.user_closes_openedwindow("Distribution Orders");
+	}
+
+	public void cancelDOLine(String expectedDoLineStatus) throws InterruptedException, IOException {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(DistributionOrders.getDOnumber());
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
+		viewBtn.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, DOlinesTab, 50);
+		DOlinesTab.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, doFirstLineChkBox, 50);
+		doFirstLineChkBox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, Cancel_Line, 50);
+		Cancel_Line.click();
+		Thread.sleep(2000);
+		String actualDoLineStatus = driver
+				.findElement(
+						By.xpath("//span[contains(@id,'DODetailsOrderLinelist:0:DODetailOrderLinesList_LineItem')]"))
+				.getText();
+		SeleniumTestHelper.assertEquals(actualDoLineStatus, expectedDoLineStatus);
+		homepage.user_closes_openedwindow("Distribution Orders");
+		Thread.sleep(2000);
+		SeleniumTestHelper.Close_OpenedWindow("DO Detail - Distribution Order", driver);
+	}
+
+	public void printPackingSlipReport() throws InterruptedException, IOException {
+
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(DistributionOrders.getDOnumber());
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, moreBtn, 50);
+		moreBtn.click();
+		Thread.sleep(1000);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, printPackingSlipReport, 50);
+		printPackingSlipReport.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, transactionSuccfulMsg, 50);
+		transactionSuccfulMsg.click();
+		SeleniumTestHelper.assertEquals(transactionSuccfulMsg.getText(), "Transaction successful.");
+		Thread.sleep(2000);
+		homepage.user_closes_openedwindow("Distribution Orders");
+
+	}
+
+	public void search_for_DO_with_Fulfillment_EPIDoc(String fullfulmentsStatus)
+			throws InterruptedException, IOException {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
+		primaryField.sendKeys("Fulfillment Status");
+		Thread.sleep(3000);
+		fulfilmentStatus.click();
+		Thread.sleep(1000);
+		fulfilmentStatus.sendKeys(fullfulmentsStatus);
+		fulfilmentStatus.sendKeys(Keys.ARROW_DOWN);
+		fulfilmentStatus.sendKeys(Keys.TAB);
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, first_checkBox, 5);
+		first_checkBox.click();
+		moreBtn.click();
+		SeleniumTestHelper.assertEquals(moreBtn.isDisplayed(), true);
+		Thread.sleep(1000);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, printEpiDoc, 50);
+		Thread.sleep(1000);
+		printEpiDoc.click();
+		Thread.sleep(2000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, transactionSuccfulMsg, 50);
+		SeleniumTestHelper.assertEquals(transactionSuccfulMsg.getText(), "Transaction successful.");
+		Thread.sleep(2000);
+		homepage.user_closes_openedwindow("Distribution Orders");
+
+	}
+
+	// Ashish
+
+	public void user_views_the_ship_confirm() throws Throwable {
+
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(DistributionOrders.getDOnumber());
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, moreBtn, 50);
+		moreBtn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ViewShipConfirm, 50);
+		SeleniumTestHelper.assertEquals(ViewShipConfirm.isDisplayed(), true);
+		ViewShipConfirm.click();
+		Thread.sleep(5000);
+		ConfirmationYes.click();
+		Thread.sleep(10000);
+		SeleniumTestHelper.assertEquals(fullfilmentStatusShipped.isDisplayed(), true);
+		Thread.sleep(2000);
+		SeleniumTestHelper.switchToOtherWindowAndCloseItAndComeBack(driver);
+
+	}
+
+	public void storeDO_PO_oLPN_numbersForDFill(String FulFilmentStatus) throws InterruptedException, IOException {
+
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
+		primaryField.sendKeys("Fulfillment Status");
+		Thread.sleep(1000);
+		fulfilmentStatus.click();
+		Thread.sleep(1000);
+		System.out.println("FulFillment Status is " + FulFilmentStatus);
+		fulfilmentStatus.sendKeys(FulFilmentStatus);
+		fulfilmentStatus.sendKeys(Keys.ARROW_DOWN);
+		fulfilmentStatus.sendKeys(Keys.TAB);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, firstOptionalFieldCondition, 50);
+		firstOptionalFieldCondition.sendKeys("Order Type");
+		fulfilmentStatus.sendKeys(Keys.ARROW_DOWN);
+		fulfilmentStatus.sendKeys(Keys.TAB);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, firstOptionalFieldStatusValue, 50);
+		firstOptionalFieldStatusValue.sendKeys("DFILL");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, addCondition, 50);
+		addCondition.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, secondOptionalFieldCondition, 50);
+		secondOptionalFieldCondition.sendKeys("External SO / PO");
+		secondOptionalFieldCondition.sendKeys(Keys.TAB);
+		secondOptionalFieldCondition.sendKeys(Keys.TAB);
+		secondOptionalFieldStatusValue.sendKeys("*");
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
+		viewBtn.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		DistributionOrders.setDOnumber(orderID.getText());
+		System.out.println("DO Order ID is  " + DistributionOrders.getDOnumber());
+		SeleniumTestHelper.waitForElementToBeClickable(driver, DOlinesTab, 50);
+		DOlinesTab.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, itemNumber, 50);
+		DistributionOrders.setProductsForDistOrder(itemNumber.getText());
+		System.out.println("Item is  " + DistributionOrders.getProductsForDistOrder(0));
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, firstLineItemCheckBx, 50);
+		firstLineItemCheckBx.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, viewLineBtn, 50);
+		viewLineBtn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, externalPurchaseOrderID, 50);
+		DistributionOrders.setLineItemWithPO(DistributionOrders.getProductsForDistOrder(0),
+				externalPurchaseOrderID.getText());
+		System.out.println("External PO is  "
+				+ DistributionOrders.getLineItemWithPO(DistributionOrders.getProductsForDistOrder(0)));
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, backBtn, 50);
+		backBtn.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, lPNSTab, 50);
+		lPNSTab.click();
+		Thread.sleep(2000);
+		List<WebElement> oLPNS = driver
+				.findElements(By.xpath("//span[contains(@id,'LPNListTPM_Link_NameText_param_out')]"));
+		DistributionOrders.setoLPNwithActive(oLPNS.get(0).getText());
+		System.out.println("oLPN is " + DistributionOrders.getoLPNwithActive(0));
+		Thread.sleep(2000);
+		homepage.user_closes_openedwindow("Distribution Orders");
+		Thread.sleep(2000);
+		SeleniumTestHelper.Close_OpenedWindow("DO Detail - Distribution Order", driver);
+	}
+
+	public void getDOStatus(String expectedDOstatus) throws InterruptedException, IOException {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(DistributionOrders.getDOnumber());
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		String actualDOstatus = driver.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[text()='"
+				+ DistributionOrders.getDOnumber() + "']//following::td[1]")).getText();
+		SeleniumTestHelper.assertEquals(actualDOstatus, expectedDOstatus);
+
+	}
+
+}

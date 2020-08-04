@@ -1,0 +1,305 @@
+package pages;
+
+import java.io.IOException;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import StepDefinition.Steps;
+import entity.Items;
+import utils.Driver;
+import utils.SeleniumTestHelper;
+
+public class AsnsPage {
+	public WebDriver driver;
+	
+	public AsnsPage() {
+		this.driver=Steps.seleniumDriver;
+		PageFactory.initElements(driver, this);
+
+	}
+	HomePage homepage = new HomePage();
+
+	@FindBy(xpath = "(//label[text()='Primary Fields']//following::input[@role='combobox' and @data-ref='inputEl'])[1]")
+	public WebElement primaryField;
+	@FindBy(xpath = "//input[@name='asnId']")
+	public WebElement asnIdInput;
+	@FindBy(xpath = "//A/SPAN[@role=\"presentation\"]/SPAN[@role=\"presentation\" and normalize-space()=\"Apply\"]/SPAN[2]")
+	public WebElement applyBtn;
+	@FindBy(xpath = "//td[@data-columnid='status']/div")
+	public WebElement asnStatus;
+	@FindBy(xpath = "//span[text()='View']")
+	public WebElement viewBtn;
+	@FindBy(xpath = "//tr[@class='  x-grid-row']//td//div[@class='x-grid-row-checker']")
+	public WebElement asnChkbox;
+	@FindBy(xpath = "//img[@class='x-tool-img x-tool-collapse-left']")
+	public WebElement collapseLeft;
+	@FindBy(xpath="//a[@data-qtip='Refresh']")
+	public WebElement refreshBtn;
+	
+	@FindBy(xpath="//a[@name='ASNDetailASNLinesTab']") 
+	public WebElement linesTab;
+	
+	@FindBy(xpath="//span[@id='dataForm:Item_popup_barcode_outText']") 
+	public WebElement itemBarcode;
+	
+	@FindBy(xpath="//div[@class='pop_close' and @id='dataForm:ASNDetails_ITEM_basicDialogTemplate_cCId']") 
+	public WebElement closeBtn;
+	
+	@FindBy(xpath="//span[contains(@id,'shippedQtyuom')]") 
+	public WebElement shippedQtyLbl;
+	
+	@FindBy(xpath="//span[text()='View']") 
+	public WebElement viewASNBtn;
+	
+	@FindBy(xpath="//tr[@class='  x-grid-row']//td//div[@class='x-grid-row-checker']") 
+	public WebElement searchedASNChkbox;
+	
+	@FindBy(xpath="//a[@id='ASNDetailLPNsTab_lnk']") 
+	public WebElement lpnsTab;
+	
+	@FindBy(xpath="//tr[@class='advtbl_row -dg_tr'][1]") 
+	public WebElement iLPNSFirstRecord;
+	
+	@FindBy(xpath="//span[text()='LPN facility status:']/../..//span[contains(@id,'LPNFacilityStatus_outputText')]") 
+	public WebElement iLPNSFacilityStatus;
+	
+	@FindBy(xpath="//a[@id='backButton']") 
+	public WebElement asnBackBtn;
+	
+	@FindBy(xpath="//span[text()='More']") 
+	public WebElement More;
+	
+	@FindBy(xpath="//span[text()='Verify ASN']") 
+	public WebElement verifyASN;
+	
+	@FindBy(xpath="//input[@value='Verify ASN']") 
+	public WebElement verifyASNBtn;
+	
+	@FindBy(xpath="//span[@id='dataForm:ASN_Detail_Summary_TotalShippedQty']") 
+	public WebElement totalShippedQty;
+
+	@FindBy(xpath="//span[@id='dataForm:ASN_Detail_TotalReceived_totalReceivedQtyString']") 
+	public WebElement totalReceivedQty;
+	
+	@FindBy(xpath="//td[@data-columnid='status']") 
+	public WebElement asnStatusLbl;
+	
+	@FindBy(xpath="//table[contains(@id,'LPNDetailListTable1_body')]") 
+	public WebElement contentsLPNFirstRecord;
+	
+	@FindBy(xpath="//input[@id='dataForm:ASNDetail_commandbutton_EditASN']") 
+	public WebElement editHeaderBtn;
+	
+	@FindBy(xpath="//input[@id='dataForm:EditASN_SealNbr_Addbutton']") 
+	public WebElement editHeaderAddSealBtn;
+	
+	@FindBy(xpath="//input[@id='dataForm:editASNSealNumberTable:newRow_1:SeqNbr']") 
+	public WebElement editHeaderAddSealSequenceNumTxt;
+	
+	@FindBy(xpath="//input[@id='dataForm:editASNSealNumberTable:newRow_1:SealNbr']") 
+	public WebElement editHeaderAddSealNumTxt;
+	
+	@FindBy(xpath="//input[@id='dataForm:editASNSealNumberTable:newRow_1:SealIntact']") 
+	public WebElement editHeaderAddSealIntactChkbox;
+	
+	@FindBy(xpath="//input[@id='dataForm:save']") 
+	public WebElement editHeaderAddSealSaveBtn;
+	
+	@FindBy(xpath="//input[@id='dataForm:editASNSealNumberTable:newRow_2:SeqNbr']") 
+	public WebElement editHeaderAddSealSequenceNumTxtSecond;
+
+	public void verifyAsnsStatus(String asnId, String status) throws InterruptedException, IOException {
+		homepage.MenuItems_Distribution_Selection("ASNs");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 120);
+		primaryField.sendKeys("ASN");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, asnIdInput, 50);
+		driver.findElement(By.xpath("//DIV[3]/DIV[1]/DIV[@role=\"presentation\"][1]/DIV[@role=\"presentation\"][1]/DIV[@role=\"presentation\"][1]/DIV[1]/DIV[1]/DIV[1]/DIV[1]/INPUT[@role=\"combobox\"][1]")).click();
+		driver.findElement(By.xpath("//DIV[3]/DIV[1]/DIV[@role=\"presentation\"][1]/DIV[@role=\"presentation\"][1]/DIV[@role=\"presentation\"][1]/DIV[1]/DIV[1]/DIV[1]/DIV[1]/INPUT[@role=\"combobox\"][1]")).sendKeys(asnId);
+		/*
+		 * Actions action = new Actions(driver);
+		 * action.moveToElement(asnIdInput).build().perform(); asnIdInput.click();
+		 * asnIdInput.sendKeys(asnId);
+		 */
+		//SeleniumTestHelper.waitForElementToBeDisplayed(driver, applyBtn, 50);
+		applyBtn.click();
+		Thread.sleep(3000);
+//		SeleniumTestHelper.waitForElementToBeDisplayed(driver, collapseLeft, 70);
+//		collapseLeft.click();
+//		SeleniumTestHelper.waitForElementToBeDisplayed(driver, refreshBtn, 50);
+		String AsnStatus = asnStatus.getText();
+		int count = 0;
+		while (!AsnStatus.equals(status) && (count != 10)) {
+			applyBtn.click();
+			AsnStatus = asnStatus.getText();
+			Thread.sleep(5000);
+			count++;
+		}
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, collapseLeft, 70);
+		collapseLeft.click();
+		SeleniumTestHelper.assertEquals(AsnStatus, status);
+		System.out.println("Status : " + AsnStatus + " has been verified successfully for ASN : " + asnId);
+		homepage.userClosesOpenedwindow("ASNs");
+
+	}
+	public void GetItemDetails() throws InterruptedException
+	{
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver,linesTab,120);
+		linesTab.click();
+		List<WebElement> lines=driver.findElements(By.xpath("//span[contains(@id,'SKUId')]"));
+		List<WebElement> Shipqty=driver.findElements(By.xpath("//span[contains(@id,'shippedQtyuom')]"));
+		Thread.sleep(5000);
+		String itemInASNPage = null;
+		String barcodes = null;
+		String[] shippedQty = null;
+		//
+		
+			for(int i=1;i<lines.size();i++)
+			{
+				itemInASNPage = lines.get(i).getText();
+				System.out.println(itemInASNPage);
+				/*
+				 * SeleniumTestHelper.assertEquals(itemInASNPage,
+				 * Items.getItemsForReceivingASN(i-1)); System.out.println("Item : " +
+				 * itemInASNPage + " successfully verified in ASN page" ); lines.get(i).click();
+				 * Thread.sleep(2000);
+				 * SeleniumTestHelper.waitForElementToBeDisplayed(driver,itemBarcode,50);
+				 * SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(
+				 * itemBarcode)); barcodes=itemBarcode.getText();
+				 * System.out.println("Barcode : " + barcodes + " is captured for item : " +
+				 * itemInASNPage); Items.setItemBarcode(itemInASNPage, barcodes);
+				 * SeleniumTestHelper.waitForElementToBeDisplayed(driver,closeBtn,50);
+				 * closeBtn.click();
+				 * SeleniumTestHelper.waitForElementToBeDisplayed(driver,shippedQtyLbl,50);
+				 * shippedQty = Shipqty.get(i-1).getText().split("\\s+");
+				 * SeleniumTestHelper.assertEquals(Integer.parseInt(shippedQty[0]),
+				 * Items.getItemWithShippedASNQty(itemInASNPage));
+				 * System.out.println("ShippedQty : " + shippedQty[0] +
+				 * " successfully verified in ASN page for item : " + itemInASNPage );
+				 */
+	
+			}
+			Thread.sleep(2000);
+	}
+	
+	public void searchForTheASN(String asnID) throws InterruptedException, IOException{
+		homepage.MenuItems_Distribution_Selection("ASNs");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 120);
+		primaryField.sendKeys("ASN");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, asnIdInput, 50);
+		Actions action = new Actions(driver);
+		action.moveToElement(asnIdInput).build().perform();
+		asnIdInput.click();
+		asnIdInput.sendKeys(asnID);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, applyBtn, 50);
+		applyBtn.click();
+	}
+	
+	public void verifyILPNStatusForAllItems(int noOfItem,String iLPNStatus) throws InterruptedException
+	{
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnsTab, 50);
+		lpnsTab.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNSFirstRecord, 50);
+		Thread.sleep(5000);
+		for(int i = 0; i< noOfItem;i++){
+			try{
+				driver.findElement(By.xpath("//span[text()='"+Items.getItemPalletID(Items.getItemsForReceivingASN(i))+"']/../../..//input[@type='checkbox']")).click();
+			}catch(NoSuchElementException noSuchEle){
+				driver.findElement(By.xpath("//span[text()='"+Items.getItemILPN(Items.getItemsForReceivingASN(i))+"']/../../..//input[@type='checkbox']")).click();
+			}
+			driver.findElement(By.xpath("//span[text()='" + Items.getItemILPN(Items.getItemsForReceivingASN(i)) + "']")).click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNSFacilityStatus, 120);
+			if (iLPNStatus.contains("/")) {
+				String[] iLPNStatusAsArray = iLPNStatus.split("/");
+				SeleniumTestHelper.assertEquals(iLPNSFacilityStatus.getText(), iLPNStatusAsArray[i]);
+				System.out.println("Status : " + iLPNStatusAsArray[i] + " verified for iLPN : "+ Items.getItemILPN(Items.getItemsForReceivingASN(i)));
+			} else {
+				SeleniumTestHelper.assertEquals(iLPNSFacilityStatus.getText(), iLPNStatus);
+				System.out.println("Status : " + iLPNStatus + " verified for iLPN : "+ Items.getItemILPN(Items.getItemsForReceivingASN(i)));
+			}
+			asnBackBtn.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNSFirstRecord, 50);
+		}
+	}
+
+	public void verifyASN(String status) throws InterruptedException {
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, More, 50);
+		More.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, verifyASN, 50);
+		SeleniumTestHelper.assertTrue(verifyASN.isDisplayed());
+		verifyASN.click();
+		Thread.sleep(3000);
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, verifyASNBtn, 50);
+		SeleniumTestHelper.assertTrue(verifyASNBtn.isDisplayed());
+		int shippedQty = 0;
+		String receivedQty = null;
+		for (int i = 0; i < Items.itemsForReceivingASN.size(); i++) {
+			shippedQty = Items.getItemWithShippedASNQty(Items.getItemsForReceivingASN(i));
+			receivedQty = driver.findElement(By.xpath("(//span[text()='" + Items.getItemsForReceivingASN(i) + "']/../../..//td[5]/span[1])[1]")).getText();
+			SeleniumTestHelper.assertEquals(shippedQty, Integer.parseInt(receivedQty));
+			System.out.println("ReceivedQty : " + receivedQty + " has been verifed against ShippedQty for item : "
+					+ Items.getItemsForReceivingASN(i));
+		}
+		verifyASNBtn.click();
+		Thread.sleep(8000);
+		driver.switchTo().defaultContent();
+		String asnStatusActual = null;
+		try {
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, asnStatusLbl, 50);
+			asnStatusActual = asnStatusLbl.getText();
+		} catch (WebDriverException webDerExec) {
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, applyBtn, 50);
+			applyBtn.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, asnStatusLbl, 50);
+			asnStatusActual = asnStatusLbl.getText();
+		}
+		int count = 0;
+		while (!asnStatusActual.equals(status) && (count != 40)) {
+			asnStatusLbl.click();
+			asnStatusActual = asnStatusLbl.getText();
+			Thread.sleep(5000);
+			count++;
+		} 
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, collapseLeft, 70);
+		collapseLeft.click();
+		SeleniumTestHelper.assertEquals(asnStatusActual, status);
+		System.out.println("Status : " + asnStatusActual + " has been verified successfully for ASN : " + Items.getAsnNumber());
+		
+	}	
+	
+	public void verifyASNWithShortageOrOverageQty(String status) throws InterruptedException {
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, More, 50);
+		More.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, verifyASN, 50);
+		SeleniumTestHelper.assertTrue(verifyASN.isDisplayed());
+		verifyASN.click();
+		Thread.sleep(3000);
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, verifyASNBtn, 50);
+		SeleniumTestHelper.assertTrue(verifyASNBtn.isDisplayed());
+		verifyASNBtn.click();
+		Thread.sleep(8000);
+		driver.switchTo().defaultContent();
+		String asnStatusActual = asnStatusLbl.getText();
+		int count = 0;
+		while (!asnStatusActual.equals(status) && (count != 40)) {
+			asnStatusLbl.click();
+			asnStatusActual = asnStatusLbl.getText();
+			Thread.sleep(5000);
+			count++;
+		} 
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, collapseLeft, 70);
+		collapseLeft.click();
+		SeleniumTestHelper.assertEquals(asnStatusActual, status);
+		System.out.println("Status : " + asnStatusActual + " has been verified successfully for ASN : " + Items.getAsnNumber());
+		
+	}
+}

@@ -5,6 +5,7 @@ import java.io.File;
 
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 
 import com.cucumber.listener.ExtentProperties;
 import com.cucumber.listener.Reporter;
@@ -19,22 +20,22 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 		dryRun = false,
 		
 	
-		tags={"@tag5"},
+		tags={"@tag1004"},
 
 		features = {"src\\test\\java\\featureFile\\MyTest.feature"},
 		glue = {"StepDefinition"},
 		//format={"pretty","html:resources\\Reports\\cucumber-report.html"},
 		//format = { "pretty","json:resources\\cucumber-reports\\cucumber-report.json" },
 	//	plugin = { "com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"}, 
-				//format={"pretty","html:resources\\Reports\\cucumber-report.html"},
-				format = { "pretty","json:resources\\cucumber-reports\\cucumber-report.json" },
+				  format = { "pretty","html:resources\\cucumber-reports\\cucumber-report.html"},
+				//format = { "pretty","json:resources\\cucumber-reports\\cucumber-report.json" },
 				//plugin = { "com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"}, 
-						plugin = { "com.cucumber.listener.ExtentCucumberFormatter:","html:target\\cucumber-reports" },
+		plugin = { "com.cucumber.listener.ExtentCucumberFormatter:","html:target\\cucumber-reports" },
 		monochrome=true
 		)
 
 public class Runner extends AbstractTestNGCucumberTests {
-	
+	public  static String jenkinJobName = null;
 	
 	// private TestNGCucumberRunner testNGCucumberRunner;  
 
@@ -50,6 +51,8 @@ public class Runner extends AbstractTestNGCucumberTests {
     public void tearDownClass() throws Exception {  
 	SDK.cleanup();
 	}*/
+	
+	
 	@BeforeTest
 	public static void createExtentReport() {
 
@@ -59,6 +62,7 @@ public class Runner extends AbstractTestNGCucumberTests {
 		
 		String reportpath = "resources\\LatestReports\\Report-" + globalFunc.DateTime.strDate3 + ".html";
 		extentProperties.setReportPath(reportpath);
+		
 
 		// Reporter.loadXMLConfig(new
 		// File(FileReaderManager.getInstance().getConfigReader().getReportConfigPath()));
@@ -67,10 +71,12 @@ public class Runner extends AbstractTestNGCucumberTests {
 	}
 	 //@AfterClass
 	@AfterTest
-	    public static void writeExtentReport() {
-	        Reporter.loadXMLConfig(new File("config/report.xml"));
-	    
+	public static void writeExtentReport() {
+	        Reporter.loadXMLConfig(new File("Config/report.xml"));
+	        
 	    }
+	  
+	 
 
 }
 

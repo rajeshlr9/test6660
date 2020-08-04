@@ -58,7 +58,7 @@ public class GlobalClass {
 		int RowCount = MySheet.getLastRowNum();
 		return RowCount;
 	}
-	public static Map<Integer, Map<String, String>> filterData(Map<Integer, Map<String, String>> outerMap, String filterBy, String sheetname){
+	public Map<Integer, Map<String, String>> filterData(Map<Integer, Map<String, String>> outerMap, String filterBy, String sheetname){
 		Map<Integer, Map<String, String>> newMap = new HashMap<Integer, Map<String, String>>();
 		int outerMapSize = outerMap.size();
 		if (sheetname.equals("ItemData")){
@@ -97,7 +97,7 @@ public class GlobalClass {
 		
 		return newMap;	
 	}
-	public static Map<Integer, Map<String, String>> readData(String path, String sheetname) throws Exception{
+	public Map<Integer, Map<String, String>> readData(String path, String sheetname) throws Exception{
 		Map<Integer, Map<String, String>> outerMap = new HashMap<Integer, Map<String, String>>();
 		Map<String, String> innerMap = new HashMap<String, String>();
 		File myFile = new File(path);
@@ -132,7 +132,7 @@ public class GlobalClass {
 	
 	
 
-	   public static void writeexceldata(String varData, String path) throws Exception {
+	   public void writeexceldata(String varData, String path) throws Exception {
 
 	      //Create blank workbook
 	      XSSFWorkbook workbook = new XSSFWorkbook();
@@ -171,6 +171,23 @@ public class GlobalClass {
 	      out.close();
 	      System.out.println("Data written successfully");
 	   }
+	   public static String removeZero(String str) 
+	    { 
+	        // Count leading zeros 
+	        int i = 0; 
+	        while (i < str.length() && str.charAt(i) == '0') 
+	            i++; 
+	  
+	        // Convert str into StringBuffer as Strings 
+	        // are immutable. 
+	        StringBuffer sb = new StringBuffer(str); 
+	  
+	        // The  StringBuffer replace function removes 
+	        // i characters from given index (0 here) 
+	        sb.replace(0, i, ""); 
+	  
+	        return sb.toString();  // return in String 
+	    }
 	}
 
 

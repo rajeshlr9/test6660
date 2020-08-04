@@ -107,7 +107,7 @@ public class StepDefOMS {
 	@And("Add destination Details")
 	public void AddDestDetails() throws IOException, AWTException, InterruptedException {
 		try {
-			reusable.OMSOrderCreation.enterdestinationDetails(Steps.seleniumDriver, Steps.hmap);
+			reusable.OMSOrderCreation.enterdestinationDetails(Steps.seleniumDriver, Steps.scenarioData);
 		} catch (Exception e) {
 			e.printStackTrace();
 			Steps.testRes = "Failed";
@@ -139,7 +139,7 @@ public class StepDefOMS {
 	@And("Enter Placement Details")
 	public void enterPlacementDetails() throws AWTException, InterruptedException {
 		try {
-			reusable.OMSOrderCreation.enterPlacementDetails(Steps.seleniumDriver, Steps.hmap);
+			reusable.OMSOrderCreation.enterPlacementDetails(Steps.seleniumDriver, Steps.scenarioData);
 		} catch (Exception e) {
 			e.printStackTrace();
 			Steps.testRes = "Failed";

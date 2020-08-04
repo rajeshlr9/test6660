@@ -6,9 +6,25 @@
         "before": [
           {
             "result": {
-
-              "duration": 55889656,
-
+              "duration": 1205940,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CommonStepDefination.intiate(Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 4548682810,
+              "status": "passed"
+            },
+            "match": {
+              "location": "StepDefInBound.intiate(Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 86936870,
               "status": "passed"
             },
             "match": {
@@ -16,17 +32,23 @@
             }
           }
         ],
-     "line": 26,
-        "name": "Create Order via Filezilla using Leanft and Resume order in O2S via Selenium(Work on 2 application)",
-
+        "line": 78,
+        "name": "Verify ASN creation through Post MessageUI",
         "description": "",
-        "id": "execute-selenium-scripts-from-leanft-tool;create-order-via-filezilla-using-leanft-and-resume-order-in-o2s-via-selenium(work-on-2-application)",
+        "id": "execute-selenium-scripts-from-leanft-tool;verify-asn-creation-through-post-messageui;;2",
         "after": [
           {
             "result": {
-
-              "duration": 606384150,
-
+              "duration": 68150,
+              "status": "passed"
+            },
+            "match": {
+              "location": "StepDefInBound.cleanUp(Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 161810,
               "status": "passed"
             },
             "match": {
@@ -35,128 +57,207 @@
           }
         ],
         "type": "scenario",
-        "keyword": "Scenario",
+        "keyword": "Scenario Outline",
         "steps": [
           {
             "result": {
-
-
-              "duration": 3162005074,
+              "duration": 11428983530,
               "status": "passed"
             },
-            "line": 27,
-            "name": "Open Filezilla",
-
+            "line": 65,
+            "name": "user log in to the Manhattan application",
             "match": {
-              "location": "Steps.LaunchFilezilla()"
+              "location": "StepDefInBound.user_log_in_to_the_Manhattan_application()"
             },
             "keyword": "Given "
           },
           {
             "result": {
-
-
-              "duration": 40397099098,
+              "duration": 200276850,
               "status": "passed"
             },
-            "line": 28,
-            "name": "user connects to EMC customer and drop an OB order",
+            "line": 66,
+            "name": "user create xml file with 1 updated DeliveryStartDate for ReceivingASN",
             "match": {
-              "location": "Steps.orderUpload()"
-
+              "arguments": [
+                {
+                  "val": "1",
+                  "offset": 26
+                }
+              ],
+              "location": "StepDefInBound.user_create_xml_file_with_updated_DeliveryStartDate_for_ReceivingASN(int)"
             },
+            "matchedColumns": [
+              1
+            ],
             "keyword": "When "
           },
           {
             "result": {
-
-              "duration": 19994682752,
+              "duration": 140093000,
               "status": "passed"
             },
-            "line": 29,
-            "name": "Login to OMS using Selenium",
-
+            "line": 67,
+            "name": "user update xml itemDetails 1 from sheet \"Item\" with \"50/\",\"EA/\",\"Scenario8\" for receiving ASN",
             "match": {
-              "location": "Steps.OMSLogin()"
+              "arguments": [
+                {
+                  "val": "1",
+                  "offset": 28
+                },
+                {
+                  "val": "Item",
+                  "offset": 42
+                },
+                {
+                  "val": "50/",
+                  "offset": 54
+                },
+                {
+                  "val": "EA/",
+                  "offset": 60
+                },
+                {
+                  "val": "Scenario8",
+                  "offset": 66
+                }
+              ],
+              "location": "StepDefInBound.user_update_xml_itemDetails_with(int,String,String,String,String)"
             },
-
-            "rows": [
-              {
-                "cells": [
-                  "Start_Location",
-                  "ItemType",
-                  "ItemID",
-                  "Quantity",
-                  "SuggestedLoc"
-                ],
-                "line": 40
-              },
-              {
-                "cells": [
-                  "STG001R",
-                  "Normal",
-                  "7181E-01",
-                  "1",
-                  ""
-                ],
-                "line": 41
-              }
+            "matchedColumns": [
+              0,
+              1,
+              2,
+              3,
+              4
             ],
-
-
             "keyword": "And "
           },
           {
             "result": {
-
-              "duration": 25763836648,
+              "duration": 16138453790,
               "status": "passed"
             },
-            "line": 30,
-            "name": "Search for the dropped order using Selenium",
-
+            "line": 68,
+            "name": "user opens post message screen and upload file in order to create ASN",
             "match": {
-              "location": "Steps.searchOrder()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 90211736296,
-              "status": "passed"
-            },
-            "line": 31,
-            "name": "Resume the incomplete order using Selenium",
-            "match": {
-              "location": "Steps.resumeOrder()"
+              "location": "StepDefInBound.user_opens_post_message_screen_and_upload_file_in_order_to_create_ASN()"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 505664826,
+              "duration": 5832693020,
               "status": "passed"
             },
-            "line": 32,
-            "name": "Order is placed successfully",
+            "line": 69,
+            "name": "user verify the response",
             "match": {
-              "location": "Steps.orderCreationValidation()"
+              "location": "StepDefInBound.user_verify_the_response()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 22196378610,
+              "status": "passed"
+            },
+            "line": 70,
+            "name": "user opens ASN screen and searches for the ASN and verify its status \"InTransit\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "InTransit",
+                  "offset": 70
+                }
+              ],
+              "location": "StepDefInBound.user_opens_ASN_screen_and_searches_for_the_ASN_and_verify_its_status(String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 48394305340,
+              "status": "passed"
+            },
+            "line": 71,
+            "name": "user views ASN, get and verify item details",
+            "match": {
+              "location": "StepDefInBound.user_views_ASNscreen_and_get_itemdetails()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 67513606800,
+              "status": "passed"
+            },
+            "line": 72,
+            "name": "user opens RF menu and completes Receiving using \"MM3 Recv-CASE\" menu for 1 item in \"STG001R\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "MM3 Recv-CASE",
+                  "offset": 50
+                },
+                {
+                  "val": "1",
+                  "offset": 74
+                },
+                {
+                  "val": "STG001R",
+                  "offset": 85
+                }
+              ],
+              "location": "StepDefInBound.user_opens_RF_menu_and_completes_Receiving_using_menu_for_item_in(String,int,String)"
+            },
+            "matchedColumns": [
+              1,
+              5
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 21697176290,
+              "status": "passed"
+            },
+            "line": 73,
+            "name": "user opens ASN screen and searches for the ASN and verify its status \"Receiving Started\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Receiving Started",
+                  "offset": 70
+                }
+              ],
+              "location": "StepDefInBound.user_opens_ASN_screen_and_searches_for_the_ASN_and_verify_its_status(String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 8414521470,
+              "status": "passed"
+            },
+            "line": 74,
+            "name": "user log out from application",
+            "match": {
+              "location": "StepDefInBound.user_log_out_from_application()"
             },
             "keyword": "Then "
           }
         ],
         "tags": [
           {
-
-            "line": 25,
-            "name": "@tag4"
-
+            "line": 63,
+            "name": "@Scenario8"
           }
         ]
       }
     ],
     "name": "Execute Selenium Scripts from LeanFT Tool",
-    "description": "I want to use this template for my feature file",
+    "description": "",
     "id": "execute-selenium-scripts-from-leanft-tool",
     "keyword": "Feature",
     "uri": "src/test/java/featureFile/MyTest.feature"

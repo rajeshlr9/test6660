@@ -14,6 +14,8 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import com.hp.lft.sdk.GeneralLeanFtException;
@@ -33,13 +35,16 @@ import cucumber.api.DataTable;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import globalFunc.CreateBrowser;
 import globalFunc.GlobalClass;
+import utils.Config;
 
 public class Steps {
-	public static WebDriver seleniumDriver;
+	public static  WebDriver seleniumDriver;
 	public static Browser LeanFTDriver;
 	public static Window winApp;
 	String pageTitle;
@@ -49,20 +54,22 @@ public class Steps {
 	public static Properties prop;
 	public static String testRes = "";
 	public static Logger logger;
-	public static HashMap<String, String> hmap;
+	public static HashMap<String, String> scenarioData;
 	public static Map<Integer, Map<String, String>> ItemDataMap;
 	public static Map<Integer, Map<String, String>> ServiceMap;
-	
 
-	static{
+	static {
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
 		System.setProperty("current.date.time", dateFormat.format(new Date()));
 	}
 
+	
+	
 	@Before
-	public void beforeClass() throws GeneralLeanFtException {
+	public void beforeClass(Scenario scenario) throws GeneralLeanFtException {
 		try {
+			this.scenario=scenario;
 			dir = System.getProperty("user.dir");
 			System.out.println(dir);
 			logger=Logger.getLogger("Selenium-leanFt");
@@ -83,11 +90,10 @@ public class Steps {
 
 	}
 	
-	public void before(Scenario scenario) throws Exception {
-		this.scenario = scenario;
-		System.out.println("here");
-	}
-
+	/*
+	 * public void before(Scenario scenario) throws Exception { this.scenario =
+	 * scenario; System.out.println("here"); }
+	 */
 	@After
 	public void afterClass() throws GeneralLeanFtException {
 		System.out.println("after");
@@ -133,31 +139,33 @@ public class Steps {
 			LeanFTDriver.close();
 			LeanFTDriver=null;
 		}
-		if(seleniumDriver!=null) {
-			seleniumDriver.quit();
-			seleniumDriver=null;
+		
+		
+		  if(seleniumDriver!=null) {
+			  seleniumDriver.quit();
+			  seleniumDriver=null; 
 		}
+		 
 
 	}
 
 	@Given("I have excel data")
 	public void readExcelData(DataTable scenarioName) throws Exception {
 		try {
-			GlobalClass ob=new GlobalClass();
+			GlobalClass ob = new GlobalClass();
 			List<List<String>> data = scenarioName.raw();
-			hmap=ob.getExcelData(data.get(0).get(0), "ScenarioData", prop.getProperty("TestDataPath"));
-			ItemDataMap= GlobalClass.filterData(GlobalClass.readData(prop.getProperty("TestDataPath"), "ItemData"),hmap.get("Item_Reference"),"ItemData");
-            ServiceMap= GlobalClass.filterData(GlobalClass.readData(prop.getProperty("TestDataPath"), "Service"),hmap.get("Service"),"Service");
-			System.out.println("Scenario data="+hmap);
-			System.out.println("Item Data="+ItemDataMap);
-			System.out.println("Service="+ServiceMap);
+			scenarioData = ob.getExcelData(data.get(0).get(0), "ScenarioData", Config.getProperty("TestDataPath"));
+			System.out.println(scenarioData);
+			ItemDataMap = ob.filterData(ob.readData(Config.getProperty("TestDataPath"), "ItemData"),
+					scenarioData.get("ItemReference"), "ItemData");
+			System.out.println(ItemDataMap);
 			logger.info("Excel data stored in Hashmap");
 		} catch (IOException e) {
 			e.printStackTrace();
 			logger.info("Excel data not stored in Hashmap");
 		}
 	}
-	
+
 	@When("User open Browser")
 	public void openBrowser() throws Throwable {
 		try {
@@ -167,7 +175,7 @@ public class Steps {
 			logger.info("browser opened");
 		} catch (Exception e) {
 			testRes = "Failed";
-			System.out.println("test red"+testRes);
+			System.out.println("test red" + testRes);
 			e.printStackTrace();
 		}
 	}
@@ -188,6 +196,13 @@ public class Steps {
 			testRes = "Failed";
 			e.printStackTrace();
 		}
+	}
+	
+	@And("Open the chrome browser by selenium")
+	public void open_the_chrome_and_launch_the_application_using_Selenium() throws Throwable {
+		// Write code here that turns the phrase above into concrete actions
+		seleniumDriver = CreateBrowser.CreateBrowserInstance();
+		logger.info("Browser Instance created");
 	}
 
 	@Then("^Attach LeanFT IE browser to seleniumTest$")
@@ -213,16 +228,16 @@ public class Steps {
 		try {
 			LeanFTDriver.describe(NumericField.class,
 					new NumericFieldDescription.Builder().name("username").tagName("INPUT").type("number").build())
-			.setValue("867949");
+					.setValue("867949");
 			Thread.sleep(2000);
 			LeanFTDriver.describe(EditField.class,
 					new EditFieldDescription.Builder().name("password").tagName("INPUT").type("password").build())
-			.setValue("Manage16");
+					.setValue("Manage16");
 
 			Thread.sleep(2000);
 			LeanFTDriver.describe(Button.class,
 					new ButtonDescription.Builder().buttonType("submit").name(" Sign In ").tagName("INPUT").build())
-			.click();
+					.click();
 			LeanFTDriver.sync();
 
 		} catch (GeneralLeanFtException e) {
@@ -236,6 +251,6 @@ public class Steps {
 
 		System.out.println("Step 3");
 		LeanFTDriver.close();
-		LeanFTDriver=null;
+		LeanFTDriver = null;
 	}
 }
