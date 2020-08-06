@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.cucumber.listener.Reporter;
+
 import StepDefinition.Steps;
 import globalFunc.CreateBrowser;
 import utils.Config;
@@ -138,6 +140,7 @@ public class ManhattanLoginPage {
 				
 				 TestedBy=driver.findElement(By.xpath("//a[@data-qtip='Workspaces']/following-sibling::a[1]/following::label[3]")).getText();
 				 //Steps.logger.info("TestedBy: "+TestedBy);
+				 Reporter.addStepLog("User logged in successfully");
 				
 			}
 

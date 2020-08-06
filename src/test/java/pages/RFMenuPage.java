@@ -29,7 +29,7 @@ import utils.Xpathxml;
 
 public class RFMenuPage {
 	WebDriver driver;
-	
+	public ArrayList<String> iLPNz=new ArrayList<String>();   
 	public RFMenuPage() {
 		this.driver = Steps.seleniumDriver;
 		PageFactory.initElements(driver, this);
@@ -43,6 +43,7 @@ public class RFMenuPage {
 	String currentSheetName=null ;
 	String dataFromSheet = null;
 	String dataFromsheet=null;
+	
 	public String  newSysSuggestedLoc = null;
 	public String  LPNVal = null;
 	@FindBy(xpath = "//td[@class='td_tool_bar_icon']/input")
@@ -287,7 +288,7 @@ public class RFMenuPage {
 	@FindBy(xpath = "//input[@id='locn1_Input' and @type='text']")
 	public WebElement clocBox;
 	
-	@FindBy(xpath = "//a[text()='RF - Split Move iLPN']")
+	@FindBy(xpath = "//a[text()='Split Move iLPN']")
 	public WebElement splitMoveiLPN;
 	
 	@FindBy(xpath = "//input[@id='barcode2']")
@@ -838,7 +839,7 @@ public class RFMenuPage {
 			SeleniumTestHelper.assertTrue(inputASN.isDisplayed());
 			inputASN.sendKeys(Keys.ENTER);
 			Thread.sleep(2000);
-			for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
+			for (int i = 0,j=1; i < Steps.ItemDataMap.size(); i++,j++) {
 				if (SeleniumTestHelper.isElementDisplayed(destStagingLocn)) {
 					SeleniumTestHelper.assertEquals(destStagingLocnInput.isDisplayed(),true);
 					
@@ -852,7 +853,15 @@ public class RFMenuPage {
 				lpnInputTxt.sendKeys(Keys.ENTER);	
 			//	for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 					Thread.sleep(3000);
-				ItemBarcode.sendKeys(Items.getItemsForReceivingASN(0)+Keys.ENTER);
+				String LPNs = 	driver.findElement(By.id("csid")).getText();
+				String[] LPNnum = LPNs.split(":");
+				System.out.println("LPN# :"+ LPNnum[1].trim());	
+				
+				iLPNz.add(LPNnum[1].trim());
+				System.out.println("LPN "+j+" : "+iLPNz.get(i));
+				Reporter.addStepLog("LPN "+j+" : "+iLPNz.get(i));
+				Thread.sleep(3000);
+				ItemBarcode.sendKeys(Items.getItemsForReceivingASN(i)+Keys.ENTER);
 				Steps.logger.info("Enter Item Id: "+Items.getItemsForReceivingASN(0));
 				Thread.sleep(3000);
 				InvType.sendKeys(Keys.ENTER);
@@ -884,6 +893,66 @@ public class RFMenuPage {
 				Thread.sleep(3000);
 				
 				acceptAndProceedBtn.click();
+				Steps.logger.info(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty"))+" qty is received in LPN "+iLPNz.get(i)+" for Item- "+Items.getItemsForReceivingASN(i));
+				Reporter.addStepLog(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty"))+" qty is received in LPN "+iLPNz.get(i)+" for Item- "+Items.getItemsForReceivingASN(i));
+				if(Steps.ItemDataMap.get(i).get("RecQty2")!="") {
+					if (SeleniumTestHelper.isElementDisplayed(destStagingLocn)) {
+						SeleniumTestHelper.assertEquals(destStagingLocnInput.isDisplayed(),true);
+						
+						//System.out.println("Rec Location-"+Steps.scenarioData.get("RecLocation"));
+						//destStagingLocnInput.sendKeys(String.valueOf(Steps.scenarioData.get("RecLocation"))+Keys.ENTER);	
+						System.out.println("Rec Location-"+Steps.ItemDataMap.get(i).get("RecLocation"));
+						Steps.logger.info("Enter Rec Location-"+Steps.ItemDataMap.get(i).get("RecLocation"));
+						destStagingLocnInput.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecLocation"))+Keys.ENTER);	
+					}	
+					Thread.sleep(2000);
+					lpnInputTxt.sendKeys(Keys.ENTER);	
+				//	for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
+						Thread.sleep(3000);
+					String LPNs1 = 	driver.findElement(By.id("csid")).getText();
+					String[] LPNnum1 = LPNs1.split(":");
+					System.out.println("LPN# :"+ LPNnum1[1].trim());	
+					
+					iLPNz.add(LPNnum1[1].trim());
+					System.out.println("LPN 2 : "+LPNnum1[1].trim());
+					Reporter.addStepLog("LPN 2 : "+LPNnum1[1].trim());
+					Thread.sleep(3000);
+					ItemBarcode.sendKeys(Items.getItemsForReceivingASN(i)+Keys.ENTER);
+					Steps.logger.info("Enter Item Id: "+Items.getItemsForReceivingASN(0));
+					Thread.sleep(3000);
+					InvType.sendKeys(Keys.ENTER);
+					Thread.sleep(3000);
+					Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty2"))+Keys.ENTER);
+					Steps.logger.info("Enter Qty: "+String.valueOf(Steps.ItemDataMap.get(i).get("RecQty2")));
+					Thread.sleep(3000);
+					
+					
+					if(SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
+					System.out.println("Info :- " + errorOrWarningMsg.getText());
+					globalFunc.Screenshots.seleniumSnapshot(driver);
+					Reporter.addScreenCaptureFromPath(System.getProperty("user.dir") +"\\resources\\Screenshots\\" + DateTime.strDate3 + ".jpeg");
+					acceptAndProceedBtn.click();
+					
+					
+					//Assert.fail("Info :- " + errorOrWarningMsg.getText());
+					break;
+					}
+					Thread.sleep(3000);
+					String fututeDate1 = String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
+					Steps.logger.info("Enter fututeDate: "+fututeDate1);
+					String[] futureDateAsArray1 = fututeDate1.split("-");
+				//	fututeDate=String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
+					mm.sendKeys(futureDateAsArray1[0]);
+					dd.sendKeys(futureDateAsArray1[1]);
+					yyyy.sendKeys(futureDateAsArray1[2]);
+					Thread.sleep(3000);
+					
+					acceptAndProceedBtn.click();
+					Steps.logger.info(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty2"))+" qty is received in LPN "+LPNnum1[1].trim()+" for Item- "+Items.getItemsForReceivingASN(i));
+					Reporter.addStepLog(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty2"))+" qty is received in LPN "+LPNnum1[1].trim()+" for Item- "+Items.getItemsForReceivingASN(i));
+					
+				}
 			}
 			Steps.logger.info("Completed Receiving");
 			/*	SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
@@ -931,7 +1000,7 @@ public class RFMenuPage {
 				lpnInputTxt.sendKeys(Keys.ENTER);	
 			//	for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 				Thread.sleep(3000);
-				ItemBarcode.sendKeys(Items.getItemsForReceivingASN(0)+Keys.ENTER);	
+				ItemBarcode.sendKeys(Items.getItemsForReceivingASN(i)+Keys.ENTER);	
 				Steps.logger.info("Enter Item Id: "+Items.getItemsForReceivingASN(0));
 				Thread.sleep(3000);
 				InvType.sendKeys(Keys.ENTER);
@@ -976,6 +1045,7 @@ public class RFMenuPage {
 				 System.out.println("updtLoc is: "+updtLoc);
 				
 				locationInput.sendKeys(updtLoc+Keys.ENTER);
+				//Reporter.addStepLog(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty"))+" qty is received in LPN "+iLPNz.get(i)+" for Item- "+Items.getItemsForReceivingASN(i));
 			}
 			Steps.logger.info("Completed Receiving");
 			/*	SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
@@ -1004,5 +1074,47 @@ public class RFMenuPage {
 		}	
 	}
 
+	public void  split_Move_iLPN_for_same_Item() throws Exception{
+		 
+		Thread.sleep(1000);
+		RFmenu_info.click();
+		Steps.logger.info("CLicked on RF Menu");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
+		Thread.sleep(1000);
+		Mainmenu.click();
+		Steps.logger.info("Clicked on Main Menu");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuReceiving, 20);
+		Thread.sleep(1000);
+		 
+		 while (!(SeleniumTestHelper.isElementDisplayed(inventoryMgmtMenu))) {
+				pageDown.click();
+				Thread.sleep(5000);
+			}
+		SeleniumTestHelper.assertTrue(inventoryMgmtMenu.isDisplayed());
+		inventoryMgmtMenu.click();
+		Steps.logger.info("Clicked on Inventory method");
+		Thread.sleep(3000);
+		 while (!(SeleniumTestHelper.isElementDisplayed(splitMoveiLPN))) {
+				pageDown.click();
+				Thread.sleep(5000);
+			}
+		SeleniumTestHelper.assertTrue(splitMoveiLPN.isDisplayed());
+		splitMoveiLPN.click();
+		Steps.logger.info("Click on split move iLPN method");
+		Thread.sleep(3000);
+		Steps.logger.info("Enter the value of 1st LPN: "+iLPNz.get(0));
+		ilpnInRFmoveilpnTxtBox.sendKeys(iLPNz.get(0)+Keys.ENTER);
+		Thread.sleep(3000);
+		Steps.logger.info("Enter the value of Qty : "+Steps.scenarioData.get("MoveLPNQty"));
+		moveQty.sendKeys(Steps.scenarioData.get("MoveLPNQty")+Keys.ENTER);
+		Thread.sleep(3000);
+		Steps.logger.info("Enter the value of 2nd LPN: "+iLPNz.get(1));
+		ilpnInRFmoveilpnTxtBox.sendKeys(iLPNz.get(1)+Keys.ENTER);
+		Thread.sleep(3000);
+		Steps.logger.info("Completed iLPN move");
+		Reporter.addStepLog(Steps.scenarioData.get("MoveLPNQty")+" qty is moved from LPN "+iLPNz.get(0)+ " to "+iLPNz.get(1));
+		homepage.userClosesOpenedwindow("RF Menu");
+		
+	}
 }
 

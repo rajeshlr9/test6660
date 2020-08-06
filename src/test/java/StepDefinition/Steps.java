@@ -141,9 +141,10 @@ public class Steps {
 		}
 		
 		
+		
 		  if(seleniumDriver!=null) {
 			  seleniumDriver.quit();
-			  seleniumDriver=null; 
+			  seleniumDriver=null;
 		}
 		 
 

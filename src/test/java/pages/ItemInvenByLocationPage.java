@@ -1,6 +1,7 @@
 package pages;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import com.cucumber.listener.Reporter;
 
 import StepDefinition.Steps;
 import entity.DistributionOrders;
@@ -256,13 +259,14 @@ public class ItemInvenByLocationPage {
 	    homepage.userClosesOpenedwindow("Item Inventory by Location - iLPNs"); 
 	    
 	    }
-	
+	//Rakesh
 	public int GetLPNQuantityByItemandLoc(String item,String RecLocn,String LPNVal) throws InterruptedException, IOException {
 		//homepage.MenuItems_Distribution_Selection("Item Inventory by Location");
 		//SeleniumTestHelper.switchToInnerFrame(driver);
 		displayLoc_field.sendKeys(RecLocn);
 		itemLookUp_field.sendKeys(item);
 		applyBtn.click();
+		
 		/*itemCheckBox.click();
 		LPNsBtn.click();*/
 		SeleniumTestHelper.waitForElementToBeClickable(driver, reserveLocChkbox, 50);
@@ -283,6 +287,57 @@ public class ItemInvenByLocationPage {
 		
 	    return Integer.parseInt(str);
 	    }
+	
+	//Rakesh
+		public void GetMovedLPNQuantityByItemandLoc(String item,String RecLocn,ArrayList<String> iLPNz) throws InterruptedException, IOException {
+			//homepage.MenuItems_Distribution_Selection("Item Inventory by Location");
+			//SeleniumTestHelper.switchToInnerFrame(driver);
+			displayLoc_field.sendKeys(RecLocn);
+			itemLookUp_field.sendKeys(item);
+			applyBtn.click();
+			
+			/*itemCheckBox.click();
+			LPNsBtn.click();*/
+			SeleniumTestHelper.waitForElementToBeClickable(driver, reserveLocChkbox, 50);
+		    List<WebElement> reservelocns=driver.findElements(By.xpath("//span[text()='Reserve']/../..//input[@type='checkbox']"));
+		    reservelocns.get(0).click();
+		    Thread.sleep(2000);
+		    LPNsBtn.click();
+		    Thread.sleep(5000);
+		    driver.findElement(By.id("dataForm:LPNListInOutboundMain_lv:LPNList_Inbound_filterId1:field10value1")).sendKeys(iLPNz.get(0));
+		    Thread.sleep(5000);
+		    driver.findElement(By.id("dataForm:LPNListInOutboundMain_lv:LPNList_Inbound_filterId1:LPNList_Inbound_filterId1apply")).click();
+		    Thread.sleep(2000);
+		    String LPNQty01 =  driver.findElement(By.id("dataForm:LPNListInOutboundMain_lv:dataTable:0:CTO_LPNListTPM_LPN_Qty_param_out2")).getText();
+			String[] LPNQty1 =  LPNQty01.split(" ");
+			//String newQty1 =LPNQty1[0];
+			
+			int newQty1  =Integer.parseInt(LPNQty1[0]);
+			//SeleniumTestHelper.assertEquals(newQty1, Integer.parseInt(Steps.ItemDataMap.get(0).get("RecQty")));
+			Thread.sleep(2000);
+			driver.findElement(By.id("dataForm:LPNListInOutboundMain_lv:LPNList_Inbound_filterId1:field10value1")).clear();
+			Thread.sleep(2000);
+			driver.findElement(By.id("dataForm:LPNListInOutboundMain_lv:LPNList_Inbound_filterId1:field10value1")).sendKeys(iLPNz.get(1));
+			Thread.sleep(2000);
+			driver.findElement(By.id("dataForm:LPNListInOutboundMain_lv:LPNList_Inbound_filterId1:LPNList_Inbound_filterId1apply")).click();
+			Thread.sleep(3000);
+			String LPNQty02 =  driver.findElement(By.id("dataForm:LPNListInOutboundMain_lv:dataTable:0:CTO_LPNListTPM_LPN_Qty_param_out2")).getText();
+			Thread.sleep(2000);
+			String[] LPNQty2 =  LPNQty02.split(" ");
+			//String newQty2 =LPNQty2[0];
+			int newQty2 =Integer.parseInt(LPNQty2[0]);
+			//SeleniumTestHelper.assertEquals(actualQty, Integer.parseInt(Steps.ItemDataMap.get(0).get("RecQty")));
+			int expectediLPN1 =Integer.parseInt(Steps.ItemDataMap.get(0).get("RecQty"))-Integer.parseInt(Steps.scenarioData.get("MoveLPNQty"));
+			System.out.println("expectediLPN1: "+expectediLPN1);
+			int expectediLPN2 =Integer.parseInt(Steps.ItemDataMap.get(0).get("RecQty2"))+Integer.parseInt(Steps.scenarioData.get("MoveLPNQty"));
+			System.out.println("expectediLPN2: "+expectediLPN2);
+			SeleniumTestHelper.assertEquals(newQty1, expectediLPN1);
+			Reporter.addStepLog("Expected qty in LPN 1 is-"+expectediLPN1+ " and actual is-"+newQty1);
+			SeleniumTestHelper.assertEquals(newQty2, expectediLPN2);
+			Reporter.addStepLog("Expected qty in LPN 2 is-"+expectediLPN2+ " and actual is-"+newQty2);
+			homepage.userClosesOpenedwindow("Item Inventory by Location - iLPNs"); 
+		   
+		    }
 
 	public int GetLPNQuantityByItem(String item) throws InterruptedException, IOException {
 		homepage.MenuItems_Distribution_Selection("Item Inventory by Location");

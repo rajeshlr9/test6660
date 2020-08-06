@@ -170,7 +170,7 @@ public class StepDefInBound {
 		Steps.logger.info("XML creation started");
 		xmlInput.user_create_inputXML_for_inbound_basedOn_noOfItem();
 		Steps.scenario.write("ASN-"+Items.getAsnNumber());
-		Reporter.addStepLog("ASN-"+Items.getAsnNumber());
+		Reporter.addStepLog("ASN No-"+Items.getAsnNumber());
 	}
 
 	@And("^user update xml itemDetails from excel sheet$")
@@ -196,6 +196,7 @@ public class StepDefInBound {
 			Items.setItemsForReceivingASN(itemName);
 			Items.setItemWithShippedASNQty(itemName, Integer.parseInt(shpQty));
 			Items.setItemWithQtyUOM(itemName, uom);
+			Reporter.addStepLog("Item Id- "+ Steps.ItemDataMap.get(i).get("Item") +", Shipped Qty- "+ Steps.ItemDataMap.get(i).get("ShippedQty"));
 		}
 	}
 	
@@ -244,6 +245,7 @@ public class StepDefInBound {
 		String errorType = postMessagePage.Validate_Response(driver, "Error_Type");
 		if ((responseType.equals("Confirmation")) && (errorType.equals("0"))) {
 			System.out.println("Receving request is successfully created");
+			Reporter.addStepLog("Receving request is successfully created");
 			SeleniumTestHelper.assertEquals(responseType, "Confirmation");
 			SeleniumTestHelper.assertEquals(errorType, "0");
 			// System.out.println("Item : " + ItemName + " successfully verified
@@ -254,6 +256,7 @@ public class StepDefInBound {
 			SeleniumTestHelper.Close_OpenedWindow("Post Message", driver);
 		} else {
 			System.out.println("Receving request has not been created");
+			Reporter.addStepLog("Receving request has not been created");
 			SeleniumTestHelper.fail("Receving request has not been created");
 		}
 	}
@@ -309,8 +312,32 @@ public class StepDefInBound {
 		Steps.logger.info("Open Item Inventory by Location menu");
 		Reporter.addStepLog("Open Item Inventory by Location menu");
 		SeleniumTestHelper.switchToInnerFrame(driver);
-		int actualQty = itemInvenByLocationPage.GetLPNQuantityByItemandLoc(Items.getItemsForReceivingASN(0),rfMenu.newSysSuggestedLoc,rfMenu.LPNVal);
-		SeleniumTestHelper.assertEquals(actualQty, Integer.parseInt(Steps.ItemDataMap.get(0).get("RecQty")));
+		for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
+		int actualQty = itemInvenByLocationPage.GetLPNQuantityByItemandLoc(Items.getItemsForReceivingASN(i),rfMenu.newSysSuggestedLoc,rfMenu.LPNVal);
+		SeleniumTestHelper.assertEquals(actualQty, Integer.parseInt(Steps.ItemDataMap.get(i).get("RecQty")));
+		Reporter.addStepLog("Actual Qty is- "+ actualQty +" & Expected qty is- "+Integer.parseInt(Steps.ItemDataMap.get(i).get("RecQty")));
+		}
+	}
+	
+	@Then("^user opens Inventory by location screen and validates the LPN moved$")
+	public void user_opens_InventoryByLocation_screen_and_validates_the_LPN_moved() throws Throwable {
+		homePage.MenuItems_Distribution_Selection("Item Inventory by Location");
+		Steps.logger.info("Open Item Inventory by Location menu");
+		Reporter.addStepLog("Open Item Inventory by Location menu");
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		itemInvenByLocationPage.GetMovedLPNQuantityByItemandLoc(Items.getItemsForReceivingASN(0),Steps.scenarioData.get("RecLocation"),rfMenu.iLPNz);		
+	}
+	
+	
+	
+	
+	
+	@Then("^user break Split LPN and move to another LPN of same ASN$")
+	public void user_Break_Split_LPN_and_move_to_another_LPN_of_same_ASN() throws Throwable {
+		homePage.MenuItems_Distribution_Selection("RF Menu");
+		Steps.logger.info("Open RF menu");
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		rfMenu.split_Move_iLPN_for_same_Item();
 	}
 	
 	/*

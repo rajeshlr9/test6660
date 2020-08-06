@@ -20,9 +20,9 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 		dryRun = false,
 		
 	
+		//tags={"@tag1001, @tag1002, @tag1003, @tag1004"},
 		tags={"@tag1004"},
-
-		features = {"src\\test\\java\\featureFile\\MyTest.feature"},
+		features = {"src\\test\\java\\featureFile\\InboundScenarios.feature"},
 		glue = {"StepDefinition"},
 		//format={"pretty","html:resources\\Reports\\cucumber-report.html"},
 		//format = { "pretty","json:resources\\cucumber-reports\\cucumber-report.json" },

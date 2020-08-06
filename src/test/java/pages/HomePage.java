@@ -11,6 +11,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.cucumber.listener.Reporter;
+
 import StepDefinition.Steps;
 import utils.Driver;
 import utils.SeleniumTestHelper;
@@ -83,6 +85,7 @@ public class HomePage {
 	}
 
 	public void MenuItems_Distribution_Selection(String Screenname) throws InterruptedException, IOException {
+		Thread.sleep(3000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, menuBtn, 100);
 		menuBtn.click();
 		SeleniumTestHelper.waitForElementToBeClickable(driver, searchTxt, 50);
@@ -121,6 +124,7 @@ public class HomePage {
 		Thread.sleep(12000);
 		String Title_signout = driver.getTitle();
 		SeleniumTestHelper.assertEquals(Title_signout, "Sign Out | Manhattan Associates Inc.");
+		Reporter.addStepLog("Sign Out is successfull");
 
 	}
 	public void user_closes_openedwindow(String Screenname) throws InterruptedException

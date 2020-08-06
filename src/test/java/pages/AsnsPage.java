@@ -12,6 +12,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.cucumber.listener.Reporter;
+
 import StepDefinition.Steps;
 import entity.Items;
 import utils.Driver;
@@ -146,6 +148,7 @@ public class AsnsPage {
 		collapseLeft.click();
 		SeleniumTestHelper.assertEquals(AsnStatus, status);
 		System.out.println("Status : " + AsnStatus + " has been verified successfully for ASN : " + asnId);
+		Reporter.addStepLog("Status of ASN is "+AsnStatus );
 		homepage.userClosesOpenedwindow("ASNs");
 
 	}
