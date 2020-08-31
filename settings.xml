@@ -204,7 +204,12 @@ under the License.
       <name>Nexus</name>
       <url>https://nexus.prod.cloud.fedex.com:8443/nexus/#browse/browse:3531485-FCSC-CS-SQA-ORCHESTRATOR</url>
     </mirror>
-     
+    <mirror>
+      <id>mirrorId</id>
+      <mirrorOf>Maven</mirrorOf>
+      <name>Nexus</name>
+      <url>https://nexus.prod.cloud.fedex.com:8443/nexus/repository/devframeworkrepo/</url>
+    </mirror>     
   </mirrors>
 
   <!-- profiles
