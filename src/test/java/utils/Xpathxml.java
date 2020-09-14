@@ -43,11 +43,13 @@ public class Xpathxml {
 	
 	WebDriver driver = Steps.seleniumDriver;
 	public String dirPath = System.getProperty("user.dir");
-	public String IBMasterOneItemFilePath = dirPath + "/src/test/resources/testdata/Inbound/" + "IBMasterOneItem.xml";
-	public String IBMasterTwoItemFilePath = dirPath + "/src/test/resources/testdata/Inbound/" + "IBMasterTwoItem.xml";
+	public String IBMasterOneItemFilePath = dirPath + "/src/test/resources/testdata/Inbound/"+Steps.scenarioData.get("Account") + "/IBMasterOneItem.xml";
+	public String IBMasterTwoItemFilePath = dirPath + "/src/test/resources/testdata/Inbound/" +Steps.scenarioData.get("Account")+ "/IBMasterTwoItem.xml";
+	public String IBMasterOneReturnFilePath = dirPath + "/src/test/resources/testdata/Inbound/"+Steps.scenarioData.get("Account") +"/IBMasterOne-Returns.xml";
+	public String IBMasterTwoReturnFilePath = dirPath + "/src/test/resources/testdata/Inbound/" +Steps.scenarioData.get("Account")+"/IBMasterTwo-Returns.xml";
 	public String ItemCreationMasterOneItemFilePath = dirPath + "/src/test/resources/testdata/Items/" + "ItemCreationMasterwithOneItem.xml";
 	public String ItemCreationMasterTwoItemFilePath = dirPath + "/src/test/resources/testdata/Items/" + "ItemCreationMasterwithTwoItems.xml";
-	public String inputIBFilePath = dirPath + "/src/test/resources/testdata/Inbound/" + "InputIB.xml";
+	public String inputIBFilePath = dirPath + "/src/test/resources/testdata/Inbound/"+Steps.scenarioData.get("Account") + "/InputIB.xml";
 	public String ibfilePath = "C:/Users/ffd-sys-team/Desktop/ASN_QSC.txt";
 	public String inputItemCreationFilePath = dirPath + "/src/test/resources/testdata/Items/" + "InputItem.xml";
 	public String inputIBXMLFileName = "InputIB.xml";
@@ -376,13 +378,47 @@ public class Xpathxml {
 		String ASNNumber = "ASN" + ASNTime;
 		Items.setAsnNumber(ASNNumber);
 		Steps.logger.info("ASNNumber: "+ASNNumber);
+		
+		int noOfItem= Steps.ItemDataMap.size();
+		System.out.println("ItemDataMap size:: "+noOfItem);
+		if(noOfItem == 1){
 			user_copy_content_from_source_to_target(IBMasterOneItemFilePath, inputIBFilePath);
+		}else if(noOfItem == 2){
+			user_copy_content_from_source_to_target(IBMasterTwoItemFilePath, inputIBFilePath);
+		}
+		
 		ModifyXmlfile(ASNUpdateASNID(), ASNNumber, inputIBFilePath);
 		System.out.println("ASNID has been updated as : " + ASNNumber);
 		ModifyXmlfile(ASNUpdateDeliveryStart(), deliveryStartDate, inputIBFilePath);
 		System.out.println("DeliveryStartDate has been updated as : " + deliveryStartDate);
 		Steps.logger.info("DeliveryStartDate has been updated as : " + deliveryStartDate);
 	}
+    
+    public void user_create_inputXML_for_inbound_basedOn_xmlType(String xmlType) throws FileNotFoundException, XPathExpressionException, IOException, SAXException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
+    	String deliveryStartDate = user_generate_delivery_start_date();
+		String ASNTime= current_date_time();
+		String ASNNumber = "ASN" + ASNTime;
+		Items.setAsnNumber(ASNNumber);
+		Steps.logger.info("ASNNumber: "+ASNNumber);
+		
+		if(xmlType.equals("Single Line ASN")){
+			user_copy_content_from_source_to_target(IBMasterOneItemFilePath, inputIBFilePath);
+		}else if(xmlType.equals("Multi Line ASN")){
+			user_copy_content_from_source_to_target(IBMasterTwoItemFilePath, inputIBFilePath);
+		}else if(xmlType.equals("Single Line Return ASN")) {
+			System.out.println("test");
+			user_copy_content_from_source_to_target(IBMasterOneReturnFilePath, inputIBFilePath);
+		}else if(xmlType.equals("Multi Line Return ASN")) {
+			user_copy_content_from_source_to_target(IBMasterTwoReturnFilePath, inputIBFilePath);
+		}
+		
+		ModifyXmlfile(ASNUpdateASNID(), ASNNumber, inputIBFilePath);
+		System.out.println("ASNID has been updated as : " + ASNNumber);
+		ModifyXmlfile(ASNUpdateDeliveryStart(), deliveryStartDate, inputIBFilePath);
+		System.out.println("DeliveryStartDate has been updated as : " + deliveryStartDate);
+		Steps.logger.info("DeliveryStartDate has been updated as : " + deliveryStartDate);		
+	}
+    
 	public void user_create_inputXML_for_inbound_basedOn_noOfItem_ItemCreation(int noOfItem) throws FileNotFoundException, XPathExpressionException, IOException, SAXException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException{
 		
 		if(noOfItem == 1){
@@ -595,4 +631,5 @@ public class Xpathxml {
 		ModifyXmlfile(ASNUpdateDeliveryStart(), deliveryStartDate, inputIBFilePath);
 		System.out.println("DeliveryStartDate has been updated as : " + deliveryStartDate);
 	}
+	
 }

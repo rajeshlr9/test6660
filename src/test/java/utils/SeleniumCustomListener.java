@@ -346,4 +346,28 @@ public class SeleniumCustomListener implements WebDriverEventListener {
 
 		return elementLocator;
 	}
+
+	@Override
+	public <X> void beforeGetScreenshotAs(OutputType<X> target) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public <X> void afterGetScreenshotAs(OutputType<X> target, X screenshot) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeGetText(WebElement element, WebDriver driver) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterGetText(WebElement element, WebDriver driver, String text) {
+		// TODO Auto-generated method stub
+		
+	}
 }

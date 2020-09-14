@@ -43,14 +43,14 @@ public class TestStubReader {
 
 
 	public TestStubReader() {
-		String env = verizonRunner.environment;
-		if (env.equalsIgnoreCase("Dev")) {
-			stubFileName = "src/test/resources/TestStub_Dev.xlsx";
-		}else if(env.equalsIgnoreCase("Test")){
-			stubFileName = "src/test/resources/TestStub_Test.xlsx";
-		}
-		System.out.println("Test Stub Data : " + stubFileName + " is set for Environment : " + verizonRunner.environment);
-	
+		/*
+		 * String env = Runner.environment; if (env.equalsIgnoreCase("Dev")) {
+		 * stubFileName = "src/test/resources/TestStub_Dev.xlsx"; }else
+		 * if(env.equalsIgnoreCase("Test")){ stubFileName =
+		 * "src/test/resources/TestStub_Test.xlsx"; }
+		 * System.out.println("Test Stub Data : " + stubFileName +
+		 * " is set for Environment : " + verizonRunner.environment);
+		 */
 
 		intiateWorkbook();
 		//this.driver = Driver.getInstance();

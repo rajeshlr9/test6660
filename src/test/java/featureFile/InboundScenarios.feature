@@ -19,6 +19,21 @@ Scenario:
 	And Resume the incomplete order using Selenium 
 	Then Order is placed successfully 
 	
+@tag641 
+Scenario: Cream the butter
+	Given I have excel data
+	| Scenario9 |
+	And Open the chrome browser by selenium
+	When user logs into Manhattan application using "Admin" Credentials
+    When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
+    And user update xml itemDetails from excel sheet
+    And user opens post message screen and upload file in order to create ASN 
+	Then user log out from application	
+	And Open the chrome browser by selenium
+	When user logs into Manhattan application using "Admin" Credentials
+	#Then user log out from application	
+	
+	
 @tag5 
 Scenario: Complete adhoc move in Putty using Leanft 
 	Given Open Putty 
@@ -65,6 +80,24 @@ Scenario: Veriy ASN creation through Post MessageUI1
 	And user update xml itemDetails <noOfItem> from sheet "<SheetName>" with "<ShippedQty>","<QtyUOM>","<TCName>" for receiving ASN 
 	And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response 
+	
+	@tag2001
+Scenario: Veriy ASN creation through Post MessageUI-excel-linux
+Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location through RF Menu
+	Given I have excel data
+	| Scenario1 |
+	And Set the chrome browser by seleniumi in linux
+	And user logs into the Manhattan application 
+    When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
+    And user update xml itemDetails from excel sheet
+    And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response 
+	#Then user opens ASN screen and searches for the ASN and verify its status "InTransit" 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
+	Then user log out from application 
+	
 	
 	@tag1001
 Scenario: Veriy ASN creation through Post MessageUI-excel
@@ -114,9 +147,31 @@ Creating ASN through Post Message UI and validate Overage percentage - allowable
 	#Then user opens ASN screen and searches for the ASN and verify its status "InTransit" 
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu  
+	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
 	Then user log out from application 
 	
+
 	@tag1004
+Scenario: B-345766 Configure Receipt for Overage percentage -  allowable percentage  for customer
+Creating ASN through Post Message UI and validate Overage percentage - allowable percentage  for customer receive as an associate
+	Given I have excel data
+	| Scenario3 |
+	And Open the chrome browser by selenium
+	When user logs into Manhattan application using "Admin" Credentials
+    When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
+    And user update xml itemDetails from excel sheet
+    And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response 
+	#Then user opens ASN screen and searches for the ASN and verify its status "InTransit" 
+	And user views ASN, get and verify item details 
+	Then user log out from application 
+	When user logs into Manhattan application using "Associate" Credentials
+	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu  
+	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
+	Then user log out from application 	
+	
+	
+	@tag1005
 Scenario: B-345784 MANH - Break Split LPN IB
 Creating ASN through Post Message UI and receiving in 2 LPN's. Move few quantities from 1st LPN to 2nd location & validating LPN's in Inventory by location
 	Given I have excel data
@@ -135,22 +190,84 @@ Creating ASN through Post Message UI and receiving in 2 LPN's. Move few quantiti
 	#Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started"
 	Then user log out from application 
 	
-@tag81 
-Scenario: Veriioppfy ASN creation through Post MessageUI1 
+	@tag1006
+Scenario: Multi Line Receiving
+Creating 2 line ASN through Post Message UI, checking status of the shipment and complete receiving in Staging location through RF Menu
 	Given I have excel data
-	| Scenario4 |
+	| Scenario5 |
 	And Open the chrome browser by selenium
 	And user logs into the Manhattan application 
-	Then user break Split LPN and move to another LPN of same ASN 
-@tag82 
-Scenario: Veriioppfy ASN creation through Post MessageU 
-	Given I have excel data
-	| Scenario1 |
-	And Open the chrome browser by selenium
-	And user logs into the Manhattan application 
-    And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
+    When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
+    And user update xml itemDetails from excel sheet
+    And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response 
+	#Then user opens ASN screen and searches for the ASN and verify its status "InTransit" 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started"
+	Then user log out from application 
+
 	
-@Scenario8 
+	@tag1007
+Scenario: B-441160 Receiving Returned Un-Delivered Product using blind receipt
+Receiving of Un-Delivered Product using blind receipt in MM3 returns menu and verifying the status of the ASN 
+	Given I have excel data
+	| Scenario6 |
+	And Open the chrome browser by selenium
+	And user logs into the Manhattan application 
+	And user opens RF menu and completes Receiving using "MM3 Returns" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
+	Then user search for the LPN in iLPN screen, and validate the lock code
+	Then user log out from application 
+	
+	
+	@tag1008
+Scenario: B-441160 Receiving Returned Un-Delivered Product 
+Receiving of Un-Delivered Product in MM3 returns menu by creating ASN and verifying the status of the ASN 
+	Given I have excel data
+	| Scenario7 |
+	And Open the chrome browser by selenium
+	And user logs into the Manhattan application 
+    When user create xml file using "Single Line Return ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
+    And user update xml itemDetails from excel sheet
+    And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Returns" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
+	Then user log out from application 
+	
+	@tag1009
+Scenario: Receiving Damaged Product using MM3 Recv-Damages option from RF Menu using supervispr credentials
+Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verifying the status of the ASN 
+	Given I have excel data
+	| Scenario10 |
+	And Open the chrome browser by selenium
+	When user logs into Manhattan application using "Supervisor" Credentials 
+    When user create xml file using "Single Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
+    And user update xml itemDetails from excel sheet
+    And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-Damages" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
+	Then user search for the LPN in iLPN screen, and validate the lock code
+	Then user log out from application 
+	
+	@tag1010
+Scenario: Receiving of Damaged Returned Product using blind receipt
+Receiving of Damaged Returned Product using blind receipt in MM3 returns menu and verifying the status of the ASN 
+	Given I have excel data
+	| Scenario11 |
+	And Set the chrome browser by seleniumi in linux
+	When user logs into Manhattan application using "Associate" Credentials  
+	And user opens RF menu and completes Receiving using "MM3 Returns" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
+	Then user search for the LPN in iLPN screen, and validate the lock code
+	Then user log out from application 
+	
+	
+@Scenario9999
 Scenario Outline: Verify ASN creation through Post MessageUI 
 	Given user log in to the Manhattan application 
 	Given Open the chrome browser by selenium
@@ -168,3 +285,5 @@ Scenario Outline: Verify ASN creation through Post MessageUI
 	Examples: 
 		| TCName      | noOfItem | SheetName | ShippedQty | QtyUOM | RecivingLoc | ShipByDate|
 		| Scenario8   |        1 | Item      | 50/        | EA/    | STG001R     | 07-31-2020|
+		
+		

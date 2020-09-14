@@ -7,9 +7,9 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.text.PDFTextStripper;
-import org.apache.pdfbox.text.PDFTextStripperByArea;
+//import org.apache.pdfbox.pdmodel.PDDocument;
+//import org.apache.pdfbox.text.PDFTextStripper;
+//import org.apache.pdfbox.text.PDFTextStripperByArea;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -117,7 +117,7 @@ public class ShipmentPage {
 		}
 		directory = new File(directoryName);
 		files = directory.listFiles();
-		for (File allFiles : files) {
+		/*for (File allFiles : files) {
 			if (allFiles.getName().contains("pdf")) {
 				PDDocument document = PDDocument.load(allFiles);
 				if (!document.isEncrypted()) {
@@ -136,7 +136,7 @@ public class ShipmentPage {
 					SeleniumTestHelper.fail("Not verified PDF content as it is encrypted");
 				}
 			}
-		}
+		}*/
 
 	}
 	

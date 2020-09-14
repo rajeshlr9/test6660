@@ -13,6 +13,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import StepDefinition.Steps;
 import entity.Items;
 import utils.Driver;
 import utils.SeleniumTestHelper;
@@ -21,7 +22,7 @@ public class ILPNPage {
 	WebDriver driver;
 
 	public ILPNPage() {
-		this.driver = Driver.getInstance();
+		this.driver = Steps.seleniumDriver;
 		PageFactory.initElements(driver, this);
 	}
 
@@ -34,7 +35,7 @@ public class ILPNPage {
 	public WebElement quickFilter;
 
 	//@FindBy(xpath = "//span[text()='LPN:']/../..//input[@type='text']")
-	@FindBy(xpath="//input[@id='dataForm:LPNListInOutboundMain_lv:LPNList_Inbound_filterId1:field10value1']")
+	@FindBy(id="dataForm:LPNListInOutboundMain_lv:LPNList_Inbound_filterId1:field10value1")
 	public WebElement inputLPNSearchTextBox;
 
 	@FindBy(xpath = "(//span[text()='LPN:']/ancestor::*[position()=11]//input[@value='Apply'])[1]")
@@ -66,6 +67,12 @@ public class ILPNPage {
 	
 	@FindBy(xpath = "//input[@id='LPNListInboundMain_commandbutton_LockUnlockLPN']")
 	public WebElement iLPNLockUnlockBtn1;
+	
+	@FindBy(id = "LPN_Locks_Tab_lnk")
+	public WebElement LocksTab;
+	
+	@FindBy(id = "dataForm:lockTable:0:ViewLPNLocksList_LockCode_out")
+	public WebElement LockCodeValue;
 	
 	@FindBy(xpath = "//input[@id='LPNListInboundMain_CmdBtn_LockiLPN']")
 	public WebElement iLPNLockUnlockBtn2;
@@ -158,17 +165,12 @@ public class ILPNPage {
 		homePage.userClosesOpenedwindow("iLPNs");
 	}
 	public void searchForTheILPNAndViewIt(String iLPN) throws InterruptedException, IOException{
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, quickFilter, 50);
-		Thread.sleep(2000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, inputLPNSearchTextBox, 50);
 		inputLPNSearchTextBox.clear();
-		Thread.sleep(2000);
 		inputLPNSearchTextBox.sendKeys(iLPN);
-		Thread.sleep(2000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, applySearchBtn, 50);
 		applySearchBtn.click();
-		Thread.sleep(3000);
 		SeleniumTestHelper.waitForElementToBeClickable(driver, firstCheckBx, 60);
-		Thread.sleep(2000);
 		driver.findElement(By.xpath("//span[text()='" + iLPN + "']/../..//input[@type='checkbox']")).click();
         SeleniumTestHelper.waitForElementToBeClickable(driver, cancelSelectedLPN, 60);
         viewLPNBtn.click();

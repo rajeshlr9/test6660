@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import pages.RFMenuPage;
+
 
 
 public class Items {
@@ -337,6 +339,7 @@ public class Items {
 	}
 
 	public static void removeAllTheValuesFromMap() {
+		RFMenuPage.iLPNz.clear();
 		asnNumber = null;
 		itemsForReceivingASN.clear();
 		itemWithShippedASNQty.clear();

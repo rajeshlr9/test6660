@@ -18,10 +18,8 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 @CucumberOptions(
 		strict = true,
 		dryRun = false,
-		
-	
-		//tags={"@tag1001, @tag1002, @tag1003, @tag1004"},
-		tags={"@tag1004"},
+		tags={"@tag1010"},
+		//tags={"@tag1007,@tag1008"},
 		features = {"src\\test\\java\\featureFile\\InboundScenarios.feature"},
 		glue = {"StepDefinition"},
 		//format={"pretty","html:resources\\Reports\\cucumber-report.html"},

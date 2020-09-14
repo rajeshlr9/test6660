@@ -185,4 +185,12 @@
     <version>4.1.2</version>
 </dependency>
 	</dependencies>
+	
+<distributionManagement>
+  <repository>
+    <id>3531485-FCSC-CS-SQA-ORCHESTRATOR</id>
+    <!-- CHANGE HERE by your team nexus server -->
+    <url>https://nexus.prod.cloud.fedex.com:8443/nexus/#browse/browse:3531485-FCSC-CS-SQA-ORCHESTRATOR</url>
+  </repository>
+ </distributionManagement> 
 </project>

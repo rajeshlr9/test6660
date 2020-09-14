@@ -132,7 +132,7 @@ public class AsnsPage {
 		 */
 		//SeleniumTestHelper.waitForElementToBeDisplayed(driver, applyBtn, 50);
 		applyBtn.click();
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
 //		SeleniumTestHelper.waitForElementToBeDisplayed(driver, collapseLeft, 70);
 //		collapseLeft.click();
 //		SeleniumTestHelper.waitForElementToBeDisplayed(driver, refreshBtn, 50);
@@ -163,11 +163,28 @@ public class AsnsPage {
 		String barcodes = null;
 		String[] shippedQty = null;
 		//
+		System.out.println("Line size:"+lines.size());
+		System.out.println("Line qty size:"+Shipqty.size());
+		for (int i = 0; i < lines.size(); i++) {
+			System.out.println("Line"+i+":"+lines.get(i).getText());
+		}
+		for(int i = 0; i < Shipqty.size(); i++) {
+			System.out.println("Line qty"+i+":"+Shipqty.get(i).getText());
+		}
 		
 			for(int i=1;i<lines.size();i++)
 			{
 				itemInASNPage = lines.get(i).getText();
-				System.out.println(itemInASNPage);
+				System.out.println("Line Item:"+itemInASNPage);
+				
+				SeleniumTestHelper.assertEquals(itemInASNPage,Items.getItemsForReceivingASN(i-1)); 
+				System.out.println("Item : " +itemInASNPage + " successfully verified in ASN page" ); 
+				
+				shippedQty = Shipqty.get(i-1).getText().split("\\s+");
+				System.out.println("shippedQty:"+shippedQty[0]);
+				 SeleniumTestHelper.assertEquals(Integer.parseInt(shippedQty[0]), Items.getItemWithShippedASNQty(itemInASNPage));
+				 System.out.println("ShippedQty : " + shippedQty[0] +" successfully verified in ASN page for item : " + itemInASNPage );
+				
 				/*
 				 * SeleniumTestHelper.assertEquals(itemInASNPage,
 				 * Items.getItemsForReceivingASN(i-1)); System.out.println("Item : " +
