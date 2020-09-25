@@ -728,15 +728,12 @@ public class RFMenuPage {
 		String iLPN = null;
 		Steps.logger.info("Start Receiving Process");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
-		Thread.sleep(1000);
 		RFmenu_info.click();
 		Steps.logger.info("CLicked on RF Menu");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
-		Thread.sleep(1000);
 		Mainmenu.click();
 		Steps.logger.info("Clicked on Main Menu");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuReceiving, 20);
-		Thread.sleep(1000);
 		rfMenuReceiving.click();
 		Steps.logger.info("Clicked on Receiving");
 		switch (receivingMethod) {
@@ -1414,44 +1411,7 @@ public class RFMenuPage {
 			 */
 			break;
 			
-		case "RF MM3 Create iLPN":
-			System.out.println("iLPN creation started with : " + receivingMethod + " menu");
-			Steps.logger.info("iLPN creation started with : " + receivingMethod + " menu");
-			while (!(SeleniumTestHelper.isElementDisplayed(MM3createiLPN))) {
-				pageDown.click();
-			}
-			SeleniumTestHelper.assertTrue(MM3createiLPN.isDisplayed());
-			MM3createiLPN.click();
-			Steps.logger.info("Click on " + receivingMethod + " method");
-			for (int i = 0,j=1; i < Steps.ItemDataMap.size(); i++,j++) {
-				lpnInputTxt.sendKeys(Keys.ENTER);	
-				String LPNs = 	driver.findElement(By.id("csid")).getText();
-				String[] LPNnum = LPNs.split(":");
-				System.out.println("LPN# :"+ LPNnum[1].trim());	
-				
-				iLPNz.add(LPNnum[1].trim());
-				System.out.println("LPN "+j+" : "+iLPNz.get(i));
-				Reporter.addStepLog("LPN "+j+" : "+iLPNz.get(i));
-				ItemBarcode.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("Item"))+Keys.ENTER);
-				Steps.logger.info("Enter Item Id: "+Steps.ItemDataMap.get(i).get("Item"));
-				InvType.sendKeys(Keys.ENTER);
-				Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty"))+Keys.ENTER);
-				Steps.logger.info("Enter Qty: "+String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")));
-				
-				String fututeDate = String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
-				Steps.logger.info("Enter fututeDate: "+fututeDate);
-				String[] futureDateAsArray = fututeDate.split("-");
-			//	fututeDate=String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
-				mm.sendKeys(futureDateAsArray[0]);
-				dd.sendKeys(futureDateAsArray[1]);
-				yyyy.sendKeys(futureDateAsArray[2]);
-				
-				acceptAndProceedBtn.click();
-				Steps.logger.info(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty"))+" qty is received in LPN "+iLPNz.get(i)+" for Item- "+Steps.ItemDataMap.get(i).get("Item"));
-				Reporter.addStepLog(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty"))+" qty is received in LPN "+iLPNz.get(i)+" for Item- "+Steps.ItemDataMap.get(i).get("Item"));
-			}
-			Steps.logger.info("iLPN created successfully");
-			break;
+		
 			
 		default:
 			System.out.println("Receiving process starting with : " + receivingMethod + " menu");
@@ -1473,7 +1433,7 @@ public class RFMenuPage {
 		try {
 		String iLPN = null;
 		Steps.logger.info("Start Inventory Functions");
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 20);
 		RFmenu_info.click();
 		Steps.logger.info("CLicked on RF Menu");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);

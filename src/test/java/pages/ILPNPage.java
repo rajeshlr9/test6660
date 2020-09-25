@@ -88,10 +88,13 @@ public class ILPNPage {
 	@FindBy(xpath = "//input[@id='rmButton_1Lock1_167270008']")
 	public WebElement iLPNlockButton;
 	
+	@FindBy(xpath = "//input[@id='rmButton_1Unlock1_167270009']")
+	public WebElement iLPNunlockButton;
+	
 	@FindBy(id= "dataForm:listView:dataTable:newRow_1:LockCodeSelect")
 	public WebElement locksDropdown;
 	
-	@FindBy(xpath = "//input[@id='checkAll_c0_dataForm:listView:dataTable']")
+	@FindBy(xpath = "//input[@name='dataForm:listView:dataTable_checkAll']")
 	public WebElement checkBox;
 	
 	@FindBy(xpath = "//input[@id='rmButton_1Save1_167270010']")
@@ -232,17 +235,13 @@ public class ILPNPage {
 			String lockcode = String.valueOf(Steps.scenarioData.get("LockCode"));
 			System.out.println(lockcode);
 			Select dropdown = new Select(locksDropdown);
-			for (int i = 0; i < dropdown.getOptions().size(); i++) {
-				System.out.println("elements-"+dropdown.getOptions().get(i).getText());
-				if(dropdown.getOptions().get(i).getText().equals(lockcode)) {
-					System.out.println("value found");
-				}else {
-					System.out.println("value not found");
-				}
-			}
-			dropdown.selectByValue(lockcode);
+			dropdown.selectByVisibleText(lockcode);
+			
 			checkBox.click();
 			saveButton.click();
+			Steps.logger.info("Lock code applied successfully");
+			Reporter.addStepLog("Lock code applied successfully");
+			homePage.userClosesOpenedwindow("iLPNs - Lock Unlock LPNs");
 			
 		}else {
 			Steps.logger.info("Lock code already present");
@@ -250,6 +249,67 @@ public class ILPNPage {
 			Assert.assertTrue(false);
 		}
 	}
+   
+   public void unlockiLPN() throws InterruptedException, IOException{
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		LocksTab.click();
+		if(!(lockCodeTable.get(0).getText().contains("No data found"))) {
+			iLPNLockUnlockBtn2.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, lockCodeTable.get(0), 50);
+			checkBox.click();
+			iLPNunlockButton.click();
+			saveButton.click();
+			Steps.logger.info("Lock code removed successfully");
+			Reporter.addStepLog("Lock code removed successfully");
+			homePage.userClosesOpenedwindow("iLPNs - Lock Unlock LPNs");
+			
+		}else {
+			Steps.logger.info("iLPN doesnt have any lock");
+			Reporter.addStepLog("iLPN doesnt have any lock");
+			Assert.assertTrue(false);
+		}
+	}
+   
+   public void validateiLPNLockCode() throws InterruptedException, IOException{
+	   String ilpnLockCode = "";
+		String lpn = null;
+		int i, j;
+		String lockcodes = String.valueOf(Steps.scenarioData.get("LockCode"));
+		String[] lockCode = null;
+		if (lockcodes.contains("|")) {
+			lockCode = lockcodes.split("|");
+		} else {
+			lockCode = new String[] { lockcodes };
+		}
+		homePage.MenuItems_Distribution_Selection("iLPNs");
+		Steps.logger.info("Open iLPN screen");
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		for (i = 0, j = 0; i < RFMenuPage.iLPNz.size(); i++) {
+
+			lpn = RFMenuPage.iLPNz.get(i);
+			searchForTheILPNAndViewIt(lpn);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, LocksTab, 50);
+			LocksTab.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, LockCodeValue, 50);
+			Steps.logger.info("Actual lock code: " + LockCodeValue.getText());
+			Reporter.addStepLog("Actual lock code: " + LockCodeValue.getText());
+			Steps.logger.info("Expected lock code: " + lockCode[i]);
+			Reporter.addStepLog("Expected lock code: " + lockCode[i]);
+			if (LockCodeValue.getText().equals(lockCode[i])) {
+				j++;
+			} else {
+				ilpnLockCode += lpn;
+			}
+		}
+		if (i == j) {
+			Assert.assertTrue(true);
+			Steps.logger.info("Actual lock code matches the expected lock code");
+			Reporter.addStepLog("Lock code is successfully verified");
+		} else {
+			Assert.assertTrue(false, "iLPN Lock code that are not same " + ilpnLockCode);
+		}
+		homePage.userClosesOpenedwindow("iLPNs - iLPN Details");
+   }
    
    public void verifyLockCodeStatus(String lockcodetext) throws InterruptedException, IOException{
 		

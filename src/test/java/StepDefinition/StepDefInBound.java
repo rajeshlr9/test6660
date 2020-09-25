@@ -307,6 +307,7 @@ public class StepDefInBound {
 				// System.out.println("Item : " + ItemName + " successfully verified
 				// in the response");
 				driver.switchTo().defaultContent();
+				Thread.sleep(1000);
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, postMessagePage.openWindows, 50);
 				postMessagePage.openWindows.click();
 				SeleniumTestHelper.Close_OpenedWindow("Post Message", driver);
@@ -429,47 +430,20 @@ public class StepDefInBound {
 		}
 	}
 
-	@SuppressWarnings("unlikely-arg-type")
 	@Then("^user search for the LPN in iLPN screen, and validate the lock code$")
 	public void user_search_for_the_LPN_in_iLPN_screen_and_validate_the_lock_code() throws Throwable {
-		String ilpnLockCode = "";
-		String lpn = null;
-		int i, j;
-		String lockcodes = String.valueOf(Steps.scenarioData.get("LockCode"));
-		String[] lockCode = null;
-		if (lockcodes.contains("|")) {
-			lockCode = lockcodes.split("|");
-		} else {
-			lockCode = new String[] { lockcodes };
+		try {
+			iLPNPage.validateiLPNLockCode();
+		} catch (InterruptedException e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+			
+		} catch (IOException e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
 		}
-		homePage.MenuItems_Distribution_Selection("iLPNs");
-		Steps.logger.info("Open iLPN screen");
-		SeleniumTestHelper.switchToInnerFrame(driver);
-		for (i = 0, j = 0; i < RFMenuPage.iLPNz.size(); i++) {
-
-			lpn = RFMenuPage.iLPNz.get(i);
-			iLPNPage.searchForTheILPNAndViewIt(lpn);
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNPage.LocksTab, 50);
-			iLPNPage.LocksTab.click();
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNPage.LockCodeValue, 50);
-			Steps.logger.info("Actual lock code: " + iLPNPage.LockCodeValue.getText());
-			Reporter.addStepLog("Actual lock code: " + iLPNPage.LockCodeValue.getText());
-			Steps.logger.info("Expected lock code: " + lockCode[i]);
-			Reporter.addStepLog("Expected lock code: " + lockCode[i]);
-			if (iLPNPage.LockCodeValue.getText().equals(lockCode[i])) {
-				j++;
-			} else {
-				ilpnLockCode += lpn;
-			}
-		}
-		if (i == j) {
-			Assert.assertTrue(true);
-			Steps.logger.info("Actual lock code matches the expected lock code");
-			Reporter.addStepLog("Lock code is successfully verified");
-		} else {
-			Assert.assertTrue(false, "iLPN Lock code that are not same " + ilpnLockCode);
-		}
-		homePage.userClosesOpenedwindow("iLPNs - iLPN Details");
 	}
 
 	@And("user open iLPN and applies the lock code")

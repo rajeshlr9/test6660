@@ -275,8 +275,15 @@ Create an iLPN using RF MM3 Create iLPN option and apply the lock code provided 
 	When user logs into Manhattan application using "Associate" Credentials 
 	And user opens RF menu and create iLPN using "RF MM3 Create iLPN" menu
 	And user open iLPN and applies the lock code
-	#Then user validates that lock code is applied successfully
+	Then user search for the LPN in iLPN screen, and validate the lock code
 	Then user log out from application 
+	
+	@tag1012
+Scenario: Unlock an iLPN which already has some lock
+	Given I have excel data
+	| Scenario13 |
+	And Open the chrome browser by selenium
+	When user logs into Manhattan application using "Associate" Credentials 
 	
 	
 @Scenario9999
