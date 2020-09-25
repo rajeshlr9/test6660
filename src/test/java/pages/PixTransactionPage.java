@@ -1,5 +1,8 @@
 package pages;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,6 +40,12 @@ public class PixTransactionPage {
 	@FindBy(xpath = "//input[@value='Apply' and @type='button' and @id='dataForm:lview:filterId:savedapply']")
 	public WebElement Apply_savedfilter;
 
+	@FindBy(xpath = "//input[@id='as_bas3_in']")
+	public WebElement dateFrom;
+	
+	@FindBy(xpath = "//input[@id='as_bas4_in']")
+	public WebElement dateTo;
+	
 	@FindBy(xpath = "//select[@id='dataForm:filterDetailId:field0value1']")
 	public WebElement Transaction_type_Apply;
 
@@ -51,7 +60,10 @@ public class PixTransactionPage {
 
 	@FindBy(xpath = "//input[@id='dataForm:applyFltrBtnPopupAjax']")
 	public WebElement addsavedFilter;
-
+	
+	@FindBy(xpath = "//input[@id='rmButton_1View1_154178000']")
+	public WebElement pixTransviewButton;
+	
 	@FindBy(xpath = "(//span[text()='Status:']/../following-sibling::td//span)[1]")
 	public WebElement pixStatus;
 
@@ -75,6 +87,12 @@ public class PixTransactionPage {
 
 	@FindBy(xpath = "//input[@class='btn  groupBtn']")
 	public static WebElement applyBtn;
+	
+	@FindBy(xpath= "//span[@id='dataForm:detail_Value_1']")
+	public static WebElement tr1;
+	
+	@FindBy(xpath= "//span[@id='dataForm:detail_Value_3']")
+	public static WebElement tr2;
 
 	@FindBy(xpath = "//input[@id='dataForm:lview:dataTable:pager:dataTable_rfsh_but']")
 	public WebElement refreshIcon;
@@ -206,6 +224,97 @@ public class PixTransactionPage {
 				System.out.println("PIX Transc status : " + pixStatusValue + " displayed for iLPN : "+ Items.getiLpn());
 			}
 		}
+		homePage.userClosesOpenedwindow("PIX Transactions");
+	}
+
+	@SuppressWarnings("null")
+	public void validatePixTransactionforLock_Unlock(String[] pixCodeArr) throws InterruptedException, IOException {
+		
+		homePage.MenuItems_Distribution_Selection("PIX Transactions");
+		SeleniumTestHelper.switchToInnerFrame(driver);
+			SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 120);
+			quickFilter.click();
+			SeleniumTestHelper.waitForElementToBeClickable(driver, savedFilter, 50);
+			savedFilter.click();
+			SeleniumTestHelper.waitForElementToBeClickable(driver, Apply_savedfilter, 50);
+			Apply_savedfilter.click();
+			Thread.sleep(1000);
+			dateFrom.sendKeys("Today");
+			dateTo.sendKeys("Today");
+			savedFilteriLPN.sendKeys(RFMenuPage.iLPNz.get(0));
+			addsavedFilter.click();
+			SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 50);
+			
+			Thread.sleep(1000);
+			
+			for (int i = 0; i < pixCodeArr.length; i++) {
+				driver.findElement(By.xpath("//*[@id=\"checkAll_c"+i+"_dataForm:lview:dataTable\"]")).click();
+				//*[@id="checkAll_c0_dataForm:lview:dataTable"]
+				//*[@id="checkAll_c1_dataForm:lview:dataTable"]
+			}
+			pixTransviewButton.click();
+			
+			ArrayList<String> transactionType = new ArrayList<String>();
+			ArrayList<String> actionCode = new ArrayList<String>();
+			
+			for (int k = 0,j=1; k < pixCodeArr.length; k++) {
+				System.out.println("text1-"+tr1.getText());
+				transactionType.add(tr1.getText());
+				System.out.println("text2-"+tr2.getText());
+				actionCode.add(tr2.getText());
+				if(j<pixCodeArr.length) {
+					Thread.sleep(2000);
+					driver.findElement(By.id("dataForm:dataTable_nextDtlBtn")).click();
+					Thread.sleep(2000);
+					j++;
+				}
+			}
+			
+			for (int i = 0; i < pixCodeArr.length; i++) {
+				for (int j = 0; j < actionCode.size(); j++) {
+					if(transactionType.get(j).contains(pixCodeArr[i])&& (actionCode.get(j).equalsIgnoreCase("Lock iLPN")||actionCode.get(j).equalsIgnoreCase("Unlock iLPN"))) {
+						System.out.println(transactionType.get(j)+"&"+pixCodeArr[i]);
+						System.out.println(actionCode.get(j));
+						System.out.println("passed");
+					}
+				}
+			}
+			
+			/*
+			 * String pixStatusValue = null; int count = 0;
+			 * 
+			 * pixStatusValue = driver.findElement(By.xpath("//span[text()='" +
+			 * Items.getiLpn()+
+			 * "']/../..//span[@id='dataForm:lview:dataTable:0:fuid9']")).getAttribute(
+			 * "textContent"); //pixStatusValue =
+			 * driver.findElement(By.xpath("//span[text()='" +
+			 * Items.getItemILPN(Items.getItemsForReceivingASN(i))+
+			 * "']/../..//span[@id='dataForm:lview:dataTable:0:fuid9']")).getAttribute(
+			 * "textContent"); boolean waitFortenMinutesForStatusChange =
+			 * Boolean.parseBoolean(Config.getProperty("waitForTenMinutesForPixStatusChange"
+			 * )); if (waitFortenMinutesForStatusChange) { int maximunWait = 600000; int
+			 * iteration = 20000; int totalItrWait = 0; while
+			 * (!pixStatusValue.equals(status) && (count != 40) && (maximunWait >
+			 * totalItrWait)) { refreshBtn.click(); Thread.sleep(5000);
+			 * SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 50);
+			 * SeleniumTestHelper.waitForElementToBeClickable(driver,driver.findElement(By.
+			 * xpath("//a[text()='" + Items.getiLpn() + "']")), 60);
+			 * //SeleniumTestHelper.waitForElementToBeClickable(driver,driver.findElement(By
+			 * .xpath("//a[text()='" + Items.getItemsForReceivingASN(i) + "']")), 60);
+			 * pixStatusValue = driver.findElement(By.xpath("//span[text()='" +
+			 * Items.getiLpn()+
+			 * "']/../..//span[@id='dataForm:lview:dataTable:0:fuid9']")).getAttribute(
+			 * "textContent"); // pixStatusValue =
+			 * driver.findElement(By.xpath("//span[text()='" +
+			 * Items.getItemILPN(Items.getItemsForReceivingASN(i))+
+			 * "']/../..//span[@id='dataForm:lview:dataTable:0:fuid9']")).getAttribute(
+			 * "textContent"); Thread.sleep(iteration); count++; totalItrWait = iteration +
+			 * totalItrWait; } SeleniumTestHelper.assertEquals(pixStatusValue, status);
+			 * System.out.println("PIX Transc status : " + pixStatusValue +
+			 * " verified successfully for iLPN : "+ Items.getiLpn()); } else {
+			 * System.out.println("PIX Transc status : " + pixStatusValue +
+			 * " displayed for iLPN : "+ Items.getiLpn()); }
+			 */
 		homePage.userClosesOpenedwindow("PIX Transactions");
 	}
 }

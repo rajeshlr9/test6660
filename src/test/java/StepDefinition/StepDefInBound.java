@@ -70,6 +70,7 @@ public class StepDefInBound {
 	RFMenuPage rfMenu = new RFMenuPage();
 	ILPNPage iLPNPage = new ILPNPage();
 	ItemInvenByLocationPage itemInvenByLocationPage = new ItemInvenByLocationPage();
+	PixTransactionPage pixTransaction = new PixTransactionPage();
 
 	String itemName = null;
 	String GtinNum = null;
@@ -462,6 +463,29 @@ public class StepDefInBound {
 			e.printStackTrace();
 			Assert.assertTrue(false);
 		}
+	}
+	
+	@And("^validates the PIX Transactions \"([^\"]*)\" for this operation$")
+	public void validate_PIX_transaction(String PixCode) throws Throwable {
+		
+		try {
+			String[] pixCodeArr = null;
+			if (PixCode.contains(",")) {
+				pixCodeArr = PixCode.split(",");
+			} else {
+				pixCodeArr = new String[] { PixCode };
+			}
+			pixTransaction.validatePixTransactionforLock_Unlock(pixCodeArr);
+		} catch (InterruptedException e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		} catch (IOException e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		}
+		
 	}
 
 	@Then("^user opens Inventory by location screen and validates the LPN moved$")

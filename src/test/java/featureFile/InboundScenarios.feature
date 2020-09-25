@@ -276,6 +276,7 @@ Create an iLPN using RF MM3 Create iLPN option and apply the lock code provided 
 	And user opens RF menu and create iLPN using "RF MM3 Create iLPN" menu
 	And user open iLPN and applies the lock code
 	Then user search for the LPN in iLPN screen, and validate the lock code
+	And validates the PIX Transactions "300,606" for this operation
 	Then user log out from application 
 	
 	@tag1012

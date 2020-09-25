@@ -5,23 +5,23 @@
       <![CDATA[Execution started for : Lock an iLPN using the user provided lock code]]>
     </line>
   </reporter-output>
-  <suite started-at="2020-09-25T08:03:53 GMT" name="Suite" finished-at="2020-09-25T08:06:18 GMT" duration-ms="144780">
+  <suite started-at="2020-09-25T13:24:31 GMT" name="Suite" finished-at="2020-09-25T13:27:22 GMT" duration-ms="170714">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2020-09-25T08:03:53 GMT" name="Test" finished-at="2020-09-25T08:06:18 GMT" duration-ms="144780">
+    <test started-at="2020-09-25T13:24:31 GMT" name="Test" finished-at="2020-09-25T13:27:22 GMT" duration-ms="170714">
       <class name="TestRunner.Runner">
-        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-09-25T08:03:53 GMT" name="createExtentReport" finished-at="2020-09-25T08:03:53 GMT" duration-ms="87" status="PASS">
+        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-09-25T13:24:31 GMT" name="createExtentReport" finished-at="2020-09-25T13:24:31 GMT" duration-ms="84" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createExtentReport -->
-        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-09-25T08:03:53 GMT" name="setUpClass" finished-at="2020-09-25T08:03:54 GMT" duration-ms="837" status="PASS">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-09-25T13:24:31 GMT" name="setUpClass" finished-at="2020-09-25T13:24:32 GMT" duration-ms="854" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-09-25T08:03:54 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2020-09-25T08:06:17 GMT" duration-ms="143102" status="PASS">
+        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-09-25T13:24:32 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2020-09-25T13:27:21 GMT" duration-ms="169009" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -35,11 +35,11 @@
             </line>
           </reporter-output>
         </test-method> <!-- feature -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-09-25T08:06:17 GMT" name="tearDownClass" finished-at="2020-09-25T08:06:18 GMT" duration-ms="504" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-09-25T13:27:21 GMT" name="tearDownClass" finished-at="2020-09-25T13:27:22 GMT" duration-ms="523" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-09-25T08:06:18 GMT" name="writeExtentReport" finished-at="2020-09-25T08:06:18 GMT" duration-ms="10" status="PASS">
+        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-09-25T13:27:22 GMT" name="writeExtentReport" finished-at="2020-09-25T13:27:22 GMT" duration-ms="10" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- writeExtentReport -->
