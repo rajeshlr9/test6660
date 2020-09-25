@@ -104,7 +104,8 @@ Scenario: Veriy ASN creation through Post MessageUI-excel
 Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location through RF Menu
 	Given I have excel data
 	| Scenario1 |
-	And Open the chrome browser by selenium
+	And Set the chrome browser by seleniumi in linux
+	#And Open the chrome browser by selenium
 	And user logs into the Manhattan application 
     When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
     And user update xml itemDetails from excel sheet
@@ -121,7 +122,8 @@ Scenario: B-345747 MANH - Receive and bypass stage or holding
 Creating ASN through Post Message UI and complete receiving bypasing through staging location & validating LPN in Inventory by location
 	Given I have excel data
 	| Scenario2 |
-	And Open the chrome browser by selenium
+	And Set the chrome browser by seleniumi in linux
+	#And Open the chrome browser by selenium
 	And user logs into the Manhattan application 
     When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
     And user update xml itemDetails from excel sheet
@@ -138,7 +140,7 @@ Scenario: B-345766 Configure Receipt for Overage percentage -  allowable percent
 Creating ASN through Post Message UI and validate Overage percentage - allowable percentage  for customer
 	Given I have excel data
 	| Scenario3 |
-	And Open the chrome browser by selenium
+	And Set the chrome browser by seleniumi in linux
 	And user logs into the Manhattan application 
     When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
     And user update xml itemDetails from excel sheet
@@ -156,7 +158,8 @@ Scenario: B-345766 Configure Receipt for Overage percentage -  allowable percent
 Creating ASN through Post Message UI and validate Overage percentage - allowable percentage  for customer receive as an associate
 	Given I have excel data
 	| Scenario3 |
-	And Open the chrome browser by selenium
+	And Set the chrome browser by seleniumi in linux
+	#And Open the chrome browser by selenium
 	When user logs into Manhattan application using "Admin" Credentials
     When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
     And user update xml itemDetails from excel sheet
@@ -176,7 +179,8 @@ Scenario: B-345784 MANH - Break Split LPN IB
 Creating ASN through Post Message UI and receiving in 2 LPN's. Move few quantities from 1st LPN to 2nd location & validating LPN's in Inventory by location
 	Given I have excel data
 	| Scenario4 |
-	And Open the chrome browser by selenium
+	And Set the chrome browser by seleniumi in linux
+	#And Open the chrome browser by selenium
 	And user logs into the Manhattan application 
     When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
     And user update xml itemDetails from excel sheet
@@ -195,7 +199,8 @@ Scenario: Multi Line Receiving
 Creating 2 line ASN through Post Message UI, checking status of the shipment and complete receiving in Staging location through RF Menu
 	Given I have excel data
 	| Scenario5 |
-	And Open the chrome browser by selenium
+	And Set the chrome browser by seleniumi in linux
+	#And Open the chrome browser by selenium
 	And user logs into the Manhattan application 
     When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
     And user update xml itemDetails from excel sheet
@@ -213,7 +218,8 @@ Scenario: B-441160 Receiving Returned Un-Delivered Product using blind receipt
 Receiving of Un-Delivered Product using blind receipt in MM3 returns menu and verifying the status of the ASN 
 	Given I have excel data
 	| Scenario6 |
-	And Open the chrome browser by selenium
+	And Set the chrome browser by seleniumi in linux
+	#And Open the chrome browser by selenium
 	And user logs into the Manhattan application 
 	And user opens RF menu and completes Receiving using "MM3 Returns" menu
 	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
@@ -226,7 +232,8 @@ Scenario: B-441160 Receiving Returned Un-Delivered Product by creating ASN
 Receiving of Un-Delivered Product in MM3 returns menu by creating ASN and verifying the status of the ASN 
 	Given I have excel data
 	| Scenario7 |
-	And Open the chrome browser by selenium
+	And Set the chrome browser by seleniumi in linux
+	#And Open the chrome browser by selenium
 	And user logs into the Manhattan application 
     When user create xml file using "Single Line Return ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
     And user update xml itemDetails from excel sheet
@@ -242,7 +249,8 @@ Scenario: Receiving Damaged Product using MM3 Recv-Damages option from RF Menu u
 Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verifying the status of the ASN 
 	Given I have excel data
 	| Scenario10 |
-	And Open the chrome browser by selenium
+	And Set the chrome browser by seleniumi in linux
+	#And Open the chrome browser by selenium
 	When user logs into Manhattan application using "Supervisor" Credentials 
     When user create xml file using "Single Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
     And user update xml itemDetails from excel sheet
@@ -259,7 +267,7 @@ Scenario: Receiving of Damaged Returned Product using blind receipt
 Receiving of Damaged Returned Product using blind receipt in MM3 returns menu and verifying the status of the ASN 
 	Given I have excel data
 	| Scenario11 |
-	And Open the chrome browser by selenium
+	And Set the chrome browser by seleniumi in linux
 	When user logs into Manhattan application using "Associate" Credentials  
 	And user opens RF menu and completes Receiving using "MM3 Returns" menu
 	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
@@ -271,12 +279,12 @@ Scenario: Lock an iLPN using the user provided lock code
 Create an iLPN using RF MM3 Create iLPN option and apply the lock code provided by user
 	Given I have excel data
 	| Scenario12 |
-	And Open the chrome browser by selenium
-	When user logs into Manhattan application using "Associate" Credentials 
+	And Set the chrome browser by seleniumi in linux
 	And user opens RF menu and create iLPN using "RF MM3 Create iLPN" menu
 	And user open iLPN and applies the lock code
-	#Then user validates that lock code is applied successfully
+	Then user validates that lock code is applied successfully
 	Then user log out from application 
+	
 	
 	
 @Scenario9999

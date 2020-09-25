@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import StepDefinition.Steps;
 import entity.Items;
 import utils.Config;
 import utils.Driver;
@@ -15,7 +16,7 @@ public class PixTransactionPage {
 	WebDriver driver;
 
 	public PixTransactionPage() {
-		this.driver = Driver.getInstance();
+		this.driver=Steps.seleniumDriver;
 		PageFactory.initElements(driver, this);
 	}
 

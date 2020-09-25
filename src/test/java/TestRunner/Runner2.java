@@ -18,8 +18,8 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 @CucumberOptions(
 		strict = true,
 		dryRun = false,
-		//tags={"@tag1001,@tag1002,@tag1003,@tag1004,@tag1005,@tag1006,@tag1007,@tag1008,@tag1009,@tag1010"},
-		tags={"@tag1011"},
+		tags={"@tag1003"},
+		//tags={"@tag1007,@tag1008"},
 		features = {"src\\test\\java\\featureFile\\InboundScenarios.feature"},
 		glue = {"StepDefinition"},
 		//format={"pretty","html:resources\\Reports\\cucumber-report.html"},
@@ -32,7 +32,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 		monochrome=true
 		)
 
-public class Runner extends AbstractTestNGCucumberTests {
+public class Runner2 extends AbstractTestNGCucumberTests {
 	public  static String jenkinJobName = null;
 	
 	// private TestNGCucumberRunner testNGCucumberRunner;  

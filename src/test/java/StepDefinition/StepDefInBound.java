@@ -68,7 +68,7 @@ public class StepDefInBound {
 	PostMessagePage postMessagePage = new PostMessagePage();
 	AsnsPage asnsPage = new AsnsPage();
 	RFMenuPage rfMenu = new RFMenuPage();
-	ILPNPage iLPNPage= new ILPNPage();
+	ILPNPage iLPNPage = new ILPNPage();
 	ItemInvenByLocationPage itemInvenByLocationPage = new ItemInvenByLocationPage();
 
 	String itemName = null;
@@ -80,9 +80,9 @@ public class StepDefInBound {
 	String miscellaneous4 = null;
 	String velocityCode = null;
 
-		public StepDefInBound() throws Throwable { // this.driver =
-			// CreateBrowser.CreateBrowserInstance(); this.driver = Steps.seleniumDriver;
-		}
+	public StepDefInBound() throws Throwable { // this.driver =
+		// CreateBrowser.CreateBrowserInstance(); this.driver = Steps.seleniumDriver;
+	}
 
 	/*
 	 * @Before public void intiate(Scenario scenario) {
@@ -117,8 +117,8 @@ public class StepDefInBound {
 	@When("^user logs into Manhattan application using \"([^\"]*)\" Credentials$")
 	public void user_logs_into_Manhattan_application(String userType) throws Throwable {
 		try {
-			//driver = CreateBrowser.CreateBrowserInstance();
-			//Steps.logger.info("Browser Instance created");
+			// driver = CreateBrowser.CreateBrowserInstance();
+			// Steps.logger.info("Browser Instance created");
 
 			String env = ManhattanLoginPage.environment;
 			System.out.println(env);
@@ -203,9 +203,10 @@ public class StepDefInBound {
 			Assert.assertTrue(false);
 		}
 	}
-	
+
 	@When("^user create xml file using \"([^\"]*)\" with updated ASNNo & DeliveryStartDate for ReceivingASN$")
-	public void user_create_xml_swith_updated_ASNNo_DeliveryStartDate_for_ReceivingASN(String xmlType) throws Throwable {
+	public void user_create_xml_swith_updated_ASNNo_DeliveryStartDate_for_ReceivingASN(String xmlType)
+			throws Throwable {
 		try {
 			Steps.logger.info("XML creation started");
 			xmlInput.user_create_inputXML_for_inbound_basedOn_xmlType(xmlType);
@@ -217,7 +218,6 @@ public class StepDefInBound {
 			Assert.assertTrue(false);
 		}
 	}
-
 
 	@And("^user update xml itemDetails from excel sheet$")
 	public void user_update_xml_itemDetails_from_sheet_for_Scenario() throws Throwable {
@@ -346,11 +346,11 @@ public class StepDefInBound {
 
 			asnsPage.viewASNBtn.click();
 			Steps.logger.info("Click on view ASN");
-			//Thread.sleep(5000);
+			// Thread.sleep(5000);
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			asnsPage.GetItemDetails();
 			homePage.userClosesOpenedwindow("Advance Ship Notice");
-			//Thread.sleep(3000);
+			// Thread.sleep(3000);
 			SeleniumTestHelper.Close_OpenedWindow("ASNs", driver);
 			Steps.logger.info("Close ASN window");
 		} catch (Exception e) {
@@ -394,6 +394,20 @@ public class StepDefInBound {
 		}
 	}
 
+	@And("^user opens RF menu and create iLPN using \"([^\"]*)\" menu$")
+	public void user_opens_RF_menu_and_create_iLPN(String menuOption) throws Throwable {
+		try {
+			homePage.MenuItems_Distribution_Selection("RF Menu");
+			Steps.logger.info("Open RF menu");
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			rfMenu.inventoryFunctions(menuOption);
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		}
+	}
+
 	@Then("^user opens Inventory by location screen and validates the LPN created$")
 	public void user_opens_InventoryByLocation_screen_and_validates_the_LPN_created() throws Throwable {
 		try {
@@ -414,49 +428,66 @@ public class StepDefInBound {
 			Assert.assertTrue(false);
 		}
 	}
-	
+
 	@SuppressWarnings("unlikely-arg-type")
 	@Then("^user search for the LPN in iLPN screen, and validate the lock code$")
 	public void user_search_for_the_LPN_in_iLPN_screen_and_validate_the_lock_code() throws Throwable {
 		String ilpnLockCode = "";
 		String lpn = null;
-		int i,j;
-		String lockcodes= String.valueOf(Steps.scenarioData.get("LockCode"));
-		String[] lockCode=null;
+		int i, j;
+		String lockcodes = String.valueOf(Steps.scenarioData.get("LockCode"));
+		String[] lockCode = null;
 		if (lockcodes.contains("|")) {
 			lockCode = lockcodes.split("|");
-		}
-		else {
-			lockCode =  new String[] {lockcodes};
+		} else {
+			lockCode = new String[] { lockcodes };
 		}
 		homePage.MenuItems_Distribution_Selection("iLPNs");
 		Steps.logger.info("Open iLPN screen");
 		SeleniumTestHelper.switchToInnerFrame(driver);
-		for (i=0 ,j =0; i < RFMenuPage.iLPNz.size(); i++) {
-			
-			lpn= RFMenuPage.iLPNz.get(i);
+		for (i = 0, j = 0; i < RFMenuPage.iLPNz.size(); i++) {
+
+			lpn = RFMenuPage.iLPNz.get(i);
 			iLPNPage.searchForTheILPNAndViewIt(lpn);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNPage.LocksTab, 50);
 			iLPNPage.LocksTab.click();
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNPage.LockCodeValue, 50);
-			Steps.logger.info("Actual lock code: "+iLPNPage.LockCodeValue.getText());
-			Reporter.addStepLog("Actual lock code: "+iLPNPage.LockCodeValue.getText());
-			Steps.logger.info("Expected lock code: "+lockCode[i]);
-			Reporter.addStepLog("Expected lock code: "+lockCode[i]);
-			if(iLPNPage.LockCodeValue.getText().equals(lockCode[i])) {
-			j++;
-			}else {
-				ilpnLockCode+=lpn;
+			Steps.logger.info("Actual lock code: " + iLPNPage.LockCodeValue.getText());
+			Reporter.addStepLog("Actual lock code: " + iLPNPage.LockCodeValue.getText());
+			Steps.logger.info("Expected lock code: " + lockCode[i]);
+			Reporter.addStepLog("Expected lock code: " + lockCode[i]);
+			if (iLPNPage.LockCodeValue.getText().equals(lockCode[i])) {
+				j++;
+			} else {
+				ilpnLockCode += lpn;
 			}
 		}
-		if(i==j) {
+		if (i == j) {
 			Assert.assertTrue(true);
 			Steps.logger.info("Actual lock code matches the expected lock code");
 			Reporter.addStepLog("Lock code is successfully verified");
-		}else {
-			Assert.assertTrue(false, "iLPN Lock code that are not same "+ilpnLockCode);
+		} else {
+			Assert.assertTrue(false, "iLPN Lock code that are not same " + ilpnLockCode);
 		}
 		homePage.userClosesOpenedwindow("iLPNs - iLPN Details");
+	}
+
+	@And("user open iLPN and applies the lock code")
+	public void user_opens_iLPN_and_apply_lockCode() throws Throwable {
+		try {
+			homePage.MenuItems_Distribution_Selection("iLPNs");
+			Steps.logger.info("Open iLPN screen");
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
+				iLPNPage.searchForTheILPNAndViewIt(RFMenuPage.iLPNz.get(i));
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNPage.LocksTab, 50);
+				iLPNPage.lockiLPN();
+			}
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		}
 	}
 
 	@Then("^user opens Inventory by location screen and validates the LPN moved$")

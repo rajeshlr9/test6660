@@ -124,6 +124,9 @@ public class RFMenuPage {
 	@FindBy(xpath = "//a[text()='MM3 Recv-Damages']")
 	public WebElement MM3recDmg;
 	
+	@FindBy(xpath = "//a[text()='MM3 Create iLPN']")
+	public WebElement MM3createiLPN;
+	
 	@FindBy(xpath = "//span[text()='Container:']/..//input")
 	public WebElement rfRecviLPNASNContainer;
 	
@@ -295,6 +298,15 @@ public class RFMenuPage {
 	
 	@FindBy(xpath = "//input[@id='dataForm:invnType']")
 	public WebElement inventoryTypeInRFcreateIlpnTxtBox;
+	
+	@FindBy(xpath = "//input[@id='dataForm:shp1Part0']")
+	public WebElement mmInRFcreateIlpnTxtBox;
+	
+	@FindBy(xpath = "//input[@id='dataForm:shp1Part2']")
+	public WebElement ddInRFcreateIlpnTxtBox;
+	
+	@FindBy(xpath = "//input[@id='dataForm:shp1Part4']")
+	public WebElement yyInRFcreateIlpnTxtBox;
 	
 	@FindBy(xpath = "//input[@id='input1qtypack1']")
 	public WebElement qtyPackedInRFcreateIlpnTxtBox;
@@ -912,9 +924,10 @@ public class RFMenuPage {
 				mm.sendKeys(futureDateAsArray[0]);
 				dd.sendKeys(futureDateAsArray[1]);
 				yyyy.sendKeys(futureDateAsArray[2]);
-			//	Thread.sleep(3000);
+				Thread.sleep(3000);
 				
 				acceptAndProceedBtn.click();
+				Thread.sleep(2000);
 				Steps.logger.info(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty"))+" qty is received in LPN "+iLPNz.get(i)+" for Item- "+Steps.ItemDataMap.get(i).get("Item"));
 				Reporter.addStepLog(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty"))+" qty is received in LPN "+iLPNz.get(i)+" for Item- "+Steps.ItemDataMap.get(i).get("Item"));
 				
@@ -975,12 +988,12 @@ public class RFMenuPage {
 					mm.sendKeys(futureDateAsArray1[0]);
 					dd.sendKeys(futureDateAsArray1[1]);
 					yyyy.sendKeys(futureDateAsArray1[2]);
-				//	Thread.sleep(3000);
+					Thread.sleep(3000);
 					
 					acceptAndProceedBtn.click();
 					Steps.logger.info(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty2"))+" qty is received in LPN "+LPNnum1[1].trim()+" for Item- "+Items.getItemsForReceivingASN(i));
 					Reporter.addStepLog(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty2"))+" qty is received in LPN "+LPNnum1[1].trim()+" for Item- "+Items.getItemsForReceivingASN(i));
-					
+					Thread.sleep(2000);
 				}
 			}
 			Steps.logger.info("Completed Receiving");
@@ -1000,10 +1013,8 @@ public class RFMenuPage {
 		case "QSC Recv BpStgD":
 			System.out.println("Receiving process starting with : " + receivingMethod + " menu");
 			Steps.logger.info("Receiving process starting with : " + receivingMethod + " menu");
-			Thread.sleep(10000);
 			while (!(SeleniumTestHelper.isElementDisplayed(BpStgD))) {
 				pageDown.click();
-				Thread.sleep(10000);
 			}
 			SeleniumTestHelper.assertTrue(BpStgD.isDisplayed());
 			BpStgD.click();
@@ -1250,10 +1261,8 @@ public class RFMenuPage {
 		case "MM3 Recv-Damages":
 			System.out.println("Receiving process starting with : " + receivingMethod + " menu");
 			Steps.logger.info("Receiving process starting with : " + receivingMethod + " menu");
-			Thread.sleep(10000);
 			while (!(SeleniumTestHelper.isElementDisplayed(MM3recDmg))) {
 				pageDown.click();
-				Thread.sleep(5000);
 			}
 			SeleniumTestHelper.assertTrue(MM3recDmg.isDisplayed());
 			MM3recDmg.click();
@@ -1405,6 +1414,45 @@ public class RFMenuPage {
 			 */
 			break;
 			
+		case "RF MM3 Create iLPN":
+			System.out.println("iLPN creation started with : " + receivingMethod + " menu");
+			Steps.logger.info("iLPN creation started with : " + receivingMethod + " menu");
+			while (!(SeleniumTestHelper.isElementDisplayed(MM3createiLPN))) {
+				pageDown.click();
+			}
+			SeleniumTestHelper.assertTrue(MM3createiLPN.isDisplayed());
+			MM3createiLPN.click();
+			Steps.logger.info("Click on " + receivingMethod + " method");
+			for (int i = 0,j=1; i < Steps.ItemDataMap.size(); i++,j++) {
+				lpnInputTxt.sendKeys(Keys.ENTER);	
+				String LPNs = 	driver.findElement(By.id("csid")).getText();
+				String[] LPNnum = LPNs.split(":");
+				System.out.println("LPN# :"+ LPNnum[1].trim());	
+				
+				iLPNz.add(LPNnum[1].trim());
+				System.out.println("LPN "+j+" : "+iLPNz.get(i));
+				Reporter.addStepLog("LPN "+j+" : "+iLPNz.get(i));
+				ItemBarcode.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("Item"))+Keys.ENTER);
+				Steps.logger.info("Enter Item Id: "+Steps.ItemDataMap.get(i).get("Item"));
+				InvType.sendKeys(Keys.ENTER);
+				Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty"))+Keys.ENTER);
+				Steps.logger.info("Enter Qty: "+String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")));
+				
+				String fututeDate = String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
+				Steps.logger.info("Enter fututeDate: "+fututeDate);
+				String[] futureDateAsArray = fututeDate.split("-");
+			//	fututeDate=String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
+				mm.sendKeys(futureDateAsArray[0]);
+				dd.sendKeys(futureDateAsArray[1]);
+				yyyy.sendKeys(futureDateAsArray[2]);
+				
+				acceptAndProceedBtn.click();
+				Steps.logger.info(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty"))+" qty is received in LPN "+iLPNz.get(i)+" for Item- "+Steps.ItemDataMap.get(i).get("Item"));
+				Reporter.addStepLog(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty"))+" qty is received in LPN "+iLPNz.get(i)+" for Item- "+Steps.ItemDataMap.get(i).get("Item"));
+			}
+			Steps.logger.info("iLPN created successfully");
+			break;
+			
 		default:
 			System.out.println("Receiving process starting with : " + receivingMethod + " menu");
 			break;
@@ -1420,6 +1468,78 @@ public class RFMenuPage {
 		}	
 		
 	}
+	
+	public void inventoryFunctions(String inventoryFunctions) throws InterruptedException {
+		try {
+		String iLPN = null;
+		Steps.logger.info("Start Inventory Functions");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+		RFmenu_info.click();
+		Steps.logger.info("CLicked on RF Menu");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
+		Mainmenu.click();
+		Steps.logger.info("Clicked on Main Menu");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuReceiving, 20);
+		while (!(SeleniumTestHelper.isElementDisplayed(inventoryMgmtMenu))) {
+			pageDown.click();
+		}
+		SeleniumTestHelper.assertTrue(inventoryMgmtMenu.isDisplayed());
+		inventoryMgmtMenu.click();
+		Steps.logger.info("Clicked on Inventory");
+		switch (inventoryFunctions) {
+		case "RF MM3 Create iLPN":
+			System.out.println("iLPN creation started with : " + inventoryFunctions + " menu");
+			Steps.logger.info("iLPN creation started with : " + inventoryFunctions + " menu");
+			while (!(SeleniumTestHelper.isElementDisplayed(MM3createiLPN))) {
+				pageDown.click();
+			}
+			SeleniumTestHelper.assertTrue(MM3createiLPN.isDisplayed());
+			MM3createiLPN.click();
+			Steps.logger.info("Click on " + inventoryFunctions + " method");
+			for (int i = 0,j=1; i < Steps.ItemDataMap.size(); i++,j++) {
+				ilpnInRFcreateilpnTxtBox.sendKeys(Keys.ENTER);	
+				String LPNs = 	driver.findElement(By.id("iblpn1")).getText();
+				String[] LPNnum = LPNs.split(":");
+				System.out.println("LPN# :"+ LPNnum[1].trim());	
+				
+				iLPNz.add(LPNnum[1].trim());
+				System.out.println("LPN "+j+" : "+iLPNz.get(i));
+				Reporter.addStepLog("LPN "+j+" : "+iLPNz.get(i));
+				itemBarcodeInRFcreateIlpnTxtBox.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("Item"))+Keys.ENTER);
+				Steps.logger.info("Enter Item Id: "+Steps.ItemDataMap.get(i).get("Item"));
+				inventoryTypeInRFcreateIlpnTxtBox.sendKeys(Keys.ENTER);
+				qtyPackedInRFcreateIlpnTxtBox.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty"))+Keys.ENTER);
+				Steps.logger.info("Enter Qty: "+String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")));
+				
+				String fututeDate = String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
+				Steps.logger.info("Enter fututeDate: "+fututeDate);
+				String[] futureDateAsArray = fututeDate.split("-");
+			//	fututeDate=String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
+				mmInRFcreateIlpnTxtBox.sendKeys(futureDateAsArray[0]);
+				ddInRFcreateIlpnTxtBox.sendKeys(futureDateAsArray[1]);
+				yyInRFcreateIlpnTxtBox.sendKeys(futureDateAsArray[2]);
+				
+				acceptAndProceedBtn.click();
+				Steps.logger.info(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty"))+" qty is received in LPN "+iLPNz.get(i)+" for Item- "+Steps.ItemDataMap.get(i).get("Item"));
+				Reporter.addStepLog(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty"))+" qty is received in LPN "+iLPNz.get(i)+" for Item- "+Steps.ItemDataMap.get(i).get("Item"));
+			}
+			Steps.logger.info("iLPN created successfully");
+			break;
+			
+		default:
+			System.out.println("Inventory management starting with : " + inventoryFunctions + " menu");
+			break;
+		}
+		System.out.println("Inventory management completed with : " + inventoryFunctions + " menu");
+		homepage.userClosesOpenedwindow("RF Menu");
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println("test red"+Steps.testRes);
+			e.printStackTrace();
+			Assert.assertTrue(false);
+			
+		}	
+		}
 
 	public void  split_Move_iLPN_for_same_Item() throws Exception{
 		 

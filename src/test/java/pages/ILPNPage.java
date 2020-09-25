@@ -2,6 +2,7 @@ package pages;
 
 import java.awt.AWTException;
 import java.io.IOException;
+import java.util.List;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -12,6 +13,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+
+import com.cucumber.listener.Reporter;
 
 import StepDefinition.Steps;
 import entity.Items;
@@ -74,8 +79,24 @@ public class ILPNPage {
 	@FindBy(id = "dataForm:lockTable:0:ViewLPNLocksList_LockCode_out")
 	public WebElement LockCodeValue;
 	
+	@FindBy(id = "dataForm:lockTable_body")
+	public List<WebElement> lockCodeTable;
+	
 	@FindBy(xpath = "//input[@id='LPNListInboundMain_CmdBtn_LockiLPN']")
 	public WebElement iLPNLockUnlockBtn2;
+	
+	@FindBy(xpath = "//input[@id='rmButton_1Lock1_167270008']")
+	public WebElement iLPNlockButton;
+	
+	@FindBy(id= "dataForm:listView:dataTable:newRow_1:LockCodeSelect")
+	public WebElement locksDropdown;
+	
+	@FindBy(xpath = "//input[@id='checkAll_c0_dataForm:listView:dataTable']")
+	public WebElement checkBox;
+	
+	@FindBy(xpath = "//input[@id='rmButton_1Save1_167270010']")
+	public WebElement saveButton;
+	
 	
 	@FindBy(xpath = "//input[@value='Lock']")
 	public WebElement iLPNLockBtn;
@@ -200,6 +221,36 @@ public class ILPNPage {
 		}
 	}
 
+   public void lockiLPN() throws InterruptedException, IOException{
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		LocksTab.click();
+		System.out.println(lockCodeTable.get(0).getText());
+		if(lockCodeTable.get(0).getText().contains("No data found")) {
+			iLPNLockUnlockBtn2.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, lockCodeTable.get(0), 50);
+			iLPNlockButton.click();
+			String lockcode = String.valueOf(Steps.scenarioData.get("LockCode"));
+			System.out.println(lockcode);
+			Select dropdown = new Select(locksDropdown);
+			for (int i = 0; i < dropdown.getOptions().size(); i++) {
+				System.out.println("elements-"+dropdown.getOptions().get(i).getText());
+				if(dropdown.getOptions().get(i).getText().equals(lockcode)) {
+					System.out.println("value found");
+				}else {
+					System.out.println("value not found");
+				}
+			}
+			dropdown.selectByValue(lockcode);
+			checkBox.click();
+			saveButton.click();
+			
+		}else {
+			Steps.logger.info("Lock code already present");
+			Reporter.addStepLog("Lock code already present");
+			Assert.assertTrue(false);
+		}
+	}
+   
    public void verifyLockCodeStatus(String lockcodetext) throws InterruptedException, IOException{
 		
 		SeleniumTestHelper.switchToInnerFrame(driver);

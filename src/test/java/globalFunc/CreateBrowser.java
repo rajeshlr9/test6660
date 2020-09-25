@@ -113,7 +113,9 @@ public class CreateBrowser {
 				System.setProperty("webdriver.chrome.driver", "C:\\Users\\ffd-sys-team\\git\\SampleMavenProj\\drivers\\chromedriver.exe");
 				ChromeOptions options = new ChromeOptions();
 				options.setCapability(CapabilityType.PLATFORM_NAME, Platform.LINUX);
-				URL dockerport = new URL("http://10.60.27.77:4444/wd/hub");
+				//URL dockerport = new URL("http://10.60.27.77:4444/wd/hub");
+				
+				URL dockerport = new URL("http://10.60.27.116:4444/wd/hub");
 				
 	
 				seleniumDriver = new RemoteWebDriver(dockerport,options);
