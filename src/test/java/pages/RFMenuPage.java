@@ -733,7 +733,8 @@ public class RFMenuPage {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
 		Mainmenu.click();
 		Steps.logger.info("Clicked on Main Menu");
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuReceiving, 20);
+		Thread.sleep(5000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuReceiving, 50);
 		rfMenuReceiving.click();
 		Steps.logger.info("Clicked on Receiving");
 		switch (receivingMethod) {

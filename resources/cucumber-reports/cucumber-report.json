@@ -6,7 +6,7 @@
         "before": [
           {
             "result": {
-              "duration": 1229640,
+              "duration": 1395200,
               "status": "passed"
             },
             "match": {
@@ -15,7 +15,7 @@
           },
           {
             "result": {
-              "duration": 91013850,
+              "duration": 91917920,
               "status": "passed"
             },
             "match": {
@@ -23,14 +23,14 @@
             }
           }
         ],
-        "line": 270,
-        "name": "Lock an iLPN using the user provided lock code",
-        "description": "Create an iLPN using RF MM3 Create iLPN option and apply the lock code provided by user",
-        "id": "inbound-scenarios;lock-an-ilpn-using-the-user-provided-lock-code",
+        "line": 239,
+        "name": "Receiving Damaged Product using MM3 Recv-Damages option from RF Menu using supervispr credentials",
+        "description": "Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verifying the status of the ASN",
+        "id": "inbound-scenarios;receiving-damaged-product-using-mm3-recv-damages-option-from-rf-menu-using-supervispr-credentials",
         "after": [
           {
             "result": {
-              "duration": 669661280,
+              "duration": 793234890,
               "status": "passed"
             },
             "match": {
@@ -43,10 +43,10 @@
         "steps": [
           {
             "result": {
-              "duration": 1555256160,
+              "duration": 1812171420,
               "status": "passed"
             },
-            "line": 272,
+            "line": 241,
             "name": "I have excel data",
             "match": {
               "location": "Steps.readExcelData(DataTable)"
@@ -54,19 +54,19 @@
             "rows": [
               {
                 "cells": [
-                  "Scenario12"
+                  "Scenario10"
                 ],
-                "line": 273
+                "line": 242
               }
             ],
             "keyword": "Given "
           },
           {
             "result": {
-              "duration": 3049111830,
+              "duration": 3124645360,
               "status": "passed"
             },
-            "line": 274,
+            "line": 243,
             "name": "Open the chrome browser by selenium",
             "match": {
               "location": "Steps.open_the_chrome_and_launch_the_application_using_Selenium()"
@@ -75,15 +75,15 @@
           },
           {
             "result": {
-              "duration": 3984925430,
+              "duration": 4119966280,
               "status": "passed"
             },
-            "line": 275,
-            "name": "user logs into Manhattan application using \"Associate\" Credentials",
+            "line": 244,
+            "name": "user logs into Manhattan application using \"Supervisor\" Credentials",
             "match": {
               "arguments": [
                 {
-                  "val": "Associate",
+                  "val": "Supervisor",
                   "offset": 44
                 }
               ],
@@ -92,41 +92,116 @@
             "keyword": "When "
           },
           {
+            "output": [
+              "ASN-ASN2010021531"
+            ],
             "result": {
-              "duration": 62738063030,
+              "duration": 203416160,
               "status": "passed"
             },
-            "line": 276,
-            "name": "user opens RF menu and create iLPN using \"RF MM3 Create iLPN\" menu",
+            "line": 245,
+            "name": "user create xml file using \"Single Line ASN\" with updated ASNNo \u0026 DeliveryStartDate for ReceivingASN",
             "match": {
               "arguments": [
                 {
-                  "val": "RF MM3 Create iLPN",
-                  "offset": 42
+                  "val": "Single Line ASN",
+                  "offset": 28
                 }
               ],
-              "location": "StepDefInBound.user_opens_RF_menu_and_create_iLPN(String)"
+              "location": "StepDefInBound.user_create_xml_swith_updated_ASNNo_DeliveryStartDate_for_ReceivingASN(String)"
             },
-            "keyword": "And "
+            "keyword": "When "
           },
           {
             "result": {
-              "duration": 28865075350,
+              "duration": 38642650,
               "status": "passed"
             },
-            "line": 277,
-            "name": "user open iLPN and applies the lock code",
+            "line": 246,
+            "name": "user update xml itemDetails from excel sheet",
             "match": {
-              "location": "StepDefInBound.user_opens_iLPN_and_apply_lockCode()"
+              "location": "StepDefInBound.user_update_xml_itemDetails_from_sheet_for_Scenario()"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 23003456330,
+              "duration": 11097928380,
               "status": "passed"
             },
-            "line": 278,
+            "line": 247,
+            "name": "user opens post message screen and upload file in order to create ASN",
+            "match": {
+              "location": "StepDefInBound.user_opens_post_message_screen_and_upload_file_in_order_to_create_ASN()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2445408620,
+              "status": "passed"
+            },
+            "line": 248,
+            "name": "user verify the response",
+            "match": {
+              "location": "StepDefInBound.user_verify_the_response()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 30845345390,
+              "status": "passed"
+            },
+            "line": 249,
+            "name": "user views ASN, get and verify item details",
+            "match": {
+              "location": "StepDefInBound.user_views_ASNscreen_and_get_itemdetails()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 94987732440,
+              "status": "passed"
+            },
+            "line": 250,
+            "name": "user opens RF menu and completes Receiving using \"MM3 Recv-Damages\" menu",
+            "match": {
+              "arguments": [
+                {
+                  "val": "MM3 Recv-Damages",
+                  "offset": 50
+                }
+              ],
+              "location": "StepDefInBound.user_opens_RF_menu_and_completes_Receiving_using_menu(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 15557184130,
+              "status": "passed"
+            },
+            "line": 251,
+            "name": "user opens ASN screen and searches for the ASN and verify its status \"Receiving Started\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Receiving Started",
+                  "offset": 70
+                }
+              ],
+              "location": "StepDefInBound.user_opens_ASN_screen_and_searches_for_the_ASN_and_verify_its_status(String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 23192540650,
+              "status": "passed"
+            },
+            "line": 252,
             "name": "user search for the LPN in iLPN screen, and validate the lock code",
             "match": {
               "location": "StepDefInBound.user_search_for_the_LPN_in_iLPN_screen_and_validate_the_lock_code()"
@@ -135,28 +210,10 @@
           },
           {
             "result": {
-              "duration": 27295160890,
+              "duration": 17299415670,
               "status": "passed"
             },
-            "line": 279,
-            "name": "validates the PIX Transactions \"300,606\" for this operation",
-            "match": {
-              "arguments": [
-                {
-                  "val": "300,606",
-                  "offset": 32
-                }
-              ],
-              "location": "StepDefInBound.validate_PIX_transaction(String)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 17261325090,
-              "status": "passed"
-            },
-            "line": 280,
+            "line": 253,
             "name": "user log out from application",
             "match": {
               "location": "StepDefInBound.user_log_out_from_application()"
@@ -166,8 +223,8 @@
         ],
         "tags": [
           {
-            "line": 269,
-            "name": "@tag1011"
+            "line": 238,
+            "name": "@tag1009"
           }
         ]
       }

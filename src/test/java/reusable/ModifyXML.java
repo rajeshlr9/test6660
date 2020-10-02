@@ -18,8 +18,8 @@ public class ModifyXML extends UnitTestClassBase {
     	
     	//copy folder 
     	
-    	File srcFolder = new File("TestData\\EDI\\EMC");
-    	File destFolder = new File("E:\\EMC");
+    	File srcFolder = new File("TestData\\EDI\\EMC\\940");
+    	File destFolder = new File("TestData\\EDI\\UpdatedEDI");
     	
     	
     	//make sure source exists
@@ -40,7 +40,7 @@ public class ModifyXML extends UnitTestClassBase {
            }
         }
     	
- String path = "E:\\EMC\\940\\EMC-IB-ORDER-01-940.x12";
+ String path = "TestData\\EDI\\UpdatedEDI\\EMC-IB-ORDER-01-940.x12";
 
  File fileToBeModified = new File(path);
  

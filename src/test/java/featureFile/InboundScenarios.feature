@@ -1,16 +1,14 @@
 Feature: Inbound Scenarios
 
 @tag3 
-Scenario: 
-	Open Browser by selenium and complete login using LeanFT (Work on same application) 
+Scenario: Open Browser by selenium and complete login using LeanFT (Work on same application) 
 	Given Open the IE by selenium 
 	Then Attach LeanFT IE browser to seleniumTest 
 	Then Login to OMS by LeanFT 
 	Then Close browser opened by LeanFT 
 	
 @tag4 
-Scenario: 
-	Create Order via Filezilla using Leanft and Resume order in O2S via Selenium(Work on 2 application) 
+Scenario: Create Order via Filezilla using Leanft and Resume order in O2S via Selenium(Work on 2 application) 
 	Given Open Filezilla 
 	When user connects to EMC customer and drop an OB order 
 	When User open Browser 

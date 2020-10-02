@@ -109,11 +109,13 @@ public class Steps {
 		// seleniumDriver.quit();
 
 		seleniumDriver.quit();
+		
 		/*
 		 * if (LeanFTDriver.exists()) {
 		 * 
 		 * LeanFTDriver.close(); }
 		 */
+		 
 		if ("Failed".equals(testRes)) {
 			if (LeanFTDriver != null) {
 				try {
