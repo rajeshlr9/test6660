@@ -6,9 +6,4 @@
       <class name="TestRunner.Runner"/>
     </classes>
   </test> <!-- Test -->
-  <test name="Test2">
-    <classes>
-      <class name="TestRunner.Runner2"/>
-    </classes>
-  </test> <!-- Test -->
 </suite> <!-- Suite -->

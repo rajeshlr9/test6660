@@ -8,6 +8,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+
+import com.cucumber.listener.Reporter;
 
 import StepDefinition.Steps;
 import entity.Items;
@@ -263,6 +266,66 @@ public class PixTransactionPage {
 				System.out.println("text2-"+tr2.getText());
 				actionCode.add(tr2.getText());
 				if(j<pixCodeArr.length) {
+					Thread.sleep(3000);
+					driver.findElement(By.id("dataForm:dataTable_nextDtlBtn")).click();
+					Thread.sleep(3000);
+					j++;
+				}
+			}
+			
+			for (int i = 0; i < pixCodeArr.length; i++) {
+				for (int j = 0; j < actionCode.size(); j++) {
+					if(transactionType.get(j).contains(pixCodeArr[i])&& (actionCode.get(j).contains("Lock iLPN")||actionCode.get(j).contains("Unlock iLPN"))) {
+						System.out.println(transactionType.get(j)+"&"+pixCodeArr[i]);
+						System.out.println(actionCode.get(j));
+						System.out.println("passed");
+						Steps.logger.info("Transaction Type is:" + transactionType.get(j)+" & Action Code is:"+actionCode.get(j));
+						Reporter.addStepLog("Transaction Type is:" + transactionType.get(j)+" & Action Code is:"+actionCode.get(j));
+						SeleniumTestHelper.assertTrue(true);
+					}else {
+						System.out.println("PIX code is invalid");
+					}
+				}
+			}
+			
+		homePage.userClosesOpenedwindow("PIX Transactions");
+	}
+	
+public void validatePixTransactionforModifyiLPN(String[] pixCodeArr) throws InterruptedException, IOException {
+		
+		homePage.MenuItems_Distribution_Selection("PIX Transactions");
+		SeleniumTestHelper.switchToInnerFrame(driver);
+			SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 120);
+			quickFilter.click();
+			SeleniumTestHelper.waitForElementToBeClickable(driver, savedFilter, 50);
+			savedFilter.click();
+			SeleniumTestHelper.waitForElementToBeClickable(driver, Apply_savedfilter, 50);
+			Apply_savedfilter.click();
+			Thread.sleep(1000);
+			dateFrom.sendKeys("Today");
+			dateTo.sendKeys("Today");
+			savedFilteriLPN.sendKeys(RFMenuPage.iLPNz.get(0));
+			addsavedFilter.click();
+			SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 50);
+			
+			Thread.sleep(1000);
+			
+			for (int i = 0; i < pixCodeArr.length; i++) {
+				driver.findElement(By.xpath("//*[@id=\"checkAll_c"+i+"_dataForm:lview:dataTable\"]")).click();
+				//*[@id="checkAll_c0_dataForm:lview:dataTable"]
+				//*[@id="checkAll_c1_dataForm:lview:dataTable"]
+			}
+			pixTransviewButton.click();
+			
+			ArrayList<String> transactionType = new ArrayList<String>();
+			ArrayList<String> actionCode = new ArrayList<String>();
+			
+			for (int k = 0,j=1; k < pixCodeArr.length; k++) {
+				System.out.println("text1-"+tr1.getText());
+				transactionType.add(tr1.getText());
+				System.out.println("text2-"+tr2.getText());
+				actionCode.add(tr2.getText());
+				if(j<pixCodeArr.length) {
 					Thread.sleep(2000);
 					driver.findElement(By.id("dataForm:dataTable_nextDtlBtn")).click();
 					Thread.sleep(2000);
@@ -272,49 +335,83 @@ public class PixTransactionPage {
 			
 			for (int i = 0; i < pixCodeArr.length; i++) {
 				for (int j = 0; j < actionCode.size(); j++) {
-					if(transactionType.get(j).contains(pixCodeArr[i])&& (actionCode.get(j).equalsIgnoreCase("Lock iLPN")||actionCode.get(j).equalsIgnoreCase("Unlock iLPN"))) {
+					if(transactionType.get(j).contains(pixCodeArr[i])&& (actionCode.get(j).contains("Mod iLPN")||actionCode.get(j).contains("Modify iLPN"))) {
 						System.out.println(transactionType.get(j)+"&"+pixCodeArr[i]);
 						System.out.println(actionCode.get(j));
 						System.out.println("passed");
+						Steps.logger.info("Transaction Type is:" + transactionType.get(j)+" & Action Code is:"+actionCode.get(j));
+						Reporter.addStepLog("Transaction Type is:" + transactionType.get(j)+" & Action Code is:"+actionCode.get(j));
+						SeleniumTestHelper.assertTrue(true);
+					}else {
+						System.out.println("PIX code is invalid");
+						Steps.testRes = "Failed";
+						Assert.assertTrue(false);
 					}
 				}
 			}
 			
-			/*
-			 * String pixStatusValue = null; int count = 0;
-			 * 
-			 * pixStatusValue = driver.findElement(By.xpath("//span[text()='" +
-			 * Items.getiLpn()+
-			 * "']/../..//span[@id='dataForm:lview:dataTable:0:fuid9']")).getAttribute(
-			 * "textContent"); //pixStatusValue =
-			 * driver.findElement(By.xpath("//span[text()='" +
-			 * Items.getItemILPN(Items.getItemsForReceivingASN(i))+
-			 * "']/../..//span[@id='dataForm:lview:dataTable:0:fuid9']")).getAttribute(
-			 * "textContent"); boolean waitFortenMinutesForStatusChange =
-			 * Boolean.parseBoolean(Config.getProperty("waitForTenMinutesForPixStatusChange"
-			 * )); if (waitFortenMinutesForStatusChange) { int maximunWait = 600000; int
-			 * iteration = 20000; int totalItrWait = 0; while
-			 * (!pixStatusValue.equals(status) && (count != 40) && (maximunWait >
-			 * totalItrWait)) { refreshBtn.click(); Thread.sleep(5000);
-			 * SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 50);
-			 * SeleniumTestHelper.waitForElementToBeClickable(driver,driver.findElement(By.
-			 * xpath("//a[text()='" + Items.getiLpn() + "']")), 60);
-			 * //SeleniumTestHelper.waitForElementToBeClickable(driver,driver.findElement(By
-			 * .xpath("//a[text()='" + Items.getItemsForReceivingASN(i) + "']")), 60);
-			 * pixStatusValue = driver.findElement(By.xpath("//span[text()='" +
-			 * Items.getiLpn()+
-			 * "']/../..//span[@id='dataForm:lview:dataTable:0:fuid9']")).getAttribute(
-			 * "textContent"); // pixStatusValue =
-			 * driver.findElement(By.xpath("//span[text()='" +
-			 * Items.getItemILPN(Items.getItemsForReceivingASN(i))+
-			 * "']/../..//span[@id='dataForm:lview:dataTable:0:fuid9']")).getAttribute(
-			 * "textContent"); Thread.sleep(iteration); count++; totalItrWait = iteration +
-			 * totalItrWait; } SeleniumTestHelper.assertEquals(pixStatusValue, status);
-			 * System.out.println("PIX Transc status : " + pixStatusValue +
-			 * " verified successfully for iLPN : "+ Items.getiLpn()); } else {
-			 * System.out.println("PIX Transc status : " + pixStatusValue +
-			 * " displayed for iLPN : "+ Items.getiLpn()); }
-			 */
 		homePage.userClosesOpenedwindow("PIX Transactions");
 	}
+
+public void validatePixTransactionforconsumingiLPN(String[] pixCodeArr) throws InterruptedException, IOException {
+	homePage.MenuItems_Distribution_Selection("PIX Transactions");
+	SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 120);
+		quickFilter.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, savedFilter, 50);
+		savedFilter.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, Apply_savedfilter, 50);
+		Apply_savedfilter.click();
+		Thread.sleep(1000);
+		dateFrom.sendKeys("Today");
+		dateTo.sendKeys("Today");
+		savedFilteriLPN.sendKeys(RFMenuPage.iLPNz.get(0));
+		addsavedFilter.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 50);
+		
+		Thread.sleep(1000);
+		
+		for (int i = 0; i < pixCodeArr.length; i++) {
+			driver.findElement(By.xpath("//*[@id=\"checkAll_c"+i+"_dataForm:lview:dataTable\"]")).click();
+			//*[@id="checkAll_c0_dataForm:lview:dataTable"]
+			//*[@id="checkAll_c1_dataForm:lview:dataTable"]
+		}
+		pixTransviewButton.click();
+		
+		ArrayList<String> transactionType = new ArrayList<String>();
+		ArrayList<String> actionCode = new ArrayList<String>();
+		
+		for (int k = 0,j=1; k < pixCodeArr.length; k++) {
+			System.out.println("text1-"+tr1.getText());
+			transactionType.add(tr1.getText());
+			System.out.println("text2-"+tr2.getText());
+			actionCode.add(tr2.getText());
+			if(j<pixCodeArr.length) {
+				Thread.sleep(2000);
+				driver.findElement(By.id("dataForm:dataTable_nextDtlBtn")).click();
+				Thread.sleep(2000);
+				j++;
+			}
+		}
+		
+		for (int i = 0; i < pixCodeArr.length; i++) {
+			for (int j = 0; j < actionCode.size(); j++) {
+				if(transactionType.get(j).contains(pixCodeArr[i])&& (actionCode.get(j).contains("Consume iLPN"))) {
+					System.out.println(transactionType.get(j)+"&"+pixCodeArr[i]);
+					System.out.println(actionCode.get(j));
+					System.out.println("passed");
+					Steps.logger.info("Transaction Type is:" + transactionType.get(j)+" & Action Code is:"+actionCode.get(j));
+					Reporter.addStepLog("Transaction Type is:" + transactionType.get(j)+" & Action Code is:"+actionCode.get(j));
+					SeleniumTestHelper.assertTrue(true);
+				}else {
+					System.out.println("PIX code is invalid");
+					Steps.testRes = "Failed";
+					Assert.assertTrue(false);
+				}
+			}
+		}
+		
+	homePage.userClosesOpenedwindow("PIX Transactions");
+}
+
 }

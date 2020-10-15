@@ -1,101 +1,6 @@
 Feature: Inbound Scenarios
 
-@tag3 
-Scenario: Open Browser by selenium and complete login using LeanFT (Work on same application) 
-	Given Open the IE by selenium 
-	Then Attach LeanFT IE browser to seleniumTest 
-	Then Login to OMS by LeanFT 
-	Then Close browser opened by LeanFT 
-	
-@tag4 
-Scenario: Create Order via Filezilla using Leanft and Resume order in O2S via Selenium(Work on 2 application) 
-	Given Open Filezilla 
-	When user connects to EMC customer and drop an OB order 
-	When User open Browser 
-	And Login to OMS using Selenium 
-	And Search for the dropped order using Selenium 
-	And Resume the incomplete order using Selenium 
-	Then Order is placed successfully 
-	
-@tag641 
-Scenario: Cream the butter
-	Given I have excel data
-	| Scenario9 |
-	And Open the chrome browser by selenium
-	When user logs into Manhattan application using "Admin" Credentials
-    When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user log out from application	
-	And Open the chrome browser by selenium
-	When user logs into Manhattan application using "Admin" Credentials
-	#Then user log out from application	
-	
-	
-@tag5 
-Scenario: Complete adhoc move in Putty using Leanft 
-	Given Open Putty 
-	When user login to Putty 
-	And Complete adhoc move 
-		| Start_Location | ItemType | ItemID   | Quantity | SuggestedLoc |
-		| STG001R        | Normal   | 7181E-01 |        1 |              |
-	Then Items are moved successfully 
-	
-@tag7 
-Scenario: Create an Order in O2S using Selenium by taking data from Excel 
-	Given I have excel data 
-		| Scenario7 |
-	When User open Browser 
-	And Login to OMS using Selenium 
-	And Add destination Details 
-	And Add Inventory Details 
-	And Enter Route Details 
-	And Enter Placement Details 
-	Then Order is placed successfully 
-	
-@tag87 
-Scenario: Veriy ASN creation through Post MessageUI1 
-	Given I have excel data
-	And Open the chrome browser by selenium
-	And user logs into the Manhattan application 
-	When user create xml file with Item Value updated with DeliveryStartDate for ReceivingASN 
-	And user update xml itemDetails <noOfItem> from sheet "<SheetName>" with "<ShippedQty>","<QtyUOM>","<TCName>" for receiving ASN 
-	And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
-	Then user opens ASN screen and searches for the ASN and verify its status "InTransit" 
-	And user views ASN, get and verify item details 
-	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu for "50" item in "STG001R" 
-	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
-	Then user log out from application	
-	
-@tag56
-Scenario: Veriy ASN creation through Post MessageUI1 
-	Given I have excel data
-	| Scenario87 |
-	And Open the chrome browser by selenium
-	And user logs into the Manhattan application 
-	When user create xml file with Item Value updated with DeliveryStartDate for ReceivingASN 
-	And user update xml itemDetails <noOfItem> from sheet "<SheetName>" with "<ShippedQty>","<QtyUOM>","<TCName>" for receiving ASN 
-	And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
-	
-	@tag2001
-Scenario: Veriy ASN creation through Post MessageUI-excel-linux
-Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location through RF Menu
-	Given I have excel data
-	| Scenario1 |
-	And Set the chrome browser by seleniumi in linux
-	And user logs into the Manhattan application 
-    When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
-	#Then user opens ASN screen and searches for the ASN and verify its status "InTransit" 
-	And user views ASN, get and verify item details 
-	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
-	Then user log out from application 
-	
+
 	
 	@tag1001
 Scenario: Veriy ASN creation through Post MessageUI-excel
@@ -120,7 +25,7 @@ Creating ASN through Post Message UI and complete receiving bypasing through sta
 	Given I have excel data
 	| Scenario2 |
 	And Open the chrome browser by selenium
-	And user logs into the Manhattan application 
+	When user logs into Manhattan application using "Associate" Credentials 
     When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
     And user update xml itemDetails from excel sheet
     And user opens post message screen and upload file in order to create ASN 
@@ -236,7 +141,7 @@ Receiving of Un-Delivered Product in MM3 returns menu by creating ASN and verify
 	Then user log out from application 
 	
 	@tag1009
-Scenario: Receiving Damaged Product using MM3 Recv-Damages option from RF Menu using supervispr credentials
+Scenario: B-459309 Receive Damages: Receiving Damaged Product using MM3 Recv-Damages option from RF Menu using supervispr credentials
 Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verifying the status of the ASN 
 	Given I have excel data
 	| Scenario10 |
@@ -253,7 +158,7 @@ Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verify
 	Then user log out from application 
 	
 	@tag1010
-Scenario: Receiving of Damaged Returned Product using blind receipt
+Scenario: B-459309 Receive Damages: Receiving of Damaged Returned Product using blind receipt
 Receiving of Damaged Returned Product using blind receipt in MM3 returns menu and verifying the status of the ASN 
 	Given I have excel data
 	| Scenario11 |
@@ -265,43 +170,192 @@ Receiving of Damaged Returned Product using blind receipt in MM3 returns menu an
 	Then user log out from application 
 	
 	@tag1011
-Scenario: Lock an iLPN using the user provided lock code
+Scenario: B-467729 – Configure Manhattan for RF lock/unlock iLPN: Lock an iLPN using the user provided lock code
 Create an iLPN using RF MM3 Create iLPN option and apply the lock code provided by user
 	Given I have excel data
 	| Scenario12 |
 	And Open the chrome browser by selenium
 	When user logs into Manhattan application using "Associate" Credentials 
-	And user opens RF menu and create iLPN using "RF MM3 Create iLPN" menu
+	And user opens RF menu and go to invenorty & perform "RF MM3 Create iLPN" operation
 	And user open iLPN and applies the lock code
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And validates the PIX Transactions "300,606" for this operation
 	Then user log out from application 
 	
 	@tag1012
-Scenario: Unlock an iLPN which already has some lock
+Scenario: B-467729 – Configure Manhattan for RF lock/unlock iLPN: Unlock an iLPN which already has some lock
 	Given I have excel data
 	| Scenario13 |
 	And Open the chrome browser by selenium
-	When user logs into Manhattan application using "Associate" Credentials 
-	
-	
-@Scenario9999
-Scenario Outline: Verify ASN creation through Post MessageUI 
-	Given user log in to the Manhattan application 
-	Given Open the chrome browser by selenium
-	And user logs into the Manhattan application
-	When user create xml file with <noOfItem> updated DeliveryStartDate for ReceivingASN 
-	And user update xml itemDetails <noOfItem> from sheet "<SheetName>" with "<ShippedQty>","<QtyUOM>","<TCName>" for receiving ASN 
-	And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
-	Then user opens ASN screen and searches for the ASN and verify its status "InTransit" 
-	And user views ASN, get and verify item details 
-	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu for <noOfItem> item in "<RecivingLoc>" 
-	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
+	When user logs into Manhattan application using "Associate" Credentials
+	And user opens RF menu and completes Receiving using "MM3 Returns" menu
+	And user open iLPN and unlock the existing code
+	Then user search for the LPN in iLPN screen, and validate the lock code
+	And validates the PIX Transactions "300,606" for this operation
 	Then user log out from application 
 	
-	Examples: 
-		| TCName      | noOfItem | SheetName | ShippedQty | QtyUOM | RecivingLoc | ShipByDate|
-		| Scenario8   |        1 | Item      | 50/        | EA/    | STG001R     | 07-31-2020|
-		
-		
+	@tag1013
+Scenario: B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Increase iLPN qty having no lock code before ASN verification
+Creating ASN through Post Message UI and complete receiving bypasing through staging location & modify the 
+iLPN by increasing the quantity & verify the iLPN, ASN and PIX transaction
+	Given I have excel data
+	| Scenario14 |
+	And Open the chrome browser by selenium
+	When user logs into Manhattan application using "Associate" Credentials 
+    When user create xml file using "Single Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
+    And user update xml itemDetails from excel sheet
+    And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "QSC Recv BpStgD" menu
+	And user opens RF menu and "Increase" iLPN quantity using "Modify iLPN" menu in Inventory
+	Then user search for the LPN in iLPN screen, and validate the modification "Increase Qty" in iLPN
+	And user views ASN, and validate ASN details
+	And validates the PIX Transactions "300" for modifying iLPN
+	Then user log out from application 
+
+
+@tag1014
+Scenario: B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Decrease iLPN qty having no lock code before ASN verification
+Creating ASN through Post Message UI and complete receiving bypasing through staging location & modify the 
+iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
+	Given I have excel data
+	| Scenario15 |
+	And Open the chrome browser by selenium
+	When user logs into Manhattan application using "Associate" Credentials 
+    When user create xml file using "Single Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
+    And user update xml itemDetails from excel sheet
+    And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "QSC Recv BpStgD" menu
+	And user opens RF menu and "Decrease" iLPN quantity using "Modify iLPN" menu in Inventory
+	Then user search for the LPN in iLPN screen, and validate the modification "Decrease Qty" in iLPN
+	And user views ASN, and validate ASN details
+	And validates the PIX Transactions "300" for modifying iLPN
+	Then user log out from application 
+	
+	@tag1015
+Scenario: B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Increase iLPN qty having unallocatable lock code after ASN verification
+Creating ASN through Post Message UI and complete receiving and verify the ASN & modify the 
+iLPN by increasing the quantity & verify the iLPN, ASN and PIX transaction
+	Given I have excel data
+	| Scenario16 |
+	And Open the chrome browser by selenium
+	When user logs into Manhattan application using "Associate" Credentials 
+    When user create xml file using "Single Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
+    And user update xml itemDetails from excel sheet
+    And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started"
+	And user verifies the ASN
+	And user opens RF menu and "Increase" iLPN quantity using "Modify iLPN" menu in Inventory
+	Then user search for the LPN in iLPN screen, and validate the modification "Increase Qty" in iLPN
+	And user views ASN, and validate ASN details
+	And validates the PIX Transactions "606" for modifying iLPN
+	Then user log out from application 
+
+
+@tag1016
+Scenario: B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Decrease iLPN qty having unallocatable lock code after ASN verification
+Creating ASN through Post Message UI and complete receiving bypasing through staging location & modify the 
+iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
+	Given I have excel data
+	| Scenario17 |
+	And Open the chrome browser by selenium
+	When user logs into Manhattan application using "Associate" Credentials 
+    When user create xml file using "Single Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
+    And user update xml itemDetails from excel sheet
+    And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started"
+	And user verifies the ASN
+	And user opens RF menu and "Decrease" iLPN quantity using "Modify iLPN" menu in Inventory
+	Then user search for the LPN in iLPN screen, and validate the modification "Decrease Qty" in iLPN
+	And user views ASN, and validate ASN details
+	And validates the PIX Transactions "606" for modifying iLPN
+	Then user log out from application 
+	
+	@tag1017
+Scenario: B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Delete line from an iLPN having no lock code before ASN verification
+Creating ASN through Post Message UI and complete receiving bypasing through staging location & modify the 
+iLPN by deletinh the line & verify the iLPN, ASN & PIX transaction
+	Given I have excel data
+	| Scenario18 |
+	And Open the chrome browser by selenium
+	When user logs into Manhattan application using "Associate" Credentials 
+    When user create xml file using "Single Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
+    And user update xml itemDetails from excel sheet
+    And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "QSC Recv BpStgD" menu
+	And user opens RF menu and "Delete Line" from an iLPN using "Modify iLPN" menu in Inventory
+	Then user search for the LPN in iLPN screen, and validate the modification "Delete Line" in iLPN
+	And user views ASN, and validate ASN details after deleting a line from iLPN
+	And validates the PIX Transactions "300" for modifying iLPN
+	Then user log out from application 
+	
+@tag1018
+Scenario: B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Delete line from an iLPN having unallocatable lock code after ASN verification
+Creating ASN through Post Message UI and complete receiving bypasing through staging location & modify the 
+iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
+	Given I have excel data
+	| Scenario19 |
+	And Open the chrome browser by selenium
+	When user logs into Manhattan application using "Associate" Credentials 
+    When user create xml file using "Single Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
+    And user update xml itemDetails from excel sheet
+    And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started"
+	And user verifies the ASN
+	And user opens RF menu and "Delete Line" from an iLPN using "Modify iLPN" menu in Inventory
+	Then user search for the LPN in iLPN screen, and validate the modification "Delete Line" in iLPN
+	And user views ASN, and validate ASN details after deleting a line from iLPN
+	And validates the PIX Transactions "606" for modifying iLPN
+	Then user log out from application 
+	
+	@tag1019
+Scenario: B-474831 FXL-FFD-CIL-MH_Inventory Control-Base Transactions# 4- Consume iLPN having no lock
+Creating ASN through Post Message UI and complete receiving bypasing through staging location & 
+validating iLPN have no lock & consume the iLPN using RF Menu. Also validate PIX transaction
+	Given I have excel data
+	| Scenario20 |
+	And Open the chrome browser by selenium
+	When user logs into Manhattan application using "Associate" Credentials 
+    When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
+    And user update xml itemDetails from excel sheet
+    And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response 
+	#Then user opens ASN screen and searches for the ASN and verify its status "InTransit" 
+	#And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "QSC Recv BpStgD" menu
+	#And user views ASN, get and verify item details
+	Then user search for the LPN in iLPN screen, and validate the lock code
+	And user opens RF menu and go to invenorty & perform "Consume iLPN" operation
+	Then user search for the LPN in iLPN screen, and validate the iLPN status
+	And validates the PIX Transactions "300" for consuming iLPN
+	Then user log out from application 
+	
+	@tag1020
+Scenario: B-474831 FXL-FFD-CIL-MH_Inventory Control-Base Transactions# 4- Consume iLPN having lock code
+Creating iLPN through MM3 Create iLPN menu & applythe lock code,validating iLPN have some lock code & consume 
+the iLPN using RF Menu. Also validate PIX transaction.
+Given I have excel data
+	| Scenario21 |
+	And Open the chrome browser by selenium
+	When user logs into Manhattan application using "Associate" Credentials 
+	And user opens RF menu and go to invenorty & perform "RF MM3 Create iLPN" operation
+	And user open iLPN and applies the lock code
+	Then user search for the LPN in iLPN screen, and validate the lock code
+	And user opens RF menu and go to invenorty & perform "Consume iLPN" operation
+	Then user search for the LPN in iLPN screen, and validate the iLPN status
+	And validates the PIX Transactions "606" for consuming iLPN
+	Then user log out from application 

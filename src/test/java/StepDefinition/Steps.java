@@ -18,6 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
+import com.cucumber.listener.Reporter;
 import com.hp.lft.sdk.GeneralLeanFtException;
 import com.hp.lft.sdk.stdwin.Window;
 import com.hp.lft.sdk.web.Browser;
@@ -41,6 +42,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import entity.Items;
 import globalFunc.CreateBrowser;
+import globalFunc.DateTime;
 import globalFunc.GlobalClass;
 import pages.ManhattanLoginPage;
 import utils.Config;
@@ -108,7 +110,7 @@ public class Steps {
 		System.out.println(testRes);
 		// seleniumDriver.quit();
 
-		seleniumDriver.quit();
+		//seleniumDriver.quit();
 		
 		/*
 		 * if (LeanFTDriver.exists()) {
@@ -141,6 +143,7 @@ public class Steps {
 				try {
 					globalFunc.Screenshots.seleniumSnapshot(seleniumDriver);
 					System.out.println("naka2");
+					Reporter.addScreenCaptureFromPath(System.getProperty("user.dir")+ "\\resources\\Screenshots\\" + DateTime.strDate3 + ".png");
 				} catch (Exception e) { // TODO Auto-generated
 					e.printStackTrace();
 					System.out.println("raka3");

@@ -20,7 +20,7 @@ public class Screenshots {
 	public static void seleniumSnapshot(WebDriver webdriver) throws Exception {
 		TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
 		File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
-		File DestFile = new File("resources\\Screenshots\\" + DateTime.strDate3 + ".jpeg");
+		File DestFile = new File("resources\\Screenshots\\" + DateTime.strDate3 + ".png");
 		FileUtils.copyFile(SrcFile, DestFile);
 	}
 

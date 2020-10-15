@@ -1,6 +1,6 @@
 Feature: Inbound Scenarios
 
-@tag3 
+@tagq3 
 Scenario: 
 	Open Browser by selenium and complete login using LeanFT (Work on same application) 
 	Given Open the IE by selenium 
@@ -8,7 +8,7 @@ Scenario:
 	Then Login to OMS by LeanFT 
 	Then Close browser opened by LeanFT 
 	
-@tag4 
+@tagq4 
 Scenario: 
 	Create Order via Filezilla using Leanft and Resume order in O2S via Selenium(Work on 2 application) 
 	Given Open Filezilla 
@@ -19,7 +19,7 @@ Scenario:
 	And Resume the incomplete order using Selenium 
 	Then Order is placed successfully 
 	
-@tag641 
+@tagq641 
 Scenario: Cream the butter
 	Given I have excel data
 	| Scenario9 |
@@ -34,7 +34,7 @@ Scenario: Cream the butter
 	#Then user log out from application	
 	
 	
-@tag5 
+@tagq5 
 Scenario: Complete adhoc move in Putty using Leanft 
 	Given Open Putty 
 	When user login to Putty 
@@ -43,7 +43,7 @@ Scenario: Complete adhoc move in Putty using Leanft
 		| STG001R        | Normal   | 7181E-01 |        1 |              |
 	Then Items are moved successfully 
 	
-@tag7 
+@tagq7 
 Scenario: Create an Order in O2S using Selenium by taking data from Excel 
 	Given I have excel data 
 		| Scenario7 |
@@ -55,7 +55,7 @@ Scenario: Create an Order in O2S using Selenium by taking data from Excel
 	And Enter Placement Details 
 	Then Order is placed successfully 
 	
-@tag87 
+@tagq87 
 Scenario: Veriy ASN creation through Post MessageUI1 
 	Given I have excel data
 	And Open the chrome browser by selenium
@@ -70,7 +70,7 @@ Scenario: Veriy ASN creation through Post MessageUI1
 	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
 	Then user log out from application	
 	
-@tag56
+@tagq56
 Scenario: Veriy ASN creation through Post MessageUI1 
 	Given I have excel data
 	| Scenario87 |
@@ -81,7 +81,7 @@ Scenario: Veriy ASN creation through Post MessageUI1
 	And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response 
 	
-	@tag2001
+	@taqg2001
 Scenario: Veriy ASN creation through Post MessageUI-excel-linux
 Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location through RF Menu
 	Given I have excel data
@@ -99,7 +99,7 @@ Creating ASN through Post Message UI, checking status of the shipment and comple
 	Then user log out from application 
 	
 	
-	@tag1001
+	@tagq1001
 Scenario: Veriy ASN creation through Post MessageUI-excel
 Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location through RF Menu
 	Given I have excel data
@@ -117,7 +117,7 @@ Creating ASN through Post Message UI, checking status of the shipment and comple
 	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
 	Then user log out from application 
 	
-	@tag1002
+	@tagq1002
 Scenario: B-345747 MANH - Receive and bypass stage or holding
 Creating ASN through Post Message UI and complete receiving bypasing through staging location & validating LPN in Inventory by location
 	Given I have excel data
@@ -135,7 +135,7 @@ Creating ASN through Post Message UI and complete receiving bypasing through sta
 	Then user opens Inventory by location screen and validates the LPN created  
 	Then user log out from application 
    
-	@tag1003
+	@tag1q003
 Scenario: B-345766 Configure Receipt for Overage percentage -  allowable percentage  for customer
 Creating ASN through Post Message UI and validate Overage percentage - allowable percentage  for customer
 	Given I have excel data
@@ -153,7 +153,7 @@ Creating ASN through Post Message UI and validate Overage percentage - allowable
 	Then user log out from application 
 	
 
-	@tag1004
+	@tagq1004
 Scenario: B-345766 Configure Receipt for Overage percentage -  allowable percentage  for customer
 Creating ASN through Post Message UI and validate Overage percentage - allowable percentage  for customer receive as an associate
 	Given I have excel data
@@ -174,7 +174,7 @@ Creating ASN through Post Message UI and validate Overage percentage - allowable
 	Then user log out from application 	
 	
 	
-	@tag1005
+	@tagq1005
 Scenario: B-345784 MANH - Break Split LPN IB
 Creating ASN through Post Message UI and receiving in 2 LPN's. Move few quantities from 1st LPN to 2nd location & validating LPN's in Inventory by location
 	Given I have excel data
@@ -194,7 +194,7 @@ Creating ASN through Post Message UI and receiving in 2 LPN's. Move few quantiti
 	#Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started"
 	Then user log out from application 
 	
-	@tag1006
+	@tagq1006
 Scenario: Multi Line Receiving
 Creating 2 line ASN through Post Message UI, checking status of the shipment and complete receiving in Staging location through RF Menu
 	Given I have excel data
@@ -213,7 +213,7 @@ Creating 2 line ASN through Post Message UI, checking status of the shipment and
 	Then user log out from application 
 
 	
-	@tag1007
+	@tagq1007
 Scenario: B-441160 Receiving Returned Un-Delivered Product using blind receipt
 Receiving of Un-Delivered Product using blind receipt in MM3 returns menu and verifying the status of the ASN 
 	Given I have excel data
@@ -227,7 +227,7 @@ Receiving of Un-Delivered Product using blind receipt in MM3 returns menu and ve
 	Then user log out from application 
 	
 	
-	@tag1008
+	@tagq1008
 Scenario: B-441160 Receiving Returned Un-Delivered Product by creating ASN
 Receiving of Un-Delivered Product in MM3 returns menu by creating ASN and verifying the status of the ASN 
 	Given I have excel data
@@ -244,7 +244,7 @@ Receiving of Un-Delivered Product in MM3 returns menu by creating ASN and verify
 	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
 	Then user log out from application 
 	
-	@tag1009
+	@tagq1009
 Scenario: Receiving Damaged Product using MM3 Recv-Damages option from RF Menu using supervispr credentials
 Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verifying the status of the ASN 
 	Given I have excel data
@@ -262,7 +262,7 @@ Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verify
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	Then user log out from application 
 	
-	@tag1010
+	@tagq1010
 Scenario: Receiving of Damaged Returned Product using blind receipt
 Receiving of Damaged Returned Product using blind receipt in MM3 returns menu and verifying the status of the ASN 
 	Given I have excel data
@@ -274,7 +274,7 @@ Receiving of Damaged Returned Product using blind receipt in MM3 returns menu an
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	Then user log out from application 
 	
-	@tag1011
+	@tagq1011
 Scenario: Lock an iLPN using the user provided lock code
 Create an iLPN using RF MM3 Create iLPN option and apply the lock code provided by user
 	Given I have excel data
@@ -286,8 +286,20 @@ Create an iLPN using RF MM3 Create iLPN option and apply the lock code provided 
 	Then user log out from application 
 	
 	
+	@tag11010
+Scenario: B-459309 Receive Damages: Receiving of Damaged Returned Product using blind receipt
+Receiving of Damaged Returned Product using blind receipt in MM3 returns menu and verifying the status of the ASN 
+	Given I have excel data
+	| Scenario11 |
+	And Open the chrome browser by selenium
+	When user logs into Manhattan application using "Associate" Credentials  
+	And user opens RF menu and completes Receiving using "MM3 Returns" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
+	Then user search for the LPN in iLPN screen, and validate the lock code
+	Then user log out from application 
 	
-@Scenario9999
+	
+@Scenarioq9999
 Scenario Outline: Verify ASN creation through Post MessageUI 
 	Given user log in to the Manhattan application 
 	Given Open the chrome browser by selenium

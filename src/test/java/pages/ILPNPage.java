@@ -70,6 +70,12 @@ public class ILPNPage {
 	@FindBy(xpath = "//span[@id='dataForm:ViewLPNInbound_Header_CurrentLocation_Text']")
 	public WebElement headerCurrentLocationValue;
 	
+	@FindBy(xpath = "//span[@id='dataForm:LPNCommonHeader_LPNStatus_outputText']")
+	public WebElement iLPNstatus;
+	
+	@FindBy(xpath = "//span[@id='dataForm:viewLPNPOLineItemsList:0:ViewPOLineItemList_LPN_qty_param_out']")
+	public WebElement iLPNqty;
+	
 	@FindBy(xpath = "//input[@id='LPNListInboundMain_commandbutton_LockUnlockLPN']")
 	public WebElement iLPNLockUnlockBtn1;
 	
@@ -252,6 +258,8 @@ public class ILPNPage {
    
    public void unlockiLPN() throws InterruptedException, IOException{
 		SeleniumTestHelper.switchToInnerFrame(driver);
+		Steps.logger.info("Started removing lock code");
+		Reporter.addStepLog("Started removing lock code");
 		LocksTab.click();
 		if(!(lockCodeTable.get(0).getText().contains("No data found"))) {
 			iLPNLockUnlockBtn2.click();
@@ -275,6 +283,7 @@ public class ILPNPage {
 		String lpn = null;
 		int i, j;
 		String lockcodes = String.valueOf(Steps.scenarioData.get("LockCode"));
+		System.out.println(String.valueOf(Steps.scenarioData.get("LockCode")));
 		String[] lockCode = null;
 		if (lockcodes.contains("|")) {
 			lockCode = lockcodes.split("|");
@@ -290,12 +299,12 @@ public class ILPNPage {
 			searchForTheILPNAndViewIt(lpn);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, LocksTab, 50);
 			LocksTab.click();
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, LockCodeValue, 50);
-			Steps.logger.info("Actual lock code: " + LockCodeValue.getText());
-			Reporter.addStepLog("Actual lock code: " + LockCodeValue.getText());
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, lockCodeTable.get(0), 50);
+			Steps.logger.info("Actual lock code: " + lockCodeTable.get(0).getText());
+			Reporter.addStepLog("Actual lock code: " + lockCodeTable.get(0).getText());
 			Steps.logger.info("Expected lock code: " + lockCode[i]);
 			Reporter.addStepLog("Expected lock code: " + lockCode[i]);
-			if (LockCodeValue.getText().equals(lockCode[i])) {
+			if (lockCodeTable.get(0).getText().contains(lockCode[i])) {
 				j++;
 			} else {
 				ilpnLockCode += lpn;
@@ -378,6 +387,22 @@ public class ILPNPage {
 			applySearchBtn.click();
 			String iLPN_Status=driver.findElement(By.xpath("//span[text()='"+iLPN+"']/following::span[contains(@id,'Outbound_lpnFacilityStatus')]")).getText();
 			SeleniumTestHelper.assertEquals(iLPN_Status, status);
+   }
+   
+   public void validateiLPNStatusAndQty() throws InterruptedException{
+	   
+	   SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNstatus, 10);
+	   SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNqty, 10);
+	   if(iLPNstatus.getText().contains("Consumed") && iLPNqty.getText().contains("0")) {
+		   Steps.logger.info("iLPN status is:"+iLPNstatus.getText().trim()+" & iLPN qty is:"+iLPNqty.getText());
+		   Reporter.addStepLog("iLPN status is:"+iLPNstatus.getText().trim()+" & iLPN qty is:"+iLPNqty.getText());
+		   SeleniumTestHelper.assertTrue(true);
+	   }else {
+		   Steps.testRes = "Failed";
+			Assert.assertEquals(iLPNstatus.getText(), "Consumed");
+			Assert.assertEquals(iLPNqty.getText(), "0");
+	   }
+	   homePage.userClosesOpenedwindow("iLPNs - iLPN Details");
    }
    
    public void verify_iLPN_lockCode(String iLPN, String lockCode){
@@ -487,5 +512,57 @@ public void adjustiLPNQuantityWith(String adjust, int noOfItem) throws Interrupt
 			
 			homePage.userClosesOpenedwindow("iLPNs");
 	}
-	
+	public void validateiLPNModification(String opeartion) throws InterruptedException, IOException {
+
+		homePage.MenuItems_Distribution_Selection("iLPNs");
+		Steps.logger.info("Open iLPN screen");
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
+			searchForTheILPNAndViewIt(RFMenuPage.iLPNz.get(i));
+		
+			switch (opeartion) {
+			case "Increase Qty":
+				WebElement qty1= driver.findElement(By.xpath("//*[@id=\"dataForm:viewLPNPOLineItemsList_body\"]/tbody/tr[1]/td[7]"));
+				String a=qty1.getText();
+				String arrQty1[]= a.split(" ");
+				if(arrQty1[0].equals(Steps.ItemDataMap.get(i).get("ChangeQty"))) {
+					Steps.logger.info("Expected iLPN Quantity is:" + Steps.ItemDataMap.get(i).get("ChangeQty")+" & Actual is: "+arrQty1[0]);
+					Reporter.addStepLog("Expected iLPN Quantity is:" + Steps.ItemDataMap.get(i).get("ChangeQty")+" & Actual is:"+arrQty1[0]);
+					SeleniumTestHelper.assertTrue(true);
+				}
+				else {
+					SeleniumTestHelper.assertTrue(false);
+				}
+				break;
+			case"Decrease Qty":
+				WebElement qty2= driver.findElement(By.xpath("//*[@id=\"dataForm:viewLPNPOLineItemsList_body\"]/tbody/tr[1]/td[7]"));
+				String b=qty2.getText();
+				String arrQty2[]= b.split(" ");
+				if(arrQty2[0].equals(Steps.ItemDataMap.get(i).get("ChangeQty"))) {
+					Steps.logger.info("Expected iLPN Quantity is:" + Steps.ItemDataMap.get(i).get("ChangeQty")+" & Actual is: "+arrQty2[0]);
+					Reporter.addStepLog("Expected iLPN Quantity is:" + Steps.ItemDataMap.get(i).get("ChangeQty")+" & Actual is:"+arrQty2[0]);
+					SeleniumTestHelper.assertTrue(true);
+				}
+				else {
+					SeleniumTestHelper.assertTrue(false);
+				}
+				break;
+			case "Delete Line":
+				WebElement status= driver.findElement(By.xpath("//*[@id=\"dataForm:LPNCommonHeader_PanelGrid1_Panel1\"]/tbody/tr[1]/td[8]"));
+				WebElement qty= driver.findElement(By.xpath("//*[@id=\"dataForm:viewLPNPOLineItemsList_body\"]/tbody/tr[1]/td[7]"));
+				
+				if(status.getText().contains("Canceled")&& qty.getText().contains("0")) {
+					Steps.logger.info("iLPN line is deleted");
+					Reporter.addStepLog("iLPN line is deleted");
+					SeleniumTestHelper.assertTrue(true);
+				}else {
+					SeleniumTestHelper.assertTrue(false);
+				}
+				break;
+				default:
+					System.out.println("Invalid operation");
+			}
+		}
+		homePage.userClosesOpenedwindow("iLPNs - iLPN Details");
+	}
 }

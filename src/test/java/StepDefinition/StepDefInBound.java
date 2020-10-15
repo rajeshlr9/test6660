@@ -336,7 +336,25 @@ public class StepDefInBound {
 			Assert.assertTrue(false);
 		}
 	}
+	
+	@And("^user verifies the ASN$")
+	public void user_verifies_ASN() throws Throwable {
 
+		try {
+			asnsPage.searchForTheASN(Items.getAsnNumber());
+			asnsPage.verifyASN("Receiving Verified");
+		Reporter.addStepLog("Receiving Verified");
+			Steps.logger.info("Receiving Verified");
+			homePage.userClosesOpenedwindow("ASNs");
+			Steps.logger.info("Close ASN window");
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		}
+	}
+//After ASN creation
 	@And("^user views ASN, get and verify item details$")
 	public void user_views_ASNscreen_and_get_itemdetails() throws Throwable {
 		// asnsPage.searchForTheASN(Items.getAsnNumber());
@@ -361,7 +379,81 @@ public class StepDefInBound {
 			Assert.assertTrue(false);
 		}
 	}
+	//after receiving
+	@Then("^user views ASN, and validate ASN details$")
+	public void user_opens_ASN_screen_and_validate_ASN_details() throws Throwable {
 
+		try {
+			asnsPage.searchForTheASN(Items.getAsnNumber());
+			String asnStatus=asnsPage.asnStatus.getText();
+			Steps.logger.info("Search for item details");
+			SeleniumTestHelper.waitForElementToBeClickable(driver, asnsPage.searchedASNChkbox, 50);
+			asnsPage.searchedASNChkbox.click();
+			asnsPage.viewASNBtn.click();
+			Steps.logger.info("Click on view ASN");
+			// Thread.sleep(5000);
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			asnsPage.GetItemDetails(asnStatus);
+			homePage.userClosesOpenedwindow("Advance Ship Notice");
+			// Thread.sleep(3000);
+			SeleniumTestHelper.Close_OpenedWindow("ASNs", driver);
+			Steps.logger.info("Close ASN window");
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		}
+	}
+	@Then("^user views ASN, and validate ASN details after deleting a line from iLPN$")
+	public void user_opens_ASN_screen_and_validate_ASN_details_after_deleting_a_line_from_an_iLPN() throws Throwable {
+
+		try {
+			asnsPage.searchForTheASN(Items.getAsnNumber());
+			String asnStatus=asnsPage.asnStatus.getText();
+			Steps.logger.info("Search for item details");
+			SeleniumTestHelper.waitForElementToBeClickable(driver, asnsPage.searchedASNChkbox, 50);
+			asnsPage.searchedASNChkbox.click();
+			asnsPage.viewASNBtn.click();
+			Steps.logger.info("Click on view ASN");
+			// Thread.sleep(5000);
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			asnsPage.GetLineDetails(asnStatus);
+			homePage.userClosesOpenedwindow("Advance Ship Notice");
+			// Thread.sleep(3000);
+			SeleniumTestHelper.Close_OpenedWindow("ASNs", driver);
+			Steps.logger.info("Close ASN window");
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		}
+	}
+	
+	@And("^user views ASN, and validate ASN details after consuming an iLPN$")
+	public void user_opens_ASN_screen_and_validate_ASN_details_after_consuming_an_iLPN() throws Throwable {
+	try {
+		asnsPage.searchForTheASN(Items.getAsnNumber());
+		String asnStatus=asnsPage.asnStatus.getText();
+		Steps.logger.info("Search for item details");
+		SeleniumTestHelper.waitForElementToBeClickable(driver, asnsPage.searchedASNChkbox, 50);
+		asnsPage.searchedASNChkbox.click();
+		asnsPage.viewASNBtn.click();
+		Steps.logger.info("Click on view ASN");
+		// Thread.sleep(5000);
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		asnsPage.GetLineDetails(asnStatus);
+		homePage.userClosesOpenedwindow("Advance Ship Notice");
+		// Thread.sleep(3000);
+		SeleniumTestHelper.Close_OpenedWindow("ASNs", driver);
+		Steps.logger.info("Close ASN window");
+	} catch (Exception e) {
+		Steps.testRes = "Failed";
+		e.printStackTrace();
+		Assert.assertTrue(false);
+	}
+}
+	
+	
 	@Then("^user log out from application$")
 	public void user_log_out_from_application() throws Throwable {
 		try {
@@ -396,13 +488,41 @@ public class StepDefInBound {
 		}
 	}
 
-	@And("^user opens RF menu and create iLPN using \"([^\"]*)\" menu$")
+	@And("^user opens RF menu and go to invenorty & perform \"([^\"]*)\" operation$")
 	public void user_opens_RF_menu_and_create_iLPN(String menuOption) throws Throwable {
 		try {
 			homePage.MenuItems_Distribution_Selection("RF Menu");
 			Steps.logger.info("Open RF menu");
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			rfMenu.inventoryFunctions(menuOption);
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		}
+	}
+	
+	@And("^user opens RF menu and \"([^\"]*)\" iLPN quantity using \"([^\"]*)\" menu in Inventory$")
+	public void user_opens_RF_menu_and_modify_iLPN(String operation, String menuOption) throws Throwable {
+		try {
+			homePage.MenuItems_Distribution_Selection("RF Menu");
+			Steps.logger.info("Open RF menu");
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			rfMenu.modifyiLPN(operation, menuOption);
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		}
+	}
+	
+	@And("^user opens RF menu and \"([^\"]*)\" from an iLPN using \"([^\"]*)\" menu in Inventory$")
+	public void user_opens_RF_menu_and_delete_line_from_an_iLPN(String operation, String menuOption) throws Throwable {
+		try {
+			homePage.MenuItems_Distribution_Selection("RF Menu");
+			Steps.logger.info("Open RF menu");
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			rfMenu.modifyiLPN(operation, menuOption);
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
@@ -446,6 +566,33 @@ public class StepDefInBound {
 			Assert.assertTrue(false);
 		}
 	}
+	
+	@Then("^user search for the LPN in iLPN screen, and validate the modification \"([^\"]*)\" in iLPN$")
+			public void user_opens_iLPN_and_validate_change_in_iLPN(String opeartion) throws Throwable {
+				try {
+						iLPNPage.validateiLPNModification(opeartion);
+				} catch (Exception e) {
+					Steps.testRes = "Failed";
+					e.printStackTrace();
+					Assert.assertTrue(false);
+				}
+			}
+	
+	@Then("^user search for the LPN in iLPN screen, and validate the iLPN status$")
+	public void user_opens_iLPN_and_validate_iLPN_status() throws Throwable {
+		homePage.MenuItems_Distribution_Selection("iLPNs");
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		try {
+			for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
+				iLPNPage.searchForTheILPNAndViewIt(RFMenuPage.iLPNz.get(i));
+				iLPNPage.validateiLPNStatusAndQty();
+			}
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		}
+	}
 
 	@And("user open iLPN and applies the lock code")
 	public void user_opens_iLPN_and_apply_lockCode() throws Throwable {
@@ -465,6 +612,24 @@ public class StepDefInBound {
 		}
 	}
 	
+	@And("user open iLPN and unlock the existing code")
+	public void user_opens_iLPN_and_unlock_the_exisitng_code() throws Throwable {
+		try {
+			homePage.MenuItems_Distribution_Selection("iLPNs");
+			Steps.logger.info("Open iLPN screen");
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
+				iLPNPage.searchForTheILPNAndViewIt(RFMenuPage.iLPNz.get(i));
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNPage.LocksTab, 50);
+				iLPNPage.unlockiLPN();
+			}
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		}
+	}
+	
 	@And("^validates the PIX Transactions \"([^\"]*)\" for this operation$")
 	public void validate_PIX_transaction(String PixCode) throws Throwable {
 		
@@ -476,6 +641,53 @@ public class StepDefInBound {
 				pixCodeArr = new String[] { PixCode };
 			}
 			pixTransaction.validatePixTransactionforLock_Unlock(pixCodeArr);
+		} catch (InterruptedException e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		} catch (IOException e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		}
+		
+	}
+	
+	@And("^validates the PIX Transactions \"([^\"]*)\" for modifying iLPN$")
+	public void validate_PIX_transaction_for_modifying_iLPN(String PixCode) throws Throwable {
+		
+		try {
+			String[] pixCodeArr = null;
+			if (PixCode.contains(",")) {
+				pixCodeArr = PixCode.split(",");
+			} else {
+				pixCodeArr = new String[] { PixCode };
+			}
+			pixTransaction.validatePixTransactionforModifyiLPN(pixCodeArr);
+		} catch (InterruptedException e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		} catch (IOException e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		}
+		
+	}
+	
+
+	@And("^validates the PIX Transactions \"([^\"]*)\" for consuming iLPN$")
+	public void validate_PIX_transaction_for_consuming_iLPN(String PixCode) throws Throwable {
+		
+		try {
+			String[] pixCodeArr = null;
+			if (PixCode.contains(",")) {
+				pixCodeArr = PixCode.split(",");
+			} else {
+				pixCodeArr = new String[] { PixCode };
+			}
+			pixTransaction.validatePixTransactionforconsumingiLPN(pixCodeArr);
 		} catch (InterruptedException e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();

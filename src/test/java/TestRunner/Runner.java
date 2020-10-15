@@ -11,16 +11,20 @@ import com.cucumber.listener.ExtentProperties;
 import com.cucumber.listener.Reporter;
 
 import cucumber.api.CucumberOptions;
+//import cucumber.api.testng.AbstractTestNGCucumberTests;
+//import cucumber.api.testng.AbstractTestNGCucumberTests;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
+
 
 
 @SuppressWarnings("deprecation")
 @CucumberOptions(
 		strict = true,
 		dryRun = false,
-		//tags={"@tag1001,@tag1002,@tag1003,@tag1004,@tag1005,@tag1006,@tag1007,@tag1008,@tag1009,@tag1010"},
-		tags={"@tag5"},
+		//tags={"@tag1001,@tag1002,@tag1003,@tag1004,@tag1005,@tag1006,@tag1007,@tag1008,@tag1009,@tag1010,@tag1011,@tag1012,@tag1013,@tag1014,@tag1015,@tag1016,@tag1017,@tag1018"},
+		tags={"@tag1018"},
 		features = {"src\\test\\java\\featureFile\\InboundScenarios.feature"},
+		//features = {"src\\test\\java\\featureFile"},
 		glue = {"StepDefinition"},
 		//format={"pretty","html:resources\\Reports\\cucumber-report.html"},
 		//format = { "pretty","json:resources\\cucumber-reports\\cucumber-report.json" },
@@ -49,8 +53,12 @@ public class Runner extends AbstractTestNGCucumberTests {
     public void tearDownClass() throws Exception {  
 	SDK.cleanup();
 	}*/
-	
-	
+	/*
+	 * @Override
+	 * 
+	 * @DataProvider(parallel = true) public Object[][] scenarios() { return
+	 * super.scenarios(); }
+	 */
 	@BeforeTest
 	public static void createExtentReport() {
 

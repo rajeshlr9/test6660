@@ -115,9 +115,8 @@ public class CreateBrowser {
 				options.setCapability(CapabilityType.PLATFORM_NAME, Platform.LINUX);
 				//URL dockerport = new URL("http://10.60.27.77:4444/wd/hub");
 				
-				URL dockerport = new URL("http://10.60.27.116:4444/wd/hub");
-				
-	
+				URL dockerport = new URL("http://10.60.28.5:31200/wd/hub");			
+
 				seleniumDriver = new RemoteWebDriver(dockerport,options);
 				seleniumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 				//seleniumDriver.manage().deleteAllCookies();
