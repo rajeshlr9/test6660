@@ -143,7 +143,7 @@ public class Steps {
 				try {
 					globalFunc.Screenshots.seleniumSnapshot(seleniumDriver);
 					System.out.println("naka2");
-					Reporter.addScreenCaptureFromPath(System.getProperty("user.dir")+ "\\resources\\Screenshots\\" + DateTime.strDate3 + ".png");
+					Reporter.addScreenCaptureFromPath(System.getProperty("user.dir")+ "\\resources\\Screenshots\\" + DateTime.strDate3 + ".jpeg");
 				} catch (Exception e) { // TODO Auto-generated
 					e.printStackTrace();
 					System.out.println("raka3");

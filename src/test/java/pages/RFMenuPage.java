@@ -89,6 +89,9 @@ public class RFMenuPage {
 
 	@FindBy(id = "dataForm:fdcode")
 	public WebElement finalDispCode;
+	
+	@FindBy(xpath = "//div[@id='c']")
+	public WebElement suggestedLoc;
 
 	@FindBy(xpath = "//span[text()='Accpt/Proceed']")
 	public WebElement acceptAndProceedBtn;
@@ -120,6 +123,9 @@ public class RFMenuPage {
 
 	@FindBy(xpath = "//a[text()='MM3 Returns']")
 	public WebElement MM3Returns;
+	
+	@FindBy(xpath = "//a[text()='MM3 Ptwy-Sys Dir']")
+	public WebElement MM3sysdirPutaway;
 
 	@FindBy(xpath = "//a[text()='MM3 Recv-Damages']")
 	public WebElement MM3recDmg;
@@ -441,6 +447,9 @@ public class RFMenuPage {
 
 	@FindBy(xpath = "//input[@id='containerEntry']")
 	public WebElement altiLPNBoxafterputaway;
+	
+	@FindBy(xpath = "//input[@id='subLocationEntryS_Input']")
+	public WebElement putawayLoctxtBox;
 
 	@FindBy(xpath = "//a[text()='RF- CC Act User']")
 	public WebElement rfCycleCountAct;
@@ -603,9 +612,6 @@ public class RFMenuPage {
 		String iLPN = null;
 		String fututeDate = SeleniumTestHelper.user_generate_estimated_delivery_date(365);
 		String[] futureDateAsArray = fututeDate.split("-");
-		System.out.println(futureDateAsArray[0]);
-		System.out.println(futureDateAsArray[1]);
-		System.out.println(futureDateAsArray[2]);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
 		RFmenu_info.click();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 50);
@@ -897,10 +903,8 @@ public class RFMenuPage {
 			case "MM3 Recv-CASE":
 				System.out.println("Receiving process starting with : " + receivingMethod + " menu");
 				Steps.logger.info("Receiving process starting with : " + receivingMethod + " menu");
-				// Thread.sleep(10000);
 				while (!(SeleniumTestHelper.isElementDisplayed(MM3Rec))) {
 					pageDown.click();
-					// Thread.sleep(5000);
 				}
 				SeleniumTestHelper.assertTrue(MM3Rec.isDisplayed());
 				SeleniumTestHelper.waitForElementToBeClickable(driver, MM3Rec, 50);
@@ -1784,5 +1788,50 @@ public class RFMenuPage {
 				+ iLPNz.get(1));
 		homepage.userClosesOpenedwindow("RF Menu");
 
+	}
+
+	public void putawayProcess(String putawayMethod) throws InterruptedException {
+		
+		Steps.logger.info("Start Putaway Process");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+		RFmenu_info.click();
+		Steps.logger.info("Clicked on RF Menu");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
+		Mainmenu.click();
+		Steps.logger.info("Clicked on Main Menu");
+		Thread.sleep(1000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuPutaway, 50);
+		rfMenuPutaway.click();
+		Steps.logger.info("Clicked on Putaway");
+		switch (putawayMethod) {
+		case "MM3 Ptwy-Sys Dir":
+			
+			while (!(SeleniumTestHelper.isElementDisplayed(MM3sysdirPutaway))) {
+				pageDown.click();
+			}
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, MM3sysdirPutaway, 50);
+			MM3sysdirPutaway.click();
+			//for (int i = 0; i < iLPNz.size(); i++) {
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, altiLPNBoxafterputaway, 50);
+			altiLPNBoxafterputaway.sendKeys("000001372"+Keys.ENTER);
+		//	altiLPNBoxafterputaway.sendKeys(iLPNz.get(i)+Keys.ENTER);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, suggestedLoc, 50);
+			String sugLoc=suggestedLoc.getText();
+			System.out.println(suggestedLoc.getText());
+			String[] sysSuggestedLocSplit = sugLoc.split("\n");
+			System.out.println(sysSuggestedLocSplit[1]);
+			putawayLoctxtBox.sendKeys(sysSuggestedLocSplit[1]);
+			
+			Steps.logger.info("Putaway Completed. Item moved to:"+sysSuggestedLocSplit[1]+" location");
+			Reporter.addStepLog("Putaway Completed. Item moved to:"+sysSuggestedLocSplit[1]+" location");
+			homepage.userClosesOpenedwindow("RF Menu");
+			//}
+			
+		break;
+		
+		default:
+			System.out.println("Invalid putaway operation");
+		}
+		
 	}
 }

@@ -48,6 +48,7 @@ import pages.ManhattanLoginPage;
 import pages.PixTransactionPage;
 import pages.PostMessagePage;
 import pages.RFMenuPage;
+import pages.ReserveLocationPage;
 import utils.Config;
 import utils.Driver;
 import utils.SeleniumTestHelper;
@@ -71,6 +72,7 @@ public class StepDefInBound {
 	ILPNPage iLPNPage = new ILPNPage();
 	ItemInvenByLocationPage itemInvenByLocationPage = new ItemInvenByLocationPage();
 	PixTransactionPage pixTransaction = new PixTransactionPage();
+	ReserveLocationPage resLocPage = new ReserveLocationPage();
 
 	String itemName = null;
 	String GtinNum = null;
@@ -486,6 +488,49 @@ public class StepDefInBound {
 			e.printStackTrace();
 			Assert.assertTrue(false);
 		}
+	}
+	
+	@And("^user opens RF menu and completes Putaway using \"([^\"]*)\" menu$")
+	public void user_opens_RF_menu_and_completes_Putaway(String putawayMethod) throws Throwable {
+		try {
+			homePage.MenuItems_Distribution_Selection("RF Menu");
+			Steps.logger.info("Open RF menu");
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			rfMenu.putawayProcess(putawayMethod);
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		}
+	}
+	
+	@And("^user open reserve locations & naviagtes to \"([^\"]*)\" zone and fetches the current quantity$")
+	public void fetch_current_qty_from_inspection_zone(String INSZone) throws InterruptedException, IOException {
+		try {
+			homePage.MenuItems_Configuration_Selection("Reserve Locations");
+			Steps.logger.info("Open Reserve Locations");
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			resLocPage.fetchQty(INSZone);
+			System.out.println("reserveLocationqty:"+resLocPage.reserveLocationqty);
+			homePage.user_closes_openedwindow("Reserve Locations - Reserve Location");
+		} catch (InterruptedException e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		} catch (IOException e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		}
+		
+	}
+	
+	@Then("^user navigates to reserve locations & validates that the quantity is increased in \"([^\"]*)\" by no of iLPN's moved$")
+	public void user_navigates_to_reserve_locations_validates_that_the_quantity_is_increased_in_by_no_of_iLPN_s_moved(String arg1) throws Throwable {
+	}
+
+	@Then("^validates that the iLPN is also moved to inspection zone$")
+	public void validates_that_the_iLPN_is_also_moved_to_inspection_zone() throws Throwable {
 	}
 
 	@And("^user opens RF menu and go to invenorty & perform \"([^\"]*)\" operation$")

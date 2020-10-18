@@ -10,15 +10,16 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import StepDefinition.Steps;
 import entity.Items;
 import utils.Driver;
 import utils.SeleniumTestHelper;
 
 public class ReserveLocationPage {
 	WebDriver driver;
-	
+	public String reserveLocationqty="";
 	public ReserveLocationPage() {
-		this.driver = Driver.getInstance();
+		this.driver = Steps.seleniumDriver;
 		PageFactory.initElements(driver, this);
 	}
 	
@@ -44,11 +45,23 @@ public class ReserveLocationPage {
 	@FindBy(xpath="//input[@value='Save']") 
 	public WebElement saveBtn;
 	
+	@FindBy(xpath="//input[@id='dataForm:listView:filterId:field20value1']") 
+	public WebElement locationBarcodetxtBox;
+	
+	@FindBy(xpath="//input[@id='filterId_fltrExpCol']") 
+	public WebElement expandBtn;
+	
 	@FindBy(xpath = "//img[@id='backImage']")
 	public WebElement backbtn;
 	
 	@FindBy(xpath="//input[@id='checkAll_c0_dataForm:listView:dataTable']") 
 	public WebElement firstRsrvLoc;
+	
+	@FindBy(xpath="//input[@id='rmButton_1View1_8341']") 
+	public WebElement viewBtn;
+	
+	@FindBy(xpath="//span[@id='dataForm:b22']") 
+	public WebElement currentQty;
 	
 	@FindBy(xpath="//select[@id='dataForm:b18']")
 	public WebElement invLockField;
@@ -164,5 +177,24 @@ driver.switchTo().frame(0);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, saveBtn, 50);
 		saveBtn.click();
 	}
+	
+	public void fetchQty(String zone) throws InterruptedException {
+		
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, expandBtn, 20);
+		expandBtn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, locationBarcodetxtBox, 20);
+		locationBarcodetxtBox.sendKeys(zone);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ApplyBtn, 20);
+		ApplyBtn.click();
+		Thread.sleep(1000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, firstRsrvLoc, 20);
+		firstRsrvLoc.click();
+		viewBtn.click();
+		
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, currentQty, 20);
+		reserveLocationqty= currentQty.getText();
+		Thread.sleep(1000);
+		}
+	
 	
 }
