@@ -19,7 +19,7 @@ Creating ASN through Post Message UI, checking status of the shipment and comple
 	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
 	Then user log out from application 
 	
-	@tag1002
+	@tag1002 @Smoke
 Scenario: B-345747 MANH - Receive and bypass stage or holding
 Creating ASN through Post Message UI and complete receiving bypasing through staging location & validating LPN in Inventory by location
 	Given I have excel data
@@ -36,7 +36,7 @@ Creating ASN through Post Message UI and complete receiving bypasing through sta
 	Then user opens Inventory by location screen and validates the LPN created  
 	Then user log out from application 
    
-	@tag1003
+	@tag1003 @Smoke
 Scenario: B-345766 Configure Receipt for Overage percentage -  allowable percentage  for customer
 Creating ASN through Post Message UI and validate Overage percentage - allowable percentage  for customer
 	Given I have excel data
