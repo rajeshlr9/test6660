@@ -11,22 +11,26 @@ import com.cucumber.listener.ExtentProperties;
 import com.cucumber.listener.Reporter;
 
 import cucumber.api.CucumberOptions;
+//import cucumber.api.testng.AbstractTestNGCucumberTests;
+//import cucumber.api.testng.AbstractTestNGCucumberTests;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
+
 
 
 @SuppressWarnings("deprecation")
 @CucumberOptions(
 		strict = true,
 		dryRun = false,
-		tags={"@tag1003"},
-		//tags={"@tag1007,@tag1008"},
-		features = {"src\\test\\java\\featureFile\\InboundScenarios.feature"},
+		//tags={"@tag1001,@tag1002,@tag1003,@tag1004,@tag1005,@tag1006,@tag1007,@tag1008,@tag1009,@tag1010,@tag1011,@tag1012,@tag1013,@tag1014,@tag1015,@tag1016,@tag1017,@tag1018,@tag1019,@tag10203"},
+		//tags={"@tag5"},
+		features = {"src\\test\\java\\featureFile\\Feature"},
+		//features = {"src\\test\\java\\featureFile"},
 		glue = {"StepDefinition"},
 		//format={"pretty","html:resources\\Reports\\cucumber-report.html"},
 		//format = { "pretty","json:resources\\cucumber-reports\\cucumber-report.json" },
 	//	plugin = { "com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"}, 
-				  format = { "pretty","html:resources\\cucumber-reports\\cucumber-report.html"},
-				//format = { "pretty","json:resources\\cucumber-reports\\cucumber-report.json" },
+				//  format = { "pretty","html:resources\\cucumber-reports\\cucumber-report.html"},
+				format = { "pretty","json:resources\\cucumber-reports\\cucumber-report.json" },
 				//plugin = { "com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"}, 
 		plugin = { "com.cucumber.listener.ExtentCucumberFormatter:","html:target\\cucumber-reports" },
 		monochrome=true
@@ -49,8 +53,12 @@ public class Runner2 extends AbstractTestNGCucumberTests {
     public void tearDownClass() throws Exception {  
 	SDK.cleanup();
 	}*/
-	
-	
+	/*
+	 * @Override
+	 * 
+	 * @DataProvider(parallel = true) public Object[][] scenarios() { return
+	 * super.scenarios(); }
+	 */
 	@BeforeTest
 	public static void createExtentReport() {
 
