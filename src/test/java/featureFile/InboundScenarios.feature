@@ -300,7 +300,7 @@ iLPN by deletinh the line & verify the iLPN, ASN & PIX transaction
 	And validates the PIX Transactions "300" for modifying iLPN
 	Then user log out from application 
 	
-@tag1018 @Regression
+@tag1018 @Regression @Sanity
 Scenario: B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Delete line from an iLPN having unallocatable lock code after ASN verification
 Creating ASN through Post Message UI and complete receiving bypasing through staging location & modify the 
 iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
@@ -344,7 +344,7 @@ validating iLPN have no lock & consume the iLPN using RF Menu. Also validate PIX
 	And validates the PIX Transactions "300" for consuming iLPN
 	Then user log out from application 
 	
-	@tag1020 @Regression
+	@tag1020 @Regression @Sanity
 Scenario: B-474831 FXL-FFD-CIL-MH_Inventory Control-Base Transactions# 4- Consume iLPN having lock code
 Creating iLPN through MM3 Create iLPN menu & applythe lock code,validating iLPN have some lock code & consume 
 the iLPN using RF Menu. Also validate PIX transaction.
@@ -360,7 +360,7 @@ Given I have excel data
 	And validates the PIX Transactions "606" for consuming iLPN
 	Then user log out from application 
 	
-	@tag1021
+	@tag1021 @Regression
 Scenario: B- 466712 Putaway – Un-Delivered Products that was received in MM3 returns
 Receiving of Un-Delivered Product using MM3 returns menu and complete putaway to inspection area Validate the 
 iLPN moved to inspection area and	“QSCINS” Locations Current Quantity will be incremented with no of LPN’s moved to location
@@ -383,7 +383,7 @@ iLPN moved to inspection area and	“QSCINS” Locations Current Quantity will b
 	Then user log out from application 
 	
 	
-	@tag1022
+	@tag1022 @Regression
 Scenario: B- 466712 Putaway – Damaged Products that was received using MM3 Recv-Damages having lock code DM-Damaged Return
 Receiving of Damaged Product in MM3 Recv-Damages menu and complete putaway to inspection area. Validate the iLPN moved 
 to inspection area and	“QSCINS” Locations Current Quantity will be incremented with no of LPN’s moved to location
@@ -405,7 +405,7 @@ to inspection area and	“QSCINS” Locations Current Quantity will be increment
 	Then validates that the iLPN is also moved to inspection zone "QSCINS"
 	Then user log out from application 
 	
-	@tag1023
+	@tag1023 @Regression
 Scenario: B- 466712 Putaway – Damaged Products that was received using blind receipt in MM3 returns
 Receiving of Damaged Product using blind receipt in MM3 returns menu and complete putaway to inspection area
 Validate the iLPN moved to inspection area and	“QSCINS” Locations Current Quantity will be incremented with no of LPN’s 
