@@ -90,7 +90,7 @@ public class RFMenuPage {
 	@FindBy(id = "dataForm:fdcode")
 	public WebElement finalDispCode;
 	
-	@FindBy(xpath = "//div[@id='c']")
+	@FindBy(xpath = "//div[@id='capSubLocationViewSuggested']")
 	public WebElement suggestedLoc;
 
 	@FindBy(xpath = "//span[text()='Accpt/Proceed']")
@@ -1811,21 +1811,21 @@ public class RFMenuPage {
 			}
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, MM3sysdirPutaway, 50);
 			MM3sysdirPutaway.click();
-			//for (int i = 0; i < iLPNz.size(); i++) {
+			for (int i = 0; i < iLPNz.size(); i++) {
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, altiLPNBoxafterputaway, 50);
-			altiLPNBoxafterputaway.sendKeys("000001372"+Keys.ENTER);
-		//	altiLPNBoxafterputaway.sendKeys(iLPNz.get(i)+Keys.ENTER);
+			altiLPNBoxafterputaway.sendKeys(iLPNz.get(i)+Keys.ENTER);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, suggestedLoc, 50);
 			String sugLoc=suggestedLoc.getText();
 			System.out.println(suggestedLoc.getText());
 			String[] sysSuggestedLocSplit = sugLoc.split("\n");
 			System.out.println(sysSuggestedLocSplit[1]);
-			putawayLoctxtBox.sendKeys(sysSuggestedLocSplit[1]);
+			putawayLoctxtBox.sendKeys(sysSuggestedLocSplit[1]+Keys.ENTER);
+			Thread.sleep(1000);
 			
 			Steps.logger.info("Putaway Completed. Item moved to:"+sysSuggestedLocSplit[1]+" location");
 			Reporter.addStepLog("Putaway Completed. Item moved to:"+sysSuggestedLocSplit[1]+" location");
 			homepage.userClosesOpenedwindow("RF Menu");
-			//}
+			}
 			
 		break;
 		

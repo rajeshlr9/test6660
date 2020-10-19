@@ -526,12 +526,44 @@ public class StepDefInBound {
 	}
 	
 	@Then("^user navigates to reserve locations & validates that the quantity is increased in \"([^\"]*)\" by no of iLPN's moved$")
-	public void user_navigates_to_reserve_locations_validates_that_the_quantity_is_increased_in_by_no_of_iLPN_s_moved(String arg1) throws Throwable {
+	public void user_navigates_to_reserve_locations_validates_that_the_quantity_is_increased_in_by_no_of_iLPN_s_moved(String inspectionZone) throws Throwable {
+		try {
+			homePage.MenuItems_Configuration_Selection("Reserve Locations");
+			Steps.logger.info("Open Reserve Locations");
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			resLocPage.validateQty(inspectionZone);
+			homePage.user_closes_openedwindow("Reserve Locations - Reserve Location");
+		} catch (InterruptedException e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		} catch (IOException e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		}
 	}
+	
 
-	@Then("^validates that the iLPN is also moved to inspection zone$")
-	public void validates_that_the_iLPN_is_also_moved_to_inspection_zone() throws Throwable {
+	@Then("^validates that the iLPN is also moved to inspection zone \"([^\"]*)\"$")
+	public void validates_that_the_iLPN_is_also_moved_to_inspection_zone(String inspectionZone) throws Throwable {
+		try {
+			homePage.MenuItems_Configuration_Selection("Reserve Locations");
+			Steps.logger.info("Open Reserve Locations");
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			resLocPage.validateiLPNinReserveLoc(inspectionZone);
+			homePage.user_closes_openedwindow("Reserve Locations - iLPNs");
+		} catch (InterruptedException e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		} catch (IOException e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		}
 	}
+		
 
 	@And("^user opens RF menu and go to invenorty & perform \"([^\"]*)\" operation$")
 	public void user_opens_RF_menu_and_create_iLPN(String menuOption) throws Throwable {

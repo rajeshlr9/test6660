@@ -10,6 +10,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import com.cucumber.listener.Reporter;
+
 import StepDefinition.Steps;
 import entity.Items;
 import utils.Driver;
@@ -18,6 +20,7 @@ import utils.SeleniumTestHelper;
 public class ReserveLocationPage {
 	WebDriver driver;
 	public String reserveLocationqty="";
+	public String reserveLocationqtyafterupdate="";
 	public ReserveLocationPage() {
 		this.driver = Steps.seleniumDriver;
 		PageFactory.initElements(driver, this);
@@ -57,8 +60,20 @@ public class ReserveLocationPage {
 	@FindBy(xpath="//input[@id='checkAll_c0_dataForm:listView:dataTable']") 
 	public WebElement firstRsrvLoc;
 	
+	@FindBy(xpath="//input[@id='rmButton_2LPNs1_8342']") 
+	public WebElement LPNsBtn;
+	
+	@FindBy(xpath="//input[@id='dataForm:LPNListInOutboundMain_lv:LPNList_Inbound_filterId1:field10value1']") 
+	public WebElement iLPntxtBoxResLoc;
+	
+	@FindBy(xpath="//input[@id='dataForm:LPNListInOutboundMain_lv:LPNList_Inbound_filterId1:LPNList_Inbound_filterId1apply']") 
+	public WebElement iLPnResLocApplyBtn;
+	
 	@FindBy(xpath="//input[@id='rmButton_1View1_8341']") 
 	public WebElement viewBtn;
+	
+	@FindBy(xpath="//span[@id='dataForm:LPNListInOutboundMain_lv:dataTable:0:LPNList_Outbound_Link_NameText_param_out']") 
+	public WebElement iLPNvalue;
 	
 	@FindBy(xpath="//span[@id='dataForm:b22']") 
 	public WebElement currentQty;
@@ -193,8 +208,60 @@ driver.switchTo().frame(0);
 		
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, currentQty, 20);
 		reserveLocationqty= currentQty.getText();
-		Thread.sleep(1000);
+		Steps.logger.info("Current reserve Location qty:"+reserveLocationqty);
+		Reporter.addStepLog("Current reserve Location qty:"+reserveLocationqty);
+		Thread.sleep(2000);
 		}
+
+	public void validateQty(String inspectionZone) throws InterruptedException {
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, expandBtn, 20);
+		expandBtn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, locationBarcodetxtBox, 20);
+		locationBarcodetxtBox.sendKeys(inspectionZone);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ApplyBtn, 20);
+		ApplyBtn.click();
+		Thread.sleep(1000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, firstRsrvLoc, 20);
+		firstRsrvLoc.click();
+		viewBtn.click();
+		
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, currentQty, 20);
+		reserveLocationqtyafterupdate= currentQty.getText();
+		int iLPNsize=	RFMenuPage.iLPNz.size();
+		String newqty= String.valueOf(Integer.parseInt(reserveLocationqty)+iLPNsize);
+		SeleniumTestHelper.assertEquals(reserveLocationqtyafterupdate, newqty);
+		Steps.logger.info("Current reserve Location qty after update:"+reserveLocationqtyafterupdate);
+		Reporter.addStepLog("Current reserve Location qty after update:"+reserveLocationqtyafterupdate);
+		Thread.sleep(2000);		
+	}
+
+	public void validateiLPNinReserveLoc(String inspectionZone) throws InterruptedException {
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, expandBtn, 20);
+		expandBtn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, locationBarcodetxtBox, 20);
+		locationBarcodetxtBox.sendKeys(inspectionZone);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ApplyBtn, 20);
+		ApplyBtn.click();
+		Thread.sleep(1000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, firstRsrvLoc, 20);
+		firstRsrvLoc.click();
+		LPNsBtn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPntxtBoxResLoc, 20);
+		for (int j = 0; j < RFMenuPage.iLPNz.size(); j++) {
+		iLPntxtBoxResLoc.sendKeys(RFMenuPage.iLPNz.get(j));
+		Thread.sleep(1000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPnResLocApplyBtn, 20);
+		iLPnResLocApplyBtn.click();
+		Thread.sleep(5000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNvalue, 20);
+		String iLPN=iLPNvalue.getText();
+		System.out.println("iLPN:"+iLPN);
+		
+		SeleniumTestHelper.assertEquals(iLPN, RFMenuPage.iLPNz.get(j));
+		Steps.logger.info("iLPN:"+iLPN+" is present in inspection zone");
+		Reporter.addStepLog("iLPN:"+iLPN+" is present in inspection zone");
+		}
+	}
 	
 	
 }

@@ -56,7 +56,7 @@ Creating ASN through Post Message UI and validate Overage percentage - allowable
 
 	@tag1004 @Regression
 Scenario: B-345766 Configure Receipt for Overage percentage -  allowable percentage  for customer
-Creating ASN through Post Message UI and validate Overage percentage - allowable percentage  for customer receive as an associate
+Creating ASN through Post Message UI using admin credentials and validate Overage percentage - allowable percentage  for customer receive as an associate
 	Given I have excel data
 	| Scenario3 |
 	And Open the chrome browser by selenium
@@ -368,18 +368,18 @@ iLPN moved to inspection area and	“QSCINS” Locations Current Quantity will b
 	| Scenario22 |
 	And Open the chrome browser by selenium
 	When user logs into Manhattan application using "Supervisor" Credentials
-	#When user create xml file using "Single Line Return ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
-   # And user update xml itemDetails from excel sheet
-   # And user opens post message screen and upload file in order to create ASN 
-	#Then user verify the response 
-	#And user views ASN, get and verify item details 
-	#And user opens RF menu and completes Receiving using "MM3 Returns" menu
-	#Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
-	#Then user search for the LPN in iLPN screen, and validate the lock code
+	When user create xml file using "Single Line Return ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
+    And user update xml itemDetails from excel sheet
+   And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Returns" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
+	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations & naviagtes to "QSCINS" zone and fetches the current quantity
 	And user opens RF menu and completes Putaway using "MM3 Ptwy-Sys Dir" menu
 	Then user navigates to reserve locations & validates that the quantity is increased in "QSCINS" by no of iLPN's moved
-	Then validates that the iLPN is also moved to inspection zone
+	Then validates that the iLPN is also moved to inspection zone "QSCINS"
 	Then user log out from application 
 	
 	
@@ -389,7 +389,8 @@ Receiving of Damaged Product in MM3 Recv-Damages menu and complete putaway to in
 to inspection area and	“QSCINS” Locations Current Quantity will be incremented with no of LPN’s moved to location
 	Given I have excel data
 	| Scenario23 |
-	When user logs into Manhattan application using "Associate" Credentials 
+	And Open the chrome browser by selenium
+	When user logs into Manhattan application using "Associate" Credentials
     When user create xml file using "Single Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
     And user update xml itemDetails from excel sheet
     And user opens post message screen and upload file in order to create ASN 
@@ -401,7 +402,7 @@ to inspection area and	“QSCINS” Locations Current Quantity will be increment
 	And user open reserve locations & naviagtes to "QSCINS" zone and fetches the current quantity
 	And user opens RF menu and completes Putaway using "MM3 Ptwy-Sys Dir" menu
 	Then user navigates to reserve locations & validates that the quantity is increased in "QSCINS" by no of iLPN's moved
-	Then validates that the iLPN is also moved to inspection zone
+	Then validates that the iLPN is also moved to inspection zone "QSCINS"
 	Then user log out from application 
 	
 	@tag1023
@@ -419,5 +420,5 @@ moved to location
 	And user open reserve locations & naviagtes to "QSCINS" zone and fetches the current quantity
 	And user opens RF menu and completes Putaway using "MM3 Ptwy-Sys Dir" menu
 	Then user navigates to reserve locations & validates that the quantity is increased in "QSCINS" by no of iLPN's moved
-	Then validates that the iLPN is also moved to inspection zone
+	Then validates that the iLPN is also moved to inspection zone "QSCINS"
 	Then user log out from application 
