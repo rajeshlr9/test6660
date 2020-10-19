@@ -2,7 +2,7 @@ Feature: Inbound Scenarios
 
 
 	
-	@tag1001
+	@tag1001 @Regression
 Scenario: Veriy ASN creation through Post MessageUI-excel
 Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location through RF Menu
 	Given I have excel data
@@ -19,7 +19,7 @@ Creating ASN through Post Message UI, checking status of the shipment and comple
 	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
 	Then user log out from application 
 	
-	@tag1002 @Smoke
+	@tag1002 @Smoke @Regression
 Scenario: B-345747 MANH - Receive and bypass stage or holding
 Creating ASN through Post Message UI and complete receiving bypasing through staging location & validating LPN in Inventory by location
 	Given I have excel data
@@ -36,7 +36,7 @@ Creating ASN through Post Message UI and complete receiving bypasing through sta
 	Then user opens Inventory by location screen and validates the LPN created  
 	Then user log out from application 
    
-	@tag1003 @Smoke
+	@tag1003 @Smoke @Regression
 Scenario: B-345766 Configure Receipt for Overage percentage -  allowable percentage  for customer
 Creating ASN through Post Message UI and validate Overage percentage - allowable percentage  for customer
 	Given I have excel data
@@ -54,7 +54,7 @@ Creating ASN through Post Message UI and validate Overage percentage - allowable
 	Then user log out from application 
 	
 
-	@tag1004
+	@tag1004 @Regression
 Scenario: B-345766 Configure Receipt for Overage percentage -  allowable percentage  for customer
 Creating ASN through Post Message UI and validate Overage percentage - allowable percentage  for customer receive as an associate
 	Given I have excel data
@@ -74,7 +74,7 @@ Creating ASN through Post Message UI and validate Overage percentage - allowable
 	Then user log out from application 	
 	
 	
-	@tag1005
+	@tag1005 @Regression
 Scenario: B-345784 MANH - Break Split LPN IB
 Creating ASN through Post Message UI and receiving in 2 LPN's. Move few quantities from 1st LPN to 2nd location & validating LPN's in Inventory by location
 	Given I have excel data
@@ -93,7 +93,7 @@ Creating ASN through Post Message UI and receiving in 2 LPN's. Move few quantiti
 	#Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started"
 	Then user log out from application 
 	
-	@tag1006
+	@tag1006 @Regression
 Scenario: Multi Line Receiving
 Creating 2 line ASN through Post Message UI, checking status of the shipment and complete receiving in Staging location through RF Menu
 	Given I have excel data
@@ -111,7 +111,7 @@ Creating 2 line ASN through Post Message UI, checking status of the shipment and
 	Then user log out from application 
 
 	
-	@tag1007
+	@tag1007 @Regression
 Scenario: B-441160 Receiving Returned Un-Delivered Product using blind receipt
 Receiving of Un-Delivered Product using blind receipt in MM3 returns menu and verifying the status of the ASN 
 	Given I have excel data
@@ -124,7 +124,7 @@ Receiving of Un-Delivered Product using blind receipt in MM3 returns menu and ve
 	Then user log out from application 
 	
 	
-	@tag1008
+	@tag1008 @Regression
 Scenario: B-441160 Receiving Returned Un-Delivered Product by creating ASN
 Receiving of Un-Delivered Product in MM3 returns menu by creating ASN and verifying the status of the ASN 
 	Given I have excel data
@@ -140,7 +140,7 @@ Receiving of Un-Delivered Product in MM3 returns menu by creating ASN and verify
 	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
 	Then user log out from application 
 	
-	@tag1009
+	@tag1009 @Regression
 Scenario: B-459309 Receive Damages: Receiving Damaged Product using MM3 Recv-Damages option from RF Menu using supervispr credentials
 Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verifying the status of the ASN 
 	Given I have excel data
@@ -157,7 +157,7 @@ Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verify
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	Then user log out from application 
 	
-	@tag1010
+	@tag1010 @Regression
 Scenario: B-459309 Receive Damages: Receiving of Damaged Returned Product using blind receipt
 Receiving of Damaged Returned Product using blind receipt in MM3 returns menu and verifying the status of the ASN 
 	Given I have excel data
@@ -169,7 +169,7 @@ Receiving of Damaged Returned Product using blind receipt in MM3 returns menu an
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	Then user log out from application 
 	
-	@tag1011
+	@tag1011 @Regression
 Scenario: B-467729 – Configure Manhattan for RF lock/unlock iLPN: Lock an iLPN using the user provided lock code
 Create an iLPN using RF MM3 Create iLPN option and apply the lock code provided by user
 	Given I have excel data
@@ -182,7 +182,7 @@ Create an iLPN using RF MM3 Create iLPN option and apply the lock code provided 
 	And validates the PIX Transactions "300,606" for this operation
 	Then user log out from application 
 	
-	@tag1012
+	@tag1012 @Regression
 Scenario: B-467729 – Configure Manhattan for RF lock/unlock iLPN: Unlock an iLPN which already has some lock
 	Given I have excel data
 	| Scenario13 |
@@ -194,7 +194,7 @@ Scenario: B-467729 – Configure Manhattan for RF lock/unlock iLPN: Unlock an iL
 	And validates the PIX Transactions "300,606" for this operation
 	Then user log out from application 
 	
-	@tag1013
+	@tag1013 @Regression
 Scenario: B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Increase iLPN qty having no lock code before ASN verification
 Creating ASN through Post Message UI and complete receiving bypasing through staging location & modify the 
 iLPN by increasing the quantity & verify the iLPN, ASN and PIX transaction
@@ -215,7 +215,7 @@ iLPN by increasing the quantity & verify the iLPN, ASN and PIX transaction
 	Then user log out from application 
 
 
-@tag1014
+@tag1014 @Regression
 Scenario: B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Decrease iLPN qty having no lock code before ASN verification
 Creating ASN through Post Message UI and complete receiving bypasing through staging location & modify the 
 iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
@@ -235,7 +235,7 @@ iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
 	And validates the PIX Transactions "300" for modifying iLPN
 	Then user log out from application 
 	
-	@tag1015
+	@tag1015 @Regression
 Scenario: B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Increase iLPN qty having unallocatable lock code after ASN verification
 Creating ASN through Post Message UI and complete receiving and verify the ASN & modify the 
 iLPN by increasing the quantity & verify the iLPN, ASN and PIX transaction
@@ -258,7 +258,7 @@ iLPN by increasing the quantity & verify the iLPN, ASN and PIX transaction
 	Then user log out from application 
 
 
-@tag1016
+@tag1016 @Regression
 Scenario: B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Decrease iLPN qty having unallocatable lock code after ASN verification
 Creating ASN through Post Message UI and complete receiving bypasing through staging location & modify the 
 iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
@@ -280,7 +280,7 @@ iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
 	And validates the PIX Transactions "606" for modifying iLPN
 	Then user log out from application 
 	
-	@tag1017
+	@tag1017 @Regression
 Scenario: B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Delete line from an iLPN having no lock code before ASN verification
 Creating ASN through Post Message UI and complete receiving bypasing through staging location & modify the 
 iLPN by deletinh the line & verify the iLPN, ASN & PIX transaction
@@ -300,7 +300,7 @@ iLPN by deletinh the line & verify the iLPN, ASN & PIX transaction
 	And validates the PIX Transactions "300" for modifying iLPN
 	Then user log out from application 
 	
-@tag1018
+@tag1018 @Regression
 Scenario: B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Delete line from an iLPN having unallocatable lock code after ASN verification
 Creating ASN through Post Message UI and complete receiving bypasing through staging location & modify the 
 iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
@@ -322,7 +322,7 @@ iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
 	And validates the PIX Transactions "606" for modifying iLPN
 	Then user log out from application 
 	
-	@tag1019
+	@tag1019 @Regression
 Scenario: B-474831 FXL-FFD-CIL-MH_Inventory Control-Base Transactions# 4- Consume iLPN having no lock
 Creating ASN through Post Message UI and complete receiving bypasing through staging location & 
 validating iLPN have no lock & consume the iLPN using RF Menu. Also validate PIX transaction
@@ -344,7 +344,7 @@ validating iLPN have no lock & consume the iLPN using RF Menu. Also validate PIX
 	And validates the PIX Transactions "300" for consuming iLPN
 	Then user log out from application 
 	
-	@tag1020
+	@tag1020 @Regression
 Scenario: B-474831 FXL-FFD-CIL-MH_Inventory Control-Base Transactions# 4- Consume iLPN having lock code
 Creating iLPN through MM3 Create iLPN menu & applythe lock code,validating iLPN have some lock code & consume 
 the iLPN using RF Menu. Also validate PIX transaction.
