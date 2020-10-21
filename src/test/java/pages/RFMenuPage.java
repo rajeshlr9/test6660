@@ -1558,7 +1558,8 @@ public class RFMenuPage {
 					itemBarcodeInRFcreateIlpnTxtBox
 							.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("Item")) + Keys.ENTER);
 					Steps.logger.info("Enter Item Id: " + Steps.ItemDataMap.get(i).get("Item"));
-					inventoryTypeInRFcreateIlpnTxtBox.sendKeys(Keys.ENTER);
+					//inventoryTypeInRFcreateIlpnTxtBox.sendKeys(Keys.ENTER);
+					productStatusTxtBox.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("ProductStatus")) + Keys.ENTER);
 					qtyPackedInRFcreateIlpnTxtBox
 							.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")) + Keys.ENTER);
 					Steps.logger.info("Enter Qty: " + String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")));
