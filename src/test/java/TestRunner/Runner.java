@@ -21,9 +21,9 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 @CucumberOptions(
 		strict = true,
 		dryRun = false,
-		tags={"@tag1011,@tag1020"},
+		//tags={"@tag1011,@tag1020"},
 		//tags={"@tag1013,@tag1014,@tag1015,@tag1016,@tag1017,@tag1018,@tag1019,@tag1020,@tag1021,@tag1022,@tag1023"},
-				//tags={"@tag5"},
+				tags={"@tag5"},
 		features = {"src\\test\\java\\featureFile"},
 		//features = {"src\\test\\java\\featureFile"},
 		glue = {"StepDefinition"},
