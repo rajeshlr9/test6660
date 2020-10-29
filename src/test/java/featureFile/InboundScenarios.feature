@@ -2,7 +2,7 @@ Feature: Inbound Scenarios
 
 
 	
-	@tag1001 @Regression
+	@tag1001 @Regression_QSC 
 Scenario: Veriy ASN creation through Post MessageUI-excel
 Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location through RF Menu
 	Given I have excel data
@@ -111,7 +111,7 @@ Creating 2 line ASN through Post Message UI, checking status of the shipment and
 	Then user log out from application 
 
 	
-	@tag1007 @Regression
+	@tag1007 @Regression @Sanity_QSC
 Scenario: B-441160 Receiving Returned Un-Delivered Product using blind receipt
 Receiving of Un-Delivered Product using blind receipt in MM3 returns menu and verifying the status of the ASN 
 	Given I have excel data
@@ -124,7 +124,7 @@ Receiving of Un-Delivered Product using blind receipt in MM3 returns menu and ve
 	Then user log out from application 
 	
 	
-	@tag1008 @Regression
+	@tag1008 @Regression @Smoke_QSC
 Scenario: B-441160 Receiving Returned Un-Delivered Product by creating ASN
 Receiving of Un-Delivered Product in MM3 returns menu by creating ASN and verifying the status of the ASN 
 	Given I have excel data
