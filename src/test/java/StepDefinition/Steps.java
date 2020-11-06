@@ -58,6 +58,7 @@ public class Steps {
 	public static Properties prop;
 	public static String testRes = "";
 	public static Logger logger;
+	GlobalClass ob = new GlobalClass();
 	public static HashMap<String, String> scenarioData;
 	public static Map<Integer, Map<String, String>> ItemDataMap;
 	public static Map<Integer, Map<String, String>> ServiceMap;
@@ -80,6 +81,9 @@ public class Steps {
 			this.scenario = scenario;
 			dir = System.getProperty("user.dir");
 			System.out.println(dir);
+			scenarioData=new HashMap<String, String>();
+			ItemDataMap= new HashMap<Integer, Map<String,String>>();
+			ServiceMap=new HashMap<Integer, Map<String,String>>();
 			logger = Logger.getLogger("Selenium-leanFt");
 			PropertyConfigurator.configure("Log4j.properties");
 			prop = new Properties();
@@ -161,10 +165,16 @@ public class Steps {
 
 	}
 
+	@Given("We have Manhattan environmnet up and running")
+	public void givenCondition() {
+		System.out.println("Assuming Manhattan environment is up and running");
+		
+	}
+	
 	@Given("I have excel data")
 	public void readExcelData(DataTable scenarioName) throws Exception {
 		try {
-			GlobalClass ob = new GlobalClass();
+			
 			List<List<String>> data = scenarioName.raw();
 			scenarioData = ob.getExcelData(data.get(0).get(0), "ScenarioData", Config.getProperty("TestDataPath"));
 			System.out.println(scenarioData);

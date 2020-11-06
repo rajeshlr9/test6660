@@ -2,26 +2,26 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
-      <![CDATA[Execution started for : Veriy ASN creation through Post MessageUI-excel]]>
+      <![CDATA[Execution started for : B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Decrease iLPN qty having unallocatable lock code after ASN verification]]>
     </line>
   </reporter-output>
-  <suite started-at="2020-10-23T12:37:41 GMT" name="Suite" finished-at="2020-10-23T12:40:03 GMT" duration-ms="142460">
+  <suite started-at="2020-11-06T08:48:53 GMT" name="Suite" finished-at="2020-11-06T08:53:52 GMT" duration-ms="298685">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2020-10-23T12:37:41 GMT" name="Test" finished-at="2020-10-23T12:40:03 GMT" duration-ms="142460">
+    <test started-at="2020-11-06T08:48:53 GMT" name="Test" finished-at="2020-11-06T08:53:52 GMT" duration-ms="298685">
       <class name="TestRunner.Runner">
-        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-10-23T12:37:41 GMT" name="createExtentReport" finished-at="2020-10-23T12:37:41 GMT" duration-ms="90" status="PASS">
+        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-11-06T08:48:53 GMT" name="createExtentReport" finished-at="2020-11-06T08:48:53 GMT" duration-ms="87" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createExtentReport -->
-        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-10-23T12:37:41 GMT" name="setUpClass" finished-at="2020-10-23T12:37:42 GMT" duration-ms="843" status="PASS">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-11-06T08:48:53 GMT" name="setUpClass" finished-at="2020-11-06T08:48:55 GMT" duration-ms="1645" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-10-23T12:37:42 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2020-10-23T12:40:03 GMT" duration-ms="140557" status="PASS">
+        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-11-06T08:48:55 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2020-11-06T08:53:51 GMT" duration-ms="296120" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -31,15 +31,15 @@
           </params>
           <reporter-output>
             <line>
-              <![CDATA[Execution started for : Veriy ASN creation through Post MessageUI-excel]]>
+              <![CDATA[Execution started for : B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Decrease iLPN qty having unallocatable lock code after ASN verification]]>
             </line>
           </reporter-output>
         </test-method> <!-- feature -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-10-23T12:40:03 GMT" name="tearDownClass" finished-at="2020-10-23T12:40:03 GMT" duration-ms="503" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-11-06T08:53:51 GMT" name="tearDownClass" finished-at="2020-11-06T08:53:52 GMT" duration-ms="510" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-10-23T12:40:03 GMT" name="writeExtentReport" finished-at="2020-10-23T12:40:03 GMT" duration-ms="8" status="PASS">
+        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-11-06T08:53:52 GMT" name="writeExtentReport" finished-at="2020-11-06T08:53:52 GMT" duration-ms="10" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- writeExtentReport -->

@@ -26,7 +26,7 @@ public class ManhattanLoginPage extends Steps{
 
 	public static String TestedBy = null;
 
-	public static String environment = "TEST"; // Different environments Dev and Test
+	public static String environment = Config.getProperty("Environment"); // Different environments Dev and Test
 
 	@FindBy(id = "username")
 	public WebElement username;
@@ -83,11 +83,16 @@ public class ManhattanLoginPage extends Steps{
 				if (env.equalsIgnoreCase("Dev")) {
 					username.sendKeys(Config.getProperty("Username_Dev"));
 					password.sendKeys(Config.getProperty("Password_Dev"));
-				} else if (env.equalsIgnoreCase("Test")) {
-					username.sendKeys(Config.getProperty("Username_Test"));
-					Steps.logger.info("UserName: " + Config.getProperty("Username_Test"));
-					password.sendKeys(Config.getProperty("Password_Test"));
-					Steps.logger.info("Password: " + Config.getProperty("Password_Test"));
+				} else if (env.equalsIgnoreCase("QA")) {
+					username.sendKeys(Config.getProperty("Username_QA"));
+					Steps.logger.info("UserName: " + Config.getProperty("Username_QA"));
+					password.sendKeys(Config.getProperty("Password_QA"));
+					Steps.logger.info("Password: " + Config.getProperty("Password_QA"));
+				}else if (env.equalsIgnoreCase("UA")) {
+					username.sendKeys(Config.getProperty("Username_UA"));
+					Steps.logger.info("UserName: " + Config.getProperty("Username_UA"));
+					password.sendKeys(Config.getProperty("Password_UA"));
+					Steps.logger.info("Password: " + Config.getProperty("Password_UA"));
 				}
 				SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(signInBtn));
 				signInBtn.click();
@@ -142,6 +147,8 @@ public class ManhattanLoginPage extends Steps{
 						.getText();
 				// Steps.logger.info("TestedBy: "+TestedBy);
 				Reporter.addStepLog("User logged in successfully");
+				userLoggedin.click();
+				Thread.sleep(2000);
 
 			}
 
@@ -154,7 +161,7 @@ public class ManhattanLoginPage extends Steps{
 
 	}
 
-	public void loginToManhattanApp(String userType) {
+	public void loginToManhattanApp(String userType) throws InterruptedException {
 
 		try {
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, username, 180);
@@ -184,31 +191,57 @@ public class ManhattanLoginPage extends Steps{
 					System.out.println("User trying to login with : " + userType + " credentials");
 					break;
 				}
-			} else if (env.equalsIgnoreCase("Test")) {
+			} else if (env.equalsIgnoreCase("QA")) {
 				switch (userType) {
 				case "Admin":
-					username.sendKeys(Config.getProperty("TestUsername_Admin"));
-					Steps.logger.info("UserName: " + Config.getProperty("TestUsername_Admin"));
-					password.sendKeys(Config.getProperty("TestPassword_Admin"));
-					Steps.logger.info("Password: " + Config.getProperty("TestPassword_Admin"));
+					username.sendKeys(Config.getProperty("QAUsername_Admin"));
+					Steps.logger.info("UserName: " + Config.getProperty("QAUsername_Admin"));
+					password.sendKeys(Config.getProperty("QAPassword_Admin"));
+					Steps.logger.info("Password: " + Config.getProperty("QAPassword_Admin"));
 					break;
 				case "Supervisor":
-					username.sendKeys(Config.getProperty("TestUsername_Supervisor"));
-					Steps.logger.info("UserName: " + Config.getProperty("TestUsername_Supervisor"));
-					password.sendKeys(Config.getProperty("TestPassword_Supervisor"));
-					Steps.logger.info("Password: " + Config.getProperty("TestPassword_Supervisor"));
+					username.sendKeys(Config.getProperty("QAUsername_Supervisor"));
+					Steps.logger.info("UserName: " + Config.getProperty("QAUsername_Supervisor"));
+					password.sendKeys(Config.getProperty("QAPassword_Supervisor"));
+					Steps.logger.info("Password: " + Config.getProperty("QAPassword_Supervisor"));
 					break;
 				case "Associate":
-					username.sendKeys(Config.getProperty("TestUsername_Associate"));
-					Steps.logger.info("UserName: " + Config.getProperty("TestUsername_Associate"));
-					password.sendKeys(Config.getProperty("TestPassword_Associate"));
-					Steps.logger.info("Password: " + Config.getProperty("TestPassword_Associate"));
+					username.sendKeys(Config.getProperty("QAUsername_Associate"));
+					Steps.logger.info("UserName: " + Config.getProperty("QAUsername_Associate"));
+					password.sendKeys(Config.getProperty("QAPassword_Associate"));
+					Steps.logger.info("Password: " + Config.getProperty("QAPassword_Associate"));
 					break;
 
 				default:
 					System.out.println("User trying to login with : " + userType + " credentials");
 					break;
 				}
+			}
+				else if (env.equalsIgnoreCase("UA")) {
+					switch (userType) {
+					case "Admin":
+						username.sendKeys(Config.getProperty("UAUsername_Admin"));
+						Steps.logger.info("UserName: " + Config.getProperty("UAUsername_Admin"));
+						password.sendKeys(Config.getProperty("UAPassword_Admin"));
+						Steps.logger.info("Password: " + Config.getProperty("UAPassword_Admin"));
+						break;
+					case "Supervisor":
+						username.sendKeys(Config.getProperty("UAUsername_Supervisor"));
+						Steps.logger.info("UserName: " + Config.getProperty("UAUsername_Supervisor"));
+						password.sendKeys(Config.getProperty("UAPassword_Supervisor"));
+						Steps.logger.info("Password: " + Config.getProperty("UAPassword_Supervisor"));
+						break;
+					case "Associate":
+						username.sendKeys(Config.getProperty("UAUsername_Associate"));
+						Steps.logger.info("UserName: " + Config.getProperty("UAUsername_Associate"));
+						password.sendKeys(Config.getProperty("UAPassword_Associate"));
+						Steps.logger.info("Password: " + Config.getProperty("UAPassword_Associate"));
+						break;
+
+					default:
+						System.out.println("User trying to login with : " + userType + " credentials");
+						break;
+					}
 			}
 			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(signInBtn));
 			signInBtn.click();
@@ -251,6 +284,7 @@ public class ManhattanLoginPage extends Steps{
 				SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(tileSingleClick));
 				Steps.logger.info("Single click is enabled");
 				tileSingleClick.click();
+				Thread.sleep(1000);
 			}
 
 			TestedBy = driver
@@ -258,7 +292,8 @@ public class ManhattanLoginPage extends Steps{
 					.getText();
 			// Steps.logger.info("TestedBy: "+TestedBy);
 			Reporter.addStepLog("User logged in successfully with "+ userType+" crdentials");
-
+			Thread.sleep(2000);
+			userLoggedin.click();
 		}
 
 		catch (NoSuchElementException noSuchElementExec) {

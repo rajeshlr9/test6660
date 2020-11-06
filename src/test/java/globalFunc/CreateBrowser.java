@@ -73,7 +73,7 @@ public class CreateBrowser {
 				
 			case "chrome":
 				
-				System.setProperty("webdriver.chrome.driver", "C:\\Users\\ffd-sys-team\\git\\SampleMavenProj\\drivers\\chromedriver.exe");
+				System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("--start-maximized");
 				Map<String, Object> prefs = new HashMap<String, Object>();

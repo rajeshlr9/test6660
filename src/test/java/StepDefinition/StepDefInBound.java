@@ -58,6 +58,7 @@ import utils.Xpathxml;
 public class StepDefInBound {
 	WebDriver driver = Steps.seleniumDriver;
 	Xpathxml xmlInput = new Xpathxml();
+	Steps st=new Steps();
 	// TestStubReader testStubReader = new TestStubReader();
 	ManhattanLoginPage manhattanLoginPage = new ManhattanLoginPage();
 	// String filepath = System.getProperty("user.dir") +
@@ -97,19 +98,24 @@ public class StepDefInBound {
 	 * }
 	 * 
 	 */
+	
+	
 
 	@Given("user log in to the Manhattan application")
 	public void user_log_in_to_the_Manhattan_application() {
 		try {
 			String env = ManhattanLoginPage.environment;
-			System.out.println(env);
+			System.out.println("Environment:"+env);
 			if (env.equalsIgnoreCase("Dev")) {
 				driver.get(Config.getProperty("ManhattanURL_Dev"));
 				Steps.logger.info("Dev Environment");
-			} else if (env.equalsIgnoreCase("Test")) {
-				driver.get(Config.getProperty("ManhattanURL_Test"));
-				Steps.logger.info("Test Environment");
+			} else if (env.equalsIgnoreCase("QA")) {
+				driver.get(Config.getProperty("ManhattanURL_QA"));
+			} else if (env.equalsIgnoreCase("UA")) {
+				driver.get(Config.getProperty("ManhattanURL_UA"));
+				Steps.logger.info("UA Environment");
 			}
+			
 			manhattanLoginPage.loginToManhattanApp();
 		} catch (Exception e) {
 			System.out.println(e);
@@ -124,14 +130,18 @@ public class StepDefInBound {
 			// Steps.logger.info("Browser Instance created");
 
 			String env = ManhattanLoginPage.environment;
-			System.out.println(env);
+			System.out.println("Environment:"+env);
 
 			if (env.equalsIgnoreCase("Dev")) {
 				driver.get(Config.getProperty("ManhattanURL_Dev"));
 				Steps.logger.info("Dev Environment");
-			} else if (env.equalsIgnoreCase("Test")) {
-				driver.get(Config.getProperty("ManhattanURL_Test"));
-				Steps.logger.info("Test Environment");
+			} else if (env.equalsIgnoreCase("QA")) {
+				driver.get(Config.getProperty("ManhattanURL_QA"));
+				Steps.logger.info("QA Environment");
+			}
+				else if (env.equalsIgnoreCase("UA")) {
+					driver.get(Config.getProperty("ManhattanURL_UA"));
+					Steps.logger.info("UA Environment");
 			}
 			manhattanLoginPage.loginToManhattanApp(userType);
 		} catch (Exception e) {
@@ -145,14 +155,18 @@ public class StepDefInBound {
 	public void user_logs_into_the_Manhattan_application() {
 		try {
 			String env = ManhattanLoginPage.environment;
-			System.out.println(env);
+			System.out.println("Environment:"+env);
 
 			if (env.equalsIgnoreCase("Dev")) {
 				driver.get(Config.getProperty("ManhattanURL_Dev"));
 				Steps.logger.info("Dev Environment");
-			} else if (env.equalsIgnoreCase("Test")) {
-				driver.get(Config.getProperty("ManhattanURL_Test"));
-				Steps.logger.info("Test Environment");
+			} else if (env.equalsIgnoreCase("QA")) {
+				driver.get(Config.getProperty("ManhattanURL_QA"));
+				Steps.logger.info("QA Environment");
+			}
+				else if (env.equalsIgnoreCase("UA")) {
+					driver.get(Config.getProperty("ManhattanURL_UA"));
+					Steps.logger.info("UA Environment");
 			}
 			manhattanLoginPage.loginToManhattanApp();
 		} catch (Exception e) {
