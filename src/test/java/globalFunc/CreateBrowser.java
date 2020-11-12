@@ -62,16 +62,18 @@ public class CreateBrowser {
 	
 	public static WebDriver CreateBrowserInstance() throws Throwable {
 		// Write code here that turns the phrase above into concrete actions
-		
+		String sys1 =Steps.prop.getProperty("System");
+		String getpodip = Steps.prop.getProperty("IP");
+		System.out.println(sys1+getpodip);
 			//System.out.println("Browser is: "+Steps.prop.getProperty("browser"));
-			switch ("chrome") {
+			switch (sys1) {
 
 			case "ie":
 				System.setProperty("webdriver.ie.driver", Steps.dir + "\\Jars\\browsers\\IEDriverServer.exe");
 				seleniumDriver = new InternetExplorerDriver();
 				break;
 				
-			case "chrome":
+			case "OCI_Windows-Chrome":
 				
 				System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
 				ChromeOptions options = new ChromeOptions();
@@ -86,6 +88,41 @@ public class CreateBrowser {
 				options.addArguments("disable-infobars");
 	
 				seleniumDriver = new ChromeDriver(options);
+				seleniumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				//seleniumDriver.manage().deleteAllCookies();
+				Steps.logger.info("Chrome browser is open");
+				break;
+				
+			case "@Platform":
+				
+				System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
+				ChromeOptions options2 = new ChromeOptions();
+				options2.addArguments("--start-maximized");
+				Map<String, Object> prefs2 = new HashMap<String, Object>();
+				prefs2.put("plugins.plugins_disabled", new String[] { "Chrome PDF Viewer"});
+				prefs2.put("plugins.always_open_pdf_externally", true);
+				prefs2.put("download.default_directory", Config.getDownloadLocation());
+				prefs2.put("profile.default_content_setting_values.notifications", 2);
+				prefs2.put("credentials_enable_service", false);
+				options2.setExperimentalOption("prefs", prefs2);
+				options2.addArguments("disable-infobars");
+	
+				seleniumDriver = new ChromeDriver(options2);
+				seleniumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				//seleniumDriver.manage().deleteAllCookies();
+				Steps.logger.info("Chrome browser is open");
+				break;
+				
+				case "OCI_Pod":
+				
+				System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
+				ChromeOptions options1 = new ChromeOptions();
+				options1.setCapability(CapabilityType.PLATFORM_NAME, Platform.LINUX);
+				//URL dockerport = new URL("http://10.60.27.77:4444/wd/hub");
+				
+				//URL dockerport = new URL("http://10.60.28.5:31200/wd/hub");			
+				URL dockerport = new URL(getpodip);
+				seleniumDriver = new RemoteWebDriver(dockerport,options1);
 				seleniumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 				//seleniumDriver.manage().deleteAllCookies();
 				Steps.logger.info("Chrome browser is open");
@@ -110,7 +147,7 @@ public class CreateBrowser {
 				
 			case "chromelinux":
 				
-				System.setProperty("webdriver.chrome.driver", "C:\\Users\\ffd-sys-team\\git\\SampleMavenProj\\drivers\\chromedriver.exe");
+				System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
 				ChromeOptions options = new ChromeOptions();
 				options.setCapability(CapabilityType.PLATFORM_NAME, Platform.LINUX);
 				//URL dockerport = new URL("http://10.60.27.77:4444/wd/hub");

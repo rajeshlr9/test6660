@@ -105,14 +105,14 @@ public class StepDefInBound {
 	public void user_log_in_to_the_Manhattan_application() {
 		try {
 			String env = ManhattanLoginPage.environment;
-			System.out.println("Environment:"+env);
+			System.out.println("Environment:--"+env);
 			if (env.equalsIgnoreCase("Dev")) {
 				driver.get(Config.getProperty("ManhattanURL_Dev"));
 				Steps.logger.info("Dev Environment");
-			} else if (env.equalsIgnoreCase("QA")) {
-				driver.get(Config.getProperty("ManhattanURL_QA"));
-			} else if (env.equalsIgnoreCase("UA")) {
-				driver.get(Config.getProperty("ManhattanURL_UA"));
+			} else if (env.equalsIgnoreCase("TEST")|| env.equalsIgnoreCase("@Env") ) {
+				driver.get(Config.getProperty("ManhattanURL_TEST"));
+			} else if (env.equalsIgnoreCase("STAGE")) {
+				driver.get(Config.getProperty("ManhattanURL_STAGE"));
 				Steps.logger.info("UA Environment");
 			}
 			
@@ -135,13 +135,13 @@ public class StepDefInBound {
 			if (env.equalsIgnoreCase("Dev")) {
 				driver.get(Config.getProperty("ManhattanURL_Dev"));
 				Steps.logger.info("Dev Environment");
-			} else if (env.equalsIgnoreCase("QA")) {
-				driver.get(Config.getProperty("ManhattanURL_QA"));
-				Steps.logger.info("QA Environment");
+			} else if (env.equalsIgnoreCase("TEST")|| env.equalsIgnoreCase("@Env") ) {
+				driver.get(Config.getProperty("ManhattanURL_TEST"));
+				Steps.logger.info("TEST Environment");
 			}
-				else if (env.equalsIgnoreCase("UA")) {
-					driver.get(Config.getProperty("ManhattanURL_UA"));
-					Steps.logger.info("UA Environment");
+				else if (env.equalsIgnoreCase("STAGE")) {
+					driver.get(Config.getProperty("ManhattanURL_STAGE"));
+					Steps.logger.info("STAGE Environment");
 			}
 			manhattanLoginPage.loginToManhattanApp(userType);
 		} catch (Exception e) {
@@ -160,13 +160,13 @@ public class StepDefInBound {
 			if (env.equalsIgnoreCase("Dev")) {
 				driver.get(Config.getProperty("ManhattanURL_Dev"));
 				Steps.logger.info("Dev Environment");
-			} else if (env.equalsIgnoreCase("QA")) {
-				driver.get(Config.getProperty("ManhattanURL_QA"));
-				Steps.logger.info("QA Environment");
+			} else if (env.equalsIgnoreCase("TEST")|| env.equalsIgnoreCase("@Env") ) {
+				driver.get(Config.getProperty("ManhattanURL_TEST"));
+				Steps.logger.info("TEST Environment");
 			}
-				else if (env.equalsIgnoreCase("UA")) {
-					driver.get(Config.getProperty("ManhattanURL_UA"));
-					Steps.logger.info("UA Environment");
+				else if (env.equalsIgnoreCase("STAGE")) {
+					driver.get(Config.getProperty("ManhattanURL_STAGE"));
+					Steps.logger.info("STAGE Environment");
 			}
 			manhattanLoginPage.loginToManhattanApp();
 		} catch (Exception e) {
@@ -646,15 +646,11 @@ public class StepDefInBound {
 	public void user_search_for_the_LPN_in_iLPN_screen_and_validate_the_lock_code() throws Throwable {
 		try {
 			iLPNPage.validateiLPNLockCode();
-		} catch (InterruptedException e) {
+		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
 			Assert.assertTrue(false);
 			
-		} catch (IOException e) {
-			Steps.testRes = "Failed";
-			e.printStackTrace();
-			Assert.assertTrue(false);
 		}
 	}
 	

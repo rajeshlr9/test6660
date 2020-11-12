@@ -6,7 +6,7 @@
         "before": [
           {
             "result": {
-              "duration": 1179450,
+              "duration": 1185660,
               "status": "passed"
             },
             "match": {
@@ -15,7 +15,7 @@
           },
           {
             "result": {
-              "duration": 87165840,
+              "duration": 141475780,
               "status": "passed"
             },
             "match": {
@@ -23,14 +23,14 @@
             }
           }
         ],
-        "line": 286,
-        "name": "B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Decrease iLPN qty having unallocatable lock code after ASN verification",
-        "description": "Creating ASN through Post Message UI and complete receiving bypasing through staging location \u0026 modify the \r\niLPN by increasing the quantity \u0026 verify the iLPN, ASN \u0026 PIX transaction",
-        "id": "inbound-scenarios;b-427075-fxl-ffd-cil-mh-i-inventory-adjustments--decrease-ilpn-qty-having-unallocatable-lock-code-after-asn-verification",
+        "line": 47,
+        "name": "B-345747 MANH - Receive and bypass stage or holding",
+        "description": "Creating ASN through Post Message UI and complete receiving bypasing through staging location \u0026 validating LPN in Inventory by location",
+        "id": "inbound-scenarios;b-345747-manh---receive-and-bypass-stage-or-holding",
         "after": [
           {
             "result": {
-              "duration": 720457660,
+              "duration": 58273350,
               "status": "passed"
             },
             "match": {
@@ -43,10 +43,10 @@
         "steps": [
           {
             "result": {
-              "duration": 1697990430,
+              "duration": 1829607450,
               "status": "passed"
             },
-            "line": 289,
+            "line": 49,
             "name": "I have excel data",
             "match": {
               "location": "Steps.readExcelData(DataTable)"
@@ -54,19 +54,19 @@
             "rows": [
               {
                 "cells": [
-                  "QSC_Scenario016"
+                  "QSC_Scenario003"
                 ],
-                "line": 290
+                "line": 50
               }
             ],
             "keyword": "Given "
           },
           {
             "result": {
-              "duration": 3216810840,
+              "duration": 1471995860,
               "status": "passed"
             },
-            "line": 291,
+            "line": 51,
             "name": "Open the chrome browser by selenium",
             "match": {
               "location": "Steps.open_the_chrome_and_launch_the_application_using_Selenium()"
@@ -75,10 +75,10 @@
           },
           {
             "result": {
-              "duration": 7357864200,
+              "duration": 6841599810,
               "status": "passed"
             },
-            "line": 292,
+            "line": 52,
             "name": "user logs into Manhattan application using \"Associate\" Credentials",
             "match": {
               "arguments": [
@@ -93,13 +93,233 @@
           },
           {
             "output": [
-              "ASN-ASN2011060849"
+              "ASN-ASN2011120842"
             ],
             "result": {
-              "duration": 217157180,
+              "duration": 233208710,
               "status": "passed"
             },
-            "line": 293,
+            "line": 53,
+            "name": "user create xml file with updated ASNNo \u0026 DeliveryStartDate for ReceivingASN",
+            "match": {
+              "location": "StepDefInBound.user_create_xml_file_with_updated_ASNNo_DeliveryStartDate_for_ReceivingASN()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 70919000,
+              "status": "passed"
+            },
+            "line": 54,
+            "name": "user update xml itemDetails from excel sheet",
+            "match": {
+              "location": "StepDefInBound.user_update_xml_itemDetails_from_sheet_for_Scenario()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 11246525240,
+              "status": "passed"
+            },
+            "line": 55,
+            "name": "user opens post message screen and upload file in order to create ASN",
+            "match": {
+              "location": "StepDefInBound.user_opens_post_message_screen_and_upload_file_in_order_to_create_ASN()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2220808170,
+              "status": "passed"
+            },
+            "line": 56,
+            "name": "user verify the response",
+            "match": {
+              "location": "StepDefInBound.user_verify_the_response()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 30537121670,
+              "status": "passed"
+            },
+            "comments": [
+              {
+                "line": 57,
+                "value": "#Then user opens ASN screen and searches for the ASN and verify its status \"InTransit\""
+              }
+            ],
+            "line": 58,
+            "name": "user views ASN, get and verify item details",
+            "match": {
+              "location": "StepDefInBound.user_views_ASNscreen_and_get_itemdetails()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 94187971840,
+              "status": "passed"
+            },
+            "line": 59,
+            "name": "user opens RF menu and completes Receiving using \"QSC Recv BpStgD\" menu",
+            "match": {
+              "arguments": [
+                {
+                  "val": "QSC Recv BpStgD",
+                  "offset": 50
+                }
+              ],
+              "location": "StepDefInBound.user_opens_RF_menu_and_completes_Receiving_using_menu(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 30385158890,
+              "status": "passed"
+            },
+            "line": 60,
+            "name": "user opens Inventory by location screen and validates the LPN created",
+            "match": {
+              "location": "StepDefInBound.user_opens_InventoryByLocation_screen_and_validates_the_LPN_created()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 17281018810,
+              "status": "passed"
+            },
+            "line": 61,
+            "name": "user log out from application",
+            "match": {
+              "location": "StepDefInBound.user_log_out_from_application()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 46,
+            "name": "@QSC003"
+          },
+          {
+            "line": 46,
+            "name": "@Regression_QSC"
+          },
+          {
+            "line": 46,
+            "name": "@QSC_BypassStagingLocationRec"
+          },
+          {
+            "line": 46,
+            "name": "@Sanity_QSC"
+          }
+        ]
+      },
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 251450,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CommonStepDefination.intiate(Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 6507860,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Steps.beforeClass(Scenario)"
+            }
+          }
+        ],
+        "line": 411,
+        "name": "B- 466712 Putaway – Damaged Products that was received using MM3 Recv-Damages having lock code DM-Damaged Return",
+        "description": "Receiving of Damaged Product in MM3 Recv-Damages menu and complete putaway to inspection area. Validate the iLPN moved \r\nto inspection area and\t“QSCINS” Locations Current Quantity will be incremented with no of LPN’s moved to location",
+        "id": "inbound-scenarios;b--466712-putaway-–-damaged-products-that-was-received-using-mm3-recv-damages-having-lock-code-dm-damaged-return",
+        "after": [
+          {
+            "result": {
+              "duration": 54033620,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Steps.afterClass()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 219287150,
+              "status": "passed"
+            },
+            "line": 414,
+            "name": "I have excel data",
+            "match": {
+              "location": "Steps.readExcelData(DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "QSC_Scenario022"
+                ],
+                "line": 415
+              }
+            ],
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 408307810,
+              "status": "passed"
+            },
+            "line": 416,
+            "name": "Open the chrome browser by selenium",
+            "match": {
+              "location": "Steps.open_the_chrome_and_launch_the_application_using_Selenium()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 6631096310,
+              "status": "passed"
+            },
+            "line": 417,
+            "name": "user logs into Manhattan application using \"Associate\" Credentials",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Associate",
+                  "offset": 44
+                }
+              ],
+              "location": "StepDefInBound.user_logs_into_Manhattan_application(String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "output": [
+              "ASN-ASN2011120846"
+            ],
+            "result": {
+              "duration": 17283690,
+              "status": "passed"
+            },
+            "line": 418,
             "name": "user create xml file using \"Single Line ASN\" with updated ASNNo \u0026 DeliveryStartDate for ReceivingASN",
             "match": {
               "arguments": [
@@ -114,10 +334,10 @@
           },
           {
             "result": {
-              "duration": 35798040,
+              "duration": 16108120,
               "status": "passed"
             },
-            "line": 294,
+            "line": 419,
             "name": "user update xml itemDetails from excel sheet",
             "match": {
               "location": "StepDefInBound.user_update_xml_itemDetails_from_sheet_for_Scenario()"
@@ -126,10 +346,10 @@
           },
           {
             "result": {
-              "duration": 10868906480,
+              "duration": 11181816290,
               "status": "passed"
             },
-            "line": 295,
+            "line": 420,
             "name": "user opens post message screen and upload file in order to create ASN",
             "match": {
               "location": "StepDefInBound.user_opens_post_message_screen_and_upload_file_in_order_to_create_ASN()"
@@ -138,10 +358,10 @@
           },
           {
             "result": {
-              "duration": 2238621820,
+              "duration": 2170484860,
               "status": "passed"
             },
-            "line": 296,
+            "line": 421,
             "name": "user verify the response",
             "match": {
               "location": "StepDefInBound.user_verify_the_response()"
@@ -150,10 +370,10 @@
           },
           {
             "result": {
-              "duration": 30064391140,
+              "duration": 30625173580,
               "status": "passed"
             },
-            "line": 297,
+            "line": 422,
             "name": "user views ASN, get and verify item details",
             "match": {
               "location": "StepDefInBound.user_views_ASNscreen_and_get_itemdetails()"
@@ -162,15 +382,15 @@
           },
           {
             "result": {
-              "duration": 52178564710,
+              "duration": 92682393780,
               "status": "passed"
             },
-            "line": 298,
-            "name": "user opens RF menu and completes Receiving using \"MM3 Recv-CASE\" menu",
+            "line": 423,
+            "name": "user opens RF menu and completes Receiving using \"MM3 Recv-Damages\" menu",
             "match": {
               "arguments": [
                 {
-                  "val": "MM3 Recv-CASE",
+                  "val": "MM3 Recv-Damages",
                   "offset": 50
                 }
               ],
@@ -180,10 +400,10 @@
           },
           {
             "result": {
-              "duration": 15517303360,
+              "duration": 15496409490,
               "status": "passed"
             },
-            "line": 299,
+            "line": 424,
             "name": "user opens ASN screen and searches for the ASN and verify its status \"Receiving Started\"",
             "match": {
               "arguments": [
@@ -198,92 +418,94 @@
           },
           {
             "result": {
-              "duration": 34649597640,
+              "duration": 23376758730,
               "status": "passed"
             },
-            "line": 300,
-            "name": "user verifies the ASN",
+            "line": 425,
+            "name": "user search for the LPN in iLPN screen, and validate the lock code",
             "match": {
-              "location": "StepDefInBound.user_verifies_ASN()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 44855800830,
-              "status": "passed"
-            },
-            "line": 301,
-            "name": "user opens RF menu and \"Decrease\" iLPN quantity using \"Modify iLPN\" menu in Inventory",
-            "match": {
-              "arguments": [
-                {
-                  "val": "Decrease",
-                  "offset": 24
-                },
-                {
-                  "val": "Modify iLPN",
-                  "offset": 55
-                }
-              ],
-              "location": "StepDefInBound.user_opens_RF_menu_and_modify_iLPN(String,String)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 22277152450,
-              "status": "passed"
-            },
-            "line": 302,
-            "name": "user search for the LPN in iLPN screen, and validate the modification \"Decrease Qty\" in iLPN",
-            "match": {
-              "arguments": [
-                {
-                  "val": "Decrease Qty",
-                  "offset": 71
-                }
-              ],
-              "location": "StepDefInBound.user_opens_iLPN_and_validate_change_in_iLPN(String)"
+              "location": "StepDefInBound.user_search_for_the_LPN_in_iLPN_screen_and_validate_the_lock_code()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 28551769530,
+              "duration": 15584839750,
               "status": "passed"
             },
-            "line": 303,
-            "name": "user views ASN, and validate ASN details",
-            "match": {
-              "location": "StepDefInBound.user_opens_ASN_screen_and_validate_ASN_details()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 23838253610,
-              "status": "passed"
-            },
-            "line": 304,
-            "name": "validates the PIX Transactions \"606\" for modifying iLPN",
+            "line": 426,
+            "name": "user open reserve locations \u0026 naviagtes to \"QSCINS\" zone and fetches the current quantity",
             "match": {
               "arguments": [
                 {
-                  "val": "606",
-                  "offset": 32
+                  "val": "QSCINS",
+                  "offset": 44
                 }
               ],
-              "location": "StepDefInBound.validate_PIX_transaction_for_modifying_iLPN(String)"
+              "location": "StepDefInBound.fetch_current_qty_from_inspection_zone(String)"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 17244083770,
+              "duration": 23303979590,
               "status": "passed"
             },
-            "line": 305,
+            "line": 427,
+            "name": "user opens RF menu and completes Putaway using \"MM3 Ptwy-Sys Dir\" menu",
+            "match": {
+              "arguments": [
+                {
+                  "val": "MM3 Ptwy-Sys Dir",
+                  "offset": 48
+                }
+              ],
+              "location": "StepDefInBound.user_opens_RF_menu_and_completes_Putaway(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 15622645730,
+              "status": "passed"
+            },
+            "line": 428,
+            "name": "user navigates to reserve locations \u0026 validates that the quantity is increased in \"QSCINS\" by no of iLPN\u0027s moved",
+            "match": {
+              "arguments": [
+                {
+                  "val": "QSCINS",
+                  "offset": 83
+                }
+              ],
+              "location": "StepDefInBound.user_navigates_to_reserve_locations_validates_that_the_quantity_is_increased_in_by_no_of_iLPN_s_moved(String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 20618105580,
+              "status": "passed"
+            },
+            "line": 429,
+            "name": "validates that the iLPN is also moved to inspection zone \"QSCINS\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "QSCINS",
+                  "offset": 58
+                }
+              ],
+              "location": "StepDefInBound.validates_that_the_iLPN_is_also_moved_to_inspection_zone(String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 17275405220,
+              "status": "passed"
+            },
+            "line": 430,
             "name": "user log out from application",
             "match": {
               "location": "StepDefInBound.user_log_out_from_application()"
@@ -293,16 +515,20 @@
         ],
         "tags": [
           {
-            "line": 285,
-            "name": "@QSC016"
+            "line": 410,
+            "name": "@QSC022"
           },
           {
-            "line": 285,
+            "line": 410,
             "name": "@Regression_QSC"
           },
           {
-            "line": 285,
-            "name": "@QSC_InventoryAdjustments"
+            "line": 410,
+            "name": "@QSC_PutawayDamagedAndUndeliveredProducts"
+          },
+          {
+            "line": 410,
+            "name": "@Sanity_QSC"
           }
         ]
       }

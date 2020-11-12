@@ -1,6 +1,6 @@
 Feature: Inbound Scenarios
 
-@QSC999 @Regression_QSC @QSC_LoginFunctionality
+@QSC999 @Regression_QSC @QSC_LoginFunctionality @Smoke_QSC
 Scenario: Veriy Manhattan login using different user roles
 	Given We have Manhattan environmnet up and running
 	And Open the chrome browser by selenium
@@ -11,7 +11,7 @@ Scenario: Veriy Manhattan login using different user roles
 	When user logs into Manhattan application using "Supervisor" Credentials
 	Then user log out from application 
 
-@QSC001 @Regression_QSC  @QSC_PostMsg
+@QSC001 @Regression_QSC  @Smoke_QSC @QSC_PostMsg
 Scenario: Veriy ASN creation through Post MessageUI-excel
 Creating ASN through Post Message UI & verifying the response, checking status of the shipment
 	Given I have excel data
@@ -43,7 +43,7 @@ Creating ASN through Post Message UI, checking status of the shipment and comple
 	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
 	Then user log out from application 
 	
-	@QSC003 @Smoke @Regression_QSC @QSC_BypassStagingLocationRec
+	@QSC003 @Regression_QSC @QSC_BypassStagingLocationRec @Sanity_QSC
 Scenario: B-345747 MANH - Receive and bypass stage or holding
 Creating ASN through Post Message UI and complete receiving bypasing through staging location & validating LPN in Inventory by location
 	Given I have excel data
@@ -60,7 +60,7 @@ Creating ASN through Post Message UI and complete receiving bypasing through sta
 	Then user opens Inventory by location screen and validates the LPN created  
 	Then user log out from application 
    
-	@QSC004 @Smoke @Regression_QSC @QSC_OverReceive
+	@QSC004  @Regression_QSC @QSC_OverReceive
 Scenario: B-345766 Configure Receipt for Overage percentage -  allowable percentage  for customer
 Creating ASN through Post Message UI and validate Overage percentage - allowable percentage  for customer
 	Given I have excel data
@@ -135,7 +135,7 @@ Creating 2 line ASN through Post Message UI, checking status of the shipment and
 	Then user log out from application 
 
 	
-	@QSC007 @Regression_QSC @Sanity_QSC @QSC_UnDeliveredReceive
+	@QSC007 @Regression_QSC @QSC_UnDeliveredReceive
 Scenario: B-441160 Receiving Returned Un-Delivered Product using blind receipt
 Receiving of Un-Delivered Product using blind receipt in MM3 returns menu and verifying the status of the ASN 
 	Given I have excel data
@@ -148,7 +148,7 @@ Receiving of Un-Delivered Product using blind receipt in MM3 returns menu and ve
 	Then user log out from application 
 	
 	
-	@QSC008 @Regression_QSC @Smoke_QSC @QSC_UnDeliveredReceive
+	@QSC008 @Regression_QSC  @QSC_UnDeliveredReceive
 Scenario: B-441160 Receiving Returned Un-Delivered Product by creating ASN
 Receiving of Un-Delivered Product in MM3 returns menu by creating ASN and verifying the status of the ASN 
 	Given I have excel data
@@ -324,7 +324,7 @@ iLPN by deletinh the line & verify the iLPN, ASN & PIX transaction
 	And validates the PIX Transactions "300" for modifying iLPN
 	Then user log out from application 
 	
-@QSC018 @Regression_QSC @Sanity @QSC_InventoryAdjustments
+@QSC018 @Regression_QSC @QSC_InventoryAdjustments
 Scenario: B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Delete line from an iLPN having unallocatable lock code after ASN verification
 Creating ASN through Post Message UI and complete receiving bypasing through staging location & modify the 
 iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
@@ -368,7 +368,7 @@ validating iLPN have no lock & consume the iLPN using RF Menu. Also validate PIX
 	And validates the PIX Transactions "300" for consuming iLPN
 	Then user log out from application 
 	
-	@QSC020 @Regression_QSC @Sanity @QSC_ConsumeiLPN
+	@QSC020 @Regression_QSC  @QSC_ConsumeiLPN
 Scenario: B-474831 FXL-FFD-CIL-MH_Inventory Control-Base Transactions# 4- Consume iLPN having lock code
 Creating iLPN through MM3 Create iLPN menu & applythe lock code,validating iLPN have some lock code & consume 
 the iLPN using RF Menu. Also validate PIX transaction.
@@ -407,7 +407,7 @@ iLPN moved to inspection area and	“QSCINS” Locations Current Quantity will b
 	Then user log out from application 
 	
 	
-	@QSC022 @Regression_QSC @QSC_PutawayDamagedAndUndeliveredProducts
+	@QSC022 @Regression_QSC @QSC_PutawayDamagedAndUndeliveredProducts @Sanity_QSC
 Scenario: B- 466712 Putaway – Damaged Products that was received using MM3 Recv-Damages having lock code DM-Damaged Return
 Receiving of Damaged Product in MM3 Recv-Damages menu and complete putaway to inspection area. Validate the iLPN moved 
 to inspection area and	“QSCINS” Locations Current Quantity will be incremented with no of LPN’s moved to location

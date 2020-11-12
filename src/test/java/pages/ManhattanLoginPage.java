@@ -80,20 +80,96 @@ public class ManhattanLoginPage extends Steps{
 			try {
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, username, 180);
 				String env = environment;
+				//String userType= Config.getProperty("UserRole");
 				if (env.equalsIgnoreCase("Dev")) {
-					username.sendKeys(Config.getProperty("Username_Dev"));
-					password.sendKeys(Config.getProperty("Password_Dev"));
-				} else if (env.equalsIgnoreCase("QA")) {
-					username.sendKeys(Config.getProperty("Username_QA"));
-					Steps.logger.info("UserName: " + Config.getProperty("Username_QA"));
-					password.sendKeys(Config.getProperty("Password_QA"));
-					Steps.logger.info("Password: " + Config.getProperty("Password_QA"));
-				}else if (env.equalsIgnoreCase("UA")) {
-					username.sendKeys(Config.getProperty("Username_UA"));
-					Steps.logger.info("UserName: " + Config.getProperty("Username_UA"));
-					password.sendKeys(Config.getProperty("Password_UA"));
-					Steps.logger.info("Password: " + Config.getProperty("Password_UA"));
+					
+				}else if (env.equalsIgnoreCase("TEST")|| env.equalsIgnoreCase("@Env") ) {
+					username.sendKeys(Config.getProperty("TESTUsername_Admin"));
+					Steps.logger.info("UserName: " + Config.getProperty("TESTUsername_Admin"));
+					password.sendKeys(Config.getProperty("TESTPassword_Admin"));
+					Steps.logger.info("Password: " + Config.getProperty("TESTPassword_Admin"));
 				}
+				else if (env.equalsIgnoreCase("STAGE")) {
+					
+				}
+		
+				/*	switch (userType) {
+					case "Admin":
+						username.sendKeys(Config.getProperty("DevUsername_Admin"));
+						Steps.logger.info("UserName: " + Config.getProperty("DevUsername_Admin"));
+						password.sendKeys(Config.getProperty("DevPassword_Admin"));
+						Steps.logger.info("Password: " + Config.getProperty("DevPassword_Admin"));
+						break;
+					case "Supervisor":
+						username.sendKeys(Config.getProperty("DevUsername_Supervisor"));
+						Steps.logger.info("UserName: " + Config.getProperty("DevUsername_Supervisor"));
+						password.sendKeys(Config.getProperty("DevPassword_Supervisor"));
+						Steps.logger.info("Password: " + Config.getProperty("DevPassword_Supervisor"));
+						break;
+					case "Associate":
+						username.sendKeys(Config.getProperty("DevUsername_Associate"));
+						Steps.logger.info("UserName: " + Config.getProperty("DevUsername_Associate"));
+						password.sendKeys(Config.getProperty("DevPassword_Associate"));
+						Steps.logger.info("Password: " + Config.getProperty("DevPassword_Associate"));
+						break;
+
+					default:
+						System.out.println("User trying to login with : " + userType + " credentials");
+						break;
+					}
+				} else if (env.equalsIgnoreCase("TEST")) {
+					switch (userType) {
+					case "Admin":
+						username.sendKeys(Config.getProperty("TESTUsername_Admin"));
+						Steps.logger.info("UserName: " + Config.getProperty("TESTUsername_Admin"));
+						password.sendKeys(Config.getProperty("TESTPassword_Admin"));
+						Steps.logger.info("Password: " + Config.getProperty("TESTPassword_Admin"));
+						break;
+					case "Supervisor":
+						username.sendKeys(Config.getProperty("TESTUsername_Supervisor"));
+						Steps.logger.info("UserName: " + Config.getProperty("TESTUsername_Supervisor"));
+						password.sendKeys(Config.getProperty("TESTPassword_Supervisor"));
+						Steps.logger.info("Password: " + Config.getProperty("TESTPassword_Supervisor"));
+						break;
+					case "Associate":
+						username.sendKeys(Config.getProperty("TESTUsername_Associate"));
+						Steps.logger.info("UserName: " + Config.getProperty("TESTUsername_Associate"));
+						password.sendKeys(Config.getProperty("TESTPassword_Associate"));
+						Steps.logger.info("Password: " + Config.getProperty("TESTPassword_Associate"));
+						break;
+
+					default:
+						System.out.println("User trying to login with : " + userType + " credentials");
+						break;
+					}
+				}
+					else if (env.equalsIgnoreCase("STAGE")) {
+						switch (userType) {
+						case "Admin":
+							username.sendKeys(Config.getProperty("UAUsername_Admin"));
+							Steps.logger.info("UserName: " + Config.getProperty("UAUsername_Admin"));
+							password.sendKeys(Config.getProperty("UAPassword_Admin"));
+							Steps.logger.info("Password: " + Config.getProperty("UAPassword_Admin"));
+							break;
+						case "Supervisor":
+							username.sendKeys(Config.getProperty("UAUsername_Supervisor"));
+							Steps.logger.info("UserName: " + Config.getProperty("UAUsername_Supervisor"));
+							password.sendKeys(Config.getProperty("UAPassword_Supervisor"));
+							Steps.logger.info("Password: " + Config.getProperty("UAPassword_Supervisor"));
+							break;
+						case "Associate":
+							username.sendKeys(Config.getProperty("UAUsername_Associate"));
+							Steps.logger.info("UserName: " + Config.getProperty("UAUsername_Associate"));
+							password.sendKeys(Config.getProperty("UAPassword_Associate"));
+							Steps.logger.info("Password: " + Config.getProperty("UAPassword_Associate"));
+							break;
+
+						default:
+							System.out.println("User trying to login with : " + userType + " credentials");
+							break;
+						}
+				*/
+					
 				SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(signInBtn));
 				signInBtn.click();
 				Steps.logger.info("Clicked on Sign in Button");
@@ -191,25 +267,25 @@ public class ManhattanLoginPage extends Steps{
 					System.out.println("User trying to login with : " + userType + " credentials");
 					break;
 				}
-			} else if (env.equalsIgnoreCase("QA")) {
+			} else if (env.equalsIgnoreCase("TEST")|| env.equalsIgnoreCase("@Env") ) {
 				switch (userType) {
 				case "Admin":
-					username.sendKeys(Config.getProperty("QAUsername_Admin"));
-					Steps.logger.info("UserName: " + Config.getProperty("QAUsername_Admin"));
-					password.sendKeys(Config.getProperty("QAPassword_Admin"));
-					Steps.logger.info("Password: " + Config.getProperty("QAPassword_Admin"));
+					username.sendKeys(Config.getProperty("TESTUsername_Admin"));
+					Steps.logger.info("UserName: " + Config.getProperty("TESTUsername_Admin"));
+					password.sendKeys(Config.getProperty("TESTPassword_Admin"));
+					Steps.logger.info("Password: " + Config.getProperty("TESTPassword_Admin"));
 					break;
 				case "Supervisor":
-					username.sendKeys(Config.getProperty("QAUsername_Supervisor"));
-					Steps.logger.info("UserName: " + Config.getProperty("QAUsername_Supervisor"));
-					password.sendKeys(Config.getProperty("QAPassword_Supervisor"));
-					Steps.logger.info("Password: " + Config.getProperty("QAPassword_Supervisor"));
+					username.sendKeys(Config.getProperty("TESTUsername_Supervisor"));
+					Steps.logger.info("UserName: " + Config.getProperty("TESTUsername_Supervisor"));
+					password.sendKeys(Config.getProperty("TESTPassword_Supervisor"));
+					Steps.logger.info("Password: " + Config.getProperty("TESTPassword_Supervisor"));
 					break;
 				case "Associate":
-					username.sendKeys(Config.getProperty("QAUsername_Associate"));
-					Steps.logger.info("UserName: " + Config.getProperty("QAUsername_Associate"));
-					password.sendKeys(Config.getProperty("QAPassword_Associate"));
-					Steps.logger.info("Password: " + Config.getProperty("QAPassword_Associate"));
+					username.sendKeys(Config.getProperty("TESTUsername_Associate"));
+					Steps.logger.info("UserName: " + Config.getProperty("TESTUsername_Associate"));
+					password.sendKeys(Config.getProperty("TESTPassword_Associate"));
+					Steps.logger.info("Password: " + Config.getProperty("TESTPassword_Associate"));
 					break;
 
 				default:
@@ -217,7 +293,7 @@ public class ManhattanLoginPage extends Steps{
 					break;
 				}
 			}
-				else if (env.equalsIgnoreCase("UA")) {
+				else if (env.equalsIgnoreCase("STAGE")) {
 					switch (userType) {
 					case "Admin":
 						username.sendKeys(Config.getProperty("UAUsername_Admin"));
