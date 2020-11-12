@@ -239,7 +239,7 @@ public class ILPNPage {
 		if(lockCodeTable.get(0).getText().contains("No data found")) {
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNLockUnlockBtn2, 50);
 			iLPNLockUnlockBtn2.click();
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, lockCodeTable.get(0), 50);
+			//SeleniumTestHelper.waitForElementToBeDisplayed(driver, lockCodeTable.get(0), 50);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNlockButton, 50);
 			iLPNlockButton.click();
 			String lockcode = String.valueOf(Steps.scenarioData.get("LockCode"));
@@ -270,7 +270,7 @@ public class ILPNPage {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, lockCodeTable.get(0), 50);
 		if(!(lockCodeTable.get(0).getText().contains("No data found"))) {
 			iLPNLockUnlockBtn2.click();
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, lockCodeTable.get(0), 50);
+			//SeleniumTestHelper.waitForElementToBeDisplayed(driver, lockCodeTable.get(0), 50);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, checkBox, 50);
 			checkBox.click();
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNunlockButton, 50);
