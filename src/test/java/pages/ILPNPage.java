@@ -232,18 +232,22 @@ public class ILPNPage {
 
    public void lockiLPN() throws InterruptedException, IOException{
 		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, LocksTab, 50);
 		LocksTab.click();
 		System.out.println(lockCodeTable.get(0).getText());
 		if(lockCodeTable.get(0).getText().contains("No data found")) {
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNLockUnlockBtn2, 50);
 			iLPNLockUnlockBtn2.click();
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, lockCodeTable.get(0), 50);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNlockButton, 50);
 			iLPNlockButton.click();
 			String lockcode = String.valueOf(Steps.scenarioData.get("LockCode"));
 			System.out.println(lockcode);
 			Select dropdown = new Select(locksDropdown);
 			dropdown.selectByVisibleText(lockcode);
-			
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, checkBox, 50);
 			checkBox.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, saveButton, 50);
 			saveButton.click();
 			Steps.logger.info("Lock code applied successfully");
 			Reporter.addStepLog("Lock code applied successfully");
@@ -265,8 +269,11 @@ public class ILPNPage {
 		if(!(lockCodeTable.get(0).getText().contains("No data found"))) {
 			iLPNLockUnlockBtn2.click();
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, lockCodeTable.get(0), 50);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, checkBox, 50);
 			checkBox.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNunlockButton, 50);
 			iLPNunlockButton.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, saveButton, 50);
 			saveButton.click();
 			Steps.logger.info("Lock code removed successfully");
 			Reporter.addStepLog("Lock code removed successfully");
