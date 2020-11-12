@@ -1571,7 +1571,7 @@ public class RFMenuPage {
 					mmInRFcreateIlpnTxtBox.sendKeys(futureDateAsArray[0]);
 					ddInRFcreateIlpnTxtBox.sendKeys(futureDateAsArray[1]);
 					yyInRFcreateIlpnTxtBox.sendKeys(futureDateAsArray[2]);
-
+SeleniumTestHelper.waitForElementToBeDisplayed(driver, acceptAndProceedBtn, 20);
 					acceptAndProceedBtn.click();
 					Steps.logger
 							.info(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")) + " qty is received in LPN "

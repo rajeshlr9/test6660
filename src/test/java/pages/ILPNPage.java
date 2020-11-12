@@ -260,6 +260,7 @@ public class ILPNPage {
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		Steps.logger.info("Started removing lock code");
 		Reporter.addStepLog("Started removing lock code");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, LocksTab, 50);
 		LocksTab.click();
 		if(!(lockCodeTable.get(0).getText().contains("No data found"))) {
 			iLPNLockUnlockBtn2.click();
