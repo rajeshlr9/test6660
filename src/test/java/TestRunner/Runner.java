@@ -21,8 +21,8 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 @CucumberOptions(
 		strict = true,
 		dryRun = false,
+		//tags={"@Regression_QSC"},
 		tags={"@tag5"},
-		//tags={"@tag1011,@tag1013,@tag1014,@tag1015,@tag1016,@tag1017,@tag1018,@tag1019,@tag1020,@tag1021,@tag1022,@tag1023"},
 				//tags={"@QSC004"},
 		features = {"src\\test\\java\\featureFile"},
 		//features = {"src\\test\\java\\featureFile"},

@@ -43,8 +43,7 @@ public class CubiscanEntryPage {
 	
 	
 	
-	public void firstReceiptProcess(String Itemname) throws InterruptedException, IOException
-	{
+	public void firstReceiptProcess(String Itemname) throws Exception	{
 		homepage.MenuItems_Distribution_Selection("Cubiscan Entry");
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		SeleniumTestHelper.waitForElementToBeClickable(driver, Item, 3);
@@ -63,7 +62,7 @@ public class CubiscanEntryPage {
 		System.out.println("Cubiscan entry is done");
 		
 	}
-	public void firstReceiptProcessforTestDataCreation() throws InterruptedException, IOException
+	public void firstReceiptProcessforTestDataCreation() throws Exception
 	{
 		homepage.MenuItems_Distribution_Selection("Cubiscan Entry");
 		SeleniumTestHelper.switchToInnerFrame(driver);
@@ -91,7 +90,7 @@ public class CubiscanEntryPage {
 		
 	}
 	
-	public void firstReceiptProcessForDatcreation(String Itemname,String Sheetname) throws InterruptedException, IOException
+	public void firstReceiptProcessForDatcreation(String Itemname,String Sheetname) throws Exception
 	{
 		
 		

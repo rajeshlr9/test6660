@@ -2,7 +2,8 @@ Feature: Inbound Scenarios
 
 @QSC999 @Regression_QSC @QSC_LoginFunctionality @Smoke_QSC
 Scenario: Veriy Manhattan login using different user roles
-	Given We have Manhattan environmnet up and running
+	Given I have excel data
+	| QSC_Scenario000 |
 	And Open the chrome browser by selenium
 	When user logs into Manhattan application using "Admin" Credentials
 	Then user log out from application 
@@ -56,7 +57,7 @@ Creating ASN through Post Message UI and complete receiving bypasing through sta
 	Then user verify the response 
 	#Then user opens ASN screen and searches for the ASN and verify its status "InTransit" 
 	And user views ASN, get and verify item details 
-	And user opens RF menu and completes Receiving using "QSC Recv BpStgD" menu
+	And user opens RF menu and completes Receiving using "MM3 Recv Case-Ptwy" menu
 	Then user opens Inventory by location screen and validates the LPN created  
 	Then user log out from application 
    
@@ -231,7 +232,7 @@ iLPN by increasing the quantity & verify the iLPN, ASN and PIX transaction
     And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response
 	And user views ASN, get and verify item details 
-	And user opens RF menu and completes Receiving using "QSC Recv BpStgD" menu
+	And user opens RF menu and completes Receiving using "MM3 Recv Case-Ptwy" menu
 	And user opens RF menu and "Increase" iLPN quantity using "Modify iLPN" menu in Inventory
 	Then user search for the LPN in iLPN screen, and validate the modification "Increase Qty" in iLPN
 	And user views ASN, and validate ASN details
@@ -252,7 +253,7 @@ iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
     And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response 
 	And user views ASN, get and verify item details 
-	And user opens RF menu and completes Receiving using "QSC Recv BpStgD" menu
+	And user opens RF menu and completes Receiving using "MM3 Recv Case-Ptwy" menu
 	And user opens RF menu and "Decrease" iLPN quantity using "Modify iLPN" menu in Inventory
 	Then user search for the LPN in iLPN screen, and validate the modification "Decrease Qty" in iLPN
 	And user views ASN, and validate ASN details
@@ -317,7 +318,7 @@ iLPN by deletinh the line & verify the iLPN, ASN & PIX transaction
     And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response 
 	And user views ASN, get and verify item details 
-	And user opens RF menu and completes Receiving using "QSC Recv BpStgD" menu
+	And user opens RF menu and completes Receiving using "MM3 Recv Case-Ptwy" menu
 	And user opens RF menu and "Delete Line" from an iLPN using "Modify iLPN" menu in Inventory
 	Then user search for the LPN in iLPN screen, and validate the modification "Delete Line" in iLPN
 	And user views ASN, and validate ASN details after deleting a line from iLPN
@@ -360,7 +361,7 @@ validating iLPN have no lock & consume the iLPN using RF Menu. Also validate PIX
 	Then user verify the response 
 	#Then user opens ASN screen and searches for the ASN and verify its status "InTransit" 
 	#And user views ASN, get and verify item details 
-	And user opens RF menu and completes Receiving using "QSC Recv BpStgD" menu
+	And user opens RF menu and completes Receiving using "MM3 Recv Case-Ptwy" menu
 	#And user views ASN, get and verify item details
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user opens RF menu and go to invenorty & perform "Consume iLPN" operation

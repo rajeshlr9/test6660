@@ -44,7 +44,7 @@ public class ShipmentPage {
 	DistributionOrdersPage distributionOrdersPage1 = new DistributionOrdersPage();
 
 	public void BillOfLadding(String sheetName, String rowname, int columnnumber)
-			throws InterruptedException, IOException {
+			throws Exception {
 		String expectedDOstatus = "Delivered";
 		HomePage homepage = new HomePage();
 		homepage.MenuItems_Distribution_Selection("Shipments");

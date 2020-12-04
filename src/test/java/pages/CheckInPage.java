@@ -84,7 +84,7 @@ public class CheckInPage {
 	
 	
 	
-	public void checkInTrailer() throws InterruptedException, IOException, AWTException{
+	public void checkInTrailer() throws Exception{
 		
 		homepage.MenuItems_Distribution_Selection("Check-In");
 		int TrailerNum= SeleniumTestHelper.generateRandomInt(100, 999);

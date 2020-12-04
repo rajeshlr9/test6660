@@ -110,7 +110,7 @@ public class PixTransactionPage {
 	public WebElement refreshBtn;
 
 	public void checkForPixTransaction(String pixTranNumber, String pixTranCode, int noOfItems, String status)
-			throws Throwable {
+			throws Exception {
 		Thread.sleep(2000);
 		homePage.MenuItems_Distribution_Selection("PIX Transactions");
 		SeleniumTestHelper.switchToInnerFrame(driver);
@@ -167,7 +167,7 @@ public class PixTransactionPage {
 	}
 	
 	public void checkForPixTransactions(String pixTranNumber, String pixTranCode, int noOfItems, String status)
-			throws Throwable {
+			throws Exception {
 		Thread.sleep(2000);
 		homePage.MenuItems_Distribution_Selection("PIX Transactions");
 		SeleniumTestHelper.switchToInnerFrame(driver);
@@ -231,7 +231,7 @@ public class PixTransactionPage {
 	}
 
 	@SuppressWarnings("null")
-	public void validatePixTransactionforLock_Unlock(String[] pixCodeArr) throws InterruptedException, IOException {
+	public void validatePixTransactionforLock_Unlock(String[] pixCodeArr) throws Exception {
 		
 		homePage.MenuItems_Distribution_Selection("PIX Transactions");
 		SeleniumTestHelper.switchToInnerFrame(driver);
@@ -291,7 +291,7 @@ public class PixTransactionPage {
 		homePage.userClosesOpenedwindow("PIX Transactions");
 	}
 	
-public void validatePixTransactionforModifyiLPN(String[] pixCodeArr) throws InterruptedException, IOException {
+public void validatePixTransactionforModifyiLPN(String[] pixCodeArr) throws Exception {
 		
 		homePage.MenuItems_Distribution_Selection("PIX Transactions");
 		SeleniumTestHelper.switchToInnerFrame(driver);
@@ -353,7 +353,7 @@ public void validatePixTransactionforModifyiLPN(String[] pixCodeArr) throws Inte
 		homePage.userClosesOpenedwindow("PIX Transactions");
 	}
 
-public void validatePixTransactionforconsumingiLPN(String[] pixCodeArr) throws InterruptedException, IOException {
+public void validatePixTransactionforconsumingiLPN(String[] pixCodeArr) throws Exception {
 	homePage.MenuItems_Distribution_Selection("PIX Transactions");
 	SeleniumTestHelper.switchToInnerFrame(driver);
 		SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 120);

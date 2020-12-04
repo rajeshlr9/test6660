@@ -148,7 +148,7 @@ public class TasksPage {
 	}
 	
 	//This method will get the Task status is complete or not 
-	public void get_Task_Status(String expectedTaskstatus) throws InterruptedException, IOException
+	public void get_Task_Status(String expectedTaskstatus) throws Exception
 	{
 		
 		// this is cheating and please fix it, see Zokir for "why cheating" question

@@ -35,7 +35,7 @@ public class WavesPage {
 	@FindBy(xpath="//span[text()='Plt pull task from resv/pack & hold']/../preceding-sibling::td[2]/span[1]")
 		public WebElement selectRlocationfrmWave;
 	
-	public void searchForTheWaveNumberAndVerifyItsDisplayed(String waveNumber) throws InterruptedException, IOException{
+	public void searchForTheWaveNumberAndVerifyItsDisplayed(String waveNumber) throws Exception{
 		homepage.MenuItems_Distribution_Selection("Waves");
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, waveNumberSearchTxt, 50);

@@ -72,7 +72,7 @@ public class WeighAndManifestoLPNPage {
 		}
 	}
 	
-	public void weighandManifestValidateweight() throws InterruptedException, IOException{
+	public void weighandManifestValidateweight() throws Exception{
 		
 		for(int i=0 ;i < DistributionOrders.oLPNwithActive.size();i++)
 		{

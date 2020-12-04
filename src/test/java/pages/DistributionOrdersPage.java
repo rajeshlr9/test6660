@@ -289,7 +289,7 @@ public class DistributionOrdersPage {
 
 	
 
-	public void getDoStatus(String expectedDOstatus) throws InterruptedException, IOException {
+	public void getDoStatus(String expectedDOstatus) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
 		primaryField.sendKeys("Distribution Order");
@@ -305,7 +305,7 @@ public class DistributionOrdersPage {
 
 	}
 
-	public void checkoLPNSstatus(String expectedDOstatus) throws InterruptedException, IOException {
+	public void checkoLPNSstatus(String expectedDOstatus) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
 		primaryField.sendKeys("Distribution Order");
@@ -336,7 +336,7 @@ public class DistributionOrdersPage {
 	}
 
 	public void runWaveTemplate(String waveTemplateDesc, String expStatus, String OrderType)
-			throws InterruptedException, IOException, AWTException {
+			throws Exception, AWTException {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 100);
 		primaryField.sendKeys("Distribution Order");
@@ -696,7 +696,7 @@ public class DistributionOrdersPage {
 
 	}
 
-	public void getDOdetails() throws InterruptedException, IOException {
+	public void getDOdetails() throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
 		primaryField.sendKeys("Distribution Order");
@@ -784,7 +784,7 @@ public class DistributionOrdersPage {
 		SeleniumTestHelper.Close_OpenedWindow("DO Detail - Distribution Order", driver);
 	}
 
-	public void getOLPNdetails() throws InterruptedException, IOException {
+	public void getOLPNdetails() throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
 		primaryField.sendKeys("Distribution Order");
@@ -861,7 +861,7 @@ public class DistributionOrdersPage {
 	}
 
 	public void runWaveTemplateandchecknotasksgenerated(String waveTemplateDesc)
-			throws InterruptedException, IOException {
+			throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
 		primaryField.sendKeys("Distribution Order");
@@ -934,7 +934,7 @@ public class DistributionOrdersPage {
 	}
 
 	public void runWaveTemplate_CheckTasksforAmazonOrder(String waveTemplateDesc, String expStatus, String ExpTask)
-			throws InterruptedException, IOException {
+			throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
 		primaryField.sendKeys("Distribution Order");
@@ -1049,7 +1049,7 @@ public class DistributionOrdersPage {
 	}
 
 	public void runWaveTemplate_Check_Replen_Case_Pick_and_Pick_from_case_pick(String waveTemplateDesc,
-			String expStatus) throws InterruptedException, IOException {
+			String expStatus) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
 		primaryField.sendKeys("Distribution Order");
@@ -1185,7 +1185,7 @@ public class DistributionOrdersPage {
 	}
 
 	public void runWaveTemplate_Check_Replen_to_active(String waveTemplateDesc, String expStatus)
-			throws InterruptedException, IOException {
+			throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
 		primaryField.sendKeys("Distribution Order");
@@ -1279,7 +1279,7 @@ public class DistributionOrdersPage {
 		homepage.user_closes_openedwindow("ShipWaveTemplate - oLPNs");
 	}
 
-	public void checkTaskstatus(String taskStatus) throws InterruptedException, IOException {
+	public void checkTaskstatus(String taskStatus) throws Exception {
 		homepage.MenuItems_Configuration_Selection("Tasks");
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		for (int i = 0; i < DistributionOrders.replnTasks.size(); i++) {
@@ -1296,7 +1296,7 @@ public class DistributionOrdersPage {
 	}
 
 	public void verifyDOLineStatusForPackedAndCancelItem(String statusPacked, String statusCancel)
-			throws InterruptedException, IOException {
+			throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
 		primaryField.sendKeys("Distribution Order");
@@ -1323,7 +1323,7 @@ public class DistributionOrdersPage {
 		SeleniumTestHelper.Close_OpenedWindow("DO Detail - Distribution Order", driver);
 	}
 
-	public void search_for_DO_with_Fulfillment_status(String fullfulmentsStatus) throws InterruptedException {
+	public void search_for_DO_with_Fulfillment_status(String fullfulmentsStatus) throws Exception {
 		// driver.switchTo().frame(0);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 5);
 		primaryField.sendKeys("Fulfillment Status" + Keys.TAB + Keys.TAB);
@@ -1342,7 +1342,7 @@ public class DistributionOrdersPage {
 
 	}
 
-	public void toRunWaveTemplate(String waveTemplateDesc) throws InterruptedException, IOException {
+	public void toRunWaveTemplate(String waveTemplateDesc) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
 		primaryField.sendKeys("Distribution Order");
@@ -1426,7 +1426,7 @@ public class DistributionOrdersPage {
 		homepage.user_closes_openedwindow("Distribution Orders");
 	}
 
-	public void verifyDOAndCheckStatus(String expectedDOstatus) throws InterruptedException, IOException {
+	public void verifyDOAndCheckStatus(String expectedDOstatus) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
 		primaryField.sendKeys("Distribution Order");
@@ -1441,7 +1441,7 @@ public class DistributionOrdersPage {
 		homepage.user_closes_openedwindow("Distribution Orders");
 	}
 
-	public void cancelDOLine(String expectedDoLineStatus) throws InterruptedException, IOException {
+	public void cancelDOLine(String expectedDoLineStatus) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
 		primaryField.sendKeys("Distribution Order");
@@ -1471,7 +1471,7 @@ public class DistributionOrdersPage {
 		SeleniumTestHelper.Close_OpenedWindow("DO Detail - Distribution Order", driver);
 	}
 
-	public void printPackingSlipReport() throws InterruptedException, IOException {
+	public void printPackingSlipReport() throws Exception {
 
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
@@ -1496,7 +1496,7 @@ public class DistributionOrdersPage {
 	}
 
 	public void search_for_DO_with_Fulfillment_EPIDoc(String fullfulmentsStatus)
-			throws InterruptedException, IOException {
+			throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
 		primaryField.sendKeys("Fulfillment Status");
@@ -1550,7 +1550,7 @@ public class DistributionOrdersPage {
 
 	}
 
-	public void storeDO_PO_oLPN_numbersForDFill(String FulFilmentStatus) throws InterruptedException, IOException {
+	public void storeDO_PO_oLPN_numbersForDFill(String FulFilmentStatus) throws Exception {
 
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
@@ -1612,7 +1612,7 @@ public class DistributionOrdersPage {
 		SeleniumTestHelper.Close_OpenedWindow("DO Detail - Distribution Order", driver);
 	}
 
-	public void getDOStatus(String expectedDOstatus) throws InterruptedException, IOException {
+	public void getDOStatus(String expectedDOstatus) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
 		primaryField.sendKeys("Distribution Order");

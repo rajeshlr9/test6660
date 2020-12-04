@@ -119,7 +119,7 @@ public class AsnsPage {
 	@FindBy(xpath = "//input[@id='dataForm:editASNSealNumberTable:newRow_2:SeqNbr']")
 	public WebElement editHeaderAddSealSequenceNumTxtSecond;
 
-	public void verifyAsnsStatus(String asnId, String status) throws InterruptedException, IOException {
+	public void verifyAsnsStatus(String asnId, String status) throws Exception {
 		homepage.MenuItems_Distribution_Selection("ASNs");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 120);
 		primaryField.sendKeys("ASN");
@@ -214,7 +214,7 @@ public class AsnsPage {
 		Thread.sleep(2000);
 	}
 
-	public void searchForTheASN(String asnID) throws InterruptedException, IOException {
+	public void searchForTheASN(String asnID) throws Exception {
 		homepage.MenuItems_Distribution_Selection("ASNs");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 120);
 		primaryField.sendKeys("ASN");

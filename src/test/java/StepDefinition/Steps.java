@@ -44,6 +44,7 @@ import entity.Items;
 import globalFunc.CreateBrowser;
 import globalFunc.DateTime;
 import globalFunc.GlobalClass;
+import pages.HomePage;
 import pages.ManhattanLoginPage;
 import utils.Config;
 
@@ -110,7 +111,7 @@ public class Steps {
 	public void afterClass() throws GeneralLeanFtException {
 
 		System.out.println("after");
-		Items.removeAllTheValuesFromMap();
+		
 		System.out.println(testRes);
 		// seleniumDriver.quit();
 
@@ -123,6 +124,7 @@ public class Steps {
 		 */
 		 
 		if ("Failed".equals(testRes)) {
+			
 			if (LeanFTDriver != null) {
 				try {
 					globalFunc.Screenshots.LeanFTSnapshot(LeanFTDriver);
@@ -148,6 +150,8 @@ public class Steps {
 					globalFunc.Screenshots.seleniumSnapshot(seleniumDriver);
 					System.out.println("naka2");
 					Reporter.addScreenCaptureFromPath(System.getProperty("user.dir")+ "\\resources\\Screenshots\\" + DateTime.strDate3 + ".jpeg");
+					HomePage homePage1= new HomePage();
+					homePage1.user_logout_from_application1();
 				} catch (Exception e) { // TODO Auto-generated
 					e.printStackTrace();
 					System.out.println("raka3");
@@ -162,7 +166,7 @@ public class Steps {
 			seleniumDriver.quit();
 			seleniumDriver = null;
 		}
-
+		Items.removeAllTheValuesFromMap();
 	}
 
 	@Given("We have Manhattan environmnet up and running")

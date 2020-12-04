@@ -124,7 +124,7 @@ public class StepDefInBound {
 	}
 
 	@When("^user logs into Manhattan application using \"([^\"]*)\" Credentials$")
-	public void user_logs_into_Manhattan_application(String userType) throws Throwable {
+	public void user_logs_into_Manhattan_application(String userType) throws Exception {
 		try {
 			// driver = CreateBrowser.CreateBrowserInstance();
 			// Steps.logger.info("Browser Instance created");
@@ -132,10 +132,10 @@ public class StepDefInBound {
 			String env = ManhattanLoginPage.environment;
 			System.out.println("Environment:"+env);
 
-			if (env.equalsIgnoreCase("Dev")) {
-				driver.get(Config.getProperty("ManhattanURL_Dev"));
+			if (env.equalsIgnoreCase("DEV")|| env.equalsIgnoreCase("@Env")) {
+				driver.get(Config.getProperty("ManhattanURL_DEV"));
 				Steps.logger.info("Dev Environment");
-			} else if (env.equalsIgnoreCase("TEST")|| env.equalsIgnoreCase("@Env") ) {
+			} else if (env.equalsIgnoreCase("TEST") ) {
 				driver.get(Config.getProperty("ManhattanURL_TEST"));
 				Steps.logger.info("TEST Environment");
 			}
@@ -157,10 +157,10 @@ public class StepDefInBound {
 			String env = ManhattanLoginPage.environment;
 			System.out.println("Environment:"+env);
 
-			if (env.equalsIgnoreCase("Dev")) {
-				driver.get(Config.getProperty("ManhattanURL_Dev"));
+			if (env.equalsIgnoreCase("DEV")|| env.equalsIgnoreCase("@Env")) {
+				driver.get(Config.getProperty("ManhattanURL_DEV"));
 				Steps.logger.info("Dev Environment");
-			} else if (env.equalsIgnoreCase("TEST")|| env.equalsIgnoreCase("@Env") ) {
+			} else if (env.equalsIgnoreCase("TEST") ) {
 				driver.get(Config.getProperty("ManhattanURL_TEST"));
 				Steps.logger.info("TEST Environment");
 			}
@@ -177,38 +177,49 @@ public class StepDefInBound {
 	}
 
 	@When("^user create xml file with Item Value updated with DeliveryStartDate for ReceivingASN$")
-	public void user_create_xml_file_with_updated_DeliveryStartDate_for_ReceivingASN() throws Throwable {
-		Steps.logger.info("XML creation started");
-		xmlInput.user_create_inputXML_for_inbound_basedOn_noOfItem(Steps.ItemDataMap.get(0).get("Qty"));
+	public void user_create_xml_file_with_updated_DeliveryStartDate_for_ReceivingASN() throws Exception {
+		try {
+			Steps.logger.info("XML creation started");
+			xmlInput.user_create_inputXML_for_inbound_basedOn_noOfItem(Steps.ItemDataMap.get(0).get("Qty"));
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false);
+		}
 
 	}
 
 	@When("^user update xml itemDetails (\\d+) from sheet \"([^\"]*)\" with \"([^\"]*)\",\"([^\"]*)\",\"([^\"]*)\" for receiving ASN$")
 	public void user_update_xml_itemDetails_with(int noOfItem, String sheetName, String shippedQty, String qtyUOM,
-			String rowHeaderTcname) throws Throwable {
+			String rowHeaderTcname) throws Exception {
 
-		String[] shippedQtyAsArray = shippedQty.split("/");
-		String[] qtyUOMAsArray = qtyUOM.split("/");
-		Items.setCurrentTestCase(rowHeaderTcname);
-		for (int i = 1; i <= noOfItem; i++) {
-			// itemName = testStubReader.setSheetAndGetData(sheetName, rowHeaderTcname, i);
-			xmlInput.ModifyXmlfile(xmlInput.ASNUpdateItemName(i), itemName, xmlInput.inputIBFilePath);
-			System.out.println("Item : " + itemName + " has been updated successfully");
-			xmlInput.ModifyXmlfile(xmlInput.ASNUpdateQty(i), shippedQtyAsArray[i - 1], xmlInput.inputIBFilePath);
-			System.out.println("Qty : " + shippedQtyAsArray[i - 1] + " has been updated successfully");
-			xmlInput.ModifyXmlfile(xmlInput.ASNUpdateShippedQty(i), shippedQtyAsArray[i - 1], xmlInput.inputIBFilePath);
-			System.out.println("ShippedASNQty : " + shippedQtyAsArray[i - 1] + " has been updated successfully");
-			xmlInput.ModifyXmlfile(xmlInput.ASNUpdateQtyUOM(i), qtyUOMAsArray[i - 1], xmlInput.inputIBFilePath);
-			System.out.println("QtyUOM : " + qtyUOMAsArray[i - 1] + " has been updated successfully");
-			Items.setItemsForReceivingASN(itemName);
-			Items.setItemWithShippedASNQty(itemName, Integer.parseInt(shippedQtyAsArray[i - 1]));
-			Items.setItemWithQtyUOM(itemName, qtyUOMAsArray[i - 1]);
-
+		try {
+			String[] shippedQtyAsArray = shippedQty.split("/");
+			String[] qtyUOMAsArray = qtyUOM.split("/");
+			Items.setCurrentTestCase(rowHeaderTcname);
+			for (int i = 1; i <= noOfItem; i++) {
+				// itemName = testStubReader.setSheetAndGetData(sheetName, rowHeaderTcname, i);
+				xmlInput.ModifyXmlfile(xmlInput.ASNUpdateItemName(i), itemName, xmlInput.inputIBFilePath);
+				System.out.println("Item : " + itemName + " has been updated successfully");
+				xmlInput.ModifyXmlfile(xmlInput.ASNUpdateQty(i), shippedQtyAsArray[i - 1], xmlInput.inputIBFilePath);
+				System.out.println("Qty : " + shippedQtyAsArray[i - 1] + " has been updated successfully");
+				xmlInput.ModifyXmlfile(xmlInput.ASNUpdateShippedQty(i), shippedQtyAsArray[i - 1], xmlInput.inputIBFilePath);
+				System.out.println("ShippedASNQty : " + shippedQtyAsArray[i - 1] + " has been updated successfully");
+				xmlInput.ModifyXmlfile(xmlInput.ASNUpdateQtyUOM(i), qtyUOMAsArray[i - 1], xmlInput.inputIBFilePath);
+				System.out.println("QtyUOM : " + qtyUOMAsArray[i - 1] + " has been updated successfully");
+				Items.setItemsForReceivingASN(itemName);
+				Items.setItemWithShippedASNQty(itemName, Integer.parseInt(shippedQtyAsArray[i - 1]));
+				Items.setItemWithQtyUOM(itemName, qtyUOMAsArray[i - 1]);
+			}
+		} catch (NumberFormatException e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false);
 		}
 	}
 
 	@When("^user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN$")
-	public void user_create_xml_file_with_updated_ASNNo_DeliveryStartDate_for_ReceivingASN() throws Throwable {
+	public void user_create_xml_file_with_updated_ASNNo_DeliveryStartDate_for_ReceivingASN() throws Exception {
 		try {
 			Steps.logger.info("XML creation started");
 			xmlInput.user_create_inputXML_for_inbound_basedOn_noOfItem();
@@ -223,7 +234,7 @@ public class StepDefInBound {
 
 	@When("^user create xml file using \"([^\"]*)\" with updated ASNNo & DeliveryStartDate for ReceivingASN$")
 	public void user_create_xml_swith_updated_ASNNo_DeliveryStartDate_for_ReceivingASN(String xmlType)
-			throws Throwable {
+			throws Exception {
 		try {
 			Steps.logger.info("XML creation started");
 			xmlInput.user_create_inputXML_for_inbound_basedOn_xmlType(xmlType);
@@ -237,7 +248,7 @@ public class StepDefInBound {
 	}
 
 	@And("^user update xml itemDetails from excel sheet$")
-	public void user_update_xml_itemDetails_from_sheet_for_Scenario() throws Throwable {
+	public void user_update_xml_itemDetails_from_sheet_for_Scenario() throws Exception {
 
 		try {
 			String itemName = null;
@@ -271,7 +282,7 @@ public class StepDefInBound {
 	}
 
 	@When("^user opens post message screen and upload file in order to create ASN$")
-	public void user_opens_post_message_screen_and_upload_file_in_order_to_create_ASN() throws Throwable {
+	public void user_opens_post_message_screen_and_upload_file_in_order_to_create_ASN() throws Exception {
 		// String isjenkinJob = Runner.jenkinJobName;
 		homePage.menuItemsIntegrationSelection("Post Message");
 		Steps.logger.info("Open Post message screen");
@@ -304,7 +315,7 @@ public class StepDefInBound {
 	}
 
 	@Then("^user verify the response$")
-	public void user_verify_the_response() throws Throwable {
+	public void user_verify_the_response() throws Exception {
 		try {
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, postMessagePage.responseTxt, 10000);
 			postMessagePage.responseTxt.click();
@@ -333,7 +344,7 @@ public class StepDefInBound {
 				Reporter.addStepLog("Receving request has not been created");
 				SeleniumTestHelper.fail("Receving request has not been created");
 			}
-		} catch (InterruptedException e) {
+		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
 			Assert.assertTrue(false);
@@ -341,7 +352,7 @@ public class StepDefInBound {
 	}
 
 	@Then("^user opens ASN screen and searches for the ASN and verify its status \"([^\"]*)\"$")
-	public void user_opens_ASN_screen_and_searches_for_the_ASN_and_verify_its_status(String status) throws Throwable {
+	public void user_opens_ASN_screen_and_searches_for_the_ASN_and_verify_its_status(String status) throws Exception {
 
 		// asnsPage.verifyAsnsStatus(Items.getAsnNumber(), status);
 		try {
@@ -354,7 +365,7 @@ public class StepDefInBound {
 	}
 	
 	@And("^user verifies the ASN$")
-	public void user_verifies_ASN() throws Throwable {
+	public void user_verifies_ASN() throws Exception {
 
 		try {
 			asnsPage.searchForTheASN(Items.getAsnNumber());
@@ -372,7 +383,7 @@ public class StepDefInBound {
 	}
 //After ASN creation
 	@And("^user views ASN, get and verify item details$")
-	public void user_views_ASNscreen_and_get_itemdetails() throws Throwable {
+	public void user_views_ASNscreen_and_get_itemdetails() throws Exception {
 		// asnsPage.searchForTheASN(Items.getAsnNumber());
 		try {
 			asnsPage.searchForTheASN(Items.getAsnNumber());
@@ -397,7 +408,7 @@ public class StepDefInBound {
 	}
 	//after receiving
 	@Then("^user views ASN, and validate ASN details$")
-	public void user_opens_ASN_screen_and_validate_ASN_details() throws Throwable {
+	public void user_opens_ASN_screen_and_validate_ASN_details() throws Exception {
 
 		try {
 			asnsPage.searchForTheASN(Items.getAsnNumber());
@@ -421,7 +432,7 @@ public class StepDefInBound {
 		}
 	}
 	@Then("^user views ASN, and validate ASN details after deleting a line from iLPN$")
-	public void user_opens_ASN_screen_and_validate_ASN_details_after_deleting_a_line_from_an_iLPN() throws Throwable {
+	public void user_opens_ASN_screen_and_validate_ASN_details_after_deleting_a_line_from_an_iLPN() throws Exception {
 
 		try {
 			asnsPage.searchForTheASN(Items.getAsnNumber());
@@ -446,7 +457,7 @@ public class StepDefInBound {
 	}
 	
 	@And("^user views ASN, and validate ASN details after consuming an iLPN$")
-	public void user_opens_ASN_screen_and_validate_ASN_details_after_consuming_an_iLPN() throws Throwable {
+	public void user_opens_ASN_screen_and_validate_ASN_details_after_consuming_an_iLPN() throws Exception {
 	try {
 		asnsPage.searchForTheASN(Items.getAsnNumber());
 		String asnStatus=asnsPage.asnStatus.getText();
@@ -471,7 +482,7 @@ public class StepDefInBound {
 	
 	
 	@Then("^user log out from application$")
-	public void user_log_out_from_application() throws Throwable {
+	public void user_log_out_from_application() throws Exception {
 		try {
 			Thread.sleep(5000);
 			homePage.user_logout_from_application();
@@ -484,14 +495,20 @@ public class StepDefInBound {
 
 	@And("^user opens RF menu and completes Receiving using \"([^\"]*)\" menu for (\\d+) item in \"([^\"]*)\"$")
 	public void user_opens_RF_menu_and_completes_Receiving_using_menu_for_item_in(String receivingMethod, int noOfItems,
-			String recLocation) throws Throwable {
-		homePage.MenuItems_Distribution_Selection("RF Menu");
-		SeleniumTestHelper.switchToInnerFrame(driver);
-		rfMenu.ASNReceivingProcess(noOfItems, receivingMethod, recLocation);
+			String recLocation) throws Exception {
+		try {
+			homePage.MenuItems_Distribution_Selection("RF Menu");
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			rfMenu.ASNReceivingProcess(noOfItems, receivingMethod, recLocation);
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		}
 	}
 
 	@Then("^user opens RF menu and completes Receiving using \"([^\"]*)\" menu$")
-	public void user_opens_RF_menu_and_completes_Receiving_using_menu(String receivingMethod) throws Throwable {
+	public void user_opens_RF_menu_and_completes_Receiving_using_menu(String receivingMethod) throws Exception {
 		try {
 			homePage.MenuItems_Distribution_Selection("RF Menu");
 			Steps.logger.info("Open RF menu");
@@ -505,7 +522,7 @@ public class StepDefInBound {
 	}
 	
 	@And("^user opens RF menu and completes Putaway using \"([^\"]*)\" menu$")
-	public void user_opens_RF_menu_and_completes_Putaway(String putawayMethod) throws Throwable {
+	public void user_opens_RF_menu_and_completes_Putaway(String putawayMethod) throws Exception {
 		try {
 			homePage.MenuItems_Distribution_Selection("RF Menu");
 			Steps.logger.info("Open RF menu");
@@ -519,7 +536,7 @@ public class StepDefInBound {
 	}
 	
 	@And("^user open reserve locations & naviagtes to \"([^\"]*)\" zone and fetches the current quantity$")
-	public void fetch_current_qty_from_inspection_zone(String INSZone) throws InterruptedException, IOException {
+	public void fetch_current_qty_from_inspection_zone(String INSZone) throws Exception {
 		try {
 			homePage.MenuItems_Configuration_Selection("Reserve Locations");
 			Steps.logger.info("Open Reserve Locations");
@@ -527,11 +544,7 @@ public class StepDefInBound {
 			resLocPage.fetchQty(INSZone);
 			System.out.println("reserveLocationqty:"+resLocPage.reserveLocationqty);
 			homePage.user_closes_openedwindow("Reserve Locations - Reserve Location");
-		} catch (InterruptedException e) {
-			Steps.testRes = "Failed";
-			e.printStackTrace();
-			Assert.assertTrue(false);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
 			Assert.assertTrue(false);
@@ -540,18 +553,14 @@ public class StepDefInBound {
 	}
 	
 	@Then("^user navigates to reserve locations & validates that the quantity is increased in \"([^\"]*)\" by no of iLPN's moved$")
-	public void user_navigates_to_reserve_locations_validates_that_the_quantity_is_increased_in_by_no_of_iLPN_s_moved(String inspectionZone) throws Throwable {
+	public void user_navigates_to_reserve_locations_validates_that_the_quantity_is_increased_in_by_no_of_iLPN_s_moved(String inspectionZone) throws Exception {
 		try {
 			homePage.MenuItems_Configuration_Selection("Reserve Locations");
 			Steps.logger.info("Open Reserve Locations");
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			resLocPage.validateQty(inspectionZone);
 			homePage.user_closes_openedwindow("Reserve Locations - Reserve Location");
-		} catch (InterruptedException e) {
-			Steps.testRes = "Failed";
-			e.printStackTrace();
-			Assert.assertTrue(false);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
 			Assert.assertTrue(false);
@@ -560,18 +569,14 @@ public class StepDefInBound {
 	
 
 	@Then("^validates that the iLPN is also moved to inspection zone \"([^\"]*)\"$")
-	public void validates_that_the_iLPN_is_also_moved_to_inspection_zone(String inspectionZone) throws Throwable {
+	public void validates_that_the_iLPN_is_also_moved_to_inspection_zone(String inspectionZone) throws Exception {
 		try {
 			homePage.MenuItems_Configuration_Selection("Reserve Locations");
 			Steps.logger.info("Open Reserve Locations");
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			resLocPage.validateiLPNinReserveLoc(inspectionZone);
 			homePage.user_closes_openedwindow("Reserve Locations - iLPNs");
-		} catch (InterruptedException e) {
-			Steps.testRes = "Failed";
-			e.printStackTrace();
-			Assert.assertTrue(false);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
 			Assert.assertTrue(false);
@@ -580,7 +585,7 @@ public class StepDefInBound {
 		
 
 	@And("^user opens RF menu and go to invenorty & perform \"([^\"]*)\" operation$")
-	public void user_opens_RF_menu_and_create_iLPN(String menuOption) throws Throwable {
+	public void user_opens_RF_menu_and_create_iLPN(String menuOption) throws Exception {
 		try {
 			homePage.MenuItems_Distribution_Selection("RF Menu");
 			Steps.logger.info("Open RF menu");
@@ -594,7 +599,7 @@ public class StepDefInBound {
 	}
 	
 	@And("^user opens RF menu and \"([^\"]*)\" iLPN quantity using \"([^\"]*)\" menu in Inventory$")
-	public void user_opens_RF_menu_and_modify_iLPN(String operation, String menuOption) throws Throwable {
+	public void user_opens_RF_menu_and_modify_iLPN(String operation, String menuOption) throws Exception {
 		try {
 			homePage.MenuItems_Distribution_Selection("RF Menu");
 			Steps.logger.info("Open RF menu");
@@ -608,7 +613,7 @@ public class StepDefInBound {
 	}
 	
 	@And("^user opens RF menu and \"([^\"]*)\" from an iLPN using \"([^\"]*)\" menu in Inventory$")
-	public void user_opens_RF_menu_and_delete_line_from_an_iLPN(String operation, String menuOption) throws Throwable {
+	public void user_opens_RF_menu_and_delete_line_from_an_iLPN(String operation, String menuOption) throws Exception {
 		try {
 			homePage.MenuItems_Distribution_Selection("RF Menu");
 			Steps.logger.info("Open RF menu");
@@ -622,7 +627,7 @@ public class StepDefInBound {
 	}
 
 	@Then("^user opens Inventory by location screen and validates the LPN created$")
-	public void user_opens_InventoryByLocation_screen_and_validates_the_LPN_created() throws Throwable {
+	public void user_opens_InventoryByLocation_screen_and_validates_the_LPN_created() throws Exception {
 		try {
 			homePage.MenuItems_Distribution_Selection("Item Inventory by Location");
 			Steps.logger.info("Open Item Inventory by Location menu");
@@ -643,7 +648,7 @@ public class StepDefInBound {
 	}
 
 	@Then("^user search for the LPN in iLPN screen, and validate the lock code$")
-	public void user_search_for_the_LPN_in_iLPN_screen_and_validate_the_lock_code() throws Throwable {
+	public void user_search_for_the_LPN_in_iLPN_screen_and_validate_the_lock_code() throws Exception {
 		try {
 			iLPNPage.validateiLPNLockCode();
 		} catch (Exception e) {
@@ -655,7 +660,7 @@ public class StepDefInBound {
 	}
 	
 	@Then("^user search for the LPN in iLPN screen, and validate the modification \"([^\"]*)\" in iLPN$")
-			public void user_opens_iLPN_and_validate_change_in_iLPN(String opeartion) throws Throwable {
+			public void user_opens_iLPN_and_validate_change_in_iLPN(String opeartion) throws Exception {
 				try {
 						iLPNPage.validateiLPNModification(opeartion);
 				} catch (Exception e) {
@@ -666,7 +671,7 @@ public class StepDefInBound {
 			}
 	
 	@Then("^user search for the LPN in iLPN screen, and validate the iLPN status$")
-	public void user_opens_iLPN_and_validate_iLPN_status() throws Throwable {
+	public void user_opens_iLPN_and_validate_iLPN_status() throws Exception {
 		homePage.MenuItems_Distribution_Selection("iLPNs");
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		try {
@@ -682,7 +687,7 @@ public class StepDefInBound {
 	}
 
 	@And("user open iLPN and applies the lock code")
-	public void user_opens_iLPN_and_apply_lockCode() throws Throwable {
+	public void user_opens_iLPN_and_apply_lockCode() throws Exception {
 		try {
 			homePage.MenuItems_Distribution_Selection("iLPNs");
 			Steps.logger.info("Open iLPN screen");
@@ -700,7 +705,7 @@ public class StepDefInBound {
 	}
 	
 	@And("user open iLPN and unlock the existing code")
-	public void user_opens_iLPN_and_unlock_the_exisitng_code() throws Throwable {
+	public void user_opens_iLPN_and_unlock_the_exisitng_code() throws Exception {
 		try {
 			homePage.MenuItems_Distribution_Selection("iLPNs");
 			Steps.logger.info("Open iLPN screen");
@@ -718,7 +723,7 @@ public class StepDefInBound {
 	}
 	
 	@And("^validates the PIX Transactions \"([^\"]*)\" for this operation$")
-	public void validate_PIX_transaction(String PixCode) throws Throwable {
+	public void validate_PIX_transaction(String PixCode) throws Exception {
 		
 		try {
 			String[] pixCodeArr = null;
@@ -728,11 +733,7 @@ public class StepDefInBound {
 				pixCodeArr = new String[] { PixCode };
 			}
 			pixTransaction.validatePixTransactionforLock_Unlock(pixCodeArr);
-		} catch (InterruptedException e) {
-			Steps.testRes = "Failed";
-			e.printStackTrace();
-			Assert.assertTrue(false);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
 			Assert.assertTrue(false);
@@ -741,7 +742,7 @@ public class StepDefInBound {
 	}
 	
 	@And("^validates the PIX Transactions \"([^\"]*)\" for modifying iLPN$")
-	public void validate_PIX_transaction_for_modifying_iLPN(String PixCode) throws Throwable {
+	public void validate_PIX_transaction_for_modifying_iLPN(String PixCode) throws Exception {
 		
 		try {
 			String[] pixCodeArr = null;
@@ -751,11 +752,7 @@ public class StepDefInBound {
 				pixCodeArr = new String[] { PixCode };
 			}
 			pixTransaction.validatePixTransactionforModifyiLPN(pixCodeArr);
-		} catch (InterruptedException e) {
-			Steps.testRes = "Failed";
-			e.printStackTrace();
-			Assert.assertTrue(false);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
 			Assert.assertTrue(false);
@@ -765,7 +762,7 @@ public class StepDefInBound {
 	
 
 	@And("^validates the PIX Transactions \"([^\"]*)\" for consuming iLPN$")
-	public void validate_PIX_transaction_for_consuming_iLPN(String PixCode) throws Throwable {
+	public void validate_PIX_transaction_for_consuming_iLPN(String PixCode) throws Exception {
 		
 		try {
 			String[] pixCodeArr = null;
@@ -775,11 +772,7 @@ public class StepDefInBound {
 				pixCodeArr = new String[] { PixCode };
 			}
 			pixTransaction.validatePixTransactionforconsumingiLPN(pixCodeArr);
-		} catch (InterruptedException e) {
-			Steps.testRes = "Failed";
-			e.printStackTrace();
-			Assert.assertTrue(false);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
 			Assert.assertTrue(false);
@@ -788,7 +781,7 @@ public class StepDefInBound {
 	}
 
 	@Then("^user opens Inventory by location screen and validates the LPN moved$")
-	public void user_opens_InventoryByLocation_screen_and_validates_the_LPN_moved() throws Throwable {
+	public void user_opens_InventoryByLocation_screen_and_validates_the_LPN_moved() throws Exception {
 		try {
 			homePage.MenuItems_Distribution_Selection("Item Inventory by Location");
 			Steps.logger.info("Open Item Inventory by Location menu");
@@ -804,7 +797,7 @@ public class StepDefInBound {
 	}
 
 	@Then("^user break Split LPN and move to another LPN of same ASN$")
-	public void user_Break_Split_LPN_and_move_to_another_LPN_of_same_ASN() throws Throwable {
+	public void user_Break_Split_LPN_and_move_to_another_LPN_of_same_ASN() throws Exception {
 		try {
 			homePage.MenuItems_Distribution_Selection("RF Menu");
 			Steps.logger.info("Open RF menu");

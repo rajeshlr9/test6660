@@ -1,0 +1,119 @@
+<Results>
+    <GeneralInfo>
+        <Name/>
+        <RunStartTime>2020-11-24 10:02:54</RunStartTime>
+        <Timezone>Coordinated Universal Time</Timezone>
+        <OrchestrationToolName>JUnit</OrchestrationToolName>
+        <OrchestrationToolVersion/>
+        <ReportTitle>LeanFT Report</ReportTitle>
+    </GeneralInfo>
+    <ReportNode type="Run">
+        <Data>
+            <Name>Run Results</Name>
+            <Description><![CDATA[ ]]></Description>
+            <StartTime>2020-11-24 10:02:54</StartTime>
+            <Result>Passed</Result>
+            <Links/>
+            <Duration><![CDATA[00:00:00.483]]></Duration>
+            <Extension>
+                <Any>
+                    <IconKey>Run</IconKey>
+                    <IsHtmlErrorText>true</IsHtmlErrorText>
+                </Any>
+            </Extension>
+            <Environment>
+                <OSInfo><![CDATA[Microsoft Windows NT 6.2.9200.0]]></OSInfo>
+                <HostName>OCIDDFL1SYSTEMT</HostName>
+                <NumberOfCores>4</NumberOfCores>
+                <CpuInfo/>
+                <TotalMemory>30716</TotalMemory>
+                <Locale><![CDATA[en-US]]></Locale>
+                <Timezone>Coordinated Universal Time</Timezone>
+                <User><![CDATA[ffd-sys-team]]></User>
+            </Environment>
+            <TestedApplication/>
+            <ToolName>LeanFT</ToolName>
+            <ToolVersion><![CDATA[14.52]]></ToolVersion>
+        </Data>
+        <ReportNode type="Suite">
+            <Data>
+                <Name>Default suite</Name>
+                <Description/>
+                <StartTime>2020-11-24 10:02:54</StartTime>
+                <Result>Passed</Result>
+                <Links/>
+                <Duration><![CDATA[00:00:00.151]]></Duration>
+                <Extension>
+                    <Any>
+                        <IconKey>Suite</IconKey>
+                        <IsHtmlErrorText>true</IsHtmlErrorText>
+                    </Any>
+                </Extension>
+            </Data>
+            <ReportNode type="TestContainer">
+                <Data>
+                    <Name>Default test</Name>
+                    <Description/>
+                    <StartTime>2020-11-24 10:02:54</StartTime>
+                    <Result>Passed</Result>
+                    <Links/>
+                    <Duration><![CDATA[00:00:00.151]]></Duration>
+                    <Extension>
+                        <Any>
+                            <IconKey>TestContainer</IconKey>
+                            <IsHtmlErrorText>true</IsHtmlErrorText>
+                        </Any>
+                    </Extension>
+                </Data>
+                <ReportNode type="Package">
+                    <Data>
+                        <Name>utils</Name>
+                        <Description><![CDATA[Version: N/A]]></Description>
+                        <StartTime>2020-11-24 10:02:54</StartTime>
+                        <Result>Passed</Result>
+                        <Links/>
+                        <Duration><![CDATA[00:00:00.151]]></Duration>
+                        <Extension>
+                            <Any>
+                                <IconKey>Package</IconKey>
+                                <IsHtmlErrorText>true</IsHtmlErrorText>
+                            </Any>
+                        </Extension>
+                    </Data>
+                    <ReportNode type="Class">
+                        <Data>
+                            <Name><![CDATA[utils.TestDoc]]></Name>
+                            <Description/>
+                            <StartTime>2020-11-24 10:02:54</StartTime>
+                            <Result>Passed</Result>
+                            <Links/>
+                            <Duration><![CDATA[00:00:00.151]]></Duration>
+                            <Extension>
+                                <Any>
+                                    <IconKey>Class</IconKey>
+                                    <IsHtmlErrorText>true</IsHtmlErrorText>
+                                </Any>
+                            </Extension>
+                        </Data>
+                        <ReportNode type="Test">
+                            <Data>
+                                <Name>test</Name>
+                                <Description/>
+                                <StartTime>2020-11-24 10:02:54</StartTime>
+                                <Result>Passed</Result>
+                                <Links/>
+                                <Duration><![CDATA[00:00:00.010]]></Duration>
+                                <Extension>
+                                    <Any>
+                                        <IconKey>Test</IconKey>
+                                        <IsHtmlErrorText>true</IsHtmlErrorText>
+                                    </Any>
+                                </Extension>
+                            </Data>
+                        </ReportNode>
+                    </ReportNode>
+                </ReportNode>
+            </ReportNode>
+        </ReportNode>
+    </ReportNode>
+</Results>

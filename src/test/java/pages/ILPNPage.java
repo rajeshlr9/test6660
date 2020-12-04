@@ -155,7 +155,7 @@ public class ILPNPage {
 	public WebElement secondLPNQty;
 
 	public void searchLPNCancelItAndVerifyLPNFacilityStatus(int noOfItems, String status)
-			throws InterruptedException, IOException, AWTException {
+			throws Exception {
 		homePage.MenuItems_Distribution_Selection("iLPNs");
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		for (int i = 0; i < noOfItems; i++) {
@@ -194,7 +194,7 @@ public class ILPNPage {
 		}
 		homePage.userClosesOpenedwindow("iLPNs");
 	}
-	public void searchForTheILPNAndViewIt(String iLPN) throws InterruptedException, IOException{
+	public void searchForTheILPNAndViewIt(String iLPN) throws Exception{
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, inputLPNSearchTextBox, 50);
 		inputLPNSearchTextBox.clear();
 		inputLPNSearchTextBox.sendKeys(iLPN);
@@ -216,7 +216,7 @@ public class ILPNPage {
 		return driver.findElement(By.xpath(lPnxpath)).getText();
 	}
 	
-   public void verifyiLPNStatus(String status,int noOfItems) throws InterruptedException, IOException{
+   public void verifyiLPNStatus(String status,int noOfItems) throws Exception{
 		
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		for (int i = 0; i < noOfItems; i++) {
@@ -230,7 +230,7 @@ public class ILPNPage {
 		}
 	}
 
-   public void lockiLPN() throws InterruptedException, IOException{
+   public void lockiLPN() throws Exception{
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, LocksTab, 50);
 		LocksTab.click();
@@ -261,7 +261,7 @@ public class ILPNPage {
 		}
 	}
    
-   public void unlockiLPN() throws InterruptedException, IOException{
+   public void unlockiLPN() throws Exception{
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		Steps.logger.info("Started removing lock code");
 		Reporter.addStepLog("Started removing lock code");
@@ -288,7 +288,7 @@ public class ILPNPage {
 		}
 	}
    
-   public void validateiLPNLockCode() throws InterruptedException, IOException{
+   public void validateiLPNLockCode() throws Exception{
 	   String ilpnLockCode = "";
 		String lpn = null;
 		int i, j;
@@ -330,7 +330,7 @@ public class ILPNPage {
 		homePage.userClosesOpenedwindow("iLPNs - iLPN Details");
    }
    
-   public void verifyLockCodeStatus(String lockcodetext) throws InterruptedException, IOException{
+   public void verifyLockCodeStatus(String lockcodetext) throws Exception{
 		
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		WebElement lockcode = driver.findElement(By.xpath("//select[@disabled='disabled']/option[@selected='selected' and text()='"+lockcodetext+"']"));
@@ -339,7 +339,7 @@ public class ILPNPage {
 		backBtn.click();
 	}
 
-   public void adjustiLPNQuantity(String adjust, int noOfItem) throws InterruptedException, IOException{
+   public void adjustiLPNQuantity(String adjust, int noOfItem) throws Exception{
 	   
 	   SeleniumTestHelper.switchToInnerFrame(driver);
 	   for (int i = 0; i < noOfItem; i++) {
@@ -399,7 +399,7 @@ public class ILPNPage {
 			SeleniumTestHelper.assertEquals(iLPN_Status, status);
    }
    
-   public void validateiLPNStatusAndQty() throws InterruptedException{
+   public void validateiLPNStatusAndQty() throws Exception{
 	   
 	   SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNstatus, 10);
 	   SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNqty, 10);
@@ -437,7 +437,7 @@ public class ILPNPage {
    }
    
    //Ashish
-   public void verifyTheiLPNStatus(String status,int noOfItems) throws InterruptedException, IOException{
+   public void verifyTheiLPNStatus(String status,int noOfItems) throws Exception{
 		
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		for (int i = 0; i < noOfItems; i++) {
@@ -454,7 +454,7 @@ public class ILPNPage {
 		}
 	}
    
-public void adjustiLPNQuantityWith(String adjust, int noOfItem) throws InterruptedException, IOException{
+public void adjustiLPNQuantityWith(String adjust, int noOfItem) throws Exception{
 	   
 	   SeleniumTestHelper.switchToInnerFrame(driver);
 	   for (int i = 0; i < noOfItem; i++) {
@@ -506,7 +506,7 @@ public void adjustiLPNQuantityWith(String adjust, int noOfItem) throws Interrupt
 		}
 	}
    
-	public void validateILPN() throws InterruptedException, IOException {
+	public void validateILPN() throws Exception {
  		
 		homePage.MenuItems_Distribution_Selection("iLPNs");
 		SeleniumTestHelper.switchToInnerFrame(driver);
@@ -522,7 +522,7 @@ public void adjustiLPNQuantityWith(String adjust, int noOfItem) throws Interrupt
 			
 			homePage.userClosesOpenedwindow("iLPNs");
 	}
-	public void validateiLPNModification(String opeartion) throws InterruptedException, IOException {
+	public void validateiLPNModification(String opeartion) throws Exception {
 
 		homePage.MenuItems_Distribution_Selection("iLPNs");
 		Steps.logger.info("Open iLPN screen");

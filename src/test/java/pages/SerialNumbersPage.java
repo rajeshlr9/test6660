@@ -35,7 +35,7 @@ public class SerialNumbersPage {
 
 
 
-public void setSerialNumbers(int noOfitems) throws InterruptedException, IOException{
+public void setSerialNumbers(int noOfitems) throws Exception{
 	homePage.MenuItems_Distribution_Selection("Serial Numbers");
 	SeleniumTestHelper.switchToInnerFrame(driver);
 	for(int i=1; i< noOfitems;i++ )

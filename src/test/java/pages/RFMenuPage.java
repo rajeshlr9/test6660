@@ -118,7 +118,7 @@ public class RFMenuPage {
 	@FindBy(xpath = "//a[text()='MM3 Recv-CASE']")
 	public WebElement MM3Rec;
 
-	@FindBy(xpath = "//a[text()='QSC Recv BpStgD']")
+	@FindBy(xpath = "//a[text()='MM3 Recv Case-Ptwy']")
 	public WebElement BpStgD;
 
 	@FindBy(xpath = "//a[text()='MM3 Returns']")
@@ -608,7 +608,7 @@ public class RFMenuPage {
 	@FindBy(xpath = "//input[@id='sublocn3556_Input']")
 	public WebElement anchorLocn;
 
-	public void ASNReceivingProcess(int noOfItems, String receivingMethod, String recLocation) throws Throwable {
+	public void ASNReceivingProcess(int noOfItems, String receivingMethod, String recLocation) throws Exception {
 		String iLPN = null;
 		String fututeDate = SeleniumTestHelper.user_generate_estimated_delivery_date(365);
 		String[] futureDateAsArray = fututeDate.split("-");
@@ -774,7 +774,7 @@ public class RFMenuPage {
 		homepage.userClosesOpenedwindow("RF Menu");
 	}
 
-	public void ASNReceivingProcess(String receivingMethod) throws InterruptedException {
+	public void ASNReceivingProcess(String receivingMethod) throws Exception {
 		try {
 			String iLPN = null;
 			//iLPNz = null;
@@ -1069,7 +1069,7 @@ public class RFMenuPage {
 				 */
 				break;
 
-			case "QSC Recv BpStgD":
+			case "MM3 Recv Case-Ptwy":
 				System.out.println("Receiving process starting with : " + receivingMethod + " menu");
 				Steps.logger.info("Receiving process starting with : " + receivingMethod + " menu");
 				while (!(SeleniumTestHelper.isElementDisplayed(BpStgD))) {
@@ -1514,12 +1514,11 @@ public class RFMenuPage {
 			System.out.println("test red" + Steps.testRes);
 			e.printStackTrace();
 			Assert.assertTrue(false);
-
 		}
 
 	}
 
-	public void inventoryFunctions(String inventoryFunctions) throws InterruptedException {
+	public void inventoryFunctions(String inventoryFunctions) throws Exception {
 		try {
 			String iLPN = null;
 			Steps.logger.info("Start Inventory Functions");
@@ -1619,7 +1618,7 @@ SeleniumTestHelper.waitForElementToBeDisplayed(driver, acceptAndProceedBtn, 20);
 		}
 	}
 
-	public void modifyiLPN(String operations, String inventoryFunctions) throws InterruptedException {
+	public void modifyiLPN(String operations, String inventoryFunctions) throws Exception {
 		try {
 			Steps.logger.info("Start Inventory Functions");
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 20);
@@ -1705,133 +1704,154 @@ SeleniumTestHelper.waitForElementToBeDisplayed(driver, acceptAndProceedBtn, 20);
 
 	public void split_Move_iLPN_for_same_Item() throws Exception {
 
-		Thread.sleep(1000);
-		RFmenu_info.click();
-		Steps.logger.info("CLicked on RF Menu");
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
-		Thread.sleep(1000);
-		Mainmenu.click();
-		Steps.logger.info("Clicked on Main Menu");
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuReceiving, 20);
-		Thread.sleep(1000);
+		try {
+			Thread.sleep(1000);
+			RFmenu_info.click();
+			Steps.logger.info("CLicked on RF Menu");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
+			Thread.sleep(1000);
+			Mainmenu.click();
+			Steps.logger.info("Clicked on Main Menu");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuReceiving, 20);
+			Thread.sleep(1000);
 
-		while (!(SeleniumTestHelper.isElementDisplayed(inventoryMgmtMenu))) {
-			pageDown.click();
-			Thread.sleep(5000);
+			while (!(SeleniumTestHelper.isElementDisplayed(inventoryMgmtMenu))) {
+				pageDown.click();
+				Thread.sleep(5000);
+			}
+			SeleniumTestHelper.assertTrue(inventoryMgmtMenu.isDisplayed());
+			inventoryMgmtMenu.click();
+			Steps.logger.info("Clicked on Inventory method");
+			Thread.sleep(3000);
+			while (!(SeleniumTestHelper.isElementDisplayed(splitMoveiLPN))) {
+				pageDown.click();
+				Thread.sleep(5000);
+			}
+			SeleniumTestHelper.assertTrue(splitMoveiLPN.isDisplayed());
+			splitMoveiLPN.click();
+			Steps.logger.info("Click on split move iLPN method");
+			Thread.sleep(3000);
+			Steps.logger.info("Enter the value of 1st LPN: " + iLPNz.get(0));
+			ilpnInRFmoveilpnTxtBox.sendKeys(iLPNz.get(0) + Keys.ENTER);
+			Thread.sleep(3000);
+			Steps.logger.info("Enter the value of Qty : " + Steps.scenarioData.get("MoveLPNQty"));
+			moveQty.sendKeys(Steps.scenarioData.get("MoveLPNQty") + Keys.ENTER);
+			Thread.sleep(3000);
+			Steps.logger.info("Enter the value of 2nd LPN: " + iLPNz.get(1));
+			ilpnInRFmoveilpnTxtBox.sendKeys(iLPNz.get(1) + Keys.ENTER);
+			Thread.sleep(3000);
+			Steps.logger.info("Completed iLPN move");
+			Reporter.addStepLog(Steps.scenarioData.get("MoveLPNQty") + " qty is moved from LPN " + iLPNz.get(0) + " to "
+					+ iLPNz.get(1));
+			homepage.userClosesOpenedwindow("RF Menu");
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println("test red" + Steps.testRes);
+			e.printStackTrace();
+			Assert.assertTrue(false);
 		}
-		SeleniumTestHelper.assertTrue(inventoryMgmtMenu.isDisplayed());
-		inventoryMgmtMenu.click();
-		Steps.logger.info("Clicked on Inventory method");
-		Thread.sleep(3000);
-		while (!(SeleniumTestHelper.isElementDisplayed(splitMoveiLPN))) {
-			pageDown.click();
-			Thread.sleep(5000);
-		}
-		SeleniumTestHelper.assertTrue(splitMoveiLPN.isDisplayed());
-		splitMoveiLPN.click();
-		Steps.logger.info("Click on split move iLPN method");
-		Thread.sleep(3000);
-		Steps.logger.info("Enter the value of 1st LPN: " + iLPNz.get(0));
-		ilpnInRFmoveilpnTxtBox.sendKeys(iLPNz.get(0) + Keys.ENTER);
-		Thread.sleep(3000);
-		Steps.logger.info("Enter the value of Qty : " + Steps.scenarioData.get("MoveLPNQty"));
-		moveQty.sendKeys(Steps.scenarioData.get("MoveLPNQty") + Keys.ENTER);
-		Thread.sleep(3000);
-		Steps.logger.info("Enter the value of 2nd LPN: " + iLPNz.get(1));
-		ilpnInRFmoveilpnTxtBox.sendKeys(iLPNz.get(1) + Keys.ENTER);
-		Thread.sleep(3000);
-		Steps.logger.info("Completed iLPN move");
-		Reporter.addStepLog(Steps.scenarioData.get("MoveLPNQty") + " qty is moved from LPN " + iLPNz.get(0) + " to "
-				+ iLPNz.get(1));
-		homepage.userClosesOpenedwindow("RF Menu");
 
 	}
 	
 	public void Consume_iLPN_for_same_Item() throws Exception {
 
-		Thread.sleep(1000);
-		RFmenu_info.click();
-		Steps.logger.info("CLicked on RF Menu");
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
-		Thread.sleep(1000);
-		Mainmenu.click();
-		Steps.logger.info("Clicked on Main Menu");
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuReceiving, 20);
-		Thread.sleep(1000);
+		try {
+			Thread.sleep(1000);
+			RFmenu_info.click();
+			Steps.logger.info("CLicked on RF Menu");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
+			Thread.sleep(1000);
+			Mainmenu.click();
+			Steps.logger.info("Clicked on Main Menu");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuReceiving, 20);
+			Thread.sleep(1000);
 
-		while (!(SeleniumTestHelper.isElementDisplayed(inventoryMgmtMenu))) {
-			pageDown.click();
-			Thread.sleep(5000);
+			while (!(SeleniumTestHelper.isElementDisplayed(inventoryMgmtMenu))) {
+				pageDown.click();
+				Thread.sleep(5000);
+			}
+			SeleniumTestHelper.assertTrue(inventoryMgmtMenu.isDisplayed());
+			inventoryMgmtMenu.click();
+			Steps.logger.info("Clicked on Inventory method");
+			Thread.sleep(3000);
+			while (!(SeleniumTestHelper.isElementDisplayed(COnsumeiLPN))) {
+				pageDown.click();
+				Thread.sleep(5000);
+			}
+			SeleniumTestHelper.assertTrue(COnsumeiLPN.isDisplayed());
+			COnsumeiLPN.click();
+			Steps.logger.info("Click on COnsume iLPN method");
+			Thread.sleep(3000);
+			Steps.logger.info("Enter the value of 1st LPN: " + iLPNz.get(0));
+			ilpnInRFmoveilpnTxtBox.sendKeys(iLPNz.get(0) + Keys.ENTER);
+			Thread.sleep(3000);
+			Steps.logger.info("Enter the value of Qty : " + Steps.scenarioData.get("MoveLPNQty"));
+			moveQty.sendKeys(Steps.scenarioData.get("MoveLPNQty") + Keys.ENTER);
+			Thread.sleep(3000);
+			Steps.logger.info("Enter the value of 2nd LPN: " + iLPNz.get(1));
+			ilpnInRFmoveilpnTxtBox.sendKeys(iLPNz.get(1) + Keys.ENTER);
+			Thread.sleep(3000);
+			Steps.logger.info("Completed iLPN move");
+			Reporter.addStepLog(Steps.scenarioData.get("MoveLPNQty") + " qty is moved from LPN " + iLPNz.get(0) + " to "
+					+ iLPNz.get(1));
+			homepage.userClosesOpenedwindow("RF Menu");
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println("test red" + Steps.testRes);
+			e.printStackTrace();
+			Assert.assertTrue(false);
 		}
-		SeleniumTestHelper.assertTrue(inventoryMgmtMenu.isDisplayed());
-		inventoryMgmtMenu.click();
-		Steps.logger.info("Clicked on Inventory method");
-		Thread.sleep(3000);
-		while (!(SeleniumTestHelper.isElementDisplayed(COnsumeiLPN))) {
-			pageDown.click();
-			Thread.sleep(5000);
-		}
-		SeleniumTestHelper.assertTrue(COnsumeiLPN.isDisplayed());
-		COnsumeiLPN.click();
-		Steps.logger.info("Click on COnsume iLPN method");
-		Thread.sleep(3000);
-		Steps.logger.info("Enter the value of 1st LPN: " + iLPNz.get(0));
-		ilpnInRFmoveilpnTxtBox.sendKeys(iLPNz.get(0) + Keys.ENTER);
-		Thread.sleep(3000);
-		Steps.logger.info("Enter the value of Qty : " + Steps.scenarioData.get("MoveLPNQty"));
-		moveQty.sendKeys(Steps.scenarioData.get("MoveLPNQty") + Keys.ENTER);
-		Thread.sleep(3000);
-		Steps.logger.info("Enter the value of 2nd LPN: " + iLPNz.get(1));
-		ilpnInRFmoveilpnTxtBox.sendKeys(iLPNz.get(1) + Keys.ENTER);
-		Thread.sleep(3000);
-		Steps.logger.info("Completed iLPN move");
-		Reporter.addStepLog(Steps.scenarioData.get("MoveLPNQty") + " qty is moved from LPN " + iLPNz.get(0) + " to "
-				+ iLPNz.get(1));
-		homepage.userClosesOpenedwindow("RF Menu");
 
 	}
 
-	public void putawayProcess(String putawayMethod) throws InterruptedException {
+	public void putawayProcess(String putawayMethod) throws Exception {
 		
-		Steps.logger.info("Start Putaway Process");
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
-		RFmenu_info.click();
-		Steps.logger.info("Clicked on RF Menu");
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
-		Mainmenu.click();
-		Steps.logger.info("Clicked on Main Menu");
-		Thread.sleep(1000);
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuPutaway, 50);
-		rfMenuPutaway.click();
-		Steps.logger.info("Clicked on Putaway");
-		switch (putawayMethod) {
-		case "MM3 Ptwy-Sys Dir":
-			
-			while (!(SeleniumTestHelper.isElementDisplayed(MM3sysdirPutaway))) {
-				pageDown.click();
-			}
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, MM3sysdirPutaway, 50);
-			MM3sysdirPutaway.click();
-			for (int i = 0; i < iLPNz.size(); i++) {
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, altiLPNBoxafterputaway, 50);
-			altiLPNBoxafterputaway.sendKeys(iLPNz.get(i)+Keys.ENTER);
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, suggestedLoc, 50);
-			String sugLoc=suggestedLoc.getText();
-			System.out.println(suggestedLoc.getText());
-			String[] sysSuggestedLocSplit = sugLoc.split("\n");
-			System.out.println(sysSuggestedLocSplit[1]);
-			putawayLoctxtBox.sendKeys(sysSuggestedLocSplit[1]+Keys.ENTER);
+		try {
+			Steps.logger.info("Start Putaway Process");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+			RFmenu_info.click();
+			Steps.logger.info("Clicked on RF Menu");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
+			Mainmenu.click();
+			Steps.logger.info("Clicked on Main Menu");
 			Thread.sleep(1000);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuPutaway, 50);
+			rfMenuPutaway.click();
+			Steps.logger.info("Clicked on Putaway");
+			switch (putawayMethod) {
+			case "MM3 Ptwy-Sys Dir":
+				
+				while (!(SeleniumTestHelper.isElementDisplayed(MM3sysdirPutaway))) {
+					pageDown.click();
+				}
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, MM3sysdirPutaway, 50);
+				MM3sysdirPutaway.click();
+				for (int i = 0; i < iLPNz.size(); i++) {
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, altiLPNBoxafterputaway, 50);
+				altiLPNBoxafterputaway.sendKeys(iLPNz.get(i)+Keys.ENTER);
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, suggestedLoc, 50);
+				String sugLoc=suggestedLoc.getText();
+				System.out.println(suggestedLoc.getText());
+				String[] sysSuggestedLocSplit = sugLoc.split("\n");
+				System.out.println(sysSuggestedLocSplit[1]);
+				putawayLoctxtBox.sendKeys(sysSuggestedLocSplit[1]+Keys.ENTER);
+				Thread.sleep(1000);
+				
+				Steps.logger.info("Putaway Completed. Item moved to:"+sysSuggestedLocSplit[1]+" location");
+				Reporter.addStepLog("Putaway Completed. Item moved to:"+sysSuggestedLocSplit[1]+" location");
+				homepage.userClosesOpenedwindow("RF Menu");
+				}
+				
+			break;
 			
-			Steps.logger.info("Putaway Completed. Item moved to:"+sysSuggestedLocSplit[1]+" location");
-			Reporter.addStepLog("Putaway Completed. Item moved to:"+sysSuggestedLocSplit[1]+" location");
-			homepage.userClosesOpenedwindow("RF Menu");
+			default:
+				System.out.println("Invalid putaway operation");
 			}
-			
-		break;
-		
-		default:
-			System.out.println("Invalid putaway operation");
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println("test red" + Steps.testRes);
+			e.printStackTrace();
+			Assert.assertTrue(false);
 		}
 		
 	}

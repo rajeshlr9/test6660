@@ -64,7 +64,7 @@ public class ItemInvenByLocationPage {
 	
 	HomePage homepage=new HomePage();
 	
-	public void case_Pick_Item(String ExpectedTaskType) throws InterruptedException
+	public void case_Pick_Item(String ExpectedTaskType) throws Exception
 	{
 		if(SeleniumTestHelper.isElementDisplayed(driver.findElement(By.xpath("//span[text()='" + ExpectedTaskType + "']/../..//a[@id='dataForm:listView:dataTable:4:ItemBOMDetailsListEV_item_popup_button']"))))
 			
@@ -170,7 +170,7 @@ public class ItemInvenByLocationPage {
 	 * This method will find items by location from Item Inventory By Location screen and select random item and returns attributes(Location, number of LPNs, item name)
 	 *  of selected  item. Pass location type initial to search specific location EX: R- for reserve, A for active locations.
 	 */
-	public Map<String, String> getRandom_Item_from_List(WebDriver driver, String locationType) throws InterruptedException {
+	public Map<String, String> getRandom_Item_from_List(WebDriver driver, String locationType) throws Exception {
 
 		Map<String, String> ItemAttributes = new HashMap<String, String>();
 		String LPNs;
@@ -241,7 +241,7 @@ public class ItemInvenByLocationPage {
 		System.out.println("Count of different locations "+count);
 		return count;
 	}
-	public void GetLPNQtybyItem(String item) throws InterruptedException, IOException {
+	public void GetLPNQtybyItem(String item) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Item Inventory by Location");
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		itemLookUp_field.sendKeys(item);
@@ -260,7 +260,7 @@ public class ItemInvenByLocationPage {
 	    
 	    }
 	//Rakesh
-	public int GetLPNQuantityByItemandLoc(String item,String RecLocn,String LPNVal) throws InterruptedException, IOException {
+	public int GetLPNQuantityByItemandLoc(String item,String RecLocn,String LPNVal) throws Exception {
 		//homepage.MenuItems_Distribution_Selection("Item Inventory by Location");
 		//SeleniumTestHelper.switchToInnerFrame(driver);
 		displayLoc_field.sendKeys(RecLocn);
@@ -289,7 +289,7 @@ public class ItemInvenByLocationPage {
 	    }
 	
 	//Rakesh
-		public void GetMovedLPNQuantityByItemandLoc(String item,String RecLocn,ArrayList<String> iLPNz) throws InterruptedException, IOException {
+		public void GetMovedLPNQuantityByItemandLoc(String item,String RecLocn,ArrayList<String> iLPNz) throws Exception {
 			//homepage.MenuItems_Distribution_Selection("Item Inventory by Location");
 			//SeleniumTestHelper.switchToInnerFrame(driver);
 			displayLoc_field.sendKeys(RecLocn);
@@ -339,7 +339,7 @@ public class ItemInvenByLocationPage {
 		   
 		    }
 
-	public int GetLPNQuantityByItem(String item) throws InterruptedException, IOException {
+	public int GetLPNQuantityByItem(String item) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Item Inventory by Location");
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		itemLookUp_field.sendKeys(item);
@@ -358,7 +358,7 @@ public class ItemInvenByLocationPage {
 	    }
 	
 	
-	public int GetReserveAndCasepickQtyByItem(String item) throws InterruptedException, IOException {
+	public int GetReserveAndCasepickQtyByItem(String item) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Item Inventory by Location");
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		itemLookUp_field.sendKeys(""+item);
@@ -383,7 +383,7 @@ public class ItemInvenByLocationPage {
 	    return totalqty;
 	    }
 	
-	public void location_Selected(String ExpectedTaskType) throws InterruptedException
+	public void location_Selected(String ExpectedTaskType) throws Exception
 	{
 		if(SeleniumTestHelper.isElementDisplayed(driver.findElement(By.xpath("//a[text()='" + ExpectedTaskType + "']/../..//input[@type='checkbox']"))))
 			
@@ -392,7 +392,7 @@ public class ItemInvenByLocationPage {
 	}
 
 	// This method will get the active location with allocatable item
-	public Map<String, String> Active_Inventory_Location(WebDriver driver, String locationType) throws InterruptedException{
+	public Map<String, String> Active_Inventory_Location(WebDriver driver, String locationType) throws Exception{
 	
 		Map<String, String> ItemAttributes = new HashMap<String, String>();
 		String location;
@@ -455,7 +455,7 @@ public class ItemInvenByLocationPage {
 			
 	}
 
-	public int GetLPNQuantityByItemActive(String item) throws InterruptedException, IOException {
+	public int GetLPNQuantityByItemActive(String item) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Item Inventory by Location");
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		itemLookUp_field.sendKeys(item);
@@ -477,7 +477,7 @@ public class ItemInvenByLocationPage {
 	}
 	
 	// This method will get the Reserve location with allocatable item
-		public Map<String, String> Reserve_Inventory_Location(WebDriver driver, String locationType) throws InterruptedException{
+		public Map<String, String> Reserve_Inventory_Location(WebDriver driver, String locationType) throws Exception{
 		
 			Map<String, String> ItemAttributes = new HashMap<String, String>();
 			String location;
@@ -535,7 +535,7 @@ public class ItemInvenByLocationPage {
 				
 		}
 	
-public void getNumberOfLPNs(String item) throws InterruptedException, IOException {
+public void getNumberOfLPNs(String item) throws Exception {
 			
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, itemLookUp_field, 50);
 			itemLookUp_field.clear();
@@ -567,7 +567,7 @@ public void getNumberOfLPNs(String item) throws InterruptedException, IOExceptio
 			backBtninItemInvByLocationBtn.click();
 		}
 	
-	public void getNumberOfLPNsAndLPNs(String item) throws InterruptedException, IOException {
+	public void getNumberOfLPNsAndLPNs(String item) throws Exception {
 
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, itemLookUp_field, 50);
 		itemLookUp_field.clear();

@@ -79,7 +79,7 @@ public class CreateASNFromPOpage {
 
 	
 
-	public void CreateASNFromPO(String POId) throws InterruptedException, IOException {
+	public void CreateASNFromPO(String POId) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Create ASN From PO");
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, POIdInput, 50);

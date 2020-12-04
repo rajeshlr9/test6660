@@ -205,7 +205,7 @@ public class Xpathxml {
 			public String current_date_time() {
 				String strDate6=null;
 				Date date = new Date();
-				SimpleDateFormat formatter6 = new SimpleDateFormat("yyMMddHHmm");              
+				SimpleDateFormat formatter6 = new SimpleDateFormat("yyMMddHHmmss");              
 			     strDate6= formatter6.format(date);
 			     return strDate6;
 			}
@@ -375,7 +375,7 @@ public class Xpathxml {
     public void user_create_inputXML_for_inbound_basedOn_noOfItem() throws FileNotFoundException, XPathExpressionException, IOException, SAXException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException{
 		String deliveryStartDate = user_generate_delivery_start_date();
 		String ASNTime= current_date_time();
-		String ASNNumber = "ASN" + ASNTime;
+		String ASNNumber = ASNTime;
 		Items.setAsnNumber(ASNNumber);
 		Steps.logger.info("ASNNumber: "+ASNNumber);
 		
@@ -397,7 +397,7 @@ public class Xpathxml {
     public void user_create_inputXML_for_inbound_basedOn_xmlType(String xmlType) throws FileNotFoundException, XPathExpressionException, IOException, SAXException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
     	String deliveryStartDate = user_generate_delivery_start_date();
 		String ASNTime= current_date_time();
-		String ASNNumber = "ASN" + ASNTime;
+		String ASNNumber = ASNTime;
 		Items.setAsnNumber(ASNNumber);
 		Steps.logger.info("ASNNumber: "+ASNNumber);
 		

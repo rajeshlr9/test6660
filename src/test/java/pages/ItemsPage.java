@@ -140,7 +140,7 @@ public class ItemsPage {
 
 	public void user_opens_ItemsUI_and_verify_item_Attributes(int noOfItems, String serialNumber,
 			String SlotMiscellaneous1, String SlotMiscellaneous2, String SlotMiscellaneous4)
-			throws Throwable, IOException {
+			throws Exception {
 		for (int i = 1; i <= noOfItems; i++) {
 			homePage.MenuItems_Configuration_Selection("Items");
 			
@@ -235,7 +235,7 @@ String slotMiscellaneous1= SlotMiscellaneous1.split("/")[i-1];
 		}
 
 	}
-	public void verify_Items_description(int noOfItems,String ItemDescription) throws InterruptedException, IOException
+	public void verify_Items_description(int noOfItems,String ItemDescription) throws Exception
 	{
 		homePage.MenuItems_Configuration_Selection("Items");
 		SeleniumTestHelper.switchToInnerFrame(driver);
@@ -269,7 +269,7 @@ String slotMiscellaneous1= SlotMiscellaneous1.split("/")[i-1];
 		Save_btn.click();
 		Thread.sleep(4000);
 	}
-	public void verify_Cubiscanentry(String ItemName) throws InterruptedException, IOException
+	public void verify_Cubiscanentry(String ItemName) throws Exception
 	{
 		homePage.MenuItems_Configuration_Selection("Items");
 		SeleniumTestHelper.switchToInnerFrame(driver);
@@ -294,7 +294,7 @@ String slotMiscellaneous1= SlotMiscellaneous1.split("/")[i-1];
 		homePage.userClosesOpenedwindow("Items");
 	
 	}
-	public void verify_CubiscanentryforTestDataCreation() throws InterruptedException, IOException
+	public void verify_CubiscanentryforTestDataCreation() throws Exception
 	{
 		homePage.MenuItems_Configuration_Selection("Items");
 		SeleniumTestHelper.switchToInnerFrame(driver);

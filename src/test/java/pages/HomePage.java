@@ -49,7 +49,7 @@ public class HomePage {
 	public WebElement signoutBtn;
 
 	public void menuItemsIntegrationSelection(String Screenname)
-			throws InterruptedException, IOException, ParserConfigurationException, TransformerException {
+			throws Exception {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, menuBtn, 50);
 		System.out.println("Clicking on Menu btn");
 		menuBtn.click();
@@ -64,7 +64,7 @@ public class HomePage {
 
 	}
 
-	public void userClosesOpenedwindow(String Screenname) throws InterruptedException {
+	public void userClosesOpenedwindow(String Screenname) throws Exception {
 		driver.switchTo().defaultContent();
 		SeleniumTestHelper.WaitForElement(openWindows, 50);
 		openWindows.click();
@@ -72,7 +72,7 @@ public class HomePage {
 		SeleniumTestHelper.Close_OpenedWindow(Screenname, driver);
 	}
 
-	public void MenuItems_Configuration_Selection(String Screenname) throws InterruptedException, IOException {
+	public void MenuItems_Configuration_Selection(String Screenname) throws Exception {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, menuBtn, 50);
 		menuBtn.click();
 		SeleniumTestHelper.waitForElementToBeClickable(driver, searchTxt, 50);
@@ -84,7 +84,7 @@ public class HomePage {
 		Thread.sleep(5000);
 	}
 
-	public void MenuItems_Distribution_Selection(String Screenname) throws InterruptedException, IOException {
+	public void MenuItems_Distribution_Selection(String Screenname) throws Exception {
 		Thread.sleep(3000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, menuBtn, 100);
 		menuBtn.click();
@@ -101,7 +101,7 @@ public class HomePage {
 		 */
 	}
 	
-	public void MenuItems_Reporting_Selection(String Screenname) throws InterruptedException, IOException {
+	public void MenuItems_Reporting_Selection(String Screenname) throws Exception {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, menuBtn, 100);
 		menuBtn.click();
 		SeleniumTestHelper.waitForElementToBeClickable(driver, searchTxt, 50);
@@ -114,7 +114,7 @@ public class HomePage {
 	}
 	
 	public void user_logout_from_application()
-			throws InterruptedException, IOException, ParserConfigurationException, TransformerException {
+			throws Exception {
 		driver.switchTo().defaultContent();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, userLoggedin, 50);
 		userLoggedin.click();
@@ -127,7 +127,17 @@ public class HomePage {
 		Reporter.addStepLog("Sign Out is successfull");
 
 	}
-	public void user_closes_openedwindow(String Screenname) throws InterruptedException
+	public void user_logout_from_application1()
+			throws Exception {
+		driver.switchTo().defaultContent();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, userLoggedin, 50);
+		userLoggedin.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, signoutBtn, 50);
+		signoutBtn.click();
+		Steps.logger.info("Clicked on sign out button");
+
+	}
+	public void user_closes_openedwindow(String Screenname) throws Exception
 	{
 		driver.switchTo().defaultContent();
 		SeleniumTestHelper.WaitForElement(openWindows, 50);

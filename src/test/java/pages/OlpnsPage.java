@@ -189,7 +189,7 @@ public class OlpnsPage {
 
 	
 	
-	public void ApplyLockOLPN(String lockcode) throws InterruptedException, IOException {
+	public void ApplyLockOLPN(String lockcode) throws Exception {
 		homepage.MenuItems_Distribution_Selection("oLPNs");
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		for (int i = 0; i < DistributionOrders.oLPNList.size(); i++) {
@@ -246,7 +246,7 @@ public class OlpnsPage {
 
 	}
 
-	public void getoLPNStatus(String expectedoLPNstatus) throws InterruptedException, IOException {
+	public void getoLPNStatus(String expectedoLPNstatus) throws Exception {
 
 		homepage.MenuItems_Distribution_Selection("oLPNs");
 		SeleniumTestHelper.switchToInnerFrame(driver);
@@ -268,7 +268,7 @@ public class OlpnsPage {
 	}
 
 	public void getReserveandCaseoLPNStatus(String oLPNtype, String expectedoLPNstatus)
-			throws InterruptedException, IOException {
+			throws Exception {
 		homepage.MenuItems_Distribution_Selection("oLPNs");
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		if (oLPNtype.equalsIgnoreCase("Reserve")) {
@@ -305,7 +305,7 @@ public class OlpnsPage {
 		homepage.user_closes_openedwindow("oLPNs");
 	}
 
-	public void verifiesappliedLock() throws InterruptedException, IOException {
+	public void verifiesappliedLock() throws Exception {
 		homepage.MenuItems_Distribution_Selection("oLPNs");
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		for (int i = 0; i < DistributionOrders.oLPNList.size(); i++) {
@@ -326,7 +326,7 @@ public class OlpnsPage {
 		homepage.user_closes_openedwindow("oLPNs");
 	}
 
-	public void userOpensOlpnScreen() throws InterruptedException, IOException {
+	public void userOpensOlpnScreen() throws Exception {
 		homepage.MenuItems_Distribution_Selection("oLPNs");
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, oLPNinput, 50);
@@ -345,7 +345,7 @@ public class OlpnsPage {
 		homepage.user_closes_openedwindow("oLPNs");
 	}
 	public void userOpensOlpnScreenContentoLPN(String sheetName, String rowname, int columnnumber)
-			throws InterruptedException, IOException {
+			throws Exception {
 		homepage.MenuItems_Distribution_Selection("oLPNs");
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		TestStubReader stubReader = new TestStubReader();
@@ -383,7 +383,7 @@ public class OlpnsPage {
 	}
 
 	public void ValidateShipviaFromoLPN(String shipviaval,String sheetName, String rowname, int columnnumber)
-			throws InterruptedException, IOException {
+			throws Exception {
 		homepage.MenuItems_Distribution_Selection("oLPNs");
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		for (int i = 0; i < DistributionOrders.oLPNList.size(); i++) {
