@@ -2,72 +2,6 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
-      <![CDATA[Execution started for : Veriy Manhattan login using different user roles]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : Veriy ASN creation through Post MessageUI-excel]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : Veriy ASN creation through Post MessageUI-excel]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-345747 MANH - Receive and bypass stage or holding]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-345766 Configure Receipt for Overage percentage -  allowable percentage  for customer]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-345766 Configure Receipt for Overage percentage -  allowable percentage  for customer]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-345784 MANH - Break Split LPN IB]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : Multi Line Receiving]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-441160 Receiving Returned Un-Delivered Product using blind receipt]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-441160 Receiving Returned Un-Delivered Product by creating ASN]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-459309 Receive Damages: Receiving Damaged Product using MM3 Recv-Damages option from RF Menu using supervispr credentials]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-459309 Receive Damages: Receiving of Damaged Returned Product using blind receipt]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-467729 – Configure Manhattan for RF lock/unlock iLPN: Lock an iLPN using the user provided lock code]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-467729 – Configure Manhattan for RF lock/unlock iLPN: Unlock an iLPN which already has some lock]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Increase iLPN qty having no lock code before ASN verification]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Decrease iLPN qty having no lock code before ASN verification]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Increase iLPN qty having unallocatable lock code after ASN verification]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Decrease iLPN qty having unallocatable lock code after ASN verification]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Delete line from an iLPN having no lock code before ASN verification]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Delete line from an iLPN having unallocatable lock code after ASN verification]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-474831 FXL-FFD-CIL-MH_Inventory Control-Base Transactions# 4- Consume iLPN having no lock]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-474831 FXL-FFD-CIL-MH_Inventory Control-Base Transactions# 4- Consume iLPN having lock code]]>
-    </line>
-    <line>
       <![CDATA[Execution started for : B- 466712 Putaway – Un-Delivered Products that was received in MM3 returns]]>
     </line>
     <line>
@@ -77,23 +11,23 @@
       <![CDATA[Execution started for : B- 466712 Putaway – Damaged Products that was received using blind receipt in MM3 returns]]>
     </line>
   </reporter-output>
-  <suite started-at="2020-12-04T12:41:41 GMT" name="Default suite" finished-at="2020-12-04T14:07:45 GMT" duration-ms="5163425">
+  <suite started-at="2020-12-04T14:55:08 GMT" name="Suite" finished-at="2020-12-04T15:07:12 GMT" duration-ms="724431">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2020-12-04T12:41:41 GMT" name="Default test" finished-at="2020-12-04T14:07:45 GMT" duration-ms="5163425">
+    <test started-at="2020-12-04T14:55:08 GMT" name="Test" finished-at="2020-12-04T15:07:12 GMT" duration-ms="724431">
       <class name="TestRunner.Runner">
-        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-04T12:41:41 GMT" name="createExtentReport" finished-at="2020-12-04T12:41:41 GMT" duration-ms="75" status="PASS">
+        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-04T14:55:08 GMT" name="createExtentReport" finished-at="2020-12-04T14:55:08 GMT" duration-ms="121" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createExtentReport -->
-        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-04T12:41:41 GMT" name="setUpClass" finished-at="2020-12-04T12:41:42 GMT" duration-ms="888" status="PASS">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-04T14:55:08 GMT" name="setUpClass" finished-at="2020-12-04T14:55:09 GMT" duration-ms="992" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-04T12:41:42 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2020-12-04T14:07:44 GMT" duration-ms="5161461" status="PASS">
+        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-04T14:55:09 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2020-12-04T15:07:11 GMT" duration-ms="722445" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -102,72 +36,6 @@
             </param>
           </params>
           <reporter-output>
-            <line>
-              <![CDATA[Execution started for : Veriy Manhattan login using different user roles]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : Veriy ASN creation through Post MessageUI-excel]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : Veriy ASN creation through Post MessageUI-excel]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-345747 MANH - Receive and bypass stage or holding]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-345766 Configure Receipt for Overage percentage -  allowable percentage  for customer]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-345766 Configure Receipt for Overage percentage -  allowable percentage  for customer]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-345784 MANH - Break Split LPN IB]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : Multi Line Receiving]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-441160 Receiving Returned Un-Delivered Product using blind receipt]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-441160 Receiving Returned Un-Delivered Product by creating ASN]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-459309 Receive Damages: Receiving Damaged Product using MM3 Recv-Damages option from RF Menu using supervispr credentials]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-459309 Receive Damages: Receiving of Damaged Returned Product using blind receipt]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-467729 – Configure Manhattan for RF lock/unlock iLPN: Lock an iLPN using the user provided lock code]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-467729 – Configure Manhattan for RF lock/unlock iLPN: Unlock an iLPN which already has some lock]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Increase iLPN qty having no lock code before ASN verification]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Decrease iLPN qty having no lock code before ASN verification]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Increase iLPN qty having unallocatable lock code after ASN verification]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Decrease iLPN qty having unallocatable lock code after ASN verification]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Delete line from an iLPN having no lock code before ASN verification]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Delete line from an iLPN having unallocatable lock code after ASN verification]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-474831 FXL-FFD-CIL-MH_Inventory Control-Base Transactions# 4- Consume iLPN having no lock]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-474831 FXL-FFD-CIL-MH_Inventory Control-Base Transactions# 4- Consume iLPN having lock code]]>
-            </line>
             <line>
               <![CDATA[Execution started for : B- 466712 Putaway – Un-Delivered Products that was received in MM3 returns]]>
             </line>
@@ -179,15 +47,15 @@
             </line>
           </reporter-output>
         </test-method> <!-- feature -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-04T14:07:44 GMT" name="tearDownClass" finished-at="2020-12-04T14:07:45 GMT" duration-ms="642" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-04T15:07:11 GMT" name="tearDownClass" finished-at="2020-12-04T15:07:12 GMT" duration-ms="550" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-04T14:07:45 GMT" name="writeExtentReport" finished-at="2020-12-04T14:07:45 GMT" duration-ms="10" status="PASS">
+        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-04T15:07:12 GMT" name="writeExtentReport" finished-at="2020-12-04T15:07:12 GMT" duration-ms="9" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- writeExtentReport -->
       </class> <!-- TestRunner.Runner -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
 </testng-results>

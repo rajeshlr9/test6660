@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 import com.cucumber.listener.Reporter;
 
@@ -229,9 +230,14 @@ driver.switchTo().frame(0);
 		reserveLocationqtyafterupdate= currentQty.getText();
 		int iLPNsize=	RFMenuPage.iLPNz.size();
 		String newqty= String.valueOf(Integer.parseInt(reserveLocationqty)+iLPNsize);
-		SeleniumTestHelper.assertEquals(reserveLocationqtyafterupdate, newqty);
+	//	SeleniumTestHelper.assertEquals(reserveLocationqtyafterupdate, newqty);
+		if(reserveLocationqtyafterupdate.equals(newqty)) {
 		Steps.logger.info("Current reserve Location qty after update:"+reserveLocationqtyafterupdate);
 		Reporter.addStepLog("Current reserve Location qty after update:"+reserveLocationqtyafterupdate);
+		}else {
+			Steps.testRes = "Failed";
+			Assert.assertTrue(false);
+		}
 		Thread.sleep(2000);		
 	}
 
@@ -257,9 +263,14 @@ driver.switchTo().frame(0);
 		String iLPN=iLPNvalue.getText();
 		System.out.println("iLPN:"+iLPN);
 		
-		SeleniumTestHelper.assertEquals(iLPN, RFMenuPage.iLPNz.get(j));
+		//SeleniumTestHelper.assertEquals(iLPN, RFMenuPage.iLPNz.get(j));
+		if(iLPN.equals(RFMenuPage.iLPNz.get(j))) {
 		Steps.logger.info("iLPN:"+iLPN+" is present in inspection zone");
 		Reporter.addStepLog("iLPN:"+iLPN+" is present in inspection zone");
+		}else {
+			Steps.testRes = "Failed";
+			Assert.assertTrue(false);
+		}
 		}
 	}
 	
