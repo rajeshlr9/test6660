@@ -355,21 +355,23 @@ public void validatePixTransactionforModifyiLPN(String[] pixCodeArr) throws Exce
 
 public void validatePixTransactionforconsumingiLPN(String[] pixCodeArr) throws Exception {
 	homePage.MenuItems_Distribution_Selection("PIX Transactions");
+	Thread.sleep(5000);
 	SeleniumTestHelper.switchToInnerFrame(driver);
+	
 		SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 120);
 		quickFilter.click();
 		SeleniumTestHelper.waitForElementToBeClickable(driver, savedFilter, 50);
 		savedFilter.click();
 		SeleniumTestHelper.waitForElementToBeClickable(driver, Apply_savedfilter, 50);
 		Apply_savedfilter.click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		dateFrom.sendKeys("Today");
 		dateTo.sendKeys("Today");
 		savedFilteriLPN.sendKeys(RFMenuPage.iLPNz.get(0));
 		addsavedFilter.click();
 		SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 50);
 		
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		
 		for (int i = 0; i < pixCodeArr.length; i++) {
 			driver.findElement(By.xpath("//*[@id=\"checkAll_c"+i+"_dataForm:lview:dataTable\"]")).click();
