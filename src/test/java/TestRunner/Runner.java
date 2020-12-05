@@ -15,6 +15,7 @@ import cucumber.api.CucumberOptions;
 //import cucumber.api.testng.AbstractTestNGCucumberTests;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 import utils.Config;
+import utils.ExtentReportUpdate;
 
 
 
@@ -68,7 +69,7 @@ public class Runner extends AbstractTestNGCucumberTests {
 
 		ExtentProperties extentProperties = ExtentProperties.INSTANCE;
 		
-		String reportpath = "resources\\Reports\\" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ globalFunc.DateTime.strDate3 + ".html";
+		String reportpath = "resources\\Reports\\" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ globalFunc.DateTime.strDate2 + ".html";
 		extentProperties.setReportPath(reportpath);
 		
 
@@ -80,8 +81,10 @@ public class Runner extends AbstractTestNGCucumberTests {
 	 //@AfterClass
 	@AfterTest
 	public static void writeExtentReport() {
+		
 	        Reporter.loadXMLConfig(new File("Config/report.xml"));
-	        
+	        ExtentReportUpdate.deleteOldFiles();
+	        ExtentReportUpdate.copyReports();
 	    }
 	  
 	 

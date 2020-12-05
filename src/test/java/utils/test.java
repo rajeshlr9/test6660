@@ -1,30 +1,43 @@
 package utils;
 
-import java.net.URI;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
-import com.hp.lft.sdk.GeneralLeanFtException;
-import com.hp.lft.sdk.ModifiableSDKConfiguration;
-import com.hp.lft.sdk.SDK;
-import com.hp.lft.sdk.web.Browser;
-import com.hp.lft.sdk.web.BrowserFactory;
-import com.hp.lft.sdk.web.BrowserType;
 
 public class test {
 
-	public static void main(String[] args) throws Exception {
 	
-		/*
-		 * String[] iLPNz = new String[10]; ;
-		 * 
-		 * for(int i=0;i<5;i++) { iLPNz[i]= "ai"; System.out.println(i +"="+ iLPNz[i]);
-		 * }
-		 */
-		ModifiableSDKConfiguration config = new ModifiableSDKConfiguration();
-		//config.setServerAddress(new URI("ws://localhost:5095"));
-		config.setServerAddress(new URI("ws://10.60.27.227:5095"));
-		SDK.init(config);  
-		Browser browser = BrowserFactory.launch(BrowserType.CHROME);
-		browser.navigate("https://ocfdl1wm1.logistics.fedex.com:12001/");
+	
+	public static void main(String[] args) throws IOException  {
+		
+		deleteOldFiles("QSC");
+		
 	}
 
-}
+	
+	public static void deleteOldFiles(String Customer) {
+		File directory = new File("C:\\ReportFiles\\MailableReports");
+		for (File f : directory.listFiles()) {
+		    //if (f.getName().contains(Customer)) {
+		        f.delete();
+		   // }
+		}
+	}
+		
+	/*
+	 * public static void copyExtentReport(String Customer) { Path original
+	 * =Paths.get(
+	 * "C:\\Jenkins\\workspace\\CIL\\ManhattanWMS-3535876\\ManhattanPOC\\"+Customer+"
+	 * \\resources\\Reports\\\\*.html"); Path destination
+	 * =Paths.get("C:\\ReportFiles\\MailableReports\\\\*.html"); //copy file. try {
+	 * Files.copy(original, destination,StandardCopyOption.REPLACE_EXISTING); }
+	 * catch (IOException e) { // TODO Auto-generated catch block
+	 * e.printStackTrace(); } }
+	 */
+		
+	}
+
