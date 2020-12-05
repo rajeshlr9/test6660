@@ -68,7 +68,7 @@ public class Runner extends AbstractTestNGCucumberTests {
 
 		ExtentProperties extentProperties = ExtentProperties.INSTANCE;
 		
-		String reportpath = "resources\\LatestReports\\" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ globalFunc.DateTime.strDate3 + ".html";
+		String reportpath = "resources\\Reports\\" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ globalFunc.DateTime.strDate3 + ".html";
 		extentProperties.setReportPath(reportpath);
 		
 
