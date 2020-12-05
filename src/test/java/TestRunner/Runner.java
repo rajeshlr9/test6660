@@ -83,8 +83,10 @@ public class Runner extends AbstractTestNGCucumberTests {
 	public static void writeExtentReport() {
 		
 	        Reporter.loadXMLConfig(new File("Config/report.xml"));
+	        if(!Config.getProperty("Job_Name").contains("ScrumTeam")) {
 	        ExtentReportUpdate.deleteOldFiles();
 	        ExtentReportUpdate.copyReports();
+	        }
 	    }
 	  
 	 

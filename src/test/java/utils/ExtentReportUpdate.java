@@ -14,9 +14,9 @@ static String targetFolder = "C:\\ReportFiles\\MailableReports";
 public static void deleteOldFiles() {
 	File directory = new File(targetFolder);
 	for (File f : directory.listFiles()) {
-	    //if (f.getName().contains(Customer)) {
+	    if (f.getName().contains(Config.getProperty("Account"))) {
 	        f.delete();
-	   // }
+	    }
 	}
 }
 
