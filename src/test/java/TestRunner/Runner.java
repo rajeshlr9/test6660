@@ -14,6 +14,7 @@ import cucumber.api.CucumberOptions;
 //import cucumber.api.testng.AbstractTestNGCucumberTests;
 //import cucumber.api.testng.AbstractTestNGCucumberTests;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
+import utils.Config;
 
 
 
@@ -21,7 +22,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 @CucumberOptions(
 		strict = true,
 		dryRun = false,
-		//tags={"@Regression_QSC"},
+		//tags={"@QSC001"},
 		tags={"@tag5"},
 				//tags={"@QSC004"},
 		features = {"src\\test\\java\\featureFile"},
@@ -67,7 +68,7 @@ public class Runner extends AbstractTestNGCucumberTests {
 
 		ExtentProperties extentProperties = ExtentProperties.INSTANCE;
 		
-		String reportpath = "resources\\LatestReports\\Report-" + globalFunc.DateTime.strDate3 + ".html";
+		String reportpath = "resources\\LatestReports\\" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ globalFunc.DateTime.strDate3 + ".html";
 		extentProperties.setReportPath(reportpath);
 		
 

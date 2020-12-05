@@ -2,32 +2,26 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
-      <![CDATA[Execution started for : B- 466712 Putaway – Un-Delivered Products that was received in MM3 returns]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B- 466712 Putaway – Damaged Products that was received using MM3 Recv-Damages having lock code DM-Damaged Return]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B- 466712 Putaway – Damaged Products that was received using blind receipt in MM3 returns]]>
+      <![CDATA[Execution started for : Veriy ASN creation through Post MessageUI-excel]]>
     </line>
   </reporter-output>
-  <suite started-at="2020-12-04T14:55:08 GMT" name="Suite" finished-at="2020-12-04T15:07:12 GMT" duration-ms="724431">
+  <suite started-at="2020-12-05T06:34:55 GMT" name="Suite" finished-at="2020-12-05T06:35:59 GMT" duration-ms="63352">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2020-12-04T14:55:08 GMT" name="Test" finished-at="2020-12-04T15:07:12 GMT" duration-ms="724431">
+    <test started-at="2020-12-05T06:34:55 GMT" name="Test" finished-at="2020-12-05T06:35:59 GMT" duration-ms="63352">
       <class name="TestRunner.Runner">
-        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-04T14:55:08 GMT" name="createExtentReport" finished-at="2020-12-04T14:55:08 GMT" duration-ms="121" status="PASS">
+        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-05T06:34:55 GMT" name="createExtentReport" finished-at="2020-12-05T06:34:56 GMT" duration-ms="90" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createExtentReport -->
-        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-04T14:55:08 GMT" name="setUpClass" finished-at="2020-12-04T14:55:09 GMT" duration-ms="992" status="PASS">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-05T06:34:56 GMT" name="setUpClass" finished-at="2020-12-05T06:34:57 GMT" duration-ms="918" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-04T14:55:09 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2020-12-04T15:07:11 GMT" duration-ms="722445" status="PASS">
+        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-05T06:34:57 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2020-12-05T06:35:58 GMT" duration-ms="61500" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -37,21 +31,15 @@
           </params>
           <reporter-output>
             <line>
-              <![CDATA[Execution started for : B- 466712 Putaway – Un-Delivered Products that was received in MM3 returns]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B- 466712 Putaway – Damaged Products that was received using MM3 Recv-Damages having lock code DM-Damaged Return]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B- 466712 Putaway – Damaged Products that was received using blind receipt in MM3 returns]]>
+              <![CDATA[Execution started for : Veriy ASN creation through Post MessageUI-excel]]>
             </line>
           </reporter-output>
         </test-method> <!-- feature -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-04T15:07:11 GMT" name="tearDownClass" finished-at="2020-12-04T15:07:12 GMT" duration-ms="550" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-05T06:35:58 GMT" name="tearDownClass" finished-at="2020-12-05T06:35:59 GMT" duration-ms="515" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-04T15:07:12 GMT" name="writeExtentReport" finished-at="2020-12-04T15:07:12 GMT" duration-ms="9" status="PASS">
+        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-05T06:35:59 GMT" name="writeExtentReport" finished-at="2020-12-05T06:35:59 GMT" duration-ms="14" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- writeExtentReport -->
