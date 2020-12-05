@@ -1,4 +1,4 @@
-Feature: Inbound Scenarios
+Feature: QSC Inbound Scenarios
 
 @QSC999 @Regression_QSC @QSC_LoginFunctionality @Smoke_QSC
 Scenario: Veriy Manhattan login using different user roles
