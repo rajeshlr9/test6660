@@ -62,8 +62,8 @@ public class CreateBrowser {
 	
 	public static WebDriver CreateBrowserInstance() throws Throwable {
 		// Write code here that turns the phrase above into concrete actions
-		String sys1 =Steps.prop.getProperty("System");
-		String getpodip = Steps.prop.getProperty("IP");
+		String sys1 =Config.getProperty("System");
+		String getpodip = Config.getProperty("IP");
 		System.out.println(sys1+getpodip);
 			//System.out.println("Browser is: "+Steps.prop.getProperty("browser"));
 			switch (sys1) {

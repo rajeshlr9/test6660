@@ -15,6 +15,7 @@ import com.cucumber.listener.Reporter;
 
 import StepDefinition.Steps;
 import globalFunc.CreateBrowser;
+import globalFunc.Screenshots;
 import utils.Config;
 import utils.Driver;
 import utils.SeleniumTestHelper;
@@ -184,7 +185,8 @@ public class ManhattanLoginPage extends Steps {
 				 * default: System.out.println("User trying to login with : " + userType +
 				 * " credentials"); break; }
 				 */
-
+				
+				Screenshots.captureSnapshot(driver);
 				SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(signInBtn));
 				signInBtn.click();
 				Steps.logger.info("Clicked on Sign in Button");
@@ -248,6 +250,7 @@ public class ManhattanLoginPage extends Steps {
 					facilityDisp.click();
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, userLoggedin, 10);
 				}
+					Screenshots.captureSnapshot(driver);
 				userLoggedin.click();
 				Steps.logger.info("User in Home Page");
 				if (!maximizedChkbox.isSelected()) {
@@ -275,7 +278,7 @@ public class ManhattanLoginPage extends Steps {
 			catch (Exception e) {
 				System.out.println(e);
 				Steps.testRes = "Failed";
-				Assert.assertTrue(false);
+				Assert.assertTrue(false, e.getMessage());
 			}
 		}
 
@@ -363,6 +366,7 @@ public class ManhattanLoginPage extends Steps {
 				}
 			}
 			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(signInBtn));
+			Screenshots.captureSnapshot(driver);
 			signInBtn.click();
 			Steps.logger.info("Clicked on Sign in Button");
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, facilitySelection, 10);
@@ -396,7 +400,9 @@ public class ManhattanLoginPage extends Steps {
 				facilityDisp.click();
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, userLoggedin, 10);
 			}
+			Screenshots.captureSnapshot(driver);
 			userLoggedin.click();
+			
 			Steps.logger.info("User in Home Page");
 			if (!maximizedChkbox.isSelected()) {
 				SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(maximizedChkbox));
@@ -422,7 +428,7 @@ public class ManhattanLoginPage extends Steps {
 		catch (Exception e) {
 			System.out.println(e);
 			Steps.testRes = "Failed";
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 

@@ -17,12 +17,12 @@ import com.hp.lft.sdk.te.TextScreen;
 import com.hp.lft.sdk.te.TextScreenDescription;
 
 import StepDefinition.Steps;
+import utils.Config;
 
 public class PuttyLogin {
 
 	public static void puttyLogin() throws InterruptedException, GeneralLeanFtException, AWTException {
 
-		Properties prop=Steps.prop;
 		 TextScreen teTextScreen = Desktop.describe(com.hp.lft.sdk.te.Window.class, new com.hp.lft.sdk.te.WindowDescription.Builder()
 					.shortName("A").build())
 					.describe(TextScreen.class, new TextScreenDescription());
@@ -31,10 +31,10 @@ public class PuttyLogin {
 						.attachedText("Sav&ed Sessions").nativeClass("ListBox").build());
 
 	
-		if(prop.getProperty("RFEnv").equals("QA")) {
+		if(Config.getProperty("RFEnv").equals("QA")) {
 			Sterling.select("Sterling-QA");
 		}else {
-			if(prop.getProperty("RFEnv").equals("UA")) {
+			if(Config.getProperty("RFEnv").equals("UA")) {
 			Sterling.select("Sterling-UA");
 			}
 		}
@@ -50,7 +50,7 @@ public class PuttyLogin {
 				.ownedWindow(false).childWindow(false).windowClassRegExp("PuTTY").windowTitleRegExp(" PuTTY").build());
 		Thread.sleep(2000);
 
-		RFUsername.sendKeys(prop.getProperty("RFUsername"));
+		RFUsername.sendKeys(Config.getProperty("RFUsername"));
 
 		teTextScreen.sendKeys(com.hp.lft.sdk.Keys.RETURN);
 
@@ -59,7 +59,7 @@ public class PuttyLogin {
 		Window RFPassword=Desktop.describe(Window.class, new WindowDescription.Builder()
 				.ownedWindow(false).childWindow(false).windowClassRegExp("PuTTY").windowTitleRegExp(" PuTTY").build());
 
-		RFPassword.sendKeys(prop.getProperty("RFPassword"));
+		RFPassword.sendKeys(Config.getProperty("RFPassword"));
 
 		teTextScreen.sendKeys(com.hp.lft.sdk.Keys.RETURN);
 		Thread.sleep(1000);
@@ -68,7 +68,7 @@ public class PuttyLogin {
 		Window RFNodeUser=Desktop.describe(Window.class, new WindowDescription.Builder()
 				.ownedWindow(false).childWindow(false).windowClassRegExp("PuTTY").windowTitleRegExp(" PuTTY").build());
 
-		RFNodeUser.sendKeys(prop.getProperty("RFNodeUser"));
+		RFNodeUser.sendKeys(Config.getProperty("RFNodeUser"));
 		Thread.sleep(1000);
 
 		teTextScreen.sendKeys(com.hp.lft.sdk.Keys.TAB);
@@ -77,7 +77,7 @@ public class PuttyLogin {
 		Window RFNodePwd = Desktop.describe(Window.class, new WindowDescription.Builder()
 				.ownedWindow(false).childWindow(false).windowClassRegExp("PuTTY").windowTitleRegExp(" PuTTY").build());
 
-		RFNodePwd.sendKeys(prop.getProperty("RFNodePwd"));
+		RFNodePwd.sendKeys(Config.getProperty("RFNodePwd"));
 		Thread.sleep(1000);
 
 		teTextScreen.sendKeys(com.hp.lft.sdk.Keys.TAB);

@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import StepDefinition.Steps;
+import utils.Config;
 
 public class OMSLogin {
 
@@ -16,16 +17,15 @@ public class OMSLogin {
 		
 		
 			WebDriver driver= Steps.seleniumDriver;
-			Properties prop= Steps.prop;
-			driver.get(prop.getProperty("OMSUrl"));
+			driver.get(Config.getProperty("OMSUrl"));
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);	
 			WebElement username = driver.findElement(By.xpath("//INPUT[@id=\"username\"]"));
-			username.sendKeys(prop.getProperty("OMSUsername"));
+			username.sendKeys(Config.getProperty("OMSUsername"));
 
 			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 			WebElement password = driver.findElement(By.id("password"));
-			password.sendKeys(prop.getProperty("OMSPassword"));
+			password.sendKeys(Config.getProperty("OMSPassword"));
 
 			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 			

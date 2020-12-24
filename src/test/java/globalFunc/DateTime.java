@@ -12,6 +12,7 @@ public class DateTime {
 	public static String strDate4;
 	public static String strDate5;
 	public static String strDate6;
+	public static String strDate7;
 	public static void TimeDateFunc() {
 		
 		Date date = new Date(); 
@@ -25,14 +26,16 @@ public class DateTime {
         strDate6= formatter6.format(date);  
         
         SimpleDateFormat formatter3 = new SimpleDateFormat("yyyyMMddHHmm");              
-        strDate3= formatter3.format(date);  
+        strDate3= formatter3.format(date); 
+        
+        SimpleDateFormat formatter7 = new SimpleDateFormat("yyyyMMddHHmmssSSS");              
+        strDate7= formatter7.format(date);  
         
         SimpleDateFormat formatter4 = new SimpleDateFormat("MM/dd/yyyy");         
           Calendar c = Calendar.getInstance();
          c.setTime(new Date()); // Now use today date.
          c.add(Calendar.DATE, 5); // Adding 5 days
           strDate4 = formatter4.format(c.getTime());
-          System.out.println(strDate4);
        
 	}
 	

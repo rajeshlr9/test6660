@@ -21,6 +21,7 @@ import com.hp.lft.sdk.te.TextScreenDescription;
 import StepDefinition.Steps;
 import cucumber.api.DataTable;
 import unittesting.UnitTestClassBase;
+import utils.Config;
 
 public class AdhocMove extends UnitTestClassBase {
 
@@ -29,7 +30,6 @@ public class AdhocMove extends UnitTestClassBase {
 
 		try {
 
-			Properties prop = Steps.prop;
 			List<List<String>> data = usercredentials.raw();
 
 			 putty=Desktop.describe(Window.class, new WindowDescription.Builder().ownedWindow(false).childWindow(false)
@@ -38,10 +38,10 @@ public class AdhocMove extends UnitTestClassBase {
 						.shortName("A").build())
 						.describe(TextScreen.class, new TextScreenDescription());
 			int temp = 0;
-			if (prop.getProperty("RFEnv").equals("QA")) {
+			if (Config.getProperty("RFEnv").equals("QA")) {
 				temp = 8;
 			} else {
-				if (prop.getProperty("RFEnv").equals("UA")) {
+				if (Config.getProperty("RFEnv").equals("UA")) {
 					temp = 10;
 				}
 			}
@@ -126,7 +126,7 @@ public class AdhocMove extends UnitTestClassBase {
 						Runtime rt = Runtime.getRuntime();
 						rt.exec("taskkill /F /IM putty.exe");
 					} catch (Exception e) {
-						Assert.assertTrue(false);
+						Assert.assertTrue(false, e.getMessage());
 						e.printStackTrace();
 					}
 					Assert.assertTrue(false);
@@ -146,7 +146,7 @@ public class AdhocMove extends UnitTestClassBase {
 					Runtime rt = Runtime.getRuntime();
 					rt.exec("taskkill /F /IM putty.exe");
 				} catch (Exception e) {
-					Assert.assertTrue(false);
+					Assert.assertTrue(false, e.getMessage());
 					e.printStackTrace();
 				}
 				Assert.assertTrue(false);

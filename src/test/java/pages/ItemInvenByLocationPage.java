@@ -19,6 +19,7 @@ import StepDefinition.Steps;
 import entity.DistributionOrders;
 import entity.Items;
 import globalFunc.GlobalClass;
+import globalFunc.Screenshots;
 import utils.Driver;
 import utils.SeleniumTestHelper;
 
@@ -265,20 +266,24 @@ public class ItemInvenByLocationPage {
 		//SeleniumTestHelper.switchToInnerFrame(driver);
 		displayLoc_field.sendKeys(RecLocn);
 		itemLookUp_field.sendKeys(item);
+		Screenshots.captureSnapshot(driver);
 		applyBtn.click();
-		
+		Screenshots.captureSnapshot(driver);
 		/*itemCheckBox.click();
 		LPNsBtn.click();*/
 		SeleniumTestHelper.waitForElementToBeClickable(driver, reserveLocChkbox, 50);
 	    List<WebElement> reservelocns=driver.findElements(By.xpath("//span[text()='Reserve']/../..//input[@type='checkbox']"));
 	    reservelocns.get(0).click();
-	    Thread.sleep(2000);
+	    Thread.sleep(1000);
+	    Screenshots.captureSnapshot(driver);
 	    LPNsBtn.click();
 	    Thread.sleep(5000);
+	    Screenshots.captureSnapshot(driver);
 	    driver.findElement(By.id("dataForm:LPNListInOutboundMain_lv:LPNList_Inbound_filterId1:field10value1")).sendKeys(LPNVal);
-	    Thread.sleep(5000);
+	    Screenshots.captureSnapshot(driver);
 	    driver.findElement(By.id("dataForm:LPNListInOutboundMain_lv:LPNList_Inbound_filterId1:LPNList_Inbound_filterId1apply")).click();
 	    Thread.sleep(2000);
+	    Screenshots.captureSnapshot(driver);
 	   String LPNQty =  driver.findElement(By.id("dataForm:LPNListInOutboundMain_lv:dataTable:0:CTO_LPNListTPM_LPN_Qty_param_out2")).getText();
 		String[] LPNQty1 =  LPNQty.split(" ");
 		
@@ -293,21 +298,27 @@ public class ItemInvenByLocationPage {
 			//homepage.MenuItems_Distribution_Selection("Item Inventory by Location");
 			//SeleniumTestHelper.switchToInnerFrame(driver);
 			displayLoc_field.sendKeys(RecLocn);
+			Screenshots.captureSnapshot(driver);
 			itemLookUp_field.sendKeys(item);
+			Screenshots.captureSnapshot(driver);
 			applyBtn.click();
 			
 			/*itemCheckBox.click();
 			LPNsBtn.click();*/
 			SeleniumTestHelper.waitForElementToBeClickable(driver, reserveLocChkbox, 50);
+			Screenshots.captureSnapshot(driver);
 		    List<WebElement> reservelocns=driver.findElements(By.xpath("//span[text()='Reserve']/../..//input[@type='checkbox']"));
 		    reservelocns.get(0).click();
 		    Thread.sleep(2000);
+		    Screenshots.captureSnapshot(driver);
 		    LPNsBtn.click();
-		    Thread.sleep(5000);
+		    Thread.sleep(2000);
+		    Screenshots.captureSnapshot(driver);
 		    driver.findElement(By.id("dataForm:LPNListInOutboundMain_lv:LPNList_Inbound_filterId1:field10value1")).sendKeys(iLPNz.get(0));
-		    Thread.sleep(5000);
+		    Thread.sleep(2000);
 		    driver.findElement(By.id("dataForm:LPNListInOutboundMain_lv:LPNList_Inbound_filterId1:LPNList_Inbound_filterId1apply")).click();
 		    Thread.sleep(2000);
+		    Screenshots.captureSnapshot(driver);
 		    String LPNQty01 =  driver.findElement(By.id("dataForm:LPNListInOutboundMain_lv:dataTable:0:CTO_LPNListTPM_LPN_Qty_param_out2")).getText();
 			String[] LPNQty1 =  LPNQty01.split(" ");
 			//String newQty1 =LPNQty1[0];
@@ -316,11 +327,13 @@ public class ItemInvenByLocationPage {
 			//SeleniumTestHelper.assertEquals(newQty1, Integer.parseInt(Steps.ItemDataMap.get(0).get("RecQty")));
 			Thread.sleep(2000);
 			driver.findElement(By.id("dataForm:LPNListInOutboundMain_lv:LPNList_Inbound_filterId1:field10value1")).clear();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			driver.findElement(By.id("dataForm:LPNListInOutboundMain_lv:LPNList_Inbound_filterId1:field10value1")).sendKeys(iLPNz.get(1));
-			Thread.sleep(2000);
+			Thread.sleep(1000);
+			Screenshots.captureSnapshot(driver);
 			driver.findElement(By.id("dataForm:LPNListInOutboundMain_lv:LPNList_Inbound_filterId1:LPNList_Inbound_filterId1apply")).click();
 			Thread.sleep(3000);
+			Screenshots.captureSnapshot(driver);
 			String LPNQty02 =  driver.findElement(By.id("dataForm:LPNListInOutboundMain_lv:dataTable:0:CTO_LPNListTPM_LPN_Qty_param_out2")).getText();
 			Thread.sleep(2000);
 			String[] LPNQty2 =  LPNQty02.split(" ");
@@ -332,9 +345,9 @@ public class ItemInvenByLocationPage {
 			int expectediLPN2 =Integer.parseInt(Steps.ItemDataMap.get(0).get("RecQty2"))+Integer.parseInt(Steps.scenarioData.get("MoveLPNQty"));
 			System.out.println("expectediLPN2: "+expectediLPN2);
 			SeleniumTestHelper.assertEquals(newQty1, expectediLPN1);
-			Reporter.addStepLog("Expected qty in LPN 1 is-"+expectediLPN1+ " and actual is-"+newQty1);
+			Reporter.addStepLog("Expected qty in LPN 1 matches the actual qty");
 			SeleniumTestHelper.assertEquals(newQty2, expectediLPN2);
-			Reporter.addStepLog("Expected qty in LPN 2 is-"+expectediLPN2+ " and actual is-"+newQty2);
+			Reporter.addStepLog("Expected qty in LPN 2 matches the actual qty");
 			homepage.userClosesOpenedwindow("Item Inventory by Location - iLPNs"); 
 		   
 		    }

@@ -1,7 +1,7 @@
 Feature: QSC Inbound Scenarios
 
 @QSC999 @Regression_QSC @QSC_LoginFunctionality @Smoke_QSC
-Scenario: Veriy Manhattan login using different user roles
+Scenario: Verify Manhattan login using different user roles
 	Given I have excel data
 	| QSC_Scenario000 |
 	And Open the chrome browser by selenium
@@ -13,7 +13,7 @@ Scenario: Veriy Manhattan login using different user roles
 	Then user log out from application 
 
 @QSC001 @Regression_QSC  @Smoke_QSC @QSC_PostMsg
-Scenario: Veriy ASN creation through Post MessageUI-excel
+Scenario: Verify ASN creation through Post MessageUI-excel
 Creating ASN through Post Message UI & verifying the response, checking status of the shipment
 	Given I have excel data
 	| QSC_Scenario001 |
@@ -23,12 +23,12 @@ Creating ASN through Post Message UI & verifying the response, checking status o
     And user update xml itemDetails from excel sheet
     And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response 
-	Then user opens ASN screen and searches for the ASN and verify its status "InTransit"
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	Then user log out from application 
 
 	
 	@QSC002 @Regression_QSC  @QSC_SingleLineRec
-Scenario: Veriy ASN creation through Post MessageUI-excel
+Scenario: Single Line receiving
 Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location through RF Menu
 	Given I have excel data
 	| QSC_Scenario002 |
@@ -38,10 +38,10 @@ Creating ASN through Post Message UI, checking status of the shipment and comple
     And user update xml itemDetails from excel sheet
     And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response 
-	#Then user opens ASN screen and searches for the ASN and verify its status "InTransit" 
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
 	Then user log out from application 
 	
 	@QSC003 @Regression_QSC @QSC_BypassStagingLocationRec @Sanity_QSC
@@ -55,9 +55,9 @@ Creating ASN through Post Message UI and complete receiving bypasing through sta
     And user update xml itemDetails from excel sheet
     And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response 
-	#Then user opens ASN screen and searches for the ASN and verify its status "InTransit" 
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	And user views ASN, get and verify item details 
-	And user opens RF menu and completes Receiving using "MM3 Recv Case-Ptwy" menu
+	And user opens RF menu and completes Receiving using "MM3 Rec-CASE-Ptwy" menu
 	Then user opens Inventory by location screen and validates the LPN created  
 	Then user log out from application 
    
@@ -72,10 +72,10 @@ Creating ASN through Post Message UI and validate Overage percentage - allowable
     And user update xml itemDetails from excel sheet
     And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response 
-	#Then user opens ASN screen and searches for the ASN and verify its status "InTransit" 
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu  
-	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
 	Then user log out from application 
 	
 
@@ -90,12 +90,12 @@ Creating ASN through Post Message UI using admin credentials and validate Overag
     And user update xml itemDetails from excel sheet
     And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response 
-	#Then user opens ASN screen and searches for the ASN and verify its status "InTransit" 
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	And user views ASN, get and verify item details 
 	Then user log out from application 
 	When user logs into Manhattan application using "Associate" Credentials
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu  
-	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
 	Then user log out from application 	
 	
 	
@@ -110,12 +110,12 @@ Creating ASN through Post Message UI and receiving in 2 LPN's. Move few quantiti
     And user update xml itemDetails from excel sheet
     And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response 
-	#Then user opens ASN screen and searches for the ASN and verify its status "InTransit" 
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu 
 	Then user break Split LPN and move to another LPN of same ASN 
 	Then user opens Inventory by location screen and validates the LPN moved
-	#Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started"
+	#Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started"
 	Then user log out from application 
 	
 	@QSC006 @Regression_QSC @QSC_MultiLineReceive
@@ -129,10 +129,10 @@ Creating 2 line ASN through Post Message UI, checking status of the shipment and
     And user update xml itemDetails from excel sheet
     And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response 
-	#Then user opens ASN screen and searches for the ASN and verify its status "InTransit" 
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started"
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started"
 	Then user log out from application 
 
 	
@@ -144,7 +144,7 @@ Receiving of Un-Delivered Product using blind receipt in MM3 returns menu and ve
 	And Open the chrome browser by selenium
 	And user logs into the Manhattan application 
 	And user opens RF menu and completes Receiving using "MM3 Returns" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	Then user log out from application 
 	
@@ -159,14 +159,15 @@ Receiving of Un-Delivered Product in MM3 returns menu by creating ASN and verify
     When user create xml file using "Single Line Return ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
     And user update xml itemDetails from excel sheet
     And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
+	Then user verify the response
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Returns" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
 	Then user log out from application 
 	
 	@QSC009 @Regression_QSC @QSC_DamagedReceive
-Scenario: B-459309 Receive Damages: Receiving Damaged Product using MM3 Recv-Damages option from RF Menu using supervispr credentials
+Scenario: B-459309 Receive Damages- Receiving Damaged Product using MM3 Recv-Damages 
 Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verifying the status of the ASN 
 	Given I have excel data
 	| QSC_Scenario009 |
@@ -176,26 +177,27 @@ Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verify
     And user update xml itemDetails from excel sheet
     And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response 
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-Damages" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	Then user log out from application 
 	
 	@QSC010 @Regression_QSC @QSC_DamagedReceive
-Scenario: B-459309 Receive Damages: Receiving of Damaged Returned Product using blind receipt
+Scenario: B-459309 Receive Damages- Receiving of Damaged Returned Product using blind receipt
 Receiving of Damaged Returned Product using blind receipt in MM3 returns menu and verifying the status of the ASN 
 	Given I have excel data
 	| QSC_Scenario010 |
 	And Open the chrome browser by selenium
 	When user logs into Manhattan application using "Associate" Credentials  
 	And user opens RF menu and completes Receiving using "MM3 Returns" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	Then user log out from application 
 	
 	@QSC011 @Regression_QSC @QSC_LockUnlockFunctionality
-Scenario: B-467729 – Configure Manhattan for RF lock/unlock iLPN: Lock an iLPN using the user provided lock code
+Scenario: B-467729 – Configure Manhattan for RF lock-unlock iLPN-- Lock an iLPN using the user provided lock code
 Create an iLPN using RF MM3 Create iLPN option and apply the lock code provided by user
 	Given I have excel data
 	| QSC_Scenario011 |
@@ -208,7 +210,7 @@ Create an iLPN using RF MM3 Create iLPN option and apply the lock code provided 
 	Then user log out from application 
 	
 	@QSC012 @Regression_QSC @QSC_LockUnlockFunctionality
-Scenario: B-467729 – Configure Manhattan for RF lock/unlock iLPN: Unlock an iLPN which already has some lock
+Scenario: B-467729 – Configure Manhattan for RF lock-unlock iLPN-- Unlock an iLPN which already has some lock
 	Given I have excel data
 	| QSC_Scenario012 |
 	And Open the chrome browser by selenium
@@ -231,8 +233,9 @@ iLPN by increasing the quantity & verify the iLPN, ASN and PIX transaction
     And user update xml itemDetails from excel sheet
     And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response
-	And user views ASN, get and verify item details 
-	And user opens RF menu and completes Receiving using "MM3 Recv Case-Ptwy" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
+	And user views ASN, get and verify item details
+	And user opens RF menu and completes Receiving using "MM3 Rec-CASE-Ptwy" menu
 	And user opens RF menu and "Increase" iLPN quantity using "Modify iLPN" menu in Inventory
 	Then user search for the LPN in iLPN screen, and validate the modification "Increase Qty" in iLPN
 	And user views ASN, and validate ASN details
@@ -252,8 +255,9 @@ iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
     And user update xml itemDetails from excel sheet
     And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response 
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
-	And user opens RF menu and completes Receiving using "MM3 Recv Case-Ptwy" menu
+	And user opens RF menu and completes Receiving using "MM3 Rec-CASE-Ptwy" menu
 	And user opens RF menu and "Decrease" iLPN quantity using "Modify iLPN" menu in Inventory
 	Then user search for the LPN in iLPN screen, and validate the modification "Decrease Qty" in iLPN
 	And user views ASN, and validate ASN details
@@ -272,10 +276,11 @@ iLPN by increasing the quantity & verify the iLPN, ASN and PIX transaction
     And user update xml itemDetails from excel sheet
     And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started"
-	And user verifies the ASN
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started"
+	And user verifies the ASN "40 - Receiving Verified"
 	And user opens RF menu and "Increase" iLPN quantity using "Modify iLPN" menu in Inventory
 	Then user search for the LPN in iLPN screen, and validate the modification "Increase Qty" in iLPN
 	And user views ASN, and validate ASN details
@@ -295,10 +300,11 @@ iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
     And user update xml itemDetails from excel sheet
     And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response 
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started"
-	And user verifies the ASN
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started"
+	And user verifies the ASN "40 - Receiving Verified"
 	And user opens RF menu and "Decrease" iLPN quantity using "Modify iLPN" menu in Inventory
 	Then user search for the LPN in iLPN screen, and validate the modification "Decrease Qty" in iLPN
 	And user views ASN, and validate ASN details
@@ -308,7 +314,7 @@ iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
 	@QSC017 @Regression_QSC @QSC_InventoryAdjustments
 Scenario: B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Delete line from an iLPN having no lock code before ASN verification
 Creating ASN through Post Message UI and complete receiving bypasing through staging location & modify the 
-iLPN by deletinh the line & verify the iLPN, ASN & PIX transaction
+iLPN by deleting the line & verify the iLPN, ASN & PIX transaction
 	Given I have excel data
 	| QSC_Scenario017 |
 	And Open the chrome browser by selenium
@@ -317,8 +323,9 @@ iLPN by deletinh the line & verify the iLPN, ASN & PIX transaction
     And user update xml itemDetails from excel sheet
     And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response 
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
-	And user opens RF menu and completes Receiving using "MM3 Recv Case-Ptwy" menu
+	And user opens RF menu and completes Receiving using "MM3 Rec-CASE-Ptwy" menu
 	And user opens RF menu and "Delete Line" from an iLPN using "Modify iLPN" menu in Inventory
 	Then user search for the LPN in iLPN screen, and validate the modification "Delete Line" in iLPN
 	And user views ASN, and validate ASN details after deleting a line from iLPN
@@ -337,10 +344,11 @@ iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
     And user update xml itemDetails from excel sheet
     And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response 
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started"
-	And user verifies the ASN
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started"
+	And user verifies the ASN "40 - Receiving Verified"
 	And user opens RF menu and "Delete Line" from an iLPN using "Modify iLPN" menu in Inventory
 	Then user search for the LPN in iLPN screen, and validate the modification "Delete Line" in iLPN
 	And user views ASN, and validate ASN details after deleting a line from iLPN
@@ -359,9 +367,9 @@ validating iLPN have no lock & consume the iLPN using RF Menu. Also validate PIX
     And user update xml itemDetails from excel sheet
     And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response 
-	#Then user opens ASN screen and searches for the ASN and verify its status "InTransit" 
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	#And user views ASN, get and verify item details 
-	And user opens RF menu and completes Receiving using "MM3 Recv Case-Ptwy" menu
+	And user opens RF menu and completes Receiving using "MM3 Rec-CASE-Ptwy" menu
 	#And user views ASN, get and verify item details
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user opens RF menu and go to invenorty & perform "Consume iLPN" operation
@@ -397,9 +405,10 @@ iLPN moved to inspection area and	“QSCINS” Locations Current Quantity will b
     And user update xml itemDetails from excel sheet
    And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response 
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Returns" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations & naviagtes to "QSCINS" zone and fetches the current quantity
 	And user opens RF menu and completes Putaway using "MM3 Ptwy-Sys Dir" menu
@@ -409,7 +418,7 @@ iLPN moved to inspection area and	“QSCINS” Locations Current Quantity will b
 	
 	
 	@QSC022 @Regression_QSC @QSC_PutawayDamagedAndUndeliveredProducts @Sanity_QSC
-Scenario: B- 466712 Putaway – Damaged Products that was received using MM3 Recv-Damages having lock code DM-Damaged Return
+Scenario: B- 466712 Putaway – Damaged Products that was received using MM3 Recv-Damages
 Receiving of Damaged Product in MM3 Recv-Damages menu and complete putaway to inspection area. Validate the iLPN moved 
 to inspection area and	“QSCINS” Locations Current Quantity will be incremented with no of LPN’s moved to location
 	Given I have excel data
@@ -420,9 +429,10 @@ to inspection area and	“QSCINS” Locations Current Quantity will be increment
     And user update xml itemDetails from excel sheet
     And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response 
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-Damages" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations & naviagtes to "QSCINS" zone and fetches the current quantity
 	And user opens RF menu and completes Putaway using "MM3 Ptwy-Sys Dir" menu
@@ -440,7 +450,7 @@ moved to location
 	And Open the chrome browser by selenium
 	When user logs into Manhattan application using "Associate" Credentials
 	And user opens RF menu and completes Receiving using "MM3 Returns" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "Receiving Started" 
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations & naviagtes to "QSCINS" zone and fetches the current quantity
 	And user opens RF menu and completes Putaway using "MM3 Ptwy-Sys Dir" menu

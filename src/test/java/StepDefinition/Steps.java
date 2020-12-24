@@ -44,6 +44,8 @@ import entity.Items;
 import globalFunc.CreateBrowser;
 import globalFunc.DateTime;
 import globalFunc.GlobalClass;
+import globalFunc.Screenshots;
+import globalFunc.GetScenarioStepSnapshots;
 import pages.HomePage;
 import pages.ManhattanLoginPage;
 import utils.Config;
@@ -56,7 +58,7 @@ public class Steps {
 	public static Robot robot;
 	public static Scenario scenario;
 	public static String dir;
-	public static Properties prop;
+	//public static Properties prop;
 	public static String testRes = "";
 	public static Logger logger;
 	GlobalClass ob = new GlobalClass();
@@ -77,31 +79,33 @@ public class Steps {
 	}
 
 	@Before
-	public void beforeClass(Scenario scenario) throws GeneralLeanFtException {
-		try {
-			this.scenario = scenario;
-			dir = System.getProperty("user.dir");
-			System.out.println(dir);
-			scenarioData=new HashMap<String, String>();
-			ItemDataMap= new HashMap<Integer, Map<String,String>>();
-			ServiceMap=new HashMap<Integer, Map<String,String>>();
-			logger = Logger.getLogger("Selenium-leanFt");
-			PropertyConfigurator.configure("Log4j.properties");
-			prop = new Properties();
-			FileInputStream ip = new FileInputStream(dir + "\\TestData\\config.properties");
+	public void beforeClass(Scenario scenario) throws Exception {
+		
 			try {
-				prop.load(ip);
-
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				this.scenario = scenario;
+				dir = System.getProperty("user.dir");
+				System.out.println(dir);
+				scenarioData=new HashMap<String, String>();
+				ItemDataMap= new HashMap<Integer, Map<String,String>>();
+				ServiceMap=new HashMap<Integer, Map<String,String>>();
+				logger = Logger.getLogger("Selenium-leanFt");
+				PropertyConfigurator.configure("Log4j.properties");
+				if(Config.getProperty("WordScreenshots").equals("true")) {
+					GetScenarioStepSnapshots.DeletingoldFiles();
+				}
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			/*
+			 * prop = new Properties(); FileInputStream ip = new FileInputStream(dir +
+			 * "\\TestData\\config.properties"); try { prop.load(ip);
+			 * 
+			 * } catch (IOException e) { // TODO Auto-generated catch block
+			 * e.printStackTrace(); }
+			 */
 		}
 
-	}
+	
 
 	/*
 	 * public void before(Scenario scenario) throws Exception { this.scenario =
@@ -110,7 +114,7 @@ public class Steps {
 	@After
 	public void afterClass() throws GeneralLeanFtException {
 
-		System.out.println("after");
+		System.out.println("after scenario");
 		
 		System.out.println(testRes);
 		// seleniumDriver.quit();
@@ -149,7 +153,7 @@ public class Steps {
 				try {
 					globalFunc.Screenshots.seleniumSnapshot(seleniumDriver);
 					System.out.println("naka2");
-					Reporter.addScreenCaptureFromPath(System.getProperty("user.dir")+ "\\resources\\Screenshots\\" + DateTime.strDate3 + ".jpeg");
+					Reporter.addScreenCaptureFromPath(System.getProperty("user.dir")+ "\\resources\\Screenshots\\" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".jpeg");
 					HomePage homePage1= new HomePage();
 					homePage1.user_logout_from_application1();
 				} catch (Exception e) { // TODO Auto-generated
@@ -167,6 +171,9 @@ public class Steps {
 			seleniumDriver = null;
 		}
 		Items.removeAllTheValuesFromMap();
+		if(Config.getProperty("WordScreenshots").equals("true")) {
+			GetScenarioStepSnapshots.FolderScreenShotToWord(scenario.getName());
+		}
 	}
 
 	@Given("We have Manhattan environmnet up and running")

@@ -2,44 +2,44 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
-      <![CDATA[Execution started for : Veriy ASN creation through Post MessageUI-excel]]>
+      <![CDATA[Execution started for : Verify Manhattan login using different user roles]]>
     </line>
   </reporter-output>
-  <suite started-at="2020-12-05T06:34:55 GMT" name="Suite" finished-at="2020-12-05T06:35:59 GMT" duration-ms="63352">
+  <suite started-at="2020-12-24T12:51:45 GMT" name="Suite" finished-at="2020-12-24T12:53:17 GMT" duration-ms="91557">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2020-12-05T06:34:55 GMT" name="Test" finished-at="2020-12-05T06:35:59 GMT" duration-ms="63352">
+    <test started-at="2020-12-24T12:51:45 GMT" name="Test" finished-at="2020-12-24T12:53:17 GMT" duration-ms="91557">
       <class name="TestRunner.Runner">
-        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-05T06:34:55 GMT" name="createExtentReport" finished-at="2020-12-05T06:34:56 GMT" duration-ms="90" status="PASS">
+        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-24T12:51:45 GMT" name="createExtentReport" finished-at="2020-12-24T12:51:45 GMT" duration-ms="85" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createExtentReport -->
-        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-05T06:34:56 GMT" name="setUpClass" finished-at="2020-12-05T06:34:57 GMT" duration-ms="918" status="PASS">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-24T12:51:45 GMT" name="setUpClass" finished-at="2020-12-24T12:51:46 GMT" duration-ms="885" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-05T06:34:57 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2020-12-05T06:35:58 GMT" duration-ms="61500" status="PASS">
+        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-24T12:51:47 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2020-12-24T12:53:16 GMT" duration-ms="89666" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[Inbound Scenarios]]>
+                <![CDATA[QSC Inbound Scenarios]]>
               </value>
             </param>
           </params>
           <reporter-output>
             <line>
-              <![CDATA[Execution started for : Veriy ASN creation through Post MessageUI-excel]]>
+              <![CDATA[Execution started for : Verify Manhattan login using different user roles]]>
             </line>
           </reporter-output>
         </test-method> <!-- feature -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-05T06:35:58 GMT" name="tearDownClass" finished-at="2020-12-05T06:35:59 GMT" duration-ms="515" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-24T12:53:16 GMT" name="tearDownClass" finished-at="2020-12-24T12:53:17 GMT" duration-ms="589" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-05T06:35:59 GMT" name="writeExtentReport" finished-at="2020-12-05T06:35:59 GMT" duration-ms="14" status="PASS">
+        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2020-12-24T12:53:17 GMT" name="writeExtentReport" finished-at="2020-12-24T12:53:17 GMT" duration-ms="35" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- writeExtentReport -->

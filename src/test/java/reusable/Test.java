@@ -21,6 +21,7 @@ import com.hp.lft.sdk.te.TextScreenDescription;
 import StepDefinition.Steps;
 import cucumber.api.DataTable;
 import unittesting.UnitTestClassBase;
+import utils.Config;
 
 public class Test extends UnitTestClassBase {
 
@@ -29,7 +30,6 @@ public class Test extends UnitTestClassBase {
 
 		try {
 
-			Properties prop = Steps.prop;
 			List<List<String>> data = usercredentials.raw();
 			Robot robot = Steps.robot;
 			robot = new Robot();
@@ -37,10 +37,10 @@ public class Test extends UnitTestClassBase {
 			Desktop.describe(Window.class, new WindowDescription.Builder().ownedWindow(false).childWindow(false)
 					.windowClassRegExp("PuTTY").windowTitleRegExp(" PuTTY").build());
 			int temp = 0;
-			if (prop.getProperty("RFEnv").equals("QA")) {
+			if (Config.getProperty("RFEnv").equals("QA")) {
 				temp = 8;
 			} else {
-				if (prop.getProperty("RFEnv").equals("UA")) {
+				if (Config.getProperty("RFEnv").equals("UA")) {
 					temp = 10;
 				}
 			}

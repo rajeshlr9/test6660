@@ -545,8 +545,6 @@ public class SeleniumTestHelper {
 	public static void assertEquals(Object actual, Object expected, String message){
 
 		
-		//com.cucumber.listener.Reporter.addStepLog("Expected is "+expected.toString()+" and Actual is "+actual);
-
 		if(null != message){
 			System.out.println(message + "actual is - "+ actual + "expected is - "+expected);
 			Assert.assertEquals(actual, expected, message);
@@ -554,6 +552,9 @@ public class SeleniumTestHelper {
 
 		}else{
 			Assert.assertEquals(actual, expected);
+		}
+		if(!(actual.equals(true)||expected.equals(true)|| actual.equals(false)||expected.equals(false))) {
+		com.cucumber.listener.Reporter.addStepLog("Expected is "+expected.toString()+" and Actual is "+actual);
 		}
 	}
 	public static void assertNotEquals(Object actual, Object expected, String message){
@@ -570,7 +571,14 @@ public class SeleniumTestHelper {
 	}
 
 	public static void assertEquals(Object actual, Object expected){
-		assertEquals(actual, expected, null);
+		try {
+			assertEquals(actual, expected, null);
+		} 
+			catch (AssertionError e) {
+				e.printStackTrace();
+				Steps.testRes = "Failed";
+				SeleniumTestHelper.fail(actual, expected, e.getMessage());
+		}
 	}
 
 	public static void assertNotEquals(Object actual, Object expected){
@@ -593,9 +601,20 @@ public class SeleniumTestHelper {
 		assertFalse(bool, null);
 	}
 
+	public static void fail(Object actual, Object expected, String message){
+		com.cucumber.listener.Reporter.addStepLog("Expected is "+expected.toString()+" and Actual is "+actual);
+		Assert.assertTrue(false, message);
+	}
+	
+	public static void fail(Object actual, Object expected){
+		com.cucumber.listener.Reporter.addStepLog("Expected is "+expected.toString()+" and Actual is "+actual);
+		Assert.assertTrue(false);
+	}
+	
 	public static void fail(String message){
 		assertEquals(true, false, message);
 	}
+
 
 	public static void assertNotNull(Object obj){
 		assertNotNull(obj, null);

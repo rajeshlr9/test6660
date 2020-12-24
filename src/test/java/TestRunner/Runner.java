@@ -14,6 +14,8 @@ import cucumber.api.CucumberOptions;
 //import cucumber.api.testng.AbstractTestNGCucumberTests;
 //import cucumber.api.testng.AbstractTestNGCucumberTests;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
+import globalFunc.GetScenarioStepSnapshots;
+import globalFunc.ZipFile;
 import utils.Config;
 import utils.ExtentReportUpdate;
 
@@ -24,7 +26,7 @@ import utils.ExtentReportUpdate;
 		strict = true,
 		dryRun = false,
 		//tags={"@QSC001"},
-		tags={"@tag5"},
+		tags={"@QSC999"},
 				//tags={"@QSC004"},
 		features = {"src\\test\\java\\featureFile"},
 		//features = {"src\\test\\java\\featureFile"},
@@ -64,7 +66,7 @@ public class Runner extends AbstractTestNGCucumberTests {
 	 */
 	@BeforeTest
 	public static void createExtentReport() {
-
+		GetScenarioStepSnapshots.DeletingolddocFiles();
 		globalFunc.DateTime.TimeDateFunc();
 
 		ExtentProperties extentProperties = ExtentProperties.INSTANCE;
@@ -87,6 +89,10 @@ public class Runner extends AbstractTestNGCucumberTests {
 	        ExtentReportUpdate.deleteOldFiles();
 	        ExtentReportUpdate.copyReports();
 	        }
+	        
+	        ZipFile.zipFile();
+	        
+	        
 	    }
 	  
 	 

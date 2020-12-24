@@ -15,6 +15,7 @@ import com.cucumber.listener.Reporter;
 
 import StepDefinition.Steps;
 import entity.Items;
+import globalFunc.Screenshots;
 import utils.Driver;
 import utils.SeleniumTestHelper;
 
@@ -194,83 +195,100 @@ driver.switchTo().frame(0);
 		saveBtn.click();
 	}
 	
-	public void fetchQty(String zone) throws InterruptedException {
+	public void fetchQty(String zone) throws Exception {
 		
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, expandBtn, 20);
 		expandBtn.click();
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, locationBarcodetxtBox, 20);
 		locationBarcodetxtBox.sendKeys(zone);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ApplyBtn, 20);
+		Screenshots.captureSnapshot(driver);
 		ApplyBtn.click();
 		Thread.sleep(1000);
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, firstRsrvLoc, 20);
 		firstRsrvLoc.click();
+		Screenshots.captureSnapshot(driver);
 		viewBtn.click();
 		
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, currentQty, 20);
+		Screenshots.captureSnapshot(driver);
 		reserveLocationqty= currentQty.getText();
 		Steps.logger.info("Current reserve Location qty:"+reserveLocationqty);
 		Reporter.addStepLog("Current reserve Location qty:"+reserveLocationqty);
 		Thread.sleep(2000);
 		}
 
-	public void validateQty(String inspectionZone) throws InterruptedException {
+	public void validateQty(String inspectionZone) throws Exception {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, expandBtn, 20);
 		expandBtn.click();
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, locationBarcodetxtBox, 20);
 		locationBarcodetxtBox.sendKeys(inspectionZone);
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ApplyBtn, 20);
 		ApplyBtn.click();
 		Thread.sleep(1000);
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, firstRsrvLoc, 20);
 		firstRsrvLoc.click();
+		Screenshots.captureSnapshot(driver);
 		viewBtn.click();
 		
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, currentQty, 20);
+		Screenshots.captureSnapshot(driver);
 		reserveLocationqtyafterupdate= currentQty.getText();
 		int iLPNsize=	RFMenuPage.iLPNz.size();
 		String newqty= String.valueOf(Integer.parseInt(reserveLocationqty)+iLPNsize);
-	//	SeleniumTestHelper.assertEquals(reserveLocationqtyafterupdate, newqty);
-		if(reserveLocationqtyafterupdate.equals(newqty)) {
-		Steps.logger.info("Current reserve Location qty after update:"+reserveLocationqtyafterupdate);
-		Reporter.addStepLog("Current reserve Location qty after update:"+reserveLocationqtyafterupdate);
-		}else {
-			Steps.testRes = "Failed";
-			Assert.assertTrue(false);
-		}
+		SeleniumTestHelper.assertEquals(reserveLocationqtyafterupdate, newqty);
+		/*
+		 * if(reserveLocationqtyafterupdate.equals(newqty)) {
+		 * Steps.logger.info("Current reserve Location qty after update:"
+		 * +reserveLocationqtyafterupdate);
+		 * Reporter.addStepLog("Current reserve Location qty after update:"
+		 * +reserveLocationqtyafterupdate); }else { Steps.testRes = "Failed";
+		 * Assert.assertTrue(false); }
+		 */
 		Thread.sleep(2000);		
 	}
 
-	public void validateiLPNinReserveLoc(String inspectionZone) throws InterruptedException {
+	public void validateiLPNinReserveLoc(String inspectionZone) throws Exception {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, expandBtn, 20);
 		expandBtn.click();
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, locationBarcodetxtBox, 20);
 		locationBarcodetxtBox.sendKeys(inspectionZone);
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ApplyBtn, 20);
 		ApplyBtn.click();
 		Thread.sleep(1000);
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, firstRsrvLoc, 20);
 		firstRsrvLoc.click();
+		Screenshots.captureSnapshot(driver);
 		LPNsBtn.click();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPntxtBoxResLoc, 20);
+		Screenshots.captureSnapshot(driver);
 		for (int j = 0; j < RFMenuPage.iLPNz.size(); j++) {
 		iLPntxtBoxResLoc.sendKeys(RFMenuPage.iLPNz.get(j));
 		Thread.sleep(1000);
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPnResLocApplyBtn, 20);
 		iLPnResLocApplyBtn.click();
 		Thread.sleep(5000);
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNvalue, 20);
 		String iLPN=iLPNvalue.getText();
 		System.out.println("iLPN:"+iLPN);
 		
-		//SeleniumTestHelper.assertEquals(iLPN, RFMenuPage.iLPNz.get(j));
-		if(iLPN.equals(RFMenuPage.iLPNz.get(j))) {
-		Steps.logger.info("iLPN:"+iLPN+" is present in inspection zone");
-		Reporter.addStepLog("iLPN:"+iLPN+" is present in inspection zone");
-		}else {
-			Steps.testRes = "Failed";
-			Assert.assertTrue(false);
-		}
+		SeleniumTestHelper.assertEquals(iLPN, RFMenuPage.iLPNz.get(j));
+		/*
+		 * if(iLPN.equals(RFMenuPage.iLPNz.get(j))) {
+		 * Steps.logger.info("iLPN:"+iLPN+" is present in inspection zone");
+		 * Reporter.addStepLog("iLPN:"+iLPN+" is present in inspection zone"); }else {
+		 * Steps.testRes = "Failed"; Assert.assertTrue(false); }
+		 */
 		}
 	}
 	

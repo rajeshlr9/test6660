@@ -14,13 +14,27 @@ import org.openqa.selenium.WebDriver;
 import com.hp.lft.sdk.stdwin.Window;
 import com.hp.lft.sdk.web.Browser;
 
+import utils.Config;
+
 public class Screenshots {
 
 
+	public static void captureSnapshot(WebDriver webdriver) throws Exception {
+		
+		if(Config.getProperty("WordScreenshots").equals("True")) {
+		TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
+		File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+		DateTime.TimeDateFunc();
+		File DestFile = new File("resources\\Doc Images\\"+Config.getProperty("Account")+"_" + DateTime.strDate7 + ".png");
+		FileUtils.copyFile(SrcFile, DestFile);
+		}
+	}
+	
 	public static void seleniumSnapshot(WebDriver webdriver) throws Exception {
 		TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
 		File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
-		File DestFile = new File("resources\\Screenshots\\" + DateTime.strDate3 + ".jpeg");
+		DateTime.TimeDateFunc();
+		File DestFile = new File("resources\\Screenshots\\" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_" + DateTime.strDate3 + ".jpeg");
 		FileUtils.copyFile(SrcFile, DestFile);
 	}
 

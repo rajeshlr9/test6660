@@ -20,6 +20,8 @@ import com.cucumber.listener.Reporter;
 
 import StepDefinition.Steps;
 import entity.Items;
+import globalFunc.Screenshots;
+import utils.Config;
 import utils.Driver;
 import utils.SeleniumTestHelper;
 
@@ -198,14 +200,17 @@ public class ILPNPage {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, inputLPNSearchTextBox, 50);
 		inputLPNSearchTextBox.clear();
 		inputLPNSearchTextBox.sendKeys(iLPN);
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, applySearchBtn, 50);
 		applySearchBtn.click();
 		SeleniumTestHelper.waitForElementToBeClickable(driver, firstCheckBx, 60);
+		Screenshots.captureSnapshot(driver);
 		driver.findElement(By.xpath("//span[text()='" + iLPN + "']/../..//input[@type='checkbox']")).click();
         SeleniumTestHelper.waitForElementToBeClickable(driver, cancelSelectedLPN, 60);
         viewLPNBtn.click();
         SeleniumTestHelper.waitForElementToBeClickable(driver, headerLPNTab, 120);
-        Thread.sleep(1000);
+        Thread.sleep(3000);
+        Screenshots.captureSnapshot(driver);
 	}
 	
 	public String getQuantityILPN(String ilpn) {
@@ -235,28 +240,34 @@ public class ILPNPage {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, LocksTab, 50);
 		LocksTab.click();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, lockCodeTable.get(0), 50);
+		Screenshots.captureSnapshot(driver);
 		System.out.println(lockCodeTable.get(0).getText());
 		if(lockCodeTable.get(0).getText().contains("No data found")) {
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNLockUnlockBtn2, 50);
 			iLPNLockUnlockBtn2.click();
 			//SeleniumTestHelper.waitForElementToBeDisplayed(driver, lockCodeTable.get(0), 50);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNlockButton, 50);
+			Screenshots.captureSnapshot(driver);
 			iLPNlockButton.click();
 			String lockcode = String.valueOf(Steps.scenarioData.get("LockCode"));
 			System.out.println(lockcode);
+			Screenshots.captureSnapshot(driver);
 			Select dropdown = new Select(locksDropdown);
 			dropdown.selectByVisibleText(lockcode);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, checkBox, 50);
 			checkBox.click();
+			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, saveButton, 50);
 			saveButton.click();
 			Steps.logger.info("Lock code applied successfully");
 			Reporter.addStepLog("Lock code applied successfully");
+			Screenshots.captureSnapshot(driver);
 			homePage.userClosesOpenedwindow("iLPNs - Lock Unlock LPNs");
 			
 		}else {
 			Steps.logger.info("Lock code already present");
 			Reporter.addStepLog("Lock code already present");
+			Steps.testRes="Failed";
 			Assert.assertTrue(false);
 		}
 	}
@@ -268,22 +279,27 @@ public class ILPNPage {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, LocksTab, 50);
 		LocksTab.click();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, lockCodeTable.get(0), 50);
+		Screenshots.captureSnapshot(driver);
 		if(!(lockCodeTable.get(0).getText().contains("No data found"))) {
 			iLPNLockUnlockBtn2.click();
 			//SeleniumTestHelper.waitForElementToBeDisplayed(driver, lockCodeTable.get(0), 50);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, checkBox, 50);
 			checkBox.click();
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNunlockButton, 50);
+			Screenshots.captureSnapshot(driver);
 			iLPNunlockButton.click();
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, saveButton, 50);
+			Screenshots.captureSnapshot(driver);
 			saveButton.click();
 			Steps.logger.info("Lock code removed successfully");
 			Reporter.addStepLog("Lock code removed successfully");
+			Screenshots.captureSnapshot(driver);
 			homePage.userClosesOpenedwindow("iLPNs - Lock Unlock LPNs");
 			
 		}else {
 			Steps.logger.info("iLPN doesnt have any lock");
 			Reporter.addStepLog("iLPN doesnt have any lock");
+			Steps.testRes="Failed";
 			Assert.assertTrue(false);
 		}
 	}
@@ -301,6 +317,7 @@ public class ILPNPage {
 			lockCode = new String[] { lockcodes };
 		}
 		homePage.MenuItems_Distribution_Selection("iLPNs");
+		Screenshots.captureSnapshot(driver);
 		Steps.logger.info("Open iLPN screen");
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		for (i = 0, j = 0; i < RFMenuPage.iLPNz.size(); i++) {
@@ -310,6 +327,7 @@ public class ILPNPage {
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, LocksTab, 50);
 			LocksTab.click();
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, lockCodeTable.get(0), 50);
+			Screenshots.captureSnapshot(driver);
 			Steps.logger.info("Actual lock code: " + lockCodeTable.get(0).getText());
 			Reporter.addStepLog("Actual lock code: " + lockCodeTable.get(0).getText());
 			Steps.logger.info("Expected lock code: " + lockCode[i]);
@@ -321,10 +339,10 @@ public class ILPNPage {
 			}
 		}
 		if (i == j) {
-			Assert.assertTrue(true);
 			Steps.logger.info("Actual lock code matches the expected lock code");
 			Reporter.addStepLog("Lock code is successfully verified");
 		} else {
+			Steps.testRes="Failed";
 			Assert.assertTrue(false, "iLPN Lock code that are not same " + ilpnLockCode);
 		}
 		homePage.userClosesOpenedwindow("iLPNs - iLPN Details");
@@ -406,11 +424,10 @@ public class ILPNPage {
 	   if(iLPNstatus.getText().contains("Consumed") && iLPNqty.getText().contains("0")) {
 		   Steps.logger.info("iLPN status is:"+iLPNstatus.getText().trim()+" & iLPN qty is:"+iLPNqty.getText());
 		   Reporter.addStepLog("iLPN status is:"+iLPNstatus.getText().trim()+" & iLPN qty is:"+iLPNqty.getText());
-		   SeleniumTestHelper.assertTrue(true);
 	   }else {
 		   Steps.testRes = "Failed";
-			Assert.assertEquals(iLPNstatus.getText(), "Consumed");
-			Assert.assertEquals(iLPNqty.getText(), "0");
+		   SeleniumTestHelper.assertEquals(iLPNstatus.getText(), "Consumed");
+		   SeleniumTestHelper.assertEquals(iLPNqty.getText(), "0");
 	   }
 	   homePage.userClosesOpenedwindow("iLPNs - iLPN Details");
    }
@@ -526,6 +543,7 @@ public void adjustiLPNQuantityWith(String adjust, int noOfItem) throws Exception
 
 		homePage.MenuItems_Distribution_Selection("iLPNs");
 		Steps.logger.info("Open iLPN screen");
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
 			searchForTheILPNAndViewIt(RFMenuPage.iLPNz.get(i));
@@ -538,10 +556,11 @@ public void adjustiLPNQuantityWith(String adjust, int noOfItem) throws Exception
 				if(arrQty1[0].equals(Steps.ItemDataMap.get(i).get("ChangeQty"))) {
 					Steps.logger.info("Expected iLPN Quantity is:" + Steps.ItemDataMap.get(i).get("ChangeQty")+" & Actual is: "+arrQty1[0]);
 					Reporter.addStepLog("Expected iLPN Quantity is:" + Steps.ItemDataMap.get(i).get("ChangeQty")+" & Actual is:"+arrQty1[0]);
-					SeleniumTestHelper.assertTrue(true);
 				}
 				else {
-					SeleniumTestHelper.assertTrue(false);
+					Steps.testRes="Failed";
+					Reporter.addStepLog("Expected iLPN Quantity is:" + Steps.ItemDataMap.get(i).get("ChangeQty")+" & Actual is:"+arrQty1[0]);
+					SeleniumTestHelper.assertTrue(false, "Quantity did not increased");
 				}
 				break;
 			case"Decrease Qty":
@@ -551,10 +570,11 @@ public void adjustiLPNQuantityWith(String adjust, int noOfItem) throws Exception
 				if(arrQty2[0].equals(Steps.ItemDataMap.get(i).get("ChangeQty"))) {
 					Steps.logger.info("Expected iLPN Quantity is:" + Steps.ItemDataMap.get(i).get("ChangeQty")+" & Actual is: "+arrQty2[0]);
 					Reporter.addStepLog("Expected iLPN Quantity is:" + Steps.ItemDataMap.get(i).get("ChangeQty")+" & Actual is:"+arrQty2[0]);
-					SeleniumTestHelper.assertTrue(true);
 				}
 				else {
-					SeleniumTestHelper.assertTrue(false);
+					Steps.testRes="Failed";
+					Reporter.addStepLog("Expected iLPN Quantity is:" + Steps.ItemDataMap.get(i).get("ChangeQty")+" & Actual is:"+arrQty2[0]);
+					SeleniumTestHelper.assertTrue(false, "Quantity did not decreased");
 				}
 				break;
 			case "Delete Line":
@@ -564,9 +584,11 @@ public void adjustiLPNQuantityWith(String adjust, int noOfItem) throws Exception
 				if(status.getText().contains("Canceled")&& qty.getText().contains("0")) {
 					Steps.logger.info("iLPN line is deleted");
 					Reporter.addStepLog("iLPN line is deleted");
-					SeleniumTestHelper.assertTrue(true);
 				}else {
-					SeleniumTestHelper.assertTrue(false);
+					Steps.testRes="Failed";
+					Reporter.addStepLog("Actual status & Quantity-"+ status.getText()+" , "+ qty.getText() );
+					Reporter.addStepLog("Expected status & Quantity- Canceled , 0" );
+					SeleniumTestHelper.assertTrue(false, "iLPN line is not deleted");
 				}
 				break;
 				default:

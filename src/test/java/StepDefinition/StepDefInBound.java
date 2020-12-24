@@ -37,6 +37,7 @@ import cucumber.api.java.en.When;
 import entity.Items;
 import globalFunc.CreateBrowser;
 import globalFunc.GlobalClass;
+import globalFunc.Screenshots;
 import pages.AsnsPage;
 import pages.CreateASNFromPOpage;
 import pages.CubiscanEntryPage;
@@ -119,7 +120,7 @@ public class StepDefInBound {
 			manhattanLoginPage.loginToManhattanApp();
 		} catch (Exception e) {
 			System.out.println(e);
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 
@@ -147,7 +148,7 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			System.out.println(e);
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 
@@ -172,7 +173,7 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			System.out.println(e);
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 
@@ -184,7 +185,7 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			System.out.println(e);
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 
 	}
@@ -214,7 +215,7 @@ public class StepDefInBound {
 		} catch (NumberFormatException e) {
 			Steps.testRes = "Failed";
 			System.out.println(e);
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 
@@ -228,7 +229,7 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			System.out.println(e);
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 
@@ -243,7 +244,7 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			System.out.println(e);
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 
@@ -277,7 +278,7 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			System.out.println(e);
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 
@@ -286,6 +287,7 @@ public class StepDefInBound {
 		// String isjenkinJob = Runner.jenkinJobName;
 		homePage.menuItemsIntegrationSelection("Post Message");
 		Steps.logger.info("Open Post message screen");
+		Screenshots.captureSnapshot(driver);
 		BufferedReader reader = null;
 
 		try {
@@ -303,11 +305,12 @@ public class StepDefInBound {
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, postMessagePage.sendBtn, 50);
 			postMessagePage.sendBtn.click();
 			Steps.logger.info("Clicked on post message button");
+			Screenshots.captureSnapshot(driver);
 
-		} catch (Exception exec) {
+		} catch (Exception e) {
 			Steps.testRes = "Failed";
-			SeleniumTestHelper.fail("Error occured while entering xml : " + exec.getMessage());
-			Assert.assertTrue(false);
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
 		} finally {
 			reader.close();
 		}
@@ -336,6 +339,7 @@ public class StepDefInBound {
 				// in the response");
 				driver.switchTo().defaultContent();
 				Thread.sleep(1000);
+				Screenshots.captureSnapshot(driver);
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, postMessagePage.openWindows, 50);
 				postMessagePage.openWindows.click();
 				SeleniumTestHelper.Close_OpenedWindow("Post Message", driver);
@@ -347,7 +351,7 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 
@@ -360,16 +364,16 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 	
-	@And("^user verifies the ASN$")
-	public void user_verifies_ASN() throws Exception {
+	@And("^user verifies the ASN \"([^\"]*)\"$")
+	public void user_verifies_ASN(String VerifyASN) throws Exception {
 
 		try {
 			asnsPage.searchForTheASN(Items.getAsnNumber());
-			asnsPage.verifyASN("Receiving Verified");
+			asnsPage.verifyASN(VerifyASN);
 		Reporter.addStepLog("Receiving Verified");
 			Steps.logger.info("Receiving Verified");
 			homePage.userClosesOpenedwindow("ASNs");
@@ -378,7 +382,7 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 //After ASN creation
@@ -395,6 +399,7 @@ public class StepDefInBound {
 			Steps.logger.info("Click on view ASN");
 			// Thread.sleep(5000);
 			SeleniumTestHelper.switchToInnerFrame(driver);
+			Screenshots.captureSnapshot(driver);
 			asnsPage.GetItemDetails();
 			homePage.userClosesOpenedwindow("Advance Ship Notice");
 			// Thread.sleep(3000);
@@ -403,7 +408,7 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 	//after receiving
@@ -417,6 +422,7 @@ public class StepDefInBound {
 			SeleniumTestHelper.waitForElementToBeClickable(driver, asnsPage.searchedASNChkbox, 50);
 			asnsPage.searchedASNChkbox.click();
 			asnsPage.viewASNBtn.click();
+			Screenshots.captureSnapshot(driver);
 			Steps.logger.info("Click on view ASN");
 			// Thread.sleep(5000);
 			SeleniumTestHelper.switchToInnerFrame(driver);
@@ -428,7 +434,7 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 	@Then("^user views ASN, and validate ASN details after deleting a line from iLPN$")
@@ -443,6 +449,7 @@ public class StepDefInBound {
 			asnsPage.viewASNBtn.click();
 			Steps.logger.info("Click on view ASN");
 			// Thread.sleep(5000);
+			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			asnsPage.GetLineDetails(asnStatus);
 			homePage.userClosesOpenedwindow("Advance Ship Notice");
@@ -452,7 +459,7 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 	
@@ -467,6 +474,7 @@ public class StepDefInBound {
 		asnsPage.viewASNBtn.click();
 		Steps.logger.info("Click on view ASN");
 		// Thread.sleep(5000);
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		asnsPage.GetLineDetails(asnStatus);
 		homePage.userClosesOpenedwindow("Advance Ship Notice");
@@ -476,7 +484,7 @@ public class StepDefInBound {
 	} catch (Exception e) {
 		Steps.testRes = "Failed";
 		e.printStackTrace();
-		Assert.assertTrue(false);
+		Assert.assertTrue(false, e.getMessage());
 	}
 }
 	
@@ -489,7 +497,7 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 
@@ -498,12 +506,13 @@ public class StepDefInBound {
 			String recLocation) throws Exception {
 		try {
 			homePage.MenuItems_Distribution_Selection("RF Menu");
+			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			rfMenu.ASNReceivingProcess(noOfItems, receivingMethod, recLocation);
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 
@@ -512,12 +521,13 @@ public class StepDefInBound {
 		try {
 			homePage.MenuItems_Distribution_Selection("RF Menu");
 			Steps.logger.info("Open RF menu");
+			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			rfMenu.ASNReceivingProcess(receivingMethod);
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 	
@@ -526,12 +536,13 @@ public class StepDefInBound {
 		try {
 			homePage.MenuItems_Distribution_Selection("RF Menu");
 			Steps.logger.info("Open RF menu");
+			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			rfMenu.putawayProcess(putawayMethod);
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 	
@@ -540,6 +551,7 @@ public class StepDefInBound {
 		try {
 			homePage.MenuItems_Configuration_Selection("Reserve Locations");
 			Steps.logger.info("Open Reserve Locations");
+			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			resLocPage.fetchQty(INSZone);
 			System.out.println("reserveLocationqty:"+resLocPage.reserveLocationqty);
@@ -547,7 +559,7 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 		
 	}
@@ -557,13 +569,14 @@ public class StepDefInBound {
 		try {
 			homePage.MenuItems_Configuration_Selection("Reserve Locations");
 			Steps.logger.info("Open Reserve Locations");
+			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			resLocPage.validateQty(inspectionZone);
 			homePage.user_closes_openedwindow("Reserve Locations - Reserve Location");
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 	
@@ -573,13 +586,14 @@ public class StepDefInBound {
 		try {
 			homePage.MenuItems_Configuration_Selection("Reserve Locations");
 			Steps.logger.info("Open Reserve Locations");
+			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			resLocPage.validateiLPNinReserveLoc(inspectionZone);
 			homePage.user_closes_openedwindow("Reserve Locations - iLPNs");
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 		
@@ -589,12 +603,13 @@ public class StepDefInBound {
 		try {
 			homePage.MenuItems_Distribution_Selection("RF Menu");
 			Steps.logger.info("Open RF menu");
+			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			rfMenu.inventoryFunctions(menuOption);
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 	
@@ -603,12 +618,13 @@ public class StepDefInBound {
 		try {
 			homePage.MenuItems_Distribution_Selection("RF Menu");
 			Steps.logger.info("Open RF menu");
+			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			rfMenu.modifyiLPN(operation, menuOption);
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 	
@@ -617,12 +633,13 @@ public class StepDefInBound {
 		try {
 			homePage.MenuItems_Distribution_Selection("RF Menu");
 			Steps.logger.info("Open RF menu");
+			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			rfMenu.modifyiLPN(operation, menuOption);
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 
@@ -630,6 +647,7 @@ public class StepDefInBound {
 	public void user_opens_InventoryByLocation_screen_and_validates_the_LPN_created() throws Exception {
 		try {
 			homePage.MenuItems_Distribution_Selection("Item Inventory by Location");
+			Screenshots.captureSnapshot(driver);
 			Steps.logger.info("Open Item Inventory by Location menu");
 			Reporter.addStepLog("Open Item Inventory by Location menu");
 			SeleniumTestHelper.switchToInnerFrame(driver);
@@ -637,13 +655,14 @@ public class StepDefInBound {
 				int actualQty = itemInvenByLocationPage.GetLPNQuantityByItemandLoc(Items.getItemsForReceivingASN(i),
 						rfMenu.newSysSuggestedLoc, rfMenu.LPNVal);
 				SeleniumTestHelper.assertEquals(actualQty, Integer.parseInt(Steps.ItemDataMap.get(i).get("RecQty")));
-				Reporter.addStepLog("Actual Qty is- " + actualQty + " & Expected qty is- "
-						+ Integer.parseInt(Steps.ItemDataMap.get(i).get("RecQty")));
+				//Reporter.addStepLog("Actual Qty is- " + actualQty + " & Expected qty is- "
+					//	+ Integer.parseInt(Steps.ItemDataMap.get(i).get("RecQty")));
+				Reporter.addStepLog("iLPN is created & it matches the qty received");
 			}
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 
@@ -654,7 +673,7 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 			
 		}
 	}
@@ -666,13 +685,14 @@ public class StepDefInBound {
 				} catch (Exception e) {
 					Steps.testRes = "Failed";
 					e.printStackTrace();
-					Assert.assertTrue(false);
+					Assert.assertTrue(false, e.getMessage());
 				}
 			}
 	
 	@Then("^user search for the LPN in iLPN screen, and validate the iLPN status$")
 	public void user_opens_iLPN_and_validate_iLPN_status() throws Exception {
 		homePage.MenuItems_Distribution_Selection("iLPNs");
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		try {
 			for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
@@ -682,7 +702,7 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 
@@ -690,6 +710,7 @@ public class StepDefInBound {
 	public void user_opens_iLPN_and_apply_lockCode() throws Exception {
 		try {
 			homePage.MenuItems_Distribution_Selection("iLPNs");
+			Screenshots.captureSnapshot(driver);
 			Steps.logger.info("Open iLPN screen");
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
@@ -700,7 +721,7 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 	
@@ -708,6 +729,7 @@ public class StepDefInBound {
 	public void user_opens_iLPN_and_unlock_the_exisitng_code() throws Exception {
 		try {
 			homePage.MenuItems_Distribution_Selection("iLPNs");
+			Screenshots.captureSnapshot(driver);
 			Steps.logger.info("Open iLPN screen");
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
@@ -718,7 +740,7 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 	
@@ -736,7 +758,7 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 		
 	}
@@ -755,7 +777,7 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 		
 	}
@@ -775,7 +797,7 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 		
 	}
@@ -784,6 +806,7 @@ public class StepDefInBound {
 	public void user_opens_InventoryByLocation_screen_and_validates_the_LPN_moved() throws Exception {
 		try {
 			homePage.MenuItems_Distribution_Selection("Item Inventory by Location");
+			Screenshots.captureSnapshot(driver);
 			Steps.logger.info("Open Item Inventory by Location menu");
 			Reporter.addStepLog("Open Item Inventory by Location menu");
 			SeleniumTestHelper.switchToInnerFrame(driver);
@@ -792,7 +815,7 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 
@@ -800,13 +823,14 @@ public class StepDefInBound {
 	public void user_Break_Split_LPN_and_move_to_another_LPN_of_same_ASN() throws Exception {
 		try {
 			homePage.MenuItems_Distribution_Selection("RF Menu");
+			Screenshots.captureSnapshot(driver);
 			Steps.logger.info("Open RF menu");
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			rfMenu.split_Move_iLPN_for_same_Item();
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
-			Assert.assertTrue(false);
+			Assert.assertTrue(false, e.getMessage());
 
 		}
 	}

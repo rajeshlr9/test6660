@@ -14,6 +14,7 @@ import com.cucumber.listener.Reporter;
 
 import StepDefinition.Steps;
 import entity.Items;
+import globalFunc.Screenshots;
 import utils.Config;
 import utils.Driver;
 import utils.SeleniumTestHelper;
@@ -235,28 +236,38 @@ public class PixTransactionPage {
 		
 		homePage.MenuItems_Distribution_Selection("PIX Transactions");
 		SeleniumTestHelper.switchToInnerFrame(driver);
+		Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 120);
 			quickFilter.click();
 			SeleniumTestHelper.waitForElementToBeClickable(driver, savedFilter, 50);
+			Screenshots.captureSnapshot(driver);
 			savedFilter.click();
 			SeleniumTestHelper.waitForElementToBeClickable(driver, Apply_savedfilter, 50);
+			Screenshots.captureSnapshot(driver);
 			Apply_savedfilter.click();
 			Thread.sleep(1000);
+			Screenshots.captureSnapshot(driver);
 			dateFrom.sendKeys("Today");
+			Screenshots.captureSnapshot(driver);
 			dateTo.sendKeys("Today");
+			Screenshots.captureSnapshot(driver);
 			savedFilteriLPN.sendKeys(RFMenuPage.iLPNz.get(0));
+			Screenshots.captureSnapshot(driver);
 			addsavedFilter.click();
 			SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 50);
 			
-			Thread.sleep(1000);
-			
+			Thread.sleep(2000);
+			Screenshots.captureSnapshot(driver);
 			for (int i = 0; i < pixCodeArr.length; i++) {
 				driver.findElement(By.xpath("//*[@id=\"checkAll_c"+i+"_dataForm:lview:dataTable\"]")).click();
 				//*[@id="checkAll_c0_dataForm:lview:dataTable"]
 				//*[@id="checkAll_c1_dataForm:lview:dataTable"]
 			}
+			Thread.sleep(1000);
+			Screenshots.captureSnapshot(driver);
 			pixTransviewButton.click();
-			
+			Thread.sleep(3000);
+			Screenshots.captureSnapshot(driver);
 			ArrayList<String> transactionType = new ArrayList<String>();
 			ArrayList<String> actionCode = new ArrayList<String>();
 			
@@ -269,23 +280,34 @@ public class PixTransactionPage {
 					Thread.sleep(3000);
 					driver.findElement(By.id("dataForm:dataTable_nextDtlBtn")).click();
 					Thread.sleep(3000);
+					Screenshots.captureSnapshot(driver);
 					j++;
 				}
 			}
-			
+			int l=0;
 			for (int i = 0; i < pixCodeArr.length; i++) {
 				for (int j = 0; j < actionCode.size(); j++) {
 					if(transactionType.get(j).contains(pixCodeArr[i])&& (actionCode.get(j).contains("Lock iLPN")||actionCode.get(j).contains("Unlock iLPN"))) {
+						l++;
 						System.out.println(transactionType.get(j)+"&"+pixCodeArr[i]);
 						System.out.println(actionCode.get(j));
 						System.out.println("passed");
 						Steps.logger.info("Transaction Type is:" + transactionType.get(j)+" & Action Code is:"+actionCode.get(j));
-						Reporter.addStepLog("Transaction Type is:" + transactionType.get(j)+" & Action Code is:"+actionCode.get(j));
+						Reporter.addStepLog("Transaction Type is:" + transactionType.get(j));
+						Reporter.addStepLog("Action Code is:"+actionCode.get(j));
+						Reporter.addStepLog("Pix Code validated");
 						SeleniumTestHelper.assertTrue(true);
 					}else {
 						System.out.println("PIX code is invalid");
+						//Steps.testRes="Failed";
+						//Assert.assertTrue(false);
 					}
 				}
+			} 
+			if(l!=2) {
+				Reporter.addStepLog("PIX code is invalid");
+				Steps.testRes="Failed";
+				Assert.assertTrue(false);
 			}
 			
 		homePage.userClosesOpenedwindow("PIX Transactions");
@@ -294,29 +316,40 @@ public class PixTransactionPage {
 public void validatePixTransactionforModifyiLPN(String[] pixCodeArr) throws Exception {
 		
 		homePage.MenuItems_Distribution_Selection("PIX Transactions");
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.switchToInnerFrame(driver);
 			SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 120);
 			quickFilter.click();
 			SeleniumTestHelper.waitForElementToBeClickable(driver, savedFilter, 50);
+			Screenshots.captureSnapshot(driver);
 			savedFilter.click();
 			SeleniumTestHelper.waitForElementToBeClickable(driver, Apply_savedfilter, 50);
+			Screenshots.captureSnapshot(driver);
 			Apply_savedfilter.click();
 			Thread.sleep(1000);
+			Screenshots.captureSnapshot(driver);
 			dateFrom.sendKeys("Today");
+			Screenshots.captureSnapshot(driver);
 			dateTo.sendKeys("Today");
+			Screenshots.captureSnapshot(driver);
 			savedFilteriLPN.sendKeys(RFMenuPage.iLPNz.get(0));
+			Screenshots.captureSnapshot(driver);
 			addsavedFilter.click();
 			SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 50);
 			
-			Thread.sleep(1000);
-			
+			Thread.sleep(2000);
+			Screenshots.captureSnapshot(driver);
 			for (int i = 0; i < pixCodeArr.length; i++) {
 				driver.findElement(By.xpath("//*[@id=\"checkAll_c"+i+"_dataForm:lview:dataTable\"]")).click();
 				//*[@id="checkAll_c0_dataForm:lview:dataTable"]
 				//*[@id="checkAll_c1_dataForm:lview:dataTable"]
 			}
-			pixTransviewButton.click();
 			
+			Thread.sleep(2000);
+			Screenshots.captureSnapshot(driver);
+			pixTransviewButton.click();
+			Thread.sleep(3000);
+			Screenshots.captureSnapshot(driver);
 			ArrayList<String> transactionType = new ArrayList<String>();
 			ArrayList<String> actionCode = new ArrayList<String>();
 			
@@ -329,7 +362,9 @@ public void validatePixTransactionforModifyiLPN(String[] pixCodeArr) throws Exce
 					Thread.sleep(2000);
 					driver.findElement(By.id("dataForm:dataTable_nextDtlBtn")).click();
 					Thread.sleep(2000);
+					Screenshots.captureSnapshot(driver);
 					j++;
+					
 				}
 			}
 			
@@ -340,9 +375,11 @@ public void validatePixTransactionforModifyiLPN(String[] pixCodeArr) throws Exce
 						System.out.println(actionCode.get(j));
 						System.out.println("passed");
 						Steps.logger.info("Transaction Type is:" + transactionType.get(j)+" & Action Code is:"+actionCode.get(j));
-						Reporter.addStepLog("Transaction Type is:" + transactionType.get(j)+" & Action Code is:"+actionCode.get(j));
+						Reporter.addStepLog("Transaction Type is:" + transactionType.get(j));
+						Reporter.addStepLog("Action Code is:"+actionCode.get(j));
 						SeleniumTestHelper.assertTrue(true);
 					}else {
+						Reporter.addStepLog("PIX code is invalid");
 						System.out.println("PIX code is invalid");
 						Steps.testRes = "Failed";
 						Assert.assertTrue(false);
@@ -355,31 +392,42 @@ public void validatePixTransactionforModifyiLPN(String[] pixCodeArr) throws Exce
 
 public void validatePixTransactionforconsumingiLPN(String[] pixCodeArr) throws Exception {
 	homePage.MenuItems_Distribution_Selection("PIX Transactions");
-	Thread.sleep(5000);
+	Thread.sleep(2000);
+	Screenshots.captureSnapshot(driver);
 	SeleniumTestHelper.switchToInnerFrame(driver);
 	
 		SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 120);
 		quickFilter.click();
 		SeleniumTestHelper.waitForElementToBeClickable(driver, savedFilter, 50);
+		Screenshots.captureSnapshot(driver);
 		savedFilter.click();
 		SeleniumTestHelper.waitForElementToBeClickable(driver, Apply_savedfilter, 50);
+		Screenshots.captureSnapshot(driver);
 		Apply_savedfilter.click();
 		Thread.sleep(2000);
+		Screenshots.captureSnapshot(driver);
 		dateFrom.sendKeys("Today");
+		Screenshots.captureSnapshot(driver);
 		dateTo.sendKeys("Today");
+		Screenshots.captureSnapshot(driver);
 		savedFilteriLPN.sendKeys(RFMenuPage.iLPNz.get(0));
+		Screenshots.captureSnapshot(driver);
 		addsavedFilter.click();
 		SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 50);
 		
 		Thread.sleep(2000);
+		Screenshots.captureSnapshot(driver);
 		
 		for (int i = 0; i < pixCodeArr.length; i++) {
 			driver.findElement(By.xpath("//*[@id=\"checkAll_c"+i+"_dataForm:lview:dataTable\"]")).click();
 			//*[@id="checkAll_c0_dataForm:lview:dataTable"]
 			//*[@id="checkAll_c1_dataForm:lview:dataTable"]
 		}
+		Thread.sleep(2000);
+		Screenshots.captureSnapshot(driver);
 		pixTransviewButton.click();
-		
+		Thread.sleep(3000);
+		Screenshots.captureSnapshot(driver);
 		ArrayList<String> transactionType = new ArrayList<String>();
 		ArrayList<String> actionCode = new ArrayList<String>();
 		
@@ -392,6 +440,7 @@ public void validatePixTransactionforconsumingiLPN(String[] pixCodeArr) throws E
 				Thread.sleep(2000);
 				driver.findElement(By.id("dataForm:dataTable_nextDtlBtn")).click();
 				Thread.sleep(2000);
+				Screenshots.captureSnapshot(driver);
 				j++;
 			}
 		}
@@ -403,9 +452,11 @@ public void validatePixTransactionforconsumingiLPN(String[] pixCodeArr) throws E
 					System.out.println(actionCode.get(j));
 					System.out.println("passed");
 					Steps.logger.info("Transaction Type is:" + transactionType.get(j)+" & Action Code is:"+actionCode.get(j));
-					Reporter.addStepLog("Transaction Type is:" + transactionType.get(j)+" & Action Code is:"+actionCode.get(j));
+					Reporter.addStepLog("Transaction Type is:" + transactionType.get(j));
+					Reporter.addStepLog("Action Code is:"+actionCode.get(j));
 					SeleniumTestHelper.assertTrue(true);
 				}else {
+					Reporter.addStepLog("PIX code is invalid");
 					System.out.println("PIX code is invalid");
 					Steps.testRes = "Failed";
 					Assert.assertTrue(false);

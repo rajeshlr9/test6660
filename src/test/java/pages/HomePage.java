@@ -14,6 +14,8 @@ import org.openqa.selenium.support.PageFactory;
 import com.cucumber.listener.Reporter;
 
 import StepDefinition.Steps;
+import globalFunc.Screenshots;
+import utils.Config;
 import utils.Driver;
 import utils.SeleniumTestHelper;
 
@@ -123,6 +125,7 @@ public class HomePage {
 		Steps.logger.info("Clicked on sign out button");
 		Thread.sleep(12000);
 		String Title_signout = driver.getTitle();
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.assertEquals(Title_signout, "Sign Out | Manhattan Associates Inc.");
 		Reporter.addStepLog("Sign Out is successfull");
 
