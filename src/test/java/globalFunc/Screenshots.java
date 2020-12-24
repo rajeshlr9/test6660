@@ -21,11 +21,11 @@ public class Screenshots {
 
 	public static void captureSnapshot(WebDriver webdriver) throws Exception {
 		
-		if(Config.getProperty("WordScreenshots").equals("True")) {
+		if(Config.getProperty("WordScreenshots").equals("true")) {
 		TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
 		File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
 		DateTime.TimeDateFunc();
-		File DestFile = new File("resources\\Doc Images\\"+Config.getProperty("Account")+"_" + DateTime.strDate7 + ".png");
+		File DestFile = new File("resources\\Doc_Images\\"+Config.getProperty("Account")+"_" + DateTime.strDate7 + ".png");
 		FileUtils.copyFile(SrcFile, DestFile);
 		}
 	}
