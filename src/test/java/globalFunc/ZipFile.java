@@ -13,8 +13,8 @@ import utils.Config;
 public class ZipFile {
 
     private List <String> fileList;
-    private static final String OUTPUT_ZIP_FILE = "C:\\Users\\ffd-sys-team\\git\\ffd-manhattan-testing\\resources\\WordDoc_"+Config.getProperty("Build_Number")+".zip";
-    private static final String SOURCE_FOLDER = "C:\\Users\\ffd-sys-team\\git\\ffd-manhattan-testing\\resources\\WordScreenshots"; // SourceFolder path
+    private static final String OUTPUT_ZIP_FILE = "C:\\Jenkins\\workspace\\CIL\\ManhattanWMS-3535876\\ManhattanPOC\\Manh-Test-Specific-Functionalities-ScrumTeam\\resources\\WordDoc_"+Config.getProperty("Build_Number")+".zip";
+    private static final String SOURCE_FOLDER = "C:\\Jenkins\\workspace\\CIL\\ManhattanWMS-3535876\\ManhattanPOC\\Manh-Test-Specific-Functionalities-ScrumTeam\\resources\\WordScreenshots"; // SourceFolder path
 
     public ZipFile() {
     	fileList = new ArrayList < String > ();
