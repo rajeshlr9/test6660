@@ -105,7 +105,7 @@ public class GetScenarioStepSnapshots {
 
 	public static void FolderScreenShotToWord(String ScenarioName) {
 		try {
-			String dirPath = "resources\\Doc Images";
+			String dirPath = "resources\\Doc_Images";
 			File file = new File(dirPath);
 			File[] listOfFiles = file.listFiles();
 			int fileSize = listOfFiles.length;
