@@ -37,7 +37,7 @@ public class GetScenarioStepSnapshots {
 
 	public static void DeletingoldFiles() {
 		try {
-			String dirPath = "resources\\Doc Images";
+			String dirPath = "resources\\Doc_Images";
 			// Create folder/directory if not exist.
 			File file = new File(dirPath);
 			File[] listOfFiles = file.listFiles();
