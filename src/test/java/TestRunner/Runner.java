@@ -26,7 +26,7 @@ import utils.ExtentReportUpdate;
 		strict = true,
 		dryRun = false,
 		//tags={"@QSC001"},
-		tags={"@QSC999"},
+		tags={"@tag5"},
 				//tags={"@QSC004"},
 		features = {"src\\test\\java\\featureFile"},
 		//features = {"src\\test\\java\\featureFile"},
