@@ -86,7 +86,7 @@ public class GetScenarioStepSnapshots {
 
 				}
 			}
-			System.out.println(file.listFiles());
+		//	System.out.println(file.listFiles());
 			int fileSize = listOfFiles.length;
 
 			System.out.println("fileSize is  :" + fileSize);

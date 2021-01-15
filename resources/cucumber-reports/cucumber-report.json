@@ -6,7 +6,7 @@
         "before": [
           {
             "result": {
-              "duration": 1248840,
+              "duration": 1271780,
               "status": "passed"
             },
             "match": {
@@ -15,7 +15,7 @@
           },
           {
             "result": {
-              "duration": 80804730,
+              "duration": 106402980,
               "status": "passed"
             },
             "match": {
@@ -23,14 +23,14 @@
             }
           }
         ],
-        "line": 4,
-        "name": "Verify Manhattan login using different user roles",
-        "description": "",
-        "id": "qsc-inbound-scenarios;verify-manhattan-login-using-different-user-roles",
+        "line": 16,
+        "name": "Verify ASN creation through Post MessageUI-excel",
+        "description": "Creating ASN through Post Message UI \u0026 verifying the response, checking status of the shipment",
+        "id": "qsc-inbound-scenarios;verify-asn-creation-through-post-messageui-excel",
         "after": [
           {
             "result": {
-              "duration": 750856960,
+              "duration": 10382082790,
               "status": "passed"
             },
             "match": {
@@ -43,10 +43,10 @@
         "steps": [
           {
             "result": {
-              "duration": 1587260890,
+              "duration": 1588676500,
               "status": "passed"
             },
-            "line": 5,
+            "line": 18,
             "name": "I have excel data",
             "match": {
               "location": "Steps.readExcelData(DataTable)"
@@ -54,19 +54,19 @@
             "rows": [
               {
                 "cells": [
-                  "QSC_Scenario000"
+                  "QSC_Scenario001"
                 ],
-                "line": 6
+                "line": 19
               }
             ],
             "keyword": "Given "
           },
           {
             "result": {
-              "duration": 3218535430,
+              "duration": 3459424310,
               "status": "passed"
             },
-            "line": 7,
+            "line": 20,
             "name": "Open the chrome browser by selenium",
             "match": {
               "location": "Steps.open_the_chrome_and_launch_the_application_using_Selenium()"
@@ -75,88 +75,91 @@
           },
           {
             "result": {
-              "duration": 9070021960,
+              "duration": 11621950730,
               "status": "passed"
             },
-            "line": 8,
-            "name": "user logs into Manhattan application using \"Admin\" Credentials",
+            "line": 21,
+            "name": "user logs into the Manhattan application",
             "match": {
-              "arguments": [
-                {
-                  "val": "Admin",
-                  "offset": 44
-                }
-              ],
-              "location": "StepDefInBound.user_logs_into_Manhattan_application(String)"
+              "location": "StepDefInBound.user_logs_into_the_Manhattan_application()"
+            },
+            "keyword": "And "
+          },
+          {
+            "output": [
+              "ASN-210115132422"
+            ],
+            "result": {
+              "duration": 212223430,
+              "status": "passed"
+            },
+            "line": 22,
+            "name": "user create xml file with updated ASNNo \u0026 DeliveryStartDate for ReceivingASN",
+            "match": {
+              "location": "StepDefInBound.user_create_xml_file_with_updated_ASNNo_DeliveryStartDate_for_ReceivingASN()"
             },
             "keyword": "When "
           },
           {
             "result": {
-              "duration": 17274107200,
+              "duration": 44784150,
               "status": "passed"
             },
-            "line": 9,
-            "name": "user log out from application",
+            "line": 23,
+            "name": "user update xml itemDetails from excel sheet",
             "match": {
-              "location": "StepDefInBound.user_log_out_from_application()"
+              "location": "StepDefInBound.user_update_xml_itemDetails_from_sheet_for_Scenario()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 12064094760,
+              "status": "passed"
+            },
+            "line": 24,
+            "name": "user opens post message screen and upload file in order to create ASN",
+            "match": {
+              "location": "StepDefInBound.user_opens_post_message_screen_and_upload_file_in_order_to_create_ASN()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2842368910,
+              "status": "passed"
+            },
+            "line": 25,
+            "name": "user verify the response",
+            "match": {
+              "location": "StepDefInBound.user_verify_the_response()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 5890623490,
+              "duration": 19128676230,
               "status": "passed"
             },
-            "line": 10,
-            "name": "user logs into Manhattan application using \"Associate\" Credentials",
+            "line": 26,
+            "name": "user opens ASN screen and searches for the ASN and verify its status \"20 - InTransit\"",
             "match": {
               "arguments": [
                 {
-                  "val": "Associate",
-                  "offset": 44
+                  "val": "20 - InTransit",
+                  "offset": 70
                 }
               ],
-              "location": "StepDefInBound.user_logs_into_Manhattan_application(String)"
-            },
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "duration": 17228636230,
-              "status": "passed"
-            },
-            "line": 11,
-            "name": "user log out from application",
-            "match": {
-              "location": "StepDefInBound.user_log_out_from_application()"
+              "location": "StepDefInBound.user_opens_ASN_screen_and_searches_for_the_ASN_and_verify_its_status(String)"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 6678899540,
+              "duration": 17623704330,
               "status": "passed"
             },
-            "line": 12,
-            "name": "user logs into Manhattan application using \"Supervisor\" Credentials",
-            "match": {
-              "arguments": [
-                {
-                  "val": "Supervisor",
-                  "offset": 44
-                }
-              ],
-              "location": "StepDefInBound.user_logs_into_Manhattan_application(String)"
-            },
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "duration": 17230783470,
-              "status": "passed"
-            },
-            "line": 13,
+            "line": 27,
             "name": "user log out from application",
             "match": {
               "location": "StepDefInBound.user_log_out_from_application()"
@@ -166,20 +169,20 @@
         ],
         "tags": [
           {
-            "line": 3,
-            "name": "@QSC999"
+            "line": 15,
+            "name": "@QSC001"
           },
           {
-            "line": 3,
+            "line": 15,
             "name": "@Regression_QSC"
           },
           {
-            "line": 3,
-            "name": "@QSC_LoginFunctionality"
+            "line": 15,
+            "name": "@Smoke_QSC"
           },
           {
-            "line": 3,
-            "name": "@Smoke_QSC"
+            "line": 15,
+            "name": "@QSC_PostMsg"
           }
         ]
       }
