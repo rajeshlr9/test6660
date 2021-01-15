@@ -34,7 +34,7 @@ public class CreateBrowser {
 				
 			case "chrome":
 				
-				System.setProperty("webdriver.chrome.driver", "C:\\Users\\ffd-sys-team\\git\\SampleMavenProj\\drivers\\chromedriver.exe");
+				System.setProperty("webdriver.chrome.driver", "C:\\Users\\ffd-sys-team\\git\\SampleMavenProj\\drivers\\chromedriver");
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("--start-maximized");
 				Map<String, Object> prefs = new HashMap<String, Object>();
@@ -75,7 +75,7 @@ public class CreateBrowser {
 				
 			case "OCI_Windows-Chrome":
 				
-				System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
+				System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver");
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("--start-maximized");
 				Map<String, Object> prefs = new HashMap<String, Object>();
@@ -95,7 +95,7 @@ public class CreateBrowser {
 				
 			case "@Platform":
 				
-				System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
+				System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver");
 				ChromeOptions options2 = new ChromeOptions();
 				options2.addArguments("--start-maximized");
 				Map<String, Object> prefs2 = new HashMap<String, Object>();
@@ -115,7 +115,7 @@ public class CreateBrowser {
 				
 				case "OCI_Pod":
 				
-				System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
+				System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver");
 				ChromeOptions options1 = new ChromeOptions();
 				options1.setCapability(CapabilityType.PLATFORM_NAME, Platform.LINUX);
 				//URL dockerport = new URL("http://10.60.27.77:4444/wd/hub");
