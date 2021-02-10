@@ -37,8 +37,6 @@ import StepDefinition.Steps;
 import entity.DistributionOrders;
 import entity.Items;
 
-
-
 public class Xpathxml {
 	
 	WebDriver driver = Steps.seleniumDriver;

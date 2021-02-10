@@ -2,72 +2,40 @@ package StepDefinition;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactoryConfigurationError;
-import javax.xml.xpath.XPathExpressionException;
-
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.xml.sax.SAXException;
 
 import com.cucumber.listener.Reporter;
 
-import TestRunner.Runner;
-import cucumber.api.Scenario;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import entity.Items;
-import globalFunc.CreateBrowser;
-import globalFunc.GlobalClass;
 import globalFunc.Screenshots;
 import pages.AsnsPage;
-import pages.CreateASNFromPOpage;
-import pages.CubiscanEntryPage;
 import pages.HomePage;
 import pages.ILPNPage;
 import pages.ItemInvenByLocationPage;
-import pages.ItemsPage;
 import pages.ManhattanLoginPage;
 import pages.PixTransactionPage;
 import pages.PostMessagePage;
 import pages.RFMenuPage;
 import pages.ReserveLocationPage;
 import utils.Config;
-import utils.Driver;
 import utils.SeleniumTestHelper;
-import utils.TestStubReader;
 import utils.Xpathxml;
 
 public class StepDefInBound {
 	WebDriver driver = Steps.seleniumDriver;
 	Xpathxml xmlInput = new Xpathxml();
 	Steps st=new Steps();
-	// TestStubReader testStubReader = new TestStubReader();
 	ManhattanLoginPage manhattanLoginPage = new ManhattanLoginPage();
-	// String filepath = System.getProperty("user.dir") +
-	// "\\src\\test\\resources\\testdata\\Inbound\\";
-	// String itemfilepath = System.getProperty("user.dir") +
-	// "\\src\\test\\resources\\testdata\\Items\\";
 	HomePage homePage = new HomePage();
-	// TestStubReader testStubReader = new TestStubReader();
 	PostMessagePage postMessagePage = new PostMessagePage();
 	AsnsPage asnsPage = new AsnsPage();
 	RFMenuPage rfMenu = new RFMenuPage();
@@ -85,7 +53,8 @@ public class StepDefInBound {
 	String miscellaneous4 = null;
 	String velocityCode = null;
 
-	public StepDefInBound() throws Throwable { // this.driver =
+	public StepDefInBound() throws Throwable { 
+		// this.driver =
 		// CreateBrowser.CreateBrowserInstance(); this.driver = Steps.seleniumDriver;
 	}
 

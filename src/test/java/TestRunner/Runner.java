@@ -25,7 +25,7 @@ import utils.ExtentReportUpdate;
 @CucumberOptions(
 		strict = true,
 		dryRun = false,
-		//tags={"@QSC001"},
+		//tags={"@QSC_OB001"},
 		tags={"@tag5"},
 				//tags={"@QSC004"},
 		features = {"src\\test\\java\\featureFile"},
@@ -71,7 +71,7 @@ public class Runner extends AbstractTestNGCucumberTests {
 
 		ExtentProperties extentProperties = ExtentProperties.INSTANCE;
 		
-		String reportpath = "resources\\Reports\\" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ globalFunc.DateTime.strDate2 + ".html";
+		String reportpath = "./resources/Reports/" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ globalFunc.DateTime.strDate2 + ".html";
 		extentProperties.setReportPath(reportpath);
 		
 
@@ -84,18 +84,15 @@ public class Runner extends AbstractTestNGCucumberTests {
 	@AfterTest
 	public static void writeExtentReport() {
 		
-	        Reporter.loadXMLConfig(new File("Config/report.xml"));
+	        Reporter.loadXMLConfig(new File("./Config/report.xml"));
 	        if(!Config.getProperty("Job_Name").contains("ScrumTeam")) {
 	        ExtentReportUpdate.deleteOldFiles();
 	        ExtentReportUpdate.copyReports();
 	        }
-	        
+	        if(Config.getProperty("WordScreenshots").equals("true")) {
 	        ZipFile.zipFile();
 	        
-	        
+	        }
 	    }
-	  
-	 
-
 }
 

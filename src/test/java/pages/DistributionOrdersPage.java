@@ -1,7 +1,6 @@
 package pages;
 
 import java.awt.AWTException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,25 +12,32 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.cucumber.listener.Reporter;
+
+import StepDefinition.Steps;
 import entity.DistributionOrders;
-import utils.Driver;
+import entity.Items;
+import globalFunc.Screenshots;
 import utils.SeleniumTestHelper;
 
 public class DistributionOrdersPage {
 	WebDriver driver;
-	
-
-	public DistributionOrdersPage() {
-		this.driver = Driver.getInstance();
-		PageFactory.initElements(driver, this);
-	}
 	String oLPN;
 	String pulllocationvalue;
 	WavesPage wavespage = new WavesPage();
 	HomePage homepage = new HomePage();
-
 	List<String> List_Shippedqty = new ArrayList<String>();
+	List<String> List_ShippedqtyUOM = new ArrayList<String>();
+	List<String> List_ItemName = new ArrayList<String>();
 	List<String> oLPNSlist_Shippedqty = new ArrayList<String>();
+	
+	public DistributionOrdersPage() {
+		this.driver = Steps.seleniumDriver;
+		PageFactory.initElements(driver, this);
+	}
+	
+
+	
 	@FindBy(xpath = "(//label[text()='Primary Fields']//following::input[@role='combobox' and @data-ref='inputEl'])[1]")
 	public WebElement primaryField;
 	@FindBy(xpath = "//input[@name='DistributionorderID']")
@@ -72,6 +78,8 @@ public class DistributionOrdersPage {
 	public WebElement shipWaveStatus;
 	@FindBy(xpath = "//td[@class='tbl_checkBox advtbl_col advtbl_body_col']")
 	public WebElement shipWavechkbox;
+	@FindBy(id = "rmButton_2View1_100662000")
+	public WebElement shipWaveviewBtn;
 	@FindBy(xpath = "//input[@type='button' and contains(@value,'More')]")
 	public WebElement shipWavemoreBtn;
 	@FindBy(xpath = "//li/a[contains(@id,'rmButton_2LPNs')]")
@@ -291,16 +299,24 @@ public class DistributionOrdersPage {
 
 	public void getDoStatus(String expectedDOstatus) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		Screenshots.captureSnapshot(driver);
 		primaryField.sendKeys("Distribution Order");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		Screenshots.captureSnapshot(driver);
 		distributionOrderID.click();
-		distributionOrderID.sendKeys(DistributionOrders.getDOnumber());
+		distributionOrderID.sendKeys(Items.getDONumber());
+		Screenshots.captureSnapshot(driver);
 		apply_Btn.click();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		Screenshots.captureSnapshot(driver);
 		String actualDOstatus = driver.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[text()='"
-				+ DistributionOrders.getDOnumber() + "']//following::td[1]")).getText();
+				+ Items.getDONumber() + "']//following::td[1]")).getText();
 		SeleniumTestHelper.assertEquals(actualDOstatus, expectedDOstatus);
+		Reporter.addStepLog("DO Order status:"+ actualDOstatus);
+		Steps.logger.info("DO Order status:"+ actualDOstatus);
+		Thread.sleep(2000);
 		homepage.user_closes_openedwindow("Distribution Orders");
 
 	}
@@ -696,25 +712,92 @@ public class DistributionOrdersPage {
 
 	}
 
+	public void runWaveTemplate(String waveTemplateDesc) throws Exception {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 100);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(Items.getDONumber());		
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.assertEquals(DOStatus.getText(), "110 - Released");
+		SeleniumTestHelper.waitForElementToBeClickable(driver, moreBtn, 50);
+		moreBtn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, waveOption, 50);
+		waveOption.click();
+		Thread.sleep(3000);
+		homepage.user_closes_openedwindow("Distribution Orders");
+		homepage.openWindows.click();
+
+		List<WebElement> myframes = driver.findElements(By.tagName("Iframe"));
+		System.out.println("my framecount is   " + myframes.size());
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		driver.findElement(By.xpath("//input[@alt='Find Description']")).sendKeys(waveTemplateDesc);
+		wavespage.waveNumberApplySearchBtn.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+
+		driver.findElement(By.xpath("//span[contains(text(),'" + waveTemplateDesc
+				+ "')]/ancestor::td/preceding-sibling::td[2][contains(@class,'checkBox')]")).click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, runWaveBtn, 100);
+
+		runWaveBtn.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, submitWaveBtn, 100);
+		Thread.sleep(2000);
+		submitWaveBtn.click();
+
+		if (SeleniumTestHelper.isElementDisplayed(waveNumber)) {
+			String waveNumberValue = waveNumber.getText();
+			Items.setWaveNumber(waveNumberValue);
+			Steps.logger.info("Wave no generated successfully");
+			Reporter.addStepLog("Wave no generated successfully");
+			Steps.logger.info("Wave no:"+ Items.getWaveNumber());
+			Reporter.addStepLog("Wave no:"+ Items.getWaveNumber());
+			Items.setWaveNumber(waveNumberValue);
+			Thread.sleep(2000);
+			waveNumber.click();
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			String actualStatus = driver.findElement(By.xpath(shiwaveStatusxpath(waveTemplateDesc))).getText().trim();
+			int count = 0;
+			while (!actualStatus.equals("90 - Ship wave completed") && (count != 20)) {
+				refreshBtn.click();
+				actualStatus = driver.findElement(By.xpath(shiwaveStatusxpath(waveTemplateDesc))).getText().trim();
+				Thread.sleep(5000);
+				count++;
+			}
+			
+		}	
+		Thread.sleep(2000);
+
+		homepage.user_closes_openedwindow("ShipWaveTemplate - Waves");
+		
+	}
+	
 	public void getDOdetails() throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
 		primaryField.sendKeys("Distribution Order");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		Screenshots.captureSnapshot(driver);
 		distributionOrderID.click();
-		distributionOrderID.sendKeys(DistributionOrders.getDOnumber()); // DistributionOrders.getDOnumber()
+		distributionOrderID.sendKeys(Items.getDONumber()); // DistributionOrders.getDOnumber()
+		Screenshots.captureSnapshot(driver);
 		apply_Btn.click();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		Screenshots.captureSnapshot(driver);
 		distributionOrder_chkbox.click();
 		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
 		viewBtn.click();
 		SeleniumTestHelper.switchToInnerFrame(driver);
-		if (SeleniumTestHelper.isElementDisplayed(shippingID)) {
-
-			SeleniumTestHelper.assertTrue(shippingID.isDisplayed());
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shippingID, 50);
-			DistributionOrders.setShippingID(shippingID.getText());
-			System.out.println("Shipment ID is " + DistributionOrders.getShippingID());
+		/*
+		 * if (SeleniumTestHelper.isElementDisplayed(shippingID)) {
+		 * 
+		 * SeleniumTestHelper.assertTrue(shippingID.isDisplayed());
+		 * SeleniumTestHelper.waitForElementToBeDisplayed(driver, shippingID, 50);
+		 * DistributionOrders.setShippingID(shippingID.getText());
+		 * System.out.println("Shipment ID is " + DistributionOrders.getShippingID());
+		 */
 
 			// SeleniumTestHelper.waitForElementToBeClickable(driver,
 			// shippingID, 50);
@@ -728,47 +811,48 @@ public class DistributionOrdersPage {
 			// backBtn.click();
 			// }
 
-			SeleniumTestHelper.waitForElementToBeClickable(driver, shippingID, 50);
-			shippingID.click();
-			Thread.sleep(1000);
-			// DistributionOrders.setTrailerNumber(trailerNumber.getAttribute("textContent"));
-			// System.out.println("Trailer Number is
-			// "+DistributionOrders.getTrailerNumber());
-			SeleniumTestHelper.assertTrue(backBtn.isDisplayed());
-			backBtn.click();
-
-		} else {
-			System.out.println("Shipping ID is not generated");
-		}
+		/*
+		 * SeleniumTestHelper.waitForElementToBeClickable(driver, shippingID, 50);
+		 * shippingID.click(); Thread.sleep(1000); //
+		 * DistributionOrders.setTrailerNumber(trailerNumber.getAttribute("textContent")
+		 * ); // System.out.println("Trailer Number is //
+		 * "+DistributionOrders.getTrailerNumber());
+		 * SeleniumTestHelper.assertTrue(backBtn.isDisplayed()); backBtn.click();
+		 * 
+		 * } else { System.out.println("Shipping ID is not generated"); }
+		 */
 
 		SeleniumTestHelper.waitForElementToBeClickable(driver, DOlinesTab, 50);
+		Screenshots.captureSnapshot(driver);
 		DOlinesTab.click();
 		List<WebElement> itemslist = driver.findElements(By.xpath("//span[contains(@id,'ItemID_Link_NameText')]"));
 		List<WebElement> OriginalOrderedqty = driver
 				.findElements(By.xpath("//span[contains(@id,'DODetailOrderLinesList_OrigOrderQtyLink_NameText')]"));
 		Thread.sleep(5000);
+		Screenshots.captureSnapshot(driver);
 		String[] shippedQty = null;
 		String itemInDOPage = null;
-		String DoID = distributionOrderIDtxt.getText();
-		for (int i = 0; i < itemslist.size(); i++) {
+		//String DoID = distributionOrderIDtxt.getText();
+		for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 			shippedQty = OriginalOrderedqty.get(i).getText().split("\\s+");
 			List_Shippedqty.add(shippedQty[0]);
+			List_ShippedqtyUOM.add(shippedQty[1]);
 			itemInDOPage = itemslist.get(i).getText();
-			DistributionOrders.DOItemQTYUOM.put("IteminDO" + (i + 1), itemInDOPage);
-			DistributionOrders.DOItemQTYUOM.put("QtyinItem" + (i + 1), shippedQty[0]);
-			DistributionOrders.DOItemQTYUOM.put("UOMinItem" + (i + 1), shippedQty[1]);
-			DistributionOrders.DOMap.put(DoID, DistributionOrders.DOItemQTYUOM);
-			System.out.println("Items in DO page " + DistributionOrders.DOMap.get(DoID).get("IteminDO" + (i + 1)));
+			List_ItemName.add(itemInDOPage);
+			/*
+			 * DistributionOrders.DOItemQTYUOM.put("IteminDO" + (i + 1), itemInDOPage);
+			 * DistributionOrders.DOItemQTYUOM.put("QtyinItem" + (i + 1), shippedQty[0]);
+			 * DistributionOrders.DOItemQTYUOM.put("UOMinItem" + (i + 1), shippedQty[1]);
+			 * DistributionOrders.DOMap.put(DoID, DistributionOrders.DOItemQTYUOM);
+			 */
+			System.out.println("Items in DO page: " + List_ItemName.get(i));
 			System.out.println(
-					"Qty for item in DO page " + DistributionOrders.DOMap.get(DoID).get("QtyinItem" + (i + 1)));
+					"Qty for item in DO page: " + List_Shippedqty.get(i));
 			System.out.println(
-					"UOM for Items in DO page " + DistributionOrders.DOMap.get(DoID).get("UOMinItem" + (i + 1)));
-			SeleniumTestHelper.assertEquals(DistributionOrders.DOMap.get(DoID).get("IteminDO" + (i + 1)),
-					DistributionOrders.getProductsForDistOrder(i));
-			SeleniumTestHelper.assertEquals(DistributionOrders.DOMap.get(DoID).get("QtyinItem" + (i + 1)), String
-					.valueOf(DistributionOrders.getItemWithShippedQty(DistributionOrders.getProductsForDistOrder(i))));
-			SeleniumTestHelper.assertEquals(DistributionOrders.DOMap.get(DoID).get("UOMinItem" + (i + 1)),
-					DistributionOrders.getItemWithQtyUOM(DistributionOrders.getProductsForDistOrder(i)));
+					"UOM for Items in DO page: " + List_ShippedqtyUOM.get(i));
+			SeleniumTestHelper.assertEquals(List_ItemName.get(i),Steps.ItemDataMap.get(i).get("Item"));
+			SeleniumTestHelper.assertEquals(List_Shippedqty.get(i), Steps.ItemDataMap.get(i).get("ShippedQty"));
+			SeleniumTestHelper.assertEquals(List_ShippedqtyUOM.get(i), Steps.ItemDataMap.get(i).get("UOM"));
 			/*
 			 * SeleniumTestHelper.assertEquals(DistributionOrders.DOMap.get(DoID
 			 * ).get("IteminDO"+(i+1)), "7978767501003");
@@ -1626,5 +1710,6 @@ public class DistributionOrdersPage {
 		SeleniumTestHelper.assertEquals(actualDOstatus, expectedDOstatus);
 
 	}
+
 
 }

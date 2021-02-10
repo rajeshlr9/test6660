@@ -27,7 +27,7 @@ import utils.TestStubReader;
 public class ShipmentPage {
 	WebDriver driver;
 	
-	public ShipmentPage() {
+	public ShipmentPage() throws Throwable{
 		this.driver = Driver.getInstance();
 		PageFactory.initElements(driver, this);
 	}

@@ -37,15 +37,18 @@ public class Items {
 	private static String numberOfLpn;
 	private static String itemQTY;
 	public static String iLpn;
+	private static String DONumber;
+	private static String waveNumber;
 	public static List<String> IlpNWithOB = new ArrayList<>();
 	public static List<String> LPNThreeDgtList = new ArrayList();
 	private static String pdfCOntent;
+	
 	public static String getItemName() {
 		return ItemName;
 	}
 
 	public static void setItemName(String itemName) {
-		ItemName = itemName;
+		Items.ItemName = itemName;
 	}
 
 	public static String getOldQty() {
@@ -338,10 +341,27 @@ public class Items {
 		LPNThreeDgtList.clear(); 
 		LPNThreeDgtList.add(lPNThreeDgt);
 	}
+	
+	public static String getDONumber() {
+		return DONumber;
+	}
+
+	public static void setDONumber(String DONumber) {
+		Items.DONumber = DONumber;
+	}
+	
+	public static String getWaveNumber() {
+		return Items.waveNumber;
+	}
+	public static void setWaveNumber(String waveNum) {
+		waveNumber = waveNum;
+	}
 
 	public static void removeAllTheValuesFromMap() {
 		Steps.testRes="";
 		RFMenuPage.iLPNz.clear();
+		waveNumber=null;
+		DONumber=null;
 		asnNumber = null;
 		itemsForReceivingASN.clear();
 		itemWithShippedASNQty.clear();

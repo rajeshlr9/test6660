@@ -8,7 +8,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
+import com.cucumber.listener.Reporter;
+
+import StepDefinition.Steps;
 import entity.Items;
 import utils.Driver;
 import utils.SeleniumTestHelper;
@@ -16,36 +20,55 @@ import utils.TestStubReader;
 
 public class WavesPage {
 	WebDriver driver;
-	
-	
-	public WavesPage(){
-		this.driver=Driver.getInstance();
+
+	public WavesPage() {
+		this.driver = Steps.seleniumDriver;
 		PageFactory.initElements(driver, this);
 	}
-	
+
 	HomePage homepage = new HomePage();
-	@FindBy(xpath="//span[text()='Wave Number:']/../..//input[@type='text']")
+	@FindBy(xpath = "//span[text()='Wave Number:']/../..//input[@type='text']")
 	public WebElement waveNumberSearchTxt;
-	
-	@FindBy(xpath="(//input[@value='Apply' and @title = 'Apply'])[1]")
+
+	@FindBy(xpath = "(//input[@value='Apply' and @title = 'Apply'])[1]")
 	public WebElement waveNumberApplySearchBtn;
-	
-	@FindBy(xpath="(//input[@value='Apply' and @title = 'Apply'])[1]")
+
+	@FindBy(xpath = "(//input[@value='Apply' and @title = 'Apply'])[1]")
 	public WebElement searchedWaveNumberLbl;
-	@FindBy(xpath="//span[text()='Plt pull task from resv/pack & hold']/../preceding-sibling::td[2]/span[1]")
-		public WebElement selectRlocationfrmWave;
-	
-	public void searchForTheWaveNumberAndVerifyItsDisplayed(String waveNumber) throws Exception{
+	@FindBy(xpath = "//span[text()='Plt pull task from resv/pack & hold']/../preceding-sibling::td[2]/span[1]")
+	public WebElement selectRlocationfrmWave;
+
+	@FindBy(xpath = "//td[@class='tbl_checkBox advtbl_col advtbl_body_col']")
+	public WebElement shipWavechkbox;
+	@FindBy(id = "rmButton_2View1_100662000")
+	public WebElement shipWaveviewBtn;
+	@FindBy(id = "dataForm:OrdersDeselected")
+	public WebElement OrdersdeselectedValue;
+	@FindBy(id = "dataForm:LinesAllocated")
+	public WebElement linesAllocatedValue;
+	@FindBy(id = "dataForm:UnitsAllocated")
+	public WebElement unitsAllocatedValue;
+	@FindBy(id = "dataForm:reasonCode11")
+	public WebElement shortageReasonCd;
+	@FindBy(id = "ExceptionSummaryTab_lnk")
+	public WebElement ShortageTab;
+
+	public void searchForTheWaveNumberAndVerifyItsDisplayed(String waveNumber) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Waves");
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, waveNumberSearchTxt, 50);
 		waveNumberSearchTxt.sendKeys(waveNumber);
 		waveNumberApplySearchBtn.click();
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, driver.findElement(By.xpath("//span[text()='"+waveNumber+"']")), 50);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver,
+				driver.findElement(By.xpath("//span[text()='" + waveNumber + "']")), 50);
 		SeleniumTestHelper.assertTrue(true, "Wave number : " + waveNumber + " displayed");
+
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavechkbox, 50);
+		shipWavechkbox.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWaveviewBtn, 50);
+		shipWaveviewBtn.click();
 	}
 
-	
 	public void getLocation() throws InterruptedException, IOException {
 
 		String sheetname = null;
@@ -69,7 +92,51 @@ public class WavesPage {
 		System.out.println("--------------------" + FirstRLocation);
 		System.out.println(dataFromsheet);
 		SeleniumTestHelper.assertEquals(getLocation, FirstRLocation, "Inventory picked from First Priority Location");
-	}	
+	}
 
-	
+	public void searchForTheWaveNumberAndVerifyInventoryAllocation() throws Exception {
+		homepage.MenuItems_Distribution_Selection("Waves");
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, waveNumberSearchTxt, 50);
+		waveNumberSearchTxt.sendKeys(Items.getWaveNumber());
+		waveNumberApplySearchBtn.click();
+		Thread.sleep(2000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver,
+				driver.findElement(By.xpath("//span[text()='" + Items.getWaveNumber() + "']")), 50);
+		SeleniumTestHelper.assertTrue(true, "Wave number : " + Items.getWaveNumber() + " displayed");
+		Reporter.addStepLog("Wave number : " + Items.getWaveNumber() + " displayed");
+
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavechkbox, 50);
+		shipWavechkbox.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWaveviewBtn, 50);
+		shipWaveviewBtn.click();
+
+		Thread.sleep(2000);
+
+		if (OrdersdeselectedValue.getText().equals("0")) {
+			String noofLines = String.valueOf(Steps.ItemDataMap.size());
+			System.out.println("No of Lines:" + noofLines);
+			SeleniumTestHelper.assertEquals(linesAllocatedValue.getText(), noofLines,
+					"Verification of lines allocation ");
+			int totalshippedQty = 0;
+			for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
+				int temp = Integer.parseInt(Steps.ItemDataMap.get(i).get("ShippedQty"));
+				totalshippedQty = temp + totalshippedQty;
+			}
+			String totalShippedQty = String.valueOf(totalshippedQty);
+			System.out.println("Toatal Shipped Qty:" + totalShippedQty);
+			SeleniumTestHelper.assertEquals(unitsAllocatedValue.getText(), totalShippedQty,"Verification of units allocation ");
+		Thread.sleep(2000);
+		} else if (OrdersdeselectedValue.getText().equals("1")) {
+			SeleniumTestHelper.waitForElementToBeClickable(driver, ShortageTab, 10);
+			ShortageTab.click();
+			Thread.sleep(2000);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shortageReasonCd, 10);
+			String reasonCode = shortageReasonCd.getText();
+			Steps.testRes = "Failed";
+			Assert.assertTrue(false, "Order got deselected. Reason: " + reasonCode);
+		}
+homepage.userClosesOpenedwindow("Waves - Wave Details");
+	}
+
 }

@@ -34,7 +34,7 @@ public class Screenshots {
 		TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
 		File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
 		DateTime.TimeDateFunc();
-		File DestFile = new File("resources\\Screenshots\\" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_" + DateTime.strDate3 + ".jpeg");
+		File DestFile = new File("./resources/Screenshots/" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_" + DateTime.strDate3 + ".png");
 		FileUtils.copyFile(SrcFile, DestFile);
 	}
 

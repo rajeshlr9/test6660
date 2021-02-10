@@ -995,10 +995,13 @@ public class RFMenuPage {
 					Steps.logger.info("Enter fututeDate: " + fututeDate);
 					String[] futureDateAsArray = fututeDate.split("-");
 					// fututeDate=String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
+					List <WebElement> shipbyDate=  driver.findElements(By.id("dataForm:sidzeInpPart0"));
+					if(shipbyDate.size()!=0) {
 					mm.sendKeys(futureDateAsArray[0]);
 					dd.sendKeys(futureDateAsArray[1]);
 					Screenshots.captureSnapshot(driver);
 					yyyy.sendKeys(futureDateAsArray[2]);
+					}
 					Thread.sleep(3000);
 					Screenshots.captureSnapshot(driver);
 					acceptAndProceedBtn.click();
@@ -1078,10 +1081,13 @@ public class RFMenuPage {
 						Steps.logger.info("Enter fututeDate: " + fututeDate1);
 						String[] futureDateAsArray1 = fututeDate1.split("-");
 						// fututeDate=String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
+						List <WebElement> shipbyDate2=  driver.findElements(By.id("dataForm:sidzeInpPart0"));
+						if(shipbyDate2.size()!=0) {
 						mm.sendKeys(futureDateAsArray1[0]);
 						dd.sendKeys(futureDateAsArray1[1]);
 						Screenshots.captureSnapshot(driver);
 						yyyy.sendKeys(futureDateAsArray1[2]);
+						}
 						Thread.sleep(3000);
 						Screenshots.captureSnapshot(driver);
 						acceptAndProceedBtn.click();
@@ -1175,10 +1181,13 @@ public class RFMenuPage {
 					Steps.logger.info("Enter fututeDate: " + fututeDate);
 					String[] futureDateAsArray = fututeDate.split("-");
 					// fututeDate=String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
+					List <WebElement> shipbyDate=  driver.findElements(By.id("dataForm:sidzeInpPart0"));
+					if(shipbyDate.size()!=0) {
 					mm.sendKeys(futureDateAsArray[0]);
 					dd.sendKeys(futureDateAsArray[1]);
 					Screenshots.captureSnapshot(driver);
 					yyyy.sendKeys(futureDateAsArray[2]);
+					}
 					Thread.sleep(3000);
 					Screenshots.captureSnapshot(driver);
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
@@ -1326,10 +1335,13 @@ public class RFMenuPage {
 					Steps.logger.info("Enter fututeDate: " + fututeDate);
 					String[] futureDateAsArray = fututeDate.split("-");
 					// fututeDate=String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
+					List <WebElement> shipbyDate=  driver.findElements(By.id("dataForm:sidzeInpPart0"));
+					if(shipbyDate.size()!=0) {
 					mm.sendKeys(futureDateAsArray[0]);
 					dd.sendKeys(futureDateAsArray[1]);
 					Screenshots.captureSnapshot(driver);
 					yyyy.sendKeys(futureDateAsArray[2]);
+					}
 					
 					Thread.sleep(2000);
 					Screenshots.captureSnapshot(driver);
@@ -1408,10 +1420,13 @@ public class RFMenuPage {
 						Steps.logger.info("Enter fututeDate: " + fututeDate1);
 						String[] futureDateAsArray1 = fututeDate1.split("-");
 						// fututeDate=String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
+						List <WebElement> shipbyDate2=  driver.findElements(By.id("dataForm:sidzeInpPart0"));
+						if(shipbyDate2.size()!=0) {
 						mm.sendKeys(futureDateAsArray1[0]);
 						dd.sendKeys(futureDateAsArray1[1]);
 						yyyy.sendKeys(futureDateAsArray1[2]);
 						Screenshots.captureSnapshot(driver);
+						}
 						acceptAndProceedBtn.click();
 						Screenshots.captureSnapshot(driver);
 						Steps.logger.info(
@@ -1525,10 +1540,13 @@ public class RFMenuPage {
 					Steps.logger.info("Enter fututeDate: " + fututeDate);
 					String[] futureDateAsArray = fututeDate.split("-");
 					// fututeDate=String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
+					List <WebElement> shipbyDate=  driver.findElements(By.id("dataForm:sidzeInpPart0"));
+					if(shipbyDate.size()!=0) {
 					mm.sendKeys(futureDateAsArray[0]);
 					dd.sendKeys(futureDateAsArray[1]);
 					Screenshots.captureSnapshot(driver);
 					yyyy.sendKeys(futureDateAsArray[2]);
+					}
 					Thread.sleep(2000);
 					Screenshots.captureSnapshot(driver);
 					if (SeleniumTestHelper.isElementDisplayed(returnCode)) {
@@ -1606,11 +1624,13 @@ public class RFMenuPage {
 						Steps.logger.info("Enter fututeDate: " + fututeDate1);
 						String[] futureDateAsArray1 = fututeDate1.split("-");
 						// fututeDate=String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
+						List <WebElement> shipbyDate2=  driver.findElements(By.id("dataForm:sidzeInpPart0"));
+						if(shipbyDate2.size()!=0) {
 						mm.sendKeys(futureDateAsArray1[0]);
 						dd.sendKeys(futureDateAsArray1[1]);
 						Screenshots.captureSnapshot(driver);
 						yyyy.sendKeys(futureDateAsArray1[2]);
-
+						}
 						acceptAndProceedBtn.click();
 						Screenshots.captureSnapshot(driver);
 						Steps.logger.info(
