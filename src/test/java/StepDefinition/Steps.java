@@ -153,12 +153,8 @@ public class Steps {
 				try {
 					globalFunc.Screenshots.seleniumSnapshot(seleniumDriver);
 					System.out.println("naka2");
-					if(Config.getProperty("RunEnvironment").equals("Jenkins")) {
-						Reporter.addScreenCaptureFromPath(Config.getProperty("RemoteReportPath")+ Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
-					}
-					else {
-					Reporter.addScreenCaptureFromPath("./resources/Screenshots/" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
-					}
+					String jobName[]= Config.getProperty("Job_Name").split("/");
+					Screenshots.addingScreenshottoExentReport();
 					HomePage homePage1= new HomePage();
 					homePage1.user_logout_from_application1();
 				} catch (Exception e) { // TODO Auto-generated

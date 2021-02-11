@@ -11,6 +11,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
+import com.cucumber.listener.Reporter;
 import com.hp.lft.sdk.stdwin.Window;
 import com.hp.lft.sdk.web.Browser;
 
@@ -56,5 +57,18 @@ public class Screenshots {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void addingScreenshottoExentReport() throws Exception {
+	String JobName[]=Config.getProperty("Job_Name").split("/");
+
+	String path= "/jenkins/job/"+JobName[0]+"/job/"+ JobName[1]+"/job/"+ JobName[2]+"/job/"+ JobName[3]+"/ws/resources/Screenshots/";
+	
+	if(Config.getProperty("RunEnvironment").equals("Jenkins")) {
+		Reporter.addScreenCaptureFromPath(path + Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
+	}
+	else {
+	Reporter.addScreenCaptureFromPath("./resources/Screenshots/" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
+	}
 	}
 }

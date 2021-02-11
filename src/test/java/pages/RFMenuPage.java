@@ -977,24 +977,14 @@ public class RFMenuPage {
 						if (errorOrWarningMsg.getText().contains("Error")) {
 							System.out.println("Info :- " + errorOrWarningMsg.getText());
 							globalFunc.Screenshots.seleniumSnapshot(driver);
-							if(Config.getProperty("RunEnvironment").equals("Jenkins")) {
-								Reporter.addScreenCaptureFromPath(Config.getProperty("RemoteReportPath")+ Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
-							}
-							else {
-							Reporter.addScreenCaptureFromPath("./resources/Screenshots/" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
-							}
+							Screenshots.addingScreenshottoExentReport();
 							acceptAndProceedBtn.click();
 							Screenshots.captureSnapshot(driver);
 							break;
 						} else if (errorOrWarningMsg.getText().contains("Warning")) {
 							System.out.println("Info :- " + errorOrWarningMsg.getText());
 							globalFunc.Screenshots.seleniumSnapshot(driver);
-							if(Config.getProperty("RunEnvironment").equals("Jenkins")) {
-								Reporter.addScreenCaptureFromPath(Config.getProperty("RemoteReportPath")+ Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
-							}
-							else {
-							Reporter.addScreenCaptureFromPath("./resources/Screenshots/" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
-							}
+							Screenshots.addingScreenshottoExentReport();
 							acceptAndProceedBtn.click();
 							Screenshots.captureSnapshot(driver);
 						}
@@ -1069,24 +1059,14 @@ public class RFMenuPage {
 							if (errorOrWarningMsg.getText().contains("Error")) {
 								System.out.println("Info :- " + errorOrWarningMsg.getText());
 								globalFunc.Screenshots.seleniumSnapshot(driver);
-								if(Config.getProperty("RunEnvironment").equals("Jenkins")) {
-									Reporter.addScreenCaptureFromPath(Config.getProperty("RemoteReportPath")+ Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
-								}
-								else {
-								Reporter.addScreenCaptureFromPath("./resources/Screenshots/" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
-								}
+								Screenshots.addingScreenshottoExentReport();
 								acceptAndProceedBtn.click();
 								Screenshots.captureSnapshot(driver);
 								break;
 							} else if (errorOrWarningMsg.getText().contains("Warning")) {
 								System.out.println("Info :- " + errorOrWarningMsg.getText());
 								globalFunc.Screenshots.seleniumSnapshot(driver);
-								if(Config.getProperty("RunEnvironment").equals("Jenkins")) {
-									Reporter.addScreenCaptureFromPath(Config.getProperty("RemoteReportPath")+ Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
-								}
-								else {
-								Reporter.addScreenCaptureFromPath("./resources/Screenshots/" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
-								}
+								Screenshots.addingScreenshottoExentReport();
 								acceptAndProceedBtn.click();
 								Screenshots.captureSnapshot(driver);
 							}
@@ -1339,12 +1319,7 @@ public class RFMenuPage {
 						SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
 						System.out.println("Info :- " + errorOrWarningMsg.getText());
 						globalFunc.Screenshots.seleniumSnapshot(driver);
-						if(Config.getProperty("RunEnvironment").equals("Jenkins")) {
-							Reporter.addScreenCaptureFromPath(Config.getProperty("RemoteReportPath")+ Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
-						}
-						else {
-						Reporter.addScreenCaptureFromPath("./resources/Screenshots/" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
-						}
+						Screenshots.addingScreenshottoExentReport();
 						acceptAndProceedBtn.click();
 						Screenshots.captureSnapshot(driver);
 						// Assert.fail("Info :- " + errorOrWarningMsg.getText());
@@ -1428,12 +1403,7 @@ public class RFMenuPage {
 							SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
 							System.out.println("Info :- " + errorOrWarningMsg.getText());
 							globalFunc.Screenshots.seleniumSnapshot(driver);
-							if(Config.getProperty("RunEnvironment").equals("Jenkins")) {
-								Reporter.addScreenCaptureFromPath(Config.getProperty("RemoteReportPath")+ Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
-							}
-							else {
-							Reporter.addScreenCaptureFromPath("./resources/Screenshots/" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
-							}
+							Screenshots.addingScreenshottoExentReport();
 							acceptAndProceedBtn.click();
 							Screenshots.captureSnapshot(driver);
 
@@ -1553,12 +1523,7 @@ public class RFMenuPage {
 						SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
 						System.out.println("Info :- " + errorOrWarningMsg.getText());
 						globalFunc.Screenshots.seleniumSnapshot(driver);
-						if(Config.getProperty("RunEnvironment").equals("Jenkins")) {
-							Reporter.addScreenCaptureFromPath(Config.getProperty("RemoteReportPath")+ Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
-						}
-						else {
-						Reporter.addScreenCaptureFromPath("./resources/Screenshots/" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
-						}
+						Screenshots.addingScreenshottoExentReport();
 						acceptAndProceedBtn.click();
 						Screenshots.captureSnapshot(driver);
 						// Assert.fail("Info :- " + errorOrWarningMsg.getText());
@@ -1640,12 +1605,7 @@ public class RFMenuPage {
 							SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
 							System.out.println("Info :- " + errorOrWarningMsg.getText());
 							globalFunc.Screenshots.seleniumSnapshot(driver);
-							if(Config.getProperty("RunEnvironment").equals("Jenkins")) {
-								Reporter.addScreenCaptureFromPath(Config.getProperty("RemoteReportPath")+ Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
-							}
-							else {
-							Reporter.addScreenCaptureFromPath("./resources/Screenshots/" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
-							}
+							Screenshots.addingScreenshottoExentReport();
 							acceptAndProceedBtn.click();
 							Screenshots.captureSnapshot(driver);
 
