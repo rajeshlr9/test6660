@@ -14,6 +14,7 @@ import entity.Items;
 import pages.DistributionOrderProfilesPage;
 import pages.DistributionOrdersPage;
 import pages.HomePage;
+import pages.TasksPage;
 import pages.WavesPage;
 
 public class StepDefOutBound {
@@ -22,6 +23,7 @@ public class StepDefOutBound {
 	DistributionOrdersPage doPage = new DistributionOrdersPage();
 	DistributionOrderProfilesPage DOProfilepage =  new DistributionOrderProfilesPage();
 	WavesPage wavePage= new WavesPage();
+	TasksPage taskPage= new TasksPage();
 
 	public StepDefOutBound() {
 	
@@ -88,6 +90,17 @@ public class StepDefOutBound {
 	public void user_user_views_wave_and_verify_the_allocation_of_inventory() throws Exception {
 		try {
 			wavePage.searchForTheWaveNumberAndVerifyInventoryAllocation();
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
+	@And("^user open Task screen & verifies task is created for DO in the wave process$")
+	public void user_user_views_TaskScreen_and_verify_task_generated() throws Exception {
+		try {
+			taskPage.getTaskDetails();
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			System.out.println(e);

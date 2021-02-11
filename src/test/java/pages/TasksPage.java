@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import StepDefinition.Steps;
 import entity.Items;
 import utils.Driver;
 import utils.SeleniumTestHelper;
@@ -20,7 +21,7 @@ public class TasksPage {
 	
 	
 	public TasksPage() {
-		this.driver = Driver.getInstance();
+		this.driver = Steps.seleniumDriver;
 		PageFactory.initElements(driver, this);
 	}
 	
@@ -34,7 +35,8 @@ public class TasksPage {
 	@FindBy(xpath="//input[@id='dataForm:lview:filterId:filterIdapply']") public WebElement applyBtn;
 	@FindBy(xpath="//div[@id='page-content_footer-panel']/div/input[5]")   public WebElement cancelTaskBtn;
 	@FindBy(xpath="//img[@class='x-tool-img x-tool-refresh']")             public WebElement refreshBtn;
-		
+	@FindBy (id="filterId_fltrExpCol")
+	public WebElement expandBtn;
 	@FindBy(xpath="//*[contains(@name,'dataForm:lview:filterId:field30value1')]")
 	public WebElement headerStatusDdl;
 	@FindBy(xpath="//input[@title='Expand']")
@@ -328,4 +330,11 @@ public class TasksPage {
 
 	}
 	
+    public void getTaskDetails() throws Exception {
+    homepage.MenuItems_Configuration_Selection("Tasks");
+	SeleniumTestHelper.switchToInnerFrame(driver);
+	
+	
+    }
+    
 }

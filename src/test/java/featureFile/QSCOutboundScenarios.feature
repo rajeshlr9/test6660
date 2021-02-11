@@ -12,6 +12,6 @@ Scenario: Distribution Order Shipping - Single Line
 	And user runs the "Standard wave"
 	Then user views wave and verify the allocation of inventory
 	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
-	#And user open Task screen & verifies task is created for DO in the wave process
+	And user open Task screen & verifies task is created for DO in the wave process
 	Then user log out from application
 
