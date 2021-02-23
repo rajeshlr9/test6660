@@ -62,11 +62,18 @@ public class Screenshots {
 	public static void addingScreenshottoExentReport() throws Exception {
 	
 	if(Config.getProperty("RunEnvironment").equals("Jenkins")) {
+		
+		if(Config.getProperty("ViewonStaticServer").equals("True")) {
+			Reporter.addScreenCaptureFromPath("/Screenshots/"+Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
+		}
+		else {
+		
 		String JobName[]=Config.getProperty("Job_Name").split("/");
 	String path= "/jenkins/job/"+JobName[0]+"/job/"+ JobName[1]+"/job/"+ JobName[2]+"/job/"+ JobName[3]+"/ws/resources/Screenshots/";
 	
 	
 		Reporter.addScreenCaptureFromPath(path + Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
+	}
 	}
 	else {
 	Reporter.addScreenCaptureFromPath(System.getProperty("user.dir")+ "\\resources\\Screenshots\\" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
