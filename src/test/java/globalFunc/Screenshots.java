@@ -63,7 +63,7 @@ public class Screenshots {
 	
 	if(Config.getProperty("RunEnvironment").equals("Jenkins")) {
 		
-		if(Config.getProperty("ViewonStaticServer").equals("True")) {
+		if(Config.getProperty("ViewonStaticServer").equals("true")) {
 			Reporter.addScreenCaptureFromPath("/Screenshots/"+Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
 		}
 		else {
