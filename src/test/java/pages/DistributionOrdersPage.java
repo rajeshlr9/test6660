@@ -212,7 +212,7 @@ public class DistributionOrdersPage {
 
 	@FindBy(xpath = "//span[@id='button-1006-btnInnerEl']")
 	public WebElement ConfirmationYes;
-	@FindBy(xpath = "//div[text()='Shipped']")
+	@FindBy(xpath = "//div[text()='190 - Shipped']")
 	public WebElement fullfilmentStatusShipped;
 	@FindBy(xpath = "//span[text()='Condition:']/../../following::input[1]")
 	public WebElement firstOptionalFieldCondition;
@@ -716,18 +716,24 @@ public class DistributionOrdersPage {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 100);
 		primaryField.sendKeys("Distribution Order");
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
 		distributionOrderID.click();
-		distributionOrderID.sendKeys(Items.getDONumber());		
+		distributionOrderID.sendKeys(Items.getDONumber());	
+		Screenshots.captureSnapshot(driver);
 		apply_Btn.click();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		Screenshots.captureSnapshot(driver);
 		distributionOrder_chkbox.click();
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.assertEquals(DOStatus.getText(), "110 - Released");
 		SeleniumTestHelper.waitForElementToBeClickable(driver, moreBtn, 50);
 		moreBtn.click();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, waveOption, 50);
+		Screenshots.captureSnapshot(driver);
 		waveOption.click();
 		Thread.sleep(3000);
+		Screenshots.captureSnapshot(driver);
 		homepage.user_closes_openedwindow("Distribution Orders");
 		homepage.openWindows.click();
 
@@ -735,8 +741,10 @@ public class DistributionOrdersPage {
 		System.out.println("my framecount is   " + myframes.size());
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		driver.findElement(By.xpath("//input[@alt='Find Description']")).sendKeys(waveTemplateDesc);
+		Screenshots.captureSnapshot(driver);
 		wavespage.waveNumberApplySearchBtn.click();
 		SeleniumTestHelper.switchToInnerFrame(driver);
+		Screenshots.captureSnapshot(driver);
 
 		driver.findElement(By.xpath("//span[contains(text(),'" + waveTemplateDesc
 				+ "')]/ancestor::td/preceding-sibling::td[2][contains(@class,'checkBox')]")).click();
@@ -744,9 +752,10 @@ public class DistributionOrdersPage {
 
 		runWaveBtn.click();
 		SeleniumTestHelper.waitForElementToBeClickable(driver, submitWaveBtn, 100);
+		Screenshots.captureSnapshot(driver);
 		Thread.sleep(2000);
 		submitWaveBtn.click();
-
+		Screenshots.captureSnapshot(driver);
 		if (SeleniumTestHelper.isElementDisplayed(waveNumber)) {
 			String waveNumberValue = waveNumber.getText();
 			Items.setWaveNumber(waveNumberValue);
@@ -757,6 +766,7 @@ public class DistributionOrdersPage {
 			Items.setWaveNumber(waveNumberValue);
 			Thread.sleep(2000);
 			waveNumber.click();
+			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			String actualStatus = driver.findElement(By.xpath(shiwaveStatusxpath(waveTemplateDesc))).getText().trim();
 			int count = 0;
@@ -766,9 +776,13 @@ public class DistributionOrdersPage {
 				Thread.sleep(5000);
 				count++;
 			}
+			Steps.logger.info("Wave status:"+ actualStatus);
+			Reporter.addStepLog("Wave status:"+ actualStatus);
 			
 		}	
 		Thread.sleep(2000);
+		Screenshots.captureSnapshot(driver);
+		
 
 		homepage.user_closes_openedwindow("ShipWaveTemplate - Waves");
 		
@@ -790,37 +804,6 @@ public class DistributionOrdersPage {
 		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
 		viewBtn.click();
 		SeleniumTestHelper.switchToInnerFrame(driver);
-		/*
-		 * if (SeleniumTestHelper.isElementDisplayed(shippingID)) {
-		 * 
-		 * SeleniumTestHelper.assertTrue(shippingID.isDisplayed());
-		 * SeleniumTestHelper.waitForElementToBeDisplayed(driver, shippingID, 50);
-		 * DistributionOrders.setShippingID(shippingID.getText());
-		 * System.out.println("Shipment ID is " + DistributionOrders.getShippingID());
-		 */
-
-			// SeleniumTestHelper.waitForElementToBeClickable(driver,
-			// shippingID, 50);
-			// shippingID.click();
-			// Thread.sleep(1000);
-			// if(!(shippingID.isDisplayed())){
-			// DistributionOrders.setTrailerNumber(trailerNumber.getAttribute("textContent"));
-			// System.out.println("Trailer Number is
-			// "+DistributionOrders.getTrailerNumber());
-			// SeleniumTestHelper.assertTrue(backBtn.isDisplayed());
-			// backBtn.click();
-			// }
-
-		/*
-		 * SeleniumTestHelper.waitForElementToBeClickable(driver, shippingID, 50);
-		 * shippingID.click(); Thread.sleep(1000); //
-		 * DistributionOrders.setTrailerNumber(trailerNumber.getAttribute("textContent")
-		 * ); // System.out.println("Trailer Number is //
-		 * "+DistributionOrders.getTrailerNumber());
-		 * SeleniumTestHelper.assertTrue(backBtn.isDisplayed()); backBtn.click();
-		 * 
-		 * } else { System.out.println("Shipping ID is not generated"); }
-		 */
 
 		SeleniumTestHelper.waitForElementToBeClickable(driver, DOlinesTab, 50);
 		Screenshots.captureSnapshot(driver);
@@ -853,6 +836,10 @@ public class DistributionOrdersPage {
 			SeleniumTestHelper.assertEquals(List_ItemName.get(i),Steps.ItemDataMap.get(i).get("Item"));
 			SeleniumTestHelper.assertEquals(List_Shippedqty.get(i), Steps.ItemDataMap.get(i).get("ShippedQty"));
 			SeleniumTestHelper.assertEquals(List_ShippedqtyUOM.get(i), Steps.ItemDataMap.get(i).get("UOM"));
+			
+			Reporter.addStepLog("Item Id: "+ List_ItemName.get(i)+", Qty: "+List_Shippedqty.get(i)+ ", UOM: "+List_ShippedqtyUOM.get(i));
+			Steps.logger.info("Item Id: "+ List_ItemName.get(i)+", Qty: "+List_Shippedqty.get(i)+ ", UOM: "+List_ShippedqtyUOM.get(i));
+			
 			/*
 			 * SeleniumTestHelper.assertEquals(DistributionOrders.DOMap.get(DoID
 			 * ).get("IteminDO"+(i+1)), "7978767501003");
@@ -1609,29 +1596,38 @@ public class DistributionOrdersPage {
 
 	// Ashish
 
-	public void user_views_the_ship_confirm() throws Throwable {
+	public void user_views_the_ship_confirm() throws Exception {
 
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
 		primaryField.sendKeys("Distribution Order");
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
 		distributionOrderID.click();
-		distributionOrderID.sendKeys(DistributionOrders.getDOnumber());
+		distributionOrderID.sendKeys(Items.getDONumber());
+		Screenshots.captureSnapshot(driver);
 		apply_Btn.click();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		Screenshots.captureSnapshot(driver);
 		distributionOrder_chkbox.click();
 		SeleniumTestHelper.waitForElementToBeClickable(driver, moreBtn, 50);
+		Screenshots.captureSnapshot(driver);
 		moreBtn.click();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ViewShipConfirm, 50);
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.assertEquals(ViewShipConfirm.isDisplayed(), true);
 		ViewShipConfirm.click();
 		Thread.sleep(5000);
+		Screenshots.captureSnapshot(driver);
 		ConfirmationYes.click();
-		Thread.sleep(10000);
+		Thread.sleep(5000);
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.assertEquals(fullfilmentStatusShipped.isDisplayed(), true);
 		Thread.sleep(2000);
-		SeleniumTestHelper.switchToOtherWindowAndCloseItAndComeBack(driver);
-
+		Screenshots.captureSnapshot(driver);
+		Steps.logger.info("DO was shipped successfully");
+		Reporter.addStepLog("DO was shipped successfully");
+		homepage.user_closes_openedwindow("Distribution Orders");
 	}
 
 	public void storeDO_PO_oLPN_numbersForDFill(String FulFilmentStatus) throws Exception {

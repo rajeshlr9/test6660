@@ -38,6 +38,9 @@ public class DistributionOrderProfilesPage {
 	@FindBy(id = "dataForm:DOTemplateList_entityListView:DistributionOrderlist:DistributionOrderlistapply")
 	public WebElement DOProfilesApplyBtn;
 
+	@FindBy(id = "dataForm:DOTemplateList_entityListView:DistributionOrderlist:field80value1")
+	public WebElement DOProfilesIDtextBox;
+	
 	@FindBy(id = "checkAll_c0_dataForm:DOTemplateList_entityListView:DOTemplateList_MainListTable")
 	public WebElement multiLineprofilechkbx;
 
@@ -70,6 +73,8 @@ public class DistributionOrderProfilesPage {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, value1, 10);
 		value1.click();
 		profiletypeOKBtn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, DOProfilesIDtextBox, 10);
+		DOProfilesIDtextBox.sendKeys("MultiLine");
 		Thread.sleep(2000);
 		Screenshots.captureSnapshot(driver);
 		DOProfilesApplyBtn.click();
@@ -95,8 +100,8 @@ public class DistributionOrderProfilesPage {
 		SeleniumTestHelper.waitForElementToBeClickable(driver, deleteButton, 10);
 		Screenshots.captureSnapshot(driver);
 		deleteButton.click();
-		Thread.sleep(1000);
-		Screenshots.captureSnapshot(driver);
+		Thread.sleep(2000);
+	//	Screenshots.captureSnapshot(driver);
 		driver.switchTo().alert().accept();
 		Thread.sleep(2000);
 		Screenshots.captureSnapshot(driver);

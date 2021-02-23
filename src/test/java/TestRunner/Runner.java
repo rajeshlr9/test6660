@@ -15,7 +15,7 @@ import cucumber.api.CucumberOptions;
 //import cucumber.api.testng.AbstractTestNGCucumberTests;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 import globalFunc.GetScenarioStepSnapshots;
-import globalFunc.ZipFile;
+import globalFunc.FileUtilities;
 import utils.Config;
 import utils.ExtentReportUpdate;
 
@@ -25,9 +25,9 @@ import utils.ExtentReportUpdate;
 @CucumberOptions(
 		strict = true,
 		dryRun = false,
-		//tags={"@QSC_OB001"},
+		//tags={"@QSC004,@QSC004_01,@QSC009,@QSC011,@QSC015,@QSC016,@QSC018,@QSC020,@QSC021,@QSC022,@QSC023"},
 		tags={"@tag5"},
-				//tags={"@QSC004"},
+		//tags={"@QSC_OB002"},
 		features = {"src\\test\\java\\featureFile"},
 		//features = {"src\\test\\java\\featureFile"},
 		glue = {"StepDefinition"},
@@ -84,14 +84,18 @@ public class Runner extends AbstractTestNGCucumberTests {
 	@AfterTest
 	public static void writeExtentReport() {
 		
-	        Reporter.loadXMLConfig(new File("./Config/report.xml"));
-	        if(!Config.getProperty("Job_Name").contains("ScrumTeam")) {
-	        ExtentReportUpdate.deleteOldFiles();
-	        ExtentReportUpdate.copyReports();
-	        }
+	        Reporter.loadXMLConfig(new File("Config/report.xml"));
+			/*
+			 * if(!Config.getProperty("Job_Name").contains("ScrumTeam")) {
+			 * ExtentReportUpdate.deleteOldFiles(); ExtentReportUpdate.copyReports(); }
+			 */
 	        if(Config.getProperty("WordScreenshots").equals("true")) {
-	        ZipFile.zipFile();
+	        FileUtilities.zipFile();
+	        }
 	        
+	        if(Config.getProperty("RunEnvironment").equals("Jenkins")){
+	        	FileUtilities.copyReportFiles();
+	        	FileUtilities.copyScreenshotFiles();
 	        }
 	    }
 }

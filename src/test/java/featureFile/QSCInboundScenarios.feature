@@ -41,7 +41,7 @@ Creating ASN through Post Message UI, checking status of the shipment and comple
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 	Then user log out from application 
 	
 	@QSC003 @Regression_QSC @QSC_BypassStagingLocationRec @Sanity_QSC
@@ -132,7 +132,7 @@ Creating 2 line ASN through Post Message UI, checking status of the shipment and
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started"
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
 	Then user log out from application 
 
 	
@@ -144,7 +144,7 @@ Receiving of Un-Delivered Product using blind receipt in MM3 returns menu and ve
 	And Open the chrome browser by selenium
 	And user logs into the Manhattan application 
 	And user opens RF menu and completes Receiving using "MM3 Returns" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	Then user log out from application 
 	
@@ -163,7 +163,7 @@ Receiving of Un-Delivered Product in MM3 returns menu by creating ASN and verify
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Returns" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 	Then user log out from application 
 	
 	@QSC009 @Regression_QSC @QSC_DamagedReceive
@@ -180,7 +180,7 @@ Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verify
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-Damages" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	Then user log out from application 
 	
@@ -192,7 +192,7 @@ Receiving of Damaged Returned Product using blind receipt in MM3 returns menu an
 	And Open the chrome browser by selenium
 	When user logs into Manhattan application using "Associate" Credentials  
 	And user opens RF menu and completes Receiving using "MM3 Returns" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	Then user log out from application 
 	
@@ -279,8 +279,8 @@ iLPN by increasing the quantity & verify the iLPN, ASN and PIX transaction
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started"
-	And user verifies the ASN "40 - Receiving Verified"
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	#And user verifies the ASN "40 - Receiving Verified"
 	And user opens RF menu and "Increase" iLPN quantity using "Modify iLPN" menu in Inventory
 	Then user search for the LPN in iLPN screen, and validate the modification "Increase Qty" in iLPN
 	And user views ASN, and validate ASN details
@@ -303,8 +303,8 @@ iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started"
-	And user verifies the ASN "40 - Receiving Verified"
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	#And user verifies the ASN "40 - Receiving Verified"
 	And user opens RF menu and "Decrease" iLPN quantity using "Modify iLPN" menu in Inventory
 	Then user search for the LPN in iLPN screen, and validate the modification "Decrease Qty" in iLPN
 	And user views ASN, and validate ASN details
@@ -347,8 +347,8 @@ iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started"
-	And user verifies the ASN "40 - Receiving Verified"
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	#And user verifies the ASN "40 - Receiving Verified"
 	And user opens RF menu and "Delete Line" from an iLPN using "Modify iLPN" menu in Inventory
 	Then user search for the LPN in iLPN screen, and validate the modification "Delete Line" in iLPN
 	And user views ASN, and validate ASN details after deleting a line from iLPN
@@ -396,7 +396,7 @@ Given I have excel data
 	@QSC021 @Regression_QSC @QSC_PutawayDamagedAndUndeliveredProducts
 Scenario: B- 466712 Putaway – Un-Delivered Products that was received in MM3 returns
 Receiving of Un-Delivered Product using MM3 returns menu and complete putaway to inspection area Validate the 
-iLPN moved to inspection area and	“QSCINS” Locations Current Quantity will be incremented with no of LPN’s moved to location
+iLPN moved to inspection area and	“QC111A1” Locations Current Quantity will be incremented with no of LPN’s moved to location
 	Given I have excel data
 	| QSC_Scenario021 |
 	And Open the chrome browser by selenium
@@ -408,19 +408,19 @@ iLPN moved to inspection area and	“QSCINS” Locations Current Quantity will b
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Returns" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 	Then user search for the LPN in iLPN screen, and validate the lock code
-	And user open reserve locations & naviagtes to "QSCINS" zone and fetches the current quantity
+	And user open reserve locations & naviagtes to "QC111A1" zone and fetches the current quantity
 	And user opens RF menu and completes Putaway using "MM3 Ptwy-Sys Dir" menu
-	Then user navigates to reserve locations & validates that the quantity is increased in "QSCINS" by no of iLPN's moved
-	Then validates that the iLPN is also moved to inspection zone "QSCINS"
+	Then user navigates to reserve locations & validates that the quantity is increased in "QC111A1" by no of iLPN's moved
+	Then validates that the iLPN is also moved to inspection zone "QC111A1"
 	Then user log out from application 
 	
 	
 	@QSC022 @Regression_QSC @QSC_PutawayDamagedAndUndeliveredProducts @Sanity_QSC
 Scenario: B- 466712 Putaway – Damaged Products that was received using MM3 Recv-Damages
 Receiving of Damaged Product in MM3 Recv-Damages menu and complete putaway to inspection area. Validate the iLPN moved 
-to inspection area and	“QSCINS” Locations Current Quantity will be incremented with no of LPN’s moved to location
+to inspection area and	“QC111A1” Locations Current Quantity will be incremented with no of LPN’s moved to location
 	Given I have excel data
 	| QSC_Scenario022 |
 	And Open the chrome browser by selenium
@@ -432,28 +432,28 @@ to inspection area and	“QSCINS” Locations Current Quantity will be increment
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-Damages" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 	Then user search for the LPN in iLPN screen, and validate the lock code
-	And user open reserve locations & naviagtes to "QSCINS" zone and fetches the current quantity
+	And user open reserve locations & naviagtes to "QC111A1" zone and fetches the current quantity
 	And user opens RF menu and completes Putaway using "MM3 Ptwy-Sys Dir" menu
-	Then user navigates to reserve locations & validates that the quantity is increased in "QSCINS" by no of iLPN's moved
-	Then validates that the iLPN is also moved to inspection zone "QSCINS"
+	Then user navigates to reserve locations & validates that the quantity is increased in "QC111A1" by no of iLPN's moved
+	Then validates that the iLPN is also moved to inspection zone "QC111A1"
 	Then user log out from application 
 	
 	@QSC023 @Regression_QSC @QSC_PutawayDamagedAndUndeliveredProducts
 Scenario: B- 466712 Putaway – Damaged Products that was received using blind receipt in MM3 returns
 Receiving of Damaged Product using blind receipt in MM3 returns menu and complete putaway to inspection area
-Validate the iLPN moved to inspection area and	“QSCINS” Locations Current Quantity will be incremented with no of LPN’s 
+Validate the iLPN moved to inspection area and	“QC111A1” Locations Current Quantity will be incremented with no of LPN’s 
 moved to location
 	Given I have excel data
 	| QSC_Scenario023 |
 	And Open the chrome browser by selenium
 	When user logs into Manhattan application using "Associate" Credentials
 	And user opens RF menu and completes Receiving using "MM3 Returns" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 	Then user search for the LPN in iLPN screen, and validate the lock code
-	And user open reserve locations & naviagtes to "QSCINS" zone and fetches the current quantity
+	And user open reserve locations & naviagtes to "QC111A1" zone and fetches the current quantity
 	And user opens RF menu and completes Putaway using "MM3 Ptwy-Sys Dir" menu
-	Then user navigates to reserve locations & validates that the quantity is increased in "QSCINS" by no of iLPN's moved
-	Then validates that the iLPN is also moved to inspection zone "QSCINS"
+	Then user navigates to reserve locations & validates that the quantity is increased in "QC111A1" by no of iLPN's moved
+	Then validates that the iLPN is also moved to inspection zone "QC111A1"
 	Then user log out from application 

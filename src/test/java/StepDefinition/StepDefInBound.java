@@ -254,12 +254,11 @@ public class StepDefInBound {
 	@When("^user opens post message screen and upload file in order to create ASN$")
 	public void user_opens_post_message_screen_and_upload_file_in_order_to_create_ASN() throws Exception {
 		// String isjenkinJob = Runner.jenkinJobName;
+		BufferedReader reader = null;
+		try {
 		homePage.menuItemsIntegrationSelection("Post Message");
 		Steps.logger.info("Open Post message screen");
 		Screenshots.captureSnapshot(driver);
-		BufferedReader reader = null;
-
-		try {
 
 			reader = new BufferedReader(new FileReader(new File(xmlInput.inputIBFilePath)));
 			StringBuffer targetString = new StringBuffer();

@@ -3,17 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="utils.TestDoc">
+      <class name="TestRunner.Runner">
         <methods>
-          <include name="baseBeforeClass"/>
-          <include name="baseBeforeMethod"/>
-          <include name="baseAfterClass"/>
-          <include name="test"/>
-          <include name="baseAfterSuite"/>
-          <include name="baseBeforeSuite"/>
-          <include name="baseAfterMethod"/>
+          <include name="setUpClass"/>
+          <include name="writeExtentReport"/>
+          <include name="feature" invocation-numbers="0"/>
+          <include name="createExtentReport"/>
+          <include name="tearDownClass"/>
         </methods>
-      </class> <!-- utils.TestDoc -->
+      </class> <!-- TestRunner.Runner -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

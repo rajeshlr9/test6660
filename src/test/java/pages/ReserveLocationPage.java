@@ -50,7 +50,7 @@ public class ReserveLocationPage {
 	@FindBy(xpath="//input[@value='Save']") 
 	public WebElement saveBtn;
 	
-	@FindBy(xpath="//input[@id='dataForm:listView:filterId:field20value1']") 
+	@FindBy(xpath="//input[@id='dataForm:listView:filterId:field5value1']") 
 	public WebElement locationBarcodetxtBox;
 	
 	@FindBy(xpath="//input[@id='filterId_fltrExpCol']") 

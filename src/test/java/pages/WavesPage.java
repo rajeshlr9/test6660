@@ -14,6 +14,7 @@ import com.cucumber.listener.Reporter;
 
 import StepDefinition.Steps;
 import entity.Items;
+import globalFunc.Screenshots;
 import utils.Driver;
 import utils.SeleniumTestHelper;
 import utils.TestStubReader;
@@ -96,11 +97,14 @@ public class WavesPage {
 
 	public void searchForTheWaveNumberAndVerifyInventoryAllocation() throws Exception {
 		homepage.MenuItems_Distribution_Selection("Waves");
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, waveNumberSearchTxt, 50);
 		waveNumberSearchTxt.sendKeys(Items.getWaveNumber());
+		Screenshots.captureSnapshot(driver);
 		waveNumberApplySearchBtn.click();
 		Thread.sleep(2000);
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver,
 				driver.findElement(By.xpath("//span[text()='" + Items.getWaveNumber() + "']")), 50);
 		SeleniumTestHelper.assertTrue(true, "Wave number : " + Items.getWaveNumber() + " displayed");
@@ -108,16 +112,19 @@ public class WavesPage {
 
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavechkbox, 50);
 		shipWavechkbox.click();
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWaveviewBtn, 50);
 		shipWaveviewBtn.click();
 
 		Thread.sleep(2000);
-
+		Screenshots.captureSnapshot(driver);
 		if (OrdersdeselectedValue.getText().equals("0")) {
 			String noofLines = String.valueOf(Steps.ItemDataMap.size());
 			System.out.println("No of Lines:" + noofLines);
 			SeleniumTestHelper.assertEquals(linesAllocatedValue.getText(), noofLines,
 					"Verification of lines allocation ");
+			Steps.logger.info("Total lines allocated: "+linesAllocatedValue.getText());
+			Reporter.addStepLog("Total lines allocated: "+linesAllocatedValue.getText());
 			int totalshippedQty = 0;
 			for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 				int temp = Integer.parseInt(Steps.ItemDataMap.get(i).get("ShippedQty"));
@@ -126,13 +133,20 @@ public class WavesPage {
 			String totalShippedQty = String.valueOf(totalshippedQty);
 			System.out.println("Toatal Shipped Qty:" + totalShippedQty);
 			SeleniumTestHelper.assertEquals(unitsAllocatedValue.getText(), totalShippedQty,"Verification of units allocation ");
-		Thread.sleep(2000);
+			Steps.logger.info("Total units allocated: "+unitsAllocatedValue.getText());
+			Reporter.addStepLog("Total units allocated: "+unitsAllocatedValue.getText());
+			Thread.sleep(2000);
+		Steps.logger.info("Inventory got allocated successfuuly");
+		Reporter.addStepLog("Inventory got allocated successfuuly");
 		} else if (OrdersdeselectedValue.getText().equals("1")) {
 			SeleniumTestHelper.waitForElementToBeClickable(driver, ShortageTab, 10);
 			ShortageTab.click();
 			Thread.sleep(2000);
+			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shortageReasonCd, 10);
 			String reasonCode = shortageReasonCd.getText();
+			Steps.logger.info("Order got deselected. Reason: " + reasonCode);
+			Reporter.addStepLog("Order got deselected. Reason: " + reasonCode);
 			Steps.testRes = "Failed";
 			Assert.assertTrue(false, "Order got deselected. Reason: " + reasonCode);
 		}

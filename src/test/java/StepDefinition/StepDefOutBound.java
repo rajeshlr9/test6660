@@ -11,11 +11,14 @@ import com.cucumber.listener.Reporter;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import entity.Items;
+import globalFunc.Screenshots;
 import pages.DistributionOrderProfilesPage;
 import pages.DistributionOrdersPage;
 import pages.HomePage;
+import pages.RFMenuPage;
 import pages.TasksPage;
 import pages.WavesPage;
+import utils.SeleniumTestHelper;
 
 public class StepDefOutBound {
 	WebDriver driver = Steps.seleniumDriver;
@@ -24,6 +27,7 @@ public class StepDefOutBound {
 	DistributionOrderProfilesPage DOProfilepage =  new DistributionOrderProfilesPage();
 	WavesPage wavePage= new WavesPage();
 	TasksPage taskPage= new TasksPage();
+	RFMenuPage rfMenu= new RFMenuPage();
 
 	public StepDefOutBound() {
 	
@@ -108,4 +112,41 @@ public class StepDefOutBound {
 		}
 	}
 	
+	@And("^user open RF Menu and complete the tasks created$")
+	public void user_user_opeb_RFMenu_and_complete_tasks() throws Exception {
+		try {
+			homePage1.MenuItems_Distribution_Selection("RF Menu");
+			Screenshots.captureSnapshot(driver);
+			rfMenu.completeTasks();
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
+	@Then("^user open Task screen & validates the status of tasks$")
+	public void user_user_validates_tasks_status() throws Exception {
+		try {
+			homePage1.MenuItems_Configuration_Selection("Tasks");
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			Screenshots.captureSnapshot(driver);
+			taskPage.validateTaks();
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
+	@Then("^user search for DO and confirms it$")
+	public void ship_confirm_DO() throws Exception {
+		try {
+			doPage.user_views_the_ship_confirm();
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
 }

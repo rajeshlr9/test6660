@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class ExtentReportUpdate {
-static String sourceFolder = "\\"+Config.getProperty("Account")+"\\resources\\Reports";
+static String sourceFolder = "/"+Config.getProperty("Account")+"/resources/Reports";
 static String targetFolder = "C:\\ReportFiles\\MailableReports";
 
 public static void deleteOldFiles() {

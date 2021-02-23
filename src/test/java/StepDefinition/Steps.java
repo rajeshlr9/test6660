@@ -117,15 +117,6 @@ public class Steps {
 		System.out.println("after scenario");
 		
 		System.out.println(testRes);
-		// seleniumDriver.quit();
-
-		//seleniumDriver.quit();
-		
-		/*
-		 * if (LeanFTDriver.exists()) {
-		 * 
-		 * LeanFTDriver.close(); }
-		 */
 		 
 		if ("Failed".equals(testRes)) {
 			

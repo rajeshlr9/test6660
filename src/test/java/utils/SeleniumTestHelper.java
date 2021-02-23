@@ -546,7 +546,7 @@ public class SeleniumTestHelper {
 
 		
 		if(null != message){
-			System.out.println(message + "actual is: "+ actual + "expected is: "+expected);
+			System.out.println(message + "Actual is: "+ actual + " Expected is: "+expected);
 			Assert.assertEquals(actual, expected, message);
 			
 

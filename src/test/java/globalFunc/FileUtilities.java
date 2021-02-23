@@ -8,9 +8,12 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import org.apache.commons.io.FileUtils;
+
+import StepDefinition.Steps;
 import utils.Config;
 
-public class ZipFile {
+public class FileUtilities {
 
     private List <String> fileList;
   //  private static final String OUTPUT_ZIP_FILE = "C:\\Jenkins\\workspace\\CIL\\ManhattanWMS-3535876\\ManhattanPOC\\Manh-Test-Specific-Functionalities-ScrumTeam\\resources\\WordDoc_"+Config.getProperty("Build_Number")+".zip";
@@ -19,12 +22,12 @@ public class ZipFile {
     private static final String OUTPUT_ZIP_FILE = "resources\\WordDoc_"+Config.getProperty("Build_Number")+".zip";
     private static final String SOURCE_FOLDER = "resources\\WordScreenshots"; // SourceFolder path
     
-    public ZipFile() {
+    public FileUtilities() {
     	fileList = new ArrayList < String > ();
     }
 
     public static void zipFile() {
-    	ZipFile appZip = new ZipFile();
+    	FileUtilities appZip = new FileUtilities();
         appZip.generateFileList(new File(SOURCE_FOLDER));
         appZip.zipIt(OUTPUT_ZIP_FILE);
     }
@@ -86,5 +89,32 @@ public class ZipFile {
 
     private String generateZipEntry(String file) {
         return file.substring(SOURCE_FOLDER.length() + 1, file.length());
+    }
+    
+    public static void copyReportFiles() {
+    	 String sourceFolder = System.getProperty("user.dir")+ "\\resources\\Reports\\";
+    	 String targetFolder = "C:\\ReportFiles\\MailableReports";
+    	 File source= new File(sourceFolder);
+    	 File target= new File(targetFolder);
+    	 try {
+			FileUtils.copyDirectory(source, target);
+			Steps.logger.info("Report files copied successfully to other folder");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    
+ public static void copyScreenshotFiles() {
+	 String sourceFolder = System.getProperty("user.dir")+ "\\resources\\Screenshots\\";
+	 String targetFolder = "C:\\ReportFiles\\Screenshots";
+	 File source= new File(sourceFolder);
+	 File target= new File(targetFolder);
+	 try {
+		FileUtils.copyDirectory(source, target);
+		Steps.logger.info("Screenshots copied successfully to other folder");
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	 
     }
 }
