@@ -150,6 +150,46 @@ public class WavesPage {
 			Steps.testRes = "Failed";
 			Assert.assertTrue(false, "Order got deselected. Reason: " + reasonCode);
 		}
+	}
+		public void searchForTheWaveNumberAndVerifyOrderGotDeselected() throws Exception {
+			homepage.MenuItems_Distribution_Selection("Waves");
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, waveNumberSearchTxt, 50);
+			waveNumberSearchTxt.sendKeys(Items.getWaveNumber());
+			Screenshots.captureSnapshot(driver);
+			waveNumberApplySearchBtn.click();
+			Thread.sleep(2000);
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver,
+					driver.findElement(By.xpath("//span[text()='" + Items.getWaveNumber() + "']")), 50);
+			SeleniumTestHelper.assertTrue(true, "Wave number : " + Items.getWaveNumber() + " displayed");
+			Reporter.addStepLog("Wave number : " + Items.getWaveNumber() + " displayed");
+
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavechkbox, 50);
+			shipWavechkbox.click();
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWaveviewBtn, 50);
+			shipWaveviewBtn.click();
+
+			Thread.sleep(2000);
+			Screenshots.captureSnapshot(driver);
+			 if (OrdersdeselectedValue.getText().equals("1")) {
+				SeleniumTestHelper.waitForElementToBeClickable(driver, ShortageTab, 10);
+				ShortageTab.click();
+				Thread.sleep(2000);
+				Screenshots.captureSnapshot(driver);
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, shortageReasonCd, 10);
+				String reasonCode = shortageReasonCd.getText();
+				Steps.logger.info("Order got deselected. Reason: " + reasonCode);
+				Reporter.addStepLog("Order got deselected. Reason: " + reasonCode);
+				globalFunc.Screenshots.seleniumSnapshot(driver);
+				Screenshots.addingScreenshottoExentReport();
+			}else {
+				Steps.testRes = "Failed";
+				Assert.assertTrue(false, "Order was not deselected from wave");
+			}
+		
 homepage.userClosesOpenedwindow("Waves - Wave Details");
 	}
 

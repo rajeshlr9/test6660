@@ -101,6 +101,17 @@ public class StepDefOutBound {
 		}
 	}
 	
+	@Then("^user views wave and verify order got deselected from wave$")
+	public void user_user_views_wave_and_verify_order_got_deselected_from_wave() throws Exception {
+		try {
+			wavePage.searchForTheWaveNumberAndVerifyOrderGotDeselected();
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
 	@And("^user open Task screen & verifies task is created for DO in the wave process$")
 	public void user_user_views_TaskScreen_and_verify_task_generated() throws Exception {
 		try {

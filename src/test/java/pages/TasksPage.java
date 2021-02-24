@@ -377,11 +377,12 @@ public class TasksPage {
 
 		Thread.sleep(1000);
 		Screenshots.captureSnapshot(driver);
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, FromDate, 10);
-		FromDate.sendKeys("Today");
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, TODate, 10);
-		Screenshots.captureSnapshot(driver);
-		TODate.sendKeys("Today");
+		/*
+		 * SeleniumTestHelper.waitForElementToBeDisplayed(driver, FromDate, 10);
+		 * FromDate.sendKeys("Today");
+		 * SeleniumTestHelper.waitForElementToBeDisplayed(driver, TODate, 10);
+		 * Screenshots.captureSnapshot(driver); TODate.sendKeys("Today");
+		 */
 		/*
 		 * SeleniumTestHelper.waitForElementToBeDisplayed(driver, waveNoinputBox, 10);
 		 * Screenshots.captureSnapshot(driver);

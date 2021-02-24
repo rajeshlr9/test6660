@@ -40,3 +40,17 @@ Scenario: Distribution Order Shipping - Multi Line
 	Then user search for DO and confirms it
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 	Then user log out from application
+	
+	@QSC_OB003 @Regression_QSC
+Scenario: Distribution Order Shipping - Single Line Shortage 
+	Given I have excel data
+	| QSC_OBScenario003 |
+	And Open the chrome browser by selenium
+	When user logs into the Manhattan application
+	And user opens Distribution Order Profile in order to create DO
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
+	Then user verifies the item details in Distribuion Order page
+	And user runs the "Standard wave"
+	Then user views wave and verify order got deselected from wave
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
+	Then user log out from application
