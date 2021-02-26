@@ -2217,7 +2217,7 @@ public class RFMenuPage {
 		homepage.userClosesOpenedwindow("RF Menu");
 	}
 
-	public void InquiryTransactions(String menuOption) {
+	public void InquiryTransactions(String menuOption) throws Exception {
 		Steps.logger.info("Start Inquiry Transactions");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 20);
 		RFmenu_info.click();
@@ -2234,6 +2234,7 @@ public class RFMenuPage {
 		inventoryMgmtMenu.click();
 		Screenshots.captureSnapshot(driver);
 		Steps.logger.info("Clicked on Inventory");
-		switch (inventoryFunctions) {
+		switch (menuOption) {
+	}
 	}
 }

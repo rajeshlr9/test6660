@@ -32,7 +32,7 @@ RFMenuPage rfMenu= new RFMenuPage();
 				Steps.logger.info("Open RF menu");
 				Screenshots.captureSnapshot(driver);
 				SeleniumTestHelper.switchToInnerFrame(driver);
-				rfMenu.modifyiLPN(menuOption);
+				rfMenu.InquiryTransactions(menuOption);
 			} catch (Exception e) {
 				Steps.testRes = "Failed";
 				e.printStackTrace();
