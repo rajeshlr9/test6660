@@ -54,3 +54,5 @@ Scenario: Distribution Order Shipping - Single Line Shortage
 	Then user views wave and verify order got deselected from wave
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
 	Then user log out from application
+	
+	

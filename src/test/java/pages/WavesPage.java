@@ -150,7 +150,9 @@ public class WavesPage {
 			Steps.testRes = "Failed";
 			Assert.assertTrue(false, "Order got deselected. Reason: " + reasonCode);
 		}
+		homepage.userClosesOpenedwindow("Waves - Wave Details");
 	}
+	
 		public void searchForTheWaveNumberAndVerifyOrderGotDeselected() throws Exception {
 			homepage.MenuItems_Distribution_Selection("Waves");
 			Screenshots.captureSnapshot(driver);

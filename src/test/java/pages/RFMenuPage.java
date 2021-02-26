@@ -292,6 +292,9 @@ public class RFMenuPage {
 	@FindBy(xpath = "//a[text()='Inventory']")
 	public WebElement inventoryMgmtMenu;
 
+	@FindBy(xpath = "//a[text()='Inquiry']")
+	public WebElement inquiryMenu;
+	
 	@FindBy(xpath = "//a[text()='Outbound']")
 	public WebElement outboundoption;
 
@@ -2212,5 +2215,25 @@ public class RFMenuPage {
 		Steps.logger.info("Task is completed successfully");
 		Reporter.addStepLog("Task is completed successfully");
 		homepage.userClosesOpenedwindow("RF Menu");
+	}
+
+	public void InquiryTransactions(String menuOption) {
+		Steps.logger.info("Start Inquiry Transactions");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 20);
+		RFmenu_info.click();
+		Steps.logger.info("CLicked on RF Menu");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
+		Mainmenu.click();
+		Steps.logger.info("Clicked on Main Menu");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, inventoryMgmtMenu, 20);
+		while (!(SeleniumTestHelper.isElementDisplayed(inventoryMgmtMenu))) {
+			pageDown.click();
+		}
+		SeleniumTestHelper.assertTrue(inventoryMgmtMenu.isDisplayed());
+		Screenshots.captureSnapshot(driver);
+		inventoryMgmtMenu.click();
+		Screenshots.captureSnapshot(driver);
+		Steps.logger.info("Clicked on Inventory");
+		switch (inventoryFunctions) {
 	}
 }

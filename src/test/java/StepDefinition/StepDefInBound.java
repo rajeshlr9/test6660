@@ -328,6 +328,7 @@ public class StepDefInBound {
 
 		// asnsPage.verifyAsnsStatus(Items.getAsnNumber(), status);
 		try {
+			Thread.sleep(5000);
 			asnsPage.verifyAsnsStatus(Items.getAsnNumber(), status);
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
