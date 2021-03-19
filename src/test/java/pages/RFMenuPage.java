@@ -148,6 +148,29 @@ public class RFMenuPage {
 	@FindBy(xpath = "//a[text()='Consume iLPN']")
 	public WebElement COnsumeiLPN;
 	
+	@FindBy(xpath = "//a[text()='MM3 ASN Inquiry']")
+	public WebElement MM3ASNInquiry;
+	@FindBy(xpath = "//a[text()='MM3 Item Inquiry']")
+	public WebElement MM3ItemInquiry;
+	@FindBy(xpath = "//a[text()='MM3 Location Inquiry']")
+	public WebElement MM3LocationInquiry;
+	@FindBy(xpath = "//a[text()='MM3 iLPN Inquiry']")
+	public WebElement MM3iLPNInquiry;
+	@FindBy(xpath = "//a[text()='MM3 oLPN Inquiry']")
+	public WebElement MM3oLPNInquiry;
+	
+	@FindBy(id = "barcode")
+	public WebElement MM3ASNInquirytxtBox;
+	@FindBy(id = "barcode2Brcd")
+	public WebElement MM3ItemInquirytxtBox;
+	@FindBy(id = "SubLoc1_Input")
+	public WebElement MM3LocationInquirytxtBox;
+	@FindBy(id = "barcode2")
+	public WebElement MM3iLPNInquirytxtBox;
+	@FindBy(id = "barcode2")
+	public WebElement MM3oLPNInquirytxtBox;
+	@FindBy(xpath = "//span[@value='ASN Dtl']")
+	public WebElement ASNDetailBtn;
 	
 	@FindBy(xpath = "//span[text()='Container:']/..//input")
 	public WebElement rfRecviLPNASNContainer;
@@ -2145,7 +2168,7 @@ public class RFMenuPage {
 		Screenshots.captureSnapshot(driver);
 		System.out.println("task length:"+taskPage.tasks.length);
 		for (int i = 0; i < taskPage.tasks.length; i++) {
-			Steps.logger.info("Started task completion for task: "+taskPage.tasks[i]);
+		Steps.logger.info("Started task completion for task: "+taskPage.tasks[i]);
 		Task_input_field.sendKeys(taskPage.tasks[i] );
 		//Task_input_field.sendKeys("82321");
 		SeleniumTestHelper.assertTrue(Task_input_field.isDisplayed());
@@ -2195,12 +2218,18 @@ public class RFMenuPage {
 				serialNumbersInput.sendKeys(Keys.ENTER);
 				Screenshots.captureSnapshot(driver);
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
-				if(errorOrWarningMsg.getText().contains("Create a new one?"));
+				if(errorOrWarningMsg.getText().contains("create a new one?"))
 				{
 					Thread.sleep(1000);
 					Screenshots.captureSnapshot(driver);
 					acceptAndProceedBtn.click();
 					Thread.sleep(2000);
+				}
+				else if (errorOrWarningMsg.getText().contains("Error")) {
+					Thread.sleep(1000);
+					Screenshots.captureSnapshot(driver);
+					Steps.testRes = "Failed";
+					Assert.assertTrue(false);
 				}
 				Screenshots.captureSnapshot(driver);
 		}
@@ -2216,7 +2245,108 @@ public class RFMenuPage {
 		Reporter.addStepLog("Task is completed successfully");
 		homepage.userClosesOpenedwindow("RF Menu");
 	}
-
+//only used for a negative scenario
+public void completeSingleTask() throws Exception {
+		
+		String qty = null;
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		Steps.logger.info("Start Task Completion Process");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+		RFmenu_info.click();
+		Screenshots.captureSnapshot(driver);
+		Steps.logger.info("Clicked on RF Menu");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
+		Mainmenu.click();
+		Screenshots.captureSnapshot(driver);
+		Steps.logger.info("Clicked on Main Menu");
+		Thread.sleep(2000);
+		Screenshots.captureSnapshot(driver);
+		
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 20);
+		RFmenu_info.click();
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, EnterTaskBtn, 5);
+		EnterTaskBtn.click();
+		Screenshots.captureSnapshot(driver);
+		System.out.println("task length:"+taskPage.tasks.length);
+		for (int i = 0; i < 1; i++) {
+		Steps.logger.info("Started task completion for task: "+taskPage.tasks[i]);
+		Task_input_field.sendKeys(taskPage.tasks[i] );
+		//Task_input_field.sendKeys("82321");
+		SeleniumTestHelper.assertTrue(Task_input_field.isDisplayed());
+		Screenshots.captureSnapshot(driver);
+		Task_input_field.sendKeys(Keys.ENTER);
+		Thread.sleep(1000);
+		Screenshots.captureSnapshot(driver);
+		while(SeleniumTestHelper.isElementDisplayed(promptediLPN)) {
+			String iLPN = null;
+			iLPN = promptediLPN.getText();
+			System.out.println(iLPN);
+			String iLPNarray[] = iLPN.split(":");
+			iLPN = iLPNarray[1].trim();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNInputBx, 10);
+			iLPNInputBx.clear();
+			iLPNInputBx.sendKeys(iLPN);
+			Thread.sleep(1000);
+			SeleniumTestHelper.assertTrue(iLPNInputBx.isDisplayed());
+			Screenshots.captureSnapshot(driver);
+			iLPNInputBx.sendKeys(Keys.ENTER);
+			Thread.sleep(2000);
+			Screenshots.captureSnapshot(driver);
+		}
+		while(SeleniumTestHelper.isElementDisplayed(suggestedQty)) {
+		String text= suggestedQty.getText();
+		String split[]= text.split("Qty:");
+		String split2[]= split[1].split(" ");
+		qty= split2[0].trim();
+		System.out.println("Suggested Qty: "+qty);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, taskQtyTxtBox, 5);
+		taskQtyTxtBox.sendKeys(qty);
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.assertTrue(taskQtyTxtBox.isDisplayed());
+		taskQtyTxtBox.sendKeys(Keys.ENTER);
+		Thread.sleep(1000);
+		Screenshots.captureSnapshot(driver);
+		Thread.sleep(4000);
+		}
+		
+		while(SeleniumTestHelper.isElementDisplayed(serialNumbersInput)) {
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, serialNumbersInput, 50);
+				serialNumbersInput.clear();
+				String serial="21"+globalFunc.DateTime.current_date_time();
+				Steps.logger.info("Serial no's entered: "+serial);
+				serialNumbersInput.sendKeys(serial);
+				Screenshots.captureSnapshot(driver);
+				serialNumbersInput.sendKeys(Keys.ENTER);
+				Screenshots.captureSnapshot(driver);
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
+				if(errorOrWarningMsg.getText().contains("create a new one?"))
+				{
+					Thread.sleep(1000);
+					Screenshots.captureSnapshot(driver);
+					acceptAndProceedBtn.click();
+					Thread.sleep(2000);
+				}
+				else if (errorOrWarningMsg.getText().contains("Error")) {
+					Thread.sleep(1000);
+					Screenshots.captureSnapshot(driver);
+					Steps.testRes = "Failed";
+					Assert.assertTrue(false);
+				}
+				Screenshots.captureSnapshot(driver);
+		}
+		}
+		Thread.sleep(1000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+		RFmenu_info.click();
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ExitBtn, 50);
+		ExitBtn.click();
+		Screenshots.captureSnapshot(driver);
+		Steps.logger.info("Task is completed successfully");
+		Reporter.addStepLog("Task is completed successfully");
+		homepage.userClosesOpenedwindow("RF Menu");
+	}
 	public void InquiryTransactions(String menuOption) throws Exception {
 		Steps.logger.info("Start Inquiry Transactions");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 20);
@@ -2225,16 +2355,244 @@ public class RFMenuPage {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
 		Mainmenu.click();
 		Steps.logger.info("Clicked on Main Menu");
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, inventoryMgmtMenu, 20);
-		while (!(SeleniumTestHelper.isElementDisplayed(inventoryMgmtMenu))) {
+		Thread.sleep(1000);
+		while (!(SeleniumTestHelper.isElementDisplayed(inquiryMenu))) {
 			pageDown.click();
 		}
-		SeleniumTestHelper.assertTrue(inventoryMgmtMenu.isDisplayed());
+		SeleniumTestHelper.assertTrue(inquiryMenu.isDisplayed());
 		Screenshots.captureSnapshot(driver);
-		inventoryMgmtMenu.click();
+		inquiryMenu.click();
 		Screenshots.captureSnapshot(driver);
 		Steps.logger.info("Clicked on Inventory");
 		switch (menuOption) {
+		case "MM3 ASN Inquiry":
+			Steps.logger.info("MM3 ASN Inquiry process started");
+			Reporter.addStepLog("MM3 ASN Inquiry process started");
+			while (!(SeleniumTestHelper.isElementDisplayed(MM3ASNInquiry))) {
+				pageDown.click();
+			}
+			SeleniumTestHelper.assertTrue(MM3ASNInquiry.isDisplayed());
+			MM3ASNInquiry.click();
+			Thread.sleep(1000);
+			Screenshots.captureSnapshot(driver);
+			
+		
+				MM3ASNInquirytxtBox.sendKeys(Steps.scenarioData.get("ASNNo"));
+				Screenshots.captureSnapshot(driver);
+				MM3ASNInquirytxtBox.sendKeys(Keys.ENTER);
+				Thread.sleep(2000);
+				Screenshots.captureSnapshot(driver);
+				 List<WebElement> l=driver.findElements(By.className("error"));
+					if(l.size()==1) {
+						Steps.logger.info("ASN is not available");
+						Steps.testRes = "Failed";
+						Assert.assertTrue(false);
+					}
+				String ASNno= driver.findElement(By.id("dtltxt1_a")).getText();
+				String a[]= ASNno.split("\n");
+				SeleniumTestHelper.assertEquals(a[1], Steps.scenarioData.get("ASNNo"), "ASN No ");
+				
+				String ASNstatus= driver.findElement(By.id("dataForm:dtltxt1_b3")).getText();
+				SeleniumTestHelper.assertEquals(ASNstatus, "40 - Receiving Verified", "ASN Status ");
+				Thread.sleep(1000);
+				globalFunc.Screenshots.seleniumSnapshot(driver);
+				Screenshots.addingScreenshottoExentReport();
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 20);
+				RFmenu_info.click();
+				Thread.sleep(1000);
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, ASNDetailBtn, 20);
+				Screenshots.captureSnapshot(driver);
+				ASNDetailBtn.click();
+				Thread.sleep(1000);
+				Screenshots.captureSnapshot(driver);
+				String itemID= driver.findElement(By.id("dtl_a")).getText();
+				String b[]= itemID.split(":");
+				SeleniumTestHelper.assertEquals(b[1].trim(), "FG-003306-01", "ASN Item ");
+				
+				Steps.logger.info("ASN Inquiry process completed");
+				Reporter.addStepLog("MM3 ASN Inquiry process is completed for ASN: "+Steps.scenarioData.get("ASNNo"));
+				Reporter.addStepLog("ASN Details are available");
+				break;
+				
+				
+		case "MM3 Item Inquiry":
+			Steps.logger.info("MM3 Item Inquiry process started");
+			Reporter.addStepLog("MM3 Item Inquiry process started");
+			while (!(SeleniumTestHelper.isElementDisplayed(MM3ItemInquiry))) {
+				pageDown.click();
+			}
+			SeleniumTestHelper.assertTrue(MM3ItemInquiry.isDisplayed());
+			MM3ItemInquiry.click();
+			Thread.sleep(1000);
+			Screenshots.captureSnapshot(driver);
+
+			MM3ItemInquirytxtBox.sendKeys(Steps.scenarioData.get("ItemBarcode"));
+			Screenshots.captureSnapshot(driver);
+			MM3ItemInquirytxtBox.sendKeys(Keys.ENTER);
+			Thread.sleep(2000);
+			Screenshots.captureSnapshot(driver);
+			 List<WebElement> list=driver.findElements(By.className("error"));
+				if(list.size()==1) {
+					Steps.logger.info("Item is not available");
+					Steps.testRes = "Failed";
+					Assert.assertTrue(false);
+				}
+				
+				if(driver.findElement(By.id("dataForm")).isDisplayed()){
+					Steps.logger.info("Item Id details are available");
+					Assert.assertTrue(true);
+				}else {
+					Steps.logger.info("Item details are not available");
+					Steps.testRes = "Failed";
+					Assert.assertTrue(false);
+				}
+			String ItemID= driver.findElement(By.id("dataForm")).getText();
+			String itemText[]= ItemID.split(":");
+			String item[]=itemText[1].split("\n");
+			SeleniumTestHelper.assertEquals(item[0].trim(), Steps.scenarioData.get("ItemBarcode"), "Item Id ");
+			globalFunc.Screenshots.seleniumSnapshot(driver);
+			Screenshots.addingScreenshottoExentReport();
+			Steps.logger.info("Item Inquiry process completed");
+			Reporter.addStepLog("MM3 Item Inquiry process is completed for Item: "+Steps.scenarioData.get("ItemBarcode"));
+			Reporter.addStepLog("Item Id Details are available");
+			break;
+				
+		case "MM3 Location Inquiry":
+			Steps.logger.info("MM3 Location Inquiry process started");
+			Reporter.addStepLog("MM3 Location Inquiry process started");
+			while (!(SeleniumTestHelper.isElementDisplayed(MM3LocationInquiry))) {
+				pageDown.click();
+			}
+			SeleniumTestHelper.assertTrue(MM3LocationInquiry.isDisplayed());
+			MM3LocationInquiry.click();
+			Thread.sleep(1000);
+			Screenshots.captureSnapshot(driver);
+				
+			MM3LocationInquirytxtBox.sendKeys(Steps.scenarioData.get("Location"));
+			Screenshots.captureSnapshot(driver);
+			MM3LocationInquirytxtBox.sendKeys(Keys.ENTER);
+			Thread.sleep(2000);
+			Screenshots.captureSnapshot(driver);
+			 List<WebElement> list1=driver.findElements(By.className("error"));
+				if(list1.size()==1) {
+					Steps.logger.info("Location is not available");
+					Steps.testRes = "Failed";
+					Assert.assertTrue(false);
+				}
+				
+				if(driver.findElement(By.id("dataForm")).isDisplayed()){
+					Steps.logger.info("Location details are available");
+					Assert.assertTrue(true);
+				}else {
+					Steps.logger.info("Location details are not available");
+					Steps.testRes = "Failed";
+					Assert.assertTrue(false);
+				}
+			String location= driver.findElement(By.id("dataForm")).getText();
+			String locText[]= location.split("Rloc:");
+			String loc[]=locText[1].split("\n");
+			loc[0]= loc[0].replace("-", "");
+			SeleniumTestHelper.assertEquals(loc[0].trim(), Steps.scenarioData.get("Location"), "Location ");
+			globalFunc.Screenshots.seleniumSnapshot(driver);
+			Screenshots.addingScreenshottoExentReport();
+			Steps.logger.info("Location Inquiry process completed");
+			Reporter.addStepLog("MM3 Location Inquiry process is completed for Location: "+Steps.scenarioData.get("Location"));
+			Reporter.addStepLog("Location Details are available");
+			
+			break;
+				
+		case "MM3 iLPN Inquiry":
+			Steps.logger.info("MM3 iLPN Inquiry process started");
+			Reporter.addStepLog("MM3 iLPN Inquiry process started");
+			while (!(SeleniumTestHelper.isElementDisplayed(MM3iLPNInquiry))) {
+				pageDown.click();
+			}
+			SeleniumTestHelper.assertTrue(MM3iLPNInquiry.isDisplayed());
+			MM3iLPNInquiry.click();
+			Thread.sleep(1000);
+			Screenshots.captureSnapshot(driver);
+				
+				MM3iLPNInquirytxtBox.sendKeys(Steps.scenarioData.get("iLPN"));
+				Screenshots.captureSnapshot(driver);
+				MM3iLPNInquirytxtBox.sendKeys(Keys.ENTER);
+				Thread.sleep(2000);
+				Screenshots.captureSnapshot(driver);
+				 List<WebElement> list2=driver.findElements(By.className("error"));
+					if(list2.size()==1) {
+						Steps.logger.info("iLPN is not available");
+						Steps.testRes = "Failed";
+						Assert.assertTrue(false);
+					}
+					
+					if(driver.findElement(By.id("dataForm")).isDisplayed()){
+						Steps.logger.info("iLPN details are available");
+						Assert.assertTrue(true);
+					}else {
+						Steps.logger.info("iLPN details are not available");
+						Steps.testRes = "Failed";
+						Assert.assertTrue(false);
+					}
+				String iLPN= driver.findElement(By.id("dataForm:ot10")).getText();
+				SeleniumTestHelper.assertEquals(iLPN.trim(), Steps.scenarioData.get("iLPN"), "iLPN ");
+				globalFunc.Screenshots.seleniumSnapshot(driver);
+				Screenshots.addingScreenshottoExentReport();
+				Steps.logger.info("iLPN Inquiry process completed");
+				Reporter.addStepLog("MM3 iLPN Inquiry process is completed for iLPN: "+Steps.scenarioData.get("iLPN"));
+				Reporter.addStepLog("iLPN Details are available");
+				break;
+				
+		case "MM3 oLPN Inquiry":
+			Steps.logger.info("MM3 oLPN Inquiry process started");
+			Reporter.addStepLog("MM3 oLPN Inquiry process started");
+			while (!(SeleniumTestHelper.isElementDisplayed(MM3oLPNInquiry))) {
+				pageDown.click();
+			}
+			SeleniumTestHelper.assertTrue(MM3oLPNInquiry.isDisplayed());
+			MM3oLPNInquiry.click();
+			Thread.sleep(1000);
+			Screenshots.captureSnapshot(driver);
+
+			MM3oLPNInquirytxtBox.sendKeys(Steps.scenarioData.get("oLPN"));
+			Screenshots.captureSnapshot(driver);
+			MM3oLPNInquirytxtBox.sendKeys(Keys.ENTER);
+			Thread.sleep(2000);
+			Screenshots.captureSnapshot(driver);
+			 List<WebElement> list3=driver.findElements(By.className("error"));
+				if(list3.size()==1) {
+					Steps.logger.info("iLPN is not available");
+					Steps.testRes = "Failed";
+					Assert.assertTrue(false);
+				}
+				
+				if(driver.findElement(By.id("dataForm")).isDisplayed()){
+					Steps.logger.info("oLPN details are available");
+					Assert.assertTrue(true);
+				}else {
+					Steps.logger.info("oLPN details are not available");
+					Steps.testRes = "Failed";
+					Assert.assertTrue(false);
+				}
+			String oLPN= driver.findElement(By.id("dataForm:ot10")).getText();
+			SeleniumTestHelper.assertEquals(oLPN.trim(), Steps.scenarioData.get("oLPN"), "oLPN ");
+			globalFunc.Screenshots.seleniumSnapshot(driver);
+			Screenshots.addingScreenshottoExentReport();
+			Steps.logger.info("oLPN Inquiry process completed");
+			Reporter.addStepLog("MM3 oLPN Inquiry process is completed for oLPN: "+Steps.scenarioData.get("oLPN"));
+			Reporter.addStepLog("oLPN Details are available");
+				
+				break;
+				
+		default:
+			System.out.println("Invalid putaway operation");
 	}
+		Thread.sleep(1000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+		RFmenu_info.click();
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ExitBtn, 50);
+		ExitBtn.click();
+		Screenshots.captureSnapshot(driver);
+		Steps.logger.info("Inquiry operation is completed successfully");
+		homepage.userClosesOpenedwindow("RF Menu");
 	}
 }

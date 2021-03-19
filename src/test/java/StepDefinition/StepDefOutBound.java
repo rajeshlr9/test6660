@@ -15,6 +15,7 @@ import globalFunc.Screenshots;
 import pages.DistributionOrderProfilesPage;
 import pages.DistributionOrdersPage;
 import pages.HomePage;
+import pages.OlpnsPage;
 import pages.RFMenuPage;
 import pages.TasksPage;
 import pages.WavesPage;
@@ -28,6 +29,7 @@ public class StepDefOutBound {
 	WavesPage wavePage= new WavesPage();
 	TasksPage taskPage= new TasksPage();
 	RFMenuPage rfMenu= new RFMenuPage();
+	OlpnsPage oLPNspage = new OlpnsPage();
 
 	public StepDefOutBound() {
 	
@@ -101,6 +103,36 @@ public class StepDefOutBound {
 		}
 	}
 	
+	@Then("^user views wave and verify the oLPN Number$")
+	public void user_user_views_wave_and_verify_the_oLPN_number() throws Exception {
+		try {
+			String getoLPN = wavePage.searchForTheWaveNumberAndGetTheTask();
+			System.out.println("oLPN here: "+getoLPN);
+			homePage1.MenuItems_Distribution_Selection("oLPNs");
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			oLPNspage.adjustoLPN(getoLPN);
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
+	@Then("^user validated some oLPN Number$")
+	public void user_validated_some_oLPN_Number() throws Exception {
+		try {
+			String getoLPN = "00000999990000005738";
+			System.out.println("oLPN here: "+getoLPN);
+			homePage1.MenuItems_Distribution_Selection("oLPNs");
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			oLPNspage.adjustoLPN(getoLPN);
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
 	@Then("^user views wave and verify order got deselected from wave$")
 	public void user_user_views_wave_and_verify_order_got_deselected_from_wave() throws Exception {
 		try {
@@ -136,6 +168,19 @@ public class StepDefOutBound {
 		}
 	}
 	
+	@And("^user open RF Menu and complete a single task created$")
+	public void user_user_opeb_RFMenu_and_single_task_created() throws Exception {
+		try {
+			homePage1.MenuItems_Distribution_Selection("RF Menu");
+			Screenshots.captureSnapshot(driver);
+			rfMenu.completeSingleTask();
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
 	@Then("^user open Task screen & validates the status of tasks$")
 	public void user_user_validates_tasks_status() throws Exception {
 		try {
@@ -149,6 +194,21 @@ public class StepDefOutBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
+	
+	@Then("^user open Task screen & validate the status of single task$")
+	public void user_user_validates_task_status_of_single_task() throws Exception {
+		try {
+			homePage1.MenuItems_Configuration_Selection("Tasks");
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			Screenshots.captureSnapshot(driver);
+			taskPage.validateSingleTask();
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
 	
 	@Then("^user search for DO and confirms it$")
 	public void ship_confirm_DO() throws Exception {

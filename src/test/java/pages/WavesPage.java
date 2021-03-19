@@ -53,6 +53,13 @@ public class WavesPage {
 	public WebElement shortageReasonCd;
 	@FindBy(id = "ExceptionSummaryTab_lnk")
 	public WebElement ShortageTab;
+	@FindBy(id= "rmbuttons_1moreButton")
+	public WebElement MoreButton;
+	@FindBy(id="rmButton_2Tasks1_100668000")
+	public WebElement TasksOption;
+	@FindBy(id="dataForm:lview:dataTable:0:descVal_taskCmplRefNbr")
+	public WebElement getoLPNNumber;
+	
 
 	public void searchForTheWaveNumberAndVerifyItsDisplayed(String waveNumber) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Waves");
@@ -195,4 +202,33 @@ public class WavesPage {
 homepage.userClosesOpenedwindow("Waves - Wave Details");
 	}
 
+		public String searchForTheWaveNumberAndGetTheTask() throws Exception {
+			homepage.MenuItems_Distribution_Selection("Waves");
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, waveNumberSearchTxt, 50);
+			waveNumberSearchTxt.sendKeys(Items.getWaveNumber());
+			Screenshots.captureSnapshot(driver);
+			waveNumberApplySearchBtn.click();
+			Thread.sleep(2000);
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver,
+					driver.findElement(By.xpath("//span[text()='" + Items.getWaveNumber() + "']")), 50);
+			SeleniumTestHelper.assertTrue(true, "Wave number : " + Items.getWaveNumber() + " displayed");
+			Reporter.addStepLog("Wave number : " + Items.getWaveNumber() + " displayed");
+
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavechkbox, 50);
+			shipWavechkbox.click();
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWaveviewBtn, 50);	
+			MoreButton.click();
+			Thread.sleep(2000);
+			//SeleniumTestHelper.switchToInnerFrame(driver);
+			TasksOption.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, getoLPNNumber, 50);
+			System.out.println("oLPN Number is: "+getoLPNNumber.getText());
+			String oLPN = getoLPNNumber.getText();
+			homepage.user_closes_openedwindow("Waves - Tasks");
+			return oLPN;
+		}
 }

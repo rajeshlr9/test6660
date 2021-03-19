@@ -27,7 +27,7 @@ import utils.ExtentReportUpdate;
 		dryRun = false,
 		//tags={"@QSC004,@QSC004_01,@QSC009,@QSC011,@QSC015,@QSC016,@QSC018,@QSC020,@QSC021,@QSC022,@QSC023"},
 		tags={"@tag5"},
-		//tags={"@Regression_QSC"},
+		//tags={"@QSC_OB995"},
 		features = {"src\\test\\java\\featureFile"},
 		//features = {"src\\test\\java\\featureFile"},
 		glue = {"StepDefinition"},

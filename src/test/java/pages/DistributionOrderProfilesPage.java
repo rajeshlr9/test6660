@@ -118,9 +118,10 @@ public class DistributionOrderProfilesPage {
 			Screenshots.captureSnapshot(driver);
 			WebElement orderQty = driver.findElement(By.id("dataForm:D2:newRow_" + (i + 1) + ":D30"));
 			orderQty.sendKeys(Steps.ItemDataMap.get(i).get("ShippedQty"));
-			Thread.sleep(1000);
+			Thread.sleep(5000);
 			Select uom = new Select(driver.findElement(By.id("dataForm:D2:newRow_" + (i + 1) + ":D32")));
-			uom.selectByVisibleText(" "+Steps.ItemDataMap.get(i).get("UOM"));
+			//uom.selectByVisibleText(" "+Steps.ItemDataMap.get(i).get("UOM"));
+			uom.selectByValue("2417");
 			Thread.sleep(1000);
 			Screenshots.captureSnapshot(driver);
 			Select freighClass = new Select(driver.findElement(By.id("dataForm:D2:newRow_" + (i + 1) + ":D70")));

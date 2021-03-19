@@ -10,8 +10,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
+import com.cucumber.listener.Reporter;
+
+import StepDefinition.Steps;
 import entity.DistributionOrders;
+import entity.Items;
+import globalFunc.DateTime;
 import utils.Driver;
 import utils.SeleniumTestHelper;
 import utils.TestStubReader;
@@ -20,7 +26,7 @@ public class OlpnsPage {
 	WebDriver driver;
 	
 	public OlpnsPage() {
-		this.driver = Driver.getInstance();
+		this.driver = Steps.seleniumDriver;
 		PageFactory.initElements(driver, this);
 	}
 	
@@ -126,6 +132,8 @@ public class OlpnsPage {
     @FindBy(xpath="//span[@id='dataForm:ViewLPNHeader_ShipVia_param_out66']")
     public WebElement shipvia;
     
+    @FindBy(id="LPNListOutboundMain_commandbutton_AdjustoLPN")
+    public WebElement adjustBtn;
 
 	public WebElement getitemxpath(Integer index) {
 
@@ -186,8 +194,121 @@ public class OlpnsPage {
 	
 	@FindBy(xpath = "//input[@id='LPNListInboundMain_commandbutton_CanceloLPN']")
 	public WebElement cancelOlpn;
-
 	
+	@FindBy(xpath = "//input[@id='dataForm:NewQty']")
+	public WebElement newQty;
+	
+	
+	@FindBy(id = "dataForm:listView:dataTable:0:LPNList_Outbound_lpnFacilityStatus_param_out")
+	public WebElement lPNFacilityStatus;
+	
+	@FindBy(xpath = "//select[@id='dataForm:invnUpdatesSelect']/option")
+	public WebElement InveentoryUpdateDrpDwn;
+	
+	@FindBy(xpath = "//select[@id='dataForm:adjustReasonSelect']")
+	public WebElement adjustReason;
+	
+	public  void adjustReasonDropDown(String text) {
+	      Select drop = new Select(adjustReason);
+	      drop.selectByVisibleText(text);
+	}
+
+	//thsi method is meant only for single oLPN
+	public void adjustoLPN(String oLPN) throws Exception {
+		//homepage.MenuItems_Distribution_Selection("oLPNs");
+		//SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, oLPNinput, 50);
+		oLPNinput.clear();
+		oLPNinput.sendKeys(oLPN);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, applyBtn, 50);
+		applyBtn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, lPNFacilityStatus, 50);
+		String oLPNStatus = lPNFacilityStatus.getText();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, oLPNchkbox, 50);
+		oLPNchkbox.click();
+		Thread.sleep(2000);
+		adjustBtn.click();
+		Thread.sleep(3000);
+		if(oLPNStatus.equals("10 - Printed")) {				
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			System.out.println(driver.getWindowHandle());
+			System.out.println(driver.findElement(By.className("overlayerror")).getText());
+			Thread.sleep(3000);
+			driver.findElement(By.className("overlaypopclose")).click();
+			Thread.sleep(5000);
+		}else if (oLPNStatus.equals("30 - Weighed")) {
+			//Select inveentoryUpdateOption = new Select(InveentoryUpdateDrpDwn);
+			
+			WebElement inveentoryUpdateOption = driver
+					.findElement(By.id("dataForm:invnUpdatesSelect"));
+			Select selectinveentoryUpdate = new Select(inveentoryUpdateOption);
+			
+			selectinveentoryUpdate.selectByVisibleText("Case pick");
+			Reporter.addStepLog("Inventory Update : Case pick Selected");
+			Thread.sleep(1000);
+			/*
+			 * int OldQty = Integer.valueOf(newQty.getText().trim());
+			 * System.out.println("Old Qty: "+OldQty); int newQty1 = OldQty-1;
+			 * System.out.println("New Qty: "+newQty1); newQty.clear(); Thread.sleep(3000);
+			 */
+			adjustReasonDropDown("AH - Other");
+				Thread.sleep(1000);
+			if(Steps.scenarioData.get("AdjustmentValue").equals("Decrement"))
+			{
+			newQty.clear();
+			newQty.sendKeys("1");
+			Reporter.addStepLog("Inventory Update : newQty Selected");
+			Thread.sleep(3000);
+			driver.findElement(By.id("SrlNbrTab_lnk")).click();
+			Thread.sleep(1000);
+			driver.findElement(By.id("checkAll_c1_dataForm:serialNumberTable")).click();
+			Thread.sleep(1000);
+			driver.findElement(By.id("dataForm:Ajcancel")).click();
+			
+			}else if(Steps.scenarioData.get("AdjustmentValue").equals("Increment")) {
+				newQty.clear();
+				newQty.sendKeys("3");
+				Reporter.addStepLog("Inventory Update : newQty Selected");
+				Thread.sleep(2000);
+				driver.findElement(By.id("SrlNbrTab_lnk")).click();
+				Thread.sleep(1000);
+				driver.findElement(By.id("dataForm:AjDetail")).click();
+				Thread.sleep(2000);
+				driver.findElement(By.id("dataForm:serialNumberTable:newRow_1:majorSerialNumber")).sendKeys(DateTime.strDate32);
+				
+			}
+			/*
+			 * WebElement reasonCode = driver
+			 * .findElement(By.xpath("//select[@id='dataForm:adjustReasonSelect']")); Select
+			 * selectreasonCode = new Select(reasonCode);
+			 * selectreasonCode.selectByVisibleText("AH - Other");
+			 */
+			
+			
+			
+			Thread.sleep(1000);
+			driver.findElement(By.id("rmButton_1Save1_154183000")).click();
+			Thread.sleep(3000);
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			System.out.println(driver.getWindowHandle());
+			System.out.println(driver.findElement(By.className("overlayerrorList")).getText());
+			Thread.sleep(3000);
+			if(Steps.scenarioData.get("AdjustmentValue").equals("Increment")) {
+				Assert.assertEquals(driver.findElement(By.className("overlayerrorList")).getText(),"Pulled Quantity Exceeds Allocated Quantity!","values expected and actual");
+			}else if (Steps.scenarioData.get("AdjustmentValue").equals("Decrement")) {
+				Assert.assertEquals(driver.findElement(By.className("overlayerrorList")).getText(),"Reducing the quantity can result in some Order Line Items getting cancelled. You will not be able to revive cancelled lines.Override","values expected and actual");
+			}
+			driver.findElement(By.className("pop_close")).click();
+			Thread.sleep(3000);
+		}else if (oLPNStatus.equals("90 - Shipped")) {
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			System.out.println(driver.getWindowHandle());
+			System.out.println(driver.findElement(By.className("overlayerror")).getText());
+			Thread.sleep(3000);
+			driver.findElement(By.className("overlaypopclose")).click();
+			Thread.sleep(5000);
+		}
+	}
 	
 	public void ApplyLockOLPN(String lockcode) throws Exception {
 		homepage.MenuItems_Distribution_Selection("oLPNs");

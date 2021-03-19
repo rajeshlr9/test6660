@@ -554,7 +554,7 @@ public class SeleniumTestHelper {
 			Assert.assertEquals(actual, expected);
 		}
 		if(!(actual.equals(true)||expected.equals(true)|| actual.equals(false)||expected.equals(false))) {
-		com.cucumber.listener.Reporter.addStepLog("Expected is "+expected.toString()+" and Actual is "+actual);
+		com.cucumber.listener.Reporter.addStepLog( "Expected is "+expected.toString()+" and Actual is "+actual);
 		}
 	}
 	public static void assertNotEquals(Object actual, Object expected, String message){

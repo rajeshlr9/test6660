@@ -25,7 +25,7 @@ RFMenuPage rfMenu= new RFMenuPage();
 		
 	}
 	
-		@Then("^user opens RF menu and go to Inquiry & validate \"([^\"*])\" is displaying data$")
+		@Then("^user opens RF menu and go to Inquiry & validate \"([^\"]*)\" is displaying data$")
 		public void user_opens_RF_menu_and_validate_Inquiry_Transaction(String menuOption) throws Exception {
 			try {
 				homePage.MenuItems_Distribution_Selection("RF Menu");
