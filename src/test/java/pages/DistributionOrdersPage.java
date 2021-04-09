@@ -327,7 +327,7 @@ public class DistributionOrdersPage {
 		primaryField.sendKeys("Distribution Order");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
 		distributionOrderID.click();
-		distributionOrderID.sendKeys(DistributionOrders.getDOnumber()); // DistributionOrders.getDOnumber()
+		distributionOrderID.sendKeys(Items.getDONumber()); // DistributionOrders.getDOnumber()
 		apply_Btn.click();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
 		distributionOrder_chkbox.click();
@@ -348,6 +348,38 @@ public class DistributionOrdersPage {
 			SeleniumTestHelper.assertEquals(oLPNStatusIndividual, expectedDOstatus);
 			System.out.println("Status : " + oLPNStatusIndividual + " verified for oLPN : " + oLPNIndividual);
 		}
+
+	}
+	
+	public void checkOnlyoLPNSstatus() throws Exception {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(Items.getDONumber()); // DistributionOrders.getDOnumber()
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
+		viewBtn.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, lPNSTab, 50);
+		lPNSTab.click();
+		List<WebElement> oLPNS = driver
+				.findElements(By.xpath("//span[contains(@id,'LPNListTPM_Link_NameText_param_out')]"));
+		List<WebElement> oLPNSstatus = driver
+				.findElements(By.xpath("//span[contains(@id,'ListTPM_lpnFacilityStatus_param_out')]"));
+		String oLPNIndividual = null;
+		String oLPNStatusIndividual = null;
+		for (int i = 0; i < oLPNS.size(); i++) {
+			oLPNIndividual = oLPNS.get(i).getText();
+			oLPNStatusIndividual = oLPNSstatus.get(i).getText();
+			//SeleniumTestHelper.assertEquals(oLPNStatusIndividual, expectedDOstatus);
+			System.out.println("Status : " + oLPNStatusIndividual + " verified for oLPN : " + oLPNIndividual);
+		}
+		homepage.user_closes_openedwindow("Distribution Orders");
+		homepage.user_closes_openedwindow("DO Detail - Distribution Order");
 
 	}
 
@@ -1706,6 +1738,64 @@ public class DistributionOrdersPage {
 		SeleniumTestHelper.assertEquals(actualDOstatus, expectedDOstatus);
 
 	}
+	
+	//jaya
+	
+public void fetchoLPNSnumber() throws Exception {
+		
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		System.out.println("DISTRIBUTION");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		primaryField.sendKeys("Distribution Order");
+		System.out.println("sendkeys");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		System.out.println("click");
+		
+		distributionOrderID.sendKeys(Items.getDONumber()); // DistributionOrders.getDOnumber()
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
+		viewBtn.click();
+		homepage.user_closes_openedwindow("Distribution Orders");
+		homepage.openWindows.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, lPNSTab, 50);
+		lPNSTab.click();
+		//To locate table.
+		Thread.sleep(5000); 
+		WebElement mytable = driver.findElement(By.xpath("//*[@id=\"dataForm:DODetailsLpnList_lv:LPNListTable_body\"]"));
+    	
+    	System.out.println("table");
+    	//To locate rows of table. 
+    	List < WebElement > rows_table = mytable.findElements(By.tagName("tr"));
+    	//To calculate no of rows In table.
+    	int rows_count = rows_table.size();
+    	System.out.println("No of Rows ::"+rows_count);
+    	System.out.println("no of rows");
+    	//Loop will execute till the last row of table.
+    	for (int row = 0; row < rows_count-1; row++) {
+    	    //To locate columns(cells) of that specific row.
+    	    List < WebElement > Columns_row = rows_table.get(row).findElements(By.tagName("td"));
+    	    System.out.println("getrows::"+Columns_row.size());
+    	    //To calculate no of columns (cells). In that specific row.
+    	 //   int columns_count = Columns_row.size();
+    	     //Loop will execute till the last cell of that specific row.
+    	  //  for (int column = 0; column < columns_count; column++) {
+    	        // To retrieve text from that specific cell.
+    	    	//if(column == 1) {
+    	        String celtext = Columns_row.get(1).getText();
+    	        System.out.println("celtext::"+celtext);
+    	        //List_celtext.add(celtext);  
+    	        Items.setoLPN(celtext);  
+    	           	      
+    	      // homepage.user_closes_openedwindow("DO Detail - Distribution Order");
+    	        System.out.println(celtext);
+    	        
+    	    	}
+    	homepage.user_closes_openedwindow("DO Detail - Distribution Order");
+    	    }
 
 
 }

@@ -25,9 +25,9 @@ import utils.ExtentReportUpdate;
 @CucumberOptions(
 		strict = true,
 		dryRun = false,
-		//tags={"@QSC004,@QSC004_01,@QSC009,@QSC011,@QSC015,@QSC016,@QSC018,@QSC020,@QSC021,@QSC022,@QSC023"},
-		tags={"@tag5"},
-		//tags={"@QSC_OB995"},
+		tags={"@QSC_OB005"},
+		//tags={"@tag5"},
+	//	tags={"@QSC_OB099,@QSC_OB0992,@QSC_OB0993,@QSC_OB994,@QSC_OB0995"},
 		features = {"src\\test\\java\\featureFile"},
 		//features = {"src\\test\\java\\featureFile"},
 		glue = {"StepDefinition"},

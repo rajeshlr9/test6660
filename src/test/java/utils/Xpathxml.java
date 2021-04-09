@@ -449,50 +449,26 @@ public class Xpathxml {
 	public String ItemUpdateItemdescription(int i) {
 		return "//Item[" + i + "]/Description";
 	}
-	public void create_xmlFile_for_DistributionOrder_to_upload(int noOfItem,String orderType)
-			throws FileNotFoundException, IOException, XPathExpressionException, SAXException,
-			ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
+	
+	public void create_xmlFile_for_DistributionOrder_to_upload() throws Exception{
+		
 		String pickupStartDate = user_generate_delivery_start_date();
 		String pickupEndDate = CurrentDayplusdaysindateformat(1);
 		String deliveryStartDate = CurrentDayplusdaysindateformat(2);
 		String deliveryEndDate = CurrentDayplusdaysindateformat(3);
-		int DOID = SeleniumTestHelper.generateRandomInt(1000000, 9999999);
-		String DONumber = "DO" + DOID;
-		DistributionOrders.setDOnumber(DONumber);
-		System.out.println("DO number generated is " +DistributionOrders.getDOnumber());
+		String DOTime= current_date_time();
+		String DONumber = DOTime;
+		Items.setDONumber(DONumber);
 		
-			if(orderType.equalsIgnoreCase("DFILL"))
-			{
-				if(noOfItem == 1 )
-				{
-					user_copy_content_from_source_to_target(DFilParcelOneItemFilePath, tempDOXML);
-				}
-				else if(noOfItem == 2 ){
-					user_copy_content_from_source_to_target(DFilParcelTwoItemFilePath, tempDOXML);
-				}
-			}
-			else if(orderType.equalsIgnoreCase("Bulk Parcel"))
-			{
-				if(noOfItem == 1 )
-				{
-					user_copy_content_from_source_to_target(BulkParcelOneItemFilePath, tempDOXML);
-				}
-				else if(noOfItem == 2 ){
-					user_copy_content_from_source_to_target(BulkParcelTwoItemFilePath, tempDOXML);
-				}
-			}
-			else if(orderType.equalsIgnoreCase("NL"))
-			{
-				if(noOfItem == 1 )
-				{
-					user_copy_content_from_source_to_target(BulkTLLTLOneItemFilePath, tempDOXML);
-				}
-				else if(noOfItem == 2 ){
-					user_copy_content_from_source_to_target(BulkTLLTLTwoItemFilePath, tempDOXML);
-				}
-				ModifyXmlfile(RefShipmentNbr(),DistributionOrders.getDOnumber() , tempDOXML);
-				System.out.println("Reference Shipping Nbr upadted as : "+DistributionOrders.getDOnumber());
-			}
+		int noOfItem= Steps.ItemDataMap.size();
+		System.out.println("ItemDataMap size:: "+noOfItem);
+		if(noOfItem == 1){
+			user_copy_content_from_source_to_target(IBMasterOneItemFilePath, inputIBFilePath);
+		}else if(noOfItem == 2){
+			user_copy_content_from_source_to_target(IBMasterTwoItemFilePath, inputIBFilePath);
+		}
+		
+		
 		
 		ModifyXmlfile(DistributionOrderIdUpdate(), DistributionOrders.getDOnumber(), tempDOXML);
 		System.out.println("Distribution Order upadted is : "+DistributionOrders.getDOnumber());

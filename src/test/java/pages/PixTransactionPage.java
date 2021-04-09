@@ -110,40 +110,50 @@ public class PixTransactionPage {
 	@FindBy(xpath = "//input[@id='dataForm:lview:dataTable:pager:dataTable_rfsh_but']")
 	public WebElement refreshBtn;
 
-	public void checkForPixTransaction(String pixTranNumber, String pixTranCode, int noOfItems, String status)
-			throws Exception {
+	public void checkForPixTransaction(String pixTranNumber)throws Exception {
 		Thread.sleep(2000);
 		homePage.MenuItems_Distribution_Selection("PIX Transactions");
+		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.switchToInnerFrame(driver);
-		for (int i = 0; i < noOfItems; i++) {
+		for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 			SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 120);
 			quickFilter.click();
 			SeleniumTestHelper.waitForElementToBeClickable(driver, savedFilter, 50);
+			Screenshots.captureSnapshot(driver);
 			savedFilter.click();
 			SeleniumTestHelper.waitForElementToBeClickable(driver, Apply_savedfilter, 50);
+			Screenshots.captureSnapshot(driver);
 			Apply_savedfilter.click();
 			Thread.sleep(5000);
-			if (pixTranNumber.contains("/")) {
-				String[] pixTransNumberAsArray = pixTranNumber.split("/");
-				String[] pixTransCodeAsArray = pixTranCode.split("/");
-				SeleniumTestHelper.selectFromDropDown(savedFilterTransactionType, pixTransNumberAsArray[i],
-						"visibletext");
-				SeleniumTestHelper.selectFromDropDown(savedFilterTransactionCode, pixTransCodeAsArray[i],
-						"visibletext");
-			} else {
+			
 				SeleniumTestHelper.selectFromDropDown(savedFilterTransactionType, pixTranNumber, "visibletext");
-				SeleniumTestHelper.selectFromDropDown(savedFilterTransactionCode, pixTranCode, "visibletext");
-			}
-			savedFilteriLPN.sendKeys(Items.getItemILPN(Items.getItemsForReceivingASN(i)));
+				Screenshots.captureSnapshot(driver);
+			savedFilteriLPN.sendKeys(RFMenuPage.iLPNz.get(i));
+			Screenshots.captureSnapshot(driver);
 			addsavedFilter.click();
 			Thread.sleep(3000);
+			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 50);
-			SeleniumTestHelper.waitForElementToBeClickable(driver,driver.findElement(By.xpath("//a[text()='" + Items.getItemsForReceivingASN(i) + "']")), 60);
-			Thread.sleep(1000);
-			String pixStatusValue = null;
-			int count = 0;
-			pixStatusValue = driver.findElement(By.xpath("//span[text()='" + Items.getItemILPN(Items.getItemsForReceivingASN(i))+ "']/../..//span[@id='dataForm:lview:dataTable:0:fuid9']")).getAttribute("textContent");
-			boolean waitFortenMinutesForStatusChange = Boolean.parseBoolean(Config.getProperty("waitForTenMinutesForPixStatusChange"));
+			//SeleniumTestHelper.waitForElementToBeClickable(driver,driver.findElement(By.xpath("//a[text()='" + Items.getItemsForReceivingASN(i) + "']")), 60);
+			Thread.sleep(2000);
+		//	String pixStatusValue = null;
+		//	int count = 0;
+		//	pixStatusValue = driver.findElement(By.xpath("//span[text()='" + RFMenuPage.iLPNz.get(i)+ "']/../..//span[@id='dataForm:lview:dataTable:0:fuid9']")).getAttribute("textContent");
+			
+			String pixTransValue=null;
+			pixTransValue= driver.findElement(By.id("dataForm:lview:dataTable:0:v_trantype")).getText();
+			if(pixTranNumber.contains("606")){
+			SeleniumTestHelper.assertEquals(pixTransValue, "606");
+			Steps.logger.info("606 Pix generated for iLPN "+RFMenuPage.iLPNz.get(i));
+			Reporter.addStepLog("606 Pix generated for iLPN "+RFMenuPage.iLPNz.get(i));
+		}
+		else if(pixTranNumber.contains("603")){
+				SeleniumTestHelper.assertEquals(pixTransValue, "603");
+				Steps.logger.info("603 Pix generated for iLPN "+RFMenuPage.iLPNz.get(i));
+				Reporter.addStepLog("603 Pix generated for iLPN "+RFMenuPage.iLPNz.get(i));
+			}
+			Thread.sleep(2000);
+			/*boolean waitFortenMinutesForStatusChange = Boolean.parseBoolean(Config.getProperty("waitForTenMinutesForPixStatusChange"));
 			if (waitFortenMinutesForStatusChange) {
 				int maximunWait = 600000;
 				int iteration = 20000;
@@ -157,12 +167,9 @@ public class PixTransactionPage {
 					Thread.sleep(iteration);
 					count++;
 					totalItrWait = iteration + totalItrWait;
-				}
-				SeleniumTestHelper.assertEquals(pixStatusValue, status);
-				System.out.println("PIX Transc status : " + pixStatusValue + " verified successfully for iLPN : "+ Items.getItemILPN(Items.getItemsForReceivingASN(i)));
-			} else {
-				System.out.println("PIX Transc status : " + pixStatusValue + " displayed for iLPN : "+ Items.getItemILPN(Items.getItemsForReceivingASN(i)));
-			}
+				}*/
+			//	SeleniumTestHelper.assertEquals(pixStatusValue, status);
+				//System.out.println("PIX Transc status : " + pixStatusValue + " displayed for iLPN : "+ RFMenuPage.iLPNz.get(i));
 		}
 		homePage.userClosesOpenedwindow("PIX Transactions");
 	}

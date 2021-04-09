@@ -133,6 +133,10 @@ public class DistributionOrderProfilesPage {
 			Select inventoryType = new Select(driver.findElement(By.id("dataForm:D2:newRow_" + (i + 1) + ":D127")));
 			inventoryType.selectByVisibleText(Steps.ItemDataMap.get(i).get("InventoryType"));
 			Thread.sleep(1000);
+			Thread.sleep(1000);
+			Select productType = new Select(driver.findElement(By.id("dataForm:D2:newRow_" + (i + 1) + ":DOLineCreate_Productstatus")));
+			productType.selectByVisibleText(Steps.ItemDataMap.get(i).get("ProductStatus"));
+			Thread.sleep(1000);
 			Screenshots.captureSnapshot(driver);
 
 			Reporter.addStepLog("Line " + (i + 1) + " is created with Item: " + Steps.ItemDataMap.get(i).get("Item")

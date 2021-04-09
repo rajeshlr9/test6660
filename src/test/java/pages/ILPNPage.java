@@ -90,6 +90,10 @@ public class ILPNPage {
 	@FindBy(id = "dataForm:lockTable_body")
 	public List<WebElement> lockCodeTable;
 	
+	@FindBy(id = "backButton")
+	public WebElement backButton;
+	
+	
 	@FindBy(xpath = "//input[@id='LPNListInboundMain_CmdBtn_LockiLPN']")
 	public WebElement iLPNLockUnlockBtn2;
 	
@@ -221,17 +225,19 @@ public class ILPNPage {
 		return driver.findElement(By.xpath(lPnxpath)).getText();
 	}
 	
-   public void verifyiLPNStatus(String status,int noOfItems) throws Exception{
+   public void verifyiLPNStatus(String status) throws Exception{
 		
 		SeleniumTestHelper.switchToInnerFrame(driver);
-		for (int i = 0; i < noOfItems; i++) {
+		for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, inputLPNSearchTextBox, 50);
 			inputLPNSearchTextBox.clear();
-			inputLPNSearchTextBox.sendKeys(Items.getItemILPN(Items.getItemsForReceivingASN(i)));
+			inputLPNSearchTextBox.sendKeys(RFMenuPage.iLPNz.get(i));
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, applySearchBtn, 50);
 			applySearchBtn.click();
-			String iLPN_Status=driver.findElement(By.xpath("//span[text()='"+Items.getItemILPN(Items.getItemsForReceivingASN(i))+"']/following::span[contains(@id,'Outbound_lpnFacilityStatus')]")).getText();
+			String iLPN_Status=driver.findElement(By.xpath("//span[text()='"+RFMenuPage.iLPNz.get(i)+"']/following::span[contains(@id,'Outbound_lpnFacilityStatus')]")).getText();
 			SeleniumTestHelper.assertEquals(iLPN_Status, status);
+			Steps.logger.info("Status for iLPN "+RFMenuPage.iLPNz.get(i)+" is "+status);
+			Reporter.addStepLog("Status for iLPN "+RFMenuPage.iLPNz.get(i)+" is "+status);
 		}
 	}
 
@@ -337,6 +343,9 @@ public class ILPNPage {
 			} else {
 				ilpnLockCode += lpn;
 			}
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, backButton, 20);
+			backButton.click();
+			Thread.sleep(3000);
 		}
 		if (i == j) {
 			Steps.logger.info("Actual lock code matches the expected lock code");
@@ -345,7 +354,7 @@ public class ILPNPage {
 			Steps.testRes="Failed";
 			Assert.assertTrue(false, "iLPN Lock code that are not same " + ilpnLockCode);
 		}
-		homePage.userClosesOpenedwindow("iLPNs - iLPN Details");
+		homePage.userClosesOpenedwindow("iLPNs");
    }
    
    public void verifyLockCodeStatus(String lockcodetext) throws Exception{
@@ -597,4 +606,18 @@ public void adjustiLPNQuantityWith(String adjust, int noOfItem) throws Exception
 		}
 		homePage.userClosesOpenedwindow("iLPNs - iLPN Details");
 	}
+	
+	public void validateiLPNStatusAndQty_trans() throws Exception{
+		   
+		   SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNstatus, 10);
+		   SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNqty, 10);
+		   if(iLPNstatus.getText().contains("In-Stock") ) {
+			   Steps.logger.info("iLPN status is:"+iLPNstatus.getText().trim()+" & iLPN qty is:"+iLPNqty.getText());
+			   Reporter.addStepLog("iLPN status is:"+iLPNstatus.getText().trim()+" & iLPN qty is:"+iLPNqty.getText());
+		   }else {
+			   Steps.testRes = "Failed";
+			   SeleniumTestHelper.assertEquals(iLPNstatus.getText(), "In-Stock");
+		   }
+		   homePage.userClosesOpenedwindow("iLPNs - iLPN Details");
+	   }
 }

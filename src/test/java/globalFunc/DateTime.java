@@ -13,6 +13,7 @@ public class DateTime {
 	public static String strDate5;
 	public static String strDate6;
 	public static String strDate7;
+	public static String strDate8;
 	public static String strDate32;
 	public static void TimeDateFunc() {
 		
@@ -34,6 +35,9 @@ public class DateTime {
         
         SimpleDateFormat formatter7 = new SimpleDateFormat("yyyyMMddHHmmssSSS");              
         strDate7= formatter7.format(date);  
+        
+        SimpleDateFormat formatter8 = new SimpleDateFormat("yyyyMMddHHmmss");              
+        strDate8= formatter8.format(date); 
         
         SimpleDateFormat formatter4 = new SimpleDateFormat("MM/dd/yyyy");         
           Calendar c = Calendar.getInstance();

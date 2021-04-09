@@ -59,7 +59,9 @@ public class WavesPage {
 	public WebElement TasksOption;
 	@FindBy(id="dataForm:lview:dataTable:0:descVal_taskCmplRefNbr")
 	public WebElement getoLPNNumber;
-	
+	@FindBy(id="dataForm:lview:dataTable:1:descVal_taskCmplRefNbr")
+	public WebElement getoLPNNumber2;
+
 
 	public void searchForTheWaveNumberAndVerifyItsDisplayed(String waveNumber) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Waves");
@@ -143,8 +145,8 @@ public class WavesPage {
 			Steps.logger.info("Total units allocated: "+unitsAllocatedValue.getText());
 			Reporter.addStepLog("Total units allocated: "+unitsAllocatedValue.getText());
 			Thread.sleep(2000);
-		Steps.logger.info("Inventory got allocated successfuuly");
-		Reporter.addStepLog("Inventory got allocated successfuuly");
+			Steps.logger.info("Inventory got allocated successfuuly");
+			Reporter.addStepLog("Inventory got allocated successfuuly");
 		} else if (OrdersdeselectedValue.getText().equals("1")) {
 			SeleniumTestHelper.waitForElementToBeClickable(driver, ShortageTab, 10);
 			ShortageTab.click();
@@ -159,76 +161,144 @@ public class WavesPage {
 		}
 		homepage.userClosesOpenedwindow("Waves - Wave Details");
 	}
-	
-		public void searchForTheWaveNumberAndVerifyOrderGotDeselected() throws Exception {
-			homepage.MenuItems_Distribution_Selection("Waves");
-			Screenshots.captureSnapshot(driver);
-			SeleniumTestHelper.switchToInnerFrame(driver);
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, waveNumberSearchTxt, 50);
-			waveNumberSearchTxt.sendKeys(Items.getWaveNumber());
-			Screenshots.captureSnapshot(driver);
-			waveNumberApplySearchBtn.click();
+
+	public void searchForTheWaveNumberAndVerifyOrderGotDeselected() throws Exception {
+		homepage.MenuItems_Distribution_Selection("Waves");
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, waveNumberSearchTxt, 50);
+		waveNumberSearchTxt.sendKeys(Items.getWaveNumber());
+		Screenshots.captureSnapshot(driver);
+		waveNumberApplySearchBtn.click();
+		Thread.sleep(2000);
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver,
+				driver.findElement(By.xpath("//span[text()='" + Items.getWaveNumber() + "']")), 50);
+		SeleniumTestHelper.assertTrue(true, "Wave number : " + Items.getWaveNumber() + " displayed");
+		Reporter.addStepLog("Wave number : " + Items.getWaveNumber() + " displayed");
+
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavechkbox, 50);
+		shipWavechkbox.click();
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWaveviewBtn, 50);
+		shipWaveviewBtn.click();
+
+		Thread.sleep(2000);
+		Screenshots.captureSnapshot(driver);
+		if (OrdersdeselectedValue.getText().equals("1")) {
+			SeleniumTestHelper.waitForElementToBeClickable(driver, ShortageTab, 10);
+			ShortageTab.click();
 			Thread.sleep(2000);
 			Screenshots.captureSnapshot(driver);
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver,
-					driver.findElement(By.xpath("//span[text()='" + Items.getWaveNumber() + "']")), 50);
-			SeleniumTestHelper.assertTrue(true, "Wave number : " + Items.getWaveNumber() + " displayed");
-			Reporter.addStepLog("Wave number : " + Items.getWaveNumber() + " displayed");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shortageReasonCd, 10);
+			String reasonCode = shortageReasonCd.getText();
+			Steps.logger.info("Order got deselected. Reason: " + reasonCode);
+			Reporter.addStepLog("Order got deselected. Reason: " + reasonCode);
+			globalFunc.Screenshots.seleniumSnapshot(driver);
+			Screenshots.addingScreenshottoExentReport();
+		}else {
+			Steps.testRes = "Failed";
+			Assert.assertTrue(false, "Order was not deselected from wave");
+		}
 
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavechkbox, 50);
-			shipWavechkbox.click();
-			Screenshots.captureSnapshot(driver);
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWaveviewBtn, 50);
-			shipWaveviewBtn.click();
-
-			Thread.sleep(2000);
-			Screenshots.captureSnapshot(driver);
-			 if (OrdersdeselectedValue.getText().equals("1")) {
-				SeleniumTestHelper.waitForElementToBeClickable(driver, ShortageTab, 10);
-				ShortageTab.click();
-				Thread.sleep(2000);
-				Screenshots.captureSnapshot(driver);
-				SeleniumTestHelper.waitForElementToBeDisplayed(driver, shortageReasonCd, 10);
-				String reasonCode = shortageReasonCd.getText();
-				Steps.logger.info("Order got deselected. Reason: " + reasonCode);
-				Reporter.addStepLog("Order got deselected. Reason: " + reasonCode);
-				globalFunc.Screenshots.seleniumSnapshot(driver);
-				Screenshots.addingScreenshottoExentReport();
-			}else {
-				Steps.testRes = "Failed";
-				Assert.assertTrue(false, "Order was not deselected from wave");
-			}
-		
-homepage.userClosesOpenedwindow("Waves - Wave Details");
+		homepage.userClosesOpenedwindow("Waves - Wave Details");
 	}
 
-		public String searchForTheWaveNumberAndGetTheTask() throws Exception {
-			homepage.MenuItems_Distribution_Selection("Waves");
-			Screenshots.captureSnapshot(driver);
-			SeleniumTestHelper.switchToInnerFrame(driver);
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, waveNumberSearchTxt, 50);
-			waveNumberSearchTxt.sendKeys(Items.getWaveNumber());
-			Screenshots.captureSnapshot(driver);
-			waveNumberApplySearchBtn.click();
-			Thread.sleep(2000);
-			Screenshots.captureSnapshot(driver);
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver,
-					driver.findElement(By.xpath("//span[text()='" + Items.getWaveNumber() + "']")), 50);
-			SeleniumTestHelper.assertTrue(true, "Wave number : " + Items.getWaveNumber() + " displayed");
-			Reporter.addStepLog("Wave number : " + Items.getWaveNumber() + " displayed");
+	public String searchForTheWaveNumberAndGetTheTask() throws Exception {
+		homepage.MenuItems_Distribution_Selection("Waves");
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, waveNumberSearchTxt, 50);
+		waveNumberSearchTxt.sendKeys(Items.getWaveNumber());
+		Reporter.addStepLog("Entered wave number"+Items.getWaveNumber());
+		Steps.logger.info("Entered wave number"+Items.getWaveNumber());
+		Screenshots.captureSnapshot(driver);
+		waveNumberApplySearchBtn.click();
+		Reporter.addStepLog("Clicked on search button");
+		Steps.logger.info("Clicked on search button");
+		Thread.sleep(2000);
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver,
+				driver.findElement(By.xpath("//span[text()='" + Items.getWaveNumber() + "']")), 50);
+		SeleniumTestHelper.assertTrue(true, "Wave number : " + Items.getWaveNumber() + " displayed");
+		Reporter.addStepLog("Wave number : " + Items.getWaveNumber() + " displayed");
 
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavechkbox, 50);
-			shipWavechkbox.click();
-			Screenshots.captureSnapshot(driver);
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWaveviewBtn, 50);	
-			MoreButton.click();
-			Thread.sleep(2000);
-			//SeleniumTestHelper.switchToInnerFrame(driver);
-			TasksOption.click();
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, getoLPNNumber, 50);
-			System.out.println("oLPN Number is: "+getoLPNNumber.getText());
-			String oLPN = getoLPNNumber.getText();
-			homepage.user_closes_openedwindow("Waves - Tasks");
-			return oLPN;
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavechkbox, 50);
+		shipWavechkbox.click();
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWaveviewBtn, 50);	
+		MoreButton.click();
+		Thread.sleep(2000);
+		//SeleniumTestHelper.switchToInnerFrame(driver);
+		TasksOption.click();
+		WebElement simpleTable=driver.findElement(By.id("dataForm:lview:dataTable_body"));
+		List<WebElement> rows = simpleTable.findElements(By.tagName("tr"));
+		System.out.println("Table row size: "+rows.size());
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, getoLPNNumber, 50);
+
+		System.out.println("oLPN Number is: "+getoLPNNumber.getText());
+		String oLPN = getoLPNNumber.getText();
+		Reporter.addStepLog("oLPN Number is: "+getoLPNNumber.getText());
+		Steps.logger.info("oLPN Number is: "+getoLPNNumber.getText());
+		homepage.user_closes_openedwindow("Waves - Tasks");
+		return oLPN;
+	}
+	public String GetTheTaskinCompleteStatus() throws Exception {
+		homepage.MenuItems_Distribution_Selection("Waves");
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, waveNumberSearchTxt, 50);
+		waveNumberSearchTxt.sendKeys(Items.getWaveNumber());
+		Screenshots.captureSnapshot(driver);
+		waveNumberApplySearchBtn.click();
+		Thread.sleep(2000);
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver,
+				driver.findElement(By.xpath("//span[text()='" + Items.getWaveNumber() + "']")), 50);
+		SeleniumTestHelper.assertTrue(true, "Wave number : " + Items.getWaveNumber() + " displayed");
+		Reporter.addStepLog("Wave number : " + Items.getWaveNumber() + " displayed");
+
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavechkbox, 50);
+		shipWavechkbox.click();
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWaveviewBtn, 50);	
+		MoreButton.click();
+		Thread.sleep(2000);
+		//SeleniumTestHelper.switchToInnerFrame(driver);
+		TasksOption.click();
+		/*
+		 * WebElement
+		 * simpleTable=driver.findElement(By.id("dataForm:lview:dataTable_body"));
+		 * List<WebElement> rows = simpleTable.findElements(By.tagName("tr"));
+		 * System.out.println("Table row size: "+rows.size());
+		 * 
+		 * //Print data from each row for (WebElement row : rows) { List<WebElement>
+		 * cols = row.findElements(By.tagName("td")); for (WebElement col : cols) {
+		 * 
+		 * System.out.print(col.getText() + "\t"); } System.out.println(); }
+		 */
+
+		WebElement base = driver.findElement(By.id("dataForm:lview:dataTable_body"));
+		List<WebElement> tableRows = base.findElements(By.tagName("tr"));
+		System.out.println("tableRows.size: "+tableRows.size());
+		String oLPNVal=null;
+		for(int tRows=0;tRows<tableRows.size()-1;tRows++) {
+			List<WebElement> tableCols = tableRows.get(tRows).findElements(By.tagName("td"));
+			System.out.println("col size: "+tableCols.size());
+			String cellValue = tableCols.get(5).getText();
+			if(cellValue.equals("90 - Complete")) {
+				oLPNVal = tableCols.get(8).getText();
+				System.out.println("oLPNVal: "+oLPNVal);
+				break;
+			}
+
+
 		}
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, getoLPNNumber, 50);
+
+		System.out.println("oLPN Number is: "+oLPNVal);
+		String oLPN = oLPNVal;
+		homepage.user_closes_openedwindow("Waves - Tasks");
+		return oLPN;
+	}
 }

@@ -1,12 +1,29 @@
 Feature: QSC Outbound Scenarios
 
-@QSC_OB001 @Regression_QSC
+@QSC_OB000 @Regression_QSC @QSC_PostMessage
 Scenario: Distribution Order Shipping - Single Line
 	Given I have excel data
 	| QSC_OBScenario001 |
 	And Open the chrome browser by selenium
 	When user logs into the Manhattan application
-	And user opens Distribution Order Profile in order to create DO
+	When user create xml file with updated DO_No
+    And user update xml itemDetails from excel sheet
+    And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
+	Then user log out from application
+
+@QSC_OB001 @Regression_QSC @QSC_Shipping
+Scenario: Distribution Order Shipping - Single Line
+	Given I have excel data
+	| QSC_OBScenario001 |
+	And Open the chrome browser by selenium
+	When user logs into the Manhattan application
+	When user create xml file with updated DO_No
+    And user update xml itemDetails from excel sheet
+    And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response
+	#And user opens Distribution Order Profile in order to create DO
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
 	Then user verifies the item details in Distribuion Order page
 	And user runs the "Standard wave"
@@ -21,7 +38,7 @@ Scenario: Distribution Order Shipping - Single Line
 	Then user log out from application
 
 
-@QSC_OB002 @Regression_QSC
+@QSC_OB002 @Regression_QSC @QSC_Shipping
 Scenario: Distribution Order Shipping - Multi Line
 	Given I have excel data
 	| QSC_OBScenario002 |
@@ -41,7 +58,7 @@ Scenario: Distribution Order Shipping - Multi Line
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 	Then user log out from application
 	
-	@QSC_OB003 @Regression_QSC
+	@QSC_OB003 @Regression_QSC @QSC_Shipping
 Scenario: Distribution Order Shipping - Single Line Shortage 
 	Given I have excel data
 	| QSC_OBScenario003 |
@@ -56,8 +73,8 @@ Scenario: Distribution Order Shipping - Single Line Shortage
 	Then user log out from application
 	
 	
-@QSC_OB099 @Regression_QSC
-Scenario: Modify\Adjust Olpn from Manhattan UI -Single Line OLPN in Printed status and Order at DC Allocated status
+@QSC_OB004 @Regression_QSC @QSC_AdjustoLPN
+Scenario: Modify\Adjust Olpn from Manhattan UI -Single Line, OLPN in Printed status and Order at DC Allocated status
 	Given I have excel data
 	| QSC_OBScenario004 |
 	And Open the chrome browser by selenium
@@ -66,39 +83,13 @@ Scenario: Modify\Adjust Olpn from Manhattan UI -Single Line OLPN in Printed stat
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
 	Then user verifies the item details in Distribuion Order page
 	And user runs the "Standard wave"
-	#Then user views wave and verify the allocation of inventory
-	Then user views wave and verify the oLPN Number
-	
-	@QSC_OB0991 @Regression_QSC
-Scenario: Distribution Order Shipping - Single Line
-	Given I have excel data
-	| QSC_OBScenario005 |
-	And Open the chrome browser by selenium
-	When user logs into the Manhattan application
-	Then user validated some oLPN Number
-	
+	Then user views wave and verify the allocation of inventory
+	Then user views and Adjust the oLPN
+	Then user log out from application
 	
 
-	@QSC_OB0992 @Regression_QSC
-	Scenario: Modify\Adjust Olpn from Manhattan UI Single Line  OLPN in Weighed status and Order at Weighed status-New Quantity  lesser than Current Quantity 
-	Given I have excel data
-	| QSC_OBScenario004 |
-	And Open the chrome browser by selenium
-	When user logs into the Manhattan application
-	And user opens Distribution Order Profile in order to create DO
-	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
-	Then user verifies the item details in Distribuion Order page
-	And user runs the "Standard wave"
-	Then user views wave and verify the allocation of inventory
-	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
-	And user open Task screen & verifies task is created for DO in the wave process
-	And user open RF Menu and complete the tasks created
-	Then user open Task screen & validates the status of tasks
-	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
-	Then user views wave and verify the oLPN Number
-	
-	@QSC_OB0993 @Regression_QSC
-	Scenario: Modify\Adjust Olpn from Manhattan UI Single Line  OLPN in Weighed status and Order at Weighed status-New Quantity  more than Current Quantity
+	@QSC_OB005 @Regression_QSC @QSC_AdjustoLPN
+	Scenario: Modify\Adjust Olpn from Manhattan UI Single Line,OLPN in Weighed status and Order at Weighed status-New Quantity  lesser than Current Quantity 
 	Given I have excel data
 	| QSC_OBScenario005 |
 	And Open the chrome browser by selenium
@@ -113,11 +104,11 @@ Scenario: Distribution Order Shipping - Single Line
 	And user open RF Menu and complete the tasks created
 	Then user open Task screen & validates the status of tasks
 	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
-	Then user views wave and verify the oLPN Number
+	Then user views and Adjust the oLPN
+	Then user log out from application
 	
-	
-	@QSC_OB994 @Regression_QSC
-Scenario: Distribution Order Shipping - Multi Line
+	@QSC_OB006 @Regression_QSC @QSC_AdjustoLPN
+	Scenario: Modify\Adjust Olpn from Manhattan UI Single Line,OLPN in Weighed status and Order at Weighed status-New Quantity  more than Current Quantity
 	Given I have excel data
 	| QSC_OBScenario006 |
 	And Open the chrome browser by selenium
@@ -132,14 +123,13 @@ Scenario: Distribution Order Shipping - Multi Line
 	And user open RF Menu and complete the tasks created
 	Then user open Task screen & validates the status of tasks
 	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
-	Then user search for DO and confirms it
-	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
-	Then user views wave and verify the oLPN Number
+	Then user views and Adjust the oLPN
+	Then user log out from application
 	
-	@QSC_OB995 @Regression_QSC
-Scenario: Distribution Order Shipping - Multi Line
+	@QSC_OB007 @Regression_QSC @QSC_AdjustoLPN
+Scenario: Distribution Order Shipping - Multi Line,One Line at Printed status and second line as Weighed,correspondlingly the order is at In Packing,New Quantity  more than Current Quantity
 	Given I have excel data
-	| QSC_OBScenario002 |
+	| QSC_OBScenario007 |
 	And Open the chrome browser by selenium
 	When user logs into the Manhattan application
 	And user opens Distribution Order Profile in order to create DO
@@ -151,3 +141,105 @@ Scenario: Distribution Order Shipping - Multi Line
 	And user open Task screen & verifies task is created for DO in the wave process
 	And user open RF Menu and complete a single task created
 	Then user open Task screen & validate the status of single task
+	And user opens DO screen and searches for the DistributionOrder and verify its status "140 - In Packing"
+	#And user verifies the oLPN details in Distribuion Order page
+	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	#Then user views wave and gets the task Number in Complete status
+	Then user views and Adjust the oLPN
+	Then user log out from application
+	
+	@QSC_OB008 @Regression_QSC @QSC_AdjustoLPN
+Scenario: Distribution Order Shipping - Multi Line,One Line at Printed status and second line as Weighed,correspondlingly the order is at In Packing,New Quantity lesser than Current Quantity
+	Given I have excel data
+	| QSC_OBScenario008 |
+	And Open the chrome browser by selenium
+	When user logs into the Manhattan application
+	And user opens Distribution Order Profile in order to create DO
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
+	Then user verifies the item details in Distribuion Order page
+	And user runs the "Standard wave"
+	Then user views wave and verify the allocation of inventory
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process
+	And user open RF Menu and complete a single task created
+	Then user open Task screen & validate the status of single task
+	And user opens DO screen and searches for the DistributionOrder and verify its status "140 - In Packing"
+	#And user verifies the oLPN details in Distribuion Order page
+	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	#Then user views wave and gets the task Number in Complete status
+	Then user views and Adjust the oLPN
+	Then user log out from application
+	
+	
+	###########################Jaya#################
+	
+	@QSC_OB009 @Regression_QSC @QSC_SplitoLPN
+Scenario: Spliting the OLPN at Printed status 
+	Given I have excel data
+	| QSC_OBScenario009 |
+	And Open the chrome browser by selenium
+	When user logs into the Manhattan application
+	And user opens Distribution Order Profile in order to create DO
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
+	Then user verifies the item details in Distribuion Order page
+	And user runs the "Standard wave"
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	Then fetch the OLPN number
+	Then user opens RF menu and perform "MM3 split OLPN" operation in inventory menu	
+	Then user log out from application
+	
+@QSC_OB010 @Regression_QSC	 @QSC_SplitoLPN
+Scenario: Spliting the OLPN at Weighed status 
+Given I have excel data
+	| QSC_OBScenario010 |
+	And Open the chrome browser by selenium
+	When user logs into the Manhattan application
+	And user opens Distribution Order Profile in order to create DO
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
+	Then user verifies the item details in Distribuion Order page
+	And user runs the "Standard wave"
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process
+	And user open RF Menu and complete the tasks created
+	Then user open Task screen & validates the status of tasks
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
+	Then fetch the OLPN number
+	Then user opens RF menu and perform "MM3 split OLPN" operation in inventory menu	
+	Then user log out from application
+	
+	@QSC_OB011 @Regression_QSC @QSC_CombineoLPN
+Scenario: Combine the OLPN at printed status 
+	Given I have excel data
+	| QSC_OBScenario011 |
+	And Open the chrome browser by selenium
+	When user logs into the Manhattan application
+	And user opens Distribution Order Profile in order to create DO
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
+	Then user verifies the item details in Distribuion Order page
+	And user runs the "Standard wave"
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	Then fetch the OLPN number
+	Then user opens RF menu and perform "MM3 cmbne OLPN" operation in inventory menu	
+	Then user log out from application		
+	
+	@QSC_OB012 @Regression_QSC @QSC_CombineoLPN
+Scenario: Combine the OLPN at weighed status 
+	Given I have excel data
+	| QSC_OBScenario012 |
+	And Open the chrome browser by selenium
+	When user logs into the Manhattan application
+	And user opens Distribution Order Profile in order to create DO
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
+	Then user verifies the item details in Distribuion Order page
+	And user runs the "Standard wave"
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process
+	And user open RF Menu and complete the tasks created
+	Then user open Task screen & validates the status of tasks
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
+	Then fetch the OLPN number
+	Then user opens RF menu and perform "MM3 cmbne OLPN" operation in inventory menu	
+	Then user log out from application	
+	
+	
+	

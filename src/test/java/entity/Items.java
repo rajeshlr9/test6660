@@ -42,6 +42,8 @@ public class Items {
 	public static List<String> IlpNWithOB = new ArrayList<>();
 	public static List<String> LPNThreeDgtList = new ArrayList();
 	private static String pdfCOntent;
+	//jaya
+	private static List<String> List_celtext = new ArrayList<>();
 	
 	public static String getItemName() {
 		return ItemName;
@@ -357,7 +359,19 @@ public class Items {
 		waveNumber = waveNum;
 	}
 
+	//jaya
+	public static String getoLPN(int i) {
+		return List_celtext.get(i);
+	}
+
+	public static void setoLPN(String myitem) {
+		List_celtext.add(myitem);
+	}
+	
 	public static void removeAllTheValuesFromMap() {
+		//jaya
+		List_celtext.clear();
+		
 		Steps.testRes="";
 		RFMenuPage.iLPNz.clear();
 		waveNumber=null;

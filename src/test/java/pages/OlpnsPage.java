@@ -134,7 +134,36 @@ public class OlpnsPage {
     
     @FindBy(id="LPNListOutboundMain_commandbutton_AdjustoLPN")
     public WebElement adjustBtn;
+    
+    @FindBy(className="overlaypopclose")
+    public WebElement popcloseBtn;
+    
+    @FindBy(className="pop_close")
+    public WebElement pop_closeBtn;
+    
 
+    @FindBy(id="dataForm:invnUpdatesSelect")
+    public WebElement inveentoryUpdateOption;
+    
+    @FindBy(id="SrlNbrTab_lnk")
+    public WebElement SrlNbrTab_lnk;
+    
+    @FindBy(id="checkAll_c1_dataForm:serialNumberTable")
+    public WebElement c1_serialNumberTable;
+    
+    @FindBy(id="dataForm:Ajcancel")
+    public WebElement Ajcancel;
+    
+    @FindBy(id="dataForm:AjDetail")
+    public WebElement AjDetail;
+    
+    @FindBy(id="rmButton_1Save1_154183000")
+    public WebElement rmButton_1Save1;
+    
+    @FindBy(id="dataForm:serialNumberTable:newRow_1:majorSerialNumber")
+    public WebElement serialNumberTableNewRow_1;
+    
+   
 	public WebElement getitemxpath(Integer index) {
 
 		String indexstring = String.valueOf(index);
@@ -198,6 +227,8 @@ public class OlpnsPage {
 	@FindBy(xpath = "//input[@id='dataForm:NewQty']")
 	public WebElement newQty;
 	
+	@FindBy(xpath = "//input[@id='rmButton_1Cancel1_154184000']")
+	public WebElement cancelBtnAdjustOlpnPage;
 	
 	@FindBy(id = "dataForm:listView:dataTable:0:LPNList_Outbound_lpnFacilityStatus_param_out")
 	public WebElement lPNFacilityStatus;
@@ -224,6 +255,8 @@ public class OlpnsPage {
 		applyBtn.click();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, lPNFacilityStatus, 50);
 		String oLPNStatus = lPNFacilityStatus.getText();
+		Reporter.addStepLog("lPN Facility Status is: "+oLPNStatus);
+		Steps.logger.info("lPN Facility Status is: "+oLPNStatus);
 		SeleniumTestHelper.waitForElementToBeClickable(driver, oLPNchkbox, 50);
 		oLPNchkbox.click();
 		Thread.sleep(2000);
@@ -231,20 +264,22 @@ public class OlpnsPage {
 		Thread.sleep(3000);
 		if(oLPNStatus.equals("10 - Printed")) {				
 			SeleniumTestHelper.switchToInnerFrame(driver);
-			System.out.println(driver.getWindowHandle());
-			System.out.println(driver.findElement(By.className("overlayerror")).getText());
+			//System.out.println(driver.getWindowHandle());
+			//System.out.println(driver.findElement(By.className("overlayerror")).getText());
 			Thread.sleep(3000);
-			driver.findElement(By.className("overlaypopclose")).click();
+			popcloseBtn.click();
+			Steps.logger.info("Closed pop up button");
+			//driver.findElement(By.className("overlaypopclose")).click();
 			Thread.sleep(5000);
 		}else if (oLPNStatus.equals("30 - Weighed")) {
 			//Select inveentoryUpdateOption = new Select(InveentoryUpdateDrpDwn);
 			
-			WebElement inveentoryUpdateOption = driver
-					.findElement(By.id("dataForm:invnUpdatesSelect"));
+			//WebElement inveentoryUpdateOption = driver.findElement(By.id("dataForm:invnUpdatesSelect"));
 			Select selectinveentoryUpdate = new Select(inveentoryUpdateOption);
 			
 			selectinveentoryUpdate.selectByVisibleText("Case pick");
 			Reporter.addStepLog("Inventory Update : Case pick Selected");
+			Steps.logger.info("Inventory Update : Case pick Selected");
 			Thread.sleep(1000);
 			/*
 			 * int OldQty = Integer.valueOf(newQty.getText().trim());
@@ -252,30 +287,37 @@ public class OlpnsPage {
 			 * System.out.println("New Qty: "+newQty1); newQty.clear(); Thread.sleep(3000);
 			 */
 			adjustReasonDropDown("AH - Other");
+			Reporter.addStepLog("Reason : AH - Other");
+			Steps.logger.info("Reason : AH - Other");
 				Thread.sleep(1000);
 			if(Steps.scenarioData.get("AdjustmentValue").equals("Decrement"))
 			{
 			newQty.clear();
 			newQty.sendKeys("1");
 			Reporter.addStepLog("Inventory Update : newQty Selected");
+			Steps.logger.info("Inventory Update : newQty Selected");
 			Thread.sleep(3000);
-			driver.findElement(By.id("SrlNbrTab_lnk")).click();
+			//driver.findElement(By.id("SrlNbrTab_lnk")).click();
+			SrlNbrTab_lnk.click();
 			Thread.sleep(1000);
-			driver.findElement(By.id("checkAll_c1_dataForm:serialNumberTable")).click();
+			c1_serialNumberTable.click();
 			Thread.sleep(1000);
-			driver.findElement(By.id("dataForm:Ajcancel")).click();
-			
+		    Ajcancel.click();
+		    Steps.logger.info("Clicked on cancel button");
+						
 			}else if(Steps.scenarioData.get("AdjustmentValue").equals("Increment")) {
 				newQty.clear();
 				newQty.sendKeys("3");
 				Reporter.addStepLog("Inventory Update : newQty Selected");
 				Thread.sleep(2000);
-				driver.findElement(By.id("SrlNbrTab_lnk")).click();
-				Thread.sleep(1000);
-				driver.findElement(By.id("dataForm:AjDetail")).click();
-				Thread.sleep(2000);
-				driver.findElement(By.id("dataForm:serialNumberTable:newRow_1:majorSerialNumber")).sendKeys(DateTime.strDate32);
+				SrlNbrTab_lnk.click();
 				
+				Thread.sleep(1000);
+				//driver.findElement(By.id("dataForm:AjDetail")).click();
+				AjDetail.click();
+				Thread.sleep(2000);
+				//driver.findElement(By.id("dataForm:serialNumberTable:newRow_1:majorSerialNumber")).sendKeys(DateTime.strDate32);
+				serialNumberTableNewRow_1.sendKeys(DateTime.strDate32);
 			}
 			/*
 			 * WebElement reasonCode = driver
@@ -287,27 +329,43 @@ public class OlpnsPage {
 			
 			
 			Thread.sleep(1000);
-			driver.findElement(By.id("rmButton_1Save1_154183000")).click();
+			//driver.findElement(By.id("rmButton_1Save1_154183000")).click();
+			rmButton_1Save1.click();
 			Thread.sleep(3000);
 			SeleniumTestHelper.switchToInnerFrame(driver);
-			System.out.println(driver.getWindowHandle());
-			System.out.println(driver.findElement(By.className("overlayerrorList")).getText());
+			//System.out.println(driver.getWindowHandle());
+			//System.out.println(driver.findElement(By.className("overlayerrorList")).getText());
 			Thread.sleep(3000);
 			if(Steps.scenarioData.get("AdjustmentValue").equals("Increment")) {
 				Assert.assertEquals(driver.findElement(By.className("overlayerrorList")).getText(),"Pulled Quantity Exceeds Allocated Quantity!","values expected and actual");
+				Reporter.addStepLog("Pulled Quantity Exceeds Allocated Quantity!");
+				Steps.logger.info("Pulled Quantity Exceeds Allocated Quantity!");
 			}else if (Steps.scenarioData.get("AdjustmentValue").equals("Decrement")) {
 				Assert.assertEquals(driver.findElement(By.className("overlayerrorList")).getText(),"Reducing the quantity can result in some Order Line Items getting cancelled. You will not be able to revive cancelled lines.Override","values expected and actual");
+				Reporter.addStepLog("Reducing the quantity can result in some Order Line Items getting cancelled. You will not be able to revive cancelled lines.Override");
+				Steps.logger.info("Reducing the quantity can result in some Order Line Items getting cancelled. You will not be able to revive cancelled lines.Override");
 			}
-			driver.findElement(By.className("pop_close")).click();
+			//driver.findElement(By.className("pop_close")).click();
+			pop_closeBtn.click();
+			Steps.logger.info("Close pop up");
 			Thread.sleep(3000);
+			
+			cancelBtnAdjustOlpnPage.click();
+			Steps.logger.info("Click on cancel button");
 		}else if (oLPNStatus.equals("90 - Shipped")) {
 			SeleniumTestHelper.switchToInnerFrame(driver);
-			System.out.println(driver.getWindowHandle());
-			System.out.println(driver.findElement(By.className("overlayerror")).getText());
+			//System.out.println(driver.getWindowHandle());
+			//System.out.println(driver.findElement(By.className("overlayerror")).getText());
 			Thread.sleep(3000);
-			driver.findElement(By.className("overlaypopclose")).click();
+			popcloseBtn.click();
+			//driver.findElement(By.className("overlaypopclose")).click();
 			Thread.sleep(5000);
+			Thread.sleep(2000);
+			cancelBtnAdjustOlpnPage.click();
 		}
+		
+		Thread.sleep(2000);
+		homepage.user_closes_openedwindow("oLPNs");
 	}
 	
 	public void ApplyLockOLPN(String lockcode) throws Exception {

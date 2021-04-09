@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
@@ -37,7 +38,10 @@ public class AsnsPage {
 	public WebElement primaryField;
 	@FindBy(xpath = "//input[@name='asnId']")
 	public WebElement asnIdInput;
-	@FindBy(xpath = "//A/SPAN[@role=\"presentation\"]/SPAN[@role=\"presentation\" and normalize-space()=\"Apply\"]/SPAN[2]")
+	//@FindBy(xpath = "//A/SPAN[@role='presentation']/SPAN[@role='presentation' and normalize-space()='Apply']/SPAN[2]")
+	//@FindBy(xpath = "(//span[text()='Apply'])[2]")
+	//@FindBy(xpath = "//*[text()='Apply'][1]")
+	@FindBy(xpath = "//span[@class= 'x-btn-inner x-btn-inner-default-small' and text()='Apply' ]")
 	public WebElement applyBtn;
 	@FindBy(xpath = "//td[@data-columnid='status']/div")
 	public WebElement asnStatus;
@@ -134,15 +138,19 @@ public class AsnsPage {
 		driver.findElement(By.xpath(
 				"//DIV[3]/DIV[1]/DIV[@role=\"presentation\"][1]/DIV[@role=\"presentation\"][1]/DIV[@role=\"presentation\"][1]/DIV[1]/DIV[1]/DIV[1]/DIV[1]/INPUT[@role=\"combobox\"][1]"))
 				.sendKeys(asnId);
-		Screenshots.captureSnapshot(driver);
+	//	Screenshots.captureSnapshot(driver);
 		/*
 		 * Actions action = new Actions(driver);
 		 * action.moveToElement(asnIdInput).build().perform(); asnIdInput.click();
 		 * asnIdInput.sendKeys(asnId);
 		 */
 		// SeleniumTestHelper.waitForElementToBeDisplayed(driver, applyBtn, 50);
+		 Thread.sleep(3000);
 		applyBtn.click();
-		
+		//driver.findElement(By.xpath("(//span[text()='Apply'])[2]")).click();
+		// List<WebElement>links = driver.findElements(By.xpath("//A/SPAN[@role='presentation']/SPAN[@role='presentation' and normalize-space()='Apply']/SPAN[2]"));
+		  //  int total_count = links.size();       
+		    //System.out.println("Total size :=" +total_count);   
 		// Thread.sleep(3000);
 //		SeleniumTestHelper.waitForElementToBeDisplayed(driver, collapseLeft, 70);
 //		collapseLeft.click();
@@ -159,8 +167,6 @@ public class AsnsPage {
 		Thread.sleep(2000);
 		
 			SeleniumTestHelper.assertEquals(AsnStatus, status);
-			
-		
 		
 		Screenshots.captureSnapshot(driver);
 		System.out.println("Status : " + AsnStatus + " has been verified successfully for ASN : " + asnId);
@@ -236,7 +242,8 @@ public class AsnsPage {
 		action.moveToElement(asnIdInput).build().perform();
 		asnIdInput.click();
 		asnIdInput.sendKeys(asnID);
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, applyBtn, 50);
+		//SeleniumTestHelper.waitForElementToBeDisplayed(driver, applyBtn, 50);
+		Thread.sleep(3000);
 		applyBtn.click();
 		Screenshots.captureSnapshot(driver);
 	}
@@ -488,4 +495,69 @@ public class AsnsPage {
 			}
 		}		
 	}
+
+	public void validateNewlyCreatedASN() throws Exception{
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, linesTab, 120);
+		linesTab.click();
+		List<WebElement> lines = driver.findElements(By.xpath("//span[contains(@id,'SKUId')]"));
+		List<WebElement> Shipqty = driver.findElements(By.xpath("//span[contains(@id,'shippedQtyuom')]"));
+		Thread.sleep(5000);
+		Screenshots.captureSnapshot(driver);
+		String itemInASNPage = null;
+		String[] shippedQty = null;
+		//
+		System.out.println("Line size:" + lines.size());
+		System.out.println("Line qty size:" + Shipqty.size());
+		for (int i = 0; i < lines.size(); i++) {
+			System.out.println("Line" + i + ":" + lines.get(i).getText());
+		}
+		for (int i = 0; i < Shipqty.size(); i++) {
+			System.out.println("Line qty" + i + ":" + Shipqty.get(i).getText());
+		}
+
+		for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
+			System.out.println("in for loop "+i);
+			System.out.println((Integer.parseInt(Steps.ItemDataMap.get(i).get("ShippedQty"))-Integer.parseInt(Steps.ItemDataMap.get(i).get("RecQty"))));
+			if((Integer.parseInt(Steps.ItemDataMap.get(i).get("ShippedQty"))-Integer.parseInt(Steps.ItemDataMap.get(i).get("RecQty")))!=0){
+				System.out.println("if loop");
+			
+			itemInASNPage = lines.get(i+1).getText();
+			System.out.println("Line Item:" + itemInASNPage);
+
+			SeleniumTestHelper.assertEquals(itemInASNPage, Steps.ItemDataMap.get(i).get("Item"));
+			System.out.println("Item : " + itemInASNPage + " successfully verified in ASN page");
+
+			shippedQty = Shipqty.get(i).getText().split("\\s+");
+			System.out.println("shippedQty:" + shippedQty[0]);
+				SeleniumTestHelper.assertEquals(Integer.parseInt(shippedQty[0]),(Integer.parseInt(Steps.ItemDataMap.get(i).get("ShippedQty"))-Integer.parseInt(Steps.ItemDataMap.get(i).get("RecQty"))));
+			System.out.println(
+					"ShippedQty : " + shippedQty[0] + " successfully verified in ASN page for item : " + itemInASNPage);
+			}
+			Thread.sleep(2000);
+		}
+	}
+	
+	//New Raka
+		public void verifyPalletStatus(String status) throws InterruptedException {
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnsTab, 50);
+			lpnsTab.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNSFirstRecord, 50);
+			Thread.sleep(5000);
+			
+			WebElement base = driver.findElement(By.id("dataForm:ASNLPNListView_id:LPNListTable_body"));
+			List<WebElement> tableRows = base.findElements(By.tagName("tr"));
+			System.out.println("tableRows.size: "+tableRows.size());
+			String PalletVal=null;
+			for(int tRows=0;tRows<tableRows.size()-1;tRows++) {
+				List<WebElement> tableCols = tableRows.get(tRows).findElements(By.tagName("td"));
+				//System.out.println("col size: "+tableCols.size());
+				String cellValue = tableCols.get(10).getText();
+				if(cellValue.equals(status)) {
+					PalletVal = tableCols.get(4).getText();
+					System.out.println("PalletVal: "+PalletVal);
+					
+				}
+				
+			}
+		}
 }

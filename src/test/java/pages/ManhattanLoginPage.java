@@ -57,23 +57,32 @@ public class ManhattanLoginPage extends Steps {
 	@FindBy(xpath = "//span[text()='Warehouse:']/../following-sibling::div[1]")
 	public WebElement warehouseDropdown;
 	
-	@FindBy(id = "combobox-1058-trigger-picker")
+	//@FindBy(id = "combobox-1058-trigger-picker")
+	@FindBy(xpath="(//input[contains(@class,'x-form-text-default')])[1]")
+	//@FindBy(xpath = "//*[@class='x-form-item-body x-form-item-body-default x-form-text-field-body x-form-text-field-body-default  '][0]")
 	public WebElement warehouseDropdownArrow;
 	
-	@FindBy(id = "combobox-1060-trigger-picker")
+	//@FindBy(id = "combobox-1060-trigger-picker")
+	@FindBy(xpath="(//input[contains(@class,'x-form-text-default')])[2]")
+	//@FindBy(xpath = "//*[@class='x-form-item-body x-form-item-body-default x-form-text-field-body x-form-text-field-body-default  '][1]")
 	public WebElement BusinessUnitDropdownArrow;
-	
 
 	@FindBy(id = "combobox-1058-inputEl")
 	public WebElement warehouseDropdown1;
 
-	@FindBy(id = "boundlist-1059-listEl")
+	//@FindBy(id = "boundlist-1059-listEl")
+	@FindBy(xpath="(//ul[@class='x-list-plain'])[1]")
 	public WebElement warehouseDropdownlist;
+	
+	//@FindBy(id = "boundlist-1061-listEl")
+	@FindBy(xpath="(//ul[@class='x-list-plain'])[2]")
+	public WebElement BusinessUnitdropdown;
 
 	@FindBy(xpath = "//li[text()='MM3']")
 	public WebElement verWarehouse;
 
-	@FindBy(xpath = "//A/SPAN[@role=\"presentation\"]/SPAN[@role=\"presentation\"]/SPAN[normalize-space()=\"MM3 - QSC\"]")
+	//@FindBy(xpath = "//A/SPAN[@role=\"presentation\"]/SPAN[@role=\"presentation\"]/SPAN[normalize-space()=\"MM3 - QSC\"]")
+	@FindBy (xpath="//span[contains(@id, 'mps_regions_selector')]")
 	public WebElement facilityApplyBtn;
 	
 	@FindBy(xpath = "//span[text()='Apply']")
@@ -82,8 +91,7 @@ public class ManhattanLoginPage extends Steps {
 	@FindBy(xpath = "//DIV[normalize-space()=\"Business Unit:\"]/DIV[1]/DIV[1]/DIV[1]/INPUT[@role=\"combobox\"][1]")
 	public WebElement BusinessUnitDisp;
 
-	@FindBy(id = "boundlist-1061-listEl")
-	public WebElement BusinessUnitdropdown;
+	
 
 	@FindBy(xpath = "//DIV[normalize-space()=\"Business Unit:\"]/DIV[1]/DIV[1]/DIV[2]")
 	public WebElement BusinessUnitDd;
@@ -98,7 +106,6 @@ public class ManhattanLoginPage extends Steps {
 	 */
 	public void loginToManhattanApp() throws Exception {
 		{
-			try {
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, username, 180);
 				String env = environment;
 				// String userType= Config.getProperty("UserRole");
@@ -229,9 +236,11 @@ public class ManhattanLoginPage extends Steps {
 					facilitySelection.click();
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, warehouseDropdownArrow, 10);
 					warehouseDropdownArrow.click();
+					//driver.findElement(By.xpath("(//*[@id='x-form-trigger x-form-trigger-default x-form-arrow-trigger x-form-arrow-trigger-default '][0])")).click();
 					List<WebElement> list = warehouseDropdownlist.findElements(By.tagName("li"));
 					for (WebElement option : list) {
 						if (option.getText().equals(Facility)) {
+							System.out.println(option.getText());
 							option.click(); // click the desired option
 							break;
 						}
@@ -240,6 +249,7 @@ public class ManhattanLoginPage extends Steps {
 					BusinessUnitDropdownArrow.click();
 					List<WebElement> list2 = BusinessUnitdropdown.findElements(By.tagName("li"));
 					for (WebElement option2 : list2) {
+						
 						if (option2.getText().equals(BusinnesUnit)) {
 							option2.click(); // click the desired option
 							break;
@@ -273,13 +283,6 @@ public class ManhattanLoginPage extends Steps {
 				userLoggedin.click();
 				Thread.sleep(2000);
 
-			}
-
-			catch (Exception e) {
-				System.out.println(e);
-				Steps.testRes = "Failed";
-				Assert.assertTrue(false, e.getMessage());
-			}
 		}
 
 	}

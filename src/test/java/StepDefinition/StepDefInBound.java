@@ -612,6 +612,25 @@ public class StepDefInBound {
 		}
 	}
 
+	
+	@Then("^user opens iLPN screen and validate iLPN status \"([^\"]*)\"$")
+		public void user_opens_iLPN_screen_and_validates_iLPN_status(String iLPNStatus) throws Exception {
+		
+		try {
+			homePage.MenuItems_Distribution_Selection("iLPNs");
+			Screenshots.captureSnapshot(driver);
+			Steps.logger.info("iLPNs screen opened");
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			iLPNPage.verifyiLPNStatus(iLPNStatus);
+			homePage.userClosesOpenedwindow("iLPNs");
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+		
+	}
+	
 	@Then("^user opens Inventory by location screen and validates the LPN created$")
 	public void user_opens_InventoryByLocation_screen_and_validates_the_LPN_created() throws Exception {
 		try {
@@ -729,7 +748,18 @@ public class StepDefInBound {
 			e.printStackTrace();
 			Assert.assertTrue(false, e.getMessage());
 		}
+	}
+	
+	@And("^validates the PIX message \"([^\"]*)\"$")
+	public void validate_PIX_transactions(String PixTrans) throws Exception {
 		
+		try {
+			pixTransaction.checkForPixTransaction(PixTrans);
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
 	}
 	
 	@And("^validates the PIX Transactions \"([^\"]*)\" for modifying iLPN$")
@@ -804,6 +834,33 @@ public class StepDefInBound {
 		}
 	}
 
+	@Then("^user verifies new ASN is created with remaining qty$")
+	public void user_verifies_new_ASN_is_created_with_remaining_qty() throws Exception {
+		try {
+			Thread.sleep(15000);
+			asnsPage.verifyAsnsStatus(Items.getAsnNumber()+"-1", "20 - InTransit");
+			asnsPage.searchForTheASN(Items.getAsnNumber()+"-1");
+			Steps.logger.info("New ASN is created automatically with ASN: "+Items.getAsnNumber()+"-1");
+			Steps.logger.info("Started validating item details");
+			SeleniumTestHelper.waitForElementToBeClickable(driver, asnsPage.searchedASNChkbox, 50);
+			asnsPage.searchedASNChkbox.click();
+			asnsPage.viewASNBtn.click();
+			Steps.logger.info("Click on view ASN");
+			// Thread.sleep(5000);
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			Screenshots.captureSnapshot(driver);
+			asnsPage.validateNewlyCreatedASN();
+			homePage.userClosesOpenedwindow("Advance Ship Notice");
+			// Thread.sleep(3000);
+			SeleniumTestHelper.Close_OpenedWindow("ASNs", driver);
+			Steps.logger.info("Close ASN window");
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
 	/*
 	 * @Then("user opens RF menu and completes Receiving using \"([^\"]*)\" menu for (\\d+)$"
 	 * ) public void
