@@ -368,6 +368,10 @@ public class Items {
 		List_celtext.add(myitem);
 	}
 	
+	public static int getoLPNListSize() {
+		return List_celtext.size();
+	}
+	
 	public static void removeAllTheValuesFromMap() {
 		//jaya
 		List_celtext.clear();

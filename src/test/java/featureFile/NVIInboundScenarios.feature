@@ -4,7 +4,7 @@ Feature: Inbound Scenarios
 Scenario: Verify ASN creation through Post MessageUI-excel 
 	Creating ASN through Post Message UI & verifying the response, checking status of the shipment
 	Given I have excel data 
-		| NVI_Scenario001 |
+		| NVI_IBScenario001 |
 	And Open the chrome browser by selenium 
 	And user logs into the Manhattan application 
 	When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN 
@@ -20,7 +20,7 @@ Scenario: Receiving of ASN bypassing staging location (Pallet) - Single Line, Si
 	Creating ASN through Post Message UI, checking status of the shipment and completed receiving bypassing staging 
 	location (Pallet) - Single Line, Single Pallet, Single iLPN
 	Given I have excel data 
-		| NVI_Scenario002 |
+		| NVI_IBScenario002 |
 	And Open the chrome browser by selenium 
 	And user logs into the Manhattan application 
 	When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN 
@@ -39,7 +39,7 @@ Scenario: Receiving of ASN bypassing staging location (Pallet) - Single Line, Si
 	Creating ASN through Post Message UI, checking status of the shipment and completed receiving bypassing staging 
 	location (Pallet) - Single Line, Single Pallet, Multiple iLPN
 	Given I have excel data 
-		| NVI_Scenario003 |
+		| NVI_IBScenario003 |
 	And Open the chrome browser by selenium 
 	And user logs into the Manhattan application 
 	When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN 
@@ -58,7 +58,7 @@ Scenario: Partial Receiving of ASN bypassing staging location (Pallet) - Single 
 	Creating ASN through Post Message UI, checking status of the shipment and complete partial receiving bypassing staging 
 	location (Pallet) - Single Line, Single Pallet, Single iLPN
 	Given I have excel data 
-		| NVI_Scenario004 |
+		| NVI_IBScenario004 |
 	And Open the chrome browser by selenium 
 	And user logs into the Manhattan application 
 	When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN 
@@ -78,7 +78,7 @@ Scenario: Over Receiving of ASN bypassing staging location (Pallet) - Single Lin
 	Creating ASN through Post Message UI, checking status of the shipment and complete over receiving bypassing staging 
 	location (Pallet) - Single Line, Single Pallet, Single iLPN
 	Given I have excel data 
-		| NVI_Scenario005 |
+		| NVI_IBScenario005 |
 	And Open the chrome browser by selenium 
 	And user logs into the Manhattan application 
 	When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN 
@@ -98,7 +98,7 @@ Scenario: Receiving of ASN bypassing staging location (Pallet) - Multi Line, Sin
 	Creating ASN through Post Message UI, checking status of the shipment and complete receiving bypassing staging 
 	location (Pallet) - Multi Line, Single Pallet, Multiple iLPN
 	Given I have excel data 
-		| NVI_Scenario006 |
+		| NVI_IBScenario006 |
 	And Open the chrome browser by selenium 
 	And user logs into the Manhattan application 
 	When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN 
@@ -117,7 +117,7 @@ Scenario: Receiving of ASN bypassing staging location (Pallet) - Multi Line, Mul
 	Creating ASN through Post Message UI, checking status of the shipment and complete receiving bypassing staging 
 	location (Pallet) - Multi Line, Multiple Pallet, Multiple iLPN
 	Given I have excel data 
-		| NVI_Scenario007 |
+		| NVI_IBScenario007 |
 	And Open the chrome browser by selenium 
 	And user logs into the Manhattan application 
 	When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN 
@@ -145,7 +145,7 @@ Scenario: Receiving of ASN bypassing staging location (case) - Single Line, Sing
 	Creating ASN through Post Message UI, checking status of the shipment and completed receiving bypassing staging 
 	location (case) - Single Line, Single iLPN
 	Given I have excel data 
-		| NVI_Scenario008 |
+		| NVI_IBScenario008 |
 	And Open the chrome browser by selenium 
 	And user logs into the Manhattan application 
 	When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN 
@@ -164,7 +164,7 @@ Scenario: Receiving of ASN bypassing staging location (case) - Single Line, Mult
 	Creating ASN through Post Message UI, checking status of the shipment and completed receiving bypassing staging 
 	location (case) - Single Line, Multiple iLPN
 	Given I have excel data 
-		| NVI_Scenario009 |
+		| NVI_IBScenario009 |
 	And Open the chrome browser by selenium 
 	And user logs into the Manhattan application 
 	When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN 
@@ -183,7 +183,7 @@ Scenario: Partial Receiving of ASN bypassing staging location (case) - Single Li
 	Creating ASN through Post Message UI, checking status of the shipment and completed partial receiving bypassing staging 
 	location (case) - Single Line, Single iLPN
 	Given I have excel data 
-		| NVI_Scenario010 |
+		| NVI_IBScenario010 |
 	And Open the chrome browser by selenium 
 	And user logs into the Manhattan application 
 	When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN 
@@ -202,7 +202,7 @@ Scenario: Over Receiving of ASN bypassing staging location (case) - Single Line,
 	Creating ASN through Post Message UI, checking status of the shipment and completed over receiving bypassing staging 
 	location (case) - Single Line, Single iLPN
 	Given I have excel data 
-		| NVI_Scenario011 |
+		| NVI_IBScenario011 |
 	And Open the chrome browser by selenium 
 	And user logs into the Manhattan application 
 	When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN 
@@ -221,7 +221,7 @@ Scenario: Receiving of ASN bypassing staging location (case) - Multi Line, Multi
 	Creating ASN through Post Message UI, checking status of the shipment and completed receiving bypassing staging 
 	location (case) - Multi Line, Multiple iLPN
 	Given I have excel data 
-		| NVI_Scenario012 |
+		| NVI_IBScenario012 |
 	And Open the chrome browser by selenium 
 	And user logs into the Manhattan application 
 	When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN 
@@ -234,3 +234,22 @@ Scenario: Receiving of ASN bypassing staging location (case) - Multi Line, Multi
 	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
 	Then user opens iLPN screen and validate iLPN status "30 - Putaway"
 	Then user log out from application
+	
+	@NVI_IB013 @Regression_NVI @NVI_PalletRec
+Scenario: Receiving of ASN on to a Pallet - Single Line, Single Pallet, Single iLPN
+	Creating ASN through Post Message UI, checking status of the shipment and completed receiving in a 
+	Pallet - Single Line, Single Pallet, Single iLPN
+	Given I have excel data 
+		| NVI_IBScenario003 |
+	And Open the chrome browser by selenium 
+	And user logs into the Manhattan application 
+	When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN 
+	And user update xml itemDetails from excel sheet 
+	And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-PLT" menu 
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
+	Then user views ASN, get and verify pallet status is "30 - Putaway" 
+	Then user log out from application 

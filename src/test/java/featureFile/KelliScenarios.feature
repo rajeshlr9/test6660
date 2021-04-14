@@ -25,8 +25,8 @@ Scenario: Uploading the ASNLoad file from the Kelli application and validating
  the file uploaded successfully
 	  Given Open the IE by selenium
 	  And user logs into the kelli application
-	  And user updates data in Item Upload Sheet
-	  When user upload the Item Load file 
+	  And user updates data in Location Upload Sheet
+	  When user upload the Location Load file 
 	  Then user view the logs and validates the success message for Location Load
 	  Then user logout from the kelli application
 	  
@@ -35,7 +35,7 @@ Scenario: Uploading the ASNLoad file from the Kelli application and validating
  the file uploaded successfully
 	  Given Open the IE by selenium
 	  And user logs into the kelli application
-	  And user updates data in Item Upload Sheet
-	  When user upload the Item Load file 
+	  And user updates data in Order Upload Sheet
+	  When user upload the Order Load file 
 	  Then user view the logs and validates the success message for Order Load
 	  Then user logout from the kelli application

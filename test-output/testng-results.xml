@@ -2,26 +2,29 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
-      <![CDATA[Execution started for : Modify\Adjust Olpn from Manhattan UI Single Line  OLPN in Weighed status and Order at Weighed status-New Quantity  lesser than Current Quantity,Scen3]]>
+      <![CDATA[Execution started for : Combine the OLPN at weighed status]]>
+    </line>
+    <line>
+      <![CDATA[Execution started for : Combine the OLPN at weighed status]]>
     </line>
   </reporter-output>
-  <suite started-at="2021-04-09T09:56:34 GMT" name="Suite" finished-at="2021-04-09T10:03:52 GMT" duration-ms="437521">
+  <suite started-at="2021-04-14T07:42:54 GMT" name="Suite" finished-at="2021-04-14T07:57:31 GMT" duration-ms="876746">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2021-04-09T09:56:34 GMT" name="Test" finished-at="2021-04-09T10:03:52 GMT" duration-ms="437521">
+    <test started-at="2021-04-14T07:42:54 GMT" name="Test" finished-at="2021-04-14T07:57:31 GMT" duration-ms="876746">
       <class name="TestRunner.Runner">
-        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-04-09T09:56:34 GMT" name="createExtentReport" finished-at="2021-04-09T09:56:34 GMT" duration-ms="90" status="PASS">
+        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-04-14T07:42:54 GMT" name="createExtentReport" finished-at="2021-04-14T07:42:54 GMT" duration-ms="93" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createExtentReport -->
-        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-04-09T09:56:34 GMT" name="setUpClass" finished-at="2021-04-09T09:56:35 GMT" duration-ms="902" status="PASS">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-04-14T07:42:54 GMT" name="setUpClass" finished-at="2021-04-14T07:42:55 GMT" duration-ms="918" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-04-09T09:56:35 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2021-04-09T10:03:51 GMT" duration-ms="435597" status="PASS">
+        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-04-14T07:42:55 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2021-04-14T07:57:30 GMT" duration-ms="874838" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -31,15 +34,18 @@
           </params>
           <reporter-output>
             <line>
-              <![CDATA[Execution started for : Modify\Adjust Olpn from Manhattan UI Single Line  OLPN in Weighed status and Order at Weighed status-New Quantity  lesser than Current Quantity,Scen3]]>
+              <![CDATA[Execution started for : Combine the OLPN at weighed status]]>
+            </line>
+            <line>
+              <![CDATA[Execution started for : Combine the OLPN at weighed status]]>
             </line>
           </reporter-output>
         </test-method> <!-- feature -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-04-09T10:03:51 GMT" name="tearDownClass" finished-at="2021-04-09T10:03:52 GMT" duration-ms="590" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-04-14T07:57:30 GMT" name="tearDownClass" finished-at="2021-04-14T07:57:31 GMT" duration-ms="546" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-04-09T10:03:52 GMT" name="writeExtentReport" finished-at="2021-04-09T10:03:52 GMT" duration-ms="12" status="PASS">
+        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-04-14T07:57:31 GMT" name="writeExtentReport" finished-at="2021-04-14T07:57:31 GMT" duration-ms="18" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- writeExtentReport -->

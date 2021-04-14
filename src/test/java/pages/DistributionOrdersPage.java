@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import com.cucumber.listener.Reporter;
 
@@ -383,6 +384,39 @@ public class DistributionOrdersPage {
 
 	}
 
+	public void checkOnlyoLPNSstatus(String status) throws Exception {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(Items.getDONumber()); // DistributionOrders.getDOnumber()
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
+		viewBtn.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, lPNSTab, 50);
+		lPNSTab.click();
+		List<WebElement> oLPNS = driver
+				.findElements(By.xpath("//span[contains(@id,'LPNListTPM_Link_NameText_param_out')]"));
+		List<WebElement> oLPNSstatus = driver
+				.findElements(By.xpath("//span[contains(@id,'ListTPM_lpnFacilityStatus_param_out')]"));
+		String oLPNIndividual = null;
+		String oLPNStatusIndividual = null;
+		for (int i = 0; i < oLPNS.size(); i++) {
+			oLPNIndividual = oLPNS.get(i).getText();
+			oLPNStatusIndividual = oLPNSstatus.get(i).getText();
+			//SeleniumTestHelper.assertEquals(oLPNStatusIndividual, expectedDOstatus);
+			System.out.println("Status : " + oLPNStatusIndividual + " verified for oLPN : " + oLPNIndividual);
+			Assert.assertEquals(oLPNStatusIndividual, status, "oLPN Status");
+		}
+		homepage.user_closes_openedwindow("Distribution Orders");
+		homepage.user_closes_openedwindow("DO Detail - Distribution Order");
+
+	}
+	
 	public void runWaveTemplate(String waveTemplateDesc, String expStatus, String OrderType)
 			throws Exception, AWTException {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");

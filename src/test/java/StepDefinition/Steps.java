@@ -17,6 +17,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.testng.Assert;
 
 import com.cucumber.listener.Reporter;
 import com.hp.lft.sdk.GeneralLeanFtException;
@@ -236,9 +237,15 @@ public class Steps {
 
 	@And("Open the chrome browser by selenium")
 	public void open_the_chrome_and_launch_the_application_using_Selenium() throws Throwable {
-		// Write code here that turns the phrase above into concrete actions
-		seleniumDriver = CreateBrowser.CreateBrowserInstance();
-		logger.info("Browser Instance created");
+		try {
+			// Write code here that turns the phrase above into concrete actions
+			seleniumDriver = CreateBrowser.CreateBrowserInstance();
+			logger.info("Browser Instance created");
+		} catch (Throwable e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
 	}
 
 	/*

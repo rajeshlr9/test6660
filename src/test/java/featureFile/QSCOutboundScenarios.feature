@@ -241,5 +241,73 @@ Scenario: Combine the OLPN at weighed status
 	Then user opens RF menu and perform "MM3 cmbne OLPN" operation in inventory menu	
 	Then user log out from application	
 	
+	@QSC_OB013 @Regression_QSC @QSC_CanceloLPN
+Scenario: Combine the OLPN at weighed status 
+	Given I have excel data
+	| QSC_OBScenario006 |
+	And Open the chrome browser by selenium
+	When user logs into the Manhattan application
+	And user opens Distribution Order Profile in order to create DO
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
+	Then user verifies the item details in Distribuion Order page
+	And user runs the "Standard wave"
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process
+	And user open RF Menu and complete the tasks created
+	Then user open Task screen & validates the status of tasks
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
+	Then fetch the OLPN number
+	Then user opens RF menu and perform "MM3 Cancel oLPN" operation in inventory menu
+	And user opens the oLPN details in Distribuion Order page and and verify its status "99 - Cancelled"
+	And user opens DO screen and searches for the DistributionOrder and verify its status "200 - Cancelled"
+	#And validates the PIX message "620 - Order transactions"
+	Then user log out from application	
 	
+	@QSC_OB014 @Regression_QSC @QSC_CanceloLPN
+Scenario: Combine the OLPN at weighed status 
+	Given I have excel data
+	| QSC_OBScenario006 |
+	And Open the chrome browser by selenium
+	When user logs into the Manhattan application
+	And user opens Distribution Order Profile in order to create DO
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
+	Then user verifies the item details in Distribuion Order page
+	And user runs the "Standard wave"
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process
+	Then fetch the OLPN number
+	Then user opens RF menu and perform "MM3 Cancel oLPN" operation in inventory menu
+	And user opens the oLPN details in Distribuion Order page and and verify its status "99 - Cancelled"
+	And user opens DO screen and searches for the DistributionOrder and verify its status "200 - Cancelled"
+	#And validates the PIX message "620 - Order transactions"
+	Then user log out from application	
+	
+	@QSC_OB015 @Regression_QSC @QSC_CanceloLPN
+Scenario: Combine the OLPN at weighed status 
+	Given I have excel data
+	| QSC_OBScenario001 |
+	And Open the chrome browser by selenium
+	When user logs into the Manhattan application
+	When user create xml file with updated DO_No
+    And user update xml itemDetails from excel sheet
+    And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response
+	#And user opens Distribution Order Profile in order to create DO
+	#And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
+	Then user verifies the item details in Distribuion Order page
+	And user runs the "Standard wave"
+	Then user views wave and verify the allocation of inventory
+	#And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process
+	And user open RF Menu and complete the tasks created
+	Then user open Task screen & validates the status of tasks
+	#And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
+	Then user search for DO and confirms it
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	Then fetch the OLPN number
+	Then user opens RF menu and perform "MM3 Cancel oLPN" operation in inventory menu
+	And user opens the oLPN details in Distribuion Order page and and verify its status "99 - Cancelled"
+	And user opens DO screen and searches for the DistributionOrder and verify its status "200 - Cancelled"
+	#And validates the PIX message "620 - Order transactions"
+	Then user log out from application
 	
