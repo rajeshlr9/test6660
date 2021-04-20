@@ -33,6 +33,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import com.cucumber.listener.Reporter;
+
 import StepDefinition.Steps;
 import entity.DistributionOrders;
 import entity.Items;
@@ -45,30 +47,11 @@ public class Xpathxml {
 	public String IBMasterTwoItemFilePath = dirPath + "/src/test/resources/testdata/Inbound/" +Steps.scenarioData.get("Account")+ "/IBMasterTwoItem.xml";
 	public String IBMasterOneReturnFilePath = dirPath + "/src/test/resources/testdata/Inbound/"+Steps.scenarioData.get("Account") +"/IBMasterOne-Returns.xml";
 	public String IBMasterTwoReturnFilePath = dirPath + "/src/test/resources/testdata/Inbound/" +Steps.scenarioData.get("Account")+"/IBMasterTwo-Returns.xml";
-	public String ItemCreationMasterOneItemFilePath = dirPath + "/src/test/resources/testdata/Items/" + "ItemCreationMasterwithOneItem.xml";
-	public String ItemCreationMasterTwoItemFilePath = dirPath + "/src/test/resources/testdata/Items/" + "ItemCreationMasterwithTwoItems.xml";
 	public String inputIBFilePath = dirPath + "/src/test/resources/testdata/Inbound/"+Steps.scenarioData.get("Account") + "/InputIB.xml";
-	public String ibfilePath = "C:/Users/ffd-sys-team/Desktop/ASN_QSC.txt";
-	public String inputItemCreationFilePath = dirPath + "/src/test/resources/testdata/Items/" + "InputItem.xml";
-	public String inputIBXMLFileName = "InputIB.xml";
-	public String inputItemCreationXMLFileName = "InputItem.xml";
-	public String POMasterOneItemFilePath = dirPath + "/src/test/resources/testdata/Inbound/" + "POMasterOneItem.xml";
-	public String POMasterTwoItemFilePath = dirPath + "/src/test/resources/testdata/Inbound/" + "POMasterTwoItem.xml";
-	public String inputPOFilePath = dirPath + "/src/test/resources/testdata/Inbound/" + "InputPO.xml";
-	public String inputPOXMLFileName = "InputPO.xml";
-	public String DOMasterFilePath = dirPath + "/src/test/resources/testdata/Outbound/" + "OutBoundMaster.xml";
-	public String DOMasterTwoItemFilePath = dirPath + "/src/test/resources/testdata/Outbound/" + "OutBoundMasterTwoItems.xml";
-	public String DOMasterLTLFilePath = dirPath + "/src/test/resources/testdata/Outbound/" + "OutBoundMasterTL_LTL.xml";
-	public String tempDOXMLFileName="TempDO.xml";
-	public String tempDOXML = dirPath + "/src/test/resources/testdata/Outbound/" + "TempDO.xml";
-	public String UAT_ASN_path = dirPath + "/src/test/resources/testdata/Inbound/"+ "UAT_ASN_MULTI_LINE.xml";
-	
-	public String DFilParcelOneItemFilePath=dirPath + "/src/test/resources/testdata/Outbound/" + "DFil_XML_OneItem.xml";
-	public String DFilParcelTwoItemFilePath=dirPath + "/src/test/resources/testdata/Outbound/" + "DFil_XML_TwoItems.xml";
-	public String BulkParcelOneItemFilePath=dirPath + "/src/test/resources/testdata/Outbound/" + "Bulk_XML_Parcel_OneItem.xml";
-	public String BulkParcelTwoItemFilePath=dirPath + "/src/test/resources/testdata/Outbound/" + "Bulk_XML_Parcel_TwoItems.xml";
-	public String BulkTLLTLOneItemFilePath=dirPath + "/src/test/resources/testdata/Outbound/" + "BULK_TL_LTL_OneItem.xml";
-	public String BulkTLLTLTwoItemFilePath=dirPath + "/src/test/resources/testdata/Outbound/" + "BULK_TL_LTL_TwoItems.xml";
+	public String DOMasterOneItemFilePath = dirPath + "/src/test/resources/testdata/Outbound/" +Steps.scenarioData.get("Account") + "/OBOneItem.xml";
+	public String DOMasterTwoItemFilePath = dirPath + "/src/test/resources/testdata/Outbound/" +Steps.scenarioData.get("Account") + "/OBTwoItem.xml";
+	public String inputOBFilePath = dirPath + "/src/test/resources/testdata/Outbound/" +Steps.scenarioData.get("Account") + "/InputOB.xml";
+			
 	public static String ASNNumber = null;
 	
 	public static String ItemUpdateItemID() {
@@ -244,7 +227,9 @@ public class Xpathxml {
 	public static String DistributionOrderIdUpdate() {
 		return "//DistributionOrder/DistributionOrderId";
 	}
-
+	public static String ReferenceIdUpdate() {
+	return "//Header/Reference_ID";
+	}
 	public static String PickupStartDttmUpdate() {
 		return "//DistributionOrder/PickupStartDttm";
 	}
@@ -265,7 +250,7 @@ public class Xpathxml {
 		return "//DistributionOrder/LineItem[" + i + "]/" + nodeName;
 	}
 	public String DOItemName(int i) {
-		return "//DistributionOrder/LineItem[" + i + "]/ItemName";
+		return "//DistributionOrder/LineItem[" + i + "]//ItemName";
 	}
 	public String DOItemDescription(int i) {
 		return "//DistributionOrder/LineItem[" + i + "]/Description";
@@ -417,40 +402,8 @@ public class Xpathxml {
 		Steps.logger.info("DeliveryStartDate has been updated as : " + deliveryStartDate);		
 	}
     
-	public void user_create_inputXML_for_inbound_basedOn_noOfItem_ItemCreation(int noOfItem) throws FileNotFoundException, XPathExpressionException, IOException, SAXException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException{
-		
-		if(noOfItem == 1){
-			user_copy_content_from_source_to_target(ItemCreationMasterOneItemFilePath, inputItemCreationFilePath);
-			
-		}else if(noOfItem == 2){
-			user_copy_content_from_source_to_target(ItemCreationMasterTwoItemFilePath, inputItemCreationFilePath);
-		}
-		
-		
-	}
-	public void user_create_inputPOXML_for_inbound_basedOn_noOfItem(int noOfItem) throws FileNotFoundException, XPathExpressionException, IOException, SAXException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException{
-		String PODate = user_generate_delivery_start_date();
-		
-		String POrderId = "POGVK" + SeleniumTestHelper.generateRandomInt(1000, 9999) + "-"
-				+ SeleniumTestHelper.generateRandomInt(1, 9);	
-			
-		Items.setPurchaseOrderID(POrderId);
-		if(noOfItem == 1){
-			user_copy_content_from_source_to_target(POMasterOneItemFilePath, inputPOFilePath);
-		}else if(noOfItem == 2){
-			user_copy_content_from_source_to_target(POMasterTwoItemFilePath, inputPOFilePath);
-		}
-		System.out.println("XML input data created with : " + noOfItem + " item");
-		ModifyXmlfile(POUpdatePOID(), POrderId, inputPOFilePath);
-		System.out.println("POID has been updated as : " + POrderId);
-		ModifyXmlfile(PODate(), PODate, inputPOFilePath);
-		System.out.println("DeliveryStartDate has been updated as : " + PODate);
-	}
-	public String ItemUpdateItemdescription(int i) {
-		return "//Item[" + i + "]/Description";
-	}
 	
-	public void create_xmlFile_for_DistributionOrder_to_upload() throws Exception{
+	public void create_xmlFile_for_DistributionOrder_to_upload(String xmlType) throws Exception{
 		
 		String pickupStartDate = user_generate_delivery_start_date();
 		String pickupEndDate = CurrentDayplusdaysindateformat(1);
@@ -460,150 +413,61 @@ public class Xpathxml {
 		String DONumber = DOTime;
 		Items.setDONumber(DONumber);
 		
-		int noOfItem= Steps.ItemDataMap.size();
-		System.out.println("ItemDataMap size:: "+noOfItem);
-		if(noOfItem == 1){
-			user_copy_content_from_source_to_target(IBMasterOneItemFilePath, inputIBFilePath);
-		}else if(noOfItem == 2){
-			user_copy_content_from_source_to_target(IBMasterTwoItemFilePath, inputIBFilePath);
+		if(xmlType.equals("Single Line DO")){
+			user_copy_content_from_source_to_target(DOMasterOneItemFilePath, inputOBFilePath);
+		}else if(xmlType.equals("Multi Line DO")){
+			user_copy_content_from_source_to_target(DOMasterTwoItemFilePath, inputOBFilePath);
 		}
 		
-		
-		
-		ModifyXmlfile(DistributionOrderIdUpdate(), DistributionOrders.getDOnumber(), tempDOXML);
-		System.out.println("Distribution Order upadted is : "+DistributionOrders.getDOnumber());
-		ModifyXmlfile(OrderedDttmUpdate(),pickupStartDate , tempDOXML);
-		System.out.println("OrderedDttm upadted as : "+pickupStartDate);
-		ModifyXmlfile(PickupStartDttmUpdate(),pickupStartDate , tempDOXML);
-		System.out.println("PickupStartDttm upadted as : "+pickupStartDate);
-		ModifyXmlfile(PickupEndDttmUpdate(),pickupEndDate , tempDOXML);
-		System.out.println("PickupEndDttm upadted as : "+pickupEndDate);
-		ModifyXmlfile(DeliveryStartDttmUpdate(),deliveryStartDate , tempDOXML);
-		System.out.println("DeliveryStartDttm upadted as : "+deliveryStartDate);
-		ModifyXmlfile(DeliveryEndDttmUpdate(),deliveryEndDate , tempDOXML);
-		System.out.println("DeliveryEndDttm upadted as : "+deliveryEndDate);
-		System.out.println("TempDO XML data for the scenario has been created successfully with all the required data");
+		ModifyXmlfile(DistributionOrderIdUpdate(), Items.getDONumber(), inputOBFilePath);
+		System.out.println("Distribution Order updated is : "+Items.getDONumber());
+		ModifyXmlfile(ReferenceIdUpdate(), Items.getDONumber(), inputOBFilePath);
+		System.out.println("Reference ID updated is : "+Items.getDONumber());
+		ModifyXmlfile(OrderedDttmUpdate(),pickupStartDate , inputOBFilePath);
+		System.out.println("OrderedDttm updated as : "+pickupStartDate);
+		ModifyXmlfile(PickupStartDttmUpdate(),pickupStartDate , inputOBFilePath);
+		System.out.println("PickupStartDttm updated as : "+pickupStartDate);
+		ModifyXmlfile(PickupEndDttmUpdate(),pickupEndDate , inputOBFilePath);
+		System.out.println("PickupEndDttm updated as : "+pickupEndDate);
+		ModifyXmlfile(DeliveryStartDttmUpdate(),deliveryStartDate , inputOBFilePath);
+		System.out.println("DeliveryStartDttm updated as : "+deliveryStartDate);
+		ModifyXmlfile(DeliveryEndDttmUpdate(),deliveryEndDate , inputOBFilePath);
+		System.out.println("DeliveryEndDttm updated as : "+deliveryEndDate);
+		System.out.println("Distribution Order XML data for the scenario has been created successfully with all the required data");
 	}
-	
-	
-	public void create_xmlFile_for_DistributionOrder_to_uploadbyshipvia(int noOfItem,String orderType,String shipvia, String SaturdayFlag)
-			throws FileNotFoundException, IOException, XPathExpressionException, SAXException,
-			ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
-		String pickupStartDate = user_generate_delivery_start_date();
-		int DOID = SeleniumTestHelper.generateRandomInt(1000000, 9999999);
-		String DONumber = "DO" + DOID;
-		DistributionOrders.setDOnumber(DONumber);
-		System.out.println("DO number generated is " +DistributionOrders.getDOnumber());
-		
-			if(orderType.equalsIgnoreCase("DFILL"))
-			{
-				if(noOfItem == 1 )
-				{
-					user_copy_content_from_source_to_target(DFilParcelOneItemFilePath, tempDOXML);
-				}
-				else if(noOfItem == 2 ){
-					user_copy_content_from_source_to_target(DFilParcelTwoItemFilePath, tempDOXML);
-				}
-			}
-			else if(orderType.equalsIgnoreCase("Bulk Parcel"))
-			{
-				if(noOfItem == 1 )
-				{
-					user_copy_content_from_source_to_target(BulkParcelOneItemFilePath, tempDOXML);
-				}
-				else if(noOfItem == 2 ){
-					user_copy_content_from_source_to_target(BulkParcelTwoItemFilePath, tempDOXML);
-				}
-			}
-			else if(orderType.equalsIgnoreCase("NL"))
-			{
-				if(noOfItem == 1 )
-				{
-					user_copy_content_from_source_to_target(BulkTLLTLOneItemFilePath, tempDOXML);
-				}
-				else if(noOfItem == 2 ){
-					user_copy_content_from_source_to_target(BulkTLLTLTwoItemFilePath, tempDOXML);
-				}
-			}
-		
-			if(shipvia.equalsIgnoreCase("SHP012")){
-		ModifyXmlfile(DistributionOrderIdUpdate(), DistributionOrders.getDOnumber(), tempDOXML);
-		System.out.println("Distribution Order upadted is : "+DistributionOrders.getDOnumber());
-		ModifyXmlfile(OrderedDttmUpdate(),pickupStartDate , tempDOXML);
-		System.out.println("OrderedDttm upadted as : "+pickupStartDate);
-		ModifyXmlfile(PickupStartDttmUpdate(),pickupStartDate , tempDOXML);
-		System.out.println("PickupStartDate upadted as : "+pickupStartDate);
-		ModifyXmlfile(PickupEndDttmUpdate(),CurrentDayplusdaysindateformat(3), tempDOXML);
-		System.out.println("PickupEndDate upadted as : "+CurrentDayplusdaysindateformat(3));
-		ModifyXmlfile(DeliveryStartDttmUpdate(), CurrentDayplusdaysindateformat(6), tempDOXML);
-		System.out.println("DeliveryStartDate upadted as : "+CurrentDayplusdaysindateformat(6));
-		ModifyXmlfile(DeliveryEndDttmUpdate(), CurrentDayplusdaysindateformat(9), tempDOXML);
-		System.out.println("DeliveryEndDate upadted as : "+CurrentDayplusdaysindateformat(9));
-		System.out.println("TempDO XML data for the scenario has been created successfully with all the required data");
-			}
+	public void update_details_for_DistributionOrder_to_upload() throws XPathExpressionException, SAXException, IOException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
+		String itemName = null;
+		String shpQty = null;
+		String uom = null;
+		//String itemDesc=null;
+		for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 			
-			else if(shipvia.equalsIgnoreCase("03")||shipvia.equalsIgnoreCase("02")||shipvia.equalsIgnoreCase("UPSGROUND2")){
-				ModifyXmlfile(DistributionOrderIdUpdate(), DistributionOrders.getDOnumber(), tempDOXML);
-				System.out.println("Distribution Order upadted is : "+DistributionOrders.getDOnumber());
-				ModifyXmlfile(OrderedDttmUpdate(),pickupStartDate , tempDOXML);
-				if(SaturdayFlag=="No")
-				{
-					Calendar cl = Calendar.getInstance();
-					if ((cl.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY)||(cl.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY))
-					{
-						SeleniumTestHelper.user_generate_estimated_delivery_date(3);
-						System.out.println("OrderedDttm upadted as : "+SeleniumTestHelper.user_generate_estimated_delivery_date(3) );
-						ModifyXmlfile(PickupStartDttmUpdate(),SeleniumTestHelper.user_generate_estimated_delivery_date(3) , tempDOXML);
-						System.out.println("PickupStartDttm upadted as : "+SeleniumTestHelper.user_generate_estimated_delivery_date(3) );
-						ModifyXmlfile(PickupEndDttmUpdate(),SeleniumTestHelper.user_generate_estimated_delivery_date(4) , tempDOXML);
-						System.out.println("PickupEndDttm upadted as : "+SeleniumTestHelper.user_generate_estimated_delivery_date(4));
-						ModifyXmlfile(DeliveryStartDttmUpdate(),SeleniumTestHelper.user_generate_estimated_delivery_date(5), tempDOXML);
-						System.out.println("DeliveryStartDttm upadted as : "+SeleniumTestHelper.user_generate_estimated_delivery_date(5));
-						ModifyXmlfile(DeliveryEndDttmUpdate(),SeleniumTestHelper.user_generate_estimated_delivery_date(5) , tempDOXML);
-						System.out.println("DeliveryEndDttm upadted as : "+SeleniumTestHelper.user_generate_estimated_delivery_date(5));
-					}
-					else if((cl.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY))
-					{
-						ModifyXmlfile(OrderedDttmUpdate(),SeleniumTestHelper.user_generate_estimated_delivery_date(4) , tempDOXML);
-						System.out.println("OrderedDttm upadted as : "+SeleniumTestHelper.user_generate_estimated_delivery_date(4) );
-						ModifyXmlfile(PickupStartDttmUpdate(),SeleniumTestHelper.user_generate_estimated_delivery_date(4) , tempDOXML);
-						System.out.println("PickupStartDttm upadted as : "+SeleniumTestHelper.user_generate_estimated_delivery_date(4) );
-						ModifyXmlfile(PickupEndDttmUpdate(),SeleniumTestHelper.user_generate_estimated_delivery_date(4) , tempDOXML);
-						System.out.println("PickupEndDttm upadted as : "+SeleniumTestHelper.user_generate_estimated_delivery_date(4));
-						ModifyXmlfile(DeliveryStartDttmUpdate(),SeleniumTestHelper.user_generate_estimated_delivery_date(5), tempDOXML);
-						System.out.println("DeliveryStartDttm upadted as : "+SeleniumTestHelper.user_generate_estimated_delivery_date(5));
-						ModifyXmlfile(DeliveryEndDttmUpdate(),SeleniumTestHelper.user_generate_estimated_delivery_date(6) , tempDOXML);
-						System.out.println("DeliveryEndDttm upadted as : "+SeleniumTestHelper.user_generate_estimated_delivery_date(6));
-						
-					}
-				}
-				System.out.println("OrderedDttm upadted as : "+pickupStartDate);
-				ModifyXmlfile(PickupStartDttmUpdate(),pickupStartDate , tempDOXML);
-				System.out.println("PickupStartDate upadted as : "+pickupStartDate);
-				ModifyXmlfile(PickupEndDttmUpdate(),CurrentDayplusdaysindateformat(3), tempDOXML);
-				System.out.println("PickupEndDate upadted as : "+CurrentDayplusdaysindateformat(3));
-				ModifyXmlfile(DeliveryStartDttmUpdate(), CurrentDayplusdaysindateformat(6), tempDOXML);
-				System.out.println("DeliveryStartDate upadted as : "+CurrentDayplusdaysindateformat(6));
-				ModifyXmlfile(DeliveryEndDttmUpdate(), CurrentDayplusdaysindateformat(9), tempDOXML);
-				System.out.println("DeliveryEndDate upadted as : "+CurrentDayplusdaysindateformat(9));
-				System.out.println("TempDO XML data for the scenario has been created successfully with all the required data");
-				
-			}
+			itemName = Steps.ItemDataMap.get(i).get("Item");
+			ModifyXmlfile(DOItemName(i+1), itemName, inputOBFilePath);
+			System.out.println("Item : " + itemName + " has been updated successfully");
+			Steps.logger.info("Item : " + itemName + " has been updated successfully");
 			
-			else{
-				ModifyXmlfile(DistributionOrderIdUpdate(), DistributionOrders.getDOnumber(), tempDOXML);
-				System.out.println("Distribution Order upadted is : "+DistributionOrders.getDOnumber());
-				ModifyXmlfile(OrderedDttmUpdate(),pickupStartDate , tempDOXML);
-				System.out.println("OrderedDttm upadted as : "+pickupStartDate);
-				System.out.println("TempDO XML data for the scenario has been created successfully with all the required data");
-			}
+			//itemDesc=Steps.ItemDataMap.get(i).get("ItemDesc");
+			//xmlInput.ModifyXmlfile(xmlInput.DOItemDescription(i), itemDesc, xmlInput.inputOBFilePath);
+			//System.out.println("Item Description : " + itemDesc + " has been updated successfully");
+			//Steps.logger.info("Item Description : " + itemDesc + " has been updated successfully");
+			
+			shpQty = Steps.ItemDataMap.get(i).get("ShippedQty");
+			ModifyXmlfile(DOUpdateOrderQty(i+1), shpQty, inputOBFilePath);
+			System.out.println("Shipped Qty : " + shpQty + " has been updated successfully");
+			Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
+			
+			uom = Steps.ItemDataMap.get(i).get("UOM");
+			ModifyXmlfile(DOUpdateQtyUOM(i+1), uom, inputOBFilePath);
+			System.out.println("QtyUOM : " + uom + " has been updated successfully");
+			Steps.logger.info("QtyUOM : " + uom + " has been updated successfully");
+
+			Items.setProductsForDistOrder(itemName);
+			Items.setItemWithShippedQtyDO(itemName, Integer.parseInt(shpQty));
+			Items.setItemWithQtyUOMDO(itemName, uom);
+			
+			Reporter.addStepLog("Item Id- " + Steps.ItemDataMap.get(i).get("Item") + ", Shipped Qty- "
+					+ Steps.ItemDataMap.get(i).get("ShippedQty"));		
 	}
-	
-	public void create_ASN_XML_for_UAT() throws FileNotFoundException, XPathExpressionException, IOException, SAXException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException{
-		String deliveryStartDate = user_generate_delivery_start_date();
-		user_copy_content_from_source_to_target(UAT_ASN_path, inputIBFilePath);
-		ModifyXmlfile(ASNUpdateDeliveryStart(), deliveryStartDate, inputIBFilePath);
-		System.out.println("DeliveryStartDate has been updated as : " + deliveryStartDate);
-	}
-	
+}
 }

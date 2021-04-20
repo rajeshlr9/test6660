@@ -1334,6 +1334,16 @@ public class RFMenuPage {
 					locationInput.sendKeys( Keys.ENTER);
 					Thread.sleep(2000);
 					Screenshots.captureSnapshot(driver);
+					if (SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
+						SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
+						if (errorOrWarningMsg.getText().contains("Error")) {
+							System.out.println("Info :- " + errorOrWarningMsg.getText());
+							Steps.logger.info(errorOrWarningMsg.getText());
+							globalFunc.Screenshots.seleniumSnapshot(driver);
+							Steps.testRes = "Failed";
+							Assert.assertTrue(false);
+						}
+					}
 					Steps.logger.info(
 							String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")) + " qty is received in LPN "
 									+ LPNnum3[1].trim() + " for Item- " + Items.getItemsForReceivingASN(i));
@@ -1418,7 +1428,7 @@ public class RFMenuPage {
 						Screenshots.captureSnapshot(driver);
 						String syssuggestedLoc = altsuggestedLocLabel.getText();
 						String[] syssuggestedLocSplit = syssuggestedLoc.split(" ");
-						newSysSuggestedLoc = sysSuggestedLocSplit[1];
+						newSysSuggestedLoc = syssuggestedLocSplit[1];
 						String[] spltarr1 = sysSuggestedLocSplit[1].split("-");
 						String str1 = GlobalClass.removeZero(spltarr1[1]);
 						System.out.println(str);
@@ -1434,6 +1444,17 @@ public class RFMenuPage {
 						locationInput.sendKeys( Keys.ENTER);
 						Thread.sleep(2000);
 						Screenshots.captureSnapshot(driver);
+						
+						if (SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
+							SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
+							if (errorOrWarningMsg.getText().contains("Error")) {
+								System.out.println("Info :- " + errorOrWarningMsg.getText());
+								Steps.logger.info(errorOrWarningMsg.getText());
+								globalFunc.Screenshots.seleniumSnapshot(driver);
+								Steps.testRes = "Failed";
+								Assert.assertTrue(false);
+							}
+						}
 						Steps.logger.info(
 								String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")) + " qty is received in LPN "
 										+ LPNnum4[1].trim() + " for Item- " + Items.getItemsForReceivingASN(i));
@@ -1932,6 +1953,16 @@ public class RFMenuPage {
 					locationInput.sendKeys( Keys.ENTER);
 					Thread.sleep(2000);
 					Screenshots.captureSnapshot(driver);
+					if (SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
+						SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
+						if (errorOrWarningMsg.getText().contains("Error")) {
+							System.out.println("Info :- " + errorOrWarningMsg.getText());
+							Steps.logger.info(errorOrWarningMsg.getText());
+							globalFunc.Screenshots.seleniumSnapshot(driver);
+							Steps.testRes = "Failed";
+							Assert.assertTrue(false);
+						}
+					}
 				
 				}
 				Steps.logger.info("Completed Receiving");
@@ -2463,6 +2494,7 @@ public class RFMenuPage {
 				break;
 			}
 			case "MM3 Cancel oLPN":
+				int ii=0;
 				while (!(SeleniumTestHelper.isElementDisplayed(rfCancelolpnOption))) {
 					pageDown.click();
 				}
@@ -2470,12 +2502,58 @@ public class RFMenuPage {
 				rfCancelolpnOption.click();
 				Screenshots.captureSnapshot(driver);
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, MM3oLPNInquirytxtBox, 50);
-				for(int ii=0;ii<Items.getoLPNListSize();ii++) {
-					MM3oLPNInquirytxtBox.sendKeys(Items.getoLPN(ii));
+				for(ii=0;ii<Items.getoLPNListSize();ii++) {
+					MM3oLPNInquirytxtBox.sendKeys(Items.getoLPN(ii)+Keys.TAB);
 					Thread.sleep(2000);
+				if(SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {	
+					if(errorOrWarningMsg.getText().contains("oLPN is in shipped status and cannot be cancelled"))
+					{
+						Steps.logger.info(errorOrWarningMsg.getText());
+						Thread.sleep(1000);
+						Screenshots.captureSnapshot(driver);
+						acceptAndProceedBtn.click();
+						Thread.sleep(2000);
+						//Assert.assertEquals(errorOrWarningMsg.getText(), "oLPN is in shipped status and cannot be cancelled","oLPN cancellation status: ");
+					
+					}else if(errorOrWarningMsg.getText().contains("oLPN is already in cancelled status"))
+					{
+						Steps.logger.info(errorOrWarningMsg.getText());
+						Thread.sleep(1000);
+						Screenshots.captureSnapshot(driver);
+						acceptAndProceedBtn.click();
+						Thread.sleep(2000);
+						//Assert.assertEquals(errorOrWarningMsg.getText(), "oLPN is already in cancelled status","oLPN cancellation status: ");
+					Assert.assertTrue(false);
+					break;
+					
+					}else if(errorOrWarningMsg.getText().contains("Invalid Barcode - Carton / EAN prefix"))
+					{
+						Steps.logger.info(errorOrWarningMsg.getText());
+						Thread.sleep(1000);
+						Screenshots.captureSnapshot(driver);
+						acceptAndProceedBtn.click();
+						Thread.sleep(2000);
+						Assert.assertEquals(errorOrWarningMsg.getText(), "Invalid Barcode - Carton / EAN prefix","oLPN cancellation status: ");
+						Assert.assertTrue(false);
+						break;
+					}
+					/*
+					 * else if (errorOrWarningMsg.getText().contains("Error")) { Thread.sleep(1000);
+					 * Screenshots.captureSnapshot(driver); Steps.testRes = "Failed";
+					 * Assert.assertTrue(false); }
+					 */
+				}
+				if(Steps.scenarioData.get("canceloLPNFlag")!="") {
+					if(Integer.parseInt(Steps.scenarioData.get("canceloLPNFlag"))==1&& ii==0)
+					{
+						System.out.println("inside parseint");
+						break;
+					}
+				}
 				}
 				Steps.logger.info("oLPN is cancelled");
 				Reporter.addStepLog("oLPN is cancelled");
+				
 				break;
 				
 			case "MM3 split OLPN":
@@ -2548,8 +2626,11 @@ public class RFMenuPage {
 						SeleniumTestHelper.waitForElementToBeDisplayed(driver, SplitFromoLPNtextbox, 20);
 						SplitFromoLPNtextbox.sendKeys(Items.getoLPN(0));
 						Screenshots.captureSnapshot(driver);
+						Thread.sleep(2000);
+						if(SeleniumTestHelper.isElementDisplayed(SplitFromoLPNtextbox)) {
 						SplitFromoLPNtextbox.sendKeys(Keys.ENTER);
-						Thread.sleep(3000);	
+						}
+						Thread.sleep(1000);	
 						
 						Screenshots.captureSnapshot(driver);
 						Steps.logger.info("Enter the value of oLPN: " + Items.getoLPN(1));
@@ -2671,6 +2752,11 @@ public class RFMenuPage {
 
 		}
 	}
+	private int Parseint(String string) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	//jaya
 	public void splitCmbneoLPN() throws Exception {
 
@@ -3355,7 +3441,7 @@ public void completeSingleTask() throws Exception {
 				SeleniumTestHelper.assertEquals(a[1], Steps.scenarioData.get("ASNNo"), "ASN No ");
 				
 				String ASNstatus= driver.findElement(By.id("dataForm:dtltxt1_b3")).getText();
-				SeleniumTestHelper.assertEquals(ASNstatus, "40 - Receiving Verified", "ASN Status ");
+				SeleniumTestHelper.assertEquals(ASNstatus, Steps.scenarioData.get("ASNStatus"), "ASN Status ");
 				Thread.sleep(1000);
 				globalFunc.Screenshots.seleniumSnapshot(driver);
 				Screenshots.addingScreenshottoExentReport();
@@ -3369,7 +3455,7 @@ public void completeSingleTask() throws Exception {
 				Screenshots.captureSnapshot(driver);
 				String itemID= driver.findElement(By.id("dtl_a")).getText();
 				String b[]= itemID.split(":");
-				SeleniumTestHelper.assertEquals(b[1].trim(), "FG-003306-01", "ASN Item ");
+				SeleniumTestHelper.assertEquals(b[1].trim(), Steps.scenarioData.get("ASNItem"), "ASN Item ");
 				
 				Steps.logger.info("ASN Inquiry process completed");
 				Reporter.addStepLog("MM3 ASN Inquiry process is completed for ASN: "+Steps.scenarioData.get("ASNNo"));

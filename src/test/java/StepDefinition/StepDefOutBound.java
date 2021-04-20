@@ -1,8 +1,13 @@
 package StepDefinition;
 
 import java.awt.AWTException;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
@@ -19,6 +24,7 @@ import pages.DistributionOrdersPage;
 import pages.HomePage;
 import pages.ILPNPage;
 import pages.OlpnsPage;
+import pages.PostMessagePage;
 import pages.RFMenuPage;
 import pages.TasksPage;
 import pages.WavesPage;
@@ -39,15 +45,16 @@ public class StepDefOutBound {
 	OlpnsPage oLPNspage = new OlpnsPage();
 	ILPNPage iLPNPage = new ILPNPage();
 	Xpathxml xmlInput= new Xpathxml();
+	PostMessagePage postMessagePage = new PostMessagePage();
 
 	public StepDefOutBound() {
 
 	}
-	@When("^user create xml file with updated DO_No$")
-	public void user_create_xml_file_with_updated_DO_No() throws Exception {
+	@When("^user create xml file using \"([^\"]*)\" with updated DO_No$")
+	public void user_create_xml_file_with_updated_DO_No(String orderType) throws Exception {
 		try {
 			Steps.logger.info("XML creation started");
-			xmlInput.create_xmlFile_for_DistributionOrder_to_upload();
+			xmlInput.create_xmlFile_for_DistributionOrder_to_upload(orderType);
 			Steps.scenario.write("DO-" + Items.getDONumber());
 			Reporter.addStepLog("DO-" + Items.getDONumber());
 		} catch (Exception e) {
@@ -55,6 +62,54 @@ public class StepDefOutBound {
 			System.out.println(e);
 			Assert.assertTrue(false, e.getMessage());
 		}
+	}
+	
+	@And("^user update xml itemDetails from excel sheet for DO$")
+	public void user_update_xml_itemDetails_from_sheet_for_DO() throws Exception {
+
+		try {
+			Steps.logger.info("XML creation started");
+			xmlInput.update_details_for_DistributionOrder_to_upload();
+			
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
+	@When("^user opens post message screen and upload file in order to create DO$")
+	public void user_opens_post_message_screen_and_upload_file_in_order_to_create_DO() throws Exception {
+		// String isjenkinJob = Runner.jenkinJobName;
+		BufferedReader reader = null;
+		try {
+		homePage.menuItemsIntegrationSelection("Post Message");
+		Steps.logger.info("Open Post message screen");
+		Screenshots.captureSnapshot(driver);
+
+			reader = new BufferedReader(new FileReader(new File(xmlInput.inputOBFilePath)));
+			StringBuffer targetString = new StringBuffer();
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				targetString.append(line.trim());
+			}
+			String request = String.valueOf(targetString).replaceAll("> <", "><");
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("var t = document.getElementById('dataForm:xmlString'); " + "t.value = arguments[0];",
+					request);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, postMessagePage.sendBtn, 50);
+			postMessagePage.sendBtn.click();
+			Steps.logger.info("Clicked on post message button");
+			Screenshots.captureSnapshot(driver);
+
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		} finally {
+			reader.close();
+		}
+
 	}
 
 	@And("user opens Distribution Order Profile in order to create DO")
@@ -72,6 +127,44 @@ public class StepDefOutBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
+	@Then("^user verify the response for DO creation$")
+	public void user_verify_the_response_for_DO_Creation() throws Exception {
+		try {
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, postMessagePage.responseTxt, 10000);
+			postMessagePage.responseTxt.click();
+			int noOfClick = 10;
+			for (int i = 0; i < noOfClick; i++) {
+				postMessagePage.responseTxt.sendKeys(Keys.ARROW_DOWN);
+			}
+			String responseType = postMessagePage.Validate_Response(driver, "Response_Type");
+			System.out.println("responseType: " + responseType);
+			Steps.logger.info("responseType: " + responseType);
+			String errorType = postMessagePage.Validate_Response(driver, "Error_Type");
+			if ((responseType.equals("Confirmation")) && (errorType.equals("0"))) {
+				System.out.println("DO is successfully created");
+				Reporter.addStepLog("DO is successfully created");
+				SeleniumTestHelper.assertEquals(responseType, "Confirmation");
+				SeleniumTestHelper.assertEquals(errorType, "0");
+				// System.out.println("Item : " + ItemName + " successfully verified
+				// in the response");
+				driver.switchTo().defaultContent();
+				Thread.sleep(1000);
+				Screenshots.captureSnapshot(driver);
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, postMessagePage.openWindows, 50);
+				postMessagePage.openWindows.click();
+				SeleniumTestHelper.Close_OpenedWindow("Post Message", driver);
+			} else {
+				System.out.println("DO request has not been created");
+				Reporter.addStepLog("DO request has not been created");
+				SeleniumTestHelper.fail("DO request has not been created");
+			}
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}

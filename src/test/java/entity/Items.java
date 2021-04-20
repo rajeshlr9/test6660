@@ -42,6 +42,9 @@ public class Items {
 	public static List<String> IlpNWithOB = new ArrayList<>();
 	public static List<String> LPNThreeDgtList = new ArrayList();
 	private static String pdfCOntent;
+	public static List<String> productsForDistOrder = new ArrayList<>();
+	private static Map<String, Integer> itemWithShippedQtyDO = new HashMap<>();
+	private static Map<String, String> itemWithQtyUOMDO = new HashMap<>();
 	//jaya
 	private static List<String> List_celtext = new ArrayList<>();
 	
@@ -372,10 +375,33 @@ public class Items {
 		return List_celtext.size();
 	}
 	
+	public static String getProductsForDistOrder(int i) {
+		return productsForDistOrder.get(i);
+	}
+	public static void setProductsForDistOrder(String productsForDistOrd) {
+		productsForDistOrder.add(productsForDistOrd);
+	}
+	public static int getItemWithShippedQtyDO(String item) {
+		return itemWithShippedQtyDO.get(item);
+	}
+
+	public static void setItemWithShippedQtyDO(String item, int itemQty) {
+		itemWithShippedQtyDO.put(item, itemQty);
+	}
+	public static String getItemWithQtyUOMDO(String item) {
+		return itemWithQtyUOMDO.get(item);
+	}
+
+	public static void setItemWithQtyUOMDO(String item, String QtyUOM) {
+		itemWithQtyUOMDO.put(item, QtyUOM);
+	}
+	
 	public static void removeAllTheValuesFromMap() {
 		//jaya
 		List_celtext.clear();
-		
+		itemWithQtyUOMDO.clear();
+		itemWithQtyUOMDO.clear();
+		itemWithShippedQtyDO.clear();
 		Steps.testRes="";
 		RFMenuPage.iLPNz.clear();
 		waveNumber=null;

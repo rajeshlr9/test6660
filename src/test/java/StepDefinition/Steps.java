@@ -182,7 +182,7 @@ public class Steps {
 			
 			List<List<String>> data = scenarioName.raw();
 			scenarioData = ob.getExcelData(data.get(0).get(0), "ScenarioData", Config.getProperty("TestDataPath"));
-			System.out.println(scenarioData);
+			System.out.println("scenarioData: "+scenarioData);
 			ItemDataMap = ob.filterData(ob.readData(Config.getProperty("TestDataPath"), "ItemData"),
 					scenarioData.get("ItemReference"), "ItemData");
 			System.out.println(ItemDataMap);

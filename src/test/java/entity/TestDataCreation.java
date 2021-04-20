@@ -49,26 +49,21 @@ public class TestDataCreation {
 		itemname.put(itemnumber, Itemname);
 	}
 	
-	public static void SerialType(String serialType) throws XPathExpressionException, SAXException, IOException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException
-	{
-		switch(serialType)
-		{
-		case "0":
-			xmlInput.ModifyXmlfile(xmlInput.ItemUpdateSerialRequired(1),"0",xmlInput.inputItemCreationFilePath);
-			System.out.println("Serial type updated as "+serialType );
-			break;
-		case "1":
-			xmlInput.ModifyXmlfile(xmlInput.ItemUpdateSerialRequired(1),"1",xmlInput.inputItemCreationFilePath);
-			System.out.println("Serial type updated as "+serialType );
-			break;
-		case "4" :
-			xmlInput.ModifyXmlfile(xmlInput.ItemUpdateSerialRequired(1),"4",xmlInput.inputItemCreationFilePath);
-			System.out.println("Serial type updated as "+serialType );
-			break;
-		default:
-				System.out.println("Switched to Default serial type");
-		}
-	}
-		
+	/*
+	 * public static void SerialType(String serialType) throws
+	 * XPathExpressionException, SAXException, IOException,
+	 * ParserConfigurationException, TransformerFactoryConfigurationError,
+	 * TransformerException { switch(serialType) { case "0":
+	 * xmlInput.ModifyXmlfile(xmlInput.ItemUpdateSerialRequired(1),"0",xmlInput.
+	 * inputItemCreationFilePath);
+	 * System.out.println("Serial type updated as "+serialType ); break; case "1":
+	 * xmlInput.ModifyXmlfile(xmlInput.ItemUpdateSerialRequired(1),"1",xmlInput.
+	 * inputItemCreationFilePath);
+	 * System.out.println("Serial type updated as "+serialType ); break; case "4" :
+	 * xmlInput.ModifyXmlfile(xmlInput.ItemUpdateSerialRequired(1),"4",xmlInput.
+	 * inputItemCreationFilePath);
+	 * System.out.println("Serial type updated as "+serialType ); break; default:
+	 * System.out.println("Switched to Default serial type"); } }
+	 */
 	}
 

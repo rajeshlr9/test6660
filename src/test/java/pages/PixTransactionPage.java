@@ -238,6 +238,10 @@ public class PixTransactionPage {
 		homePage.userClosesOpenedwindow("PIX Transactions");
 	}
 
+	
+	
+	
+	
 	@SuppressWarnings("null")
 	public void validatePixTransactionforLock_Unlock(String[] pixCodeArr) throws Exception {
 		

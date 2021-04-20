@@ -296,7 +296,8 @@ public class DistributionOrdersPage {
 	@FindBy(xpath = "//span[text()='Distribution Order' and @data-ref='textEl']/ancestor::div[5]/following-sibling::div//table[1]//td[3]")
 	public WebElement doTxt;
 
-	
+	@FindBy(xpath = "(//div[class='mps-memo-item'])")
+	public WebElement DOPopup;
 
 	public void getDoStatus(String expectedDOstatus) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
@@ -377,6 +378,8 @@ public class DistributionOrdersPage {
 			oLPNIndividual = oLPNS.get(i).getText();
 			oLPNStatusIndividual = oLPNSstatus.get(i).getText();
 			//SeleniumTestHelper.assertEquals(oLPNStatusIndividual, expectedDOstatus);
+			Reporter.addStepLog("Status : " + oLPNStatusIndividual + " verified for oLPN : " + oLPNIndividual);
+			Steps.logger.info("Status : " + oLPNStatusIndividual + " verified for oLPN : " + oLPNIndividual);
 			System.out.println("Status : " + oLPNStatusIndividual + " verified for oLPN : " + oLPNIndividual);
 		}
 		homepage.user_closes_openedwindow("Distribution Orders");
@@ -409,7 +412,7 @@ public class DistributionOrdersPage {
 			oLPNIndividual = oLPNS.get(i).getText();
 			oLPNStatusIndividual = oLPNSstatus.get(i).getText();
 			//SeleniumTestHelper.assertEquals(oLPNStatusIndividual, expectedDOstatus);
-			System.out.println("Status : " + oLPNStatusIndividual + " verified for oLPN : " + oLPNIndividual);
+			System.out.println("Status : " + oLPNStatusIndividual + " for oLPN : " + oLPNIndividual);
 			Assert.assertEquals(oLPNStatusIndividual, status, "oLPN Status");
 		}
 		homepage.user_closes_openedwindow("Distribution Orders");
@@ -1685,7 +1688,17 @@ public class DistributionOrdersPage {
 		ViewShipConfirm.click();
 		Thread.sleep(5000);
 		Screenshots.captureSnapshot(driver);
+		
+		/*
+		 * if() { SeleniumTestHelper.switchToInnerFrame(driver);
+		 * Assert.assertEquals(driver.findElement(By.className("overlayerrorList")).
+		 * getText(),"Pulled Quantity Exceeds Allocated Quantity!"
+		 * ,"values expected and actual");
+		 * Reporter.addStepLog("Pulled Quantity Exceeds Allocated Quantity!");
+		 * Steps.logger.info("Pulled Quantity Exceeds Allocated Quantity!"); } else {
+		 */
 		ConfirmationYes.click();
+		//}
 		Thread.sleep(5000);
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.assertEquals(fullfilmentStatusShipped.isDisplayed(), true);

@@ -2,50 +2,74 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
-      <![CDATA[Execution started for : Combine the OLPN at weighed status]]>
+      <![CDATA[Execution started for : Verify Manhattan login using different user roles]]>
     </line>
     <line>
-      <![CDATA[Execution started for : Combine the OLPN at weighed status]]>
+      <![CDATA[Execution started for : Single Line receiving]]>
+    </line>
+    <line>
+      <![CDATA[Execution started for : Multi Line Receiving]]>
+    </line>
+    <line>
+      <![CDATA[Execution started for : B- 466712 Putaway – Un-Delivered Products that was received in MM3 returns]]>
+    </line>
+    <line>
+      <![CDATA[Execution started for : B- 466712 Putaway – Damaged Products that was received using MM3 Recv-Damages]]>
+    </line>
+    <line>
+      <![CDATA[Execution started for : B- 466712 Putaway – Damaged Products that was received using blind receipt in MM3 returns]]>
     </line>
   </reporter-output>
-  <suite started-at="2021-04-14T07:42:54 GMT" name="Suite" finished-at="2021-04-14T07:57:31 GMT" duration-ms="876746">
+  <suite started-at="2021-04-20T06:23:58 GMT" name="Suite" finished-at="2021-04-20T06:49:27 GMT" duration-ms="1528845">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2021-04-14T07:42:54 GMT" name="Test" finished-at="2021-04-14T07:57:31 GMT" duration-ms="876746">
+    <test started-at="2021-04-20T06:23:58 GMT" name="Test" finished-at="2021-04-20T06:49:27 GMT" duration-ms="1528845">
       <class name="TestRunner.Runner">
-        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-04-14T07:42:54 GMT" name="createExtentReport" finished-at="2021-04-14T07:42:54 GMT" duration-ms="93" status="PASS">
+        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-04-20T06:23:58 GMT" name="createExtentReport" finished-at="2021-04-20T06:23:58 GMT" duration-ms="93" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createExtentReport -->
-        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-04-14T07:42:54 GMT" name="setUpClass" finished-at="2021-04-14T07:42:55 GMT" duration-ms="918" status="PASS">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-04-20T06:23:58 GMT" name="setUpClass" finished-at="2021-04-20T06:23:59 GMT" duration-ms="830" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-04-14T07:42:55 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2021-04-14T07:57:30 GMT" duration-ms="874838" status="PASS">
+        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-04-20T06:24:00 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2021-04-20T06:49:26 GMT" duration-ms="1526910" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[QSC Outbound Scenarios]]>
+                <![CDATA[QSC Inbound Scenarios]]>
               </value>
             </param>
           </params>
           <reporter-output>
             <line>
-              <![CDATA[Execution started for : Combine the OLPN at weighed status]]>
+              <![CDATA[Execution started for : Verify Manhattan login using different user roles]]>
             </line>
             <line>
-              <![CDATA[Execution started for : Combine the OLPN at weighed status]]>
+              <![CDATA[Execution started for : Single Line receiving]]>
+            </line>
+            <line>
+              <![CDATA[Execution started for : Multi Line Receiving]]>
+            </line>
+            <line>
+              <![CDATA[Execution started for : B- 466712 Putaway – Un-Delivered Products that was received in MM3 returns]]>
+            </line>
+            <line>
+              <![CDATA[Execution started for : B- 466712 Putaway – Damaged Products that was received using MM3 Recv-Damages]]>
+            </line>
+            <line>
+              <![CDATA[Execution started for : B- 466712 Putaway – Damaged Products that was received using blind receipt in MM3 returns]]>
             </line>
           </reporter-output>
         </test-method> <!-- feature -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-04-14T07:57:30 GMT" name="tearDownClass" finished-at="2021-04-14T07:57:31 GMT" duration-ms="546" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-04-20T06:49:26 GMT" name="tearDownClass" finished-at="2021-04-20T06:49:27 GMT" duration-ms="669" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-04-14T07:57:31 GMT" name="writeExtentReport" finished-at="2021-04-14T07:57:31 GMT" duration-ms="18" status="PASS">
+        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-04-20T06:49:27 GMT" name="writeExtentReport" finished-at="2021-04-20T06:49:27 GMT" duration-ms="11" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- writeExtentReport -->
