@@ -198,7 +198,7 @@ Receiving of Damaged Returned Product using blind receipt in MM3 returns menu an
 	And user opens RF menu and completes Receiving using "MM3 Returns" menu
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 	Then user search for the LPN in iLPN screen, and validate the lock code
-	Then user log out from application 
+	Then user log out from application
 	
 	@QSC_IB011 @Regression_QSC @QSC_LockUnlockFunctionality
 Scenario: B-467729 – Configure Manhattan for RF lock-unlock iLPN-- Lock an iLPN using the user provided lock code

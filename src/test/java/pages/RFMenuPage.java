@@ -1405,8 +1405,8 @@ public class RFMenuPage {
 						Steps.logger.info("Enter fututeDate: " + fututeDate1);
 						String[] futureDateAsArray1 = fututeDate1.split("-");
 						// fututeDate=String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
-						List <WebElement> shipbyDate1=  driver.findElements(By.id("dataForm:sidzeInpPart0"));
-						if(shipbyDate1.size()!=0) {
+						//List <WebElement> shipbyDate1=  driver.findElements(By.id("dataForm:sidzeInpPart0"));
+						if(SeleniumTestHelper.isElementDisplayed(mm)) {
 						mm.sendKeys(futureDateAsArray1[0]);
 						dd.sendKeys(futureDateAsArray1[1]);
 						Screenshots.captureSnapshot(driver);
@@ -1426,15 +1426,15 @@ public class RFMenuPage {
 						acceptAndProceedBtn.click();
 						Thread.sleep(2000);
 						Screenshots.captureSnapshot(driver);
-						String syssuggestedLoc = altsuggestedLocLabel.getText();
-						String[] syssuggestedLocSplit = syssuggestedLoc.split(" ");
-						newSysSuggestedLoc = syssuggestedLocSplit[1];
-						String[] spltarr1 = sysSuggestedLocSplit[1].split("-");
-						String str1 = GlobalClass.removeZero(spltarr1[1]);
+						String syssuggestedLoc1 = altsuggestedLocLabel.getText();
+						String[] syssuggestedLocSplit1 = syssuggestedLoc1.split(" ");
+						newSysSuggestedLoc = syssuggestedLocSplit1[1];
+						String[] spltarr2 = syssuggestedLocSplit1[1].split("-");
+						String str2 = GlobalClass.removeZero(spltarr2[1]);
 						System.out.println(str);
-						spltarr1[1] = str1;
+						spltarr2[1] = str2;
 						String updtLoc1 = "";
-						for (String a : spltarr1)
+						for (String a : spltarr2)
 							updtLoc1 = updtLoc1 + a;
 
 						System.out.println("updtLoc is: " + updtLoc1);
@@ -1580,12 +1580,32 @@ public class RFMenuPage {
 					Screenshots.captureSnapshot(driver);
 					Steps.logger.info("Enter Qty: " + String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")));
 					Thread.sleep(2000);
+					if (SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
+						SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
+						if (errorOrWarningMsg.getText().contains("Error")) {
+							System.out.println("Info :- " + errorOrWarningMsg.getText());
+							Steps.logger.info(errorOrWarningMsg.getText());
+							globalFunc.Screenshots.seleniumSnapshot(driver);
+							Steps.testRes = "Failed";
+							Assert.assertTrue(false);
+							//Screenshots.addingScreenshottoExentReport();
+						//	acceptAndProceedBtn.click();
+						//	Screenshots.captureSnapshot(driver);
+							break;
+						} else if (errorOrWarningMsg.getText().contains("Warning")) {
+							System.out.println("Info :- " + errorOrWarningMsg.getText());
+							globalFunc.Screenshots.seleniumSnapshot(driver);
+							Screenshots.addingScreenshottoExentReport();
+							acceptAndProceedBtn.click();
+							Screenshots.captureSnapshot(driver);
+						}
+					}
 					String fututeDate = String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
 					Steps.logger.info("Enter fututeDate: " + fututeDate);
 					String[] futureDateAsArray = fututeDate.split("-");
 					// fututeDate=String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
-					List <WebElement> shipbyDate=  driver.findElements(By.id("dataForm:sidzeInpPart0"));
-					if(shipbyDate.size()!=0) {
+					//List <WebElement> shipbyDate=  driver.findElements(By.id("dataForm:sidzeInpPart0"));
+					if(SeleniumTestHelper.isElementDisplayed(mm)) {
 					mm.sendKeys(futureDateAsArray[0]);
 					dd.sendKeys(futureDateAsArray[1]);
 					Screenshots.captureSnapshot(driver);
@@ -1593,9 +1613,9 @@ public class RFMenuPage {
 					}
 					Thread.sleep(3000);
 					Screenshots.captureSnapshot(driver);
-					List <WebElement> acceptprocBtn=   driver.findElements(By.id("rfbtn_dataForm:InfoAcceptKey"));
+					//List <WebElement> acceptprocBtn=   driver.findElements(By.id("rfbtn_dataForm:InfoAcceptKey"));
 					
-					if(acceptprocBtn.size()!=0) {
+					if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
 					
 						acceptAndProceedBtn.click();
 					}
@@ -1671,8 +1691,8 @@ public class RFMenuPage {
 						Steps.logger.info("Enter fututeDate: " + fututeDate1);
 						String[] futureDateAsArray1 = fututeDate1.split("-");
 						// fututeDate=String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
-						List <WebElement> shipbyDate2=  driver.findElements(By.id("dataForm:sidzeInpPart0"));
-						if(shipbyDate2.size()!=0) {
+						//List <WebElement> shipbyDate2=  driver.findElements(By.id("dataForm:sidzeInpPart0"));
+						if(SeleniumTestHelper.isElementDisplayed(mm)) {
 						mm.sendKeys(futureDateAsArray1[0]);
 						dd.sendKeys(futureDateAsArray1[1]);
 						Screenshots.captureSnapshot(driver);
@@ -1690,11 +1710,7 @@ public class RFMenuPage {
 										+ LPNnum1[1].trim() + " for Item- " + Items.getItemsForReceivingASN(i));
 						Thread.sleep(2000);
 					}
-					
-					
-					
 				} 
-					
 					
 					RFmenu_info.click();
 					Steps.logger.info("Clicked on RF Menu");
@@ -1702,8 +1718,10 @@ public class RFMenuPage {
 					EndPallet.click();
 					Steps.logger.info("Clicked on EndPallet Menu");
 					Thread.sleep(2000);
+					if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, acceptAndProceedBtn, 20);
 					acceptAndProceedBtn.click();
+					}
 				
 				}
 				Steps.logger.info("Completed Receiving using MM3 Recv Pallet option");
@@ -1820,10 +1838,7 @@ public class RFMenuPage {
 					acceptAndProceedBtn.click();
 					Thread.sleep(2000);
 					Screenshots.captureSnapshot(driver);
-					List <WebElement> acceptprocBtn=   driver.findElements(By.id("rfbtn_dataForm:InfoAcceptKey"));
-					
-					if(acceptprocBtn.size()!=0) {
-					
+					if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
 						acceptAndProceedBtn.click();
 					}
 					Steps.logger.info(
@@ -1907,7 +1922,9 @@ public class RFMenuPage {
 						}
 						Thread.sleep(3000);
 						Screenshots.captureSnapshot(driver);
+						if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
 						acceptAndProceedBtn.click();
+						}
 						Screenshots.captureSnapshot(driver);
 						Steps.logger.info(
 								String.valueOf(Steps.ItemDataMap.get(i).get("RecQty2")) + " qty is received in LPN "
@@ -1917,11 +1934,7 @@ public class RFMenuPage {
 										+ LPNnum1[1].trim() + " for Item- " + Items.getItemsForReceivingASN(i));
 						Thread.sleep(2000);
 					}
-					
-					
-					
 				} 
-					
 					
 					RFmenu_info.click();
 					Steps.logger.info("Clicked on RF Menu");

@@ -130,15 +130,7 @@ Scenario: Receiving of ASN bypassing staging location (Pallet) - Multi Line, Mul
 	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
 	Then user views ASN, get and verify pallet status is "30 - Putaway" 
 	Then user log out from application 
-	
-@NVI_IB108 @Smoke @Regression_NVI @NVI_BypassStagingLocPallet 
-Scenario: Verify pallet status 
-	Login and validate Pallet status
-	Given I have excel data 
-		| NVI_Scenario007 |
-	And Open the chrome browser by selenium 
-	And user logs into the Manhattan application 
-	Then user views ASN, get and verify pallet details
+
 	
 	@NVI_IB008 @Regression_NVI @NVI_BypassStagingLocCase
 Scenario: Receiving of ASN bypassing staging location (case) - Single Line, Single iLPN
@@ -240,7 +232,140 @@ Scenario: Receiving of ASN on to a Pallet - Single Line, Single Pallet, Single i
 	Creating ASN through Post Message UI, checking status of the shipment and completed receiving in a 
 	Pallet - Single Line, Single Pallet, Single iLPN
 	Given I have excel data 
-		| NVI_IBScenario003 |
+		| NVI_IBScenario013 |
+	And Open the chrome browser by selenium 
+	And user logs into the Manhattan application 
+	When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN 
+	And user update xml itemDetails from excel sheet 
+	And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-PLT" menu 
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
+	Then user views ASN, get and verify pallet status is "30 - Putaway" 
+	Then user log out from application 
+	
+	@NVI_IB014 @Regression_NVI @NVI_PalletRec
+Scenario: Receiving of ASN on to a Pallet - Single Line, Single Pallet, Multiple iLPN
+	Creating ASN through Post Message UI, checking status of the shipment and completed receiving in a 
+	Pallet - Single Line, Single Pallet, Multiple iLPN
+	Given I have excel data 
+		| NVI_IBScenario014 |
+	And Open the chrome browser by selenium 
+	And user logs into the Manhattan application 
+	When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN 
+	And user update xml itemDetails from excel sheet 
+	And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-PLT" menu 
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
+	Then user views ASN, get and verify pallet status is "30 - Putaway" 
+	Then user log out from application 
+	
+	@NVI_IB015 @Regression_NVI @NVI_PalletRec
+Scenario: Receiving of ASN on to a Pallet - Multi Line, Single Pallet, Multiple iLPN
+	Creating ASN through Post Message UI, checking status of the shipment and completed receiving in a 
+	Pallet - Multi Line, Single Pallet, Multiple iLPN
+	Given I have excel data 
+		| NVI_IBScenario015 |
+	And Open the chrome browser by selenium 
+	And user logs into the Manhattan application 
+	When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN 
+	And user update xml itemDetails from excel sheet 
+	And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-PLT" menu 
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
+	Then user views ASN, get and verify pallet status is "30 - Putaway" 
+	Then user log out from application 
+	
+	@NVI_IB016 @Regression_NVI @NVI_PalletRec
+Scenario: Receiving of ASN on to a Pallet - Multi Line, Multiple Pallet, Multiple iLPN
+	Creating ASN through Post Message UI, checking status of the shipment and completed receiving in a 
+	Pallet - Multi Line, Multiple Pallet, Multiple iLPN
+	Given I have excel data 
+		| NVI_IBScenario016 |
+	And Open the chrome browser by selenium 
+	And user logs into the Manhattan application 
+	When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN 
+	And user update xml itemDetails from excel sheet 
+	And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-PLT" menu 
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
+	Then user views ASN, get and verify pallet status is "30 - Putaway" 
+	Then user log out from application 
+	
+	@NVI_IB017 @Regression_NVI @NVI_PalletRec
+Scenario: Partial Receiving of ASN on to a Pallet - Single Line, Single Pallet, Single iLPN
+	Creating ASN through Post Message UI, checking status of the shipment and completed partial receiving in a 
+	Pallet - Single Line, Single Pallet, Single iLPN
+	Given I have excel data 
+		| NVI_IBScenario017 |
+	And Open the chrome browser by selenium 
+	And user logs into the Manhattan application 
+	When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN 
+	And user update xml itemDetails from excel sheet 
+	And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-PLT" menu 
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
+	Then user views ASN, get and verify pallet status is "30 - Putaway" 
+	Then user log out from application 
+	
+	@NVI_IB018 @Regression_NVI @NVI_PalletRec
+Scenario: Over Receiving of ASN on to a Pallet - Single Line, Single Pallet, Single iLPN
+	Creating ASN through Post Message UI, checking status of the shipment and completed over receiving in a 
+	Pallet - Single Line, Single Pallet, Single iLPN
+	Given I have excel data 
+		| NVI_IBScenario018 |
+	And Open the chrome browser by selenium 
+	And user logs into the Manhattan application 
+	When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN 
+	And user update xml itemDetails from excel sheet 
+	And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-PLT" menu 
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
+	Then user views ASN, get and verify pallet status is "30 - Putaway" 
+	Then user log out from application 
+	
+	@NVI_IB019 @Regression_NVI @NVI_PalletRec
+Scenario: Receiving of ASN on to a Pallet - Multi Line (same item in both lines), Multiple Pallet, Multiple iLPN
+	Creating ASN through Post Message UI, checking status of the shipment and completed receiving in a 
+	Pallet - Multi Line(same item in both lines), Multiple Pallet, Multiple iLPN
+	Given I have excel data 
+		| NVI_IBScenario019 |
+	And Open the chrome browser by selenium 
+	And user logs into the Manhattan application 
+	When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN 
+	And user update xml itemDetails from excel sheet 
+	And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-PLT" menu 
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
+	Then user views ASN, get and verify pallet status is "30 - Putaway" 
+	Then user log out from application 
+	
+	@NVI_IB020 @Regression_NVI @NVI_PalletRec
+Scenario: Receiving of ASN on to a Pallet - Multi Line (same item in both lines), Single Pallet, Multiple iLPN
+	Creating ASN through Post Message UI, checking status of the shipment and completed receiving in a 
+	Pallet - Multi Line(same item in both lines), Multiple Pallet, Multiple iLPN
+	Given I have excel data 
+		| NVI_IBScenario020 |
 	And Open the chrome browser by selenium 
 	And user logs into the Manhattan application 
 	When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN 
