@@ -889,6 +889,7 @@ public class SeleniumTestHelper {
 	public static void Close_OpenedWindow(String Screenname,WebDriver driver) throws InterruptedException
 	{
 		String Screenclose="(//label[text()='"+Screenname+"']//following::span[text()='Close'])[1]";
+		//String Screenclose="(//label[contains(text() , '"+Screenname+"')]//following::span[text()='Close'])[1]";
 		driver.findElement(By.xpath(Screenclose)).click();
 
 	}

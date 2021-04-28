@@ -377,4 +377,22 @@ Scenario: Receiving of ASN on to a Pallet - Multi Line (same item in both lines)
 	And user opens RF menu and completes Receiving using "MM3 Recv-PLT" menu 
 	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
 	Then user views ASN, get and verify pallet status is "30 - Putaway" 
+	Then user log out from application
+	
+	@NVI_IB021 @Regression_NVI @NVI_DamagedReceive
+Scenario: B-459309 Receive Damages- Receiving Damaged Product using MM3 Recv-Damages 
+Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verifying the status of the ASN 
+	Given I have excel data
+	| NVI_IBScenario021 |
+	And Open the chrome browser by selenium
+	And user logs into the Manhattan application 
+    When user create xml file using "Single Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
+    And user update xml itemDetails from excel sheet
+    And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response 
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-Damages" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
+	Then user search for the LPN in iLPN screen, and validate the lock code
 	Then user log out from application 

@@ -289,7 +289,6 @@ public class ManhattanLoginPage extends Steps {
 
 	public void loginToManhattanApp(String userType) throws Exception {
 
-		try {
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, username, 180);
 			String env = environment;
 			if (env.equalsIgnoreCase("DEV") || env.equalsIgnoreCase("@Env")) {
@@ -368,23 +367,25 @@ public class ManhattanLoginPage extends Steps {
 					break;
 				}
 			}
-			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(signInBtn));
 			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(signInBtn));
 			signInBtn.click();
 			Steps.logger.info("Clicked on Sign in Button");
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, facilitySelection, 10);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, facilitySelection, 180);
+			Thread.sleep(3000);
 			String Facility = Steps.scenarioData.get("Facility");
 			String BusinnesUnit = Steps.scenarioData.get("Account");
-
-			// if (!facilityApplyBtn.getText().contains("MM3 - QSC")) {
+			
 			if (!facilityApplyBtn.getText().contains(Facility + " - " + BusinnesUnit)) {
 
 				facilitySelection.click();
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, warehouseDropdownArrow, 10);
 				warehouseDropdownArrow.click();
+				//driver.findElement(By.xpath("(//*[@id='x-form-trigger x-form-trigger-default x-form-arrow-trigger x-form-arrow-trigger-default '][0])")).click();
 				List<WebElement> list = warehouseDropdownlist.findElements(By.tagName("li"));
 				for (WebElement option : list) {
 					if (option.getText().equals(Facility)) {
+						System.out.println(option.getText());
 						option.click(); // click the desired option
 						break;
 					}
@@ -393,6 +394,7 @@ public class ManhattanLoginPage extends Steps {
 				BusinessUnitDropdownArrow.click();
 				List<WebElement> list2 = BusinessUnitdropdown.findElements(By.tagName("li"));
 				for (WebElement option2 : list2) {
+					
 					if (option2.getText().equals(BusinnesUnit)) {
 						option2.click(); // click the desired option
 						break;
@@ -403,9 +405,8 @@ public class ManhattanLoginPage extends Steps {
 				facilityDisp.click();
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, userLoggedin, 10);
 			}
-			Screenshots.captureSnapshot(driver);
+				Screenshots.captureSnapshot(driver);
 			userLoggedin.click();
-			
 			Steps.logger.info("User in Home Page");
 			if (!maximizedChkbox.isSelected()) {
 				SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(maximizedChkbox));
@@ -416,23 +417,16 @@ public class ManhattanLoginPage extends Steps {
 				SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(tileSingleClick));
 				Steps.logger.info("Single click is enabled");
 				tileSingleClick.click();
-				Thread.sleep(1000);
 			}
 
 			TestedBy = driver
-					.findElement(By.xpath("//a[@data-qtip='Workspaces']/following-sibling::a[1]/following::label[3]"))
+					.findElement(
+							By.xpath("//a[@data-qtip='Workspaces']/following-sibling::a[1]/following::label[3]"))
 					.getText();
 			// Steps.logger.info("TestedBy: "+TestedBy);
-			Reporter.addStepLog("User logged in successfully with " + userType + " crdentials");
-			Thread.sleep(2000);
+			Reporter.addStepLog("User logged in successfully");
 			userLoggedin.click();
-		}
-
-		catch (Exception e) {
-			System.out.println(e);
-			Steps.testRes = "Failed";
-			Assert.assertTrue(false, e.getMessage());
-		}
+			Thread.sleep(2000);
 	}
 
 }

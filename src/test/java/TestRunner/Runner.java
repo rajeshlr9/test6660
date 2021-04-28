@@ -26,7 +26,7 @@ import utils.ExtentReportUpdate;
 		strict = true,
 		dryRun = false,
 		tags={"@tag5"},
-		//tags={"@NVI_BypassStagingLocCase"},
+		//tags={"@QSC_OB001"},
 		features = {"src\\test\\java\\featureFile"},
 		//features = {"src\\test\\java\\featureFile"},
 		glue = {"StepDefinition"},

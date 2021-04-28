@@ -299,7 +299,7 @@ Scenario: Cancel OLPN - Cancel the OLPN at Printed status (SingleLine Sceanrios)
 	Then user opens RF menu and perform "MM3 Cancel oLPN" operation in inventory menu 
 	And user opens the oLPN details in Distribuion Order page and and verify its status "99 - Cancelled" 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "200 - Cancelled" 
-	#And validates the PIX message "620 - Order transactions"
+	And validates the PIX message "620 - Order transactions"
 	Then user log out from application 
 	
 	
@@ -325,7 +325,7 @@ Scenario: Cancel OLPN - Cancel the OLPN at Weighed status (SingleLine Sceanrios)
 	Then user opens RF menu and perform "MM3 Cancel oLPN" operation in inventory menu 
 	And user opens the oLPN details in Distribuion Order page and and verify its status "99 - Cancelled" 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "200 - Cancelled" 
-	#And validates the PIX message "620 - Order transactions"
+	And validates the PIX message "620 - Order transactions"
 	Then user log out from application 
 	
 @QSC_OB015 @Regression_QSC @QSC_CanceloLPN 
@@ -353,7 +353,7 @@ Scenario: Cancel OLPN - Cancel the OLPN at Shipped status (SingleLine Sceanrios)
 	Then user opens RF menu and perform "MM3 Cancel oLPN" operation in inventory menu 
 	And user opens the oLPN details in Distribuion Order page and and verify its status "90 - Shipped" 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 
-	#And validates the PIX message "620 - Order transactions"
+	And validates the PIX message "620 - Order transactions"
 	Then user log out from application 
 	
 @QSC_OB016 @Regression_QSC @QSC_CanceloLPN 
@@ -375,7 +375,7 @@ Scenario: Cancel OLPN - Cancel the OLPN at Printed status (MultiLine Sceanrios)
 	Then user opens RF menu and perform "MM3 Cancel oLPN" operation in inventory menu 
 	And user verifies the oLPN details in Distribuion Order page  
 	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
-	#And validates the PIX message "620 - Order transactions"
+	And validates the PIX message "620 - Order transactions"
 	Then user log out from application 
 	
 @QSC_OB017 @Regression_QSC @QSC_CanceloLPN 
@@ -399,7 +399,7 @@ Scenario: Cancel OLPN - Cancel the OLPN at Weighed status (MultiLine Sceanrios)
 	Then fetch the OLPN number 
 	Then user opens RF menu and perform "MM3 Cancel oLPN" operation in inventory menu 
 	And user verifies the oLPN details in Distribuion Order page 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed" 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
 	And validates the PIX message "620 - Order transactions"
 	Then user log out from application 
 	

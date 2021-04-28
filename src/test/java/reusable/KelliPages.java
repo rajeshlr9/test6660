@@ -26,6 +26,7 @@ import com.cucumber.listener.Reporter;
 
 import StepDefinition.Steps;
 import globalFunc.DateTime;
+import pages.ManhattanLoginPage;
 import utils.Config;
 import utils.SeleniumTestHelper;
 
@@ -136,32 +137,92 @@ public class KelliPages {
 
 	public void loginPage() throws Exception {
 
-		driver.get(Config.getProperty("Kelli_QA_URL"));
+			String env = ManhattanLoginPage.environment;
+			System.out.println("Environment:--"+env);
+			if (env.equalsIgnoreCase("DEV")|| env.equalsIgnoreCase("@Env")) {
+				driver.get(Config.getProperty("Kelli_Dev_URL"));
 
-		driver.navigate().to("javascript:document.getElementById('overridelink').click()");
+				driver.navigate().to("javascript:document.getElementById('overridelink').click()");
 
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, userid, 20);
-		System.out.println("Entering the userid");
-		userid.sendKeys(Config.getProperty("Kelli_QA_username"));
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, userid, 20);
+				System.out.println("Entering the userid");
+				userid.sendKeys(Config.getProperty("Kelli_Dev_Username"));
 
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, password, 30);
-		System.out.println("Entering the password");
-		password.sendKeys(Config.getProperty("Kelli_QA_password"));
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, password, 30);
+				System.out.println("Entering the password");
+				password.sendKeys(Config.getProperty("Kelli_Dev_Pwd"));
 
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, loginbutton, 50);
-		System.out.println("Clicked on login button");
-		loginbutton.click();
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, loginbutton, 50);
+				System.out.println("Clicked on login button");
+				loginbutton.click();
 
-		if (SeleniumTestHelper.isElementDisplayed(WelcomeSYSTEMUSER)) {
-			SeleniumTestHelper.assertEquals(WelcomeSYSTEMUSER.getText(), "Welcome - SYSTEM USER (Admin)");
-			System.out.println("Log in to Kelli application successfully");
-			Reporter.addStepLog("Log in to Kelli application successfully");
-		} else {
+				if (SeleniumTestHelper.isElementDisplayed(WelcomeSYSTEMUSER)) {
+					SeleniumTestHelper.assertEquals(WelcomeSYSTEMUSER.getText(), "Welcome - SYSTEM USER (Admin)");
+					System.out.println("Log in to Kelli application successfully");
+					Reporter.addStepLog("Log in to Kelli application successfully");
+				} else {
 
-			Reporter.addStepLog("Log in not successfull to kelli application");
+					Reporter.addStepLog("Log in not successfull to kelli application");
 
-		}
+				}
+				Steps.logger.info("Dev Environment");
+			} else if (env.equalsIgnoreCase("TEST") ) {
+				driver.get(Config.getProperty("Kelli_QA_URL"));
+
+				driver.navigate().to("javascript:document.getElementById('overridelink').click()");
+
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, userid, 20);
+				System.out.println("Entering the userid");
+				userid.sendKeys(Config.getProperty("Kelli_QA_username"));
+
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, password, 30);
+				System.out.println("Entering the password");
+				password.sendKeys(Config.getProperty("Kelli_QA_password"));
+
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, loginbutton, 50);
+				System.out.println("Clicked on login button");
+				loginbutton.click();
+
+				if (SeleniumTestHelper.isElementDisplayed(WelcomeSYSTEMUSER)) {
+					SeleniumTestHelper.assertEquals(WelcomeSYSTEMUSER.getText(), "Welcome - SYSTEM USER (Admin)");
+					System.out.println("Log in to Kelli application successfully");
+					Reporter.addStepLog("Log in to Kelli application successfully");
+				} else {
+
+					Reporter.addStepLog("Log in not successfull to kelli application");
+
+				}
+			} else if (env.equalsIgnoreCase("STAGE")) {
+				driver.get(Config.getProperty("Kelli_QA_URL"));
+
+				driver.navigate().to("javascript:document.getElementById('overridelink').click()");
+
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, userid, 20);
+				System.out.println("Entering the userid");
+				userid.sendKeys(Config.getProperty("Kelli_QA_username"));
+
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, password, 30);
+				System.out.println("Entering the password");
+				password.sendKeys(Config.getProperty("Kelli_QA_password"));
+
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, loginbutton, 50);
+				System.out.println("Clicked on login button");
+				loginbutton.click();
+
+				if (SeleniumTestHelper.isElementDisplayed(WelcomeSYSTEMUSER)) {
+					SeleniumTestHelper.assertEquals(WelcomeSYSTEMUSER.getText(), "Welcome - SYSTEM USER (Admin)");
+					System.out.println("Log in to Kelli application successfully");
+					Reporter.addStepLog("Log in to Kelli application successfully");
+				} else {
+
+					Reporter.addStepLog("Log in not successfull to kelli application");
+
+				}
+				Steps.logger.info("UA Environment");
+			}
 	}
+		
+		
 
 	// Updating Kelli ASN Load Sheet
 	public void KelliASNLoadSheetUpdate() throws Exception {

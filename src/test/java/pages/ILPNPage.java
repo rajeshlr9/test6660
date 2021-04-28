@@ -338,22 +338,27 @@ public class ILPNPage {
 			Reporter.addStepLog("Actual lock code: " + lockCodeTable.get(0).getText());
 			Steps.logger.info("Expected lock code: " + lockCode[i]);
 			Reporter.addStepLog("Expected lock code: " + lockCode[i]);
-			if (lockCodeTable.get(0).getText().contains(lockCode[i])) {
-				j++;
-			} else {
-				ilpnLockCode += lpn;
-			}
+			
+			  if (lockCodeTable.get(0).getText().contains(lockCode[i])) { 
+				  Steps.logger.info("Actual lock code matches the expected lock code");
+				Reporter.addStepLog("Lock code is successfully verified");
+				  } else {
+			  ilpnLockCode += lpn; 
+			  Steps.testRes="Failed";
+			  Assert.assertTrue(false, "iLPN Lock code that are not same " + ilpnLockCode);
+			  }
+			 
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, backButton, 20);
 			backButton.click();
 			Thread.sleep(3000);
 		}
-		if (i == j) {
-			Steps.logger.info("Actual lock code matches the expected lock code");
-			Reporter.addStepLog("Lock code is successfully verified");
-		} else {
-			Steps.testRes="Failed";
-			Assert.assertTrue(false, "iLPN Lock code that are not same " + ilpnLockCode);
-		}
+		/*
+		 * if (i == j) {
+		 * Steps.logger.info("Actual lock code matches the expected lock code");
+		 * Reporter.addStepLog("Lock code is successfully verified"); } else {
+		 * Steps.testRes="Failed"; Assert.assertTrue(false,
+		 * "iLPN Lock code that are not same " + ilpnLockCode); }
+		 */
 		homePage.userClosesOpenedwindow("iLPNs");
    }
    

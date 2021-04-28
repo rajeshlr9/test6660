@@ -14,6 +14,8 @@ public class DateTime {
 	public static String strDate6;
 	public static String strDate7;
 	public static String strDate8;
+	public static String strDate9;
+	public static String strDate10;
 	public static String strDate32;
 	public static void TimeDateFunc() {
 		
@@ -39,11 +41,21 @@ public class DateTime {
         SimpleDateFormat formatter8 = new SimpleDateFormat("yyyyMMddHHmmss");              
         strDate8= formatter8.format(date); 
         
+        SimpleDateFormat formatter9 = new SimpleDateFormat("MM/dd/yy HH:mm");              
+        SimpleDateFormat formatter10 = new SimpleDateFormat("MM/dd/yy HH:mm");        
+        
         SimpleDateFormat formatter4 = new SimpleDateFormat("MM/dd/yyyy");         
           Calendar c = Calendar.getInstance();
+          Calendar c2 = Calendar.getInstance();
+          Calendar c3 = Calendar.getInstance();
          c.setTime(new Date()); // Now use today date.
          c.add(Calendar.DATE, 5); // Adding 5 days
+         c2.add(Calendar.MINUTE, -5);
+         c2.add(Calendar.HOUR, -4);
+         c3.add(Calendar.HOUR, -4);
           strDate4 = formatter4.format(c.getTime());
+          strDate9= formatter9.format(c3.getTime());
+          strDate10= formatter10.format(c2.getTime());
        
 	}
 	

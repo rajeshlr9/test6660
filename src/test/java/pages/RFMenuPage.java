@@ -1750,12 +1750,12 @@ public class RFMenuPage {
 				int noOfPallets=Integer.parseInt(Steps.scenarioData.get("PltQty"));
 				int bb=0;
 				if (noOfPallets==1) {
-					b=Steps.ItemDataMap.size();
+					bb=Steps.ItemDataMap.size();
 				}else
 				{
 					bb=1;
 				}
-				System.out.println("b="+bb);
+				System.out.println("bb="+bb);
 				for (int j = 0; j < noOfPallets; j++) {
 				globalFunc.DateTime.TimeDateFunc();
 				palletid.sendKeys("PLT1"+DateTime.strDate8+Keys.ENTER);
@@ -1816,9 +1816,7 @@ public class RFMenuPage {
 					String fututeDate = String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
 					Steps.logger.info("Enter fututeDate: " + fututeDate);
 					String[] futureDateAsArray = fututeDate.split("-");
-					// fututeDate=String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
-					List <WebElement> shipbyDate=  driver.findElements(By.id("dataForm:sidzeInpPart0"));
-					if(shipbyDate.size()!=0) {
+					if(SeleniumTestHelper.isElementDisplayed(mm)) {
 					mm.sendKeys(futureDateAsArray[0]);
 					dd.sendKeys(futureDateAsArray[1]);
 					Screenshots.captureSnapshot(driver);
@@ -1942,8 +1940,9 @@ public class RFMenuPage {
 					EndPallet.click();
 					Steps.logger.info("Clicked on EndPallet Menu");
 					Thread.sleep(2000);
-					SeleniumTestHelper.waitForElementToBeDisplayed(driver, acceptAndProceedBtn, 20);
+					if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
 					acceptAndProceedBtn.click();
+					}
 					// Reporter.addStepLog(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty"))+"
 					// qty is received in LPN "+iLPNz.get(i)+" for Item-
 					// "+Steps.ItemDataMap.get(i).get("Item"));

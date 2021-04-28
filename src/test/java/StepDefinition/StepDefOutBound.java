@@ -410,9 +410,9 @@ public class StepDefOutBound {
 		}
 	}
 
-	//Jaya
+
 	@Then("^user opens RF menu and perform \"([^\\\"]*)\" operation in inventory menu$")
-	public void MM3_split_oLPN(String function)throws Exception {
+	public void MM3_inventory_operations(String function)throws Exception {
 		try {
 			homePage1.MenuItems_Distribution_Selection("RF Menu");
 			Steps.logger.info("Open RF menu");
