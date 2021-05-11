@@ -3,6 +3,7 @@ package StepDefinition;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -25,7 +26,9 @@ import pages.ManhattanLoginPage;
 import pages.PixTransactionPage;
 import pages.PostMessagePage;
 import pages.RFMenuPage;
+import pages.FedexnetPage;
 import pages.ReserveLocationPage;
+import reusable.ModifyXML;
 import utils.Config;
 import utils.SeleniumTestHelper;
 import utils.Xpathxml;
@@ -35,6 +38,7 @@ public class StepDefInBound {
 	Xpathxml xmlInput = new Xpathxml();
 	Steps st=new Steps();
 	ManhattanLoginPage manhattanLoginPage = new ManhattanLoginPage();
+	FedexnetPage FedexnetPage = new FedexnetPage();
 	HomePage homePage = new HomePage();
 	PostMessagePage postMessagePage = new PostMessagePage();
 	AsnsPage asnsPage = new AsnsPage();
@@ -146,6 +150,63 @@ public class StepDefInBound {
 		}
 	}
 
+	//********************************************FedexNet******************************************
+		//FedexNet
+		@Then("^user logs into the FedexNet application$")
+		public void user_logs_into_the_FedexNet_application() {
+		try {
+			String env = ManhattanLoginPage.environment;
+			System.out.println("Environment:"+env);
+
+			if (env.equalsIgnoreCase("DEV")|| env.equalsIgnoreCase("@Env")) {
+				driver.get(Config.getProperty("FedexNetURL_DEV"));
+				Steps.logger.info("Dev Environment");
+				Thread.sleep(15000);
+				
+			} else if (env.equalsIgnoreCase("TEST") ) {
+				driver.get(Config.getProperty("FedexNetURL_TEST"));
+				Steps.logger.info("TEST Environment");
+			}
+				else if (env.equalsIgnoreCase("STAGE")) {
+					driver.get(Config.getProperty("FedexNetURL_STAGE"));
+					Steps.logger.info("STAGE Environment");
+			}
+			FedexnetPage.logintoFedexNet();
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+		}
+		
+		@Then("^user upload \"([^\"]*)\" file in fedexnet$")
+		public void user_upload_the_xml_in_fedexnet(String fileType) {
+		try {
+			String env = ManhattanLoginPage.environment;
+			System.out.println("Environment:"+env);
+			String dropEnv=null;
+			if (env.equalsIgnoreCase("DEV")|| env.equalsIgnoreCase("@Env")) {
+				dropEnv="FSCS";
+				
+			} else if (env.equalsIgnoreCase("TEST") ) {
+				dropEnv="FSCSQA";
+			}
+				else if (env.equalsIgnoreCase("STAGE")) {
+					dropEnv="FSCSUA";
+			}
+			if(fileType.equals("856")||fileType.equals("943")) {			
+			FedexnetPage.dropOrder(dropEnv, fileType, xmlInput.inputEDIInboundFilePath);
+			}else if(fileType.equals("850")||fileType.equals("940")) {			
+				FedexnetPage.dropOrder(dropEnv, fileType, xmlInput.inputEDIOutboundFilePath);
+			}
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		}
+		
+		
+	//********************************************FedexNet******************************************
+	
 	@When("^user create xml file with Item Value updated with DeliveryStartDate for ReceivingASN$")
 	public void user_create_xml_file_with_updated_DeliveryStartDate_for_ReceivingASN() throws Exception {
 		try {
@@ -208,6 +269,21 @@ public class StepDefInBound {
 		try {
 			Steps.logger.info("XML creation started");
 			xmlInput.user_create_inputXML_for_inbound_basedOn_xmlType(xmlType);
+			Steps.scenario.write("ASN-" + Items.getAsnNumber());
+			Reporter.addStepLog("ASN No-" + Items.getAsnNumber());
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
+	@When("^user update \"([^\"]*)\" for dropping into fedexnet application$")
+	public void user_update_EDI_XML_file_for(String xmlType)	throws Exception {
+		try {
+			Steps.logger.info("XML updation started");
+			xmlInput.user_create_EDI_file(xmlType);
+			xmlInput.user_modify_EDI_file(xmlType);
 			Steps.scenario.write("ASN-" + Items.getAsnNumber());
 			Reporter.addStepLog("ASN No-" + Items.getAsnNumber());
 		} catch (Exception e) {

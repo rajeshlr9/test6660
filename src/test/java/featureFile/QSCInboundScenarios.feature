@@ -635,3 +635,42 @@ Given I have excel data
 	And user opens RF menu and perform "MM3 Pack From Trans" operation in inventory menu
 	Then user search for the LPN in iLPN screen, and validate the iLPN statusOB
 	Then user log out from application
+	
+	
+	@QSC_IB033 @Regression_QSC @QSC_FedexNet
+Scenario: Login to FedexNet and drop xml 
+	Given I have excel data
+	| QSC_IBScenario032 |
+	And Open the chrome browser by selenium
+	When user update "Single Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	Then user upload "856" XML file in fedexnet 
+	
+@QSC_IB034 @Regression_QSC @QSC_FedexNet
+Scenario: Login to FedexNet and drop xml 
+	Given I have excel data
+	| QSC_IBScenario032 |
+	And Open the chrome browser by selenium
+	When user update "Multi Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	Then user upload "856" XML file in fedexnet 
+	
+	@QSC_IB035 @Regression_QSC @QSC_FedexNet
+Scenario: Login to FedexNet and drop xml 
+	Given I have excel data
+	| QSC_IBScenario032 |
+	And Open the chrome browser by selenium
+	When user update "Single Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	Then user upload "850" XML file in fedexnet 
+	
+	@QSC_IB036 @Regression_QSC @QSC_FedexNet
+Scenario: Login to FedexNet and drop xml 
+	Given I have excel data
+	| QSC_IBScenario032 |
+	And Open the chrome browser by selenium
+	When user update "Multi Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	Then user upload "850" XML file in fedexnet 
+	
+	

@@ -79,8 +79,7 @@ Scenario: Distribution Order Shipping - Single Line Shortage
 	
 	
 @QSC_OB004 @Regression_QSC @QSC_AdjustoLPN 
-Scenario:
-Modify\Adjust Olpn from Manhattan UI -Single Line, OLPN in Printed status and Order at DC Allocated status 
+Scenario: Modify\Adjust Olpn from Manhattan UI -Single Line, OLPN in Printed status and Order at DC Allocated status 
 	Given I have excel data 
 		| QSC_OBScenario004 |
 	And Open the chrome browser by selenium 
@@ -98,8 +97,7 @@ Modify\Adjust Olpn from Manhattan UI -Single Line, OLPN in Printed status and Or
 	
 	
 @QSC_OB005 @Regression_QSC @QSC_AdjustoLPN 
-Scenario:
-Modify\Adjust Olpn from Manhattan UI Single Line,OLPN in Weighed status and Order at Weighed status-New Quantity  lesser than Current Quantity 
+Scenario: Modify\Adjust Olpn from Manhattan UI Single Line,OLPN in Weighed status and Order at Weighed status-New Quantity  lesser than Current Quantity 
 	Given I have excel data 
 		| QSC_OBScenario005 |
 	And Open the chrome browser by selenium 
@@ -121,8 +119,7 @@ Modify\Adjust Olpn from Manhattan UI Single Line,OLPN in Weighed status and Orde
 	Then user log out from application 
 	
 @QSC_OB006 @Regression_QSC @QSC_AdjustoLPN 
-Scenario:
-Modify\Adjust Olpn from Manhattan UI Single Line,OLPN in Weighed status and Order at Weighed status-New Quantity  more than Current Quantity 
+Scenario: Modify\Adjust Olpn from Manhattan UI Single Line,OLPN in Weighed status and Order at Weighed status-New Quantity  more than Current Quantity 
 	Given I have excel data 
 		| QSC_OBScenario006 |
 	And Open the chrome browser by selenium 
@@ -144,8 +141,7 @@ Modify\Adjust Olpn from Manhattan UI Single Line,OLPN in Weighed status and Orde
 	Then user log out from application 
 	
 @QSC_OB007 @Regression_QSC @QSC_AdjustoLPN 
-Scenario:
-Distribution Order Shipping - Multi Line,One Line at Printed status and second line as Weighed,correspondlingly the order is at In Packing,New Quantity  more than Current Quantity 
+Scenario: Distribution Order Shipping - Multi Line,One Line at Printed status and second line as Weighed,correspondlingly the order is at In Packing,New Quantity  more than Current Quantity 
 	Given I have excel data 
 		| QSC_OBScenario007 |
 	And Open the chrome browser by selenium 
@@ -170,8 +166,7 @@ Distribution Order Shipping - Multi Line,One Line at Printed status and second l
 	Then user log out from application 
 	
 @QSC_OB008 @Regression_QSC @QSC_AdjustoLPN 
-Scenario:
-Distribution Order Shipping - Multi Line,One Line at Printed status and second line as Weighed,correspondlingly the order is at In Packing,New Quantity lesser than Current Quantity 
+Scenario: Distribution Order Shipping - Multi Line,One Line at Printed status and second line as Weighed,correspondlingly the order is at In Packing,New Quantity lesser than Current Quantity 
 	Given I have excel data 
 		| QSC_OBScenario008 |
 	And Open the chrome browser by selenium 
@@ -198,7 +193,7 @@ Distribution Order Shipping - Multi Line,One Line at Printed status and second l
 	
 	###########################Jaya#################
 	
-@QSC_OB009 @Regression_QSC @QSC_SplitoLPN 
+@QSC_OB009 @Regression_QSC @QSC_SplitCombineoLPN
 Scenario: Spliting the OLPN at Printed status 
 	Given I have excel data 
 		| QSC_OBScenario009 |
@@ -212,11 +207,12 @@ Scenario: Spliting the OLPN at Printed status
 	Then user verifies the item details in Distribuion Order page 
 	And user runs the "Standard wave" 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
-	Then fetch the OLPN number 
-	Then user opens RF menu and perform "MM3 split OLPN" operation in inventory menu 
-	Then user log out from application 
+	Then fetch the OLPN number
+	Then user opens RF menu and perform "MM3 split OLPN" operation in inventory menu	
+	Then user opens the OLPN screen and verify the splitted oLPNS status
+	Then user log out from application
 	
-@QSC_OB010 @Regression_QSC @QSC_SplitoLPN 
+@QSC_OB010 @Regression_QSC @QSC_SplitCombineoLPN
 Scenario: Spliting the OLPN at Weighed status 
 	Given I have excel data 
 		| QSC_OBScenario010 |
@@ -234,11 +230,12 @@ Scenario: Spliting the OLPN at Weighed status
 	And user open RF Menu and complete the tasks created 
 	Then user open Task screen & validates the status of tasks 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed" 
-	Then fetch the OLPN number 
-	Then user opens RF menu and perform "MM3 split OLPN" operation in inventory menu 
-	Then user log out from application 
+	Then fetch the OLPN number
+	Then user opens RF menu and perform "MM3 split OLPN" operation in inventory menu	
+	Then user opens the OLPN screen and verify the splitted oLPNS status
+	Then user log out from application
 	
-@QSC_OB011 @Regression_QSC @QSC_CombineoLPN 
+@QSC_OB011 @Regression_QSC @QSC_SplitCombineoLPN 
 Scenario: Combine the OLPN at printed status 
 	Given I have excel data 
 		| QSC_OBScenario011 |
@@ -252,11 +249,12 @@ Scenario: Combine the OLPN at printed status
 	Then user verifies the item details in Distribuion Order page 
 	And user runs the "Standard wave" 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
-	Then fetch the OLPN number 
-	Then user opens RF menu and perform "MM3 cmbne OLPN" operation in inventory menu 
-	Then user log out from application 
+	Then fetch the OLPN number
+	Then user opens RF menu and perform "MM3 cmbne OLPN" operation in inventory menu	
+	Then user opens the OLPN screen and verify the combined oLPNS status
+	Then user log out from application	
 	
-@QSC_OB012 @Regression_QSC @QSC_CombineoLPN 
+@QSC_OB012 @Regression_QSC @QSC_SplitCombineoLPN
 Scenario: Combine the OLPN at weighed status 
 	Given I have excel data 
 		| QSC_OBScenario012 |
@@ -274,9 +272,10 @@ Scenario: Combine the OLPN at weighed status
 	And user open RF Menu and complete the tasks created 
 	Then user open Task screen & validates the status of tasks 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed" 
-	Then fetch the OLPN number 
-	Then user opens RF menu and perform "MM3 cmbne OLPN" operation in inventory menu 
-	Then user log out from application 
+	Then fetch the OLPN number
+	Then user opens RF menu and perform "MM3 cmbne OLPN" operation in inventory menu	
+	Then user opens the OLPN screen and verify the combined oLPNS status
+	Then user log out from application	
 	
 	###########################Jaya#################
 	

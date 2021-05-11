@@ -45,9 +45,9 @@ public class Items {
 	public static List<String> productsForDistOrder = new ArrayList<>();
 	private static Map<String, Integer> itemWithShippedQtyDO = new HashMap<>();
 	private static Map<String, String> itemWithQtyUOMDO = new HashMap<>();
-	//jaya
 	private static List<String> List_celtext = new ArrayList<>();
-	
+	private static List<String> List_celtext1 = new ArrayList<>();
+	private static List<String> List_celtext2 = new ArrayList<>();
 	public static String getItemName() {
 		return ItemName;
 	}
@@ -374,6 +374,21 @@ public class Items {
 	public static int getoLPNListSize() {
 		return List_celtext.size();
 	}
+	public static String getoLPNStatus(int i) {
+		return List_celtext1.get(i);
+	}
+
+	public static void setoLPNStatus(String myitem) {
+		List_celtext1.add(myitem);
+	}
+	
+	public static String getoLPNQty(int i) {
+		return List_celtext2.get(i);
+	}
+
+	public static void setoLPNQty(String myitem) {
+		List_celtext2.add(myitem);
+	}
 	
 	public static String getProductsForDistOrder(int i) {
 		return productsForDistOrder.get(i);
@@ -397,8 +412,10 @@ public class Items {
 	}
 	
 	public static void removeAllTheValuesFromMap() {
-		//jaya
 		List_celtext.clear();
+		List_celtext1.clear();
+		List_celtext2.clear();
+		RFMenuPage.splittedolpn= null;
 		itemWithQtyUOMDO.clear();
 		itemWithQtyUOMDO.clear();
 		itemWithShippedQtyDO.clear();

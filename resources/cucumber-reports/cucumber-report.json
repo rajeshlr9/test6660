@@ -6,7 +6,7 @@
         "before": [
           {
             "result": {
-              "duration": 1151650,
+              "duration": 1190689,
               "status": "passed"
             },
             "match": {
@@ -15,7 +15,7 @@
           },
           {
             "result": {
-              "duration": 108813550,
+              "duration": 100889399,
               "status": "passed"
             },
             "match": {
@@ -23,14 +23,14 @@
             }
           }
         ],
-        "line": 17,
-        "name": "Distribution Order Shipping - Single Line",
+        "line": 258,
+        "name": "Combine the OLPN at weighed status",
         "description": "",
-        "id": "qsc-outbound-scenarios;distribution-order-shipping---single-line",
+        "id": "qsc-outbound-scenarios;combine-the-olpn-at-weighed-status",
         "after": [
           {
             "result": {
-              "duration": 536302280,
+              "duration": 865877039,
               "status": "passed"
             },
             "match": {
@@ -43,10 +43,10 @@
         "steps": [
           {
             "result": {
-              "duration": 2127923910,
+              "duration": 1919441921,
               "status": "passed"
             },
-            "line": 18,
+            "line": 259,
             "name": "I have excel data",
             "match": {
               "location": "Steps.readExcelData(DataTable)"
@@ -54,19 +54,19 @@
             "rows": [
               {
                 "cells": [
-                  "QSC_OBScenario001"
+                  "QSC_OBScenario012"
                 ],
-                "line": 19
+                "line": 260
               }
             ],
             "keyword": "Given "
           },
           {
             "result": {
-              "duration": 1418396740,
+              "duration": 3387992951,
               "status": "passed"
             },
-            "line": 20,
+            "line": 261,
             "name": "Open the chrome browser by selenium",
             "match": {
               "location": "Steps.open_the_chrome_and_launch_the_application_using_Selenium()"
@@ -75,10 +75,10 @@
           },
           {
             "result": {
-              "duration": 8378480560,
+              "duration": 9176945820,
               "status": "passed"
             },
-            "line": 21,
+            "line": 262,
             "name": "user logs into the Manhattan application",
             "match": {
               "location": "StepDefInBound.user_logs_into_the_Manhattan_application()"
@@ -87,18 +87,18 @@
           },
           {
             "output": [
-              "DO-210428083222"
+              "DO-210511060822"
             ],
             "result": {
-              "duration": 314453540,
+              "duration": 302912650,
               "status": "passed"
             },
-            "line": 22,
-            "name": "user create xml file using \"Single Line DO\" with updated DO_No",
+            "line": 263,
+            "name": "user create xml file using \"Multi Line DO\" with updated DO_No",
             "match": {
               "arguments": [
                 {
-                  "val": "Single Line DO",
+                  "val": "Multi Line DO",
                   "offset": 28
                 }
               ],
@@ -108,10 +108,10 @@
           },
           {
             "result": {
-              "duration": 28278080,
+              "duration": 91041560,
               "status": "passed"
             },
-            "line": 23,
+            "line": 264,
             "name": "user update xml itemDetails from excel sheet for DO",
             "match": {
               "location": "StepDefOutBound.user_update_xml_itemDetails_from_sheet_for_DO()"
@@ -120,10 +120,10 @@
           },
           {
             "result": {
-              "duration": 11135780660,
+              "duration": 10986428340,
               "status": "passed"
             },
-            "line": 24,
+            "line": 265,
             "name": "user opens post message screen and upload file in order to create DO",
             "match": {
               "location": "StepDefOutBound.user_opens_post_message_screen_and_upload_file_in_order_to_create_DO()"
@@ -132,10 +132,10 @@
           },
           {
             "result": {
-              "duration": 1968050270,
+              "duration": 2224729430,
               "status": "passed"
             },
-            "line": 25,
+            "line": 266,
             "name": "user verify the response for DO creation",
             "match": {
               "location": "StepDefOutBound.user_verify_the_response_for_DO_Creation()"
@@ -144,10 +144,10 @@
           },
           {
             "result": {
-              "duration": 15264226370,
+              "duration": 15713641050,
               "status": "passed"
             },
-            "line": 26,
+            "line": 267,
             "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"110 - Released\"",
             "match": {
               "arguments": [
@@ -162,11 +162,10 @@
           },
           {
             "result": {
-              "duration": 43838040020,
-              "error_message": "java.lang.AssertionError: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"(//label[contains(text() , \u0027DO Detail - Distribution Order\u0027)]//following::span[text()\u003d\u0027Close\u0027])[1]\"}\n  (Session info: chrome\u003d90.0.4430.85)\nFor documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html\nBuild info: version: \u00273.141.59\u0027, revision: \u0027e82be7d358\u0027, time: \u00272018-11-14T08:17:03\u0027\nSystem info: host: \u0027OCIDDFL1SYSTEMT\u0027, ip: \u002710.60.27.234\u0027, os.name: \u0027Windows Server 2016\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002714.0.1\u0027\nDriver info: org.openqa.selenium.remote.RemoteWebDriver\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 90.0.4430.85, chrome: {chromedriverVersion: 90.0.4430.24 (4c6d850f087da..., userDataDir: /tmp/.com.google.Chrome.CXaYJy}, goog:chromeOptions: {debuggerAddress: localhost:33315}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true, webdriver.remote.sessionid: 83a597cac80d4313f6a6e9edde1...}\nSession ID: 83a597cac80d4313f6a6e9edde1280b9\n*** Element info: {Using\u003dxpath, value\u003d(//label[contains(text() , \u0027DO Detail - Distribution Order\u0027)]//following::span[text()\u003d\u0027Close\u0027])[1]} expected [true] but found [false]\r\n\tat org.testng.Assert.fail(Assert.java:97)\r\n\tat org.testng.Assert.failNotEquals(Assert.java:968)\r\n\tat org.testng.Assert.assertTrue(Assert.java:43)\r\n\tat StepDefinition.StepDefOutBound.user_verifies_the_item_details_in_Distribuion_Order_page(StepDefOutBound.java:196)\r\n\tat ✽.Then user verifies the item details in Distribuion Order page(QSCOutboundScenarios.feature:27)\r\n",
-              "status": "failed"
+              "duration": 33449796710,
+              "status": "passed"
             },
-            "line": 27,
+            "line": 268,
             "name": "user verifies the item details in Distribuion Order page",
             "match": {
               "location": "StepDefOutBound.user_verifies_the_item_details_in_Distribuion_Order_page()"
@@ -175,9 +174,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 71139743540,
+              "status": "passed"
             },
-            "line": 28,
+            "line": 269,
             "name": "user runs the \"Standard wave\"",
             "match": {
               "arguments": [
@@ -192,20 +192,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 15711560740,
+              "status": "passed"
             },
-            "line": 29,
-            "name": "user views wave and verify the allocation of inventory",
-            "match": {
-              "location": "StepDefOutBound.user_user_views_wave_and_verify_the_allocation_of_inventory()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 30,
+            "line": 270,
             "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"130 - DC Allocated\"",
             "match": {
               "arguments": [
@@ -220,9 +210,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 23884816570,
+              "status": "passed"
             },
-            "line": 31,
+            "line": 271,
             "name": "user open Task screen \u0026 verifies task is created for DO in the wave process",
             "match": {
               "location": "StepDefOutBound.user_user_views_TaskScreen_and_verify_task_generated()"
@@ -231,9 +222,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 103414628141,
+              "status": "passed"
             },
-            "line": 32,
+            "line": 272,
             "name": "user open RF Menu and complete the tasks created",
             "match": {
               "location": "StepDefOutBound.user_user_opeb_RFMenu_and_complete_tasks()"
@@ -242,9 +234,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 28892998629,
+              "status": "passed"
             },
-            "line": 33,
+            "line": 273,
             "name": "user open Task screen \u0026 validates the status of tasks",
             "match": {
               "location": "StepDefOutBound.user_user_validates_tasks_status()"
@@ -253,9 +246,10 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 15500905990,
+              "status": "passed"
             },
-            "line": 34,
+            "line": 274,
             "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"160 - Weighed\"",
             "match": {
               "arguments": [
@@ -270,37 +264,52 @@
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 22930501921,
+              "status": "passed"
             },
-            "line": 35,
-            "name": "user search for DO and confirms it",
+            "line": 275,
+            "name": "fetch the OLPN number",
             "match": {
-              "location": "StepDefOutBound.ship_confirm_DO()"
+              "location": "StepDefOutBound.fetch_olpn()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 145868051700,
+              "status": "passed"
             },
-            "line": 36,
-            "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"190 - Shipped\"",
+            "line": 276,
+            "name": "user opens RF menu and perform \"MM3 cmbne OLPN\" operation in inventory menu",
             "match": {
               "arguments": [
                 {
-                  "val": "190 - Shipped",
-                  "offset": 83
+                  "val": "MM3 cmbne OLPN",
+                  "offset": 32
                 }
               ],
-              "location": "StepDefOutBound.user_opens_DOscreen_andsearches_for_DOstatus(String)"
+              "location": "StepDefOutBound.MM3_inventory_operations(String)"
             },
-            "keyword": "And "
+            "keyword": "Then "
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 22358216820,
+              "status": "passed"
             },
-            "line": 37,
+            "line": 277,
+            "name": "user opens the OLPN screen and verify the combined oLPNS status",
+            "match": {
+              "location": "StepDefOutBound.check_combine_oLPNS_status()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 17260265150,
+              "status": "passed"
+            },
+            "line": 278,
             "name": "user log out from application",
             "match": {
               "location": "StepDefInBound.user_log_out_from_application()"
@@ -310,16 +319,16 @@
         ],
         "tags": [
           {
-            "line": 16,
-            "name": "@QSC_OB001"
+            "line": 257,
+            "name": "@QSC_OB012"
           },
           {
-            "line": 16,
+            "line": 257,
             "name": "@Regression_QSC"
           },
           {
-            "line": 16,
-            "name": "@QSC_Shipping"
+            "line": 257,
+            "name": "@QSC_SplitCombineoLPN"
           }
         ]
       }

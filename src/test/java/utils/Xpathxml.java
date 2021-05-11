@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -38,6 +40,7 @@ import com.cucumber.listener.Reporter;
 import StepDefinition.Steps;
 import entity.DistributionOrders;
 import entity.Items;
+import reusable.copyFolder;
 
 public class Xpathxml {
 	
@@ -51,7 +54,16 @@ public class Xpathxml {
 	public String DOMasterOneItemFilePath = dirPath + "/src/test/resources/testdata/Outbound/" +Steps.scenarioData.get("Account") + "/OBOneItem.xml";
 	public String DOMasterTwoItemFilePath = dirPath + "/src/test/resources/testdata/Outbound/" +Steps.scenarioData.get("Account") + "/OBTwoItem.xml";
 	public String inputOBFilePath = dirPath + "/src/test/resources/testdata/Outbound/" +Steps.scenarioData.get("Account") + "/InputOB.xml";
-			
+	
+	//Fedexnet files
+	public String SingleLineInboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/856/QSC_856_SingleLine.xml";
+	public String MultiLineInboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/856/QSC_856_MultiLine.xml";
+	public String inputEDIInboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/856/QSC_856_InputFile.xml";
+	
+	public String SingleLineOutboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/850/QSC_850_SingleLine.xml";
+	public String MultiLineOutboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/850/QSC_850_MultiLine.xml";
+	public String inputEDIOutboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/850/QSC_850_InputFile.xml";
+	
 	public static String ASNNumber = null;
 	
 	public static String ItemUpdateItemID() {
@@ -470,4 +482,49 @@ public class Xpathxml {
 					+ Steps.ItemDataMap.get(i).get("ShippedQty"));		
 	}
 }
+	public void user_create_EDI_file(String xmlType) throws FileNotFoundException, XPathExpressionException, IOException, SAXException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
+		
+		if(xmlType.equals("Single Line PO")){
+			user_copy_content_from_source_to_target(SingleLineInboundFilePath, inputEDIInboundFilePath);
+		}else if(xmlType.equals("Multi Line PO")){
+			user_copy_content_from_source_to_target(MultiLineInboundFilePath, inputEDIInboundFilePath);
+		}else if(xmlType.equals("Single Line DO")){
+			user_copy_content_from_source_to_target(SingleLineOutboundFilePath, inputEDIOutboundFilePath);
+		}else if(xmlType.equals("Multi Line DO")){
+			user_copy_content_from_source_to_target(MultiLineOutboundFilePath, inputEDIOutboundFilePath);
+		}
+	}
+	
+	public void user_modify_EDI_file(String xmlType) throws FileNotFoundException, XPathExpressionException, IOException, SAXException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
+		String currTime= current_date_time();
+		String PODONumber = currTime;
+		
+		String path=null;
+		if(xmlType.contains("PO")) {
+			path=inputEDIInboundFilePath;
+			Items.setAsnNumber(PODONumber);
+			Steps.logger.info("ASNNumber: "+PODONumber);
+		}else if(xmlType.contains("DO")) {
+			path=inputEDIOutboundFilePath;
+			Items.setDONumber(PODONumber);
+			Steps.logger.info("DO Number: "+PODONumber);
+		}
+		
+    File fileToBeModified = new File(path); 
+ 	String oldContent = "";	    	
+	BufferedReader reader = new BufferedReader(new FileReader(fileToBeModified));	
+	String line = reader.readLine();	
+	while (line != null) {
+		oldContent = oldContent + line + System.lineSeparator();
+		line = reader.readLine();
+	}
+	globalFunc.DateTime.TimeDateFunc();	
+	String newContent = oldContent.replaceAll("yyyymmdd", globalFunc.DateTime.strDate2);
+	String newcontent_ship=newContent.replaceAll("yymmdd", PODONumber);
+	FileWriter writer = new FileWriter(path);
+	writer.write(newcontent_ship);  			    	
+	reader.close();
+	writer.close();
+		
+	}
 }

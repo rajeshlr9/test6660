@@ -436,6 +436,27 @@ public class StepDefOutBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
+	
+	@Then("^user opens the OLPN screen and verify the splitted oLPNS status$")
+	public void check_splitted_oLPNS_status()throws Exception {
+	try {
+		doPage.checksplittedoLPNandquantity();
+	} catch (Exception e) {
+		Steps.testRes = "Failed";
+		System.out.println(e);
+		Assert.assertTrue(false, e.getMessage());
+	}
+	}
+	@Then("^user opens the OLPN screen and verify the combined oLPNS status$")
+	public void check_combine_oLPNS_status()throws Exception {
+	try {
+		doPage.checkcombineoLPNandquantity();
+	} catch (Exception e) {
+		Steps.testRes = "Failed";
+		System.out.println(e);
+		Assert.assertTrue(false, e.getMessage());
+	}
+	}
 
 
 	@Then("^user search for the LPN in iLPN screen, and validate the iLPN statusOB$")

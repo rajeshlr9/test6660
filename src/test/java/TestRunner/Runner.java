@@ -26,7 +26,7 @@ import utils.ExtentReportUpdate;
 		strict = true,
 		dryRun = false,
 		tags={"@tag5"},
-		//tags={"@QSC_OB001"},
+		//tags={"@QSC_OB012"},
 		features = {"src\\test\\java\\featureFile"},
 		//features = {"src\\test\\java\\featureFile"},
 		glue = {"StepDefinition"},

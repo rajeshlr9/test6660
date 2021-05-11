@@ -114,10 +114,9 @@ public class CreateBrowser {
 				break;
 				
 				case "OCI_Pod":
-				
-				System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
+				//System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
 				ChromeOptions options1 = new ChromeOptions();
-				options1.setCapability(CapabilityType.PLATFORM_NAME, Platform.LINUX);
+				//options1.setCapability(CapabilityType.PLATFORM_NAME, Platform.LINUX);
 				//URL dockerport = new URL("http://10.60.27.77:4444/wd/hub");
 				
 				//URL dockerport = new URL("http://10.60.28.5:31200/wd/hub");			

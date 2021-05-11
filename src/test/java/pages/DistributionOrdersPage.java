@@ -31,14 +31,12 @@ public class DistributionOrdersPage {
 	List<String> List_ShippedqtyUOM = new ArrayList<String>();
 	List<String> List_ItemName = new ArrayList<String>();
 	List<String> oLPNSlist_Shippedqty = new ArrayList<String>();
-	
+
 	public DistributionOrdersPage() {
 		this.driver = Steps.seleniumDriver;
 		PageFactory.initElements(driver, this);
 	}
-	
 
-	
 	@FindBy(xpath = "(//label[text()='Primary Fields']//following::input[@role='combobox' and @data-ref='inputEl'])[1]")
 	public WebElement primaryField;
 	@FindBy(xpath = "//input[@name='DistributionorderID']")
@@ -237,7 +235,7 @@ public class DistributionOrdersPage {
 	public WebElement itemNumber;
 	@FindBy(xpath = "//select[@id='dataForm:adjustReasonSelect']")
 	public WebElement rsnCode;
-	
+
 	public String getDolinesStatus(String donumber) {
 
 		String dolinestatusxpath = dolineStatuspath.replace("<ILPNINPUT>", donumber);
@@ -316,8 +314,8 @@ public class DistributionOrdersPage {
 		String actualDOstatus = driver.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[text()='"
 				+ Items.getDONumber() + "']//following::td[1]")).getText();
 		SeleniumTestHelper.assertEquals(actualDOstatus, expectedDOstatus);
-		Reporter.addStepLog("DO Order status:"+ actualDOstatus);
-		Steps.logger.info("DO Order status:"+ actualDOstatus);
+		Reporter.addStepLog("DO Order status:" + actualDOstatus);
+		Steps.logger.info("DO Order status:" + actualDOstatus);
 		Thread.sleep(2000);
 		homepage.user_closes_openedwindow("Distribution Orders");
 
@@ -352,7 +350,7 @@ public class DistributionOrdersPage {
 		}
 
 	}
-	
+
 	public void checkOnlyoLPNSstatus() throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
@@ -377,7 +375,7 @@ public class DistributionOrdersPage {
 		for (int i = 0; i < oLPNS.size(); i++) {
 			oLPNIndividual = oLPNS.get(i).getText();
 			oLPNStatusIndividual = oLPNSstatus.get(i).getText();
-			//SeleniumTestHelper.assertEquals(oLPNStatusIndividual, expectedDOstatus);
+			// SeleniumTestHelper.assertEquals(oLPNStatusIndividual, expectedDOstatus);
 			Reporter.addStepLog("Status : " + oLPNStatusIndividual + " verified for oLPN : " + oLPNIndividual);
 			Steps.logger.info("Status : " + oLPNStatusIndividual + " verified for oLPN : " + oLPNIndividual);
 			System.out.println("Status : " + oLPNStatusIndividual + " verified for oLPN : " + oLPNIndividual);
@@ -411,7 +409,7 @@ public class DistributionOrdersPage {
 		for (int i = 0; i < oLPNS.size(); i++) {
 			oLPNIndividual = oLPNS.get(i).getText();
 			oLPNStatusIndividual = oLPNSstatus.get(i).getText();
-			//SeleniumTestHelper.assertEquals(oLPNStatusIndividual, expectedDOstatus);
+			// SeleniumTestHelper.assertEquals(oLPNStatusIndividual, expectedDOstatus);
 			System.out.println("Status : " + oLPNStatusIndividual + " for oLPN : " + oLPNIndividual);
 			Assert.assertEquals(oLPNStatusIndividual, status, "oLPN Status");
 		}
@@ -419,7 +417,7 @@ public class DistributionOrdersPage {
 		homepage.user_closes_openedwindow("DO Detail - Distribution Order");
 
 	}
-	
+
 	public void runWaveTemplate(String waveTemplateDesc, String expStatus, String OrderType)
 			throws Exception, AWTException {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
@@ -427,7 +425,7 @@ public class DistributionOrdersPage {
 		primaryField.sendKeys("Distribution Order");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
 		distributionOrderID.click();
-		distributionOrderID.sendKeys(DistributionOrders.getDOnumber());		
+		distributionOrderID.sendKeys(DistributionOrders.getDOnumber());
 		apply_Btn.click();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
 		distributionOrder_chkbox.click();
@@ -525,7 +523,8 @@ public class DistributionOrdersPage {
 			if (OrderType.equalsIgnoreCase("DFILL")) {
 				if (SeleniumTestHelper.isElementDisplayed(zonePickingTask)
 						|| SeleniumTestHelper.isElementDisplayed(pickInventoryFromActive)) {
-					System.out.println("PickInventoryFromActive.getAttribute textContent "+PickInventoryFromActive.getAttribute("textContent"));
+					System.out.println("PickInventoryFromActive.getAttribute textContent "
+							+ PickInventoryFromActive.getAttribute("textContent"));
 					if (PickInventoryFromActive.getAttribute("textContent").contains("Pick from active")) {
 						System.out.println("Task id generated is " + taskId);
 						System.out.println(PickInventoryFromActive.getText());
@@ -557,16 +556,15 @@ public class DistributionOrdersPage {
 						System.out.println("Active oLPN: " + oLPNText.getText());
 						SeleniumTestHelper.waitForElementToBeDisplayed(driver, backBtn, 100);
 						backBtn.click();
-						
+
 						activeChkbox = null;
 					}
-					
+
 				}
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, backBtn, 100);
 				backBtn.click();
 			}
-			
-			
+
 			else if (OrderType.equalsIgnoreCase("Bulk Parcel") || OrderType.equalsIgnoreCase("NL")) {
 
 				try {
@@ -595,11 +593,10 @@ public class DistributionOrdersPage {
 							viewBtnTasks.click();
 							DistributionOrders.setoLPNwithActive(oLPNText.getText());
 							System.out.println("Active oLPN: " + oLPNText.getText());
-						
+
 							SeleniumTestHelper.waitForElementToBeDisplayed(driver, backBtn, 100);
 							backBtn.click();
-							
-							
+
 							activeChkbox = null;
 						}
 						SeleniumTestHelper.waitForElementToBeDisplayed(driver, backBtn, 50);
@@ -673,19 +670,20 @@ public class DistributionOrdersPage {
 				// }
 				// }
 				/*
-				 * if(DistributionOrders.oLPNwithActive.size()>0) {
-				 * List<WebElement> ActiveoLPN = driver.findElements(By.
+				 * if(DistributionOrders.oLPNwithActive.size()>0) { List<WebElement> ActiveoLPN
+				 * = driver.findElements(By.
 				 * xpath("//span[contains(text(),'50 - Pick from active')]/../following-sibling::td[3]/span[1]"
 				 * )); for(WebElement ele : ActiveoLPN){
 				 * System.out.println("oLPN for Active -> " + ele.getText());
-				 * DistributionOrders.setoLPNwithActive(ele.getText().trim()); }
-				 * } }
+				 * DistributionOrders.setoLPNwithActive(ele.getText().trim()); } } }
 				 */
-				/*SeleniumTestHelper.waitForElementToBeDisplayed(driver, backBtn, 100);
-				backBtn.click();*/
 				/*
-				 * for(WebElement ele : reserveoLPN){
-				 * System.out.println("oLPN for Reserve -> " + ele.getText());
+				 * SeleniumTestHelper.waitForElementToBeDisplayed(driver, backBtn, 100);
+				 * backBtn.click();
+				 */
+				/*
+				 * for(WebElement ele : reserveoLPN){ System.out.println("oLPN for Reserve -> "
+				 * + ele.getText());
 				 * DistributionOrders.setoLPNwithReserve(ele.getText().trim());
 				 * 
 				 * 
@@ -788,7 +786,7 @@ public class DistributionOrdersPage {
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
 		distributionOrderID.click();
-		distributionOrderID.sendKeys(Items.getDONumber());	
+		distributionOrderID.sendKeys(Items.getDONumber());
 		Screenshots.captureSnapshot(driver);
 		apply_Btn.click();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
@@ -830,8 +828,8 @@ public class DistributionOrdersPage {
 			Items.setWaveNumber(waveNumberValue);
 			Steps.logger.info("Wave no generated successfully");
 			Reporter.addStepLog("Wave no generated successfully");
-			Steps.logger.info("Wave no:"+ Items.getWaveNumber());
-			Reporter.addStepLog("Wave no:"+ Items.getWaveNumber());
+			Steps.logger.info("Wave no:" + Items.getWaveNumber());
+			Reporter.addStepLog("Wave no:" + Items.getWaveNumber());
 			Items.setWaveNumber(waveNumberValue);
 			Thread.sleep(2000);
 			waveNumber.click();
@@ -845,18 +843,17 @@ public class DistributionOrdersPage {
 				Thread.sleep(5000);
 				count++;
 			}
-			Steps.logger.info("Wave status:"+ actualStatus);
-			Reporter.addStepLog("Wave status:"+ actualStatus);
-			
-		}	
+			Steps.logger.info("Wave status:" + actualStatus);
+			Reporter.addStepLog("Wave status:" + actualStatus);
+
+		}
 		Thread.sleep(2000);
 		Screenshots.captureSnapshot(driver);
-		
 
 		homepage.user_closes_openedwindow("ShipWaveTemplate - Waves");
-		
+
 	}
-	
+
 	public void getDOdetails() throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
@@ -877,14 +874,16 @@ public class DistributionOrdersPage {
 		SeleniumTestHelper.waitForElementToBeClickable(driver, DOlinesTab, 50);
 		Screenshots.captureSnapshot(driver);
 		DOlinesTab.click();
+		Thread.sleep(5000);
 		List<WebElement> itemslist = driver.findElements(By.xpath("//span[contains(@id,'ItemID_Link_NameText')]"));
 		List<WebElement> OriginalOrderedqty = driver
 				.findElements(By.xpath("//span[contains(@id,'DODetailOrderLinesList_OrigOrderQtyLink_NameText')]"));
-		Thread.sleep(5000);
+		System.out.println(itemslist.size());
+		System.out.println(OriginalOrderedqty.size());
 		Screenshots.captureSnapshot(driver);
 		String[] shippedQty = null;
 		String itemInDOPage = null;
-		//String DoID = distributionOrderIDtxt.getText();
+		// String DoID = distributionOrderIDtxt.getText();
 		for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 			shippedQty = OriginalOrderedqty.get(i).getText().split("\\s+");
 			List_Shippedqty.add(shippedQty[0]);
@@ -898,17 +897,17 @@ public class DistributionOrdersPage {
 			 * DistributionOrders.DOMap.put(DoID, DistributionOrders.DOItemQTYUOM);
 			 */
 			System.out.println("Items in DO page: " + List_ItemName.get(i));
-			System.out.println(
-					"Qty for item in DO page: " + List_Shippedqty.get(i));
-			System.out.println(
-					"UOM for Items in DO page: " + List_ShippedqtyUOM.get(i));
-			SeleniumTestHelper.assertEquals(List_ItemName.get(i),Steps.ItemDataMap.get(i).get("Item"));
+			System.out.println("Qty for item in DO page: " + List_Shippedqty.get(i));
+			System.out.println("UOM for Items in DO page: " + List_ShippedqtyUOM.get(i));
+			SeleniumTestHelper.assertEquals(List_ItemName.get(i), Steps.ItemDataMap.get(i).get("Item"));
 			SeleniumTestHelper.assertEquals(List_Shippedqty.get(i), Steps.ItemDataMap.get(i).get("ShippedQty"));
 			SeleniumTestHelper.assertEquals(List_ShippedqtyUOM.get(i), Steps.ItemDataMap.get(i).get("UOM"));
-			
-			Reporter.addStepLog("Item Id: "+ List_ItemName.get(i)+", Qty: "+List_Shippedqty.get(i)+ ", UOM: "+List_ShippedqtyUOM.get(i));
-			Steps.logger.info("Item Id: "+ List_ItemName.get(i)+", Qty: "+List_Shippedqty.get(i)+ ", UOM: "+List_ShippedqtyUOM.get(i));
-			
+
+			Reporter.addStepLog("Item Id: " + List_ItemName.get(i) + ", Qty: " + List_Shippedqty.get(i) + ", UOM: "
+					+ List_ShippedqtyUOM.get(i));
+			Steps.logger.info("Item Id: " + List_ItemName.get(i) + ", Qty: " + List_Shippedqty.get(i) + ", UOM: "
+					+ List_ShippedqtyUOM.get(i));
+
 			/*
 			 * SeleniumTestHelper.assertEquals(DistributionOrders.DOMap.get(DoID
 			 * ).get("IteminDO"+(i+1)), "7978767501003");
@@ -1000,8 +999,7 @@ public class DistributionOrdersPage {
 
 	}
 
-	public void runWaveTemplateandchecknotasksgenerated(String waveTemplateDesc)
-			throws Exception {
+	public void runWaveTemplateandchecknotasksgenerated(String waveTemplateDesc) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
 		primaryField.sendKeys("Distribution Order");
@@ -1171,8 +1169,8 @@ public class DistributionOrdersPage {
 
 			}
 			/*
-			 * for(WebElement ele : reserveoLPN){
-			 * System.out.println("oLPN for Reserve -> " + ele.getText());
+			 * for(WebElement ele : reserveoLPN){ System.out.println("oLPN for Reserve -> "
+			 * + ele.getText());
 			 * DistributionOrders.setoLPNwithReserve(ele.getText().trim());
 			 * 
 			 * 
@@ -1324,8 +1322,7 @@ public class DistributionOrdersPage {
 		homepage.user_closes_openedwindow("ShipWaveTemplate - oLPNs");
 	}
 
-	public void runWaveTemplate_Check_Replen_to_active(String waveTemplateDesc, String expStatus)
-			throws Exception {
+	public void runWaveTemplate_Check_Replen_to_active(String waveTemplateDesc, String expStatus) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
 		primaryField.sendKeys("Distribution Order");
@@ -1435,8 +1432,7 @@ public class DistributionOrdersPage {
 		homepage.user_closes_openedwindow("Tasks");
 	}
 
-	public void verifyDOLineStatusForPackedAndCancelItem(String statusPacked, String statusCancel)
-			throws Exception {
+	public void verifyDOLineStatusForPackedAndCancelItem(String statusPacked, String statusCancel) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
 		primaryField.sendKeys("Distribution Order");
@@ -1558,7 +1554,7 @@ public class DistributionOrdersPage {
 		SeleniumTestHelper.waitForElementToBeClickable(driver, rsnCode, 50);
 		rsnCode.click();
 		rsnCode.sendKeys("SCN-Soft Cancel");
-		//rsnCode.sendKeys(Keys.TAB);
+		// rsnCode.sendKeys(Keys.TAB);
 		SeleniumTestHelper.assertTrue(true);
 		Thread.sleep(1000);
 		SeleniumTestHelper.waitForElementToBeClickable(driver, cnfmBtn, 50);
@@ -1635,8 +1631,7 @@ public class DistributionOrdersPage {
 
 	}
 
-	public void search_for_DO_with_Fulfillment_EPIDoc(String fullfulmentsStatus)
-			throws Exception {
+	public void search_for_DO_with_Fulfillment_EPIDoc(String fullfulmentsStatus) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
 		primaryField.sendKeys("Fulfillment Status");
@@ -1688,7 +1683,7 @@ public class DistributionOrdersPage {
 		ViewShipConfirm.click();
 		Thread.sleep(5000);
 		Screenshots.captureSnapshot(driver);
-		
+
 		/*
 		 * if() { SeleniumTestHelper.switchToInnerFrame(driver);
 		 * Assert.assertEquals(driver.findElement(By.className("overlayerrorList")).
@@ -1698,7 +1693,7 @@ public class DistributionOrdersPage {
 		 * Steps.logger.info("Pulled Quantity Exceeds Allocated Quantity!"); } else {
 		 */
 		ConfirmationYes.click();
-		//}
+		// }
 		Thread.sleep(5000);
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.assertEquals(fullfilmentStatusShipped.isDisplayed(), true);
@@ -1785,11 +1780,11 @@ public class DistributionOrdersPage {
 		SeleniumTestHelper.assertEquals(actualDOstatus, expectedDOstatus);
 
 	}
-	
-	//jaya
-	
-public void fetchoLPNSnumber() throws Exception {
-		
+
+	// jaya
+
+	public void fetchoLPNSnumber() throws Exception {
+
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		System.out.println("DISTRIBUTION");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
@@ -1798,7 +1793,7 @@ public void fetchoLPNSnumber() throws Exception {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
 		distributionOrderID.click();
 		System.out.println("click");
-		
+
 		distributionOrderID.sendKeys(Items.getDONumber()); // DistributionOrders.getDOnumber()
 		apply_Btn.click();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
@@ -1810,39 +1805,177 @@ public void fetchoLPNSnumber() throws Exception {
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		SeleniumTestHelper.waitForElementToBeClickable(driver, lPNSTab, 50);
 		lPNSTab.click();
-		//To locate table.
-		Thread.sleep(5000); 
-		WebElement mytable = driver.findElement(By.xpath("//*[@id=\"dataForm:DODetailsLpnList_lv:LPNListTable_body\"]"));
-    	
-    	System.out.println("table");
-    	//To locate rows of table. 
-    	List < WebElement > rows_table = mytable.findElements(By.tagName("tr"));
-    	//To calculate no of rows In table.
-    	int rows_count = rows_table.size();
-    	System.out.println("No of Rows ::"+rows_count);
-    	System.out.println("no of rows");
-    	//Loop will execute till the last row of table.
-    	for (int row = 0; row < rows_count-1; row++) {
-    	    //To locate columns(cells) of that specific row.
-    	    List < WebElement > Columns_row = rows_table.get(row).findElements(By.tagName("td"));
-    	    System.out.println("getrows::"+Columns_row.size());
-    	    //To calculate no of columns (cells). In that specific row.
-    	 //   int columns_count = Columns_row.size();
-    	     //Loop will execute till the last cell of that specific row.
-    	  //  for (int column = 0; column < columns_count; column++) {
-    	        // To retrieve text from that specific cell.
-    	    	//if(column == 1) {
-    	        String celtext = Columns_row.get(1).getText();
-    	        System.out.println("celtext::"+celtext);
-    	        //List_celtext.add(celtext);  
-    	        Items.setoLPN(celtext);  
-    	           	      
-    	      // homepage.user_closes_openedwindow("DO Detail - Distribution Order");
-    	        System.out.println(celtext);
-    	        
-    	    	}
-    	homepage.user_closes_openedwindow("DO Detail - Distribution Order");
-    	    }
+		// To locate table.
+		Thread.sleep(5000);
+		WebElement mytable = driver
+				.findElement(By.xpath("//*[@id=\"dataForm:DODetailsLpnList_lv:LPNListTable_body\"]"));
+		System.out.println("table");
+		// To locate rows of table.
+		List<WebElement> rows_table = mytable.findElements(By.tagName("tr"));
+		// To calculate no of rows In table.
+		int rows_count = rows_table.size();
+		System.out.println("No of Rows ::" + rows_count);
+		System.out.println("no of rows");
+		// Loop will execute till the last row of table.
+		for (int row = 0; row < rows_count - 1; row++) {
+			// To locate columns(cells) of that specific row.
+			List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));
+			System.out.println("getrows::" + Columns_row.size());
+			String oLPN = Columns_row.get(1).getText();
+			String oLPNStatus = Columns_row.get(8).getText();
+			String oLPNQty = Columns_row.get(6).getText();
+			String qty[] = oLPNQty.split(" ");
+			Items.setoLPN(oLPN);
+			Items.setoLPNStatus(oLPNStatus);
+			Items.setoLPNQty(qty[0]);
+			System.out.println(Items.getoLPN(row));
+			System.out.println(Items.getoLPNStatus(row));
+			System.out.println(Items.getoLPNQty(row));
+		}
+		homepage.user_closes_openedwindow("DO Detail - Distribution Order");
+	}
 
+	public void checksplittedoLPNandquantity() throws Exception {
 
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		System.out.println("DISTRIBUTION");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		primaryField.sendKeys("Distribution Order");
+		System.out.println("sendkeys");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		System.out.println("click");
+
+		distributionOrderID.sendKeys(Items.getDONumber()); // DistributionOrders.getDOnumber()
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
+		viewBtn.click();
+		homepage.user_closes_openedwindow("Distribution Orders");
+		homepage.openWindows.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, lPNSTab, 50);
+		lPNSTab.click();
+
+		Thread.sleep(5000);
+		// To locate the table
+		WebElement mytable = driver.findElement(By.xpath("//*[@id='dataForm:DODetailsLpnList_lv:LPNListTable_body']"));
+
+		System.out.println("table");
+		// To locate rows of table.
+		List<WebElement> rows_table = mytable.findElements(By.tagName("tr"));
+		// To calculate no of rows In table.
+		int rows_count = rows_table.size();
+		System.out.println("No of Rows ::" + rows_count);
+		System.out.println("no of rows");
+
+		boolean olpnExist = false;
+		for (int row = 0; row < rows_count - 1; row++) {
+			// To locate columns(cells) of that specific row.
+			List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));
+			String oLPN = Columns_row.get(1).getText();
+			String oLPNqty = Columns_row.get(6).getText();
+			String[] qty = oLPNqty.split(" ");
+			System.out.println("oLPN: " + oLPN);
+			System.out.println("oLPN qty: " + qty[0]);
+
+			if (oLPN.equals(RFMenuPage.splittedolpn)) {
+				SeleniumTestHelper.assertEquals(qty[0], Steps.ItemDataMap.get(0).get("SplitoLPNQty"), "Splitted Qty");
+				olpnExist = true;
+				break;
+			}
+
+			/*
+			 * if (celtext != null && celtext1 != null && celtext.equals(splitToOLPN) &&
+			 * celtext1.contains(Steps.ItemDataMap.get(0).get("SplitoLPNQty"))) {
+			 * SeleniumTestHelper.assertEquals(celtext, splitToOLPN, "OLPN number");
+			 * SeleniumTestHelper.assertEquals(qty[0],
+			 * Steps.ItemDataMap.get(0).get("SplitoLPNQty"), "split QTY Number"); }
+			 */
+		}
+
+		if (olpnExist) {
+			Steps.logger.info("New oLPN " + RFMenuPage.splittedolpn + " is created with splitted qty "
+					+ Steps.ItemDataMap.get(0).get("SplitoLPNQty"));
+			Reporter.addStepLog("New oLPN " + RFMenuPage.splittedolpn + " is created with splitted qty "
+					+ Steps.ItemDataMap.get(0).get("SplitoLPNQty"));
+		} else {
+			Steps.logger.info("oLPN does not exist in DO");
+			Steps.testRes = "Failed";
+			Assert.assertTrue(false);
+		}
+
+	}
+
+	public void checkcombineoLPNandquantity() throws Exception {
+
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		System.out.println("DISTRIBUTION");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		primaryField.sendKeys("Distribution Order");
+		System.out.println("sendkeys");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		System.out.println("click");
+
+		distributionOrderID.sendKeys(Items.getDONumber()); // DistributionOrders.getDOnumber()
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
+		viewBtn.click();
+		homepage.user_closes_openedwindow("Distribution Orders");
+		homepage.openWindows.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, lPNSTab, 50);
+		lPNSTab.click();
+
+		Thread.sleep(5000);
+		// To locate the table
+		WebElement mytable = driver.findElement(By.xpath("//*[@id='dataForm:DODetailsLpnList_lv:LPNListTable_body']"));
+
+		System.out.println("table");
+		// To locate rows of table.
+		List<WebElement> rows_table = mytable.findElements(By.tagName("tr"));
+		// To calculate no of rows In table.
+		int rows_count = rows_table.size();
+		System.out.println("No of Rows ::" + rows_count);
+		System.out.println("no of rows");
+
+		System.out.println("CmbneOLPNQty " + Steps.ItemDataMap.get(0).get("CmbneOLPNQty"));
+		System.out.println("CombineToOLPN " + Items.getoLPN(1));
+		int counter;
+		for (int row = 0; row < rows_count - 1; row++) {
+			 counter = 0;
+			List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));
+			String oLPN = Columns_row.get(1).getText();
+			String oLPNqty = Columns_row.get(6).getText();
+			String[] qty = oLPNqty.split(" ");
+			System.out.println("oLPN: " + oLPN);
+			System.out.println("oLPN qty:" + qty[0]);
+			if (oLPN.equals(Items.getoLPN(counter))) {
+				int decqty = (Integer.parseInt(Items.getoLPNQty(counter))
+						- Integer.parseInt(Steps.ItemDataMap.get(0).get("CmbneOLPNQty")));
+				System.out.println(decqty);
+				SeleniumTestHelper.assertEquals(qty[0], String.valueOf(decqty), "Splitted Qty");
+				Steps.logger.info(Steps.ItemDataMap.get(0).get("CmbneOLPNQty")+" qty is decreased from oLPN "+oLPN);
+				Reporter.addStepLog(Steps.ItemDataMap.get(0).get("CmbneOLPNQty")+" qty is decreased from oLPN "+oLPN);
+			} else if (oLPN.equals((Items.getoLPN(counter+1)))) {
+				int incqty = Integer.parseInt(Items.getoLPNQty(counter+1))
+						+ Integer.parseInt(Steps.ItemDataMap.get(0).get("CmbneOLPNQty"));
+				SeleniumTestHelper.assertEquals(qty[0], String.valueOf(incqty), "Splitted Qty");
+				Steps.logger.info(Steps.ItemDataMap.get(0).get("CmbneOLPNQty")+" qty is increased to oLPN "+oLPN);
+				Reporter.addStepLog(Steps.ItemDataMap.get(0).get("CmbneOLPNQty")+" qty is increased to oLPN "+oLPN);
+			}
+			/*
+			 * if (celtext != null && celtext1 != null && celtext.equals(splitToOLPN) &&
+			 * celtext1.contains(Steps.ItemDataMap.get(0).get("CmbneOLPNQty"))) {
+			 * 
+			 * SeleniumTestHelper.assertEquals(celtext, Items.getoLPN(1), "OLPN number");
+			 * SeleniumTestHelper.assertEquals(qty[0],
+			 * Steps.ItemDataMap.get(0).get("CmbneOLPNQty"), "CmbneOLPNQty"); }
+			 */
+		}
+	}
 }
