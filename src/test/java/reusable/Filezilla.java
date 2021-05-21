@@ -39,11 +39,13 @@ public class Filezilla extends UnitTestClassBase {
     public static void uploadOrder() throws GeneralLeanFtException, InterruptedException, IOException, AWTException {
     	
     	Robot robot= new Robot();
-    	
+    	System.out.println("ho");
     	Desktop.describe(Window.class, new WindowDescription.Builder()
 				.ownedWindow(false).childWindow(false).windowClassRegExp("wxWindowNR").windowTitleRegExp("FileZilla").build()).describe(Menu.class, new MenuDescription.Builder()
-						.type(com.hp.lft.sdk.stdwin.MenuType.MENU).build()).select("File;Site Manager...	Ctrl+S");
+						.type(com.hp.lft.sdk.stdwin.MenuType.MENU).build()).select("ile;Site Manager...\tCtrl+S");
 		Thread.sleep(1000);
+
+		System.out.println("he");
 		
 		List<TreeViewNode> selectEntryTreeView = Desktop.describe(Window.class, new WindowDescription.Builder()
 				.childWindow(false)

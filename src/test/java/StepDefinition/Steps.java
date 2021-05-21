@@ -207,7 +207,7 @@ public class Steps {
 		}
 	}
 
-	@Given("Open the IE by selenium")
+	@And("Open the IE by selenium")
 	public void open_the_IE_and_launch_the_application_using_Selenium() throws Throwable {
 		// Write code here that turns the phrase above into concrete actions
 		try {
@@ -311,4 +311,6 @@ public class Steps {
 		LeanFTDriver.close();
 		LeanFTDriver = null;
 	}
+	
+	
 }

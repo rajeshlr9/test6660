@@ -885,6 +885,7 @@ public class DistributionOrdersPage {
 		String itemInDOPage = null;
 		// String DoID = distributionOrderIDtxt.getText();
 		for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
+			System.out.println("value of i "+i);
 			shippedQty = OriginalOrderedqty.get(i).getText().split("\\s+");
 			List_Shippedqty.add(shippedQty[0]);
 			List_ShippedqtyUOM.add(shippedQty[1]);

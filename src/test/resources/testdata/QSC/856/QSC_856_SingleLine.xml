@@ -31,7 +31,7 @@
     </RefLp>
     <TrnsprtLp>
       <TrnsprtShipID>yymmdd</TrnsprtShipID>
-      <TrnsprtSCAC>OTHR</TrnsprtSCAC>
+      <TrnsprtSCAC>FDEG</TrnsprtSCAC>
       <TrnsprtTrailerNo>yymmdd</TrnsprtTrailerNo>
     </TrnsprtLp>
     <ShipOrdLp>

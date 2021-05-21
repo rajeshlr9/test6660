@@ -106,7 +106,7 @@ public class CreateBrowser {
 				prefs2.put("credentials_enable_service", false);
 				options2.setExperimentalOption("prefs", prefs2);
 				options2.addArguments("disable-infobars");
-	
+				options2.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 				seleniumDriver = new ChromeDriver(options2);
 				seleniumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 				//seleniumDriver.manage().deleteAllCookies();

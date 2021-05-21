@@ -637,6 +637,7 @@ Given I have excel data
 	Then user log out from application
 	
 	
+	
 	@QSC_IB033 @Regression_QSC @QSC_FedexNet
 Scenario: Login to FedexNet and drop xml 
 	Given I have excel data
@@ -644,7 +645,10 @@ Scenario: Login to FedexNet and drop xml
 	And Open the chrome browser by selenium
 	When user update "Single Line PO" for dropping into fedexnet application
 	And user logs into the FedexNet application
-	Then user upload "856" XML file in fedexnet 
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	
 @QSC_IB034 @Regression_QSC @QSC_FedexNet
 Scenario: Login to FedexNet and drop xml 
@@ -653,24 +657,44 @@ Scenario: Login to FedexNet and drop xml
 	And Open the chrome browser by selenium
 	When user update "Multi Line PO" for dropping into fedexnet application
 	And user logs into the FedexNet application
-	Then user upload "856" XML file in fedexnet 
+	And user upload "856" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	
 	@QSC_IB035 @Regression_QSC @QSC_FedexNet
 Scenario: Login to FedexNet and drop xml 
 	Given I have excel data
-	| QSC_IBScenario032 |
+	| QSC_IBScenario032  |
 	And Open the chrome browser by selenium
 	When user update "Single Line DO" for dropping into fedexnet application
 	And user logs into the FedexNet application
-	Then user upload "850" XML file in fedexnet 
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "Standard wave" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
+	And user open Task screen & verifies task is created for DO in the wave process 
+	And user open RF Menu and complete the tasks created 
+	Then user open Task screen & validates the status of tasks 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed" 
+	Then user search for DO and confirms it 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 
+	Then user log out from application 
 	
 	@QSC_IB036 @Regression_QSC @QSC_FedexNet
 Scenario: Login to FedexNet and drop xml 
 	Given I have excel data
-	| QSC_IBScenario032 |
+	| QSC_IBScenario032  |
 	And Open the chrome browser by selenium
 	When user update "Multi Line DO" for dropping into fedexnet application
 	And user logs into the FedexNet application
-	Then user upload "850" XML file in fedexnet 
-	
+	And user upload "850" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	Then user log out from application 
 	

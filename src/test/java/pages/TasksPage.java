@@ -394,7 +394,7 @@ public class TasksPage {
 		Thread.sleep(1000);
 		Screenshots.captureSnapshot(driver);
 		applyBtn.click();
-		Thread.sleep(4000);
+		Thread.sleep(3000);
 		Screenshots.captureSnapshot(driver);
 		List<WebElement> rows = driver.findElements(By.xpath("//table[@id='dataForm:lview:dataTable_body']/tbody/tr"));
 		int count = rows.size();
@@ -441,12 +441,11 @@ public class TasksPage {
 			Screenshots.captureSnapshot(driver);
 			Thread.sleep(1000);
 			applyBtn.click();
-			Thread.sleep(2000);
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, taskStatus, 10);
 			String actualtaskStatus= taskStatus.getText();
 			SeleniumTestHelper.assertEquals(actualtaskStatus, "90 - Complete", "Status of the task id "+tasks[i]);
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			Screenshots.captureSnapshot(driver);
 			Steps.logger.info("Task status is: " + actualtaskStatus);
 			Reporter.addStepLog("Task status is: " + actualtaskStatus);

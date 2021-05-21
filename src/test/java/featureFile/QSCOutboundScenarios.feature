@@ -5,11 +5,11 @@ Scenario: Distribution Order Shipping - Single Line
 	Given I have excel data 
 		| QSC_OBScenario001 |
 	And Open the chrome browser by selenium 
-	When user logs into the Manhattan application 
-	When user create xml file using "Single Line DO" with updated DO_No 
-	And user update xml itemDetails from excel sheet for DO
-	And user opens post message screen and upload file in order to create DO 
-	Then user verify the response for DO creation
+	When user update "Single Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user log out from application 
 	
@@ -18,11 +18,11 @@ Scenario: Distribution Order Shipping - Single Line
 	Given I have excel data 
 		| QSC_OBScenario001 |
 	And Open the chrome browser by selenium 
-	When user logs into the Manhattan application 
-	When user create xml file using "Single Line DO" with updated DO_No 
-	And user update xml itemDetails from excel sheet for DO
-	And user opens post message screen and upload file in order to create DO 
-	Then user verify the response for DO creation
+	When user update "Single Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
 	And user runs the "Standard wave" 
@@ -42,11 +42,11 @@ Scenario: Distribution Order Shipping - Multi Line
 	Given I have excel data 
 		| QSC_OBScenario002 |
 	And Open the chrome browser by selenium 
-	When user logs into the Manhattan application 
-	When user create xml file using "Multi Line DO" with updated DO_No 
-	And user update xml itemDetails from excel sheet for DO
-	And user opens post message screen and upload file in order to create DO 
-	Then user verify the response for DO creation
+	When user update "Multi Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
 	And user runs the "Standard wave" 
@@ -65,11 +65,11 @@ Scenario: Distribution Order Shipping - Single Line Shortage
 	Given I have excel data 
 		| QSC_OBScenario003 |
 	And Open the chrome browser by selenium 
-	When user logs into the Manhattan application 
-	When user create xml file using "Single Line DO" with updated DO_No 
-	And user update xml itemDetails from excel sheet for DO
-	And user opens post message screen and upload file in order to create DO 
-	Then user verify the response for DO creation
+	When user update "Single Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
 	And user runs the "Standard wave" 
@@ -83,11 +83,11 @@ Scenario: Modify\Adjust Olpn from Manhattan UI -Single Line, OLPN in Printed sta
 	Given I have excel data 
 		| QSC_OBScenario004 |
 	And Open the chrome browser by selenium 
-	When user logs into the Manhattan application 
-	When user create xml file using "Single Line DO" with updated DO_No 
-	And user update xml itemDetails from excel sheet for DO
-	And user opens post message screen and upload file in order to create DO 
-	Then user verify the response for DO creation
+	When user update "Single Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
 	And user runs the "Standard wave" 
@@ -101,11 +101,11 @@ Scenario: Modify\Adjust Olpn from Manhattan UI Single Line,OLPN in Weighed statu
 	Given I have excel data 
 		| QSC_OBScenario005 |
 	And Open the chrome browser by selenium 
-	When user logs into the Manhattan application 
-	When user create xml file using "Single Line DO" with updated DO_No 
-	And user update xml itemDetails from excel sheet for DO
-	And user opens post message screen and upload file in order to create DO 
-	Then user verify the response for DO creation
+	When user update "Single Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
 	And user runs the "Standard wave" 
@@ -123,11 +123,11 @@ Scenario: Modify\Adjust Olpn from Manhattan UI Single Line,OLPN in Weighed statu
 	Given I have excel data 
 		| QSC_OBScenario006 |
 	And Open the chrome browser by selenium 
-	When user logs into the Manhattan application 
-	When user create xml file using "Single Line DO" with updated DO_No 
-	And user update xml itemDetails from excel sheet for DO
-	And user opens post message screen and upload file in order to create DO 
-	Then user verify the response for DO creation
+	When user update "Single Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
 	And user runs the "Standard wave" 
@@ -141,15 +141,16 @@ Scenario: Modify\Adjust Olpn from Manhattan UI Single Line,OLPN in Weighed statu
 	Then user log out from application 
 	
 @QSC_OB007 @Regression_QSC @QSC_AdjustoLPN 
-Scenario: Distribution Order Shipping - Multi Line,One Line at Printed status and second line as Weighed,correspondlingly the order is at In Packing,New Quantity  more than Current Quantity 
+Scenario: Distribution Order Shipping - Multi Line,One Line at Printed status and second line as Weighed,
+correspondingly the order is at In Packing,New Quantity  more than Current Quantity 
 	Given I have excel data 
 		| QSC_OBScenario007 |
 	And Open the chrome browser by selenium 
-	When user logs into the Manhattan application 
-	When user create xml file using "Multi Line DO" with updated DO_No 
-	And user update xml itemDetails from excel sheet for DO
-	And user opens post message screen and upload file in order to create DO 
-	Then user verify the response for DO creation
+	When user update "Multi Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
 	And user runs the "Standard wave" 
@@ -159,22 +160,20 @@ Scenario: Distribution Order Shipping - Multi Line,One Line at Printed status an
 	And user open RF Menu and complete a single task created 
 	Then user open Task screen & validate the status of single task 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "140 - In Packing" 
-	#And user verifies the oLPN details in Distribuion Order page
-	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
-	#Then user views wave and gets the task Number in Complete status
 	Then user views and Adjust the oLPN 
 	Then user log out from application 
 	
 @QSC_OB008 @Regression_QSC @QSC_AdjustoLPN 
-Scenario: Distribution Order Shipping - Multi Line,One Line at Printed status and second line as Weighed,correspondlingly the order is at In Packing,New Quantity lesser than Current Quantity 
+Scenario: Distribution Order Shipping - Multi Line,One Line at Printed status and second line as Weighed,correspondingly
+the order is at In Packing,New Quantity lesser than Current Quantity 
 	Given I have excel data 
 		| QSC_OBScenario008 |
 	And Open the chrome browser by selenium 
-	When user logs into the Manhattan application 
-	When user create xml file using "Multi Line DO" with updated DO_No 
-	And user update xml itemDetails from excel sheet for DO
-	And user opens post message screen and upload file in order to create DO 
-	Then user verify the response for DO creation
+	When user update "Multi Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
 	And user runs the "Standard wave" 
@@ -184,9 +183,6 @@ Scenario: Distribution Order Shipping - Multi Line,One Line at Printed status an
 	And user open RF Menu and complete a single task created 
 	Then user open Task screen & validate the status of single task 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "140 - In Packing" 
-	#And user verifies the oLPN details in Distribuion Order page
-	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
-	#Then user views wave and gets the task Number in Complete status
 	Then user views and Adjust the oLPN 
 	Then user log out from application 
 	
@@ -198,11 +194,11 @@ Scenario: Spliting the OLPN at Printed status
 	Given I have excel data 
 		| QSC_OBScenario009 |
 	And Open the chrome browser by selenium 
-	When user logs into the Manhattan application 
-	When user create xml file using "Single Line DO" with updated DO_No 
-	And user update xml itemDetails from excel sheet for DO
-	And user opens post message screen and upload file in order to create DO 
-	Then user verify the response for DO creation
+	When user update "Single Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
 	And user runs the "Standard wave" 
@@ -217,11 +213,11 @@ Scenario: Spliting the OLPN at Weighed status
 	Given I have excel data 
 		| QSC_OBScenario010 |
 	And Open the chrome browser by selenium 
-	When user logs into the Manhattan application 
-	When user create xml file using "Single Line DO" with updated DO_No 
-	And user update xml itemDetails from excel sheet for DO
-	And user opens post message screen and upload file in order to create DO 
-	Then user verify the response for DO creation
+	When user update "Single Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
 	And user runs the "Standard wave" 
@@ -240,11 +236,11 @@ Scenario: Combine the OLPN at printed status
 	Given I have excel data 
 		| QSC_OBScenario011 |
 	And Open the chrome browser by selenium 
-	When user logs into the Manhattan application 
-	When user create xml file using "Multi Line DO" with updated DO_No 
-	And user update xml itemDetails from excel sheet for DO
-	And user opens post message screen and upload file in order to create DO 
-	Then user verify the response for DO creation
+	When user update "Multi Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
 	And user runs the "Standard wave" 
@@ -259,11 +255,11 @@ Scenario: Combine the OLPN at weighed status
 	Given I have excel data 
 		| QSC_OBScenario012 |
 	And Open the chrome browser by selenium 
-	When user logs into the Manhattan application 
-	When user create xml file using "Multi Line DO" with updated DO_No 
-	And user update xml itemDetails from excel sheet for DO
-	And user opens post message screen and upload file in order to create DO 
-	Then user verify the response for DO creation
+	When user update "Multi Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
 	And user runs the "Standard wave" 
@@ -284,11 +280,11 @@ Scenario: Cancel OLPN - Cancel the OLPN at Printed status (SingleLine Sceanrios)
 	Given I have excel data 
 		| QSC_OBScenario013 |
 	And Open the chrome browser by selenium 
-	When user logs into the Manhattan application 
-	When user create xml file using "Single Line DO" with updated DO_No 
-	And user update xml itemDetails from excel sheet for DO
-	And user opens post message screen and upload file in order to create DO 
-	Then user verify the response for DO creation 
+	When user update "Single Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
 	And user runs the "Standard wave" 
@@ -307,11 +303,11 @@ Scenario: Cancel OLPN - Cancel the OLPN at Weighed status (SingleLine Sceanrios)
 	Given I have excel data 
 		| QSC_OBScenario014 |
 	And Open the chrome browser by selenium 
-	When user logs into the Manhattan application 
-	When user create xml file using "Single Line DO" with updated DO_No 
-	And user update xml itemDetails from excel sheet for DO
-	And user opens post message screen and upload file in order to create DO 
-	Then user verify the response for DO creation
+	When user update "Single Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
 	And user runs the "Standard wave" 
@@ -332,11 +328,11 @@ Scenario: Cancel OLPN - Cancel the OLPN at Shipped status (SingleLine Sceanrios)
 	Given I have excel data 
 		| QSC_OBScenario015 |
 	And Open the chrome browser by selenium 
-	When user logs into the Manhattan application 
-	When user create xml file using "Single Line DO" with updated DO_No 
-	And user update xml itemDetails from excel sheet for DO
-	And user opens post message screen and upload file in order to create DO 
-	Then user verify the response for DO creation
+	When user update "Single Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
 	Then user verifies the item details in Distribuion Order page 
 	And user runs the "Standard wave" 
@@ -360,11 +356,11 @@ Scenario: Cancel OLPN - Cancel the OLPN at Printed status (MultiLine Sceanrios)
 	Given I have excel data 
 		| QSC_OBScenario016 |
 	And Open the chrome browser by selenium 
-	When user logs into the Manhattan application 
-	When user create xml file using "Multi Line DO" with updated DO_No 
-	And user update xml itemDetails from excel sheet for DO
-	And user opens post message screen and upload file in order to create DO 
-	Then user verify the response for DO creation 
+	When user update "Multi Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
 	And user runs the "Standard wave" 
@@ -382,11 +378,11 @@ Scenario: Cancel OLPN - Cancel the OLPN at Weighed status (MultiLine Sceanrios)
 	Given I have excel data 
 		| QSC_OBScenario017 |
 	And Open the chrome browser by selenium 
-	When user logs into the Manhattan application 
-	When user create xml file using "Multi Line DO" with updated DO_No 
-	And user update xml itemDetails from excel sheet for DO
-	And user opens post message screen and upload file in order to create DO 
-	Then user verify the response for DO creation 
+	When user update "Multi Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
 	And user runs the "Standard wave" 

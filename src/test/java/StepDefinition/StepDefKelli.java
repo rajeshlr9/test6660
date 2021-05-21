@@ -35,36 +35,24 @@ public class StepDefKelli {
 		}
 	}
 
-	@When("^user upload the ASN Load file$")
-	public void ASN_upoload_file() {
-		try {
-			kelliPages.ASNupload();
-			Steps.logger.info("File uploaded successfully");
-		} catch (Exception e) {
-			Steps.testRes = "Failed";
-			e.printStackTrace();
-			Assert.assertTrue(false);
-		}
-	}
-
-	@And("^user updates data in ASN Upload Sheet$")
-	public void ASNSheet_Update_data() {
-		try {
-			kelliPages.KelliASNLoadSheetUpdate();
-			Steps.logger.info("Excel data updated before uploading file");
-		} catch (Exception e) {
-			Steps.testRes = "Failed";
-			e.printStackTrace();
-			Assert.assertTrue(false);
-		}
-	}
-
 	
-	@And("^user updates data in Item Upload Sheet$")
-	public void ItemSheet_Update_data() {
+
+	@When("^user updates data in \"([^\"]*)\" Kelli Upload Sheet$")
+	public void ASNSheet_Update_data(String fileType) {
 		try {
-			kelliPages.KelliItemLoadSheetUpdate();
-			Steps.logger.info("Excel data updated before uploading file");
+			kelliPages.updateASNLoadSheet(fileType);
+			Steps.logger.info("Excel data is updated successfully");
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false);
+		}
+	}
+
+	@And("^user upload the \"([^\"]*)\" Load file in Kelli$")
+	public void upload_Kelli_file(String fileType) {
+		try {
+			kelliPages.Kelliupload(fileType);
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
@@ -72,22 +60,23 @@ public class StepDefKelli {
 		}
 	}
 	
-	@When("^user upload the Item Load file$")
-	public void Uploads_the_excel() throws InterruptedException {
+	@And("^user updates data in Item Upload Sheet$")
+	public void ItemSheet_Update_data() {
 		try {
-			kelliPages.itemUpload();
-			Steps.logger.info("Excel uploading successfull");
+			kelliPages.updateItemLoadSheet();
+			Steps.logger.info("Excel data updated before uploading file");
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
-			System.out.println("test red" + Steps.testRes);
 			e.printStackTrace();
+			Assert.assertTrue(false);
 		}
 	}
+	
 
 	@And("^user view the logs and validates the success message for Item Load$")
 	public void user_gets_logs() throws InterruptedException {
 		try {
-			kelliPages.viewlogsforItemUplaod();
+			kelliPages.viewlogs();
 			Reporter.addStepLog("Logs are verified successfully");
 			driver.quit();
 		} catch (Exception e) {
@@ -111,12 +100,38 @@ public class StepDefKelli {
 		}
 	}
 
+	@And("^Updates the excel for Location Load$")
+	public void update_the_excel_for_Location_Load() throws Exception {
+		try {
+			//reusable.KelliASNLoad.updateExcel();
+			kelliPages.updateLocationsLoadSheet();
+			Steps.logger.info("Excel updation successfull");
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println("test red"+Steps.testRes);
+			e.printStackTrace();
+		}
+	}
+	
+	@And("^updates \"([^\"]*)\" Load file$")
+	public void update_the_excel(String fileType) throws Exception {
+		try {
+			kelliPages.updateOrderLoadSheet(fileType);
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println("test red"+Steps.testRes);
+			e.printStackTrace();
+		}
+		
+	}
+	
 	@Then("^user logout from the kelli application$")
 	public void kellilogout() throws Throwable {
 		try {
 			// Kellilogout.logoutKelliApplication();
 			kelliPages.logoutKelliApplication();
 			Steps.logger.info("Logout from the application");
+			
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();

@@ -75,7 +75,7 @@
     </RefLp>
     <TrnsprtLp>
       <TrnsprtRteSeq>1</TrnsprtRteSeq>
-      <TrnsprtSvcLvl>PO</TrnsprtSvcLvl>
+      <TrnsprtSvcLvl>FES</TrnsprtSvcLvl>
       <TrnsprtSCAC>FDE</TrnsprtSCAC>
       <TrnsprtFrghtTermsCD>PP</TrnsprtFrghtTermsCD>
     </TrnsprtLp>

@@ -141,12 +141,14 @@ public class PixTransactionPage {
 	public WebElement TransactionType; 
 
 	public void checkForPixTransaction(String pixTranNumber)throws Exception {
-		Thread.sleep(2000);
+		
 		homePage.MenuItems_Distribution_Selection("PIX Transactions");
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		
 		if(pixTranNumber.contains("620")) {
+			Thread.sleep(2000);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, ExpandArrow, 20);
 		     ExpandArrow.click();
 		        System.out.println("clicked");
 		        Thread.sleep(2000);

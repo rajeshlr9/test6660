@@ -22,12 +22,14 @@ import pages.AsnsPage;
 import pages.HomePage;
 import pages.ILPNPage;
 import pages.ItemInvenByLocationPage;
+import pages.ItemsPage;
 import pages.ManhattanLoginPage;
 import pages.PixTransactionPage;
 import pages.PostMessagePage;
 import pages.RFMenuPage;
 import pages.FedexnetPage;
 import pages.ReserveLocationPage;
+import reusable.KelliPages;
 import reusable.ModifyXML;
 import utils.Config;
 import utils.SeleniumTestHelper;
@@ -47,6 +49,7 @@ public class StepDefInBound {
 	ItemInvenByLocationPage itemInvenByLocationPage = new ItemInvenByLocationPage();
 	PixTransactionPage pixTransaction = new PixTransactionPage();
 	ReserveLocationPage resLocPage = new ReserveLocationPage();
+	ItemsPage itemsPage= new ItemsPage();
 
 	String itemName = null;
 	String GtinNum = null;
@@ -161,7 +164,6 @@ public class StepDefInBound {
 			if (env.equalsIgnoreCase("DEV")|| env.equalsIgnoreCase("@Env")) {
 				driver.get(Config.getProperty("FedexNetURL_DEV"));
 				Steps.logger.info("Dev Environment");
-				Thread.sleep(15000);
 				
 			} else if (env.equalsIgnoreCase("TEST") ) {
 				driver.get(Config.getProperty("FedexNetURL_TEST"));
@@ -179,7 +181,7 @@ public class StepDefInBound {
 		}
 		}
 		
-		@Then("^user upload \"([^\"]*)\" file in fedexnet$")
+		@And("^user upload \"([^\"]*)\" XML file in fedexnet$")
 		public void user_upload_the_xml_in_fedexnet(String fileType) {
 		try {
 			String env = ManhattanLoginPage.environment;
@@ -204,6 +206,14 @@ public class StepDefInBound {
 		}
 		}
 		
+		@Then("^user log out from Fedenxet application$")
+		public void user_logout_from_fedexnet() {
+			try {
+				FedexnetPage.logoutApplication();
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		}
 		
 	//********************************************FedexNet******************************************
 	
@@ -284,8 +294,6 @@ public class StepDefInBound {
 			Steps.logger.info("XML updation started");
 			xmlInput.user_create_EDI_file(xmlType);
 			xmlInput.user_modify_EDI_file(xmlType);
-			Steps.scenario.write("ASN-" + Items.getAsnNumber());
-			Reporter.addStepLog("ASN No-" + Items.getAsnNumber());
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			System.out.println(e);
@@ -398,6 +406,21 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
+	
+	@And("^fetches the actual ASN number and PO Number uploaded from Kelli$")
+	public void fetch_ASN_And_PO_Number() {
+		try {
+			asnsPage.getASNandPONumber(KelliPages.partialASNValue);
+			Steps.logger.info("ASN_No:"+Items.getAsnNumber());
+			Reporter.addStepLog("ASN_No:"+Items.getAsnNumber());
+			Steps.logger.info("PO_No:"+Items.getPONumber());
+			Reporter.addStepLog("PO_No:"+Items.getPONumber());
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
 
 	@Then("^user opens ASN screen and searches for the ASN and verify its status \"([^\"]*)\"$")
 	public void user_opens_ASN_screen_and_searches_for_the_ASN_and_verify_its_status(String status) throws Exception {
@@ -406,6 +429,7 @@ public class StepDefInBound {
 		try {
 			Thread.sleep(5000);
 			asnsPage.verifyAsnsStatus(Items.getAsnNumber(), status);
+			
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
@@ -537,7 +561,7 @@ public class StepDefInBound {
 	@Then("^user log out from application$")
 	public void user_log_out_from_application() throws Exception {
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 			homePage.user_logout_from_application();
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
@@ -930,6 +954,17 @@ public class StepDefInBound {
 			// Thread.sleep(3000);
 			SeleniumTestHelper.Close_OpenedWindow("ASNs", driver);
 			Steps.logger.info("Close ASN window");
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
+	@Then("^user opens Items screen and validate Item creation$")
+	public void validate_Item_Creation() {
+		try {
+			itemsPage.verify_Items_creation();
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();

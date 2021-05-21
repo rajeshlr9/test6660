@@ -23,7 +23,7 @@ public class StepDefFilezilla {
 			//scenario.write("Enterprise code-");
 			reusable.LeanFtInitialize.initializeLeanFt();
 			System.out.println("leanft initialized");
-			reusable.ModifyXML.ModifyFile();
+			//reusable.ModifyXML.ModifyFile();
 			reusable.Filezilla.uploadOrder();
 			Steps.logger.info("Order is dropped successfully");
 		}catch(Exception e) {

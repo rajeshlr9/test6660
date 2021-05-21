@@ -173,7 +173,6 @@ public class StepDefOutBound {
 	public void user_opens_DOscreen_andsearches_for_DOstatus(String status)	throws Exception {
 		try {
 			doPage.getDoStatus(status);
-			Thread.sleep(3000);
 			Reporter.addStepLog("DO Order status is verified successfully");
 			Steps.logger.info("DO Order status is verified successfully");
 		} catch (Exception e) {
@@ -186,7 +185,6 @@ public class StepDefOutBound {
 	@Then("^user verifies the item details in Distribuion Order page$")
 	public void user_verifies_the_item_details_in_Distribuion_Order_page() throws Exception {
 		try {
-			Thread.sleep(3000);
 			doPage.getDOdetails();
 			Reporter.addStepLog("DO Order item details verified successfully");
 			Steps.logger.info("DO Order item details verified successfully");

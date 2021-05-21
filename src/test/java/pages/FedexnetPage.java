@@ -47,6 +47,9 @@ public class FedexnetPage  extends Steps {
 	@FindBy(xpath = "//a[text()='Send Doc']")
 	public WebElement SendDoc;
 	
+	@FindBy(xpath = "//a[text()='Logout']")
+	public WebElement Logout;
+	
 	@FindBy(xpath = "//frame[@name='topFrame']")
 	public WebElement topFrame;
 	
@@ -58,30 +61,30 @@ public class FedexnetPage  extends Steps {
 		String env = environment;
 		// String userType= Config.getProperty("UserRole");
 		if (env.equalsIgnoreCase("Dev") || env.equalsIgnoreCase("@Env")) {
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, username, 50);
 			username.sendKeys(Config.getProperty("FedexNetUsername_DEV"));
 			Steps.logger.info("DEVUserName: " + Config.getProperty("FedexNetUsername_DEV"));
 			password.sendKeys(Config.getProperty("FedexNetPassword_DEV"));
 			Steps.logger.info("DEVPassword: " + Config.getProperty("FedexNetPassword_DEV"));
 			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(signInBtn));
 			signInBtn.click();
+			Thread.sleep(3000);
 		}
 	}
 	
 	public void dropOrder(String dropEnv, String filetype, String filepath) throws Exception {
 		
-		Thread.sleep(5000);
 		driver.switchTo().frame("LinkFrame");
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, TransferDoc, 50);
 		TransferDoc.click();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, SendDoc, 50);
 		SendDoc.click();
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		driver.switchTo().parentFrame();		
-		Thread.sleep(2000);
 		driver.switchTo().frame("ApplicationFrame");
 		driver.switchTo().frame("topFrame");	
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		//WebElement table =  driver.findElement(By.xpath("/html/body/form/table[4]"));
 		List<WebElement>  rows =  driver.findElements(By.xpath("/html/body/form/table[4]/tbody/tr"));
 	    System.out.println("No of row are : " +rows.size()); 
@@ -99,25 +102,22 @@ public class FedexnetPage  extends Steps {
 	    	  break;
 	    	  }    	 
 	      }
-	      Thread.sleep(2000);      
 	      driver.switchTo().parentFrame();		
-			Thread.sleep(2000);
 		//	driver.switchTo().frame("ApplicationFrame");
 			driver.switchTo().frame("bottomFrame");			
-			Thread.sleep(2000);		
+			Thread.sleep(1000);		
 			
 			// Locating input tag which as type as file.
 			WebElement searchBox= driver.findElement(By.name("FILENAME"));
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			// Sending file name as argument to input tag
 			searchBox.sendKeys(filepath);
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			driver.findElement(By.name("btnUPLOAD")).click();
-			Thread.sleep(5000);
 			driver.switchTo().parentFrame();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			driver.switchTo().frame("topFrame");
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			String validationMsg = driver.findElement(By.xpath("/html/body/form/table[3]/tbody/tr[1]/td")).getText();
 	
 			if(validationMsg.contains("Acknowledgement received")) {
@@ -128,7 +128,19 @@ public class FedexnetPage  extends Steps {
 			}
 	}
 
-	
-
+	public void logoutApplication() throws InterruptedException {
+		
+		driver.switchTo().parentFrame();
+		driver.switchTo().parentFrame();
+		//driver.switchTo().frame("ApplicationFrame");
+		Thread.sleep(1000);
+		driver.switchTo().frame("LinkFrame");
+		Thread.sleep(1000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Logout, 10);
+		Logout.click();
+		Thread.sleep(3000);
+		Steps.logger.info("User logged out from Fedexnet");
+		
+	}
 	
 }

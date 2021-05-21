@@ -9,15 +9,14 @@ Scenario:
 	Then Close browser opened by LeanFT 
 	
 @tagq4 
-Scenario: 
-	Create Order via Filezilla using Leanft and Resume order in O2S via Selenium(Work on 2 application) 
+Scenario: Create Order via Filezilla using Leanft and Resume order in O2S via Selenium(Work on 2 application) 
 	Given Open Filezilla 
 	When user connects to EMC customer and drop an OB order 
-	When User open Browser 
-	And Login to OMS using Selenium 
-	And Search for the dropped order using Selenium 
-	And Resume the incomplete order using Selenium 
-	Then Order is placed successfully 
+	#When User open Browser 
+	#And Login to OMS using Selenium 
+	#And Search for the dropped order using Selenium 
+	#And Resume the incomplete order using Selenium 
+	#Then Order is placed successfully 
 	
 @tagq641 
 Scenario: Cream the butter
@@ -319,3 +318,30 @@ Scenario Outline: Verify ASN creation through Post MessageUI
 		| Scenario8   |        1 | Item      | 50/        | EA/    | STG001R     | 07-31-2020|
 		
 		
+@QSC_oldPostmsg
+Scenario: Verify ASN creation through Post MessageUI-excel
+Creating ASN through Post Message UI & verifying the response, checking status of the shipment
+	Given I have excel data
+	| QSC_IBScenario001 |
+	And Open the chrome browser by selenium
+	And user logs into the Manhattan application 
+    When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
+    And user update xml itemDetails from excel sheet
+    And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response 
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
+	Then user log out from application 
+	
+	
+@QSC_OBoldpost
+Scenario: Distribution Order Shipping - Single Line 
+	Given I have excel data 
+		| QSC_OBScenario001 |
+	And Open the chrome browser by selenium 
+	When user logs into the Manhattan application 
+	When user create xml file using "Single Line DO" with updated DO_No 
+	And user update xml itemDetails from excel sheet for DO
+	And user opens post message screen and upload file in order to create DO 
+	Then user verify the response for DO creation
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	Then user log out from application 	

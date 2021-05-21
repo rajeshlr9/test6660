@@ -2524,14 +2524,11 @@ public class RFMenuPage {
 				System.out.println("canceloLPNFlag: "+Steps.scenarioData.get("canceloLPNFlag"));
 				for(ii=0;ii<Items.getoLPNListSize();ii++) {
 					if(Steps.scenarioData.get("OlpnStatus").equals(Items.getoLPNStatus(ii))) {
-						System.out.println("swag i shrwe1");
 						if(Steps.scenarioData.get("canceloLPNFlag")!="") {
-							System.out.println("swag i shrwe2");
 							if(Integer.parseInt(Steps.scenarioData.get("canceloLPNFlag"))==1) {
-								System.out.println("swag i shrwe3");
 								System.out.println("olpn: "+Items.getoLPN(ii));
 								MM3oLPNInquirytxtBox.sendKeys(Items.getoLPN(ii)+Keys.TAB);
-								Thread.sleep(2000);
+								Thread.sleep(1000);
 								if(SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {	
 									if(errorOrWarningMsg.getText().contains("oLPN is in shipped status and cannot be cancelled"))
 									{
@@ -2539,7 +2536,7 @@ public class RFMenuPage {
 										Thread.sleep(1000);
 										Screenshots.captureSnapshot(driver);
 										acceptAndProceedBtn.click();
-										Thread.sleep(2000);
+										Thread.sleep(1000);
 										//Assert.assertEquals(errorOrWarningMsg.getText(), "oLPN is in shipped status and cannot be cancelled","oLPN cancellation status: ");
 										break;
 									}else if(errorOrWarningMsg.getText().contains("oLPN is already in cancelled status"))
@@ -3240,7 +3237,7 @@ public class RFMenuPage {
 		Mainmenu.click();
 		Screenshots.captureSnapshot(driver);
 		Steps.logger.info("Clicked on Main Menu");
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		Screenshots.captureSnapshot(driver);
 
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 20);
@@ -3272,7 +3269,7 @@ public class RFMenuPage {
 				SeleniumTestHelper.assertTrue(iLPNInputBx.isDisplayed());
 				Screenshots.captureSnapshot(driver);
 				iLPNInputBx.sendKeys(Keys.ENTER);
-				Thread.sleep(2000);
+				Thread.sleep(1000);
 				Screenshots.captureSnapshot(driver);
 			}
 			while(SeleniumTestHelper.isElementDisplayed(suggestedQty)) {
@@ -3288,7 +3285,7 @@ public class RFMenuPage {
 				taskQtyTxtBox.sendKeys(Keys.ENTER);
 				Thread.sleep(1000);
 				Screenshots.captureSnapshot(driver);
-				Thread.sleep(4000);
+				Thread.sleep(1000);
 			}
 
 			while(SeleniumTestHelper.isElementDisplayed(serialNumbersInput)) {

@@ -7,12 +7,14 @@ import java.util.Map;
 
 import StepDefinition.Steps;
 import pages.RFMenuPage;
+import reusable.KelliPages;
 
 
 
 public class Items {
 	
 	private static String asnNumber;
+	private static String PONumber;
 	public static List<String> itemsForReceivingASN = new ArrayList<>();
 	private static Map<String, Integer> itemWithShippedASNQty = new HashMap<>();
 	private static Map<String, String> itemWithQtyUOM = new HashMap<>();
@@ -115,6 +117,16 @@ public class Items {
 	public static void setAsnNumber(String asnNumber) {
 		Items.asnNumber = asnNumber;
 	}
+	
+	public static String getPONumber() {
+		return PONumber;
+	}
+
+	public static void setPONumber(String poNumber) {
+		Items.PONumber = poNumber;
+	}
+	
+	
 	public static String getItemsForReceivingASN(int i) {
 		return itemsForReceivingASN.get(i);
 	}
@@ -421,9 +433,12 @@ public class Items {
 		itemWithShippedQtyDO.clear();
 		Steps.testRes="";
 		RFMenuPage.iLPNz.clear();
+		KelliPages.partialASNValue=null;
+		KelliPages.itemList.clear();
 		waveNumber=null;
 		DONumber=null;
 		asnNumber = null;
+		PONumber =  null;
 		itemsForReceivingASN.clear();
 		itemWithShippedASNQty.clear();
 		itemWithQtyUOM.clear();

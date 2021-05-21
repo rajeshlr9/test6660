@@ -8,8 +8,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.cucumber.listener.Reporter;
+
+import StepDefinition.Steps;
 import entity.Items;
 import entity.TestDataCreation;
+import globalFunc.Screenshots;
+import reusable.KelliPages;
 import utils.Driver;
 import utils.SeleniumTestHelper;
 import utils.TestStubReader;
@@ -18,7 +23,7 @@ public class ItemsPage {
 	WebDriver driver;
 	
 	public ItemsPage() {
-		this.driver = Driver.getInstance();
+		this.driver = Steps.seleniumDriver;
 		PageFactory.initElements(driver, this);
 	}
 
@@ -27,7 +32,7 @@ public class ItemsPage {
 	String slotMiscellaneous1 = null;
 	String serialNumberFlag=null;
 	String serialNumber1=null;
-	TestStubReader stubReader = new TestStubReader();
+	//TestStubReader stubReader = new TestStubReader();
 	
 
 	@FindBy(xpath = "//input[contains(@id,'itemLookUpId')]")
@@ -254,6 +259,30 @@ String slotMiscellaneous1= SlotMiscellaneous1.split("/")[i-1];
 		homePage.userClosesOpenedwindow("Items");
 	
 	}
+	public void verify_Items_creation() throws Exception
+	{
+		homePage.MenuItems_Configuration_Selection("Items");
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		for (int i = 0; i < KelliPages.itemList.size(); i++) {
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, itemNumber, 50);
+			System.out.println("item name is :" + KelliPages.itemList.get(i));
+			String itemname = KelliPages.itemList.get(i);
+			itemNumber.clear();
+			itemNumber.sendKeys(itemname);
+			Screenshots.captureSnapshot(driver);
+			itemApplyButton.click();
+			Thread.sleep(2000);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, itemCheckbox, 50);
+			Screenshots.captureSnapshot(driver);
+			String Actualitem=itemName.getText();
+			SeleniumTestHelper.assertEquals(Actualitem, itemname);
+			Reporter.addStepLog("Item created successfully-"+Actualitem);
+		}
+		homePage.userClosesOpenedwindow("Items");
+	
+	}
+	
 	public void Update_Item_manually(String Length,String Width, String height) throws InterruptedException
 	{
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, UnitLength, 50);

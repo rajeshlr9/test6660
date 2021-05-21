@@ -12,6 +12,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import com.cucumber.listener.Reporter;
@@ -125,6 +127,37 @@ public class AsnsPage {
 
 	@FindBy(xpath = "//input[@id='dataForm:editASNSealNumberTable:newRow_2:SeqNbr']")
 	public WebElement editHeaderAddSealSequenceNumTxtSecond;
+	
+	public void getASNandPONumber(String asnId) throws Exception {
+		homepage.MenuItems_Distribution_Selection("ASNs");
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 120);
+		primaryField.sendKeys("ASN");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, asnIdInput, 50);
+		driver.findElement(By.xpath(
+				"//DIV[3]/DIV[1]/DIV[@role=\"presentation\"][1]/DIV[@role=\"presentation\"][1]/DIV[@role=\"presentation\"][1]/DIV[1]/DIV[1]/DIV[1]/DIV[1]/INPUT[@role=\"combobox\"][1]"))
+				.click();
+		driver.findElement(By.xpath("(//div[starts-with(@id,'mpslookupfield')])[5]")).click();
+		 Thread.sleep(2000);
+		 driver.findElement(By.xpath("(//input[contains(@class,'x-form-field x-form-text x-form-text-default')])[12]")).sendKeys("QSC");
+		 Thread.sleep(1000);
+		 driver.findElement(By.xpath("(//input[@name='asnId'])[2]")).sendKeys(asnId);
+		 Thread.sleep(1000);
+		 driver.findElement(By.xpath("//span[contains(text(),'Find')]")).click();
+		 Thread.sleep(2000);
+		 String ASNvalue= driver.findElement(By.xpath("(//div[contains(@class,'x-grid-cell-inner')])[1]")).getText();
+		 Items.setAsnNumber(ASNvalue);
+		 StringBuffer PONum= new StringBuffer(ASNvalue);
+		 PONum.delete(PONum.length()-2, PONum.length());
+		 String PONumber= PONum.toString();
+		 Items.setPONumber(PONumber);
+		 driver.findElement(By.xpath("(//div[contains(@class,'x-grid-cell-inner')])[1]")).click();
+		 Thread.sleep(2000);
+		 driver.findElement(By.xpath("(//span[contains(text(),'Select')])[1]")).click();
+		 Thread.sleep(2000);
+		 driver.findElement(By.xpath("//span[contains(text(),'Done')]")).click();
+		 homepage.userClosesOpenedwindow("ASNs");
+	}
 
 	public void verifyAsnsStatus(String asnId, String status) throws Exception {
 		homepage.MenuItems_Distribution_Selection("ASNs");
@@ -138,6 +171,8 @@ public class AsnsPage {
 		driver.findElement(By.xpath(
 				"//DIV[3]/DIV[1]/DIV[@role=\"presentation\"][1]/DIV[@role=\"presentation\"][1]/DIV[@role=\"presentation\"][1]/DIV[1]/DIV[1]/DIV[1]/DIV[1]/INPUT[@role=\"combobox\"][1]"))
 				.sendKeys(asnId);
+		
+		
 	//	Screenshots.captureSnapshot(driver);
 		/*
 		 * Actions action = new Actions(driver);

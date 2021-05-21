@@ -61,7 +61,7 @@ public class HomePage {
 		driver.findElement(
 				By.xpath("//ul[@data-ref='listEl']/li/div[text()=' (Integration)']/b[text()='" + Screenname + "']"))
 				.click();
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		SeleniumTestHelper.switchToInnerFrame(driver);
 
 	}
@@ -70,7 +70,7 @@ public class HomePage {
 		driver.switchTo().defaultContent();
 		SeleniumTestHelper.WaitForElement(openWindows, 50);
 		openWindows.click();
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		SeleniumTestHelper.Close_OpenedWindow(Screenname, driver);
 	}
 
@@ -83,11 +83,10 @@ public class HomePage {
 		driver.findElement(
 				By.xpath("//ul[@data-ref='listEl']/li/div[text()=' (Configuration)']/b[text()='" + Screenname + "']"))
 				.click();
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 	}
 
 	public void MenuItems_Distribution_Selection(String Screenname) throws Exception {
-		Thread.sleep(3000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, menuBtn, 100);
 		menuBtn.click();
 		SeleniumTestHelper.waitForElementToBeClickable(driver, searchTxt, 50);
@@ -96,7 +95,7 @@ public class HomePage {
 		driver.findElement(
 				By.xpath("//ul[@data-ref='listEl']/li/div[text()=' (Distribution)']/b[text()='" + Screenname + "']"))
 				.click();
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		/*
 		 * if(!(driver.findElements(By.tagName("iframe")).size()==0)) {
 		 * driver.switchTo().frame(0); }

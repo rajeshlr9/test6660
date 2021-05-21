@@ -75,8 +75,8 @@
     </RefLp>
     <TrnsprtLp>
       <TrnsprtRteSeq>1</TrnsprtRteSeq>
-      <TrnsprtSvcLvl>PO</TrnsprtSvcLvl>
-      <TrnsprtSCAC>FDE</TrnsprtSCAC>
+      <TrnsprtSvcLvl>GNDB</TrnsprtSvcLvl>
+      <TrnsprtSCAC>FDEG</TrnsprtSCAC>
       <TrnsprtFrghtTermsCD>PP</TrnsprtFrghtTermsCD>
     </TrnsprtLp>
     <SpecInstrLp>

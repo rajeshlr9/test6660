@@ -90,6 +90,15 @@ public class Xpathxml {
 	public String ASNUpdateQtyUOM(int i) {
 		return "//ASN/ASNDetail[" + i + "]/Quantity//QtyUOM";
 	}
+	public String ASNItemName(int i) {
+		return "//ShipOrdLp/ShipLineItemLp[" + i + "]//ItemID";
+	}
+	public String ASNQty(int i) {
+		return "//ShipOrdLp/ShipLineItemLp[" + i + "]//ItemShipQty";
+	}
+	public String ASNItemUOM(int i) {
+		return "//ShipOrdLp/ShipLineItemLp[" + i + "]//ItemUOM";
+	}
 	public String ASNUpdatePurchaseOrderID(int i) {
 		return "//ASN/LPN[" + i + "]/LPNDetail//PurchaseOrderID";
 	}
@@ -163,7 +172,7 @@ public class Xpathxml {
 			throws SAXException, IOException, ParserConfigurationException, XPathExpressionException,
 			TransformerFactoryConfigurationError, TransformerException {
 		Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(inputFile));
-
+		doc.setXmlStandalone(true);
 		// locate the node(s)
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		NodeList nodes = (NodeList) xpath.evaluate
@@ -178,6 +187,7 @@ public class Xpathxml {
 		// save the result
 		Transformer xformer = TransformerFactory.newInstance().newTransformer();
 		xformer.transform(new DOMSource(doc), new StreamResult(new File(inputFile)));
+		
 	}
 
 	// Current order date with time
@@ -272,6 +282,15 @@ public class Xpathxml {
 	}
 	public String DOUpdateOrderQty(int i) {
 		return "//DistributionOrder/LineItem[" + i + "]/Quantity/OrderQty";
+	}
+	public String DOItem(int i) {
+		return "//OrdLineItemLp[" + i + "]//ItemID";
+	}
+	public String DOItemUOM(int i) {
+		return "//OrdLineItemLp[" + i + "]//ItemUOM";
+	}
+	public String DOQty(int i) {
+		return "//OrdLineItemLp[" + i + "]//ItemQty";
 	}
 	
 	public String DOUpdateLineNbr(int i) {
@@ -502,29 +521,92 @@ public class Xpathxml {
 		String path=null;
 		if(xmlType.contains("PO")) {
 			path=inputEDIInboundFilePath;
-			Items.setAsnNumber(PODONumber);
-			Steps.logger.info("ASNNumber: "+PODONumber);
+			Items.setPONumber(PODONumber);
+			String ASNno= PODONumber+"-1";
+			Items.setAsnNumber(ASNno);
+			Steps.logger.info("ASNNumber: "+Items.getAsnNumber());
+			Steps.logger.info("PONumber: "+Items.getPONumber());
+			Reporter.addStepLog("ASNNumber: "+Items.getAsnNumber());
+			Reporter.addStepLog("PONumber: "+Items.getPONumber());
+			
+			String itemName = null;
+			String shpQty = null;
+			String uom = null;
+			for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
+				itemName = Steps.ItemDataMap.get(i).get("Item");
+				ModifyXmlfile(ASNItemName(i + 1), itemName, path);
+				System.out.println("Item : " + itemName + " has been updated successfully");
+				Steps.logger.info("Item : " + itemName + " has been updated successfully");
+				
+				shpQty = Steps.ItemDataMap.get(i).get("ShippedQty");
+				ModifyXmlfile(ASNQty(i + 1), shpQty, path);
+				System.out.println("Shipped Qty : " + shpQty + " has been updated successfully");
+				Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
+				
+				uom = Steps.ItemDataMap.get(i).get("UOM");
+				ModifyXmlfile(ASNItemUOM(i + 1), uom, path);
+				System.out.println("QtyUOM : " + uom + " has been updated successfully");
+				Steps.logger.info("QtyUOM : " + uom + " has been updated successfully");
+
+				Items.setItemsForReceivingASN(itemName);
+				Items.setItemWithShippedASNQty(itemName, Integer.parseInt(shpQty));
+				Items.setItemWithQtyUOM(itemName, uom);
+				Reporter.addStepLog("Item Id- " + Steps.ItemDataMap.get(i).get("Item") + ", Shipped Qty- "
+						+ Steps.ItemDataMap.get(i).get("ShippedQty"));
+			}
+			
 		}else if(xmlType.contains("DO")) {
 			path=inputEDIOutboundFilePath;
 			Items.setDONumber(PODONumber);
 			Steps.logger.info("DO Number: "+PODONumber);
+			Reporter.addStepLog("DO Number: "+PODONumber);
+			
+			String itemName = null;
+			String shpQty = null;
+			String uom = null;
+			for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
+				
+				itemName = Steps.ItemDataMap.get(i).get("Item");
+				ModifyXmlfile(DOItem(i+1), itemName, path);
+				System.out.println("Item : " + itemName + " has been updated successfully");
+				Steps.logger.info("Item : " + itemName + " has been updated successfully");
+				
+				shpQty = Steps.ItemDataMap.get(i).get("ShippedQty");
+				ModifyXmlfile(DOQty(i+1), shpQty, path);
+				System.out.println("Shipped Qty : " + shpQty + " has been updated successfully");
+				Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
+				
+				uom = Steps.ItemDataMap.get(i).get("UOM");
+				ModifyXmlfile(DOItemUOM(i+1), uom, path);
+				System.out.println("QtyUOM : " + uom + " has been updated successfully");
+				Steps.logger.info("QtyUOM : " + uom + " has been updated successfully");
+
+				Items.setProductsForDistOrder(itemName);
+				Items.setItemWithShippedQtyDO(itemName, Integer.parseInt(shpQty));
+				Items.setItemWithQtyUOMDO(itemName, uom);
+				
+				Reporter.addStepLog("Item Id- " + Steps.ItemDataMap.get(i).get("Item") + ", Shipped Qty- "
+						+ Steps.ItemDataMap.get(i).get("ShippedQty"));		
+		}
 		}
 		
-    File fileToBeModified = new File(path); 
- 	String oldContent = "";	    	
-	BufferedReader reader = new BufferedReader(new FileReader(fileToBeModified));	
-	String line = reader.readLine();	
-	while (line != null) {
-		oldContent = oldContent + line + System.lineSeparator();
-		line = reader.readLine();
-	}
-	globalFunc.DateTime.TimeDateFunc();	
-	String newContent = oldContent.replaceAll("yyyymmdd", globalFunc.DateTime.strDate2);
-	String newcontent_ship=newContent.replaceAll("yymmdd", PODONumber);
-	FileWriter writer = new FileWriter(path);
-	writer.write(newcontent_ship);  			    	
-	reader.close();
-	writer.close();
 		
+		File fileToBeModified = new File(path);
+		String oldContent = "";
+		BufferedReader reader = new BufferedReader(new FileReader(fileToBeModified));
+		String line = reader.readLine();
+		while (line != null) {
+			oldContent = oldContent + line + System.lineSeparator();
+			line = reader.readLine();
+		}
+		globalFunc.DateTime.TimeDateFunc();
+		String newContent = oldContent.replaceAll("yyyymmdd", globalFunc.DateTime.strDate2);
+		String newcontent_ship = newContent.replaceAll("yymmdd", PODONumber);
+		FileWriter writer = new FileWriter(path);
+		writer.write(newcontent_ship);
+		reader.close();
+		writer.close();
+	
+	
 	}
 }

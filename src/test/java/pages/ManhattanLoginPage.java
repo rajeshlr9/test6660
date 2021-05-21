@@ -198,7 +198,7 @@ public class ManhattanLoginPage extends Steps {
 				signInBtn.click();
 				Steps.logger.info("Clicked on Sign in Button");
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, facilitySelection, 180);
-				Thread.sleep(3000);
+				Thread.sleep(1000);
 				String Facility = Steps.scenarioData.get("Facility");
 				String BusinnesUnit = Steps.scenarioData.get("Account");
 //				if (!facilityApplyBtn.getText().contains(Facility + " - " + BusinnesUnit)) {
@@ -281,7 +281,7 @@ public class ManhattanLoginPage extends Steps {
 				// Steps.logger.info("TestedBy: "+TestedBy);
 				Reporter.addStepLog("User logged in successfully");
 				userLoggedin.click();
-				Thread.sleep(2000);
+				Thread.sleep(1000);
 
 		}
 
