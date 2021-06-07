@@ -379,9 +379,9 @@ Scenario: Receiving of ASN on to a Pallet - Multi Line (same item in both lines)
 	Then user views ASN, get and verify pallet status is "30 - Putaway" 
 	Then user log out from application
 	
-	@NVI_IB021 @Regression_NVI @NVI_DamagedReceive
-Scenario: B-459309 Receive Damages- Receiving Damaged Product using MM3 Recv-Damages 
-Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verifying the status of the ASN 
+	@NVI_IB021 @Regression_NVI @NVI_DamagedReceive&Putaway
+Scenario: Receive Damages- Receiving Damaged Product using MM3 Recv-Damages & complete Putaway - Single Line
+Receiving of Damaged Products in MM3 Recv-Damages option & complete Putaway
 	Given I have excel data
 	| NVI_IBScenario021 |
 	And Open the chrome browser by selenium
@@ -391,8 +391,72 @@ Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verify
     And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response 
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
-	And user views ASN, get and verify item details 
+	And user views ASN, get and verify item details
 	And user opens RF menu and completes Receiving using "MM3 Recv-Damages" menu
 	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
 	Then user search for the LPN in iLPN screen, and validate the lock code
+	And user open reserve locations & naviagtes to "NV111A1" zone and fetches the current quantity
+	And user opens RF menu and completes Putaway using "MM3 Ptwy CASE" menu
+	Then user navigates to reserve locations & validates that the quantity is increased in "NV111A1" by no of iLPN's moved
+	Then validates that the iLPN is also moved to inspection zone "NV111A1"
+	Then user log out from application 
+	
+	@NVI_IB022 @Regression_NVI @NVI_DamagedReceive&Putaway
+Scenario: Receive Damages- Receiving Damaged Product using MM3 Recv-Damages & complete Putaway - Multi Line
+Receiving of Damaged Products in MM3 Recv-Damages option & complete Putaway
+	Given I have excel data
+	| NVI_IBScenario022 |
+	And Open the chrome browser by selenium
+	And user logs into the Manhattan application 
+    When user create xml file using "Multi Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
+    And user update xml itemDetails from excel sheet
+    And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response 
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
+	And user views ASN, get and verify item details
+	And user opens RF menu and completes Receiving using "MM3 Recv-Damages" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
+	Then user search for the LPN in iLPN screen, and validate the lock code
+	And user open reserve locations & naviagtes to "NV111A1" zone and fetches the current quantity
+	And user opens RF menu and completes Putaway using "MM3 Ptwy CASE" menu
+	Then user navigates to reserve locations & validates that the quantity is increased in "NV111A1" by no of iLPN's moved
+	Then validates that the iLPN is also moved to inspection zone "NV111A1"
+	Then user log out from application 
+	
+	@NVI_IB023 @Regression_NVI @NVI_UnDeliveredReceive&Putaway
+	Scenario: Receiving Returned Un-Delivered Product by creating ASN & completing Putaway - Single Line
+Receiving of Un-Delivered Product in MM3 returns menu by creating ASN, validating lock code and completing putaway
+	Given I have excel data
+	| NVI_IBScenario023 |
+	And Open the chrome browser by selenium
+	And user logs into the Manhattan application 
+    When user create xml file using "Single Line Return ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
+    And user update xml itemDetails from excel sheet
+    And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response 
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Returns" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
+	Then user search for the LPN in iLPN screen, and validate the lock code
+	And user open reserve locations & naviagtes to "NV111A1" zone and fetches the current quantity
+	And user opens RF menu and completes Putaway using "MM3 Ptwy CASE" menu
+	Then user navigates to reserve locations & validates that the quantity is increased in "NV111A1" by no of iLPN's moved
+	Then validates that the iLPN is also moved to inspection zone "NV111A1"
+	Then user log out from application
+
+	@NVI_IB024 @Regression_NVI @NVI_UnDeliveredReceive&Putaway
+	Scenario: Receiving Returned Un-Delivered Product using blind receipt & completing Putaway
+Receiving Returned Un-Delivered Product using blind receipt & validaing lock code, Completing putaway 
+Given I have excel data
+	| NVI_IBScenario024 |
+	And Open the chrome browser by selenium
+	And user logs into the Manhattan application 
+	And user opens RF menu and completes Receiving using "MM3 Returns" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started" 
+	Then user search for the LPN in iLPN screen, and validate the lock code
+	And user open reserve locations & naviagtes to "NV111A1" zone and fetches the current quantity
+	And user opens RF menu and completes Putaway using "MM3 Ptwy CASE" menu
+	Then user navigates to reserve locations & validates that the quantity is increased in "NV111A1" by no of iLPN's moved
+	Then validates that the iLPN is also moved to inspection zone "NV111A1"
 	Then user log out from application 

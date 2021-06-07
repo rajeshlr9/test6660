@@ -27,8 +27,8 @@ import pages.ManhattanLoginPage;
 import pages.PixTransactionPage;
 import pages.PostMessagePage;
 import pages.RFMenuPage;
-import pages.FedexnetPage;
 import pages.ReserveLocationPage;
+import reusable.FedexnetPage;
 import reusable.KelliPages;
 import reusable.ModifyXML;
 import utils.Config;
@@ -109,16 +109,16 @@ public class StepDefInBound {
 			String env = ManhattanLoginPage.environment;
 			System.out.println("Environment:"+env);
 
-			if (env.equalsIgnoreCase("DEV")|| env.equalsIgnoreCase("@Env")) {
-				driver.get(Config.getProperty("ManhattanURL_DEV"));
-				Steps.logger.info("Dev Environment");
-			} else if (env.equalsIgnoreCase("TEST") ) {
-				driver.get(Config.getProperty("ManhattanURL_TEST"));
-				Steps.logger.info("TEST Environment");
+			if (env.equalsIgnoreCase("L1")|| env.equalsIgnoreCase("@Env")) {
+				driver.get(Config.getProperty("ManhattanURL_L1"));
+				Steps.logger.info("L1 Environment");
+			} else if (env.equalsIgnoreCase("L2") ) {
+				driver.get(Config.getProperty("ManhattanURL_L2"));
+				Steps.logger.info("L2 Environment");
 			}
-				else if (env.equalsIgnoreCase("STAGE")) {
-					driver.get(Config.getProperty("ManhattanURL_STAGE"));
-					Steps.logger.info("STAGE Environment");
+				else if (env.equalsIgnoreCase("L4")) {
+					driver.get(Config.getProperty("ManhattanURL_L4"));
+					Steps.logger.info("L4 Environment");
 			}
 			manhattanLoginPage.loginToManhattanApp(userType);
 		} catch (Exception e) {
@@ -134,16 +134,16 @@ public class StepDefInBound {
 			String env = ManhattanLoginPage.environment;
 			System.out.println("Environment:"+env);
 
-			if (env.equalsIgnoreCase("DEV")|| env.equalsIgnoreCase("@Env")) {
-				driver.get(Config.getProperty("ManhattanURL_DEV"));
-				Steps.logger.info("Dev Environment");
-			} else if (env.equalsIgnoreCase("TEST") ) {
-				driver.get(Config.getProperty("ManhattanURL_TEST"));
-				Steps.logger.info("TEST Environment");
+			if (env.equalsIgnoreCase("L1")|| env.equalsIgnoreCase("@Env")) {
+				driver.get(Config.getProperty("ManhattanURL_L1"));
+				Steps.logger.info("L1 Environment");
+			} else if (env.equalsIgnoreCase("L2") ) {
+				driver.get(Config.getProperty("ManhattanURL_L2"));
+				Steps.logger.info("L2 Environment");
 			}
-				else if (env.equalsIgnoreCase("STAGE")) {
-					driver.get(Config.getProperty("ManhattanURL_STAGE"));
-					Steps.logger.info("STAGE Environment");
+				else if (env.equalsIgnoreCase("L4")) {
+					driver.get(Config.getProperty("ManhattanURL_L4"));
+					Steps.logger.info("L4 Environment");
 			}
 			manhattanLoginPage.loginToManhattanApp();
 		} catch (Exception e) {
@@ -158,18 +158,18 @@ public class StepDefInBound {
 		@Then("^user logs into the FedexNet application$")
 		public void user_logs_into_the_FedexNet_application() {
 		try {
-			String env = ManhattanLoginPage.environment;
+			String env = Config.getProperty("Environment");
 			System.out.println("Environment:"+env);
 
-			if (env.equalsIgnoreCase("DEV")|| env.equalsIgnoreCase("@Env")) {
+			if (env.equalsIgnoreCase("L1")|| env.equalsIgnoreCase("@Env") || env.equalsIgnoreCase("L2")) {
 				driver.get(Config.getProperty("FedexNetURL_DEV"));
 				Steps.logger.info("Dev Environment");
 				
-			} else if (env.equalsIgnoreCase("TEST") ) {
+			} else if (env.equalsIgnoreCase("L3") ) {
 				driver.get(Config.getProperty("FedexNetURL_TEST"));
 				Steps.logger.info("TEST Environment");
 			}
-				else if (env.equalsIgnoreCase("STAGE")) {
+				else if (env.equalsIgnoreCase("L4")) {
 					driver.get(Config.getProperty("FedexNetURL_STAGE"));
 					Steps.logger.info("STAGE Environment");
 			}
@@ -187,13 +187,13 @@ public class StepDefInBound {
 			String env = ManhattanLoginPage.environment;
 			System.out.println("Environment:"+env);
 			String dropEnv=null;
-			if (env.equalsIgnoreCase("DEV")|| env.equalsIgnoreCase("@Env")) {
+			if (env.equalsIgnoreCase("L1")|| env.equalsIgnoreCase("@Env") || env.equalsIgnoreCase("L2")) {
 				dropEnv="FSCS";
 				
-			} else if (env.equalsIgnoreCase("TEST") ) {
+			} else if (env.equalsIgnoreCase("L3") ) {
 				dropEnv="FSCSQA";
 			}
-				else if (env.equalsIgnoreCase("STAGE")) {
+				else if (env.equalsIgnoreCase("L4")) {
 					dropEnv="FSCSUA";
 			}
 			if(fileType.equals("856")||fileType.equals("943")) {			
@@ -427,7 +427,6 @@ public class StepDefInBound {
 
 		// asnsPage.verifyAsnsStatus(Items.getAsnNumber(), status);
 		try {
-			Thread.sleep(5000);
 			asnsPage.verifyAsnsStatus(Items.getAsnNumber(), status);
 			
 		} catch (Exception e) {
@@ -937,10 +936,11 @@ public class StepDefInBound {
 	@Then("^user verifies new ASN is created with remaining qty$")
 	public void user_verifies_new_ASN_is_created_with_remaining_qty() throws Exception {
 		try {
-			Thread.sleep(15000);
-			asnsPage.verifyAsnsStatus(Items.getAsnNumber()+"-1", "20 - InTransit");
-			asnsPage.searchForTheASN(Items.getAsnNumber()+"-1");
-			Steps.logger.info("New ASN is created automatically with ASN: "+Items.getAsnNumber()+"-1");
+			Steps.logger.info("Validating newly created ASN");
+			System.out.println(Items.getPONumber()+"-2");
+			asnsPage.verifyAsnsStatus(Items.getPONumber()+"-2", "20 - InTransit");
+			asnsPage.searchForTheASN(Items.getPONumber()+"-2");
+			Steps.logger.info("New ASN is created automatically with ASN: "+Items.getPONumber()+"-2");
 			Steps.logger.info("Started validating item details");
 			SeleniumTestHelper.waitForElementToBeClickable(driver, asnsPage.searchedASNChkbox, 50);
 			asnsPage.searchedASNChkbox.click();

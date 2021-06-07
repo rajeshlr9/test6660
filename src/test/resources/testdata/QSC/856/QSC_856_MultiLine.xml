@@ -31,7 +31,7 @@
     </RefLp>
     <TrnsprtLp>
       <TrnsprtShipID>yymmdd</TrnsprtShipID>
-      <TrnsprtSCAC>FDEG</TrnsprtSCAC>
+      <TrnsprtSCAC></TrnsprtSCAC>
       <TrnsprtTrailerNo>yymmdd</TrnsprtTrailerNo>
     </TrnsprtLp>
     <ShipOrdLp>
@@ -51,6 +51,6 @@
         <ItemShipQty>10</ItemShipQty>
         <ItemUOM>EA</ItemUOM>
       </ShipLineItemLp>
-    </ShipOrdLp>
+	     </ShipOrdLp>
   </ShipNotifHdrLp>
 </FGSCSSTDShipNotify>

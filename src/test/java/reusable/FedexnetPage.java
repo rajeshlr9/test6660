@@ -1,4 +1,4 @@
-package pages;
+package reusable;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,7 +19,6 @@ import com.cucumber.listener.Reporter;
 import StepDefinition.Steps;
 import entity.Items;
 import globalFunc.Screenshots;
-import reusable.ModifyXML;
 import utils.Config;
 import utils.Driver;
 import utils.SeleniumTestHelper;
@@ -60,7 +59,7 @@ public class FedexnetPage  extends Steps {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, username, 100);
 		String env = environment;
 		// String userType= Config.getProperty("UserRole");
-		if (env.equalsIgnoreCase("Dev") || env.equalsIgnoreCase("@Env")) {
+		if (env.equalsIgnoreCase("L1") || env.equalsIgnoreCase("@Env") || env.equalsIgnoreCase("L2")) {
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, username, 50);
 			username.sendKeys(Config.getProperty("FedexNetUsername_DEV"));
 			Steps.logger.info("DEVUserName: " + Config.getProperty("FedexNetUsername_DEV"));

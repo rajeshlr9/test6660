@@ -1,7 +1,7 @@
 Feature: QSC Outbound Scenarios 
 
-@QSC_OB000 @Regression_QSC @QSC_PostMessage 
-Scenario: Distribution Order Shipping - Single Line 
+@QSC_OB000 @Regression_QSC @QSC_PostDO
+Scenario: Distribution Order creation - Single Line 
 	Given I have excel data 
 		| QSC_OBScenario001 |
 	And Open the chrome browser by selenium 

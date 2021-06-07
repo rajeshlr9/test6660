@@ -55,6 +55,9 @@ public class AsnsPage {
 	public WebElement collapseLeft;
 	@FindBy(xpath = "//a[@data-qtip='Refresh']")
 	public WebElement refreshBtn;
+	@FindBy(xpath = "//div[@class='x-grid-cell-inner ']/img")
+	public WebElement ASNmessage;
+	
 
 	@FindBy(xpath = "//a[@name='ASNDetailASNLinesTab']")
 	public WebElement linesTab;
@@ -179,29 +182,52 @@ public class AsnsPage {
 		 * action.moveToElement(asnIdInput).build().perform(); asnIdInput.click();
 		 * asnIdInput.sendKeys(asnId);
 		 */
-		// SeleniumTestHelper.waitForElementToBeDisplayed(driver, applyBtn, 50);
-		 Thread.sleep(3000);
+		Thread.sleep(1000);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, applyBtn, 50);
+		 
 		applyBtn.click();
+		Thread.sleep(2000);
+		int temp=0;
+		 while (!SeleniumTestHelper.isElementDisplayed(asnStatus) && (temp != 20)) {
+			 applyBtn.click();
+			 Thread.sleep(5000);
+			 temp++;
+		 }
 		//driver.findElement(By.xpath("(//span[text()='Apply'])[2]")).click();
 		// List<WebElement>links = driver.findElements(By.xpath("//A/SPAN[@role='presentation']/SPAN[@role='presentation' and normalize-space()='Apply']/SPAN[2]"));
 		  //  int total_count = links.size();       
 		    //System.out.println("Total size :=" +total_count);   
 		// Thread.sleep(3000);
-//		SeleniumTestHelper.waitForElementToBeDisplayed(driver, collapseLeft, 70);
-//		collapseLeft.click();
-//		SeleniumTestHelper.waitForElementToBeDisplayed(driver, refreshBtn, 50);
+	//	SeleniumTestHelper.waitForElementToBeDisplayed(driver, collapseLeft, 70);
+		//collapseLeft.click();
+		//SeleniumTestHelper.waitForElementToBeDisplayed(driver, refreshBtn, 50);
 		String AsnStatus = asnStatus.getText();
 		int count = 0;
 		
-		  while (!AsnStatus.equals(status) && (count != 10)) { applyBtn.click();
-		  Thread.sleep(2000); AsnStatus = asnStatus.getText(); Thread.sleep(2000);
-		  count++; }
+		  while (!AsnStatus.equals(status) && (count != 20)) { 
+			  applyBtn.click();
+		  Thread.sleep(1000); 
+		  AsnStatus = asnStatus.getText();
+		  Thread.sleep(5000);
+		  count++; 
+		  }
 		 
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, collapseLeft, 70);
 		collapseLeft.click();
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		
 			SeleniumTestHelper.assertEquals(AsnStatus, status);
+			
+			if(SeleniumTestHelper.isElementDisplayed(ASNmessage)) {
+				String message= ASNmessage.getAttribute("src");
+				System.out.println(message);
+						if(message.contains("error")) {
+							System.out.println("ASN created with some errors");
+							Reporter.addStepLog("ASN Created but it has some errors");
+							Steps.testRes = "Failed";
+							Assert.assertTrue(false);
+						}
+			}
 		
 		Screenshots.captureSnapshot(driver);
 		System.out.println("Status : " + AsnStatus + " has been verified successfully for ASN : " + asnId);
@@ -278,7 +304,7 @@ public class AsnsPage {
 		asnIdInput.click();
 		asnIdInput.sendKeys(asnID);
 		//SeleniumTestHelper.waitForElementToBeDisplayed(driver, applyBtn, 50);
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 		applyBtn.click();
 		Screenshots.captureSnapshot(driver);
 	}
@@ -322,27 +348,27 @@ public class AsnsPage {
 		SeleniumTestHelper.waitForElementToBeClickable(driver, verifyASN, 50);
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.assertTrue(verifyASN.isDisplayed());
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 		verifyASN.click();
 		Thread.sleep(3000);
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		SeleniumTestHelper.waitForElementToBeClickable(driver, verifyASNBtn, 50);
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.assertTrue(verifyASNBtn.isDisplayed());
-		int shippedQty = 0;
-		String receivedQty = null;
-		for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
-			shippedQty = Items.getItemWithShippedASNQty(Items.getItemsForReceivingASN(i));
-			receivedQty = driver
-					.findElement(By.xpath(
-							"(//span[text()='" + Items.getItemsForReceivingASN(i) + "']/../../..//td[5]/span[1])[1]"))
-					.getText();
-			SeleniumTestHelper.assertEquals(shippedQty, Integer.parseInt(receivedQty));
-			System.out.println("ReceivedQty : " + receivedQty + " has been verifed against ShippedQty for item : "
-					+ Items.getItemsForReceivingASN(i));
-		}
+//		int shippedQty = 0;
+//		String receivedQty = null;
+//		for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
+//			shippedQty = Items.getItemWithShippedASNQty(Items.getItemsForReceivingASN(i));
+//			receivedQty = driver
+//					.findElement(By.xpath(
+//							"(//span[text()='" + Items.getItemsForReceivingASN(i) + "']/../../..//td[5]/span[1])[1]"))
+//					.getText();
+//			SeleniumTestHelper.assertEquals(shippedQty, Integer.parseInt(receivedQty));
+//			System.out.println("ReceivedQty : " + receivedQty + " has been verifed against ShippedQty for item : "
+//					+ Items.getItemsForReceivingASN(i));
+//		}
 		verifyASNBtn.click();
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		Screenshots.captureSnapshot(driver);
 		driver.switchTo().defaultContent();
 		String asnStatusActual = null;
@@ -534,12 +560,11 @@ public class AsnsPage {
 	public void validateNewlyCreatedASN() throws Exception{
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, linesTab, 120);
 		linesTab.click();
+		Thread.sleep(3000);
 		List<WebElement> lines = driver.findElements(By.xpath("//span[contains(@id,'SKUId')]"));
 		List<WebElement> Shipqty = driver.findElements(By.xpath("//span[contains(@id,'shippedQtyuom')]"));
-		Thread.sleep(5000);
 		Screenshots.captureSnapshot(driver);
-		String itemInASNPage = null;
-		String[] shippedQty = null;
+		
 		//
 		System.out.println("Line size:" + lines.size());
 		System.out.println("Line qty size:" + Shipqty.size());
@@ -550,23 +575,26 @@ public class AsnsPage {
 			System.out.println("Line qty" + i + ":" + Shipqty.get(i).getText());
 		}
 
-		for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
+		for (int i = 0,j=0; i < Steps.ItemDataMap.size(); i++) {
+			String itemInASNPage = null;
+			String[] shippedQty = null;
 			System.out.println("in for loop "+i);
 			System.out.println((Integer.parseInt(Steps.ItemDataMap.get(i).get("ShippedQty"))-Integer.parseInt(Steps.ItemDataMap.get(i).get("RecQty"))));
-			if((Integer.parseInt(Steps.ItemDataMap.get(i).get("ShippedQty"))-Integer.parseInt(Steps.ItemDataMap.get(i).get("RecQty")))!=0){
+			if((Integer.parseInt(Steps.ItemDataMap.get(i).get("ShippedQty"))-Integer.parseInt(Steps.ItemDataMap.get(i).get("RecQty")))>0){
 				System.out.println("if loop");
 			
-			itemInASNPage = lines.get(i+1).getText();
+			itemInASNPage = lines.get(j+1).getText();
 			System.out.println("Line Item:" + itemInASNPage);
 
 			SeleniumTestHelper.assertEquals(itemInASNPage, Steps.ItemDataMap.get(i).get("Item"));
 			System.out.println("Item : " + itemInASNPage + " successfully verified in ASN page");
 
-			shippedQty = Shipqty.get(i).getText().split("\\s+");
+			shippedQty = Shipqty.get(j).getText().split("\\s+");
 			System.out.println("shippedQty:" + shippedQty[0]);
 				SeleniumTestHelper.assertEquals(Integer.parseInt(shippedQty[0]),(Integer.parseInt(Steps.ItemDataMap.get(i).get("ShippedQty"))-Integer.parseInt(Steps.ItemDataMap.get(i).get("RecQty"))));
 			System.out.println(
 					"ShippedQty : " + shippedQty[0] + " successfully verified in ASN page for item : " + itemInASNPage);
+			j++;
 			}
 			Thread.sleep(2000);
 		}

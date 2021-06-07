@@ -12,37 +12,57 @@ Scenario: Verify Manhattan login using different user roles
 	When user logs into Manhattan application using "Supervisor" Credentials
 	Then user log out from application 
 
-@QSC_IB001 @Regression_QSC  @Smoke_QSC @QSC_PostMsg
+@QSC_IB001 @Regression_QSC  @Smoke_QSC @QSC_PostPO
 Scenario: Verify ASN creation through Post MessageUI-excel
 Creating ASN through Post Message UI & verifying the response, checking status of the shipment
 	Given I have excel data
 	| QSC_IBScenario001 |
 	And Open the chrome browser by selenium
-	And user logs into the Manhattan application 
-    When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
+	When user update "Single Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	Then user log out from application 
 
 	
 	@QSC_IB002 @Regression_QSC  @QSC_Rec&Putaway
-Scenario: Single Line receiving
+Scenario: Receiving Case : Single Line, Single iLPN
 Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location through RF Menu
 	Given I have excel data
 	| QSC_IBScenario002 |
 	And Open the chrome browser by selenium
-	And user logs into the Manhattan application 
-    When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
+	When user update "Single Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
-	And user opens RF menu and completes Putaway using "MM3 Ptwy-Sys Dir" menu
+	And user opens RF menu and completes Putaway using "MM3 Ptwy CASE" menu
+	Then user search for the LPN in iLPN screen, and validate the lock code
+	Then user log out from application 
+	
+	@QSC_IB002_1 @Regression_QSC  @QSC_Rec&Putaway
+Scenario: Receiving Case : Single Line, Multiple iLPN
+Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location 
+through RF Menu
+	Given I have excel data
+	| QSC_IBScenario002_1 |
+	And Open the chrome browser by selenium
+	When user update "Single Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
+	And user opens RF menu and completes Putaway using "MM3 Ptwy CASE" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	Then user log out from application 
 	
@@ -52,11 +72,11 @@ Creating ASN through Post Message UI and complete receiving bypasing through sta
 	Given I have excel data
 	| QSC_IBScenario003 |
 	And Open the chrome browser by selenium
+	When user update "Single Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
 	When user logs into Manhattan application using "Associate" Credentials 
-    When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Rec-CASE-Ptwy" menu
@@ -69,11 +89,11 @@ Creating ASN through Post Message UI and validate Overage percentage - allowable
 	Given I have excel data
 	| QSC_IBScenario004 |
 	And Open the chrome browser by selenium
-	And user logs into the Manhattan application 
-    When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
+	When user update "Single Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu  
@@ -87,11 +107,11 @@ Creating ASN through Post Message UI using admin credentials and validate Overag
 	Given I have excel data
 	| QSC_IBScenario004 |
 	And Open the chrome browser by selenium
+	When user update "Single Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
 	When user logs into Manhattan application using "Admin" Credentials
-    When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	And user views ASN, get and verify item details 
 	Then user log out from application 
@@ -107,11 +127,11 @@ Creating ASN through Post Message UI and receiving in 2 LPN's. Move few quantiti
 	Given I have excel data
 	| QSC_IBScenario005 |
 	And Open the chrome browser by selenium
-	And user logs into the Manhattan application 
-    When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
+	When user update "Single Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu 
@@ -126,16 +146,16 @@ Creating 2 line ASN through Post Message UI, checking status of the shipment and
 	Given I have excel data
 	| QSC_IBScenario006 |
 	And Open the chrome browser by selenium
-	And user logs into the Manhattan application 
-    When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
+	When user update "Multi Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
-	And user opens RF menu and completes Putaway using "MM3 Ptwy-Sys Dir" menu
+	And user opens RF menu and completes Putaway using "MM3 Ptwy CASE" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	Then user log out from application 
 
@@ -163,11 +183,12 @@ Receiving of Un-Delivered Product in MM3 returns menu by creating ASN and verify
     When user create xml file using "Single Line Return ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
     And user update xml itemDetails from excel sheet
     And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response
+	Then user verify the response 
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Returns" menu
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
+	Then user search for the LPN in iLPN screen, and validate the lock code
 	Then user log out from application 
 	
 	@QSC_IB009 @Regression_QSC @QSC_DamagedReceive
@@ -176,11 +197,11 @@ Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verify
 	Given I have excel data
 	| QSC_IBScenario009 |
 	And Open the chrome browser by selenium
+	When user update "Single Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
 	When user logs into Manhattan application using "Supervisor" Credentials 
-    When user create xml file using "Single Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-Damages" menu
@@ -189,7 +210,7 @@ Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verify
 	Then user log out from application 
 	
 	@QSC_IB010 @Regression_QSC @QSC_DamagedReceive
-Scenario: B-459309 Receive Damages- Receiving of Damaged Returned Product using blind receipt
+Scenario: B-459309 Receive Return Damages- Receiving of Damaged Returned Product using blind receipt
 Receiving of Damaged Returned Product using blind receipt in MM3 returns menu and verifying the status of the ASN 
 	Given I have excel data
 	| QSC_IBScenario010 |
@@ -232,11 +253,11 @@ iLPN by increasing the quantity & verify the iLPN, ASN and PIX transaction
 	Given I have excel data
 	| QSC_IBScenario013 |
 	And Open the chrome browser by selenium
+	When user update "Single Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
 	When user logs into Manhattan application using "Associate" Credentials 
-    When user create xml file using "Single Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details
 	And user opens RF menu and completes Receiving using "MM3 Rec-CASE-Ptwy" menu
@@ -254,11 +275,11 @@ iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
 	Given I have excel data
 	| QSC_IBScenario014 |
 	And Open the chrome browser by selenium
-	When user logs into Manhattan application using "Associate" Credentials 
-    When user create xml file using "Single Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
+	When user update "Single Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Rec-CASE-Ptwy" menu
@@ -275,11 +296,11 @@ iLPN by increasing the quantity & verify the iLPN, ASN and PIX transaction
 	Given I have excel data
 	| QSC_IBScenario015 |
 	And Open the chrome browser by selenium
-	When user logs into Manhattan application using "Associate" Credentials 
-    When user create xml file using "Single Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response
+	When user update "Single Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
@@ -299,11 +320,11 @@ iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
 	Given I have excel data
 	| QSC_IBScenario016 |
 	And Open the chrome browser by selenium
-	When user logs into Manhattan application using "Associate" Credentials 
-    When user create xml file using "Single Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
+	When user update "Single Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
@@ -322,11 +343,11 @@ iLPN by deleting the line & verify the iLPN, ASN & PIX transaction
 	Given I have excel data
 	| QSC_IBScenario017 |
 	And Open the chrome browser by selenium
-	When user logs into Manhattan application using "Associate" Credentials 
-    When user create xml file using "Single Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
+	When user update "Single Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Rec-CASE-Ptwy" menu
@@ -343,11 +364,11 @@ iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
 	Given I have excel data
 	| QSC_IBScenario018 |
 	And Open the chrome browser by selenium
-	When user logs into Manhattan application using "Associate" Credentials 
-    When user create xml file using "Single Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
+	When user update "Single Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
@@ -366,15 +387,13 @@ validating iLPN have no lock & consume the iLPN using RF Menu. Also validate PIX
 	Given I have excel data
 	| QSC_IBScenario019 |
 	And Open the chrome browser by selenium
-	When user logs into Manhattan application using "Associate" Credentials 
-    When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
+	When user update "Single Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
-	#And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Rec-CASE-Ptwy" menu
-	#And user views ASN, get and verify item details
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user opens RF menu and go to invenorty & perform "Consume iLPN" operation
 	Then user search for the LPN in iLPN screen, and validate the iLPN status
@@ -400,22 +419,22 @@ Given I have excel data
 	@QSC_IB021 @Regression_QSC @QSC_PutawayDamagedAndUndeliveredProducts
 Scenario: B- 466712 Putaway – Un-Delivered Products that was received in MM3 returns
 Receiving of Un-Delivered Product using MM3 returns menu and complete putaway to inspection area Validate the 
-iLPN moved to inspection area and	“QC111A1” Locations Current Quantity will be incremented with no of LPN’s moved to location
+iLPN moved to inspection area and “QC111A1” Locations Current Quantity will be incremented with no of LPN’s moved to location
 	Given I have excel data
 	| QSC_IBScenario021 |
 	And Open the chrome browser by selenium
-	When user logs into Manhattan application using "Supervisor" Credentials
-	When user create xml file using "Single Line Return ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
+	And user logs into the Manhattan application 
+    When user create xml file using "Single Line Return ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
     And user update xml itemDetails from excel sheet
-   And user opens post message screen and upload file in order to create ASN 
+    And user opens post message screen and upload file in order to create ASN 
 	Then user verify the response 
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Returns" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations & naviagtes to "QC111A1" zone and fetches the current quantity
-	And user opens RF menu and completes Putaway using "MM3 Ptwy-Sys Dir" menu
+	And user opens RF menu and completes Putaway using "MM3 Ptwy CASE" menu
 	Then user navigates to reserve locations & validates that the quantity is increased in "QC111A1" by no of iLPN's moved
 	Then validates that the iLPN is also moved to inspection zone "QC111A1"
 	Then user log out from application 
@@ -428,18 +447,18 @@ to inspection area and	“QC111A1” Locations Current Quantity will be incremen
 	Given I have excel data
 	| QSC_IBScenario022 |
 	And Open the chrome browser by selenium
-	When user logs into Manhattan application using "Associate" Credentials
-    When user create xml file using "Single Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
+	When user update "Single Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-Damages" menu
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations & naviagtes to "QC111A1" zone and fetches the current quantity
-	And user opens RF menu and completes Putaway using "MM3 Ptwy-Sys Dir" menu
+	And user opens RF menu and completes Putaway using "MM3 Ptwy CASE" menu
 	Then user navigates to reserve locations & validates that the quantity is increased in "QC111A1" by no of iLPN's moved
 	Then validates that the iLPN is also moved to inspection zone "QC111A1"
 	Then user log out from application 
@@ -457,7 +476,7 @@ moved to location
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations & naviagtes to "QC111A1" zone and fetches the current quantity
-	And user opens RF menu and completes Putaway using "MM3 Ptwy-Sys Dir" menu
+	And user opens RF menu and completes Putaway using "MM3 Ptwy CASE" menu
 	Then user navigates to reserve locations & validates that the quantity is increased in "QC111A1" by no of iLPN's moved
 	Then validates that the iLPN is also moved to inspection zone "QC111A1"
 	Then user log out from application 
@@ -468,11 +487,11 @@ Creating ASN through Post Message UI, complete receiving where Receving qty matc
 	Given I have excel data
 	| QSC_IBScenario024 |
 	And Open the chrome browser by selenium
-	And user logs into the Manhattan application 
-    When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
+	When user update "Single Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
@@ -487,11 +506,11 @@ Creating ASN through Post Message UI, complete receivingof both lines where Rece
 	Given I have excel data
 	| QSC_IBScenario025 |
 	And Open the chrome browser by selenium
-	And user logs into the Manhattan application 
-    When user create xml file using "Multi Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
+	When user update "Multi Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
@@ -507,11 +526,11 @@ Creating ASN through Post Message UI, complete receiving where Receving qty matc
 	Given I have excel data
 	| QSC_IBScenario026 |
 	And Open the chrome browser by selenium
-	And user logs into the Manhattan application 
-    When user create xml file using "Multi Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
+	When user update "Multi Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
@@ -526,11 +545,11 @@ Creating ASN through Post Message UI, complete receiving where Receving qty is l
 	Given I have excel data
 	| QSC_IBScenario027 |
 	And Open the chrome browser by selenium
-	And user logs into the Manhattan application 
-    When user create xml file using "Single Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
+	When user update "Single Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
@@ -544,11 +563,11 @@ Creating ASN through Post Message UI, complete receiving where Receving qty is m
 	Given I have excel data
 	| QSC_IBScenario028 |
 	And Open the chrome browser by selenium
-	And user logs into the Manhattan application 
-    When user create xml file using "Single Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
+	When user update "Single Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
@@ -559,17 +578,17 @@ Creating ASN through Post Message UI, complete receiving where Receving qty is m
 	
 
 	@QSC_IB029 @Regression_QSC  @QSC_PartiallyVerified
-Scenario: Receiving Partial Qty from an ASN- Single Line & Validating new ASN is created with remaining qty
+Scenario: Receiving Partial Qty from an ASN- Single Line
 Creating ASN through Post Message UI, Complete receiving of partial qty, Verify the ASN Manually & validate new ASN is
 automatically created with remaining qty
 	Given I have excel data
 	| QSC_IBScenario029 |
 	And Open the chrome browser by selenium
-	And user logs into the Manhattan application 
-    When user create xml file using "Single Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response
+	When user update "Single Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
 	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started"
@@ -580,17 +599,17 @@ automatically created with remaining qty
 	Then user log out from application
 	
 	@QSC_IB030 @Regression_QSC  @QSC_PartiallyVerified
-Scenario: Receiving Partial Qty from both the lines of an ASN- Multi Line & Validating new ASN is created with remaining qty from both the lines
+Scenario: Receiving Partial Qty from both the lines of an ASN- Multi Line
 Creating ASN through Post Message UI, Complete receiving of partial qty from both the lines, Verify the ASN Manually & 
-validate new multi line ASN is automatically created with remaining qty
+validate new multi line ASN is automatically created with remaining qty for both lines
 	Given I have excel data
 	| QSC_IBScenario030 |
 	And Open the chrome browser by selenium
-	And user logs into the Manhattan application 
-    When user create xml file using "Multi Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
+	When user update "Multi Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	#And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
@@ -602,17 +621,18 @@ validate new multi line ASN is automatically created with remaining qty
 	Then user log out from application
 	
 	@QSC_IB031 @Regression_QSC  @QSC_PartiallyVerified
-Scenario: Receiving 1st line with all quantities and 2nd line with partial quantities of an ASN & Validating new ASN is created with remaining qty 
-Creating ASN through Post Message UI, Complete receiving of partial qty from both the lines, Verify the ASN Manually & 
-validate new multi line ASN is automatically created with remaining qty
+Scenario: Receiving 1st line with all quantities and 2nd line with partial quantities of an ASN 
+Creating ASN through Post Message UI, Complete receiving 1st line with all quantities and 2nd line with partial 
+quantities of an ASN , Verify the ASN Manually & validate new multi line ASN is automatically created with 
+remaining qty
 	Given I have excel data
 	| QSC_IBScenario031 |
 	And Open the chrome browser by selenium
-	And user logs into the Manhattan application 
-    When user create xml file using "Multi Line ASN" with updated ASNNo & DeliveryStartDate for ReceivingASN
-    And user update xml itemDetails from excel sheet
-    And user opens post message screen and upload file in order to create ASN 
-	Then user verify the response 
+	When user update "Multi Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
@@ -623,13 +643,98 @@ validate new multi line ASN is automatically created with remaining qty
 	Then user verifies new ASN is created with remaining qty
 	Then user log out from application
 	
+	@QSC_IB032 @Regression_QSC  @QSC_PartiallyVerified
+Scenario: Receiving Partial Qty from both the lines of an ASN- Multi Line having same items 
+Creating ASN through Post Message UI, Complete receiving Receiving Partial Qty from both the lines 
+of an ASN- Multi Line having same items, Verify the ASN Manually & validate new multi line ASN is automatically 
+created with remaining qty
+	Given I have excel data
+	| QSC_IBScenario032 |
+	And Open the chrome browser by selenium
+	When user update "Multi Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started"
+	And validates the PIX message "606 - Un-allocable inventory adjustments"
+	And user verifies the ASN "40 - Receiving Verified"
+	And validates the PIX message "603 - Verify receipt"
+	Then user verifies new ASN is created with remaining qty
+	Then user log out from application
 	
-	###Ali#####################
+	@QSC_IB033 @Regression_QSC  @QSC_PartiallyVerified
+Scenario: Receiving 1st line with more than shipped quantities and 2nd line with partial quantities - Different item in both lines
+Creating ASN through Post Message UI, 1st line is Over Received and 2nd line with partial quantities of an 
+ASN- Multi Line with different items such that received units must be equals to Total shipped units, Verify 
+the ASN Manually & validate new ASN is automatically created with remaining qty from 2nd line
+	Given I have excel data
+	| QSC_IBScenario033 |
+	And Open the chrome browser by selenium
+	When user update "Multi Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started"
+	And validates the PIX message "606 - Un-allocable inventory adjustments"
+	And user verifies the ASN "40 - Receiving Verified"
+	And validates the PIX message "603 - Verify receipt"
+	Then user verifies new ASN is created with remaining qty
+	Then user log out from application
 	
-	@QSC_IB032 @Regression_QSC  @QSC_PackCasefromTransitional
+	@QSC_IB034 @Regression_QSC  @QSC_PartiallyVerified
+Scenario: Receiving 1st line with all quantities and 2nd line with partial quantities of an ASN- Multi Line with same items 
+Creating ASN through Post Message UI, Receiving 1st line with all quantities and 2nd line with partial quantities of an ASN- Multi Line with same items , Verify 
+the ASN Manually & validate new ASN is automatically created with remaining qty from 2nd line
+	Given I have excel data
+	| QSC_IBScenario034 |
+	And Open the chrome browser by selenium
+	When user update "Multi Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started"
+	And validates the PIX message "606 - Un-allocable inventory adjustments"
+	And user verifies the ASN "40 - Receiving Verified"
+	And validates the PIX message "603 - Verify receipt"
+	Then user verifies new ASN is created with remaining qty
+	Then user log out from application
+	
+	@QSC_IB035 @Regression_QSC  @QSC_PartiallyVerified
+Scenario: Receiving 1st line with more than shipped quantities and 2nd line with partial quantities - Same Item in both lines
+Creating ASN through Post Message UI, 1st line is Over Received and 2nd line with partial quantities of an 
+ASN, Validate ASN is verified automatically
+	Given I have excel data
+	| QSC_IBScenario035 |
+	And Open the chrome browser by selenium
+	When user update "Multi Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	And validates the PIX message "606 - Un-allocable inventory adjustments"
+	And validates the PIX message "603 - Verify receipt"
+	Then user log out from application
+	
+	@QSC_IB042 @Regression_QSC  @QSC_PackCasefromTransitional
 Scenario:  MM3 RF Pack Case from Transitional
 Given I have excel data
-	| QSC_IBScenario032 |
+	| QSC_IBScenario042 |
 	And Open the chrome browser by selenium
 	When user logs into the Manhattan application
 	And user opens RF menu and perform "MM3 Pack From Trans" operation in inventory menu
@@ -637,64 +742,4 @@ Given I have excel data
 	Then user log out from application
 	
 	
-	
-	@QSC_IB033 @Regression_QSC @QSC_FedexNet
-Scenario: Login to FedexNet and drop xml 
-	Given I have excel data
-	| QSC_IBScenario032 |
-	And Open the chrome browser by selenium
-	When user update "Single Line PO" for dropping into fedexnet application
-	And user logs into the FedexNet application
-	And user upload "856" XML file in fedexnet
-	Then user log out from Fedenxet application
-	And user logs into the Manhattan application
-	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
-	
-@QSC_IB034 @Regression_QSC @QSC_FedexNet
-Scenario: Login to FedexNet and drop xml 
-	Given I have excel data
-	| QSC_IBScenario032 |
-	And Open the chrome browser by selenium
-	When user update "Multi Line PO" for dropping into fedexnet application
-	And user logs into the FedexNet application
-	And user upload "856" XML file in fedexnet 
-	Then user log out from Fedenxet application
-	And user logs into the Manhattan application
-	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
-	
-	@QSC_IB035 @Regression_QSC @QSC_FedexNet
-Scenario: Login to FedexNet and drop xml 
-	Given I have excel data
-	| QSC_IBScenario032  |
-	And Open the chrome browser by selenium
-	When user update "Single Line DO" for dropping into fedexnet application
-	And user logs into the FedexNet application
-	And user upload "850" XML file in fedexnet 
-	Then user log out from Fedenxet application
-	And user logs into the Manhattan application
-	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
-	Then user verifies the item details in Distribuion Order page 
-	And user runs the "Standard wave" 
-	Then user views wave and verify the allocation of inventory 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
-	And user open Task screen & verifies task is created for DO in the wave process 
-	And user open RF Menu and complete the tasks created 
-	Then user open Task screen & validates the status of tasks 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed" 
-	Then user search for DO and confirms it 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 
-	Then user log out from application 
-	
-	@QSC_IB036 @Regression_QSC @QSC_FedexNet
-Scenario: Login to FedexNet and drop xml 
-	Given I have excel data
-	| QSC_IBScenario032  |
-	And Open the chrome browser by selenium
-	When user update "Multi Line DO" for dropping into fedexnet application
-	And user logs into the FedexNet application
-	And user upload "850" XML file in fedexnet
-	Then user log out from Fedenxet application
-	And user logs into the Manhattan application
-	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
-	Then user log out from application 
 	

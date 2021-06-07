@@ -67,6 +67,8 @@ public class RFMenuPage {
 	public WebElement inputASN;
 	@FindBy(xpath = "//input[@id='lpninput']")
 	public WebElement lpnInputTxt;
+	@FindBy(xpath = "//input[@id='input22']")
+	public WebElement cooTxtBox;
 	@FindBy(id = "verfiyItemBrcd")
 	public WebElement ItemBarcode;
 	@FindBy(xpath = "//span[text()='Lot:']/..//input")
@@ -150,8 +152,8 @@ public class RFMenuPage {
 	@FindBy(xpath = "//a[text()='MM3 Returns']")
 	public WebElement MM3Returns;
 
-	@FindBy(xpath = "//a[text()='MM3 Ptwy-Sys Dir']")
-	public WebElement MM3sysdirPutaway;
+	@FindBy(xpath = "//a[text()='MM3 Ptwy CASE']")
+	public WebElement MM3casePutaway;
 
 	@FindBy(xpath = "//a[text()='MM3 Recv-Damages']")
 	public WebElement MM3recDmg;
@@ -895,116 +897,6 @@ public class RFMenuPage {
 			Steps.logger.info("Clicked on Receiving");
 			Screenshots.captureSnapshot(driver);
 			switch (receivingMethod) {
-			case "Recv Item Lvl":
-				System.out.println("Receiving process starting with : " + receivingMethod + " menu");
-				while (!(SeleniumTestHelper.isElementDisplayed(RF_Recv_Iten_lvl))) {
-					pageDown.click();
-				}
-				SeleniumTestHelper.assertTrue(RF_Recv_Iten_lvl.isDisplayed());
-				RF_Recv_Iten_lvl.click();
-				SeleniumTestHelper.waitForElementToBeDisplayed(driver, inputASN, 50);
-				inputASN.sendKeys(Items.getAsnNumber());
-				SeleniumTestHelper.assertTrue(inputASN.isDisplayed());
-				inputASN.sendKeys(Keys.ENTER);
-
-				if (SeleniumTestHelper.isElementDisplayed(destStagingLocn)) {
-					SeleniumTestHelper.assertEquals(destStagingLocnInput.isDisplayed(), true);
-					destStagingLocnInput.sendKeys("ABC01001D01" + Keys.ENTER);
-				}
-
-				SeleniumTestHelper.waitForElementToBeDisplayed(driver, palletIDTxt, 50);
-				if (SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
-					SeleniumTestHelper.assertTrue(errorOrWarningMsg.isDisplayed());
-					acceptAndProceedBtn.click();
-				}
-				int itemShippedQty = 0;
-				for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
-					palletIDTxt.sendKeys(Items.getItemPalletID(Items.getItemsForReceivingASN(i)));
-					SeleniumTestHelper.assertTrue(palletIDTxt.isDisplayed());
-					palletIDTxt.sendKeys(Keys.ENTER);
-					iLPN = Items.getItemILPN(Items.getItemsForReceivingASN(i));
-					System.out.println("iLPN : " + iLPN + " for the product : " + Items.getItemsForReceivingASN(i));
-					lpnInputTxt.sendKeys(iLPN);
-					SeleniumTestHelper.assertTrue(lpnInputTxt.isDisplayed());
-					lpnInputTxt.sendKeys(Keys.ENTER);
-					SeleniumTestHelper.waitForElementToBeDisplayed(driver, ItemBarcode, 10);
-					ItemBarcode.sendKeys(Items.getItemBarcode(Items.getItemsForReceivingASN(i)));
-					ItemBarcode.sendKeys(Keys.ENTER);
-					if (SeleniumTestHelper.isElementDisplayed(rfMenuLotInput)) {
-						System.out.println("Item : " + Items.getItemsForReceivingASN(i) + " is lot controlled");
-						rfMenuLotInput.sendKeys("LOT2");
-						rfMenuLotInput.sendKeys(Keys.ENTER);
-						/*
-						 * if (SeleniumTestHelper.isElementDisplayed(expirydatemonthtxtbox)) {
-						 * System.out.println("Item : " + Items.getItemsForReceivingASN(i) +
-						 * " is expiry date item");
-						 * expirydatemonthtxtbox.sendKeys(futureDateAsArray[0]);
-						 * expirydatedatetxtbox.sendKeys(futureDateAsArray[1]);
-						 * expirydateyeartxtbox.sendKeys(futureDateAsArray[2]); Thread.sleep(2000); }
-						 */
-					}
-
-					itemShippedQty = Items.getItemWithShippedASNQty(Items.getItemsForReceivingASN(i));
-					Item_qty.sendKeys(String.valueOf(itemShippedQty));
-					Item_qty.sendKeys(Keys.ENTER);
-
-					/*
-					 * if (SeleniumTestHelper.isElementDisplayed(expirydatemonthtxtbox)) {
-					 * System.out.println("Item : " + Items.getItemsForReceivingASN(i) +
-					 * " is expiry date item");
-					 * expirydatemonthtxtbox.sendKeys(futureDateAsArray[0]);
-					 * expirydatedatetxtbox.sendKeys(futureDateAsArray[1]);
-					 * expirydateyeartxtbox.sendKeys(futureDateAsArray[2]); Thread.sleep(2000); }
-					 */
-				}
-				break;
-			case "Recv iLPN ASN":
-				System.out.println("Receiving process starting with : " + receivingMethod + " menu");
-				while (!(SeleniumTestHelper.isElementDisplayed(rfRecviLPNASN))) {
-					pageDown.click();
-				}
-				SeleniumTestHelper.assertTrue(rfRecviLPNASN.isDisplayed());
-				rfRecviLPNASN.click();
-				if (SeleniumTestHelper.isElementDisplayed(destStagingLocn)) {
-					SeleniumTestHelper.assertEquals(destStagingLocnInput.isDisplayed(), true);
-					destStagingLocnInput.sendKeys("ABC01001D02" + Keys.ENTER);
-				}
-				SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfRecviLPNASNContainer, 50);
-				for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
-					iLPN = Items.getItemILPN(Items.getItemsForReceivingASN(i));
-					System.out.println("iLPN : " + iLPN + " for the product : " + Items.getItemsForReceivingASN(i));
-					rfRecviLPNASNContainer.sendKeys(iLPN);
-					SeleniumTestHelper.assertTrue(rfRecviLPNASNContainer.isDisplayed());
-					rfRecviLPNASNContainer.sendKeys(Keys.ENTER);
-					Thread.sleep(2000);
-					SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfRecviLPNASNContainer, 50);
-				}
-				break;
-			case "Recv By ASN":
-				System.out.println("Receiving process starting with : " + receivingMethod + " menu");
-				while (!(SeleniumTestHelper.isElementDisplayed(rfRecvByASN))) {
-					pageDown.click();
-				}
-				SeleniumTestHelper.assertTrue(rfRecvByASN.isDisplayed());
-				rfRecvByASN.click();
-				SeleniumTestHelper.waitForElementToBeDisplayed(driver, inputASN, 50);
-				inputASN.sendKeys(Items.getAsnNumber());
-				SeleniumTestHelper.assertTrue(inputASN.isDisplayed());
-				inputASN.sendKeys(Keys.ENTER);
-				if (SeleniumTestHelper.isElementDisplayed(destStagingLocn)) {
-					SeleniumTestHelper.assertEquals(destStagingLocnInput.isDisplayed(), true);
-					destStagingLocnInput.sendKeys("ABC01001D03" + Keys.ENTER);
-				}
-				SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
-				System.out.println("Info :- " + errorOrWarningMsg.getText());
-				SeleniumTestHelper.assertTrue(errorOrWarningMsg.isDisplayed());
-				acceptAndProceedBtn.click();
-				SeleniumTestHelper.waitForElementToBeDisplayed(driver, inputASN, 50);
-				for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
-					iLPN = Items.getItemILPN(Items.getItemsForReceivingASN(i));
-					System.out.println("iLPN : " + iLPN + " for the product : " + Items.getItemsForReceivingASN(i));
-				}
-				break;
 			case "MM3 Recv-CASE":
 				System.out.println("Receiving process starting with : " + receivingMethod + " menu");
 				Steps.logger.info("Receiving process starting with : " + receivingMethod + " menu");
@@ -1039,7 +931,6 @@ public class RFMenuPage {
 						destStagingLocnInput.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
 					}
-					Thread.sleep(2000);
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 50);
 					lpnInputTxt.sendKeys(Keys.ENTER);
 					Screenshots.captureSnapshot(driver);
@@ -1059,6 +950,10 @@ public class RFMenuPage {
 					Screenshots.captureSnapshot(driver);
 					Steps.logger.info("Enter Item Id: " + Steps.ItemDataMap.get(i).get("Item"));
 					// Thread.sleep(3000);
+					if(SeleniumTestHelper.isElementDisplayed(cooTxtBox)) {
+						cooTxtBox.sendKeys("US");
+					}
+					
 					InvType.sendKeys(Keys.ENTER);
 					Screenshots.captureSnapshot(driver);
 					// Thread.sleep(3000);
@@ -1145,6 +1040,9 @@ public class RFMenuPage {
 						Screenshots.captureSnapshot(driver);
 						Steps.logger.info("Enter Item Id: " + Items.getItemsForReceivingASN(0));
 						// Thread.sleep(3000);
+						if(SeleniumTestHelper.isElementDisplayed(cooTxtBox)) {
+							cooTxtBox.sendKeys("US");
+						}
 						InvType.sendKeys(Keys.ENTER);
 						Thread.sleep(2000);
 						Screenshots.captureSnapshot(driver);
@@ -1264,10 +1162,13 @@ public class RFMenuPage {
 					ItemBarcode.sendKeys(Keys.ENTER);
 					Screenshots.captureSnapshot(driver);
 					Steps.logger.info("Enter Item Id: " + Items.getItemsForReceivingASN(0));
-					Thread.sleep(2000);
+					Thread.sleep(1000);
+					if(SeleniumTestHelper.isElementDisplayed(cooTxtBox)) {
+						cooTxtBox.sendKeys("US");
+					}
 					InvType.sendKeys(Keys.ENTER);
 					Screenshots.captureSnapshot(driver);
-					Thread.sleep(2000);
+					Thread.sleep(1000);
 					Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")));
 					Screenshots.captureSnapshot(driver);
 					Item_qty.sendKeys(Keys.ENTER);
@@ -1375,16 +1276,19 @@ public class RFMenuPage {
 						ItemBarcode.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
 						Steps.logger.info("Enter Item Id: " + Items.getItemsForReceivingASN(0));
-						Thread.sleep(2000);
+						//Thread.sleep(2000);
+						if(SeleniumTestHelper.isElementDisplayed(cooTxtBox)) {
+							cooTxtBox.sendKeys("US");
+						}
 						InvType.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
-						Thread.sleep(2000);
+						//Thread.sleep(2000);
 						Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")));
 						Screenshots.captureSnapshot(driver);
 						Item_qty.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
 						Steps.logger.info("Enter Qty: " + String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")));
-						Thread.sleep(2000);
+						//Thread.sleep(2000);
 
 						if (SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
 							SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
@@ -1569,16 +1473,17 @@ public class RFMenuPage {
 						System.out.println("LPN 3: " + LPNnum3[1].trim());
 						Reporter.addStepLog("LPN 3 : " + LPNnum3[1].trim());
 						// Thread.sleep(3000);
-						Thread.sleep(3000);
+						Thread.sleep(1000);
 						ItemBarcode.sendKeys(Steps.ItemDataMap.get(i).get("Item"));
 						Screenshots.captureSnapshot(driver);
 						ItemBarcode.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
 						Steps.logger.info("Enter Item Id: " + Items.getItemsForReceivingASN(0));
-						Thread.sleep(2000);
+						if(SeleniumTestHelper.isElementDisplayed(cooTxtBox)) {
+							cooTxtBox.sendKeys("US");
+						}
 						InvType.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
-						Thread.sleep(2000);
 						Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")));
 						Screenshots.captureSnapshot(driver);
 						Item_qty.sendKeys(Keys.ENTER);
@@ -1663,6 +1568,9 @@ public class RFMenuPage {
 							Screenshots.captureSnapshot(driver);
 							Steps.logger.info("Enter Item Id: " + Items.getItemsForReceivingASN(0));
 							// Thread.sleep(3000);
+							if(SeleniumTestHelper.isElementDisplayed(cooTxtBox)) {
+								cooTxtBox.sendKeys("US");
+							}
 							InvType.sendKeys(Keys.ENTER);
 							Thread.sleep(2000);
 							Screenshots.captureSnapshot(driver);
@@ -1801,14 +1709,15 @@ public class RFMenuPage {
 						iLPNz.add(LPNnum3[1].trim());
 						System.out.println("LPN 3: " + LPNnum3[1].trim());
 						Reporter.addStepLog("LPN 3 : " + LPNnum3[1].trim());
-						// Thread.sleep(3000);
-						Thread.sleep(3000);
+						 Thread.sleep(1000);
 						ItemBarcode.sendKeys(Steps.ItemDataMap.get(i).get("Item"));
 						Screenshots.captureSnapshot(driver);
 						ItemBarcode.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
 						Steps.logger.info("Enter Item Id: " + Items.getItemsForReceivingASN(0));
-						Thread.sleep(2000);
+						if(SeleniumTestHelper.isElementDisplayed(cooTxtBox)) {
+							cooTxtBox.sendKeys("US");
+						}
 						InvType.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
 						Thread.sleep(2000);
@@ -1883,6 +1792,9 @@ public class RFMenuPage {
 							Screenshots.captureSnapshot(driver);
 							Steps.logger.info("Enter Item Id: " + Items.getItemsForReceivingASN(0));
 							// Thread.sleep(3000);
+							if(SeleniumTestHelper.isElementDisplayed(cooTxtBox)) {
+								cooTxtBox.sendKeys("US");
+							}
 							InvType.sendKeys(Keys.ENTER);
 							Thread.sleep(2000);
 							Screenshots.captureSnapshot(driver);
@@ -2203,23 +2115,12 @@ public class RFMenuPage {
 				Steps.logger.info("Click on " + receivingMethod + " method");
 				Screenshots.captureSnapshot(driver);
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, inputASN, 50);
-				if (Items.getAsnNumber() == null) {
-					// System will generate ASN No
-					inputASN.sendKeys(Keys.ENTER);
-					Thread.sleep(2000);
-					Screenshots.captureSnapshot(driver);
-					acceptAndProceedBtn.click();
-					Screenshots.captureSnapshot(driver);
-					Steps.logger.info("ASN is generated by system");
-
-				} else {
 					inputASN.sendKeys(Items.getAsnNumber());
 					Screenshots.captureSnapshot(driver);
 					Steps.logger.info("ASN number: " + Steps.scenarioData.get("ASNId"));
 					SeleniumTestHelper.assertTrue(inputASN.isDisplayed());
 					inputASN.sendKeys(Keys.ENTER);
 					Screenshots.captureSnapshot(driver);
-				}
 
 				for (int i = 0, j = 1; i < Steps.ItemDataMap.size(); i++, j++) {
 					if (SeleniumTestHelper.isElementDisplayed(destStagingLocn)) {
@@ -2227,7 +2128,6 @@ public class RFMenuPage {
 
 						// System.out.println("Rec Location-"+Steps.scenarioData.get("RecLocation"));
 						// destStagingLocnInput.sendKeys(String.valueOf(Steps.scenarioData.get("RecLocation"))+Keys.ENTER);
-						System.out.println("Rec Location-" + Steps.ItemDataMap.get(i).get("RecLocation"));
 						Steps.logger.info("Enter Rec Location-" + Steps.ItemDataMap.get(i).get("RecLocation"));
 						destStagingLocnInput
 						.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecLocation")));
@@ -2238,7 +2138,6 @@ public class RFMenuPage {
 					String ASNId = getASNID.getText();
 					String[] asnNo = ASNId.split(":");
 					Items.setAsnNumber(asnNo[1].trim());
-					System.out.println(Items.getAsnNumber());
 					Steps.logger.info("ASN No-" + Items.getAsnNumber());
 					Reporter.addStepLog("ASN No-" + Items.getAsnNumber());
 					lpnInputTxt.sendKeys(Keys.ENTER);
@@ -2255,6 +2154,9 @@ public class RFMenuPage {
 					ItemBarcode.sendKeys(Keys.ENTER);
 					Screenshots.captureSnapshot(driver);
 					Steps.logger.info("Enter Item Id: " + Steps.ItemDataMap.get(i).get("Item"));
+					if(SeleniumTestHelper.isElementDisplayed(cooTxtBox)) {
+						cooTxtBox.sendKeys("US");
+					}
 					InvType.sendKeys(Keys.ENTER);
 					Screenshots.captureSnapshot(driver);
 					Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")));
@@ -2265,13 +2167,23 @@ public class RFMenuPage {
 
 					if (SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
 						SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
-						System.out.println("Info :- " + errorOrWarningMsg.getText());
-						globalFunc.Screenshots.seleniumSnapshot(driver);
-						Screenshots.addingScreenshottoExentReport();
-						acceptAndProceedBtn.click();
-						Screenshots.captureSnapshot(driver);
-						// Assert.fail("Info :- " + errorOrWarningMsg.getText());
-						break;
+						if (errorOrWarningMsg.getText().contains("Error")) {
+							System.out.println("Info :- " + errorOrWarningMsg.getText());
+							Steps.logger.info(errorOrWarningMsg.getText());
+							globalFunc.Screenshots.seleniumSnapshot(driver);
+							Steps.testRes = "Failed";
+							Assert.assertTrue(false);
+							//Screenshots.addingScreenshottoExentReport();
+							//	acceptAndProceedBtn.click();
+							//	Screenshots.captureSnapshot(driver);
+							break;
+						} else if (errorOrWarningMsg.getText().contains("Warning")) {
+							System.out.println("Info :- " + errorOrWarningMsg.getText());
+							globalFunc.Screenshots.seleniumSnapshot(driver);
+							Screenshots.addingScreenshottoExentReport();
+							acceptAndProceedBtn.click();
+							Screenshots.captureSnapshot(driver);
+						}
 					}
 					String fututeDate = String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
 					Steps.logger.info("Enter fututeDate: " + fututeDate);
@@ -2286,20 +2198,22 @@ public class RFMenuPage {
 					}
 					Thread.sleep(2000);
 					Screenshots.captureSnapshot(driver);
-					if (SeleniumTestHelper.isElementDisplayed(returnCode)) {
-						SeleniumTestHelper.assertEquals(returnCode.isDisplayed(), true);
-						returnCode.sendKeys(Steps.ItemDataMap.get(i).get("ReturnCode") );
-						Screenshots.captureSnapshot(driver);
-						returnCode.sendKeys(Keys.ENTER);
-						Screenshots.captureSnapshot(driver);
-						Steps.logger.info("Enter Return Code: " + Steps.ItemDataMap.get(i).get("ReturnCode"));
-					}
-					if (SeleniumTestHelper.isElementDisplayed(finalDispCode)) {
-						SeleniumTestHelper.assertEquals(finalDispCode.isDisplayed(), true);
-						finalDispCode.sendKeys(Keys.ENTER);
-						Screenshots.captureSnapshot(driver);
-					}
+//					if (SeleniumTestHelper.isElementDisplayed(returnCode)) {
+//						SeleniumTestHelper.assertEquals(returnCode.isDisplayed(), true);
+//						returnCode.sendKeys(Steps.ItemDataMap.get(i).get("ReturnCode") );
+//						Screenshots.captureSnapshot(driver);
+//						returnCode.sendKeys(Keys.ENTER);
+//						Screenshots.captureSnapshot(driver);
+//						Steps.logger.info("Enter Return Code: " + Steps.ItemDataMap.get(i).get("ReturnCode"));
+//					}
+//					if (SeleniumTestHelper.isElementDisplayed(finalDispCode)) {
+//						SeleniumTestHelper.assertEquals(finalDispCode.isDisplayed(), true);
+//						finalDispCode.sendKeys(Keys.ENTER);
+//						Screenshots.captureSnapshot(driver);
+//					}
+					if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)){
 					acceptAndProceedBtn.click();
+					}
 					Screenshots.captureSnapshot(driver);
 					Steps.logger
 					.info(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")) + " qty is received in LPN "
@@ -2337,6 +2251,9 @@ public class RFMenuPage {
 						ItemBarcode.sendKeys( Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
 						Steps.logger.info("Enter Item Id: " + Items.getItemsForReceivingASN(0));
+						if(SeleniumTestHelper.isElementDisplayed(cooTxtBox)) {
+							cooTxtBox.sendKeys("US");
+						}
 						InvType.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
 						Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty2")));
@@ -2347,14 +2264,23 @@ public class RFMenuPage {
 
 						if (SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
 							SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
-							System.out.println("Info :- " + errorOrWarningMsg.getText());
-							globalFunc.Screenshots.seleniumSnapshot(driver);
-							Screenshots.addingScreenshottoExentReport();
-							acceptAndProceedBtn.click();
-							Screenshots.captureSnapshot(driver);
-
-							// Assert.fail("Info :- " + errorOrWarningMsg.getText());
-							break;
+							if (errorOrWarningMsg.getText().contains("Error")) {
+								System.out.println("Info :- " + errorOrWarningMsg.getText());
+								Steps.logger.info(errorOrWarningMsg.getText());
+								globalFunc.Screenshots.seleniumSnapshot(driver);
+								Steps.testRes = "Failed";
+								Assert.assertTrue(false);
+								//Screenshots.addingScreenshottoExentReport();
+								//	acceptAndProceedBtn.click();
+								//	Screenshots.captureSnapshot(driver);
+								break;
+							} else if (errorOrWarningMsg.getText().contains("Warning")) {
+								System.out.println("Info :- " + errorOrWarningMsg.getText());
+								globalFunc.Screenshots.seleniumSnapshot(driver);
+								Screenshots.addingScreenshottoExentReport();
+								acceptAndProceedBtn.click();
+								Screenshots.captureSnapshot(driver);
+							}
 						}
 						String fututeDate1 = String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
 						Steps.logger.info("Enter fututeDate: " + fututeDate1);
@@ -2367,7 +2293,9 @@ public class RFMenuPage {
 							Screenshots.captureSnapshot(driver);
 							yyyy.sendKeys(futureDateAsArray1[2]);
 						}
+						if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
 						acceptAndProceedBtn.click();
+						}
 						Screenshots.captureSnapshot(driver);
 						Steps.logger.info(
 								String.valueOf(Steps.ItemDataMap.get(i).get("RecQty2")) + " qty is received in LPN "
@@ -2437,22 +2365,22 @@ public class RFMenuPage {
 					iLPNz.add(LPNnum[1].trim());
 					System.out.println("LPN " + j + " : " + iLPNz.get(i));
 					Reporter.addStepLog("LPN " + j + " : " + iLPNz.get(i));
-					itemBarcodeInRFcreateIlpnTxtBox
-					.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("Item")) );
+					itemBarcodeInRFcreateIlpnTxtBox.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("Item")) );
 					Screenshots.captureSnapshot(driver);
 					itemBarcodeInRFcreateIlpnTxtBox.sendKeys(Keys.ENTER);
 					Screenshots.captureSnapshot(driver);
 					//Product status
 					Steps.logger.info("Enter Item Id: " + Steps.ItemDataMap.get(i).get("Item"));
-					inventoryTypeInRFcreateIlpnTxtBox.sendKeys(Keys.ENTER);
-					//List <WebElement> PS= driver.findElements(By.xpath("//input[@id='dataForm:prodStatus']"));
-					//	if(PS.size()>0) {
 					if(SeleniumTestHelper.isElementDisplayed(productStatusTxtBox)) {
 						productStatusTxtBox.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("ProductStatus")));
 						Screenshots.captureSnapshot(driver);
 						productStatusTxtBox.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
 					}
+					inventoryTypeInRFcreateIlpnTxtBox.sendKeys(Keys.ENTER);
+					//List <WebElement> PS= driver.findElements(By.xpath("//input[@id='dataForm:prodStatus']"));
+					//	if(PS.size()>0) {
+					
 					qtyPackedInRFcreateIlpnTxtBox.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")));
 					Screenshots.captureSnapshot(driver);
 					qtyPackedInRFcreateIlpnTxtBox.sendKeys(Keys.ENTER);
@@ -3145,13 +3073,13 @@ public class RFMenuPage {
 			Screenshots.captureSnapshot(driver);
 			Steps.logger.info("Clicked on Putaway");
 			switch (putawayMethod) {
-			case "MM3 Ptwy-Sys Dir":
+			case "MM3 Ptwy CASE":
 
-				while (!(SeleniumTestHelper.isElementDisplayed(MM3sysdirPutaway))) {
+				while (!(SeleniumTestHelper.isElementDisplayed(MM3casePutaway))) {
 					pageDown.click();
 				}
-				SeleniumTestHelper.waitForElementToBeDisplayed(driver, MM3sysdirPutaway, 50);
-				MM3sysdirPutaway.click();
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, MM3casePutaway, 50);
+				MM3casePutaway.click();
 				Screenshots.captureSnapshot(driver);
 				for (int i = 0; i < iLPNz.size(); i++) {
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, altiLPNBoxafterputaway, 50);
@@ -3380,14 +3308,17 @@ public class RFMenuPage {
 				String split2[]= split[1].split(" ");
 				qty= split2[0].trim();
 				System.out.println("Suggested Qty: "+qty);
-				SeleniumTestHelper.waitForElementToBeDisplayed(driver, taskQtyTxtBox, 5);
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, taskQtyTxtBox, 15);
 				taskQtyTxtBox.sendKeys(qty);
-				Screenshots.captureSnapshot(driver);
-				SeleniumTestHelper.assertTrue(taskQtyTxtBox.isDisplayed());
-				taskQtyTxtBox.sendKeys(Keys.ENTER);
 				Thread.sleep(1000);
 				Screenshots.captureSnapshot(driver);
-				Thread.sleep(4000);
+				SeleniumTestHelper.assertTrue(taskQtyTxtBox.isDisplayed());
+				if(SeleniumTestHelper.isElementDisplayed(taskQtyTxtBox)) {
+				taskQtyTxtBox.sendKeys(Keys.ENTER);
+				}
+				Thread.sleep(1000);
+				Screenshots.captureSnapshot(driver);
+				Thread.sleep(2000);
 			}
 
 			while(SeleniumTestHelper.isElementDisplayed(serialNumbersInput)) {
@@ -3460,7 +3391,7 @@ public class RFMenuPage {
 			MM3ASNInquirytxtBox.sendKeys(Steps.scenarioData.get("ASNNo"));
 			Screenshots.captureSnapshot(driver);
 			MM3ASNInquirytxtBox.sendKeys(Keys.ENTER);
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			Screenshots.captureSnapshot(driver);
 			List<WebElement> l=driver.findElements(By.className("error"));
 			if(l.size()==1) {
@@ -3509,7 +3440,7 @@ public class RFMenuPage {
 			MM3ItemInquirytxtBox.sendKeys(Steps.scenarioData.get("ItemBarcode"));
 			Screenshots.captureSnapshot(driver);
 			MM3ItemInquirytxtBox.sendKeys(Keys.ENTER);
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			Screenshots.captureSnapshot(driver);
 			List<WebElement> list=driver.findElements(By.className("error"));
 			if(list.size()==1) {
@@ -3551,7 +3482,7 @@ public class RFMenuPage {
 			MM3LocationInquirytxtBox.sendKeys(Steps.scenarioData.get("Location"));
 			Screenshots.captureSnapshot(driver);
 			MM3LocationInquirytxtBox.sendKeys(Keys.ENTER);
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			Screenshots.captureSnapshot(driver);
 			List<WebElement> list1=driver.findElements(By.className("error"));
 			if(list1.size()==1) {
@@ -3595,7 +3526,7 @@ public class RFMenuPage {
 			MM3iLPNInquirytxtBox.sendKeys(Steps.scenarioData.get("iLPN"));
 			Screenshots.captureSnapshot(driver);
 			MM3iLPNInquirytxtBox.sendKeys(Keys.ENTER);
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			Screenshots.captureSnapshot(driver);
 			List<WebElement> list2=driver.findElements(By.className("error"));
 			if(list2.size()==1) {

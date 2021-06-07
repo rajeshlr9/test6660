@@ -271,12 +271,13 @@ driver.switchTo().frame(0);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPntxtBoxResLoc, 20);
 		Screenshots.captureSnapshot(driver);
 		for (int j = 0; j < RFMenuPage.iLPNz.size(); j++) {
+			iLPntxtBoxResLoc.clear();
 		iLPntxtBoxResLoc.sendKeys(RFMenuPage.iLPNz.get(j));
 		Thread.sleep(1000);
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPnResLocApplyBtn, 20);
 		iLPnResLocApplyBtn.click();
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNvalue, 20);
 		String iLPN=iLPNvalue.getText();

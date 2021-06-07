@@ -187,9 +187,10 @@ public class Steps {
 					scenarioData.get("ItemReference"), "ItemData");
 			System.out.println(ItemDataMap);
 			logger.info("Excel data stored in Hashmap");
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			logger.info("Excel data not stored in Hashmap");
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 
@@ -202,8 +203,8 @@ public class Steps {
 			logger.info("browser opened");
 		} catch (Exception e) {
 			testRes = "Failed";
-			System.out.println("test red" + testRes);
 			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 

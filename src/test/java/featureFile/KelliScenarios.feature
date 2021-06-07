@@ -1,6 +1,6 @@
 Feature: Kelliupload scenario
 
-    @Kelli001 @Regression @QSC_KelliASNLoad
+    @Kelli001 @Regression_QSC @QSC_KelliASNLoad
 Scenario: Uploading the Single ASNLoad file from the Kelli application and validating order created in Manhattan Successfully
  	Given I have excel data
 	| QSC_KelliScenario001 |
@@ -15,7 +15,7 @@ Scenario: Uploading the Single ASNLoad file from the Kelli application and valid
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	Then user log out from application 
 	
-	@Kelli002 @Regression @QSC_KelliASNLoad
+	@Kelli002 @Regression_QSC @QSC_KelliASNLoad
 Scenario: Uploading the Multi ASNLoad file from the Kelli application and validating order created in Manhattan Successfully
  	Given I have excel data
 	| QSC_KelliScenario002 |
@@ -30,7 +30,7 @@ Scenario: Uploading the Multi ASNLoad file from the Kelli application and valida
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	Then user log out from application 
 	
-	@Kelli003 @Regression @QSC_KelliASNLoad
+	@Kelli003 @Regression_QSC @QSC_KelliASNLoad
 Scenario: Uploading the Single ASNLoad file from the Kelli application and complete receiving & putaway for the order created
  	Given I have excel data
 	| QSC_KelliScenario003 |
@@ -71,8 +71,7 @@ Scenario: Uploading the Multi ASNLoad file from the Kelli application and comple
 	Then user log out from application 
 
 	  @Kelli005 @Regression_QSC @QSC_KelliOrderLoad
-	  Scenario: Uploading the Single Line Order Load file from the Kelli application and 
-	  validating order created in Manhattan Successfully
+	  Scenario: Uploading the Single Line Order Load file from the Kelli application and validating order created in Manhattan Successfully
  	Given I have excel data
 	| QSC_KelliScenario005 |
 	And Open the chrome browser by selenium
@@ -86,8 +85,7 @@ Scenario: Uploading the Multi ASNLoad file from the Kelli application and comple
 	Then user log out from application 
 	
 	@Kelli006 @Regression_QSC @QSC_KelliOrderLoad
-	  Scenario: Uploading the Multi Line Order Load file from the Kelli application and 
-	  validating order created in Manhattan Successfully
+	  Scenario: Uploading the Multi Line Order Load file from the Kelli application and validating order created in Manhattan Successfully
  	Given I have excel data
 	| QSC_KelliScenario006 |
 	And Open the chrome browser by selenium
@@ -101,8 +99,7 @@ Scenario: Uploading the Multi ASNLoad file from the Kelli application and comple
 	Then user log out from application 
 	
 	@Kelli007 @Regression_QSC @QSC_KelliOrderLoad
-	  Scenario: Uploading the Single Line Order Load file from the Kelli application and validating order created 
-	  in Manhattan Successfully & complete Shipping
+	  Scenario: Uploading the Single Line Order Load file from the Kelli application and validating order created in Manhattan Successfully & complete Shipping
  	Given I have excel data
 	| QSC_KelliScenario007 |
 	And Open the chrome browser by selenium
@@ -126,8 +123,7 @@ Scenario: Uploading the Multi ASNLoad file from the Kelli application and comple
 	Then user log out from application 
 	
 	@Kelli008 @Regression_QSC @QSC_KelliOrderLoad
-	  Scenario: Uploading the Multi Line Order Load file from the Kelli application and validating order created 
-	  in Manhattan Successfully & complete Shipping
+	  Scenario: Uploading the Multi Line Order Load file from the Kelli application and validating order created in Manhattan Successfully & complete Shipping
  	Given I have excel data
 	| QSC_KelliScenario008 |
 	And Open the chrome browser by selenium

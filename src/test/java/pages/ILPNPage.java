@@ -212,8 +212,8 @@ public class ILPNPage {
 		driver.findElement(By.xpath("//span[text()='" + iLPN + "']/../..//input[@type='checkbox']")).click();
         SeleniumTestHelper.waitForElementToBeClickable(driver, cancelSelectedLPN, 60);
         viewLPNBtn.click();
-        SeleniumTestHelper.waitForElementToBeClickable(driver, headerLPNTab, 120);
         Thread.sleep(3000);
+        SeleniumTestHelper.waitForElementToBeClickable(driver, headerLPNTab, 120);
         Screenshots.captureSnapshot(driver);
 	}
 	
@@ -317,8 +317,8 @@ public class ILPNPage {
 		String lockcodes = String.valueOf(Steps.scenarioData.get("LockCode"));
 		System.out.println(String.valueOf(Steps.scenarioData.get("LockCode")));
 		String[] lockCode = null;
-		if (lockcodes.contains("|")) {
-			lockCode = lockcodes.split("|");
+		if (lockcodes.contains(",")) {
+			lockCode = lockcodes.split(",");
 		} else {
 			lockCode = new String[] { lockcodes };
 		}

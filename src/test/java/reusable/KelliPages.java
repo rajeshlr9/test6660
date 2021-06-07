@@ -156,28 +156,25 @@ public class KelliPages {
 	String userVal = "";
 
 	public void loginPage() throws Exception {
-		String env = ManhattanLoginPage.environment;
+		String env = Config.getProperty("Environment");
 		System.out.println("Environment:--" + env);
 		Thread.sleep(1000);
-		if (env.equalsIgnoreCase("DEV") || env.equalsIgnoreCase("@Env")) {
+		if (env.equalsIgnoreCase("L1") || env.equalsIgnoreCase("@Env") ||env.equalsIgnoreCase("L2")) {
 			driver.get(Config.getProperty("Kelli_Dev_URL"));
 			userVal = Config.getProperty("Kelli_Dev_Username");
 			//driver.navigate().to("javascript:document.getElementById('overridelink').click()");
 
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, userid, 20);
-			System.out.println("Entering the userid");
 			userid.sendKeys(Config.getProperty("Kelli_Dev_Username"));
 
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, password, 30);
-			System.out.println("Entering the password");
 			password.sendKeys(Config.getProperty("Kelli_Dev_Pwd"));
 
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, loginbutton, 50);
-			System.out.println("Clicked on login button");
 			loginbutton.click();
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, WelcomeSYSTEMUSER, 50);
 			if(WelcomeSYSTEMUSER.getText().contains("Welcome")) {
-			Steps.logger.info("Log in to Kelli application successfully");
+			Steps.logger.info("Log in to Kelli application successful");
 			}else {
 				Steps.logger.info("Log in to Kelli application is unsuccessful");
 				Steps.testRes = "Failed";
@@ -202,7 +199,7 @@ public class KelliPages {
 
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, WelcomeSYSTEMUSER, 50);
 			if(WelcomeSYSTEMUSER.getText().contains("Welcome")) {
-			Steps.logger.info("Log in to Kelli application successfully");
+			Steps.logger.info("Log in to Kelli application successful");
 			}else {
 				Steps.logger.info("Log in to Kelli application is unsuccessful");
 				Steps.testRes = "Failed";
@@ -228,7 +225,7 @@ public class KelliPages {
 
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, WelcomeSYSTEMUSER, 50);
 			if(WelcomeSYSTEMUSER.getText().contains("Welcome")) {
-			Steps.logger.info("Log in to Kelli application successfully");
+			Steps.logger.info("Log in to Kelli application successful");
 			}else {
 				Steps.logger.info("Log in to Kelli application is unsuccessful");
 				Steps.testRes = "Failed";
@@ -254,15 +251,8 @@ public class KelliPages {
 		int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
 		int cellNo1 = 0;
 		int cellNo2 = 0;
-		// iterate over the first row to get column number based on column name.
 		for (int i = 0; i < 1; i++) {
-
-			// get cell count in a row
 			int cellcount = sheet.getRow(i).getLastCellNum();
-
-			// iterate over each cell to print its value
-			System.out.println("Row " + i + " data is :");
-
 			for (int j = 0; j < cellcount; j++) {
 				System.out.print(sheet.getRow(i).getCell(j).getCellType() + ",");
 				if (sheet.getRow(i).getCell(j).getStringCellValue().equalsIgnoreCase("Tracking_Nbr")) {
@@ -272,15 +262,10 @@ public class KelliPages {
 					cellNo2 = j;
 				}
 			}
-			System.out.println();
 		}
-
-		System.out.println("Tracking_Nbr::" + cellNo1);
-		System.out.println("PO_Nbr::" + cellNo2);
 
 		String po_Nbr_subString = null;
 		for (int i = 1; i <= rowCount; i++) {
-			// reading tracking Nbr for Excel.
 			Cell cell = sheet.getRow(i).getCell(cellNo1);
 			String trackNo = dataFormatter.formatCellValue(cell);
 			String updatedTrackNo_subString = trackNo.substring(0, trackNo.indexOf("_"));
@@ -293,7 +278,7 @@ public class KelliPages {
 			String date = dtf.format(now);
 			long udatedTrackNo = new Long(date).longValue();
 			sheet.getRow(i).getCell(cellNo1).setCellValue(updatedTrackNo_subString + "_" + new Long(udatedTrackNo).longValue());
-			System.out.println("Updated Tracking_Nbr::" + updatedTrackNo_subString + "_" + new Long(udatedTrackNo).longValue());
+			Steps.logger.info("Updated Tracking_Nbr::" + updatedTrackNo_subString + "_" + new Long(udatedTrackNo).longValue());
 			partialASNValue=  updatedTrackNo_subString + "_" + new Long(udatedTrackNo).longValue();
 
 			// Reading PO_Nbr from Excel.
@@ -302,7 +287,7 @@ public class KelliPages {
 			String updatedPONbrValue_subString = pO_NbrValue.substring(0, trackNo.indexOf("_"));
 			sheet.getRow(i).getCell(cellNo2)
 					.setCellValue(updatedPONbrValue_subString + "_" + new Long(udatedTrackNo).longValue());
-			System.out.println("Updated PO_Nbr::" + updatedPONbrValue_subString + "_" + new Long(udatedTrackNo).longValue());
+			Steps.logger.info("Updated PO_Nbr::" + updatedPONbrValue_subString + "_" + new Long(udatedTrackNo).longValue());
 		}
 
 		inputStream.close(); // Close the InputStream
@@ -640,7 +625,7 @@ public class KelliPages {
 		uploadfile.click();
 
 		Thread.sleep(2000);
-
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, File_uploaded_successfully, 100);
 		if (SeleniumTestHelper.isElementDisplayed(File_uploaded_successfully)) {
 			// SeleniumTestHelper.assertEquals(File_uploaded_successfully.getText(), "File
 			// uploaded successfully.");

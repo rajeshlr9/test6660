@@ -23,6 +23,7 @@ public class GlobalClass {
 	  
 	public   HashMap < String, String > getExcelData(String MyRowFlag,String SheetName,String filename) throws IOException {
 		hmap1.clear();
+		System.out.println("Scenario no:"+MyRowFlag);
 		File MyFileName = new File(filename);
 		FileInputStream MyInputStream = new FileInputStream(MyFileName);
 		XSSFWorkbook MyWorkBook = new XSSFWorkbook(MyInputStream);

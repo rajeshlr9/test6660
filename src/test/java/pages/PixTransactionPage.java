@@ -147,15 +147,14 @@ public class PixTransactionPage {
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		
 		if(pixTranNumber.contains("620")) {
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, ExpandArrow, 20);
 		     ExpandArrow.click();
-		        System.out.println("clicked");
-		        Thread.sleep(2000);
 		        DateTime.TimeDateFunc();
+		        SeleniumTestHelper.waitForElementToBeDisplayed(driver, ExpandCreatedDateFrom, 20);
 		        ExpandCreatedDateFrom.sendKeys(DateTime.strDate10);
 		        ExpandCreatedDateTo.sendKeys(DateTime.strDate9);
-		        Thread.sleep(2000);
+		        Thread.sleep(1000);
 		        ExpandItem.sendKeys(Steps.ItemDataMap.get(0).get("Item"));
 		        ExpandApplyBtn.click();
 		        Thread.sleep(3000);
@@ -171,7 +170,8 @@ public class PixTransactionPage {
 		            {
 		                driver.findElement(By.xpath("//*[@id=\"checkAll_c"+i+"_dataForm:lview:dataTable\"]")).click();
 		                ViewBtn.click();
-		                Thread.sleep(3000);
+		                Thread.sleep(2000);
+		                SeleniumTestHelper.waitForElementToBeDisplayed(driver, Ordernumber, 20);
 		                String ornum = Ordernumber.getText();
 		                System.out.println("order number is " +ornum);
 		                String waveno = Wavenumber.getText();
@@ -194,7 +194,7 @@ public class PixTransactionPage {
 		                Steps.logger.info("PIX code is invalid");
 		                Steps.testRes = "Failed";
 		                //Assert.assertTrue(false);
-		             Thread.sleep(2000);
+		             Thread.sleep(1000);
 		            }
 		                driver.findElement(By.xpath("//*[@id=\"backImage\"]")).click();
 		            }
@@ -210,14 +210,14 @@ public class PixTransactionPage {
 			SeleniumTestHelper.waitForElementToBeClickable(driver, Apply_savedfilter, 50);
 			Screenshots.captureSnapshot(driver);
 			Apply_savedfilter.click();
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			
 				SeleniumTestHelper.selectFromDropDown(savedFilterTransactionType, pixTranNumber, "visibletext");
 				Screenshots.captureSnapshot(driver);
 			savedFilteriLPN.sendKeys(RFMenuPage.iLPNz.get(i));
 			Screenshots.captureSnapshot(driver);
 			addsavedFilter.click();
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 50);
 			//SeleniumTestHelper.waitForElementToBeClickable(driver,driver.findElement(By.xpath("//a[text()='" + Items.getItemsForReceivingASN(i) + "']")), 60);
@@ -238,7 +238,7 @@ public class PixTransactionPage {
 				Steps.logger.info("603 Pix generated for iLPN "+RFMenuPage.iLPNz.get(i));
 				Reporter.addStepLog("603 Pix generated for iLPN "+RFMenuPage.iLPNz.get(i));
 			}
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			/*boolean waitFortenMinutesForStatusChange = Boolean.parseBoolean(Config.getProperty("waitForTenMinutesForPixStatusChange"));
 			if (waitFortenMinutesForStatusChange) {
 				int maximunWait = 600000;

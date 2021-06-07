@@ -10,7 +10,7 @@
     <User_ID></User_ID>
     <Password></Password>
     <Message_Type>ASN</Message_Type>
-    <Company_ID>511</Company_ID>
+    <Company_ID>531</Company_ID>
     <Msg_Locale></Msg_Locale>
     <Msg_Time_Zone></Msg_Time_Zone>
     <Version></Version>
@@ -22,14 +22,14 @@
   </Header>
   <Message>
     <ASN>
-      <ASNID>ASN090906</ASNID>
+      <ASNID>ASN0323002</ASNID>
       <ASNType>10</ASNType>
       <ShipmentID></ShipmentID>
       <LastTransmittedDTTM></LastTransmittedDTTM>
       <ASNStatus>10</ASNStatus>
       <ASNPriority>1</ASNPriority>
       <BusinessPartnerCode></BusinessPartnerCode>
-      <BusinessUnit>511</BusinessUnit>
+      <BusinessUnit>531</BusinessUnit>
       <OriginFacilityAliasID></OriginFacilityAliasID>
       <DestinationFacilityAliasID>MEM3</DestinationFacilityAliasID>
       <MfgPlant></MfgPlant>
@@ -81,7 +81,7 @@
       <ReferenceNumberField5></ReferenceNumberField5>
       <ExternalSysCreationDTTM></ExternalSysCreationDTTM>
       <EquipmentType></EquipmentType>
-      <OriginType>P</OriginType>
+      <OriginType>R</OriginType>
       <DestinationType>W</DestinationType>
       <DCOrderNumber></DCOrderNumber>
       <ContractLocation></ContractLocation>
@@ -130,7 +130,7 @@
         <PurchaseOrderLineItemID></PurchaseOrderLineItemID>
         <DistributionOrderID></DistributionOrderID>
         <DistributionOrderLineItemID></DistributionOrderLineItemID>
-        <ItemName>FG-003306-01</ItemName>
+        <ItemName>000-10262-001</ItemName>
         <GTIN></GTIN>
         <StandardSubPackQuantity></StandardSubPackQuantity>
         <StandardPackQuantity></StandardPackQuantity>
@@ -192,7 +192,7 @@
           </CustomField>
         </CustomFieldList>
         <Quantity>
-          <ShippedQty>50</ShippedQty>
+          <ShippedQty>5</ShippedQty>
           <ReceivedQty></ReceivedQty>
           <QtyUOM>EA</QtyUOM>
         </Quantity>
