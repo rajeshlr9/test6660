@@ -931,8 +931,13 @@ public class RFMenuPage {
 						destStagingLocnInput.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
 					}
+					globalFunc.DateTime.TimeDateFunc();
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 50);
-					lpnInputTxt.sendKeys(Keys.ENTER);
+					lpnInputTxt.sendKeys(("0"+DateTime.strDate32)+Keys.ENTER);
+					Screenshots.captureSnapshot(driver);
+					if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
+						acceptAndProceedBtn.click();
+						}
 					Screenshots.captureSnapshot(driver);
 					// for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 					// Thread.sleep(3000);

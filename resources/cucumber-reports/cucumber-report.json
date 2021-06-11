@@ -6,20 +6,20 @@
         "before": [
           {
             "result": {
-              "duration": 92392400,
-              "status": "passed"
-            },
-            "match": {
-              "location": "Steps.beforeClass(Scenario)"
-            }
-          },
-          {
-            "result": {
-              "duration": 899399,
+              "duration": 985000,
               "status": "passed"
             },
             "match": {
               "location": "CommonStepDefination.intiate(Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 104965300,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Steps.beforeClass(Scenario)"
             }
           }
         ],
@@ -30,7 +30,7 @@
         "after": [
           {
             "result": {
-              "duration": 1144683700,
+              "duration": 1087464200,
               "status": "passed"
             },
             "match": {
@@ -43,7 +43,7 @@
         "steps": [
           {
             "result": {
-              "duration": 2808275699,
+              "duration": 3757947600,
               "status": "passed"
             },
             "line": 584,
@@ -63,7 +63,7 @@
           },
           {
             "result": {
-              "duration": 4372711000,
+              "duration": 4326303400,
               "status": "passed"
             },
             "line": 586,
@@ -75,7 +75,7 @@
           },
           {
             "result": {
-              "duration": 1024346200,
+              "duration": 1549378500,
               "status": "passed"
             },
             "line": 587,
@@ -93,7 +93,7 @@
           },
           {
             "result": {
-              "duration": 5801436700,
+              "duration": 5124487500,
               "status": "passed"
             },
             "line": 588,
@@ -105,7 +105,7 @@
           },
           {
             "result": {
-              "duration": 9186497501,
+              "duration": 9475069100,
               "status": "passed"
             },
             "line": 589,
@@ -123,7 +123,7 @@
           },
           {
             "result": {
-              "duration": 5169619300,
+              "duration": 5153408500,
               "status": "passed"
             },
             "line": 590,
@@ -135,7 +135,7 @@
           },
           {
             "result": {
-              "duration": 6393378700,
+              "duration": 6518293700,
               "status": "passed"
             },
             "line": 591,
@@ -147,7 +147,7 @@
           },
           {
             "result": {
-              "duration": 22023574501,
+              "duration": 22014955500,
               "status": "passed"
             },
             "line": 592,
@@ -165,7 +165,7 @@
           },
           {
             "result": {
-              "duration": 64986727199,
+              "duration": 74958555800,
               "status": "passed"
             },
             "line": 593,
@@ -183,7 +183,7 @@
           },
           {
             "result": {
-              "duration": 22427221600,
+              "duration": 22305763700,
               "status": "passed"
             },
             "line": 594,
@@ -201,7 +201,7 @@
           },
           {
             "result": {
-              "duration": 23462607300,
+              "duration": 21241961700,
               "status": "passed"
             },
             "line": 595,
@@ -219,7 +219,7 @@
           },
           {
             "result": {
-              "duration": 24699426300,
+              "duration": 24476236900,
               "status": "passed"
             },
             "line": 596,
@@ -237,7 +237,7 @@
           },
           {
             "result": {
-              "duration": 21223896900,
+              "duration": 21157716400,
               "status": "passed"
             },
             "line": 597,
@@ -255,7 +255,7 @@
           },
           {
             "result": {
-              "duration": 58237252600,
+              "duration": 58966864800,
               "status": "passed"
             },
             "line": 598,
@@ -267,7 +267,7 @@
           },
           {
             "result": {
-              "duration": 14237487400,
+              "duration": 14228641600,
               "status": "passed"
             },
             "line": 599,
@@ -297,20 +297,20 @@
         "before": [
           {
             "result": {
-              "duration": 10656499,
-              "status": "passed"
-            },
-            "match": {
-              "location": "Steps.beforeClass(Scenario)"
-            }
-          },
-          {
-            "result": {
-              "duration": 353400,
+              "duration": 323800,
               "status": "passed"
             },
             "match": {
               "location": "CommonStepDefination.intiate(Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 7281100,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Steps.beforeClass(Scenario)"
             }
           }
         ],
@@ -321,7 +321,7 @@
         "after": [
           {
             "result": {
-              "duration": 1016200300,
+              "duration": 2204835900,
               "status": "passed"
             },
             "match": {
@@ -334,7 +334,7 @@
         "steps": [
           {
             "result": {
-              "duration": 723693600,
+              "duration": 697999400,
               "status": "passed"
             },
             "line": 605,
@@ -354,7 +354,7 @@
           },
           {
             "result": {
-              "duration": 2622546100,
+              "duration": 2880943300,
               "status": "passed"
             },
             "line": 607,
@@ -366,7 +366,7 @@
           },
           {
             "result": {
-              "duration": 115114600,
+              "duration": 182910400,
               "status": "passed"
             },
             "line": 608,
@@ -384,7 +384,7 @@
           },
           {
             "result": {
-              "duration": 5585381200,
+              "duration": 5596370200,
               "status": "passed"
             },
             "line": 609,
@@ -396,7 +396,7 @@
           },
           {
             "result": {
-              "duration": 9519010999,
+              "duration": 9317987300,
               "status": "passed"
             },
             "line": 610,
@@ -414,7 +414,7 @@
           },
           {
             "result": {
-              "duration": 5140925599,
+              "duration": 5138351000,
               "status": "passed"
             },
             "line": 611,
@@ -426,7 +426,7 @@
           },
           {
             "result": {
-              "duration": 6184532900,
+              "duration": 6677754300,
               "status": "passed"
             },
             "line": 612,
@@ -438,7 +438,7 @@
           },
           {
             "result": {
-              "duration": 21843762800,
+              "duration": 21951289500,
               "status": "passed"
             },
             "line": 613,
@@ -456,7 +456,7 @@
           },
           {
             "result": {
-              "duration": 108586227100,
+              "duration": 129404426600,
               "status": "passed"
             },
             "comments": [
@@ -480,7 +480,7 @@
           },
           {
             "result": {
-              "duration": 22094754100,
+              "duration": 22467818900,
               "status": "passed"
             },
             "line": 616,
@@ -498,7 +498,7 @@
           },
           {
             "result": {
-              "duration": 30309704999,
+              "duration": 32193474300,
               "status": "passed"
             },
             "line": 617,
@@ -516,7 +516,7 @@
           },
           {
             "result": {
-              "duration": 24271975000,
+              "duration": 28061419100,
               "status": "passed"
             },
             "line": 618,
@@ -534,7 +534,7 @@
           },
           {
             "result": {
-              "duration": 30169226900,
+              "duration": 31906779000,
               "status": "passed"
             },
             "line": 619,
@@ -552,8 +552,9 @@
           },
           {
             "result": {
-              "duration": 45579275600,
-              "status": "passed"
+              "duration": 67280423000,
+              "error_message": "java.lang.AssertionError: unknown error: Element \u003cspan id\u003d\"button-3319-btnInnerEl\" data-ref\u003d\"btnInnerEl\" unselectable\u003d\"on\" class\u003d\"x-btn-inner x-btn-inner-default-small\"\u003e...\u003c/span\u003e is not clickable at point (1128, 183). Other element would receive the click: \u003ciframe src\u003d\"/cbo/transactional/asn/ASNDetails.xhtml?asnId\u003d10318\u0026amp;businessUnit\u003d511\u0026amp;tranId\u003d210\u0026amp;permissionsEL\u003dVSN\u0026amp;windowId\u003dwt-488f-958e-820f\" id\u003d\"uxiframe-3309-iframeEl\" data-ref\u003d\"iframeEl\" name\u003d\"uxiframe-3309-frame\" width\u003d\"100%\" height\u003d\"100%\" frameborder\u003d\"0\" cd_frame_id_\u003d\"1c03e5149ab44041b44ad49ab7b85139\"\u003e\u003c/iframe\u003e\n  (Session info: chrome\u003d91.0.4472.101)\n  (Driver info: chromedriver\u003d2.37.544315 (730aa6a5fdba159ac9f4c1e8cbc59bf1b5ce12b7),platform\u003dWindows NT 10.0.14393 x86_64) (WARNING: The server did not provide any stacktrace information)\nCommand duration or timeout: 0 milliseconds\nBuild info: version: \u00273.141.59\u0027, revision: \u0027e82be7d358\u0027, time: \u00272018-11-14T08:17:03\u0027\nSystem info: host: \u0027OCIDDFL1SYSTEMT\u0027, ip: \u002710.60.27.160\u0027, os.name: \u0027Windows Server 2016\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002714.0.1\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCapabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.37.544315 (730aa6a5fdba15..., userDataDir: C:\\Users\\FFD-SY~1\\AppData\\L...}, cssSelectorsEnabled: true, databaseEnabled: false, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 91.0.4472.101, webStorageEnabled: true}\nSession ID: 601b79290b3a34fffa5ed39dafcde165 expected [true] but found [false]\r\n\tat org.testng.Assert.fail(Assert.java:97)\r\n\tat org.testng.Assert.failNotEquals(Assert.java:968)\r\n\tat org.testng.Assert.assertTrue(Assert.java:43)\r\n\tat StepDefinition.StepDefInBound.user_verifies_new_ASN_is_created_with_remaining_qty(StepDefInBound.java:960)\r\n\tat ✽.Then user verifies new ASN is created with remaining qty(QSCInboundScenarios.feature:620)\r\n",
+              "status": "failed"
             },
             "line": 620,
             "name": "user verifies new ASN is created with remaining qty",
@@ -564,8 +565,7 @@
           },
           {
             "result": {
-              "duration": 14229436200,
-              "status": "passed"
+              "status": "skipped"
             },
             "line": 621,
             "name": "user log out from application",
@@ -594,20 +594,20 @@
         "before": [
           {
             "result": {
-              "duration": 7894100,
-              "status": "passed"
-            },
-            "match": {
-              "location": "Steps.beforeClass(Scenario)"
-            }
-          },
-          {
-            "result": {
-              "duration": 213700,
+              "duration": 204800,
               "status": "passed"
             },
             "match": {
               "location": "CommonStepDefination.intiate(Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 10465300,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Steps.beforeClass(Scenario)"
             }
           }
         ],
@@ -618,7 +618,7 @@
         "after": [
           {
             "result": {
-              "duration": 1159028500,
+              "duration": 1006656300,
               "status": "passed"
             },
             "match": {
@@ -631,7 +631,7 @@
         "steps": [
           {
             "result": {
-              "duration": 576107600,
+              "duration": 377786100,
               "status": "passed"
             },
             "line": 628,
@@ -651,7 +651,7 @@
           },
           {
             "result": {
-              "duration": 2640512300,
+              "duration": 2958086400,
               "status": "passed"
             },
             "line": 630,
@@ -663,7 +663,7 @@
           },
           {
             "result": {
-              "duration": 94862300,
+              "duration": 340770100,
               "status": "passed"
             },
             "line": 631,
@@ -681,7 +681,7 @@
           },
           {
             "result": {
-              "duration": 10350693699,
+              "duration": 5944328000,
               "status": "passed"
             },
             "line": 632,
@@ -693,7 +693,7 @@
           },
           {
             "result": {
-              "duration": 17744092501,
+              "duration": 8975207000,
               "status": "passed"
             },
             "line": 633,
@@ -711,7 +711,7 @@
           },
           {
             "result": {
-              "duration": 5143311299,
+              "duration": 5181567400,
               "status": "passed"
             },
             "line": 634,
@@ -723,7 +723,7 @@
           },
           {
             "result": {
-              "duration": 6384652100,
+              "duration": 6399535400,
               "status": "passed"
             },
             "line": 635,
@@ -735,7 +735,7 @@
           },
           {
             "result": {
-              "duration": 21791305000,
+              "duration": 21801631700,
               "status": "passed"
             },
             "line": 636,
@@ -753,7 +753,7 @@
           },
           {
             "result": {
-              "duration": 23912913600,
+              "duration": 24415145500,
               "status": "passed"
             },
             "line": 637,
@@ -765,7 +765,7 @@
           },
           {
             "result": {
-              "duration": 109372041000,
+              "duration": 128788549100,
               "status": "passed"
             },
             "line": 638,
@@ -783,7 +783,7 @@
           },
           {
             "result": {
-              "duration": 24057980100,
+              "duration": 22209204600,
               "status": "passed"
             },
             "line": 639,
@@ -801,7 +801,7 @@
           },
           {
             "result": {
-              "duration": 32755382900,
+              "duration": 30237962100,
               "status": "passed"
             },
             "line": 640,
@@ -819,7 +819,7 @@
           },
           {
             "result": {
-              "duration": 27353689100,
+              "duration": 24654741400,
               "status": "passed"
             },
             "line": 641,
@@ -837,7 +837,7 @@
           },
           {
             "result": {
-              "duration": 30411808000,
+              "duration": 30207596200,
               "status": "passed"
             },
             "line": 642,
@@ -855,7 +855,7 @@
           },
           {
             "result": {
-              "duration": 60574869699,
+              "duration": 45111131100,
               "status": "passed"
             },
             "line": 643,
@@ -867,7 +867,7 @@
           },
           {
             "result": {
-              "duration": 14230936501,
+              "duration": 14215302600,
               "status": "passed"
             },
             "line": 644,
@@ -897,20 +897,20 @@
         "before": [
           {
             "result": {
-              "duration": 8200300,
-              "status": "passed"
-            },
-            "match": {
-              "location": "Steps.beforeClass(Scenario)"
-            }
-          },
-          {
-            "result": {
-              "duration": 170000,
+              "duration": 146500,
               "status": "passed"
             },
             "match": {
               "location": "CommonStepDefination.intiate(Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 6007800,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Steps.beforeClass(Scenario)"
             }
           }
         ],
@@ -921,7 +921,7 @@
         "after": [
           {
             "result": {
-              "duration": 1051999900,
+              "duration": 1294591900,
               "status": "passed"
             },
             "match": {
@@ -934,7 +934,7 @@
         "steps": [
           {
             "result": {
-              "duration": 314616900,
+              "duration": 416456200,
               "status": "passed"
             },
             "line": 651,
@@ -954,7 +954,7 @@
           },
           {
             "result": {
-              "duration": 3322428700,
+              "duration": 2828076600,
               "status": "passed"
             },
             "line": 653,
@@ -966,7 +966,7 @@
           },
           {
             "result": {
-              "duration": 106900300,
+              "duration": 105073700,
               "status": "passed"
             },
             "line": 654,
@@ -984,7 +984,7 @@
           },
           {
             "result": {
-              "duration": 4659124599,
+              "duration": 5669386800,
               "status": "passed"
             },
             "line": 655,
@@ -996,7 +996,7 @@
           },
           {
             "result": {
-              "duration": 9106915200,
+              "duration": 9102008300,
               "status": "passed"
             },
             "line": 656,
@@ -1014,7 +1014,7 @@
           },
           {
             "result": {
-              "duration": 5139630700,
+              "duration": 5139214900,
               "status": "passed"
             },
             "line": 657,
@@ -1026,7 +1026,7 @@
           },
           {
             "result": {
-              "duration": 6196483099,
+              "duration": 6263584300,
               "status": "passed"
             },
             "line": 658,
@@ -1038,7 +1038,7 @@
           },
           {
             "result": {
-              "duration": 22006297400,
+              "duration": 21910426000,
               "status": "passed"
             },
             "line": 659,
@@ -1056,7 +1056,7 @@
           },
           {
             "result": {
-              "duration": 23961583001,
+              "duration": 24246299400,
               "status": "passed"
             },
             "line": 660,
@@ -1068,7 +1068,7 @@
           },
           {
             "result": {
-              "duration": 108377180500,
+              "duration": 128809945500,
               "status": "passed"
             },
             "line": 661,
@@ -1086,7 +1086,7 @@
           },
           {
             "result": {
-              "duration": 22038200701,
+              "duration": 22464389200,
               "status": "passed"
             },
             "line": 662,
@@ -1104,7 +1104,7 @@
           },
           {
             "result": {
-              "duration": 30430043900,
+              "duration": 30642544700,
               "status": "passed"
             },
             "line": 663,
@@ -1122,7 +1122,7 @@
           },
           {
             "result": {
-              "duration": 24305775300,
+              "duration": 24396470900,
               "status": "passed"
             },
             "line": 664,
@@ -1140,7 +1140,7 @@
           },
           {
             "result": {
-              "duration": 30005715600,
+              "duration": 30498427200,
               "status": "passed"
             },
             "line": 665,
@@ -1158,7 +1158,7 @@
           },
           {
             "result": {
-              "duration": 60737049000,
+              "duration": 75961617900,
               "status": "passed"
             },
             "line": 666,
@@ -1170,7 +1170,7 @@
           },
           {
             "result": {
-              "duration": 14217519501,
+              "duration": 14333240400,
               "status": "passed"
             },
             "line": 667,
@@ -1200,20 +1200,20 @@
         "before": [
           {
             "result": {
-              "duration": 5108900,
-              "status": "passed"
-            },
-            "match": {
-              "location": "Steps.beforeClass(Scenario)"
-            }
-          },
-          {
-            "result": {
-              "duration": 297000,
+              "duration": 352500,
               "status": "passed"
             },
             "match": {
               "location": "CommonStepDefination.intiate(Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 6403000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Steps.beforeClass(Scenario)"
             }
           }
         ],
@@ -1224,7 +1224,7 @@
         "after": [
           {
             "result": {
-              "duration": 1104513200,
+              "duration": 1593567000,
               "status": "passed"
             },
             "match": {
@@ -1237,7 +1237,7 @@
         "steps": [
           {
             "result": {
-              "duration": 221553500,
+              "duration": 10068791600,
               "status": "passed"
             },
             "line": 674,
@@ -1257,7 +1257,7 @@
           },
           {
             "result": {
-              "duration": 3262823800,
+              "duration": 5872518600,
               "status": "passed"
             },
             "line": 676,
@@ -1269,7 +1269,7 @@
           },
           {
             "result": {
-              "duration": 84885299,
+              "duration": 46850000,
               "status": "passed"
             },
             "line": 677,
@@ -1287,7 +1287,7 @@
           },
           {
             "result": {
-              "duration": 5866045899,
+              "duration": 12312251000,
               "status": "passed"
             },
             "line": 678,
@@ -1299,7 +1299,7 @@
           },
           {
             "result": {
-              "duration": 9154878001,
+              "duration": 10696306500,
               "status": "passed"
             },
             "line": 679,
@@ -1317,7 +1317,7 @@
           },
           {
             "result": {
-              "duration": 5138944599,
+              "duration": 5262144800,
               "status": "passed"
             },
             "line": 680,
@@ -1329,7 +1329,7 @@
           },
           {
             "result": {
-              "duration": 6326199800,
+              "duration": 8609517800,
               "status": "passed"
             },
             "line": 681,
@@ -1341,7 +1341,7 @@
           },
           {
             "result": {
-              "duration": 21816324500,
+              "duration": 24137041500,
               "status": "passed"
             },
             "line": 682,
@@ -1359,7 +1359,7 @@
           },
           {
             "result": {
-              "duration": 24056815900,
+              "duration": 26523172600,
               "status": "passed"
             },
             "line": 683,
@@ -1371,8 +1371,9 @@
           },
           {
             "result": {
-              "duration": 99395152599,
-              "status": "passed"
+              "duration": 33640176400,
+              "error_message": "java.lang.AssertionError: expected [true] but found [false]\r\n\tat org.testng.Assert.fail(Assert.java:97)\r\n\tat org.testng.Assert.failNotEquals(Assert.java:968)\r\n\tat org.testng.Assert.assertTrue(Assert.java:43)\r\n\tat org.testng.Assert.assertTrue(Assert.java:53)\r\n\tat pages.RFMenuPage.ASNReceivingProcess(RFMenuPage.java:979)\r\n\tat StepDefinition.StepDefInBound.user_opens_RF_menu_and_completes_Receiving_using_menu(StepDefInBound.java:594)\r\n\tat ✽.And user opens RF menu and completes Receiving using \"MM3 Recv-CASE\" menu(QSCInboundScenarios.feature:684)\r\n",
+              "status": "failed"
             },
             "line": 684,
             "name": "user opens RF menu and completes Receiving using \"MM3 Recv-CASE\" menu",
@@ -1389,8 +1390,7 @@
           },
           {
             "result": {
-              "duration": 24469414599,
-              "status": "passed"
+              "status": "skipped"
             },
             "line": 685,
             "name": "user opens ASN screen and searches for the ASN and verify its status \"30 - Receiving Started\"",
@@ -1407,8 +1407,7 @@
           },
           {
             "result": {
-              "duration": 31364264700,
-              "status": "passed"
+              "status": "skipped"
             },
             "line": 686,
             "name": "validates the PIX message \"606 - Un-allocable inventory adjustments\"",
@@ -1425,8 +1424,7 @@
           },
           {
             "result": {
-              "duration": 27147216400,
-              "status": "passed"
+              "status": "skipped"
             },
             "line": 687,
             "name": "user verifies the ASN \"40 - Receiving Verified\"",
@@ -1443,8 +1441,7 @@
           },
           {
             "result": {
-              "duration": 29962733699,
-              "status": "passed"
+              "status": "skipped"
             },
             "line": 688,
             "name": "validates the PIX message \"603 - Verify receipt\"",
@@ -1461,8 +1458,7 @@
           },
           {
             "result": {
-              "duration": 44975865601,
-              "status": "passed"
+              "status": "skipped"
             },
             "line": 689,
             "name": "user verifies new ASN is created with remaining qty",
@@ -1473,8 +1469,7 @@
           },
           {
             "result": {
-              "duration": 14223969000,
-              "status": "passed"
+              "status": "skipped"
             },
             "line": 690,
             "name": "user log out from application",
@@ -1503,20 +1498,20 @@
         "before": [
           {
             "result": {
-              "duration": 5768001,
-              "status": "passed"
-            },
-            "match": {
-              "location": "Steps.beforeClass(Scenario)"
-            }
-          },
-          {
-            "result": {
-              "duration": 150900,
+              "duration": 158400,
               "status": "passed"
             },
             "match": {
               "location": "CommonStepDefination.intiate(Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 13488000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Steps.beforeClass(Scenario)"
             }
           }
         ],
@@ -1527,7 +1522,7 @@
         "after": [
           {
             "result": {
-              "duration": 1093508801,
+              "duration": 1131241700,
               "status": "passed"
             },
             "match": {
@@ -1540,7 +1535,7 @@
         "steps": [
           {
             "result": {
-              "duration": 211474700,
+              "duration": 513202400,
               "status": "passed"
             },
             "line": 696,
@@ -1560,7 +1555,7 @@
           },
           {
             "result": {
-              "duration": 3056296100,
+              "duration": 2942906900,
               "status": "passed"
             },
             "line": 698,
@@ -1572,7 +1567,7 @@
           },
           {
             "result": {
-              "duration": 65566000,
+              "duration": 200183700,
               "status": "passed"
             },
             "line": 699,
@@ -1590,7 +1585,7 @@
           },
           {
             "result": {
-              "duration": 5606694400,
+              "duration": 5600407300,
               "status": "passed"
             },
             "line": 700,
@@ -1602,7 +1597,7 @@
           },
           {
             "result": {
-              "duration": 9134648000,
+              "duration": 9065327200,
               "status": "passed"
             },
             "line": 701,
@@ -1620,7 +1615,7 @@
           },
           {
             "result": {
-              "duration": 5136929900,
+              "duration": 5160969000,
               "status": "passed"
             },
             "line": 702,
@@ -1632,7 +1627,7 @@
           },
           {
             "result": {
-              "duration": 6732647700,
+              "duration": 6436215000,
               "status": "passed"
             },
             "line": 703,
@@ -1644,7 +1639,7 @@
           },
           {
             "result": {
-              "duration": 21822504799,
+              "duration": 21861048300,
               "status": "passed"
             },
             "line": 704,
@@ -1662,7 +1657,7 @@
           },
           {
             "result": {
-              "duration": 24026817801,
+              "duration": 23962586600,
               "status": "passed"
             },
             "line": 705,
@@ -1674,7 +1669,7 @@
           },
           {
             "result": {
-              "duration": 108697800700,
+              "duration": 128778854200,
               "status": "passed"
             },
             "line": 706,
@@ -1692,7 +1687,7 @@
           },
           {
             "result": {
-              "duration": 22099255899,
+              "duration": 22125150500,
               "status": "passed"
             },
             "line": 707,
@@ -1710,7 +1705,7 @@
           },
           {
             "result": {
-              "duration": 30434982200,
+              "duration": 30306889500,
               "status": "passed"
             },
             "line": 708,
@@ -1728,7 +1723,7 @@
           },
           {
             "result": {
-              "duration": 25406593001,
+              "duration": 24500312400,
               "status": "passed"
             },
             "line": 709,
@@ -1746,7 +1741,7 @@
           },
           {
             "result": {
-              "duration": 30711266800,
+              "duration": 30477373400,
               "status": "passed"
             },
             "line": 710,
@@ -1764,7 +1759,7 @@
           },
           {
             "result": {
-              "duration": 61495431501,
+              "duration": 76235346300,
               "status": "passed"
             },
             "line": 711,
@@ -1776,7 +1771,7 @@
           },
           {
             "result": {
-              "duration": 14217250100,
+              "duration": 14217436200,
               "status": "passed"
             },
             "line": 712,
@@ -1806,20 +1801,20 @@
         "before": [
           {
             "result": {
-              "duration": 6838701,
-              "status": "passed"
-            },
-            "match": {
-              "location": "Steps.beforeClass(Scenario)"
-            }
-          },
-          {
-            "result": {
-              "duration": 166700,
+              "duration": 231800,
               "status": "passed"
             },
             "match": {
               "location": "CommonStepDefination.intiate(Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 7390200,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Steps.beforeClass(Scenario)"
             }
           }
         ],
@@ -1830,7 +1825,7 @@
         "after": [
           {
             "result": {
-              "duration": 1443635600,
+              "duration": 1391054300,
               "status": "passed"
             },
             "match": {
@@ -1843,7 +1838,7 @@
         "steps": [
           {
             "result": {
-              "duration": 235625300,
+              "duration": 226172600,
               "status": "passed"
             },
             "line": 718,
@@ -1863,7 +1858,7 @@
           },
           {
             "result": {
-              "duration": 2949242900,
+              "duration": 2779094000,
               "status": "passed"
             },
             "line": 720,
@@ -1875,7 +1870,7 @@
           },
           {
             "result": {
-              "duration": 94551300,
+              "duration": 73809900,
               "status": "passed"
             },
             "line": 721,
@@ -1893,7 +1888,7 @@
           },
           {
             "result": {
-              "duration": 6719534300,
+              "duration": 5220428200,
               "status": "passed"
             },
             "line": 722,
@@ -1905,7 +1900,7 @@
           },
           {
             "result": {
-              "duration": 9127338500,
+              "duration": 9145790400,
               "status": "passed"
             },
             "line": 723,
@@ -1923,7 +1918,7 @@
           },
           {
             "result": {
-              "duration": 5166853100,
+              "duration": 5172710000,
               "status": "passed"
             },
             "line": 724,
@@ -1935,7 +1930,7 @@
           },
           {
             "result": {
-              "duration": 6400165200,
+              "duration": 6434616200,
               "status": "passed"
             },
             "line": 725,
@@ -1947,7 +1942,7 @@
           },
           {
             "result": {
-              "duration": 21881752900,
+              "duration": 21889138400,
               "status": "passed"
             },
             "line": 726,
@@ -1965,7 +1960,7 @@
           },
           {
             "result": {
-              "duration": 26884890300,
+              "duration": 24604842300,
               "status": "passed"
             },
             "line": 727,
@@ -1977,8 +1972,9 @@
           },
           {
             "result": {
-              "duration": 91167190599,
-              "status": "passed"
+              "duration": 88667928500,
+              "error_message": "java.lang.AssertionError: expected [true] but found [false]\r\n\tat org.testng.Assert.fail(Assert.java:97)\r\n\tat org.testng.Assert.failNotEquals(Assert.java:968)\r\n\tat org.testng.Assert.assertTrue(Assert.java:43)\r\n\tat org.testng.Assert.assertTrue(Assert.java:53)\r\n\tat pages.RFMenuPage.ASNReceivingProcess(RFMenuPage.java:979)\r\n\tat StepDefinition.StepDefInBound.user_opens_RF_menu_and_completes_Receiving_using_menu(StepDefInBound.java:594)\r\n\tat ✽.And user opens RF menu and completes Receiving using \"MM3 Recv-CASE\" menu(QSCInboundScenarios.feature:728)\r\n",
+              "status": "failed"
             },
             "line": 728,
             "name": "user opens RF menu and completes Receiving using \"MM3 Recv-CASE\" menu",
@@ -1995,8 +1991,7 @@
           },
           {
             "result": {
-              "duration": 22227564301,
-              "status": "passed"
+              "status": "skipped"
             },
             "line": 729,
             "name": "user opens ASN screen and searches for the ASN and verify its status \"40 - Receiving Verified\"",
@@ -2013,9 +2008,7 @@
           },
           {
             "result": {
-              "duration": 26327917299,
-              "error_message": "java.lang.AssertionError: expected [606] but found [] expected [true] but found [false]\r\n\tat org.testng.Assert.fail(Assert.java:97)\r\n\tat org.testng.Assert.failNotEquals(Assert.java:968)\r\n\tat org.testng.Assert.assertTrue(Assert.java:43)\r\n\tat utils.SeleniumTestHelper.fail(SeleniumTestHelper.java:606)\r\n\tat utils.SeleniumTestHelper.assertEquals(SeleniumTestHelper.java:580)\r\n\tat pages.PixTransactionPage.checkForPixTransaction(PixTransactionPage.java:232)\r\n\tat StepDefinition.StepDefInBound.validate_PIX_transactions(StepDefInBound.java:856)\r\n\tat ✽.And validates the PIX message \"606 - Un-allocable inventory adjustments\"(QSCInboundScenarios.feature:730)\r\n",
-              "status": "failed"
+              "status": "skipped"
             },
             "line": 730,
             "name": "validates the PIX message \"606 - Un-allocable inventory adjustments\"",

@@ -23,23 +23,23 @@
       <![CDATA[Execution started for : Receiving 1st line with more than shipped quantities and 2nd line with partial quantities - Same Item in both lines]]>
     </line>
   </reporter-output>
-  <suite started-at="2021-06-07T11:33:18 GMT" name="Suite" finished-at="2021-06-07T12:11:51 GMT" duration-ms="2313483">
+  <suite started-at="2021-06-11T07:47:08 GMT" name="Suite" finished-at="2021-06-11T08:22:59 GMT" duration-ms="2151079">
     <groups>
       <group name="cucumber">
-        <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@7ce3cb8e]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
+        <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2021-06-07T11:33:18 GMT" name="Test" finished-at="2021-06-07T12:11:51 GMT" duration-ms="2313483">
+    <test started-at="2021-06-11T07:47:08 GMT" name="Test" finished-at="2021-06-11T08:22:59 GMT" duration-ms="2151079">
       <class name="TestRunner.Runner">
-        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@7ce3cb8e]" started-at="2021-06-07T11:33:18 GMT" name="createExtentReport" finished-at="2021-06-07T11:33:18 GMT" duration-ms="766" status="PASS">
+        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-06-11T07:47:08 GMT" name="createExtentReport" finished-at="2021-06-11T07:47:09 GMT" duration-ms="116" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createExtentReport -->
-        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@7ce3cb8e]" started-at="2021-06-07T11:33:18 GMT" name="setUpClass" finished-at="2021-06-07T11:33:20 GMT" duration-ms="1163" status="PASS">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-06-11T07:47:09 GMT" name="setUpClass" finished-at="2021-06-11T07:47:10 GMT" duration-ms="1043" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@7ce3cb8e]" started-at="2021-06-07T11:33:20 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2021-06-07T12:11:50 GMT" duration-ms="2310056" status="FAIL">
+        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-06-11T07:47:10 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2021-06-11T08:22:59 GMT" duration-ms="2148338" status="FAIL">
           <params>
             <param index="0">
               <value>
@@ -49,10 +49,26 @@
           </params>
           <exception class="cucumber.runtime.CucumberException">
             <message>
-              <![CDATA[java.lang.AssertionError: expected [606] but found [] expected [true] but found [false]]]>
+              <![CDATA[java.lang.AssertionError: unknown error: Element <span id="button-3319-btnInnerEl" data-ref="btnInnerEl" unselectable="on" class="x-btn-inner x-btn-inner-default-small">...</span> is not clickable at point (1128, 183). Other element would receive the click: <iframe src="/cbo/transactional/asn/ASNDetails.xhtml?asnId=10318&amp;businessUnit=511&amp;tranId=210&amp;permissionsEL=VSN&amp;windowId=wt-488f-958e-820f" id="uxiframe-3309-iframeEl" data-ref="iframeEl" name="uxiframe-3309-frame" width="100%" height="100%" frameborder="0" cd_frame_id_="1c03e5149ab44041b44ad49ab7b85139"></iframe>
+  (Session info: chrome=91.0.4472.101)
+  (Driver info: chromedriver=2.37.544315 (730aa6a5fdba159ac9f4c1e8cbc59bf1b5ce12b7),platform=Windows NT 10.0.14393 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'OCIDDFL1SYSTEMT', ip: '10.60.27.160', os.name: 'Windows Server 2016', os.arch: 'amd64', os.version: '10.0', java.version: '14.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.37.544315 (730aa6a5fdba15..., userDataDir: C:\Users\FFD-SY~1\AppData\L...}, cssSelectorsEnabled: true, databaseEnabled: false, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 91.0.4472.101, webStorageEnabled: true}
+Session ID: 601b79290b3a34fffa5ed39dafcde165 expected [true] but found [false]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[cucumber.runtime.CucumberException: java.lang.AssertionError: expected [606] but found [] expected [true] but found [false]
+              <![CDATA[cucumber.runtime.CucumberException: java.lang.AssertionError: unknown error: Element <span id="button-3319-btnInnerEl" data-ref="btnInnerEl" unselectable="on" class="x-btn-inner x-btn-inner-default-small">...</span> is not clickable at point (1128, 183). Other element would receive the click: <iframe src="/cbo/transactional/asn/ASNDetails.xhtml?asnId=10318&amp;businessUnit=511&amp;tranId=210&amp;permissionsEL=VSN&amp;windowId=wt-488f-958e-820f" id="uxiframe-3309-iframeEl" data-ref="iframeEl" name="uxiframe-3309-frame" width="100%" height="100%" frameborder="0" cd_frame_id_="1c03e5149ab44041b44ad49ab7b85139"></iframe>
+  (Session info: chrome=91.0.4472.101)
+  (Driver info: chromedriver=2.37.544315 (730aa6a5fdba159ac9f4c1e8cbc59bf1b5ce12b7),platform=Windows NT 10.0.14393 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'OCIDDFL1SYSTEMT', ip: '10.60.27.160', os.name: 'Windows Server 2016', os.arch: 'amd64', os.version: '10.0', java.version: '14.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.37.544315 (730aa6a5fdba15..., userDataDir: C:\Users\FFD-SY~1\AppData\L...}, cssSelectorsEnabled: true, databaseEnabled: false, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 91.0.4472.101, webStorageEnabled: true}
+Session ID: 601b79290b3a34fffa5ed39dafcde165 expected [true] but found [false]
 at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
 at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -83,15 +99,20 @@ at org.testng.TestNG.run(TestNG.java:1034)
 at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-Caused by: java.lang.AssertionError: expected [606] but found [] expected [true] but found [false]
+Caused by: java.lang.AssertionError: unknown error: Element <span id="button-3319-btnInnerEl" data-ref="btnInnerEl" unselectable="on" class="x-btn-inner x-btn-inner-default-small">...</span> is not clickable at point (1128, 183). Other element would receive the click: <iframe src="/cbo/transactional/asn/ASNDetails.xhtml?asnId=10318&amp;businessUnit=511&amp;tranId=210&amp;permissionsEL=VSN&amp;windowId=wt-488f-958e-820f" id="uxiframe-3309-iframeEl" data-ref="iframeEl" name="uxiframe-3309-frame" width="100%" height="100%" frameborder="0" cd_frame_id_="1c03e5149ab44041b44ad49ab7b85139"></iframe>
+  (Session info: chrome=91.0.4472.101)
+  (Driver info: chromedriver=2.37.544315 (730aa6a5fdba159ac9f4c1e8cbc59bf1b5ce12b7),platform=Windows NT 10.0.14393 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'OCIDDFL1SYSTEMT', ip: '10.60.27.160', os.name: 'Windows Server 2016', os.arch: 'amd64', os.version: '10.0', java.version: '14.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.37.544315 (730aa6a5fdba15..., userDataDir: C:\Users\FFD-SY~1\AppData\L...}, cssSelectorsEnabled: true, databaseEnabled: false, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 91.0.4472.101, webStorageEnabled: true}
+Session ID: 601b79290b3a34fffa5ed39dafcde165 expected [true] but found [false]
 at org.testng.Assert.fail(Assert.java:97)
 at org.testng.Assert.failNotEquals(Assert.java:968)
 at org.testng.Assert.assertTrue(Assert.java:43)
-at utils.SeleniumTestHelper.fail(SeleniumTestHelper.java:606)
-at utils.SeleniumTestHelper.assertEquals(SeleniumTestHelper.java:580)
-at pages.PixTransactionPage.checkForPixTransaction(PixTransactionPage.java:232)
-at StepDefinition.StepDefInBound.validate_PIX_transactions(StepDefInBound.java:856)
-at ✽.And validates the PIX message "606 - Un-allocable inventory adjustments"(QSCInboundScenarios.feature:730)
+at StepDefinition.StepDefInBound.user_verifies_new_ASN_is_created_with_remaining_qty(StepDefInBound.java:960)
+at ✽.Then user verifies new ASN is created with remaining qty(QSCInboundScenarios.feature:620)
 ]]>
             </full-stacktrace>
           </exception> <!-- cucumber.runtime.CucumberException -->
@@ -119,11 +140,11 @@ at ✽.And validates the PIX message "606 - Un-allocable inventory adjustments"(
             </line>
           </reporter-output>
         </test-method> <!-- feature -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@7ce3cb8e]" started-at="2021-06-07T12:11:50 GMT" name="tearDownClass" finished-at="2021-06-07T12:11:51 GMT" duration-ms="892" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-06-11T08:22:59 GMT" name="tearDownClass" finished-at="2021-06-11T08:22:59 GMT" duration-ms="851" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@7ce3cb8e]" started-at="2021-06-07T12:11:51 GMT" name="writeExtentReport" finished-at="2021-06-07T12:11:51 GMT" duration-ms="10" status="PASS">
+        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@78b66d36]" started-at="2021-06-11T08:22:59 GMT" name="writeExtentReport" finished-at="2021-06-11T08:22:59 GMT" duration-ms="22" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- writeExtentReport -->

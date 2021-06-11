@@ -28,7 +28,7 @@ import utils.ExtentReportUpdate;
 		tags={"@tag5"},
 		//tags={"@QSC_Rec&Putaway,@QSC_PostPO,@QSC_BypassStagingLocationRec,@QSC_OverReceive"},
 	//tags={"@QSC_CanceloLPN,@QSC_SplitCombineoLPN,@QSC_AdjustoLPN,@QSC_Shipping,@QSC_KelliASNLoad,@QSC_KelliItemLoad,@QSC_KelliOrderLoad"},
-		//tags={"@QSC_PartiallyVerified"},
+	//	tags={"@QSC_PartiallyVerified"},
 		features = {"src\\test\\java\\featureFile"},
 		//features = {"src\\test\\java\\featureFile"},
 		glue = {"StepDefinition"},
