@@ -632,6 +632,25 @@ public class StepDefInBound {
 		
 	}
 	
+	//Rakesh
+	@And("^user open reserve locations and naviagtes to validate iLPN$")
+	public void  user_open_reserve_locations_and_naviagtes_to_validate_iLPN() throws Exception {
+		try {
+			homePage.MenuItems_Configuration_Selection("Reserve Locations");
+			Steps.logger.info("Open Reserve Locations");
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			resLocPage.validateiLPNinReserveLoc();
+			System.out.println("reserveLocationqty:"+resLocPage.reserveLocationqty);
+			homePage.user_closes_openedwindow("Reserve Locations - iLPNs");
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+		
+	}
+	
 	@Then("^user navigates to reserve locations & validates that the quantity is increased in \"([^\"]*)\" by no of iLPN's moved$")
 	public void user_navigates_to_reserve_locations_validates_that_the_quantity_is_increased_in_by_no_of_iLPN_s_moved(String inspectionZone) throws Exception {
 		try {

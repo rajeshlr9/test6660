@@ -46,7 +46,7 @@ Creating ASN through Post Message UI, checking status of the shipment and comple
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	Then user log out from application 
 	
-	@QSC_IB002_1 @Regression_QSC  @QSC_Rec&Putaway
+	@QSC_IB00321 @Regression_QSC  @QSC_Rec&Putaway
 Scenario: Receiving Case : Single Line, Multiple iLPN
 Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location 
 through RF Menu
@@ -732,11 +732,11 @@ ASN, Validate ASN is verified automatically
 	Then user log out from application
 	
 	
-	@QSC_IB002 @Regression_QSC  @QSC_BulkPutaway
+	@QSC_IB036 @Regression_QSC  @QSC_BulkPutaway
 Scenario: Receiving Case : Single Line, Single iLPN
 Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location through RF Menu
 	Given I have excel data
-	| QSC_IBScenario002 |
+	| QSC_IBScenario036 |
 	And Open the chrome browser by selenium
 	When user update "Single Line PO" for dropping into fedexnet application
 	And user logs into the FedexNet application
@@ -748,7 +748,7 @@ Creating ASN through Post Message UI, checking status of the shipment and comple
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 	And user opens RF menu and completes Putaway using "MM3 QSC Ptwy Bulk" menu
-	Then user search for the LPN in iLPN screen, and validate the lock code
+	And user open reserve locations and naviagtes to validate iLPN
 	Then user log out from application 
 	
 	@QSC_IB042 @Regression_QSC  @QSC_PackCasefromTransitional

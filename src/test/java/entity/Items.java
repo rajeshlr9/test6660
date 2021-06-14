@@ -41,6 +41,7 @@ public class Items {
 	public static String iLpn;
 	private static String DONumber;
 	private static String waveNumber;
+	private static String updtLoc;
 	public static List<String> IlpNWithOB = new ArrayList<>();
 	public static List<String> LPNThreeDgtList = new ArrayList();
 	private static String pdfCOntent;
@@ -66,6 +67,14 @@ public class Items {
 		Items.oldQty = oldQty;
 	}
 
+	public static String getupdtLoc() {
+		return updtLoc;
+	}
+
+	public static void setupdtLoc(String updtLoc) {
+		Items.updtLoc = updtLoc;
+	}
+	
 	public static String getItemnameList(int i) {
 		return itemnameList.get(i);
 	}
@@ -476,6 +485,7 @@ public class Items {
     	itemQTY = null;
     	LPNThreeDgtList.clear();
     	iLPN_list.clear();
+    	updtLoc=null;
 
 	}
 

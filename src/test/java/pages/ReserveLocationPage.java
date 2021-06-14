@@ -31,6 +31,9 @@ public class ReserveLocationPage {
 
 	@FindBy(xpath = "//input[contains(@id,'locationLookUpId')]")
 	public WebElement resvlocnInputBox;
+	
+	@FindBy(xpath = "//input[contains(@id,'itemLookUpId')]")
+	public WebElement itemInputBox;
 
 	@FindBy(xpath = "//input[@id='dataForm:listView:filterId:filterIdapply']")
 	public WebElement ApplyBtn;
@@ -220,6 +223,8 @@ driver.switchTo().frame(0);
 		Thread.sleep(2000);
 		}
 
+	
+	
 	public void validateQty(String inspectionZone) throws Exception {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, expandBtn, 20);
 		expandBtn.click();
@@ -293,5 +298,51 @@ driver.switchTo().frame(0);
 		}
 	}
 	
-	
+	//search by location id and item id for only 1 ilpn and 1 item
+	public void validateiLPNinReserveLoc() throws Exception {
+		
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, expandBtn, 20);
+		expandBtn.click();
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, locationBarcodetxtBox, 20);
+		resvlocnInputBox.sendKeys(Items.getupdtLoc());
+		Screenshots.captureSnapshot(driver);
+		itemInputBox.sendKeys(Steps.ItemDataMap.get(0).get("Item"));
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ApplyBtn, 20);	
+		ApplyBtn.click();
+		Thread.sleep(1000);
+		Screenshots.captureSnapshot(driver);
+		//validate if the putaway zone conatins FL1,FL2 or FL3
+		String getPutawayZone = driver.findElement(By.xpath("//span[@id='dataForm:listView:dataTable:0:custId16']")).getText();
+		if(getPutawayZone.startsWith("FL1")||getPutawayZone.startsWith("FL2")||getPutawayZone.startsWith("FL3")) {
+			Assert.assertTrue(true, "putaway zone starts with "+getPutawayZone.subSequence(0, 2));
+		}
+		Thread.sleep(2000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, firstRsrvLoc, 20);
+		firstRsrvLoc.click();
+		Screenshots.captureSnapshot(driver);
+		LPNsBtn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPntxtBoxResLoc, 20);
+		Screenshots.captureSnapshot(driver);
+		Thread.sleep(2000);
+		iLPntxtBoxResLoc.sendKeys(RFMenuPage.iLPNz.get(0));
+		Thread.sleep(10000);
+		iLPnResLocApplyBtn.click();
+		Thread.sleep(3000);
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNvalue, 20);
+		String iLPNqty =driver.findElement(By.xpath("//span[@id='dataForm:LPNListInOutboundMain_lv:dataTable:0:CTO_LPNListTPM_LPN_Qty_param_out2']")).getText();
+		System.out.println("iLPNqty:"+iLPNqty.substring(0, 3).trim());
+		System.out.println("RecQty:"+String.valueOf(Steps.ItemDataMap.get(0).get("RecQty")));
+		SeleniumTestHelper.assertEquals(Integer.parseInt(iLPNqty.substring(0, 3).trim()), Integer.parseInt(Steps.ItemDataMap.get(0).get("RecQty")));
+		
+		/*
+		 * if(iLPN.equals(RFMenuPage.iLPNz.get(j))) {
+		 * Steps.logger.info("iLPN:"+iLPN+" is present in inspection zone");
+		 * Reporter.addStepLog("iLPN:"+iLPN+" is present in inspection zone"); }else {
+		 * Steps.testRes = "Failed"; Assert.assertTrue(false); }
+		 */
+		
+	}
 }

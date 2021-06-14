@@ -33,7 +33,7 @@ public class RFMenuPage {
 	WebDriver driver;
 	public static ArrayList<String> iLPNz = new ArrayList<String>();
 	public static ArrayList<String> palletIdz = new ArrayList<String>();
-
+	public String updtLoc;
 	public RFMenuPage() {
 		this.driver = Steps.seleniumDriver;
 		PageFactory.initElements(driver, this);
@@ -685,6 +685,9 @@ public class RFMenuPage {
 	@FindBy(xpath = "//input[@id='sublocn3556_Input']")
 	public WebElement anchorLocn;
 
+	@FindBy(xpath= "//a[contains(text(),'MM3 QSC Ptwy Bulk')]")
+	public WebElement MM3QSCPtwyBulk;
+	
 	//Jaya
 
 	@FindBy(xpath = "//a[contains(text(),'MM3 Split Cmbne oLPN')]")
@@ -850,7 +853,14 @@ public class RFMenuPage {
 				SeleniumTestHelper.assertEquals(destStagingLocnInput.isDisplayed(), true);
 				destStagingLocnInput.sendKeys(recLocation + Keys.ENTER);
 			}
-			lpnInputTxt.sendKeys(Keys.ENTER);
+			//lpnInputTxt.sendKeys(Keys.ENTER);
+			globalFunc.DateTime.TimeDateFunc();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 50);
+			lpnInputTxt.sendKeys(("0"+DateTime.strDate32)+Keys.ENTER);
+			Screenshots.captureSnapshot(driver);
+			if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
+				acceptAndProceedBtn.click();
+				}
 			ItemBarcode.sendKeys(Items.getItemsForReceivingASN(0) + Keys.ENTER);
 			InvType.sendKeys(Keys.ENTER);
 			Item_qty.sendKeys(
@@ -1028,7 +1038,14 @@ public class RFMenuPage {
 							Screenshots.captureSnapshot(driver);
 						}
 						// Thread.sleep(2000);
-						lpnInputTxt.sendKeys(Keys.ENTER);
+					//	lpnInputTxt.sendKeys(Keys.ENTER);
+						globalFunc.DateTime.TimeDateFunc();
+						SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 50);
+						lpnInputTxt.sendKeys(("0"+DateTime.strDate32)+Keys.ENTER);
+						Screenshots.captureSnapshot(driver);
+						if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
+							acceptAndProceedBtn.click();
+							}
 						Screenshots.captureSnapshot(driver);
 						// for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 						// Thread.sleep(3000);
@@ -1153,7 +1170,14 @@ public class RFMenuPage {
 						Screenshots.captureSnapshot(driver);
 					}
 					Thread.sleep(2000);
-					lpnInputTxt.sendKeys(Keys.ENTER);
+					//lpnInputTxt.sendKeys(Keys.ENTER);
+					globalFunc.DateTime.TimeDateFunc();
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 50);
+					lpnInputTxt.sendKeys(("0"+DateTime.strDate32)+Keys.ENTER);
+					Screenshots.captureSnapshot(driver);
+					if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
+						acceptAndProceedBtn.click();
+						}
 					Screenshots.captureSnapshot(driver);
 					// for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 					String LPNs3 = driver.findElement(By.id("csid")).getText();
@@ -1269,7 +1293,14 @@ public class RFMenuPage {
 					Thread.sleep(2000);
 
 					if (Steps.ItemDataMap.get(i).get("RecQty2") != "") {
-						lpnInputTxt.sendKeys(Keys.ENTER);
+						//lpnInputTxt.sendKeys(Keys.ENTER);
+						globalFunc.DateTime.TimeDateFunc();
+						SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 50);
+						lpnInputTxt.sendKeys(("0"+DateTime.strDate32)+Keys.ENTER);
+						Screenshots.captureSnapshot(driver);
+						if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
+							acceptAndProceedBtn.click();
+							}
 						Screenshots.captureSnapshot(driver);
 						// for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 						String LPNs4 = driver.findElement(By.id("csid")).getText();
@@ -1476,7 +1507,14 @@ public class RFMenuPage {
 							Screenshots.captureSnapshot(driver);
 						}
 						Thread.sleep(2000);
-						lpnInputTxt.sendKeys(Keys.ENTER);
+						//lpnInputTxt.sendKeys(Keys.ENTER);
+						globalFunc.DateTime.TimeDateFunc();
+						SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 50);
+						lpnInputTxt.sendKeys(("0"+DateTime.strDate32)+Keys.ENTER);
+						Screenshots.captureSnapshot(driver);
+						if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
+							acceptAndProceedBtn.click();
+							}
 						Screenshots.captureSnapshot(driver);
 						// for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 						String LPNs3 = driver.findElement(By.id("csid")).getText();
@@ -1564,7 +1602,14 @@ public class RFMenuPage {
 								Screenshots.captureSnapshot(driver);
 							}
 							// Thread.sleep(2000);
-							lpnInputTxt.sendKeys(Keys.ENTER);
+							//lpnInputTxt.sendKeys(Keys.ENTER);
+							globalFunc.DateTime.TimeDateFunc();
+							SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 50);
+							lpnInputTxt.sendKeys(("0"+DateTime.strDate32)+Keys.ENTER);
+							Screenshots.captureSnapshot(driver);
+							if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
+								acceptAndProceedBtn.click();
+								}
 							Screenshots.captureSnapshot(driver);
 							// for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 							// Thread.sleep(3000);
@@ -1715,7 +1760,14 @@ public class RFMenuPage {
 							Screenshots.captureSnapshot(driver);
 						}
 						Thread.sleep(2000);
-						lpnInputTxt.sendKeys(Keys.ENTER);
+						//lpnInputTxt.sendKeys(Keys.ENTER);
+						globalFunc.DateTime.TimeDateFunc();
+						SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 50);
+						lpnInputTxt.sendKeys(("0"+DateTime.strDate32)+Keys.ENTER);
+						Screenshots.captureSnapshot(driver);
+						if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
+							acceptAndProceedBtn.click();
+							}
 						Screenshots.captureSnapshot(driver);
 						// for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 						String LPNs3 = driver.findElement(By.id("csid")).getText();
@@ -1792,7 +1844,14 @@ public class RFMenuPage {
 								Screenshots.captureSnapshot(driver);
 							}
 							// Thread.sleep(2000);
-							lpnInputTxt.sendKeys(Keys.ENTER);
+							//lpnInputTxt.sendKeys(Keys.ENTER);
+							globalFunc.DateTime.TimeDateFunc();
+							SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 50);
+							lpnInputTxt.sendKeys(("0"+DateTime.strDate32)+Keys.ENTER);
+							Screenshots.captureSnapshot(driver);
+							if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
+								acceptAndProceedBtn.click();
+								}
 							Screenshots.captureSnapshot(driver);
 							// for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 							// Thread.sleep(3000);
@@ -1889,7 +1948,7 @@ public class RFMenuPage {
 					String str = GlobalClass.removeZero(spltarr[1]);
 					System.out.println(str);
 					spltarr[1] = str;
-					String updtLoc = "";
+					//String updtLoc = "";
 					for (String a : spltarr)
 						updtLoc = updtLoc + a;
 
@@ -1969,7 +2028,14 @@ public class RFMenuPage {
 					System.out.println(Items.getAsnNumber());
 					Steps.logger.info("ASN No-" + Items.getAsnNumber());
 					Reporter.addStepLog("ASN No-" + Items.getAsnNumber());
-					lpnInputTxt.sendKeys(Keys.ENTER);
+					//lpnInputTxt.sendKeys(Keys.ENTER);
+					globalFunc.DateTime.TimeDateFunc();
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 50);
+					lpnInputTxt.sendKeys(("0"+DateTime.strDate32)+Keys.ENTER);
+					Screenshots.captureSnapshot(driver);
+					if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
+						acceptAndProceedBtn.click();
+						}
 					Screenshots.captureSnapshot(driver);
 					String LPNs = driver.findElement(By.id("csid")).getText();
 					String[] LPNnum = LPNs.split(":");
@@ -2052,7 +2118,14 @@ public class RFMenuPage {
 							destStagingLocnInput.sendKeys( Keys.ENTER);
 							Screenshots.captureSnapshot(driver);
 						}
-						lpnInputTxt.sendKeys(Keys.ENTER);
+						//lpnInputTxt.sendKeys(Keys.ENTER);
+						globalFunc.DateTime.TimeDateFunc();
+						SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 50);
+						lpnInputTxt.sendKeys(("0"+DateTime.strDate32)+Keys.ENTER);
+						Screenshots.captureSnapshot(driver);
+						if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
+							acceptAndProceedBtn.click();
+							}
 						Screenshots.captureSnapshot(driver);
 						// for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 						Thread.sleep(3000);
@@ -2162,7 +2235,14 @@ public class RFMenuPage {
 					Items.setAsnNumber(asnNo[1].trim());
 					Steps.logger.info("ASN No-" + Items.getAsnNumber());
 					Reporter.addStepLog("ASN No-" + Items.getAsnNumber());
-					lpnInputTxt.sendKeys(Keys.ENTER);
+					//lpnInputTxt.sendKeys(Keys.ENTER);
+					globalFunc.DateTime.TimeDateFunc();
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 50);
+					lpnInputTxt.sendKeys(("0"+DateTime.strDate32)+Keys.ENTER);
+					Screenshots.captureSnapshot(driver);
+					if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
+						acceptAndProceedBtn.click();
+						}
 					Screenshots.captureSnapshot(driver);
 					String LPNs = driver.findElement(By.id("csid")).getText();
 					String[] LPNnum = LPNs.split(":");
@@ -2257,7 +2337,14 @@ public class RFMenuPage {
 							destStagingLocnInput.sendKeys( Keys.ENTER);
 							Screenshots.captureSnapshot(driver);
 						}
-						lpnInputTxt.sendKeys(Keys.ENTER);
+						//lpnInputTxt.sendKeys(Keys.ENTER);
+						globalFunc.DateTime.TimeDateFunc();
+						SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 50);
+						lpnInputTxt.sendKeys(("0"+DateTime.strDate32)+Keys.ENTER);
+						Screenshots.captureSnapshot(driver);
+						if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
+							acceptAndProceedBtn.click();
+							}
 						// for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 						Thread.sleep(3000);
 						Screenshots.captureSnapshot(driver);
@@ -3162,7 +3249,77 @@ public class RFMenuPage {
 				homepage.userClosesOpenedwindow("RF Menu");
 
 				break;
+			case "MM3 QSC Ptwy Bulk":
 
+				while (!(SeleniumTestHelper.isElementDisplayed(MM3QSCPtwyBulk))) {
+					pageDown.click();
+				}
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, MM3QSCPtwyBulk, 50);
+				MM3QSCPtwyBulk.click();
+				Screenshots.captureSnapshot(driver);
+				for (int i = 0; i < iLPNz.size(); i++) {
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, altiLPNBoxafterputaway, 50);
+					altiLPNBoxafterputaway.sendKeys(iLPNz.get(i));
+					Screenshots.captureSnapshot(driver);
+					altiLPNBoxafterputaway.sendKeys(Keys.ENTER);
+					Screenshots.captureSnapshot(driver);
+
+					List <WebElement> sugLOC= driver.findElements(By.id("capSubLocationViewSuggested"));
+					List <WebElement> RLOC= driver.findElements(By.id("dataForm:ifNotSuggestedMode"));
+					if(sugLOC.size()>0) {
+						//SeleniumTestHelper.waitForElementToBeDisplayed(driver, suggestedLoc, 50);
+						String sugLoc=suggestedLoc.getText();
+						System.out.println(suggestedLoc.getText());
+						String[] sysSuggestedLocSplit = sugLoc.split("\n");
+						System.out.println(sysSuggestedLocSplit[1]);
+						String[] spltarr = sysSuggestedLocSplit[1].split("-");
+						String str = GlobalClass.removeZero(spltarr[1]);
+						System.out.println(str);
+						spltarr[1] = str;
+						updtLoc = "";
+						for (String a : spltarr)
+							updtLoc = updtLoc + a;
+						
+						System.out.println("updtLoc is: " + updtLoc);
+						putawayLoctxtBox.sendKeys(updtLoc);
+						Items.setupdtLoc(updtLoc);
+						System.out.println("updtLoc is items.get fata: " + Items.getupdtLoc());
+						Screenshots.captureSnapshot(driver);
+						Thread.sleep(1000);
+						putawayLoctxtBox.sendKeys(Keys.ENTER);
+						Screenshots.captureSnapshot(driver);
+						Steps.logger.info("Bulk Putaway Completed. Item moved to:"+sysSuggestedLocSplit[1]+" location");
+						Reporter.addStepLog("Bulk Putaway Completed. Item moved to:"+sysSuggestedLocSplit[1]+" location");
+					}
+					else if(RLOC.size()>0) {
+						String RLocation=RLoc.getText();
+						System.out.println(RLoc.getText());
+						String[] sysSuggestedLocSplit = RLocation.split("Rloc: ");
+						System.out.println(sysSuggestedLocSplit[1]);
+						String[] spltarr = sysSuggestedLocSplit[1].split("-");
+						String str = GlobalClass.removeZero(spltarr[1]);
+						System.out.println(str);
+						spltarr[1] = str;
+						String updtLoc = "";
+						for (String a : spltarr)
+							updtLoc = updtLoc + a;
+
+						System.out.println("updtLoc is: " + updtLoc);
+						RlocinputtxtBox.sendKeys(updtLoc);
+						Screenshots.captureSnapshot(driver);
+						Thread.sleep(1000);
+						RlocinputtxtBox.sendKeys(Keys.ENTER);
+						Items.setupdtLoc(sysSuggestedLocSplit[1]);
+						System.out.println("updtLoc is items.get fata: " + Items.getupdtLoc());
+						
+						Screenshots.captureSnapshot(driver);
+						Steps.logger.info("Bulk Putaway Completed. iLPN "+ iLPNz.get(i)+ " moved to "+sysSuggestedLocSplit[1]+" location");
+						Reporter.addStepLog("Bulk Putaway Completed. iLPN "+ iLPNz.get(i)+ " moved to "+sysSuggestedLocSplit[1]+" location");
+					}
+				}
+				homepage.userClosesOpenedwindow("RF Menu");
+
+				break;
 			default:
 				System.out.println("Invalid putaway operation");
 			}
