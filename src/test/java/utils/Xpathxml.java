@@ -293,6 +293,14 @@ public class Xpathxml {
 		return "//OrdLineItemLp[" + i + "]//ItemQty";
 	}
 	
+	public String DOTrnsprtSvcLvl(int i) {
+		return "//TrnsprtLp[" + i + "]//TrnsprtSvcLvl";
+	}
+	
+	public String DOTrnsprtSCAC(int i) {
+		return "//TrnsprtLp[" + i + "]//TrnsprtSCAC";
+	}
+	
 	public String DOUpdateLineNbr(int i) {
 		return "//DistributionOrder/LineItem[" + i + "]/LineItem/DoLineNbr";
 	}
@@ -564,6 +572,9 @@ public class Xpathxml {
 			String itemName = null;
 			String shpQty = null;
 			String uom = null;
+			String TrnsprtSvcLvl = null;
+			String TrnsprtSCAC = null;
+			
 			for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 				
 				itemName = Steps.ItemDataMap.get(i).get("Item");
@@ -580,10 +591,24 @@ public class Xpathxml {
 				ModifyXmlfile(DOItemUOM(i+1), uom, path);
 				System.out.println("QtyUOM : " + uom + " has been updated successfully");
 				Steps.logger.info("QtyUOM : " + uom + " has been updated successfully");
-
+				
+				//Rakesh
+				TrnsprtSvcLvl = Steps.scenarioData.get("TrnsprtSvcLvl");
+				ModifyXmlfile(DOTrnsprtSvcLvl(i+1), TrnsprtSvcLvl, path);
+				System.out.println("TrnsprtSvcLvl : " + TrnsprtSvcLvl + " has been updated successfully");
+				Steps.logger.info("TrnsprtSvcLvl : " + TrnsprtSvcLvl + " has been updated successfully");
+				
+				TrnsprtSCAC = Steps.scenarioData.get("TrnsprtSCAC");
+				ModifyXmlfile(DOTrnsprtSCAC(i+1), TrnsprtSCAC, path);
+				System.out.println("TrnsprtSCAC : " + TrnsprtSCAC + " has been updated successfully");
+				Steps.logger.info("TrnsprtSCAC : " + TrnsprtSCAC + " has been updated successfully");
+				
+				
 				Items.setProductsForDistOrder(itemName);
 				Items.setItemWithShippedQtyDO(itemName, Integer.parseInt(shpQty));
 				Items.setItemWithQtyUOMDO(itemName, uom);
+				Items.setItemOrderTrnsprtSvcLvlDO(TrnsprtSvcLvl);
+				Items.setItemOrderTrnsprtSCACDO(TrnsprtSCAC);
 				
 				Reporter.addStepLog("Item Id- " + Steps.ItemDataMap.get(i).get("Item") + ", Shipped Qty- "
 						+ Steps.ItemDataMap.get(i).get("ShippedQty"));		

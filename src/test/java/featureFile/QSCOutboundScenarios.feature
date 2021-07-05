@@ -13,6 +13,169 @@ Scenario: Distribution Order creation - Single Line
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user log out from application 
 	
+@QSC_OB00A0 @Regression_QSC @QSC_PostDO
+Scenario: Distribution Order creation - Single Line 
+	Given I have excel data 
+		| QSC_OBScenario001 |
+	And Open the chrome browser by selenium 
+	When user update "Single Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "LTL Pick Wave" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
+	Then fetch the OLPN number
+	And user opens RF menu and completes Shipping using "MM3 Anchor oLPN" menu
+	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged"
+	And user navigates to shippment planning workspace
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+
+
+@QSC_OB00B4 @Regression_QSC @QSC_PostDO
+Scenario: Distribution Order creation - Multi Line FDFE LTL
+	Given I have excel data 
+		| QSC_OBScenario002 |
+	And Open the chrome browser by selenium 
+	When user update "Multi Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "LTL Pick Wave" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
+	Then fetch the OLPN number
+	And user opens RF menu and completes Shipping using "MM3 Anchor oLPN" menu
+	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged"
+	And user navigates to shippment planning workspace
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	
+	
+	
+	@QSC_OB00A1 @Regression_QSC @QSC_PostDO
+Scenario: Distribution Order creation - Single Line Parcel PO	FDE
+	Given I have excel data 
+		| QSC_OBScenario022 |
+	And Open the chrome browser by selenium 
+	When user update "Single Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "Parcel Pick Wave" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
+	Then fetch the OLPN number
+	And user opens RF menu and completes Shipping using "MM3 Anchor oLPN" menu
+	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged"
+	And user navigates to shippment planning workspace
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	
+	@QSC_OB00A2 @Regression_QSC @QSC_PostDO
+Scenario: Distribution Order creation - Single Line LTL LTLE FDFE
+	Given I have excel data 
+		| QSC_OBScenario020 |
+	And Open the chrome browser by selenium 
+	When user update "Single Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "LTL Pick Wave" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
+	Then fetch the OLPN number
+	And user opens RF menu and completes Shipping using "MM3 Anchor oLPN" menu
+	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged"
+	And user navigates to shippment planning workspace
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	
+	
+	@QSC_OB00A3 @Regression_QSC @QSC_PostDO
+Scenario: Distribution Order creation - Multi Line LTL	LTL	LTL Multi task-partial pull and complete
+	Given I have excel data 
+		| QSC_OBScenario021 |
+	And Open the chrome browser by selenium 
+	When user update "Multi Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "LTL Pick Wave" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
+	Then fetch the OLPN number with only 30 weighed status
+	And user opens RF menu and completes Shipping using "MM3 Anchor oLPN" menu
+	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged"
+	And user navigates to shippment planning workspace
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	
+	@QSC_OB00A4 @Regression_QSC @QSC_PostDO
+Scenario: Distribution Order creation - Multi Line LTL	LTL	LTL Multi task
+	Given I have excel data 
+		| QSC_OBScenario026 |
+	And Open the chrome browser by selenium 
+	When user update "Multi Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "LTL Pick Wave" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
+	Then fetch the OLPN number with only 30 weighed status
+	And user opens RF menu and completes Shipping using "MM3 Anchor oLPN" menu
+	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged"
+	And user navigates to shippment planning workspace
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	
+@QSC_OB00ANum @Regression_QSC @QSC_PostDO
+Scenario: Distribution Order creation - Multi Line FDFE LTL
+	Given I have excel data 
+		| QSC_OBScenario022 |
+	And Open the chrome browser by selenium 
+	And user logs into the Manhattan application
+	And user opens RF menu and opens Shipping using "MM3 Anchor oLPN" menu
+	#And user searches for location Code	
+		
 @QSC_OB001 @Regression_QSC @QSC_Shipping 
 Scenario: Distribution Order Shipping - Single Line 
 	Given I have excel data 
@@ -29,6 +192,7 @@ Scenario: Distribution Order Shipping - Single Line
 	Then user views wave and verify the allocation of inventory 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
 	And user open Task screen & verifies task is created for DO in the wave process 
+	And user open RF Menu and change the tasks group
 	And user open RF Menu and complete the tasks created 
 	Then user open Task screen & validates the status of tasks 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed" 

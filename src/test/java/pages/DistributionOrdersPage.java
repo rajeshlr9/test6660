@@ -306,6 +306,7 @@ public class DistributionOrdersPage {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
 		Screenshots.captureSnapshot(driver);
 		distributionOrderID.click();
+		System.out.println(Items.getDONumber());
 		distributionOrderID.sendKeys(Items.getDONumber());
 		Screenshots.captureSnapshot(driver);
 		apply_Btn.click();
@@ -1783,6 +1784,53 @@ public class DistributionOrdersPage {
 	}
 
 	// jaya
+	public void fetchoLPNSnumberwith30weighed() throws Exception {
+
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		System.out.println("DISTRIBUTION");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		primaryField.sendKeys("Distribution Order");
+		System.out.println("sendkeys");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		System.out.println("click");
+
+		distributionOrderID.sendKeys(Items.getDONumber()); // DistributionOrders.getDOnumber()
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
+		viewBtn.click();
+		homepage.user_closes_openedwindow("Distribution Orders");
+		homepage.openWindows.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, lPNSTab, 50);
+		lPNSTab.click();
+		// To locate table.
+		Thread.sleep(5000);
+		WebElement mytable = driver
+				.findElement(By.xpath("//*[@id=\"dataForm:DODetailsLpnList_lv:LPNListTable_body\"]"));
+		System.out.println("table");
+		// To locate rows of table.
+		List<WebElement> rows_table = mytable.findElements(By.tagName("tr"));
+		// To calculate no of rows In table.
+		int rows_count = rows_table.size();
+		System.out.println("No of Rows ::" + rows_count);
+		System.out.println("no of rows");
+		// Loop will execute till the last row of table.
+		for (int row = 0; row < rows_count - 1; row++) {
+			// To locate columns(cells) of that specific row.
+			List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));
+			System.out.println("getrows::" + Columns_row.size());
+			String oLPN = Columns_row.get(1).getText();
+			String oLPNStatus = Columns_row.get(8).getText();
+			if(Columns_row.get(8).getText().equals("30 - Weighed")) {
+				Items.setoLPN(oLPN);
+				System.out.println("oLPN : "+"i: "+Items.getoLPN(row));
+			}
+		}
+		homepage.user_closes_openedwindow("DO Detail - Distribution Order");
+	}
 
 	public void fetchoLPNSnumber() throws Exception {
 

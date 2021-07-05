@@ -399,7 +399,7 @@ public class TasksPage {
 		List<WebElement> rows = driver.findElements(By.xpath("//table[@id='dataForm:lview:dataTable_body']/tbody/tr"));
 		int count = rows.size();
 		System.out.println("Total no of tasks : " + (count-1));
-
+		Items.setTaskCount(count-1);
 		Thread.sleep(1000);
 		if(count==1) {
 			Steps.logger.info("No tasks generated");
@@ -413,8 +413,11 @@ public class TasksPage {
 		 tasksStatus = new String[count-1];
 		
 		for (int i = 0; i < count-1; i++) {
+			
 			tasks[i] = driver.findElement(By.id("dataForm:lview:dataTable:" + i + ":taskIdVal")).getText();
+			Items.setTaskTypeValues(tasks[i]);
 			tasksType[i]= driver.findElement(By.id("dataForm:lview:dataTable:" + i + ":descVal1")).getText();
+			Items.settaskTypeList(tasksType[i]);
 			tasksStatus[i]= driver.findElement(By.id("dataForm:lview:dataTable:" + i + ":statusVal")).getText();
 		}
 
@@ -474,4 +477,6 @@ public class TasksPage {
 		}
 		homepage.userClosesOpenedwindow("Tasks");
 	}
+	
+	
 }

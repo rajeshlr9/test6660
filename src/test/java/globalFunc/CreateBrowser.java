@@ -1,6 +1,7 @@
 package globalFunc;
 
 import java.net.URL;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -107,6 +108,9 @@ public class CreateBrowser {
 				options2.setExperimentalOption("prefs", prefs2);
 				options2.addArguments("disable-infobars");
 				options2.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+				options2.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+				options2.setExperimentalOption("excludeSwitches",Collections.singletonList("enable-automation"));
+
 				seleniumDriver = new ChromeDriver(options2);
 				seleniumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 				//seleniumDriver.manage().deleteAllCookies();

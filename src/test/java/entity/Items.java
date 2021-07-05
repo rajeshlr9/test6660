@@ -19,6 +19,9 @@ public class Items {
 	private static Map<String, Integer> itemWithShippedASNQty = new HashMap<>();
 	private static Map<String, String> itemWithQtyUOM = new HashMap<>();
 	private static String lpnID;
+	private static List<String>  taskTypeList= new ArrayList<>();
+	private static List<String>  taskTypeValues= new ArrayList<>();
+	private static List<String>  newlpnID = new ArrayList<>();
 	private static String palletID;
 	private static String purchaseOrderID;
 	private static Map<String, String> itemWithBarCode = new HashMap<>();
@@ -38,6 +41,7 @@ public class Items {
 	private static String CLocation_two;
 	private static String numberOfLpn;
 	private static String itemQTY;
+	private static int taskCount;
 	public static String iLpn;
 	private static String DONumber;
 	private static String waveNumber;
@@ -46,6 +50,8 @@ public class Items {
 	public static List<String> LPNThreeDgtList = new ArrayList();
 	private static String pdfCOntent;
 	public static List<String> productsForDistOrder = new ArrayList<>();
+	public static List<String> TrnsprtSCACDO = new ArrayList<>();
+	public static List<String> TrnsprtSvcLvlDO  = new ArrayList<>();
 	private static Map<String, Integer> itemWithShippedQtyDO = new HashMap<>();
 	private static Map<String, String> itemWithQtyUOMDO = new HashMap<>();
 	private static List<String> List_celtext = new ArrayList<>();
@@ -298,6 +304,14 @@ public class Items {
 		return itemQTY;
 	}
 	
+	public static void setTaskCount(int taskcount) {
+		Items.taskCount = taskcount;
+	}
+
+	public static int getTaskCount() {
+		return taskCount;
+	}
+	
 	private static String taskID; 
 	public static String getTaskID() {
 		return taskID;
@@ -411,6 +425,35 @@ public class Items {
 		List_celtext2.add(myitem);
 	}
 	
+	public static String getTaskTypeValues(int i) {
+		return taskTypeValues.get(i);
+	}
+
+	public static void setTaskTypeValues(String taskTypeValue) {
+		taskTypeValues.add(taskTypeValue);
+	}
+	
+	public static String gettaskTypeList(int i) {
+		return taskTypeList.get(i);
+	}
+
+	public static void settaskTypeList(String taskType) {
+		taskTypeList.add(taskType);
+	}
+	
+	
+	
+	public static String getnewiLPNPack(int i) {
+		return newlpnID.get(i);
+	}
+	public static void setnewiLPNPack(String newlpnId) {
+		newlpnID.add(newlpnId);
+	}
+	
+	public static int getnewiLPNPackSize() {
+		return newlpnID.size();
+	}
+	
 	public static String getProductsForDistOrder(int i) {
 		return productsForDistOrder.get(i);
 	}
@@ -432,10 +475,22 @@ public class Items {
 		itemWithQtyUOMDO.put(item, QtyUOM);
 	}
 	
+	public static void setItemOrderTrnsprtSvcLvlDO(String trnsprtSvcLvl ) {
+		TrnsprtSvcLvlDO.add(trnsprtSvcLvl);
+	}
+	
+	public static void setItemOrderTrnsprtSCACDO(String trnsprtSCAC) {
+		TrnsprtSCACDO.add(trnsprtSCAC);
+	}
+	
+	
+	
 	public static void removeAllTheValuesFromMap() {
 		List_celtext.clear();
 		List_celtext1.clear();
 		List_celtext2.clear();
+		TrnsprtSvcLvlDO.clear();
+		TrnsprtSCACDO.clear();
 		RFMenuPage.splittedolpn= null;
 		itemWithQtyUOMDO.clear();
 		itemWithQtyUOMDO.clear();
@@ -486,6 +541,10 @@ public class Items {
     	LPNThreeDgtList.clear();
     	iLPN_list.clear();
     	updtLoc=null;
+    	taskTypeList.clear();
+    	taskTypeValues.clear();
+    	newlpnID.clear();
+    	
 
 	}
 

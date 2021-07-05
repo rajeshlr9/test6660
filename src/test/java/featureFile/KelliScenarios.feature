@@ -84,10 +84,10 @@ Scenario: Uploading the Multi ASNLoad file from the Kelli application and comple
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user log out from application 
 	
-	@Kelli006 @Regression_QSC @QSC_KelliOrderLoad
-	  Scenario: Uploading the Multi Line Order Load file from the Kelli application and validating order created in Manhattan Successfully
- 	Given I have excel data
-	| QSC_KelliScenario006 |
+#	@Kelli006 @Regression_QSC @QSC_KelliOrderLoad
+#	  Scenario: Uploading the Multi Line Order Load file from the Kelli application and validating order created in Manhattan Successfully
+ #	Given I have excel data
+#	| QSC_KelliScenario006 |
 #	And Open the chrome browser by selenium
 #	And user logs into the kelli application 
 #	And updates "Multi Line Order" Load file

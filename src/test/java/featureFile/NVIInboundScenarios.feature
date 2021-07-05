@@ -460,3 +460,23 @@ Given I have excel data
 	Then user navigates to reserve locations & validates that the quantity is increased in "NV111A1" by no of iLPN's moved
 	Then validates that the iLPN is also moved to inspection zone "NV111A1"
 	Then user log out from application 
+	
+	
+	@NVI_IB025 @Regression_NVI @NVI_CaseRec&Putaway
+Scenario: Receiving Case : Single Line, Single iLPN
+Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location through RF Menu
+	Given I have excel data
+	| NVI_IBScenario025 |
+	And Open the chrome browser by selenium 
+	And user logs into the Manhattan application 
+	When user create xml file with updated ASNNo & DeliveryStartDate for ReceivingASN 
+	And user update xml itemDetails from excel sheet 
+	And user opens post message screen and upload file in order to create ASN 
+	Then user verify the response 
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
+	#Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
+	And user opens RF menu and completes Putaway using "MM3 Ptwy CASE" menu
+	Then user search for the LPN in iLPN screen, and validate the lock code
+	Then user log out from application 

@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -24,8 +25,10 @@ import pages.DistributionOrdersPage;
 import pages.HomePage;
 import pages.ILPNPage;
 import pages.OlpnsPage;
+import pages.OrderConsolidationLocationPage;
 import pages.PostMessagePage;
 import pages.RFMenuPage;
+import pages.ShipmentPlanningWorkspace;
 import pages.TasksPage;
 import pages.WavesPage;
 import utils.SeleniumTestHelper;
@@ -45,6 +48,7 @@ public class StepDefOutBound {
 	OlpnsPage oLPNspage = new OlpnsPage();
 	ILPNPage iLPNPage = new ILPNPage();
 	Xpathxml xmlInput= new Xpathxml();
+	OrderConsolidationLocationPage oCLPage = new OrderConsolidationLocationPage();
 	PostMessagePage postMessagePage = new PostMessagePage();
 
 	public StepDefOutBound() {
@@ -326,7 +330,47 @@ public class StepDefOutBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
+	
+	@And("^user open RF Menu and complete the pick tasks created$")
+	public void user_user_opeb_RFMenu_and_complete_pick_tasks() throws Exception {
+		try {
+			homePage1.MenuItems_Distribution_Selection("RF Menu");
+			Screenshots.captureSnapshot(driver);
+			rfMenu.completeTasks();
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
 
+	
+	@And("^user open RF Menu and complete the pack tasks created$")
+	public void user_user_opeb_RFMenu_and_complete_pack_tasks() throws Exception {
+		try {
+			homePage1.MenuItems_Distribution_Selection("RF Menu");
+			Screenshots.captureSnapshot(driver);
+			rfMenu.completePackTasks();
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
+	
+	@And("^user open RF Menu and change the tasks group \"([^\"]*)\"$")
+	public void user_user_opeb_RFMenu_and_change_the_tasks_group(String tskgrp) throws Exception {
+		try {
+			homePage1.MenuItems_Distribution_Selection("RF Menu");
+			Screenshots.captureSnapshot(driver);
+			rfMenu.changeTasks(tskgrp);
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
 
 	@And("^user open RF Menu and complete a single task created$")
 	public void user_user_opeb_RFMenu_and_complete_single_task_created() throws Exception {
@@ -435,6 +479,17 @@ public class StepDefOutBound {
 		}
 	}
 	
+	@Then("^fetch the OLPN number with only 30 weighed status$")
+	public void fetch_olpn_with_30Wegihed()throws Exception {
+		try {
+			doPage.fetchoLPNSnumberwith30weighed();
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
 	@Then("^user opens the OLPN screen and verify the splitted oLPNS status$")
 	public void check_splitted_oLPNS_status()throws Exception {
 	try {
@@ -455,8 +510,51 @@ public class StepDefOutBound {
 		Assert.assertTrue(false, e.getMessage());
 	}
 	}
+	
+	@Then("^user opens RF menu and completes Shipping using \"([^\"]*)\" menu$")
+	public void user_opens_RF_menu_and_completes_Receiving_using_menu(String shippingMethod) throws Exception {
+		try {
+			homePage.MenuItems_Distribution_Selection("RF Menu");
+			Steps.logger.info("Open RF menu");
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			rfMenu.DOShippingProcess(shippingMethod);
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
 
-
+	@Then("^user opens RF menu and opens Shipping using \"([^\"]*)\" menu$")
+	public void user_opens_RF_menu_and_opens_Receiving_using_menu(String shippingMethod) throws Exception {
+		try {
+			homePage.MenuItems_Distribution_Selection("RF Menu");
+			Steps.logger.info("Open RF menu");
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			rfMenu.DOShippingProcess(shippingMethod);
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
+	@And("user searches for location Code")
+	public void user_searches_for_location_code() throws Exception {
+		try {
+			//homePage.MenuItems_Configuration_Selection("Order Consolidation Locations");
+			//SeleniumTestHelper.switchToInnerFrame(driver);
+			
+			
+			String LocCode =oCLPage.getLocation("NV03-1");
+			System.out.println(LocCode);
+		} catch (Exception e) {
+System.out.println(e);
+		}
+	}
+	
 	@Then("^user search for the LPN in iLPN screen, and validate the iLPN statusOB$")
 	public void user_opens_iLPN_and_validate_iLPN_status_OB() throws Exception {
 		homePage1.MenuItems_Distribution_Selection("iLPNs");
@@ -473,4 +571,20 @@ public class StepDefOutBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
+	
+	@And("^user navigates to shippment planning workspace$")
+	public void ShipmentPlanning()throws Exception{
+		ShipmentPlanningWorkspace ShipPlan = new ShipmentPlanningWorkspace();
+		homePage1.MenuItems_Distribution_Selection("Shipment Planning Workspace");
+		//Screenshots.captureSnapshot(driver);
+		try {
+		ShipPlan.Ship();
+		}
+		catch  (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+	
+}
+}
 }

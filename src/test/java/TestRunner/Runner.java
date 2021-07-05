@@ -25,10 +25,12 @@ import utils.ExtentReportUpdate;
 @CucumberOptions(
 		strict = true,
 		dryRun = false,
-		tags={"@tag5"},
-		//tags={"@QSC_Rec&Putaway,@QSC_PostPO,@QSC_BypassStagingLocationRec,@QSC_OverReceive"},
-	//tags={"@QSC_CanceloLPN,@QSC_SplitCombineoLPN,@QSC_AdjustoLPN,@QSC_Shipping,@QSC_KelliASNLoad,@QSC_KelliItemLoad,@QSC_KelliOrderLoad"},
-	//	tags={"@QSC_PartiallyVerified"},
+		 tags={"@QSC_OB00A4"},
+		//tags={"@QSC_IN003,@QSC_IN005"},
+		//tags={"@Kelli004,@Kelli005,@Kelli010"},
+		//tags={"@QSC_IB007,@QSC_IB008,@QSC_IB010,@QSC_IB011,@QSC_IB013,@QSC_IB015,@QSC_IB033,@QSC_IB035"},
+		//tags= {"@QSC_IB020,@QSC_IB021,@QSC_IB023,@QSC_IB026,@QSC_IB026"},
+		 
 		features = {"src\\test\\java\\featureFile"},
 		//features = {"src\\test\\java\\featureFile"},
 		glue = {"StepDefinition"},

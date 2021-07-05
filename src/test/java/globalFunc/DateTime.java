@@ -16,18 +16,30 @@ public class DateTime {
 	public static String strDate8;
 	public static String strDate9;
 	public static String strDate10;
+	public static String strDate11;
+	public static String strDate12;
 	public static String strDate32;
+	public static String strDate67;
 	public static void TimeDateFunc() {
 		
 		Date date = new Date(); 
         SimpleDateFormat formatter2 = new SimpleDateFormat("yyyyMMdd");              
         strDate2= formatter2.format(date);  
         
+        SimpleDateFormat formatter67 = new SimpleDateFormat("s"+"yyyyMMdd");              
+        strDate67= formatter67.format(date);
+        
         SimpleDateFormat formatter5 = new SimpleDateFormat("yyMMdd");              
         strDate5= formatter5.format(date);  
         
-        SimpleDateFormat formatter6 = new SimpleDateFormat("yyMMddHHmm");              
+        SimpleDateFormat formatter6 = new SimpleDateFormat("yyMMddHHmmss");              
         strDate6= formatter6.format(date);  
+        
+        SimpleDateFormat formatter11 = new SimpleDateFormat("ddHHmmsss");              
+        strDate11= formatter11.format(date);
+        
+        SimpleDateFormat formatter12 = new SimpleDateFormat("7"+"ddHHmmss");              
+        strDate12= formatter12.format(date);
         
         SimpleDateFormat formatter3 = new SimpleDateFormat("yyyyMMddHHmm");              
         strDate3= formatter3.format(date); 

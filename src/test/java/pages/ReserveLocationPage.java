@@ -92,6 +92,11 @@ public class ReserveLocationPage {
 	@FindBy(xpath="//input[@id='dataForm:b356']") public WebElement maxWeight;
 	@FindBy(xpath="//select[@id='dataForm:primaryList']") public WebElement putawayZoneDdl;
 	
+	@FindBy(xpath="//input[@id='dataForm:b10']") 
+	public WebElement LocBarcode;
+	
+	
+	HomePage homePage = new HomePage();
 	
 	public void unlockLocation(String locationToBeLocked) throws InterruptedException, IOException{
 		
@@ -157,6 +162,42 @@ driver.switchTo().frame(0);
 		displayLocBox.sendKeys("A-RK*");
  		ApplyBtn.click();
  		Thread.sleep(1000);
+	}
+	
+	public String getReservelocation(String loc) throws Exception
+	{
+		String locBarCode= "";
+ 		//String emptyLocation = null;
+		try {
+		homePage.MenuItems_Configuration_Selection("Reserve Locations");	
+		Thread.sleep(5000);
+		//SeleniumTestHelper.switchToInnerFrame(driver);
+		driver.switchTo().defaultContent();
+		driver.switchTo().frame(1);
+		displayLocBox.sendKeys(loc);
+		  Thread.sleep(1000);
+ 		ApplyBtn.click();
+ 		Thread.sleep(1000);
+ 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, firstRsrvLoc, 30);
+	    firstRsrvLoc.click();
+	    Thread.sleep(1000);
+	    SeleniumTestHelper.waitForElementToBeDisplayed(driver, ViewButton, 30);
+	    ViewButton.click();
+	    Thread.sleep(1000);
+	    SeleniumTestHelper.waitForElementToBeDisplayed(driver, LocBarcode, 30);
+	    locBarCode = LocBarcode.getAttribute("value");
+	    Thread.sleep(1000);
+	   
+	    
+		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		homePage.userClosesOpenedwindow("Reserve Locations - Reserve Location");
+		Thread.sleep(3000);
+		return locBarCode;
+		    
 	}
 	
 	public void lockLocation(String locationToBeLocked, String lockCodeToBeSelected) throws InterruptedException, IOException{
