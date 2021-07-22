@@ -81,16 +81,6 @@ public WebDriver driver;
 	@FindBy(xpath ="//*[@id='gridview-1369-record-6048']/tbody/tr/td[1]/div/div")
 	public WebElement ShipmentCheckBox;
 	
-	@FindBy(xpath ="//span[text()='Edit']")
-	public WebElement EditShipment;
-	
-	//@FindBy(xpath="//*[@id=\"dataForm:ShpEdtGen_InText_PRONo\"]")
-	@FindBy(xpath="//span[contains(text(),'PRO')]//parent::td//following-sibling::td[1]//input")
-	public WebElement ProNumber;
-	
-	@FindBy(xpath ="//*[@id='dataForm:ShipEdit_CB_Save']")
-	public WebElement Save;
-	
 	@FindBy(xpath ="//*[@id='backImage']")
 	public WebElement EditShipmentsBack;
 	
@@ -116,6 +106,19 @@ public WebDriver driver;
 	@FindBy(xpath="//span[contains(@class,'x-tbar-loading')]")
 	public WebElement refreshBtn;
 	
+	@FindBy(xpath ="//span[text()='Edit']")
+	public WebElement EditShipment;
+	@FindBy(xpath ="//span[text()='View']")
+	public WebElement ViewShipment;
+	@FindBy(xpath ="//a[text()='Stops']")
+	public WebElement StopsTab;
+	@FindBy(xpath ="//input[@id='dataForm:ShpDtlStpList_editbutton']")
+	public WebElement EditStopDetailsBtn;
+	//@FindBy(xpath="//*[@id=\"dataForm:ShpEdtGen_InText_PRONo\"]")
+	@FindBy(xpath="//input[@id='dataForm:StpDtl_Out_PRONbr']")
+	public WebElement ProNumber;
+	@FindBy(xpath ="//input[@id='dataForm:StopDtl_View_CB']")
+	public WebElement Save;
 	
 	DistributionOrdersPage distributionOrdersPage1 = new DistributionOrdersPage();
 	static String shipno;
@@ -178,16 +181,26 @@ public WebDriver driver;
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipmentID_chkbox, 50);
 		shipmentID_chkbox.click();
 		Thread.sleep(2000);	
-		EditShipment.click();	
+		ViewShipment.click();
 		Thread.sleep(5000);
 		SeleniumTestHelper.switchToInnerFrame(driver);
+		Thread.sleep(2000);
+		StopsTab.click();
 		Thread.sleep(5000);
-		ProNumber.sendKeys("1234567890");
+		driver.findElement(By.xpath("//span[text()='Deliver']//ancestor::tr[1]//td[1]")).click();
+		Thread.sleep(2000);
+		EditStopDetailsBtn.click();
+		Thread.sleep(2000);
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		Thread.sleep(5000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ProNumber, 50);
+		globalFunc.DateTime.TimeDateFunc();
+		ProNumber.sendKeys(globalFunc.DateTime.strDate6);
 		System.out.println("enterd pro number");
 		Thread.sleep(2000);
 		Save.click();
 		Thread.sleep(2000);
-		homepage.user_closes_openedwindow("Edit Shipment - Shipment");
+		homepage.user_closes_openedwindow("Shipment - Stop");
 		Thread.sleep(5000);
 		//Closing Shipment
 		MoreShipment.click();

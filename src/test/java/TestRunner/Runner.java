@@ -5,14 +5,11 @@ import java.io.File;
 
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
 
 import com.cucumber.listener.ExtentProperties;
 import com.cucumber.listener.Reporter;
 
 import cucumber.api.CucumberOptions;
-//import cucumber.api.testng.AbstractTestNGCucumberTests;
-//import cucumber.api.testng.AbstractTestNGCucumberTests;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 import globalFunc.GetScenarioStepSnapshots;
 import globalFunc.FileUtilities;
@@ -25,7 +22,7 @@ import utils.ExtentReportUpdate;
 @CucumberOptions(
 		strict = true,
 		dryRun = false,
-		 tags={"@QSC_OB00A4"},
+		 tags={"@tag5"},
 		//tags={"@QSC_IN003,@QSC_IN005"},
 		//tags={"@Kelli004,@Kelli005,@Kelli010"},
 		//tags={"@QSC_IB007,@QSC_IB008,@QSC_IB010,@QSC_IB011,@QSC_IB013,@QSC_IB015,@QSC_IB033,@QSC_IB035"},

@@ -561,4 +561,3 @@ Scenario: Cancel OLPN - Cancel the OLPN at Weighed status (MultiLine Sceanrios)
 	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
 	And validates the PIX message "620 - Order transactions"
 	Then user log out from application 
-	

@@ -12,7 +12,7 @@ import reusable.KelliPages;
 
 
 public class Items {
-	
+
 	private static String asnNumber;
 	private static String PONumber;
 	public static List<String> itemsForReceivingASN = new ArrayList<>();
@@ -57,6 +57,7 @@ public class Items {
 	private static List<String> List_celtext = new ArrayList<>();
 	private static List<String> List_celtext1 = new ArrayList<>();
 	private static List<String> List_celtext2 = new ArrayList<>();
+	private static Map<String, String> taskVals = new HashMap<>();
 	public static String getItemName() {
 		return ItemName;
 	}
@@ -80,7 +81,7 @@ public class Items {
 	public static void setupdtLoc(String updtLoc) {
 		Items.updtLoc = updtLoc;
 	}
-	
+
 	public static String getItemnameList(int i) {
 		return itemnameList.get(i);
 	}
@@ -132,7 +133,7 @@ public class Items {
 	public static void setAsnNumber(String asnNumber) {
 		Items.asnNumber = asnNumber;
 	}
-	
+
 	public static String getPONumber() {
 		return PONumber;
 	}
@@ -140,8 +141,8 @@ public class Items {
 	public static void setPONumber(String poNumber) {
 		Items.PONumber = poNumber;
 	}
-	
-	
+
+
 	public static String getItemsForReceivingASN(int i) {
 		return itemsForReceivingASN.get(i);
 	}
@@ -187,7 +188,7 @@ public class Items {
 	public static void setPurchaseOrderID(String purchaseOrderId) {
 		Items.purchaseOrderID = purchaseOrderId;
 	}
-	
+
 	public static String getItemBarcode(String item) {
 		return itemWithBarCode.get(item);
 	}
@@ -202,7 +203,7 @@ public class Items {
 	public static void setItemILPN(String item, String iLPN) {
 		itemWithILPN.put(item, iLPN);
 	}
-	
+
 
 	public static String getItemname(Integer itemnumber) {
 		return itemname.get(itemnumber);
@@ -211,7 +212,7 @@ public class Items {
 	public static void setItemname(Integer itemnumber, String Itemname) {
 		itemname.put(itemnumber, Itemname);
 	}
-	
+
 
 	public static String getSuggestedRLOCWithItem(String item) {
 		return itemWithSuggestedLocation.get(item);
@@ -234,7 +235,7 @@ public class Items {
 	public static void setItemPalletID(String item, String palletId) {
 		itemWithPalletID.put(item, palletId);
 	}
-	
+
 	public static String getCurrentTestCase() {
 		return testCaseName;
 	}
@@ -242,7 +243,7 @@ public class Items {
 	public static void setCurrentTestCase(String tcname) {
 		Items.testCaseName = tcname;
 	}
-	
+
 	public static String getLockForLPN(String LPN) {
 		return LPNWithLock.get(LPN);
 	}
@@ -274,11 +275,11 @@ public class Items {
 	public static void setALocation_two(String aLocation_two) {
 		ALocation_two = aLocation_two;
 	}
-    
+
 	public static String getCLocation_one() {
 		return CLocation_one;
 	}
-		public static void setCLocation_one(String cLocation_one) {
+	public static void setCLocation_one(String cLocation_one) {
 		CLocation_one = cLocation_one;
 	}
 
@@ -303,7 +304,7 @@ public class Items {
 	public static String getItemQTY() {
 		return itemQTY;
 	}
-	
+
 	public static void setTaskCount(int taskcount) {
 		Items.taskCount = taskcount;
 	}
@@ -311,7 +312,7 @@ public class Items {
 	public static int getTaskCount() {
 		return taskCount;
 	}
-	
+
 	private static String taskID; 
 	public static String getTaskID() {
 		return taskID;
@@ -320,7 +321,7 @@ public class Items {
 	public static void setTaskID(String taskID) {
 		Items.taskID = taskID;
 	}
-	
+
 	private static String itemBarcode; 
 
 	public static String getItemBarcode() {
@@ -330,10 +331,10 @@ public class Items {
 	public static void setItemBarcode(String itemBarcode) {
 		Items.itemBarcode = itemBarcode;
 	}
-	
+
 	private static List<String> iLPN_list = new ArrayList<String>();
-	
-	
+
+
 	public static String getiLPN_list(int index) {
 		return iLPN_list.get(index);
 	}
@@ -352,18 +353,18 @@ public class Items {
 	public static void setiLpn(String iLpn) {
 		Items.iLpn = iLpn;
 	}
-	
+
 	private static Map<String, List<String>> minorserialNumbersforItem = new HashMap<>();
-	
+
 	public static String getMinorSerialNumbersforItem(String itemName,int i) {
 		return minorserialNumbersforItem.get(itemName).get(i);
 	}
 	public static void setMinorSerialNumbersforItem(String itemName,List<String> serialNumber) {
 		minorserialNumbersforItem.put(itemName,serialNumber);
 	}
-	
+
 	private static String minorSerialItemName;
-	
+
 	public static String getMinorSerialItemName() {
 		return minorSerialItemName;
 	}
@@ -371,7 +372,7 @@ public class Items {
 	public static void setMinorSerialItemName(String minorSerialItemName) {
 		Items.minorSerialItemName = minorSerialItemName;
 	}
-	
+
 
 	public static String getLPNThreeDgtList(int index) {
 		return LPNThreeDgtList.get(index);
@@ -381,7 +382,7 @@ public class Items {
 		LPNThreeDgtList.clear(); 
 		LPNThreeDgtList.add(lPNThreeDgt);
 	}
-	
+
 	public static String getDONumber() {
 		return DONumber;
 	}
@@ -389,7 +390,7 @@ public class Items {
 	public static void setDONumber(String DONumber) {
 		Items.DONumber = DONumber;
 	}
-	
+
 	public static String getWaveNumber() {
 		return Items.waveNumber;
 	}
@@ -405,7 +406,7 @@ public class Items {
 	public static void setoLPN(String myitem) {
 		List_celtext.add(myitem);
 	}
-	
+
 	public static int getoLPNListSize() {
 		return List_celtext.size();
 	}
@@ -416,7 +417,7 @@ public class Items {
 	public static void setoLPNStatus(String myitem) {
 		List_celtext1.add(myitem);
 	}
-	
+
 	public static String getoLPNQty(int i) {
 		return List_celtext2.get(i);
 	}
@@ -424,7 +425,7 @@ public class Items {
 	public static void setoLPNQty(String myitem) {
 		List_celtext2.add(myitem);
 	}
-	
+
 	public static String getTaskTypeValues(int i) {
 		return taskTypeValues.get(i);
 	}
@@ -432,7 +433,7 @@ public class Items {
 	public static void setTaskTypeValues(String taskTypeValue) {
 		taskTypeValues.add(taskTypeValue);
 	}
-	
+
 	public static String gettaskTypeList(int i) {
 		return taskTypeList.get(i);
 	}
@@ -440,20 +441,20 @@ public class Items {
 	public static void settaskTypeList(String taskType) {
 		taskTypeList.add(taskType);
 	}
-	
-	
-	
+
+
+
 	public static String getnewiLPNPack(int i) {
 		return newlpnID.get(i);
 	}
 	public static void setnewiLPNPack(String newlpnId) {
 		newlpnID.add(newlpnId);
 	}
-	
+
 	public static int getnewiLPNPackSize() {
 		return newlpnID.size();
 	}
-	
+
 	public static String getProductsForDistOrder(int i) {
 		return productsForDistOrder.get(i);
 	}
@@ -474,18 +475,27 @@ public class Items {
 	public static void setItemWithQtyUOMDO(String item, String QtyUOM) {
 		itemWithQtyUOMDO.put(item, QtyUOM);
 	}
-	
+
 	public static void setItemOrderTrnsprtSvcLvlDO(String trnsprtSvcLvl ) {
 		TrnsprtSvcLvlDO.add(trnsprtSvcLvl);
 	}
-	
+
 	public static void setItemOrderTrnsprtSCACDO(String trnsprtSCAC) {
 		TrnsprtSCACDO.add(trnsprtSCAC);
 	}
-	
-	
-	
+
+	public static int gettaskValsSize() {
+		return taskVals.size();
+	}
+	public static void settaskVals(String task, String newiLPN) {
+		taskVals.put(task, newiLPN);
+	}
+	public static String gettaskVals(String task) {
+		return taskVals.get(task);
+	}
+
 	public static void removeAllTheValuesFromMap() {
+		taskVals.clear();
 		List_celtext.clear();
 		List_celtext1.clear();
 		List_celtext2.clear();
@@ -509,8 +519,8 @@ public class Items {
 		itemWithSuggestedLocation.clear();
 		ilpns.clear();
 		purchaseOrderID = null;
-	    locationBarCode= null;
-	    MovedQty= null;
+		locationBarCode= null;
+		MovedQty= null;
 		itemname.clear();
 		purchaseOrderID = null;
 		itemsPO.clear();
@@ -521,30 +531,30 @@ public class Items {
 		oldQty=null;
 		ItemName = null;
 		Rlocation_one = null;
-    	ALocation_one = null;
-    	ALocation_two = null;
-    	CLocation_one = null;
-    	CLocation_two = null;
-    	taskID=null;
-    	itemBarcode=null;
-    	iLpn=null;
-    	minorserialNumbersforItem.clear();
-    	minorSerialItemName=null;
-    	IlpNWithOB.clear();
-    	pdfCOntent=null;
-    	itemWithBarCode.clear();
-    	itemWithILPN.clear();
-    	itemnameList.clear();
-    	itemWithPalletID.clear();
-    	numberOfLpn = null;
-    	itemQTY = null;
-    	LPNThreeDgtList.clear();
-    	iLPN_list.clear();
-    	updtLoc=null;
-    	taskTypeList.clear();
-    	taskTypeValues.clear();
-    	newlpnID.clear();
-    	
+		ALocation_one = null;
+		ALocation_two = null;
+		CLocation_one = null;
+		CLocation_two = null;
+		taskID=null;
+		itemBarcode=null;
+		iLpn=null;
+		minorserialNumbersforItem.clear();
+		minorSerialItemName=null;
+		IlpNWithOB.clear();
+		pdfCOntent=null;
+		itemWithBarCode.clear();
+		itemWithILPN.clear();
+		itemnameList.clear();
+		itemWithPalletID.clear();
+		numberOfLpn = null;
+		itemQTY = null;
+		LPNThreeDgtList.clear();
+		iLPN_list.clear();
+		updtLoc=null;
+		taskTypeList.clear();
+		taskTypeValues.clear();
+		newlpnID.clear();
+
 
 	}
 
