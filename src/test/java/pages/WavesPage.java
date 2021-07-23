@@ -234,10 +234,16 @@ public class WavesPage {
 		WebElement simpleTable=driver.findElement(By.id("dataForm:lview:dataTable_body"));
 		List<WebElement> rows = simpleTable.findElements(By.tagName("tr"));
 		System.out.println("Table row size: "+rows.size());
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, getoLPNNumber, 50);
-
-		System.out.println("oLPN Number is: "+getoLPNNumber.getText());
-		String oLPN = getoLPNNumber.getText();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavechkbox, 50);
+		shipWavechkbox.click();
+		Screenshots.captureSnapshot(driver);
+		Thread.sleep(2000);
+		driver.findElement(By.id("rmButton_1View1_167271343")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.id("DetailsTab_lnk")).click();
+		Thread.sleep(2000);
+		String oLPN = driver.findElement(By.id("dataForm:Tab1_D29")).getText();
+		System.out.println("oLPN Number is: "+oLPN);
 		Reporter.addStepLog("oLPN Number is: "+getoLPNNumber.getText());
 		Steps.logger.info("oLPN Number is: "+getoLPNNumber.getText());
 		homepage.user_closes_openedwindow("Waves - Tasks");

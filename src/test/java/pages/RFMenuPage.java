@@ -2743,80 +2743,7 @@ public class RFMenuPage {
 				break;
 
 			
-			case "MM3 Cancel oLPN":
-				int ii=0;
-				while (!(SeleniumTestHelper.isElementDisplayed(rfCancelolpnOption))) {
-					pageDown.click();
-				}
-				SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfCancelolpnOption, 50);
-				rfCancelolpnOption.click();
-				Screenshots.captureSnapshot(driver);
-				SeleniumTestHelper.waitForElementToBeDisplayed(driver, MM3oLPNInquirytxtBox, 50);
-				System.out.println("Size: "+Items.getoLPNListSize());
-				System.out.println("OlpnStatus: "+Steps.scenarioData.get("OlpnStatus"));
-				System.out.println("canceloLPNFlag: "+Steps.scenarioData.get("canceloLPNFlag"));
-				for(ii=0;ii<Items.getoLPNListSize();ii++) {
-					if(Steps.scenarioData.get("OlpnStatus").equals(Items.getoLPNStatus(ii))) {
-						if(Steps.scenarioData.get("canceloLPNFlag")!="") {
-							if(Integer.parseInt(Steps.scenarioData.get("canceloLPNFlag"))==1) {
-								System.out.println("olpn: "+Items.getoLPN(ii));
-								MM3oLPNInquirytxtBox.sendKeys(Items.getoLPN(ii)+Keys.TAB);
-								Thread.sleep(1000);
-								if(SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {	
-									if(errorOrWarningMsg.getText().contains("oLPN is in shipped status and cannot be cancelled"))
-									{
-										Steps.logger.info(errorOrWarningMsg.getText());
-										Thread.sleep(1000);
-										Screenshots.captureSnapshot(driver);
-										acceptAndProceedBtn.click();
-										Thread.sleep(1000);
-										//Assert.assertEquals(errorOrWarningMsg.getText(), "oLPN is in shipped status and cannot be cancelled","oLPN cancellation status: ");
-										break;
-									}else if(errorOrWarningMsg.getText().contains("oLPN is already in cancelled status"))
-									{
-										Steps.logger.info(errorOrWarningMsg.getText());
-										Thread.sleep(1000);
-										Screenshots.captureSnapshot(driver);
-										acceptAndProceedBtn.click();
-										Thread.sleep(2000);
-										//Assert.assertEquals(errorOrWarningMsg.getText(), "oLPN is already in cancelled status","oLPN cancellation status: ");
-										Assert.assertTrue(false);
-										break;
-
-									}else if(errorOrWarningMsg.getText().contains("Invalid Barcode - Carton / EAN prefix"))
-									{
-										Steps.logger.info(errorOrWarningMsg.getText());
-										Thread.sleep(1000);
-										Screenshots.captureSnapshot(driver);
-										acceptAndProceedBtn.click();
-										Thread.sleep(2000);
-										Assert.assertEquals(errorOrWarningMsg.getText(), "Invalid Barcode - Carton / EAN prefix","oLPN cancellation status: ");
-										Assert.assertTrue(false);
-										break;
-									}
-									/*
-									 * else if (errorOrWarningMsg.getText().contains("Error")) { Thread.sleep(1000);
-									 * Screenshots.captureSnapshot(driver); Steps.testRes = "Failed";
-									 * Assert.assertTrue(false); }
-									 */
-								}else {
-									Steps.logger.info("oLPN is cancelled");
-									Reporter.addStepLog("oLPN is cancelled");
-								}
-								//if(Steps.scenarioData.get("canceloLPNFlag")!="") {
-								//	if(Integer.parseInt(Steps.scenarioData.get("canceloLPNFlag"))==1&& ii==0)
-								//	{
-								//		System.out.println("inside parseint");
-								//		break;
-								//	}
-							break;
-							}
-						}
-					}
-				}
-				
-
-				break;
+			
 
 			case "MM3 split OLPN":
 
@@ -3450,6 +3377,8 @@ public class RFMenuPage {
 						//System.out.println("updtLoc is: " + updtLoc);
 						RlocinputtxtBox.click();
 						RlocinputtxtBox.sendKeys(LocBarCode);
+						Items.setupdtLoc(LocBarCode);
+						System.out.println("updtLoc is items.get fata: " + Items.getupdtLoc());
 						//RlocinputtxtBox.sendKeys(updtLoc);
 						Screenshots.captureSnapshot(driver);
 						Thread.sleep(1000);
@@ -3718,6 +3647,7 @@ public class RFMenuPage {
 		RFmenu_info.click();
 		Screenshots.captureSnapshot(driver);
 		Steps.logger.info("Clicked on RF Menu");
+		Thread.sleep(1000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
 		Mainmenu.click();
 		Screenshots.captureSnapshot(driver);
@@ -3752,6 +3682,7 @@ public class RFMenuPage {
 		ilpnInRFModifyilpnTxtBox.sendKeys(Keys.ENTER);
 		Thread.sleep(1000);
 		while(SeleniumTestHelper.isElementDisplayed(promptediLPN)) {
+			while(SeleniumTestHelper.isElementDisplayed(promptediLPN)) {
 		//do {
 		//if(SeleniumTestHelper.isElementDisplayed(promptediLPN)) {
 		String iLPN = null;
@@ -3771,7 +3702,7 @@ public class RFMenuPage {
 		Screenshots.captureSnapshot(driver);
 		iLPNInputBx.sendKeys(Keys.ENTER);
 		Thread.sleep(1000); Screenshots.captureSnapshot(driver);
-		//}
+		}
 		if(SeleniumTestHelper.isElementDisplayed(suggestedQty)) {
 		String text= suggestedQty.getText();
 		String split[]= text.split("Qty:");
@@ -3802,7 +3733,8 @@ public class RFMenuPage {
 		Thread.sleep(1000);
 		System.out.println("iLPN3");
 		}
-		}//}while(SeleniumTestHelper.isElementDisplayed(promptediLPN));
+		}
+		//}while(SeleniumTestHelper.isElementDisplayed(promptediLPN));
 		/*
 		* while(SeleniumTestHelper.isElementDisplayed(serialNumbersInput)) {
 		* SeleniumTestHelper.waitForElementToBeDisplayed(driver, serialNumbersInput,
@@ -4566,6 +4498,8 @@ public class RFMenuPage {
 					locationInput.click();
 					Thread.sleep(2000);
 					locationInput.sendKeys(LocBarCode);
+					Items.setupdtLoc(LocBarCode);
+					System.out.println("updtLoc is items.get fata: " + Items.getupdtLoc());
 					/*
 					 * String[] spltarr = sysSuggestedLocSplit[1].split("-"); String str =
 					 * GlobalClass.removeZero(spltarr[1]); System.out.println(str); spltarr[1] =
@@ -4781,6 +4715,81 @@ public class RFMenuPage {
 				Reporter.addStepLog("iLPN is consumed");
 				break;
 			}
+			case "MM3 Cancel oLPN":
+				int ii=0;
+				while (!(SeleniumTestHelper.isElementDisplayed(rfCancelolpnOption))) {
+					pageDown.click();
+				}
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfCancelolpnOption, 50);
+				rfCancelolpnOption.click();
+				Screenshots.captureSnapshot(driver);
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, MM3oLPNInquirytxtBox, 50);
+				System.out.println("Size: "+Items.getoLPNListSize());
+				System.out.println("OlpnStatus: "+Steps.scenarioData.get("OlpnStatus"));
+				System.out.println("canceloLPNFlag: "+Steps.scenarioData.get("canceloLPNFlag"));
+				for(ii=0;ii<Items.getoLPNListSize();ii++) {
+					if(Steps.scenarioData.get("OlpnStatus").equals(Items.getoLPNStatus(ii))) {
+						if(Steps.scenarioData.get("canceloLPNFlag")!="") {
+							if(Integer.parseInt(Steps.scenarioData.get("canceloLPNFlag"))==1) {
+								System.out.println("olpn: "+Items.getoLPN(ii));
+								MM3oLPNInquirytxtBox.sendKeys(Items.getoLPN(ii)+Keys.TAB);
+								Thread.sleep(1000);
+								if(SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {	
+									if(errorOrWarningMsg.getText().contains("oLPN is in shipped status and cannot be cancelled"))
+									{
+										Steps.logger.info(errorOrWarningMsg.getText());
+										Thread.sleep(1000);
+										Screenshots.captureSnapshot(driver);
+										acceptAndProceedBtn.click();
+										Thread.sleep(1000);
+										//Assert.assertEquals(errorOrWarningMsg.getText(), "oLPN is in shipped status and cannot be cancelled","oLPN cancellation status: ");
+										break;
+									}else if(errorOrWarningMsg.getText().contains("oLPN is already in cancelled status"))
+									{
+										Steps.logger.info(errorOrWarningMsg.getText());
+										Thread.sleep(1000);
+										Screenshots.captureSnapshot(driver);
+										acceptAndProceedBtn.click();
+										Thread.sleep(2000);
+										//Assert.assertEquals(errorOrWarningMsg.getText(), "oLPN is already in cancelled status","oLPN cancellation status: ");
+										Assert.assertTrue(false);
+										break;
+
+									}else if(errorOrWarningMsg.getText().contains("Invalid Barcode - Carton / EAN prefix"))
+									{
+										Steps.logger.info(errorOrWarningMsg.getText());
+										Thread.sleep(1000);
+										Screenshots.captureSnapshot(driver);
+										acceptAndProceedBtn.click();
+										Thread.sleep(2000);
+										Assert.assertEquals(errorOrWarningMsg.getText(), "Invalid Barcode - Carton / EAN prefix","oLPN cancellation status: ");
+										Assert.assertTrue(false);
+										break;
+									}
+									/*
+									 * else if (errorOrWarningMsg.getText().contains("Error")) { Thread.sleep(1000);
+									 * Screenshots.captureSnapshot(driver); Steps.testRes = "Failed";
+									 * Assert.assertTrue(false); }
+									 */
+								}else {
+									Steps.logger.info("oLPN is cancelled");
+									Reporter.addStepLog("oLPN is cancelled");
+								}
+								//if(Steps.scenarioData.get("canceloLPNFlag")!="") {
+								//	if(Integer.parseInt(Steps.scenarioData.get("canceloLPNFlag"))==1&& ii==0)
+								//	{
+								//		System.out.println("inside parseint");
+								//		break;
+								//	}
+							break;
+							}
+						}
+					}
+				}
+				
+
+				break;
+			
 			default:
 				System.out.println("Not availalbe");
 				break;

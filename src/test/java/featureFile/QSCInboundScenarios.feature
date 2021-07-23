@@ -13,8 +13,8 @@ Feature: QSC Inbound Scenarios
 #	Then user log out from application 
 
 @QSC_IB001 @Regression_QSC  @Smoke_QSC @QSC_PostPO
-Scenario: Verify ASN creation through Post MessageUI-excel
-Creating ASN through Post Message UI & verifying the response, checking status of the shipment
+Scenario: Verify ASN creation through EDI
+Creating ASN through EDI & checking status of the shipment
 	Given I have excel data
 	| QSC_IBScenario001 |
 	And Open the chrome browser by selenium
@@ -44,6 +44,7 @@ Creating ASN through Post Message UI, checking status of the shipment and comple
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 	And user opens RF menu and completes Putaway using "MM3 Ptwy CASE" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
+	And user open reserve locations and naviagtes to validate iLPN
 	Then user log out from application 
 	
 	@QSC_IB00321 @Regression_QSC  @QSC_Rec&Putaway
@@ -64,6 +65,7 @@ through RF Menu
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 	And user opens RF menu and completes Putaway using "MM3 Ptwy CASE" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
+	And user open reserve locations and naviagtes to validate iLPN
 	Then user log out from application 
 	
 	@QSC_IB003 @Regression_QSC @QSC_BypassStagingLocationRec @Sanity_QSC
@@ -81,6 +83,7 @@ Creating ASN through Post Message UI and complete receiving bypasing through sta
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes "MM3 Rec-CASE-Ptwy" operation in Misc menu
 	Then user opens Inventory by location screen and validates the LPN created  
+	And user open reserve locations and naviagtes to validate iLPN
 	Then user log out from application 
    
 #	@QSC_IB004  @Regression_QSC @QSC_OverReceive
@@ -157,6 +160,7 @@ Creating 2 line ASN through Post Message UI, checking status of the shipment and
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
 	And user opens RF menu and completes Putaway using "MM3 Ptwy CASE" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
+	And user open reserve locations and naviagtes to validate iLPN
 	Then user log out from application 
 
 	
@@ -763,9 +767,9 @@ the ASN Manually & validate new ASN is automatically created with remaining qty 
 #	Then user log out from application
 	
 	
-	@QSC_IB036 @Regression_QSC  @QSC_BulkPutaway
+	@QSC_IB036 @Regression_QSC  @QSC_HeavyItemsPutaway
 Scenario: Bulk Putaway
-Receving ASN & completing Bulk Putaway
+Receving ASN & completing Heavy Items Putaway
 	Given I have excel data
 	| QSC_IBScenario036 |
 	And Open the chrome browser by selenium
@@ -780,11 +784,11 @@ Receving ASN & completing Bulk Putaway
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 	And user opens RF menu and completes Putaway using "MM3 Ptwy CASE" menu
 	And user open reserve locations and naviagtes to validate iLPN
-	Then user log out from application 
+	Then user log out from application
 	
 	@QSC_IB037 @Regression_QSC @QSC_OversizePutaway
-Scenario: Receiving Case : Single Line, Single iLPN
-Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location through RF Menu
+Scenario: Receiving ASN & completing oversized Putaway
+Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location & completing oversized Putaway
 Given I have excel data
 | QSC_IBScenario037 |
 And Open the chrome browser by selenium

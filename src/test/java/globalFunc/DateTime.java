@@ -32,7 +32,7 @@ public class DateTime {
         SimpleDateFormat formatter5 = new SimpleDateFormat("yyMMdd");              
         strDate5= formatter5.format(date);  
         
-        SimpleDateFormat formatter6 = new SimpleDateFormat("yyMMddHHmmss");              
+        SimpleDateFormat formatter6 = new SimpleDateFormat("yyddHHmmss");              
         strDate6= formatter6.format(date);  
         
         SimpleDateFormat formatter11 = new SimpleDateFormat("ddHHmmsss");              

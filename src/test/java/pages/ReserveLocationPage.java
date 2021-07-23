@@ -346,7 +346,7 @@ driver.switchTo().frame(0);
 		expandBtn.click();
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, locationBarcodetxtBox, 20);
-		resvlocnInputBox.sendKeys(Items.getupdtLoc());
+		locationBarcodetxtBox.sendKeys(Items.getupdtLoc());
 		Screenshots.captureSnapshot(driver);
 		//itemInputBox.sendKeys(Steps.ItemDataMap.get(0).get("Item"));
 	//	Screenshots.captureSnapshot(driver);
@@ -356,8 +356,27 @@ driver.switchTo().frame(0);
 		Screenshots.captureSnapshot(driver);
 		//validate if the putaway zone conatins FL1,FL2 or FL3
 		String getPutawayZone = driver.findElement(By.xpath("//span[@id='dataForm:listView:dataTable:0:custId16']")).getText();
-		if(getPutawayZone.startsWith("FL1")||getPutawayZone.startsWith("FL2")||getPutawayZone.startsWith("FL3")) {
-			Assert.assertTrue(true, "putaway zone starts with "+getPutawayZone.subSequence(0, 2));
+		if(Steps.scenarioData.get("PutawayType").equals("Normal")) {
+			if(getPutawayZone.startsWith("DST")||getPutawayZone.startsWith("P5A")||getPutawayZone.startsWith("PL3")||getPutawayZone.startsWith("FL2")) {
+				Assert.assertTrue(true, "putaway zone starts with "+getPutawayZone.subSequence(0, 2));
+			}else {
+				Steps.testRes = "Failed";
+				Assert.assertTrue(false, "Invalid Putaway zone");
+			}
+		}else if(Steps.scenarioData.get("PutawayType").equals("Heavy")) {
+			if(getPutawayZone.startsWith("FL1")) {
+				Assert.assertTrue(true, "putaway zone starts with "+getPutawayZone.subSequence(0, 2));
+			}else {
+				Steps.testRes = "Failed";
+				Assert.assertTrue(false, "Invalid Putaway zone");
+			}
+		}else if(Steps.scenarioData.get("PutawayType").equals("Oversized")) {
+			if(getPutawayZone.startsWith("FL2")) {
+				Assert.assertTrue(true, "putaway zone starts with "+getPutawayZone.subSequence(0, 2));
+			}else {
+				Steps.testRes = "Failed";
+				Assert.assertTrue(false, "Invalid Putaway zone");
+			}
 		}
 		Thread.sleep(2000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, firstRsrvLoc, 20);
@@ -373,10 +392,10 @@ driver.switchTo().frame(0);
 		Thread.sleep(3000);
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNvalue, 20);
-		String iLPNqty =driver.findElement(By.xpath("//span[@id='dataForm:LPNListInOutboundMain_lv:dataTable:0:CTO_LPNListTPM_LPN_Qty_param_out2']")).getText();
-		System.out.println("iLPNqty:"+iLPNqty.substring(0, 3).trim());
-		System.out.println("RecQty:"+String.valueOf(Steps.ItemDataMap.get(0).get("RecQty")));
-		SeleniumTestHelper.assertEquals(Integer.parseInt(iLPNqty.substring(0, 3).trim()), Integer.parseInt(Steps.ItemDataMap.get(0).get("RecQty")));
+		//String iLPNqty =driver.findElement(By.xpath("//span[@id='dataForm:LPNListInOutboundMain_lv:dataTable:0:CTO_LPNListTPM_LPN_Qty_param_out2']")).getText();
+		//System.out.println("iLPNqty:"+iLPNqty.substring(0, 3).trim());
+		//System.out.println("RecQty:"+String.valueOf(Steps.ItemDataMap.get(0).get("RecQty")));
+	//	SeleniumTestHelper.assertEquals(Integer.parseInt(iLPNqty.substring(0, 3).trim()), Integer.parseInt(Steps.ItemDataMap.get(0).get("RecQty")));
 		
 		/*
 		 * if(iLPN.equals(RFMenuPage.iLPNz.get(j))) {
