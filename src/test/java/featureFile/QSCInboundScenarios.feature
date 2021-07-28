@@ -768,7 +768,7 @@ the ASN Manually & validate new ASN is automatically created with remaining qty 
 	
 	
 	@QSC_IB036 @Regression_QSC  @QSC_HeavyItemsPutaway
-Scenario: Bulk Putaway
+Scenario: Heavy Items Putaway
 Receving ASN & completing Heavy Items Putaway
 	Given I have excel data
 	| QSC_IBScenario036 |
@@ -804,6 +804,27 @@ Then user opens ASN screen and searches for the ASN and verify its status "40 - 
 And user opens RF menu and completes Putaway using "MM3 Ptwy OverSized" menu
 And user open reserve locations and naviagtes to validate iLPN
 Then user log out from application
+	
+	
+@QSC_IB038 @Regression_QSC  @QSC_NormalItemsPutaway
+Scenario: Normal Items Putaway
+Receving ASN & completing Normal Items Putaway
+	Given I have excel data
+	| QSC_IBScenario038 |
+	And Open the chrome browser by selenium
+	When user update "Single Line PO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
+	And user opens RF menu and completes Putaway using "MM3 Ptwy CASE" menu
+	And user open reserve locations and naviagtes to validate iLPN
+	Then user log out from application	
+	
 	
 	@QSC_IB042 @Regression_QSC  @QSC_PackCasefromTransitional
 Scenario:  MM3 RF Pack Case from Transitional

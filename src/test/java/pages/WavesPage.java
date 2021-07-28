@@ -244,9 +244,9 @@ public class WavesPage {
 		Thread.sleep(2000);
 		String oLPN = driver.findElement(By.id("dataForm:Tab1_D29")).getText();
 		System.out.println("oLPN Number is: "+oLPN);
-		Reporter.addStepLog("oLPN Number is: "+getoLPNNumber.getText());
-		Steps.logger.info("oLPN Number is: "+getoLPNNumber.getText());
-		homepage.user_closes_openedwindow("Waves - Tasks");
+		Reporter.addStepLog("oLPN Number is: "+oLPN);
+		Steps.logger.info("oLPN Number is: "+oLPN);
+		homepage.userClosesOpenedwindow("Waves - Task Details");
 		return oLPN;
 	}
 	public String GetTheTaskinCompleteStatus() throws Exception {

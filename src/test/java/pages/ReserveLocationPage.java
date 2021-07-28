@@ -356,25 +356,33 @@ driver.switchTo().frame(0);
 		Screenshots.captureSnapshot(driver);
 		//validate if the putaway zone conatins FL1,FL2 or FL3
 		String getPutawayZone = driver.findElement(By.xpath("//span[@id='dataForm:listView:dataTable:0:custId16']")).getText();
+		Reporter.addStepLog("Putaway zone in reserve location is: " + getPutawayZone);
 		if(Steps.scenarioData.get("PutawayType").equals("Normal")) {
 			if(getPutawayZone.startsWith("DST")||getPutawayZone.startsWith("P5A")||getPutawayZone.startsWith("PL3")||getPutawayZone.startsWith("FL2")) {
+				Reporter.addStepLog("Putaway zone in reserve location is for Normal item");
 				Assert.assertTrue(true, "putaway zone starts with "+getPutawayZone.subSequence(0, 2));
+				
 			}else {
 				Steps.testRes = "Failed";
+				Reporter.addStepLog("Putaway zone in reserve location is for Normal item in not "+getPutawayZone);
 				Assert.assertTrue(false, "Invalid Putaway zone");
 			}
 		}else if(Steps.scenarioData.get("PutawayType").equals("Heavy")) {
 			if(getPutawayZone.startsWith("FL1")) {
+				Reporter.addStepLog("Putaway zone in reserve location is for Heavy item");
 				Assert.assertTrue(true, "putaway zone starts with "+getPutawayZone.subSequence(0, 2));
 			}else {
 				Steps.testRes = "Failed";
+				Reporter.addStepLog("Putaway zone in reserve location is for Heavy item in not "+getPutawayZone);
 				Assert.assertTrue(false, "Invalid Putaway zone");
 			}
 		}else if(Steps.scenarioData.get("PutawayType").equals("Oversized")) {
 			if(getPutawayZone.startsWith("FL2")) {
+				Reporter.addStepLog("Putaway zone in reserve location is for Oversized item");
 				Assert.assertTrue(true, "putaway zone starts with "+getPutawayZone.subSequence(0, 2));
 			}else {
 				Steps.testRes = "Failed";
+				Reporter.addStepLog("Putaway zone in reserve location is for Oversized item in not "+getPutawayZone);
 				Assert.assertTrue(false, "Invalid Putaway zone");
 			}
 		}

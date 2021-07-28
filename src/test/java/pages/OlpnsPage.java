@@ -47,6 +47,8 @@ public class OlpnsPage {
 
 	@FindBy(xpath = "//input[contains(@name,'checkAll_c0_dataForm:')]")
 	public WebElement oLPNchkbox;
+	
+	
 
 	@FindBy(xpath = "//input[@value='View']")
 	public WebElement viewBtn;
@@ -65,6 +67,10 @@ public class OlpnsPage {
 
 	@FindBy(xpath = "//input[@id='dataForm:LPNListInOutboundMain_lv:LPNList_Outbound_filterId1:savedapply']")
 	public WebElement applyonSaved;
+	
+	@FindBy(xpath = "//span[@id='dataForm:listView:dataTable:0:CTO_LPNListTPM_LPN_Qty_param_out2']")
+	public WebElement olPNQty;
+	
 
 	@FindBy(xpath = "//input[contains(@id,'savedapply')]")
 	public WebElement apply_Btn;
@@ -132,8 +138,18 @@ public class OlpnsPage {
     @FindBy(xpath="//span[@id='dataForm:ViewLPNHeader_ShipVia_param_out66']")
     public WebElement shipvia;
     
+    @FindBy(xpath="//a[text()='Override']")
+    public WebElement OverrideLink;
+    
+    
+  
     @FindBy(id="LPNListOutboundMain_commandbutton_AdjustoLPN")
     public WebElement adjustBtn;
+    
+    @FindBy(xpath="//input[@id='rmButton_1Cancel1_154184000']")
+    public WebElement CancelBtn;
+    
+ 
     
     @FindBy(className="overlaypopclose")
     public WebElement popcloseBtn;
@@ -144,6 +160,9 @@ public class OlpnsPage {
 
     @FindBy(id="dataForm:invnUpdatesSelect")
     public WebElement inveentoryUpdateOption;
+    
+    @FindBy(id="dataForm:transInvnTypeSelect")
+    public WebElement transInvnTypeOption;
     
     @FindBy(id="SrlNbrTab_lnk")
     public WebElement SrlNbrTab_lnk;
@@ -277,7 +296,13 @@ public class OlpnsPage {
 			//WebElement inveentoryUpdateOption = driver.findElement(By.id("dataForm:invnUpdatesSelect"));
 			Select selectinveentoryUpdate = new Select(inveentoryUpdateOption);
 			
-			selectinveentoryUpdate.selectByVisibleText("Case pick");
+			selectinveentoryUpdate.selectByVisibleText("Transitional invn");
+			Thread.sleep(3000);
+			SeleniumTestHelper.WaitForElement(transInvnTypeOption, 3);
+			Select selectTransInveentoryType = new Select(transInvnTypeOption);
+			
+			selectTransInveentoryType.selectByVisibleText("USER defined - B052");
+			
 			Reporter.addStepLog("Inventory Update : Case pick Selected");
 			Steps.logger.info("Inventory Update : Case pick Selected");
 			Thread.sleep(1000);
@@ -337,21 +362,43 @@ public class OlpnsPage {
 			//System.out.println(driver.findElement(By.className("overlayerrorList")).getText());
 			Thread.sleep(3000);
 			if(Steps.scenarioData.get("AdjustmentValue").equals("Increment")) {
+				if(SeleniumTestHelper.isElementDisplayed(driver.findElement(By.className("overlayerrorList")))){
 				Assert.assertEquals(driver.findElement(By.className("overlayerrorList")).getText(),"Pulled Quantity Exceeds Allocated Quantity!","values expected and actual");
 				Reporter.addStepLog("Pulled Quantity Exceeds Allocated Quantity!");
 				Steps.logger.info("Pulled Quantity Exceeds Allocated Quantity!");
+				pop_closeBtn.click();
+				Steps.logger.info("Close pop up");
+				Thread.sleep(3000);
+				
+				cancelBtnAdjustOlpnPage.click();
+				Steps.logger.info("Click on cancel button");
+				
+				}
+				
 			}else if (Steps.scenarioData.get("AdjustmentValue").equals("Decrement")) {
-				Assert.assertEquals(driver.findElement(By.className("overlayerrorList")).getText(),"Reducing the quantity can result in some Order Line Items getting cancelled. You will not be able to revive cancelled lines.Override","values expected and actual");
-				Reporter.addStepLog("Reducing the quantity can result in some Order Line Items getting cancelled. You will not be able to revive cancelled lines.Override");
-				Steps.logger.info("Reducing the quantity can result in some Order Line Items getting cancelled. You will not be able to revive cancelled lines.Override");
-			}
+				if(SeleniumTestHelper.isElementDisplayed(driver.findElement(By.className("overlayerrorList")))){
+					if(driver.findElement(By.className("overlayerrorList")).getText().contains("Override")) {
+						OverrideLink.click();
+						
+						Steps.logger.info("Clicked on Override button");
+						Reporter.addStepLog("Clicked on Override button");
+						Thread.sleep(3000);
+						CancelBtn.click();
+				//Assert.assertEquals(driver.findElement(By.className("overlayerrorList")).getText(),"Reducing the quantity can result in some Order Line Items getting cancelled. You will not be able to revive cancelled lines.Override","values expected and actual");
+				//Reporter.addStepLog("Reducing the quantity can result in some Order Line Items getting cancelled. You will not be able to revive cancelled lines.Override");
+				//Steps.logger.info("Reducing the quantity can result in some Order Line Items getting cancelled. You will not be able to revive cancelled lines.Override");
+				
+						SeleniumTestHelper.isElementDisplayed(olPNQty);
+						if(olPNQty.getText().contains("1")) {
+							Assert.assertTrue(true);
+							System.out.println("oh yes");
+						}else {
+							Assert.assertTrue(false);
+							System.out.println("oh nononono");
+						}
+					}}}
 			//driver.findElement(By.className("pop_close")).click();
-			pop_closeBtn.click();
-			Steps.logger.info("Close pop up");
-			Thread.sleep(3000);
 			
-			cancelBtnAdjustOlpnPage.click();
-			Steps.logger.info("Click on cancel button");
 		}else if (oLPNStatus.equals("90 - Shipped")) {
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			//System.out.println(driver.getWindowHandle());

@@ -128,7 +128,8 @@ public WebDriver driver;
 		
 		
 		HomePage homepage=new HomePage();
-		Thread.sleep(3000);
+		Thread.sleep(10000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrdersPage1.primaryField, 50);
 		distributionOrdersPage1.primaryField.sendKeys("Distribution Order");
 		TCShipmentID.click();
 		TCShipmentID.sendKeys(Items.getDONumber());
