@@ -79,6 +79,8 @@ public class CreateBrowser {
 				System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("--start-maximized");
+				options.setAcceptInsecureCerts(true);
+				options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 				Map<String, Object> prefs = new HashMap<String, Object>();
 				prefs.put("plugins.plugins_disabled", new String[] { "Chrome PDF Viewer"});
 				prefs.put("plugins.always_open_pdf_externally", true);
