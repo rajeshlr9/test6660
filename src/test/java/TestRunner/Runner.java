@@ -22,7 +22,7 @@ import utils.ExtentReportUpdate;
 @CucumberOptions(
 		strict = true,
 		dryRun = false,
-		tags={"@tag5"}, 
+		tags={"@QSC_OB001"}, 
 		features = {"src\\test\\java\\featureFile"},
 		glue = {"StepDefinition"},
 		//  format = { "pretty","html:resources\\cucumber-reports\\cucumber-report.html"},

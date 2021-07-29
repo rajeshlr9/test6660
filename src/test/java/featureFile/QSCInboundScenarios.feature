@@ -12,7 +12,7 @@ Feature: QSC Inbound Scenarios
 #	When user logs into Manhattan application using "Supervisor" Credentials
 #	Then user log out from application 
 
-@QSC_IB001 @Regression_QSC  @Smoke_QSC @QSC_PostPO
+@QSC_IB001 @Regression_QSC  @Smoke_QSC @QSC_EDIOrderReceiving
 Scenario: Verify ASN creation through EDI
 Creating ASN through EDI & checking status of the shipment
 	Given I have excel data
@@ -205,7 +205,7 @@ Receiving of Un-Delivered Product using blind receipt in MM3 Rtrn/Ovrg menu and 
 #	Then validates that the iLPN is also moved to inspection zone "QC111A1"
 #	Then user log out from application
 	
-	@QSC_IB009 @Regression_QSC @QSC_DamagedReceive
+	@QSC_IB009 @Regression_QSC @QSC_DamagedReceivePutaway
 Scenario: B-459309 Receive Damages- Receiving Damaged Product using MM3 Recv-Damages & Putaway
 Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verifying the status of the ASN & completing Putaway
 	Given I have excel data
@@ -767,7 +767,7 @@ the ASN Manually & validate new ASN is automatically created with remaining qty 
 #	Then user log out from application
 	
 	
-	@QSC_IB036 @Regression_QSC  @QSC_HeavyItemsPutaway
+	@QSC_IB036 @Regression_QSC  @QSC_Putaway
 Scenario: Heavy Items Putaway
 Receving ASN & completing Heavy Items Putaway
 	Given I have excel data
@@ -786,7 +786,7 @@ Receving ASN & completing Heavy Items Putaway
 	And user open reserve locations and naviagtes to validate iLPN
 	Then user log out from application
 	
-	@QSC_IB037 @Regression_QSC @QSC_OversizePutaway
+	@QSC_IB037 @Regression_QSC @QSC_Putaway
 Scenario: Receiving ASN & completing oversized Putaway
 Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location & completing oversized Putaway
 Given I have excel data
@@ -806,7 +806,7 @@ And user open reserve locations and naviagtes to validate iLPN
 Then user log out from application
 	
 	
-@QSC_IB038 @Regression_QSC  @QSC_NormalItemsPutaway
+@QSC_IB038 @Regression_QSC  @QSC_Putaway
 Scenario: Normal Items Putaway
 Receving ASN & completing Normal Items Putaway
 	Given I have excel data

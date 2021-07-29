@@ -634,4 +634,118 @@ public class Xpathxml {
 	
 	
 	}
+	
+	
+	public void user_modify_EDI_file(String xmlType,String TrnsprtSvcLvl1,String TrnsprtSCAC1) throws FileNotFoundException, XPathExpressionException, IOException, SAXException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
+		String currTime= current_date_time();
+		String PODONumber = currTime;
+		
+		String path=null;
+		if(xmlType.contains("PO")) {
+			path=inputEDIInboundFilePath;
+			Items.setPONumber(PODONumber);
+			String ASNno= PODONumber+"-1";
+			Items.setAsnNumber(ASNno);
+			Steps.logger.info("ASNNumber: "+Items.getAsnNumber());
+			Steps.logger.info("PONumber: "+Items.getPONumber());
+			Reporter.addStepLog("ASNNumber: "+Items.getAsnNumber());
+			Reporter.addStepLog("PONumber: "+Items.getPONumber());
+			
+			String itemName = null;
+			String shpQty = null;
+			String uom = null;
+			for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
+				itemName = Steps.ItemDataMap.get(i).get("Item");
+				ModifyXmlfile(ASNItemName(i + 1), itemName, path);
+				System.out.println("Item : " + itemName + " has been updated successfully");
+				Steps.logger.info("Item : " + itemName + " has been updated successfully");
+				
+				shpQty = Steps.ItemDataMap.get(i).get("ShippedQty");
+				ModifyXmlfile(ASNQty(i + 1), shpQty, path);
+				System.out.println("Shipped Qty : " + shpQty + " has been updated successfully");
+				Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
+				
+				uom = Steps.ItemDataMap.get(i).get("UOM");
+				ModifyXmlfile(ASNItemUOM(i + 1), uom, path);
+				System.out.println("QtyUOM : " + uom + " has been updated successfully");
+				Steps.logger.info("QtyUOM : " + uom + " has been updated successfully");
+
+				Items.setItemsForReceivingASN(itemName);
+				Items.setItemWithShippedASNQty(itemName, Integer.parseInt(shpQty));
+				Items.setItemWithQtyUOM(itemName, uom);
+				Reporter.addStepLog("Item Id- " + Steps.ItemDataMap.get(i).get("Item") + ", Shipped Qty- "
+						+ Steps.ItemDataMap.get(i).get("ShippedQty"));
+			}
+			
+		}else if(xmlType.contains("DO")) {
+			path=inputEDIOutboundFilePath;
+			Items.setDONumber(PODONumber);
+			Steps.logger.info("DO Number: "+PODONumber);
+			Reporter.addStepLog("DO Number: "+PODONumber);
+			
+			String itemName = null;
+			String shpQty = null;
+			String uom = null;
+			String TrnsprtSvcLvl = null;
+			String TrnsprtSCAC = null;
+			
+			for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
+				
+				itemName = Steps.ItemDataMap.get(i).get("Item");
+				ModifyXmlfile(DOItem(i+1), itemName, path);
+				System.out.println("Item : " + itemName + " has been updated successfully");
+				Steps.logger.info("Item : " + itemName + " has been updated successfully");
+				
+				shpQty = Steps.ItemDataMap.get(i).get("ShippedQty");
+				ModifyXmlfile(DOQty(i+1), shpQty, path);
+				System.out.println("Shipped Qty : " + shpQty + " has been updated successfully");
+				Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
+				
+				uom = Steps.ItemDataMap.get(i).get("UOM");
+				ModifyXmlfile(DOItemUOM(i+1), uom, path);
+				System.out.println("QtyUOM : " + uom + " has been updated successfully");
+				Steps.logger.info("QtyUOM : " + uom + " has been updated successfully");
+				
+				//Rakesh
+				TrnsprtSvcLvl = TrnsprtSvcLvl1;
+				ModifyXmlfile(DOTrnsprtSvcLvl(i+1), TrnsprtSvcLvl, path);
+				System.out.println("TrnsprtSvcLvl : " + TrnsprtSvcLvl + " has been updated successfully");
+				Steps.logger.info("TrnsprtSvcLvl : " + TrnsprtSvcLvl + " has been updated successfully");
+				
+				TrnsprtSCAC = TrnsprtSCAC1;
+				ModifyXmlfile(DOTrnsprtSCAC(i+1), TrnsprtSCAC, path);
+				System.out.println("TrnsprtSCAC : " + TrnsprtSCAC + " has been updated successfully");
+				Steps.logger.info("TrnsprtSCAC : " + TrnsprtSCAC + " has been updated successfully");
+				
+				
+				Items.setProductsForDistOrder(itemName);
+				Items.setItemWithShippedQtyDO(itemName, Integer.parseInt(shpQty));
+				Items.setItemWithQtyUOMDO(itemName, uom);
+				Items.setItemOrderTrnsprtSvcLvlDO(TrnsprtSvcLvl);
+				Items.setItemOrderTrnsprtSCACDO(TrnsprtSCAC);
+				
+				Reporter.addStepLog("Item Id- " + Steps.ItemDataMap.get(i).get("Item") + ", Shipped Qty- "
+						+ Steps.ItemDataMap.get(i).get("ShippedQty"));		
+		}
+		}
+		
+		
+		File fileToBeModified = new File(path);
+		String oldContent = "";
+		BufferedReader reader = new BufferedReader(new FileReader(fileToBeModified));
+		String line = reader.readLine();
+		while (line != null) {
+			oldContent = oldContent + line + System.lineSeparator();
+			line = reader.readLine();
+		}
+		globalFunc.DateTime.TimeDateFunc();
+		String newContent = oldContent.replaceAll("yyyymmdd", globalFunc.DateTime.strDate2);
+		String newcontent_ship = newContent.replaceAll("yymmdd", PODONumber);
+		FileWriter writer = new FileWriter(path);
+		writer.write(newcontent_ship);
+		reader.close();
+		writer.close();
+	
+	
+	}
 }

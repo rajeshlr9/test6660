@@ -300,6 +300,21 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
+	
+	@When("^user update \"([^\"]*)\" for dropping into fedexnet application with \"([^\"]*)\",\"([^\"]*)\"$")
+	public void user_update_for_dropping_into_fedexnet_application_with(String arg1, String arg2, String arg3) throws Throwable {
+		try {
+			Steps.logger.info("XML updation started");
+			xmlInput.user_create_EDI_file(arg1);
+			xmlInput.user_modify_EDI_file(arg1,arg2,arg3);
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
+	
 
 	@And("^user update xml itemDetails from excel sheet$")
 	public void user_update_xml_itemDetails_from_sheet_for_Scenario() throws Exception {
