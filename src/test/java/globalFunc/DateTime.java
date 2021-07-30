@@ -74,9 +74,9 @@ public class DateTime {
 	public static String current_date_time() {
 		String strDate6=null;
 		Date date = new Date();
-		SimpleDateFormat formatter6 = new SimpleDateFormat("yyMMddHHmmss");              
+		SimpleDateFormat formatter6 = new SimpleDateFormat("yyyyMMddHHmmssSSS");              
 	     strDate6= formatter6.format(date);
-	     return strDate6;
+	     return "000"+strDate6;
 	}
 	
 }

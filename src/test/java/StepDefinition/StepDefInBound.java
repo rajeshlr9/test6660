@@ -790,10 +790,12 @@ public class StepDefInBound {
 			for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 				int actualQty = itemInvenByLocationPage.GetLPNQuantityByItemandLoc(Items.getItemsForReceivingASN(i),
 						rfMenu.newSysSuggestedLoc, rfMenu.LPNVal);
+			System.out.println(actualQty);
 				SeleniumTestHelper.assertEquals(actualQty, Integer.parseInt(Steps.ItemDataMap.get(i).get("RecQty")));
 				//Reporter.addStepLog("Actual Qty is- " + actualQty + " & Expected qty is- "
 					//	+ Integer.parseInt(Steps.ItemDataMap.get(i).get("RecQty")));
 				Reporter.addStepLog("iLPN is created & it matches the qty received");
+				homePage.user_closes_openedwindow("Item Inventory by Location - iLPNs");
 			}
 		} catch (Exception e) {
 			Steps.testRes = "Failed";

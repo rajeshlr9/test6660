@@ -2745,8 +2745,8 @@ public class RFMenuPage {
 			
 			
 
-			case "MM3 split OLPN":
-
+			case "MM3 split OLPN":	
+					//MM3 Split Cmbne oLPN	
 				while (!(SeleniumTestHelper.isElementDisplayed(SplitCmbneoLPN))) {
 					pageDown.click();
 					Thread.sleep(5000);
@@ -4355,7 +4355,7 @@ public class RFMenuPage {
 			Thread.sleep(2000);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuMisc, 50);
 			rfMenuMisc.click();
-			Steps.logger.info("Clicked on Receiving");
+			Steps.logger.info("Clicked on Miscellaneous Menu");
 			Screenshots.captureSnapshot(driver);
 			switch (operation) {
 			case "MM3 Rec-CASE-Ptwy":
@@ -4790,6 +4790,120 @@ public class RFMenuPage {
 
 				break;
 			
+			case "MM3 split OLPN":	
+				//MM3 Split Cmbne oLPN	
+			while (!(SeleniumTestHelper.isElementDisplayed(SplitCmbneoLPN))) {
+				pageDown.click();
+				Thread.sleep(5000);
+			}
+			SeleniumTestHelper.assertTrue(SplitCmbneoLPN.isDisplayed());
+			Screenshots.captureSnapshot(driver);
+			SplitCmbneoLPN.click();
+			Steps.logger.info("Click on splitCmbneoLPN method");
+			Thread.sleep(3000);
+			Screenshots.captureSnapshot(driver);
+			Steps.logger.info("Enter the value of oLPN: " + Items.getoLPN(0));
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, SplitFromoLPNtextbox, 20);
+			SplitFromoLPNtextbox.sendKeys(Items.getoLPN(0));
+			Thread.sleep(1000);
+			Screenshots.captureSnapshot(driver);
+			if(SeleniumTestHelper.isElementDisplayed(SplitFromoLPNtextbox)) {
+			SplitFromoLPNtextbox.sendKeys(Keys.ENTER);
+			}
+			Thread.sleep(3000);				
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver,SplitToLPNtextbox, 20);
+			splittedolpn=DateTime.current_date_time();	
+			System.out.println(splittedolpn);
+			SplitToLPNtextbox.sendKeys(splittedolpn);
+			Thread.sleep(1000);
+			Screenshots.captureSnapshot(driver);
+			if(SeleniumTestHelper.isElementDisplayed(SplitToLPNtextbox)) {
+			SplitToLPNtextbox.sendKeys(Keys.ENTER);
+			}
+			Screenshots.captureSnapshot(driver);
+			Steps.logger.info("New oLPN created to split the qty: "+splittedolpn);
+			Thread.sleep(2000);
+			
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver,Splititembarcodetextbox, 20);
+
+				System.out.println("Item" + Steps.ItemDataMap.get(0).get("Item"));											
+				Splititembarcodetextbox.sendKeys(Steps.ItemDataMap.get(0).get("Item"));									
+				Screenshots.captureSnapshot(driver);
+				Splititembarcodetextbox.sendKeys(Keys.ENTER);
+			Thread.sleep(2000);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver,SplititQtytextbox, 20);
+				SplititQtytextbox.sendKeys(Steps.ItemDataMap.get(0).get("SplitoLPNQty"));							
+				Screenshots.captureSnapshot(driver);
+				SplititQtytextbox.sendKeys(Keys.ENTER);
+				Thread.sleep(5000);
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 10);
+				RFmenu_info.click();
+				Thread.sleep(2000);
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, EndoLPN, 10);
+				EndoLPN.click();
+
+			Steps.logger.info(Steps.ItemDataMap.get(0).get("SplitoLPNQty")+ " qty is splitted from oLPN "+Items.getoLPN(0)+" to oLPN "+ splittedolpn+ " for Item "+Steps.ItemDataMap.get(0).get("Item"));
+			Reporter.addStepLog(Steps.ItemDataMap.get(0).get("SplitoLPNQty")+ " qty is splitted from oLPN "+Items.getoLPN(0)+" to oLPN "+ splittedolpn+ " for Item "+Steps.ItemDataMap.get(0).get("Item"));
+			break;
+
+			//JAYAREDDY
+		case "MM3 cmbne OLPN":
+			//Cmbne OLPN functionality 
+
+			while (!(SeleniumTestHelper.isElementDisplayed(SplitCmbneoLPN))) {
+				pageDown.click();
+				Thread.sleep(5000);
+			}
+			SeleniumTestHelper.assertTrue(SplitCmbneoLPN.isDisplayed());
+			Screenshots.captureSnapshot(driver);
+			SplitCmbneoLPN.click();
+			Steps.logger.info("Click on SplitCmbneoLPN method");
+			Thread.sleep(3000);
+			Screenshots.captureSnapshot(driver);
+			Steps.logger.info("Enter the value of oLPN: " + Items.getoLPN(0));
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, SplitFromoLPNtextbox, 20);
+			SplitFromoLPNtextbox.sendKeys(Items.getoLPN(0));
+			Screenshots.captureSnapshot(driver);
+			Thread.sleep(2000);
+			if(SeleniumTestHelper.isElementDisplayed(SplitFromoLPNtextbox)) {
+				SplitFromoLPNtextbox.sendKeys(Keys.ENTER);
+			}
+			Thread.sleep(1000);	
+
+			Screenshots.captureSnapshot(driver);
+			Steps.logger.info("Enter the value of oLPN: " + Items.getoLPN(1));
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, SplitToLPNtextbox, 20);
+			SplitToLPNtextbox.sendKeys(Items.getoLPN(1));
+			Screenshots.captureSnapshot(driver);
+			Thread.sleep(2000);
+			if (SeleniumTestHelper.isElementDisplayed(SplitToLPNtextbox)) {
+			SplitToLPNtextbox.sendKeys(Keys.ENTER);
+			}
+			Thread.sleep(2000);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver,Splititembarcodetextbox, 20);
+
+				Steps.logger.info("Item-" + Steps.ItemDataMap.get(0).get("Item"));						
+				Splititembarcodetextbox.sendKeys(Steps.ItemDataMap.get(0).get("Item"));									
+				Screenshots.captureSnapshot(driver);
+				Splititembarcodetextbox.sendKeys(Keys.ENTER);
+				Steps.logger.info("Entered barcode number");
+			Thread.sleep(2000);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver,SplititQtytextbox, 20);
+				Steps.logger.info("CmbneOLPNQty" + Steps.ItemDataMap.get(0).get("CmbneOLPNQty"));
+				SplititQtytextbox.sendKeys(Steps.ItemDataMap.get(0).get("CmbneOLPNQty"));							
+				Screenshots.captureSnapshot(driver);
+				SplititQtytextbox.sendKeys(Keys.ENTER);
+				Thread.sleep(5000);
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 10);
+				RFmenu_info.click();
+				Thread.sleep(1000);
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, EndoLPN, 10);
+				EndoLPN.click();
+				Steps.logger.info(Steps.ItemDataMap.get(0).get("CmbneOLPNQty")+ " qty is combined from oLPN "+Items.getoLPN(0)+" to oLPN "+ Items.getoLPN(1)+ " for Item "+Steps.ItemDataMap.get(0).get("Item"));
+				Reporter.addStepLog(Steps.ItemDataMap.get(0).get("CmbneOLPNQty")+ " qty is combined from oLPN "+Items.getoLPN(0)+" to oLPN "+ Items.getoLPN(1)+ " for Item "+Steps.ItemDataMap.get(0).get("Item"));
+			break;		
+				
 			default:
 				System.out.println("Not availalbe");
 				break;

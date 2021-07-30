@@ -262,7 +262,8 @@ Scenario: Spliting the OLPN at Printed status
 	And user runs the "LTL Pick Wave" 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
 	Then fetch the OLPN number
-	Then user opens RF menu and perform "MM3 split OLPN" operation in inventory menu	
+	#Then user opens RF menu and perform "MM3 split OLPN" operation in inventory menu	
+	And user opens RF menu and completes "MM3 split OLPN" operation in Misc menu
 	Then user opens the OLPN screen and verify the splitted oLPNS status
 	Then user log out from application
 	
@@ -278,14 +279,16 @@ Scenario: Spliting the OLPN at Weighed status
 	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
-	And user runs the "Standard wave" 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
+	And user runs the "LTL Pick Wave" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
 	And user open Task screen & verifies task is created for DO in the wave process 
-	And user open RF Menu and complete the tasks created 
-	Then user open Task screen & validates the status of tasks 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed" 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
 	Then fetch the OLPN number
-	Then user opens RF menu and perform "MM3 split OLPN" operation in inventory menu	
+	#Then user opens RF menu and perform "MM3 split OLPN" operation in inventory menu	
+	And user opens RF menu and completes "MM3 split OLPN" operation in Misc menu
 	Then user opens the OLPN screen and verify the splitted oLPNS status
 	Then user log out from application
 	
@@ -301,10 +304,11 @@ Scenario: Combine the OLPN at printed status
 	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
-	And user runs the "Standard wave" 
+	And user runs the "LTL Pick Wave" 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
 	Then fetch the OLPN number
-	Then user opens RF menu and perform "MM3 cmbne OLPN" operation in inventory menu	
+	#Then user opens RF menu and perform "MM3 cmbne OLPN" operation in inventory menu
+	And user opens RF menu and completes "MM3 cmbne OLPN" operation in Misc menu	
 	Then user opens the OLPN screen and verify the combined oLPNS status
 	Then user log out from application	
 	
@@ -320,14 +324,16 @@ Scenario: Combine the OLPN at weighed status
 	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
-	And user runs the "Standard wave" 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
+	And user runs the "LTL Pick Wave" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
 	And user open Task screen & verifies task is created for DO in the wave process 
-	And user open RF Menu and complete the tasks created 
-	Then user open Task screen & validates the status of tasks 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed" 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
 	Then fetch the OLPN number
-	Then user opens RF menu and perform "MM3 cmbne OLPN" operation in inventory menu	
+	#Then user opens RF menu and perform "MM3 cmbne OLPN" operation in inventory menu	
+	And user opens RF menu and completes "MM3 cmbne OLPN" operation in Misc menu
 	Then user opens the OLPN screen and verify the combined oLPNS status
 	Then user log out from application	
 	
@@ -450,13 +456,17 @@ Scenario: Cancel OLPN - Cancel the OLPN at Weighed status (MultiLine Sceanrios)
 	And user runs the "LTL Pick Wave" 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
 	And user open Task screen & verifies task is created for DO in the wave process 
-	And user open RF Menu and complete a single task created 
-	Then user open Task screen & validate the status of single task
-	And user opens DO screen and searches for the DistributionOrder and verify its status "140 - In Packing" 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
+	#And user open Task screen & verifies task is created for DO in the wave process 
+	#And user open RF Menu and complete a single task created 
+	#Then user open Task screen & validate the status of single task
+	#And user opens DO screen and searches for the DistributionOrder and verify its status "140 - In Packing" 
 	Then fetch the OLPN number 
 	And user opens RF menu and completes "MM3 Cancel oLPN" operation in Misc menu 
 	And user verifies the oLPN details in Distribuion Order page 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed" 
 	And validates the PIX message "620 - Order transactions"
 	Then user log out from application 
 	
