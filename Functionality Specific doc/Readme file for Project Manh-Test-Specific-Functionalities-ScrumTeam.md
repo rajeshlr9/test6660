@@ -3,7 +3,7 @@ Readme File - Project Manh-Test-Specific-Functionalities-ScrumTeam
 Below are the parameters configured for this job
  
 
-1.	Environment- This dropdown allows you to select the environment where you want to run the scripts. User can select any 1 environment from the below list (DEV, TEST, STAGE)
+1.	Environment- This dropdown allows you to select the environment where you want to run the scripts. User can select any 1 environment from the below list (L1,L2..)
  
 
 2.	Customer- This dropdown allows you to select the customer for which you want to run the scripts. User can select any 1 customer from the drop down and depending on the customer selected the functionalities of that customer will be loaded automatically.
@@ -22,3 +22,7 @@ User can select multiple functionalities at once by selecting multiple check box
  
 
 6.	Mail_to- This text box allows user to input their Email address. Whenever the job will be executed completely, a HTML report will be sent to the given Email address.
+
+7. Enable_screenshot - Allows you to get the flow level screenshots in the form of a word document attached with the mail.
+
+8. View_Report_on_Static_Server - Helps us view the report by logging into a remote server. this is only accessible from OCI windows system as this is built in OCI platform.

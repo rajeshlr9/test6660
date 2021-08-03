@@ -509,7 +509,7 @@ public class PixTransactionPage {
 		Thread.sleep(2000);
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.switchToInnerFrame(driver);
-
+		Thread.sleep(5000);
 		SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 120);
 		quickFilter.click();
 		SeleniumTestHelper.waitForElementToBeClickable(driver, savedFilter, 50);
