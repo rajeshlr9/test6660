@@ -25,4 +25,4 @@ User can select multiple functionalities at once by selecting multiple check box
 
 7. Enable_screenshot - Allows you to get the flow level screenshots in the form of a word document attached with the mail.
 
-8. View_Report_on_Static_Server - Helps us view the report by logging into a remote server. this is only accessible from OCI windows system as this is built in OCI platform.
+

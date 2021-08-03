@@ -99,6 +99,12 @@ public class RFMenuPage {
 	@FindBy(xpath = "//div[@class='error']")
 	public WebElement errorOrWarningMsg;
 
+	@FindBy(xpath = "//input[@name='HardCheckErrorerrorMode']")
+	public WebElement errorMsg;
+	
+	@FindBy(xpath = "//input[@name='SoftCheckErrorerrorMode']")
+	public WebElement warningMsg;
+	
 	@FindBy(id = "dataForm:rtdcode")
 	public WebElement returnCode;
 
@@ -2924,6 +2930,26 @@ public class RFMenuPage {
 								String.valueOf(Steps.ItemDataMap.get(i).get("ShippedQty")) + " qty is received in LPN "
 										+ iLPNz.get(i) + " for Item- " + Steps.ItemDataMap.get(i).get("Item"));
 					}
+					if (SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
+						SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
+						if (errorOrWarningMsg.getText().contains("Error")) {
+							System.out.println("Info :- " + errorOrWarningMsg.getText());
+							Steps.logger.info(errorOrWarningMsg.getText());
+							globalFunc.Screenshots.seleniumSnapshot(driver);
+							Steps.testRes = "Failed";
+							Assert.assertTrue(false);
+							//Screenshots.addingScreenshottoExentReport();
+							//	acceptAndProceedBtn.click();
+							//	Screenshots.captureSnapshot(driver);
+							break;
+						} else if (errorOrWarningMsg.getText().contains("Warning")) {
+							System.out.println("Info :- " + errorOrWarningMsg.getText());
+							globalFunc.Screenshots.seleniumSnapshot(driver);
+							Screenshots.addingScreenshottoExentReport();
+							acceptAndProceedBtn.click();
+							Screenshots.captureSnapshot(driver);
+						}
+					}
 					Steps.logger.info("iLPN created successfully");
 				}
 				break;
@@ -3350,6 +3376,31 @@ public class RFMenuPage {
 						Thread.sleep(1000);
 						putawayLoctxtBox.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
+						
+						if (SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
+							System.out.println("testoing");
+							SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
+							if (errorOrWarningMsg.getText().contains("Error")) {
+								System.out.println("Info :- " + errorOrWarningMsg.getText());
+								Steps.logger.info(errorOrWarningMsg.getText());
+								globalFunc.Screenshots.seleniumSnapshot(driver);
+								Steps.testRes = "Failed";
+								Assert.assertTrue(false);
+								//Screenshots.addingScreenshottoExentReport();
+								//	acceptAndProceedBtn.click();
+								//	Screenshots.captureSnapshot(driver);
+								break;
+							} else if (errorOrWarningMsg.getText().contains("Warning")) {
+								System.out.println("Info :- " + errorOrWarningMsg.getText());
+								globalFunc.Screenshots.seleniumSnapshot(driver);
+								Screenshots.addingScreenshottoExentReport();
+								//acceptAndProceedBtn.click();
+								//Screenshots.captureSnapshot(driver);
+								globalFunc.Screenshots.seleniumSnapshot(driver);
+								Steps.testRes = "Failed";
+								Assert.assertTrue(false);
+							}
+						}
 						Steps.logger.info("Putaway Completed. Item moved to:"+sysSuggestedLocSplit[1]+" location");
 						Reporter.addStepLog("Putaway Completed. Item moved to:"+sysSuggestedLocSplit[1]+" location");
 					}
