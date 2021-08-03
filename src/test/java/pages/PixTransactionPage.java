@@ -512,6 +512,7 @@ public class PixTransactionPage {
 		Thread.sleep(5000);
 		SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 120);
 		quickFilter.click();
+		Thread.sleep(2000);
 		SeleniumTestHelper.waitForElementToBeClickable(driver, savedFilter, 50);
 		Screenshots.captureSnapshot(driver);
 		savedFilter.click();
