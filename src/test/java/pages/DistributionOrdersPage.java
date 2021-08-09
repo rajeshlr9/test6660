@@ -785,6 +785,7 @@ public class DistributionOrdersPage {
 	}
 
 	public void runWaveTemplate(String waveTemplateDesc) throws Exception {
+		try {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 100);
 		primaryField.sendKeys("Distribution Order");
@@ -835,8 +836,9 @@ public class DistributionOrdersPage {
 			Reporter.addStepLog("Wave no generated successfully");
 			Steps.logger.info("Wave no:" + Items.getWaveNumber());
 			Reporter.addStepLog("Wave no:" + Items.getWaveNumber());
-			Items.setWaveNumber(waveNumberValue);
+			//Items.setWaveNumber(waveNumberValue);
 			Thread.sleep(2000);
+			SeleniumTestHelper.waitForElementToBeClickable(driver, waveNumber, 50);
 			waveNumber.click();
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
@@ -856,7 +858,11 @@ public class DistributionOrdersPage {
 		Screenshots.captureSnapshot(driver);
 
 		homepage.user_closes_openedwindow("ShipWaveTemplate - Waves");
-
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
 	}
 
 	public void getDOdetails() throws Exception {

@@ -6,7 +6,7 @@
         "before": [
           {
             "result": {
-              "duration": 1007500,
+              "duration": 876000,
               "status": "passed"
             },
             "match": {
@@ -15,7 +15,7 @@
           },
           {
             "result": {
-              "duration": 102082500,
+              "duration": 91621600,
               "status": "passed"
             },
             "match": {
@@ -23,14 +23,14 @@
             }
           }
         ],
-        "line": 342,
-        "name": "Cancel OLPN - Cancel the OLPN at Printed status (SingleLine Sceanrios)",
+        "line": 17,
+        "name": "Distribution Order creation - Single Line LTL LTL LTL",
         "description": "",
-        "id": "qsc-outbound-scenarios;cancel-olpn---cancel-the-olpn-at-printed-status-(singleline-sceanrios)",
+        "id": "qsc-outbound-scenarios;distribution-order-creation---single-line-ltl-ltl-ltl",
         "after": [
           {
             "result": {
-              "duration": 1238539700,
+              "duration": 1404828000,
               "status": "passed"
             },
             "match": {
@@ -43,10 +43,10 @@
         "steps": [
           {
             "result": {
-              "duration": 3057015000,
+              "duration": 3870861600,
               "status": "passed"
             },
-            "line": 343,
+            "line": 18,
             "name": "I have excel data",
             "match": {
               "location": "Steps.readExcelData(DataTable)"
@@ -54,19 +54,19 @@
             "rows": [
               {
                 "cells": [
-                  "QSC_OBScenario013"
+                  "QSC_OBScenario001"
                 ],
-                "line": 344
+                "line": 19
               }
             ],
             "keyword": "Given "
           },
           {
             "result": {
-              "duration": 3724246900,
+              "duration": 3923767100,
               "status": "passed"
             },
-            "line": 345,
+            "line": 20,
             "name": "Open the chrome browser by selenium",
             "match": {
               "location": "Steps.open_the_chrome_and_launch_the_application_using_Selenium()"
@@ -75,10 +75,10 @@
           },
           {
             "result": {
-              "duration": 1011873400,
+              "duration": 813567900,
               "status": "passed"
             },
-            "line": 346,
+            "line": 21,
             "name": "user update \"Single Line DO\" for dropping into fedexnet application",
             "match": {
               "arguments": [
@@ -93,10 +93,10 @@
           },
           {
             "result": {
-              "duration": 5222644300,
+              "duration": 5571028800,
               "status": "passed"
             },
-            "line": 347,
+            "line": 22,
             "name": "user logs into the FedexNet application",
             "match": {
               "location": "StepDefInBound.user_logs_into_the_FedexNet_application()"
@@ -105,10 +105,10 @@
           },
           {
             "result": {
-              "duration": 11568896800,
+              "duration": 11624938200,
               "status": "passed"
             },
-            "line": 348,
+            "line": 23,
             "name": "user upload \"850\" XML file in fedexnet",
             "match": {
               "arguments": [
@@ -123,10 +123,10 @@
           },
           {
             "result": {
-              "duration": 5231131900,
+              "duration": 5241475200,
               "status": "passed"
             },
-            "line": 349,
+            "line": 24,
             "name": "user log out from Fedenxet application",
             "match": {
               "location": "StepDefInBound.user_logout_from_fedexnet()"
@@ -135,10 +135,10 @@
           },
           {
             "result": {
-              "duration": 7167440400,
+              "duration": 7365792000,
               "status": "passed"
             },
-            "line": 350,
+            "line": 25,
             "name": "user logs into the Manhattan application",
             "match": {
               "location": "StepDefInBound.user_logs_into_the_Manhattan_application()"
@@ -147,10 +147,10 @@
           },
           {
             "result": {
-              "duration": 9754811500,
+              "duration": 10260678400,
               "status": "passed"
             },
-            "line": 351,
+            "line": 26,
             "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"110 - Released\"",
             "match": {
               "arguments": [
@@ -165,10 +165,10 @@
           },
           {
             "result": {
-              "duration": 27540998600,
+              "duration": 28687805700,
               "status": "passed"
             },
-            "line": 352,
+            "line": 27,
             "name": "user verifies the item details in Distribuion Order page",
             "match": {
               "location": "StepDefOutBound.user_verifies_the_item_details_in_Distribuion_Order_page()"
@@ -177,10 +177,10 @@
           },
           {
             "result": {
-              "duration": 64052391400,
+              "duration": 58530969800,
               "status": "passed"
             },
-            "line": 353,
+            "line": 28,
             "name": "user runs the \"LTL Pick Wave\"",
             "match": {
               "arguments": [
@@ -195,10 +195,22 @@
           },
           {
             "result": {
-              "duration": 9306936900,
+              "duration": 20097442900,
               "status": "passed"
             },
-            "line": 354,
+            "line": 29,
+            "name": "user views wave and verify the allocation of inventory",
+            "match": {
+              "location": "StepDefOutBound.user_user_views_wave_and_verify_the_allocation_of_inventory()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 9595042700,
+              "status": "passed"
+            },
+            "line": 30,
             "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"130 - DC Allocated\"",
             "match": {
               "arguments": [
@@ -213,10 +225,10 @@
           },
           {
             "result": {
-              "duration": 19031846100,
+              "duration": 19104658000,
               "status": "passed"
             },
-            "line": 355,
+            "line": 31,
             "name": "user open Task screen \u0026 verifies task is created for DO in the wave process",
             "match": {
               "location": "StepDefOutBound.user_user_views_TaskScreen_and_verify_task_generated()"
@@ -225,361 +237,10 @@
           },
           {
             "result": {
-              "duration": 20114340400,
+              "duration": 100277809100,
               "status": "passed"
             },
-            "line": 356,
-            "name": "fetch the OLPN number",
-            "match": {
-              "location": "StepDefOutBound.fetch_olpn()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 27503442300,
-              "status": "passed"
-            },
-            "line": 357,
-            "name": "user opens RF menu and completes \"MM3 Cancel oLPN\" operation in Misc menu",
-            "match": {
-              "arguments": [
-                {
-                  "val": "MM3 Cancel oLPN",
-                  "offset": 34
-                }
-              ],
-              "location": "StepDefInBound.user_opens_RF_menu_and_perform_transaction_in_Misc_option(String)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 17012828600,
-              "status": "passed"
-            },
-            "line": 358,
-            "name": "user opens the oLPN details in Distribuion Order page and and verify its status \"99 - Cancelled\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "99 - Cancelled",
-                  "offset": 81
-                }
-              ],
-              "location": "StepDefOutBound.user_opens_the_oLPN_details_in_Distribuion_Order_page_and_and_verify_its_status(String)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 8393039100,
-              "status": "passed"
-            },
-            "line": 359,
-            "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"200 - Cancelled\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "200 - Cancelled",
-                  "offset": 83
-                }
-              ],
-              "location": "StepDefOutBound.user_opens_DOscreen_andsearches_for_DOstatus(String)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 21163857700,
-              "status": "passed"
-            },
-            "line": 360,
-            "name": "validates the PIX message \"620 - Order transactions\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "620 - Order transactions",
-                  "offset": 27
-                }
-              ],
-              "location": "StepDefInBound.validate_PIX_transactions(String)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 14436870200,
-              "status": "passed"
-            },
-            "line": 361,
-            "name": "user log out from application",
-            "match": {
-              "location": "StepDefInBound.user_log_out_from_application()"
-            },
-            "keyword": "Then "
-          }
-        ],
-        "tags": [
-          {
-            "line": 341,
-            "name": "@QSC_OB013"
-          },
-          {
-            "line": 341,
-            "name": "@Regression_QSC"
-          },
-          {
-            "line": 341,
-            "name": "@QSC_CanceloLPN"
-          }
-        ]
-      },
-      {
-        "before": [
-          {
-            "result": {
-              "duration": 206600,
-              "status": "passed"
-            },
-            "match": {
-              "location": "CommonStepDefination.intiate(Scenario)"
-            }
-          },
-          {
-            "result": {
-              "duration": 5902100,
-              "status": "passed"
-            },
-            "match": {
-              "location": "Steps.beforeClass(Scenario)"
-            }
-          }
-        ],
-        "line": 365,
-        "name": "Cancel OLPN - Cancel the OLPN at Weighed status (SingleLine Sceanrios)",
-        "description": "",
-        "id": "qsc-outbound-scenarios;cancel-olpn---cancel-the-olpn-at-weighed-status-(singleline-sceanrios)",
-        "after": [
-          {
-            "result": {
-              "duration": 1120999000,
-              "status": "passed"
-            },
-            "match": {
-              "location": "Steps.afterClass()"
-            }
-          }
-        ],
-        "type": "scenario",
-        "keyword": "Scenario",
-        "steps": [
-          {
-            "result": {
-              "duration": 444477100,
-              "status": "passed"
-            },
-            "line": 366,
-            "name": "I have excel data",
-            "match": {
-              "location": "Steps.readExcelData(DataTable)"
-            },
-            "rows": [
-              {
-                "cells": [
-                  "QSC_OBScenario014"
-                ],
-                "line": 367
-              }
-            ],
-            "keyword": "Given "
-          },
-          {
-            "result": {
-              "duration": 2454600800,
-              "status": "passed"
-            },
-            "line": 368,
-            "name": "Open the chrome browser by selenium",
-            "match": {
-              "location": "Steps.open_the_chrome_and_launch_the_application_using_Selenium()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 102922200,
-              "status": "passed"
-            },
-            "line": 369,
-            "name": "user update \"Single Line DO\" for dropping into fedexnet application",
-            "match": {
-              "arguments": [
-                {
-                  "val": "Single Line DO",
-                  "offset": 13
-                }
-              ],
-              "location": "StepDefInBound.user_update_EDI_XML_file_for(String)"
-            },
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "duration": 5122817100,
-              "status": "passed"
-            },
-            "line": 370,
-            "name": "user logs into the FedexNet application",
-            "match": {
-              "location": "StepDefInBound.user_logs_into_the_FedexNet_application()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 11742327500,
-              "status": "passed"
-            },
-            "line": 371,
-            "name": "user upload \"850\" XML file in fedexnet",
-            "match": {
-              "arguments": [
-                {
-                  "val": "850",
-                  "offset": 13
-                }
-              ],
-              "location": "StepDefInBound.user_upload_the_xml_in_fedexnet(String)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 5242021100,
-              "status": "passed"
-            },
-            "line": 372,
-            "name": "user log out from Fedenxet application",
-            "match": {
-              "location": "StepDefInBound.user_logout_from_fedexnet()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 7220279200,
-              "status": "passed"
-            },
-            "line": 373,
-            "name": "user logs into the Manhattan application",
-            "match": {
-              "location": "StepDefInBound.user_logs_into_the_Manhattan_application()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 9843883400,
-              "status": "passed"
-            },
-            "line": 374,
-            "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"110 - Released\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "110 - Released",
-                  "offset": 83
-                }
-              ],
-              "location": "StepDefOutBound.user_opens_DOscreen_andsearches_for_DOstatus(String)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 28452265600,
-              "status": "passed"
-            },
-            "line": 375,
-            "name": "user verifies the item details in Distribuion Order page",
-            "match": {
-              "location": "StepDefOutBound.user_verifies_the_item_details_in_Distribuion_Order_page()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 58192734200,
-              "status": "passed"
-            },
-            "line": 376,
-            "name": "user runs the \"LTL Pick Wave\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "LTL Pick Wave",
-                  "offset": 15
-                }
-              ],
-              "location": "StepDefOutBound.user_run_the_shipwave_template(String)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 9057006900,
-              "status": "passed"
-            },
-            "line": 377,
-            "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"130 - DC Allocated\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "130 - DC Allocated",
-                  "offset": 83
-                }
-              ],
-              "location": "StepDefOutBound.user_opens_DOscreen_andsearches_for_DOstatus(String)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 8314087400,
-              "status": "passed"
-            },
-            "line": 378,
-            "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"130 - DC Allocated\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "130 - DC Allocated",
-                  "offset": 83
-                }
-              ],
-              "location": "StepDefOutBound.user_opens_DOscreen_andsearches_for_DOstatus(String)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 19060114200,
-              "status": "passed"
-            },
-            "line": 379,
-            "name": "user open Task screen \u0026 verifies task is created for DO in the wave process",
-            "match": {
-              "location": "StepDefOutBound.user_user_views_TaskScreen_and_verify_task_generated()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 85052321800,
-              "status": "passed"
-            },
-            "line": 380,
+            "line": 32,
             "name": "user open RF Menu and complete the pick tasks created",
             "match": {
               "location": "StepDefOutBound.user_user_opeb_RFMenu_and_complete_pick_tasks()"
@@ -588,10 +249,10 @@
           },
           {
             "result": {
-              "duration": 75885419100,
+              "duration": 75829703300,
               "status": "passed"
             },
-            "line": 381,
+            "line": 33,
             "name": "user open RF Menu and complete the pack tasks created",
             "match": {
               "location": "StepDefOutBound.user_user_opeb_RFMenu_and_complete_pack_tasks()"
@@ -600,22 +261,10 @@
           },
           {
             "result": {
-              "duration": 16335452700,
+              "duration": 9366529300,
               "status": "passed"
             },
-            "line": 382,
-            "name": "user open Task screen \u0026 validates the status of tasks",
-            "match": {
-              "location": "StepDefOutBound.user_user_validates_tasks_status()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 9349654600,
-              "status": "passed"
-            },
-            "line": 383,
+            "line": 34,
             "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"160 - Weighed\"",
             "match": {
               "arguments": [
@@ -630,10 +279,10 @@
           },
           {
             "result": {
-              "duration": 19956835000,
+              "duration": 21608893300,
               "status": "passed"
             },
-            "line": 384,
+            "line": 35,
             "name": "fetch the OLPN number",
             "match": {
               "location": "StepDefOutBound.fetch_olpn()"
@@ -642,51 +291,33 @@
           },
           {
             "result": {
-              "duration": 27564820700,
+              "duration": 53858490500,
               "status": "passed"
             },
-            "line": 385,
-            "name": "user opens RF menu and completes \"MM3 Cancel oLPN\" operation in Misc menu",
+            "line": 36,
+            "name": "user opens RF menu and completes Shipping using \"MM3 Anchor oLPN\" menu",
             "match": {
               "arguments": [
                 {
-                  "val": "MM3 Cancel oLPN",
-                  "offset": 34
+                  "val": "MM3 Anchor oLPN",
+                  "offset": 49
                 }
               ],
-              "location": "StepDefInBound.user_opens_RF_menu_and_perform_transaction_in_Misc_option(String)"
+              "location": "StepDefOutBound.user_opens_RF_menu_and_completes_Receiving_using_menu(String)"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 19499717900,
+              "duration": 9980869600,
               "status": "passed"
             },
-            "line": 386,
-            "name": "user opens the oLPN details in Distribuion Order page and and verify its status \"99 - Cancelled\"",
+            "line": 37,
+            "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"165 - Staged\"",
             "match": {
               "arguments": [
                 {
-                  "val": "99 - Cancelled",
-                  "offset": 81
-                }
-              ],
-              "location": "StepDefOutBound.user_opens_the_oLPN_details_in_Distribuion_Order_page_and_and_verify_its_status(String)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 8077773200,
-              "status": "passed"
-            },
-            "line": 387,
-            "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"200 - Cancelled\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "200 - Cancelled",
+                  "val": "165 - Staged",
                   "offset": 83
                 }
               ],
@@ -696,47 +327,47 @@
           },
           {
             "result": {
-              "duration": 21816374200,
+              "duration": 132685390300,
               "status": "passed"
             },
-            "line": 388,
-            "name": "validates the PIX message \"620 - Order transactions\"",
+            "line": 38,
+            "name": "user navigates to shippment planning workspace",
             "match": {
-              "arguments": [
-                {
-                  "val": "620 - Order transactions",
-                  "offset": 27
-                }
-              ],
-              "location": "StepDefInBound.validate_PIX_transactions(String)"
+              "location": "StepDefOutBound.ShipmentPlanning()"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 14275449600,
+              "duration": 10305112500,
               "status": "passed"
             },
-            "line": 389,
-            "name": "user log out from application",
+            "line": 39,
+            "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"190 - Shipped\"",
             "match": {
-              "location": "StepDefInBound.user_log_out_from_application()"
+              "arguments": [
+                {
+                  "val": "190 - Shipped",
+                  "offset": 83
+                }
+              ],
+              "location": "StepDefOutBound.user_opens_DOscreen_andsearches_for_DOstatus(String)"
             },
-            "keyword": "Then "
+            "keyword": "And "
           }
         ],
         "tags": [
           {
-            "line": 364,
-            "name": "@QSC_OB014"
+            "line": 16,
+            "name": "@QSC_OB001"
           },
           {
-            "line": 364,
+            "line": 16,
             "name": "@Regression_QSC"
           },
           {
-            "line": 364,
-            "name": "@QSC_CanceloLPN"
+            "line": 16,
+            "name": "@QSC_LTLDO"
           }
         ]
       }
