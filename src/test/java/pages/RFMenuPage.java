@@ -3677,13 +3677,13 @@ public class RFMenuPage {
 		}else{// if(Items.gettaskTypeList(i).equals("iLPN pull from reserve/pack & hold")) {
 		taskGrpInput.sendKeys("QLF");
 		}
-		}else if(Steps.scenarioData.get("Wave Type").equals("Parcel"))
-		if(Items.gettaskTypeList(i).contains("Partial")) {
+		}else if(Steps.scenarioData.get("Wave Type").equals("Parcel")) {
+	//	if(Items.gettaskTypeList(i).contains("Partial")) {
 		taskGrpInput.sendKeys("QPP");
-		}else {// if(Items.gettaskTypeList(i).equals("iLPN pull from reserve/pack & hold")) {
-		taskGrpInput.sendKeys("QPP");
+		//}else {// if(Items.gettaskTypeList(i).equals("iLPN pull from reserve/pack & hold")) {
+		//taskGrpInput.sendKeys("QPP");
+		//}
 		}
-
 		Thread.sleep(2000);
 		EnterBtn.click();
 		Thread.sleep(3000);
@@ -3862,11 +3862,12 @@ public class RFMenuPage {
 		}else {// if(Items.gettaskTypeList(0).contains("Partial")) {
 		taskGrpInput.sendKeys("QLD");
 		}
-		}else if(Steps.scenarioData.get("Wave Type").equals("Parcel"))
-		if(Items.gettaskTypeList(0).contains("Partial")) {
+		}else if(Steps.scenarioData.get("Wave Type").equals("Parcel")) {
+		//if(Items.gettaskTypeList(0).contains("Partial")) {
 		taskGrpInput.sendKeys("QPK");
-		}else {// if(Items.gettaskTypeList(0).equals("iLPN pull from reserve/pack & hold")) {
-		taskGrpInput.sendKeys("QPK");
+	//}else {// if(Items.gettaskTypeList(0).equals("iLPN pull from reserve/pack & hold")) {
+		//taskGrpInput.sendKeys("QPK");
+	//	}
 		}
 		//taskGrpInput.sendKeys("QLD");
 		Thread.sleep(2000);
@@ -4832,7 +4833,7 @@ public class RFMenuPage {
 								//		System.out.println("inside parseint");
 								//		break;
 								//	}
-							break;
+							//break;
 							}
 						}
 					}

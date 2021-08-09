@@ -1,92 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
-      <![CDATA[Execution started for : B-459309 Receive Damages- Receiving Damaged Product using MM3 Recv-Damages & Putaway]]>
+      <![CDATA[Execution started for : Cancel OLPN - Cancel the OLPN at Printed status (SingleLine Sceanrios)]]>
+    </line>
+    <line>
+      <![CDATA[Execution started for : Cancel OLPN - Cancel the OLPN at Weighed status (SingleLine Sceanrios)]]>
     </line>
   </reporter-output>
-  <suite started-at="2021-08-03T10:07:07 GMT" name="Suite" finished-at="2021-08-03T10:12:11 GMT" duration-ms="303847">
+  <suite started-at="2021-08-09T09:41:37 GMT" name="Suite" finished-at="2021-08-09T09:54:02 GMT" duration-ms="744678">
     <groups>
       <group name="cucumber">
-        <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@4c9f8c13]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
+        <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@5ae50ce6]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2021-08-03T10:07:07 GMT" name="Test" finished-at="2021-08-03T10:12:11 GMT" duration-ms="303847">
+    <test started-at="2021-08-09T09:41:37 GMT" name="Test" finished-at="2021-08-09T09:54:02 GMT" duration-ms="744678">
       <class name="TestRunner.Runner">
-        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@4c9f8c13]" started-at="2021-08-03T10:07:07 GMT" name="createExtentReport" finished-at="2021-08-03T10:07:07 GMT" duration-ms="110" status="PASS">
+        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-09T09:41:37 GMT" name="createExtentReport" finished-at="2021-08-09T09:41:37 GMT" duration-ms="111" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createExtentReport -->
-        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@4c9f8c13]" started-at="2021-08-03T10:07:07 GMT" name="setUpClass" finished-at="2021-08-03T10:07:08 GMT" duration-ms="1484" status="PASS">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-09T09:41:37 GMT" name="setUpClass" finished-at="2021-08-09T09:41:38 GMT" duration-ms="1115" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@4c9f8c13]" started-at="2021-08-03T10:07:12 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2021-08-03T10:12:10 GMT" duration-ms="297755" status="FAIL">
+        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-09T09:41:39 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2021-08-09T09:54:00 GMT" duration-ms="741610" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[QSC Inbound Scenarios]]>
+                <![CDATA[QSC Outbound Scenarios]]>
               </value>
             </param>
           </params>
-          <exception class="cucumber.runtime.CucumberException">
-            <message>
-              <![CDATA[java.lang.AssertionError: expected [true] but found [false]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[cucumber.runtime.CucumberException: java.lang.AssertionError: expected [true] but found [false]
-at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
-at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:564)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:135)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:821)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1510)
-at org.testng.TestRunner.privateRun(TestRunner.java:767)
-at org.testng.TestRunner.run(TestRunner.java:588)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
-at org.testng.SuiteRunner.run(SuiteRunner.java:286)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1214)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1136)
-at org.testng.TestNG.runSuites(TestNG.java:1066)
-at org.testng.TestNG.run(TestNG.java:1034)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-Caused by: java.lang.AssertionError: expected [true] but found [false]
-at org.testng.Assert.fail(Assert.java:97)
-at org.testng.Assert.failNotEquals(Assert.java:968)
-at org.testng.Assert.assertTrue(Assert.java:43)
-at org.testng.Assert.assertTrue(Assert.java:53)
-at pages.RFMenuPage.putawayProcess(RFMenuPage.java:3401)
-at StepDefinition.StepDefInBound.user_opens_RF_menu_and_completes_Putaway(StepDefInBound.java:639)
-at ✽.And user opens RF menu and completes Putaway using "MM3 Ptwy CASE" menu(QSCInboundScenarios.feature:225)
-]]>
-            </full-stacktrace>
-          </exception> <!-- cucumber.runtime.CucumberException -->
           <reporter-output>
             <line>
-              <![CDATA[Execution started for : B-459309 Receive Damages- Receiving Damaged Product using MM3 Recv-Damages & Putaway]]>
+              <![CDATA[Execution started for : Cancel OLPN - Cancel the OLPN at Printed status (SingleLine Sceanrios)]]>
+            </line>
+            <line>
+              <![CDATA[Execution started for : Cancel OLPN - Cancel the OLPN at Weighed status (SingleLine Sceanrios)]]>
             </line>
           </reporter-output>
         </test-method> <!-- feature -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@4c9f8c13]" started-at="2021-08-03T10:12:10 GMT" name="tearDownClass" finished-at="2021-08-03T10:12:11 GMT" duration-ms="791" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-09T09:54:00 GMT" name="tearDownClass" finished-at="2021-08-09T09:54:02 GMT" duration-ms="1303" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@4c9f8c13]" started-at="2021-08-03T10:12:11 GMT" name="writeExtentReport" finished-at="2021-08-03T10:12:11 GMT" duration-ms="30" status="PASS">
+        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-09T09:54:02 GMT" name="writeExtentReport" finished-at="2021-08-09T09:54:02 GMT" duration-ms="21" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- writeExtentReport -->

@@ -412,7 +412,11 @@ public class DistributionOrdersPage {
 			oLPNStatusIndividual = oLPNSstatus.get(i).getText();
 			// SeleniumTestHelper.assertEquals(oLPNStatusIndividual, expectedDOstatus);
 			System.out.println("Status : " + oLPNStatusIndividual + " for oLPN : " + oLPNIndividual);
-			Assert.assertEquals(oLPNStatusIndividual, status, "oLPN Status");
+			if(oLPNStatusIndividual.equals(status)) {
+				globalFunc.Screenshots.seleniumSnapshot(driver);
+				Assert.assertEquals(oLPNStatusIndividual, status, "oLPN Status");
+			}
+			
 		}
 		homepage.user_closes_openedwindow("Distribution Orders");
 		homepage.user_closes_openedwindow("DO Detail - Distribution Order");

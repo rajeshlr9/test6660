@@ -27,7 +27,7 @@ Creating ASN through EDI & checking status of the shipment
 	Then user log out from application 
 
 	
-	@QSC_IB002 @Regression_QSC  @QSC_Rec&Putaway
+	@QSC_IB002 @Regression_QSC  @QSC_Rec&Putaway @Sanity_QSC
 Scenario: Receiving Case : Single Line, Single iLPN
 Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location through RF Menu
 	Given I have excel data

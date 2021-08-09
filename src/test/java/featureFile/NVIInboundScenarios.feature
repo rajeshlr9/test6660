@@ -1,6 +1,6 @@
 Feature: Inbound Scenarios 
 
-@NVI_IB001 @Regression_NVI @NVI_PostMsg 
+@NVI_IB001 @Regression_NVI @NVI_PostMsg  @Sanity_NVI
 Scenario: Verify ASN creation through Post MessageUI-excel 
 	Creating ASN through Post Message UI & verifying the response, checking status of the shipment
 	Given I have excel data 
