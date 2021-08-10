@@ -2,29 +2,26 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
     <line>
-      <![CDATA[Execution started for : Cancel OLPN - Cancel the OLPN at Printed status (MultiLine Sceanrios)]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : Cancel OLPN - Cancel the OLPN at Weighed status (MultiLine Sceanrios)]]>
+      <![CDATA[Execution started for : Combine the OLPN at weighed status]]>
     </line>
   </reporter-output>
-  <suite started-at="2021-08-10T05:24:43 GMT" name="Suite" finished-at="2021-08-10T05:36:41 GMT" duration-ms="718144">
+  <suite started-at="2021-08-10T10:58:37 GMT" name="Suite" finished-at="2021-08-10T11:01:09 GMT" duration-ms="152430">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@5ae50ce6]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2021-08-10T05:24:43 GMT" name="Test" finished-at="2021-08-10T05:36:41 GMT" duration-ms="718144">
+    <test started-at="2021-08-10T10:58:37 GMT" name="Test" finished-at="2021-08-10T11:01:09 GMT" duration-ms="152430">
       <class name="TestRunner.Runner">
-        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-10T05:24:43 GMT" name="createExtentReport" finished-at="2021-08-10T05:24:43 GMT" duration-ms="130" status="PASS">
+        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-10T10:58:37 GMT" name="createExtentReport" finished-at="2021-08-10T10:58:37 GMT" duration-ms="132" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createExtentReport -->
-        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-10T05:24:43 GMT" name="setUpClass" finished-at="2021-08-10T05:24:44 GMT" duration-ms="1277" status="PASS">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-10T10:58:37 GMT" name="setUpClass" finished-at="2021-08-10T10:58:38 GMT" duration-ms="1155" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-10T05:24:45 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2021-08-10T05:36:40 GMT" duration-ms="715263" status="FAIL">
+        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-10T10:58:39 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2021-08-10T11:01:08 GMT" duration-ms="149771" status="FAIL">
           <params>
             <param index="0">
               <value>
@@ -34,10 +31,10 @@
           </params>
           <exception class="cucumber.runtime.CucumberException">
             <message>
-              <![CDATA[java.lang.AssertionError: expected [130 - DC Allocated] but found [160 - Weighed] expected [true] but found [false]]]>
+              <![CDATA[java.lang.AssertionError: Verification of lines allocation  expected [2] but found [0]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[cucumber.runtime.CucumberException: java.lang.AssertionError: expected [130 - DC Allocated] but found [160 - Weighed] expected [true] but found [false]
+              <![CDATA[cucumber.runtime.CucumberException: java.lang.AssertionError: Verification of lines allocation  expected [2] but found [0]
 at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
 at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -68,32 +65,28 @@ at org.testng.TestNG.run(TestNG.java:1034)
 at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-Caused by: java.lang.AssertionError: expected [130 - DC Allocated] but found [160 - Weighed] expected [true] but found [false]
+Caused by: java.lang.AssertionError: Verification of lines allocation  expected [2] but found [0]
 at org.testng.Assert.fail(Assert.java:97)
-at org.testng.Assert.failNotEquals(Assert.java:968)
-at org.testng.Assert.assertTrue(Assert.java:43)
-at utils.SeleniumTestHelper.fail(SeleniumTestHelper.java:606)
-at utils.SeleniumTestHelper.assertEquals(SeleniumTestHelper.java:580)
-at pages.DistributionOrdersPage.getDoStatus(DistributionOrdersPage.java:317)
-at StepDefinition.StepDefOutBound.user_opens_DOscreen_andsearches_for_DOstatus(StepDefOutBound.java:179)
-at ✽.And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"(QSCOutboundScenarios.feature:469)
+at org.testng.Assert.assertEqualsImpl(Assert.java:136)
+at org.testng.Assert.assertEquals(Assert.java:118)
+at utils.SeleniumTestHelper.assertEquals(SeleniumTestHelper.java:550)
+at pages.WavesPage.searchForTheWaveNumberAndVerifyInventoryAllocation(WavesPage.java:133)
+at StepDefinition.StepDefOutBound.user_user_views_wave_and_verify_the_allocation_of_inventory(StepDefOutBound.java:244)
+at ✽.Then user views wave and verify the allocation of inventory(QSCOutboundScenarios.feature:328)
 ]]>
             </full-stacktrace>
           </exception> <!-- cucumber.runtime.CucumberException -->
           <reporter-output>
             <line>
-              <![CDATA[Execution started for : Cancel OLPN - Cancel the OLPN at Printed status (MultiLine Sceanrios)]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : Cancel OLPN - Cancel the OLPN at Weighed status (MultiLine Sceanrios)]]>
+              <![CDATA[Execution started for : Combine the OLPN at weighed status]]>
             </line>
           </reporter-output>
         </test-method> <!-- feature -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-10T05:36:40 GMT" name="tearDownClass" finished-at="2021-08-10T05:36:41 GMT" duration-ms="831" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-10T11:01:08 GMT" name="tearDownClass" finished-at="2021-08-10T11:01:09 GMT" duration-ms="763" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-10T05:36:41 GMT" name="writeExtentReport" finished-at="2021-08-10T05:36:41 GMT" duration-ms="18" status="PASS">
+        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-10T11:01:09 GMT" name="writeExtentReport" finished-at="2021-08-10T11:01:09 GMT" duration-ms="11" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- writeExtentReport -->

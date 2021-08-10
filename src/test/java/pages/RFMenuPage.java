@@ -4879,7 +4879,7 @@ public class RFMenuPage {
 			
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver,Splititembarcodetextbox, 20);
 
-				System.out.println("Item" + Steps.ItemDataMap.get(0).get("Item"));											
+				System.out.println("Item: " + Steps.ItemDataMap.get(0).get("Item"));											
 				Splititembarcodetextbox.sendKeys(Steps.ItemDataMap.get(0).get("Item"));									
 				Screenshots.captureSnapshot(driver);
 				Splititembarcodetextbox.sendKeys(Keys.ENTER);

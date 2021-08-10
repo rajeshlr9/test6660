@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Tue Aug 10 05:24:43 GMT 2021</td>
+<td>Started on:</td><td>Tue Aug 10 10:58:37 GMT 2021</td>
 </tr>
-<tr><td>Total time:</td><td>718 seconds (718144 ms)</td>
+<tr><td>Total time:</td><td>152 seconds (152430 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -80,22 +80,20 @@ function toggleAllBoxes() {
 
 <a href="#Output-1758893871" onClick="toggleAllBoxes();">Show all outputs</a>
 <div class='log' id="Output-1758893871">
-Execution started for : Cancel OLPN - Cancel the OLPN at Printed status (MultiLine Sceanrios)<br/>
-Execution started for : Cancel OLPN - Cancel the OLPN at Weighed status (MultiLine Sceanrios)<br/>
+Execution started for : Combine the OLPN at weighed status<br/>
 </div>
 </td>
-<td><div><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: expected [130 - DC Allocated] but found [160 - Weighed] expected [true] but found [false]
+<td><div><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: Verification of lines allocation  expected [2] but found [0]
 	at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
 	at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1510)
-Caused by: java.lang.AssertionError: expected [130 - DC Allocated] but found [160 - Weighed] expected [true] but found [false]
-	at utils.SeleniumTestHelper.fail(SeleniumTestHelper.java:606)
-	at utils.SeleniumTestHelper.assertEquals(SeleniumTestHelper.java:580)
-	at pages.DistributionOrdersPage.getDoStatus(DistributionOrdersPage.java:317)
-	at StepDefinition.StepDefOutBound.user_opens_DOscreen_andsearches_for_DOstatus(StepDefOutBound.java:179)
-	at ?.And user opens DO screen and searches for the DistributionOrder and verify its status &quot;130 - DC Allocated&quot;(QSCOutboundScenarios.feature:469)
+Caused by: java.lang.AssertionError: Verification of lines allocation  expected [2] but found [0]
+	at utils.SeleniumTestHelper.assertEquals(SeleniumTestHelper.java:550)
+	at pages.WavesPage.searchForTheWaveNumberAndVerifyInventoryAllocation(WavesPage.java:133)
+	at StepDefinition.StepDefOutBound.user_user_views_wave_and_verify_the_allocation_of_inventory(StepDefOutBound.java:244)
+	at ?.Then user views wave and verify the allocation of inventory(QSCOutboundScenarios.feature:328)
 ... Removed 30 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1758893871", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1758893871'><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: expected [130 - DC Allocated] but found [160 - Weighed] expected [true] but found [false]
+<div class='stack-trace' id='stack-trace1758893871'><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: Verification of lines allocation  expected [2] but found [0]
 	at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
 	at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -126,17 +124,16 @@ Caused by: java.lang.AssertionError: expected [130 - DC Allocated] but found [16
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-Caused by: java.lang.AssertionError: expected [130 - DC Allocated] but found [160 - Weighed] expected [true] but found [false]
+Caused by: java.lang.AssertionError: Verification of lines allocation  expected [2] but found [0]
 	at org.testng.Assert.fail(Assert.java:97)
-	at org.testng.Assert.failNotEquals(Assert.java:968)
-	at org.testng.Assert.assertTrue(Assert.java:43)
-	at utils.SeleniumTestHelper.fail(SeleniumTestHelper.java:606)
-	at utils.SeleniumTestHelper.assertEquals(SeleniumTestHelper.java:580)
-	at pages.DistributionOrdersPage.getDoStatus(DistributionOrdersPage.java:317)
-	at StepDefinition.StepDefOutBound.user_opens_DOscreen_andsearches_for_DOstatus(StepDefOutBound.java:179)
-	at ?.And user opens DO screen and searches for the DistributionOrder and verify its status &quot;130 - DC Allocated&quot;(QSCOutboundScenarios.feature:469)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:136)
+	at org.testng.Assert.assertEquals(Assert.java:118)
+	at utils.SeleniumTestHelper.assertEquals(SeleniumTestHelper.java:550)
+	at pages.WavesPage.searchForTheWaveNumberAndVerifyInventoryAllocation(WavesPage.java:133)
+	at StepDefinition.StepDefOutBound.user_user_views_wave_and_verify_the_allocation_of_inventory(StepDefOutBound.java:244)
+	at ?.Then user views wave and verify the allocation of inventory(QSCOutboundScenarios.feature:328)
 </pre></div></td>
-<td>715</td>
+<td>149</td>
 <td>TestRunner.Runner@5ae50ce6</td></tr>
 </table><p>
 </body>

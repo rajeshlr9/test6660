@@ -336,10 +336,11 @@ public class OlpnsPage {
 				Reporter.addStepLog("Inventory Update : newQty Selected");
 				Thread.sleep(2000);
 				SrlNbrTab_lnk.click();
-				
+				 Steps.logger.info("Clicked on serial number tab");
 				Thread.sleep(1000);
 				//driver.findElement(By.id("dataForm:AjDetail")).click();
 				AjDetail.click();
+				 Steps.logger.info("Clicked on details");
 				Thread.sleep(2000);
 				//driver.findElement(By.id("dataForm:serialNumberTable:newRow_1:majorSerialNumber")).sendKeys(DateTime.strDate32);
 				serialNumberTableNewRow_1.sendKeys(DateTime.strDate32);
@@ -356,6 +357,7 @@ public class OlpnsPage {
 			Thread.sleep(1000);
 			//driver.findElement(By.id("rmButton_1Save1_154183000")).click();
 			rmButton_1Save1.click();
+			 Steps.logger.info("Clicked on  save btn");
 			Thread.sleep(3000);
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			//System.out.println(driver.getWindowHandle());
@@ -364,8 +366,8 @@ public class OlpnsPage {
 			if(Steps.scenarioData.get("AdjustmentValue").equals("Increment")) {
 				if(SeleniumTestHelper.isElementDisplayed(driver.findElement(By.className("overlayerrorList")))){
 				Assert.assertEquals(driver.findElement(By.className("overlayerrorList")).getText(),"Pulled Quantity Exceeds Allocated Quantity!","values expected and actual");
-				Reporter.addStepLog("Pulled Quantity Exceeds Allocated Quantity!");
-				Steps.logger.info("Pulled Quantity Exceeds Allocated Quantity!");
+				Reporter.addStepLog(driver.findElement(By.className("overlayerrorList")).getText());
+				Steps.logger.info(driver.findElement(By.className("overlayerrorList")).getText());
 				pop_closeBtn.click();
 				Steps.logger.info("Close pop up");
 				Thread.sleep(3000);
