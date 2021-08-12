@@ -1,5 +1,7 @@
 package pages;
 
+import static org.testng.Assert.assertTrue;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -161,7 +163,43 @@ public class AsnsPage {
 		 driver.findElement(By.xpath("//span[contains(text(),'Done')]")).click();
 		 homepage.userClosesOpenedwindow("ASNs");
 	}
-
+//for negative scenario with wrong 
+	public void verifyAsn(String asnId) throws Exception {
+		homepage.MenuItems_Distribution_Selection("ASNs");
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 120);
+		primaryField.sendKeys("ASN");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, asnIdInput, 50);
+		driver.findElement(By.xpath(
+				"//DIV[3]/DIV[1]/DIV[@role=\"presentation\"][1]/DIV[@role=\"presentation\"][1]/DIV[@role=\"presentation\"][1]/DIV[1]/DIV[1]/DIV[1]/DIV[1]/INPUT[@role=\"combobox\"][1]"))
+				.click();
+		driver.findElement(By.xpath(
+				"//DIV[3]/DIV[1]/DIV[@role=\"presentation\"][1]/DIV[@role=\"presentation\"][1]/DIV[@role=\"presentation\"][1]/DIV[1]/DIV[1]/DIV[1]/DIV[1]/INPUT[@role=\"combobox\"][1]"))
+				.sendKeys(asnId);
+		
+		Thread.sleep(1000);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, applyBtn, 50);
+		 
+		applyBtn.click();
+		Thread.sleep(2000);
+		int temp=0;
+		 while (!SeleniumTestHelper.isElementDisplayed(asnStatus) && (temp != 10)) {
+			 applyBtn.click();
+			 Thread.sleep(3000);
+			 temp++;
+		 }
+		
+		 if(SeleniumTestHelper.isElementDisplayed(asnStatus)) {
+			 Reporter.addStepLog("ASN is created");
+			 Assert.assertTrue(false);
+		 }else {
+			 Reporter.addStepLog("ASN is not created");
+			 Assert.assertTrue(true); 
+		 }
+		 
+	}
+	
+	
 	public void verifyAsnsStatus(String asnId, String status) throws Exception {
 		homepage.MenuItems_Distribution_Selection("ASNs");
 		Screenshots.captureSnapshot(driver);

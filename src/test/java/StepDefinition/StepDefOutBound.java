@@ -186,6 +186,19 @@ public class StepDefOutBound {
 		}
 	}
 
+	@And("^user opens DO screen and searches for the DO$")
+	public void user_opens_DOscreen_andsearches_for_DO()	throws Exception {
+		try {
+			doPage.getDO();
+			Reporter.addStepLog("DO Order status is verified successfully");
+			Steps.logger.info("DO Order status is verified successfully");
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
 	@Then("^user verifies the item details in Distribuion Order page$")
 	public void user_verifies_the_item_details_in_Distribuion_Order_page() throws Exception {
 		try {

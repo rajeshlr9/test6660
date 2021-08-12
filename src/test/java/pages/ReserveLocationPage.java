@@ -286,7 +286,9 @@ driver.switchTo().frame(0);
 		Screenshots.captureSnapshot(driver);
 		reserveLocationqtyafterupdate= currentQty.getText();
 		int iLPNsize=	RFMenuPage.iLPNz.size();
+		System.out.println("iLPNsize: "+iLPNsize);
 		String newqty= String.valueOf(Integer.parseInt(reserveLocationqty)+iLPNsize);
+		System.out.println("newqty: "+newqty);
 		SeleniumTestHelper.assertEquals(reserveLocationqtyafterupdate, newqty);
 		/*
 		 * if(reserveLocationqtyafterupdate.equals(newqty)) {

@@ -437,12 +437,43 @@ public class StepDefInBound {
 		}
 	}
 
+	@Then("^user opens ASN screen and searches for the ASN to be not available in Manhattan$")
+	public void user_opens_ASN_screen_and_searches_for_the_ASN_to_be_not_available_in_Manhattan() throws Exception {
+
+		// asnsPage.verifyAsnsStatus(Items.getAsnNumber(), status);
+		try {
+			asnsPage.verifyAsn(Items.getAsnNumber());
+			
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
+	
 	@Then("^user opens ASN screen and searches for the ASN and verify its status \"([^\"]*)\"$")
 	public void user_opens_ASN_screen_and_searches_for_the_ASN_and_verify_its_status(String status) throws Exception {
 
 		// asnsPage.verifyAsnsStatus(Items.getAsnNumber(), status);
 		try {
 			asnsPage.verifyAsnsStatus(Items.getAsnNumber(), status);
+			
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
+	
+	
+	@Then("^user opens ASN screen and searches for the 2nd ASN and verify its status \"([^\"]*)\"$")
+	public void user_opens_ASN_screen_and_searches_for_the_2nd_ASN_and_verify_its_status(String status) throws Exception {
+
+		// asnsPage.verifyAsnsStatus(Items.getAsnNumber(), status);
+		try {
+			asnsPage.verifyAsnsStatus(Items.getAsnNumber2(), status);
 			
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
@@ -989,6 +1020,7 @@ public class StepDefInBound {
 		try {
 			Steps.logger.info("Validating newly created ASN");
 			System.out.println(Items.getPONumber()+"-2");
+			Items.setAsnNumber2(Items.getPONumber()+"-2");
 			asnsPage.verifyAsnsStatus(Items.getPONumber()+"-2", "20 - InTransit");
 			asnsPage.searchForTheASN(Items.getPONumber()+"-2");
 			Steps.logger.info("New ASN is created automatically with ASN: "+Items.getPONumber()+"-2");

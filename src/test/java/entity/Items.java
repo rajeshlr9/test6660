@@ -14,6 +14,7 @@ import reusable.KelliPages;
 public class Items {
 
 	private static String asnNumber;
+	private static String asnNumber2;
 	private static String PONumber;
 	public static List<String> itemsForReceivingASN = new ArrayList<>();
 	private static Map<String, Integer> itemWithShippedASNQty = new HashMap<>();
@@ -134,6 +135,14 @@ public class Items {
 		Items.asnNumber = asnNumber;
 	}
 
+	public static String getAsnNumber2() {
+		return asnNumber2;
+	}
+
+	public static void setAsnNumber2(String asnNumber2) {
+		Items.asnNumber2 = asnNumber2;
+	}
+	
 	public static String getPONumber() {
 		return PONumber;
 	}
@@ -512,6 +521,7 @@ public class Items {
 		waveNumber=null;
 		DONumber=null;
 		asnNumber = null;
+		asnNumber2 = null;
 		PONumber =  null;
 		itemsForReceivingASN.clear();
 		itemWithShippedASNQty.clear();

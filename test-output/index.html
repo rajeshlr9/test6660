@@ -131,16 +131,15 @@
                   </a> <!-- feature(QSC Outbound Scenarios) -->
                   <span class="method-name">feature</span>
                   <span class="parameters">(QSC Outbound Scenarios)</span>
-                  <div class="stack-trace">cucumber.runtime.CucumberException: java.lang.AssertionError: Verification of lines allocation  expected [2] but found [0]
+                  <div class="stack-trace">cucumber.runtime.CucumberException: java.lang.AssertionError: expected [true] but found [false]
 	at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
 	at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1510)
-Caused by: java.lang.AssertionError: Verification of lines allocation  expected [2] but found [0]
-	at utils.SeleniumTestHelper.assertEquals(SeleniumTestHelper.java:550)
-	at pages.WavesPage.searchForTheWaveNumberAndVerifyInventoryAllocation(WavesPage.java:133)
-	at StepDefinition.StepDefOutBound.user_user_views_wave_and_verify_the_allocation_of_inventory(StepDefOutBound.java:244)
-	at ✽.Then user views wave and verify the allocation of inventory(QSCOutboundScenarios.feature:328)
-... Removed 30 stack frames
+Caused by: java.lang.AssertionError: expected [true] but found [false]
+	at pages.DistributionOrdersPage.getDO(DistributionOrdersPage.java:327)
+	at StepDefinition.StepDefOutBound.user_opens_DOscreen_andsearches_for_DO(StepDefOutBound.java:192)
+	at ✽.And user opens DO screen and searches for the DO(QSCRegressionScenarios.feature:120)
+... Removed 31 stack frames
 </div> <!-- stack-trace -->
                   <em>
 (Runs Cucumber Feature)                  </em>
@@ -212,12 +211,12 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'feature')
 data.setCell(0, 2, 'TestRunner.Runner')
-data.setCell(0, 3, 149771);
+data.setCell(0, 3, 46376);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 2 minutes</span>
+              <span class="suite-total-time">Total running time: 46 seconds</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -231,7 +230,7 @@ return data;
             <div class="reporter-method-div">
               <span class="reporter-method-name">feature(QSC Outbound Scenarios)</span>
               <div class="reporter-method-output-div">
-                <span class="reporter-method-output">Execution started for : Combine the OLPN at weighed status</span>
+                <span class="reporter-method-output">Execution started for : Distribution Order creation - Single Line LTL FDFE LTLE invalid item</span>
               </div> <!-- reporter-method-output-div -->
             </div> <!-- reporter-method-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -256,21 +255,21 @@ return data;
               </div> <!-- configuration-test before -->
               <div class="configuration-class before">
                 <span class="method-name">setUpClass</span>
-                <span class="method-start">158 ms</span>
+                <span class="method-start">171 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
                 <span class="method-name">feature(QSC Outbound Scenarios)</span>
-                <span class="method-start">1856 ms</span>
+                <span class="method-start">1925 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">tearDownClass</span>
-                <span class="method-start">151639 ms</span>
+                <span class="method-start">48314 ms</span>
               </div> <!-- configuration-class after -->
               <div class="configuration-test after">
                 <span class="method-name">writeExtentReport</span>
-                <span class="method-start">152405 ms</span>
+                <span class="method-start">49106 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

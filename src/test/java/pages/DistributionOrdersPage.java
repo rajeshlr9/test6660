@@ -297,6 +297,48 @@ public class DistributionOrdersPage {
 	@FindBy(xpath = "(//div[class='mps-memo-item'])")
 	public WebElement DOPopup;
 
+	
+	public void getDO() throws Exception {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		Screenshots.captureSnapshot(driver);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		Screenshots.captureSnapshot(driver);
+		distributionOrderID.click();
+		System.out.println(Items.getDONumber());
+		distributionOrderID.sendKeys(Items.getDONumber());
+		Screenshots.captureSnapshot(driver);
+		apply_Btn.click();
+		System.out.println("clicked");
+		//SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		Screenshots.captureSnapshot(driver);
+		//WebElement actualDOstatus = driver.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[text()='"
+		//		+ Items.getDONumber() + "']//following::td[1]"));
+		int temp=0;
+		 while (!SeleniumTestHelper.isElementDisplayed(distributionOrder_chkbox) && (temp != 10)) {
+			 apply_Btn.click();
+			 Thread.sleep(3000);
+			 temp++;
+		 }
+		
+		 if(SeleniumTestHelper.isElementDisplayed(distributionOrder_chkbox)) {
+			 Reporter.addStepLog("DO is created");
+			 Assert.assertTrue(false);
+		 }else {
+			 Reporter.addStepLog("DO is not created");
+			 Assert.assertTrue(true); 
+		 }
+		 
+		
+		
+		homepage.user_closes_openedwindow("Distribution Orders");
+
+	}
+	
+	
+	
 	public void getDoStatus(String expectedDOstatus) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		Screenshots.captureSnapshot(driver);
