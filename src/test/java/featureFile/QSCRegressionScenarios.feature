@@ -1,6 +1,6 @@
 Feature: QSC Outbound Scenarios 
 
-@DailyRegression_QSC @OBScenario3
+@DailyRegression_QSC @ScenarioOB3
 Scenario: Distribution Order creation - Single Line LTL FDFE LTLE 
 	Given I have excel data 
 		| QSC_DailyRegressionOB03 |
@@ -25,7 +25,32 @@ Scenario: Distribution Order creation - Single Line LTL FDFE LTLE
 	And user navigates to shippment planning workspace 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 
 	
-	
+
+@DailyRegression_QSC @ScenarioOB10
+Scenario: Distribution Order creation - Single Line LTL FDFE LTLE 
+	Given I have excel data 
+		| QSC_DailyRegressionOB10 |
+	And Open the chrome browser by selenium 
+	When user update "Single Line DO" for dropping into fedexnet application 
+	And user logs into the FedexNet application 
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application 
+	And user logs into the Manhattan application 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "LTL Pick Wave" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
+	And user open Task screen & verifies task is created for DO in the wave process 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed" 
+	Then fetch the OLPN number 
+	And user opens RF menu and completes Shipping using "MM3 Anchor oLPN" menu 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged" 
+	And user navigates to shippment planning workspace 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 
+		
 	
 @DailyRegression_QSC @ScenarioOB6
 Scenario: Distribution Order creation - Single Line LTL LTL LTL 
@@ -241,7 +266,7 @@ validate new multi line ASN is automatically created with remaining qty for both
 Scenario: Receiving Case : Single Line, Single iLPN
 Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location through RF Menu
 	Given I have excel data
-	| QSC_IBScenario002 |
+	| QSC_DailyRegressionIB12 |
 	And Open the chrome browser by selenium
 	When user update "Single Line PO" for dropping into fedexnet application
 	And user logs into the FedexNet application
@@ -252,5 +277,20 @@ Creating ASN through Post Message UI, checking status of the shipment and comple
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
 	And user opens RF menu and completes Receiving using "MM3 Recv-Damages" menu
+	Then user search for the LPN in iLPN screen, and validate the lock code
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
+		
+@DailyRegression_QSC @ScenarioOB11
+Scenario: Distribution Order creation - Single Line LTL FDFE LTLE 
+	Given I have excel data 
+		| QSC_DailyRegressionOB03 |
+	And Open the chrome browser by selenium 
+	When user update "Single Line DO" for dropping into fedexnet application 
+	And user logs into the FedexNet application 
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application 
+	And user logs into the Manhattan application 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	And user cancels the DO
+	And user opens DO screen and searches for the DistributionOrder and verify its status "200 - Cancelled"
 	

@@ -301,6 +301,14 @@ public class Xpathxml {
 		return "//TrnsprtLp[" + i + "]//TrnsprtSCAC";
 	}
 	
+	public String DOSpecInstr(int i) {
+		return "//SpecInstrLp[" + i + "]//SpecInstr";
+	}
+	
+	public String DOSpecInstrCD(int i) {
+		return "//SpecInstrLp[" + i + "]//SpecInstrCD";
+	}
+	
 	public String DOUpdateLineNbr(int i) {
 		return "//DistributionOrder/LineItem[" + i + "]/LineItem/DoLineNbr";
 	}
@@ -574,6 +582,10 @@ public class Xpathxml {
 			String uom = null;
 			String TrnsprtSvcLvl = null;
 			String TrnsprtSCAC = null;
+			String SplIns = null;
+			String SICode = null;
+			
+			
 			
 			for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 				
@@ -602,6 +614,21 @@ public class Xpathxml {
 				ModifyXmlfile(DOTrnsprtSCAC(i+1), TrnsprtSCAC, path);
 				System.out.println("TrnsprtSCAC : " + TrnsprtSCAC + " has been updated successfully");
 				Steps.logger.info("TrnsprtSCAC : " + TrnsprtSCAC + " has been updated successfully");
+				
+				SICode = Steps.scenarioData.get("SICode");
+				if(!(SICode.equals("")||SICode.equals(null))) {
+				ModifyXmlfile(DOSpecInstrCD(i+1), SICode, path);
+				System.out.println("SICode : " + SICode + " has been updated successfully");
+				Steps.logger.info("SICode : " + SICode + " has been updated successfully");
+				}
+				
+				SplIns = Steps.scenarioData.get("SplIns");
+				if(!(SplIns.equals("")||SplIns.equals(null))) {
+				ModifyXmlfile(DOSpecInstr(i+1), SplIns, path);
+				System.out.println("SplIns : " + SplIns + " has been updated successfully");
+				Steps.logger.info("SplIns : " + SplIns + " has been updated successfully");
+				}
+				
 				
 				
 				Items.setProductsForDistOrder(itemName);

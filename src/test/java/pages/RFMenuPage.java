@@ -1085,6 +1085,7 @@ public class RFMenuPage {
 
 					iLPNz.add(LPNnum[1].trim());
 					System.out.println("LPN " + j + " : " + iLPNz.get(i));
+					System.out.println("iLPNz "  + iLPNz);
 					Reporter.addStepLog("LPN " + j + " : " + iLPNz.get(i));
 					/// Thread.sleep(3000);
 					SeleniumTestHelper.waitForElementToBeClickable(driver, toggleBtn, 10);
@@ -2698,6 +2699,7 @@ public class RFMenuPage {
 
 					iLPNz.add(LPNnum[1].trim());
 					System.out.println("LPN " + j + " : " + iLPNz.get(i));
+					System.out.println("iLPNz "  + iLPNz);
 					Reporter.addStepLog("LPN " + j + " : " + iLPNz.get(i));
 					SeleniumTestHelper.waitForElementToBeClickable(driver, toggleBtn, 10);
 					toggleBtn.click();

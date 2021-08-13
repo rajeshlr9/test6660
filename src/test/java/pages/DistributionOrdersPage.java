@@ -1593,7 +1593,7 @@ public class DistributionOrdersPage {
 		primaryField.sendKeys("Distribution Order");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
 		distributionOrderID.click();
-		distributionOrderID.sendKeys(DistributionOrders.getDOnumber());
+		distributionOrderID.sendKeys(Items.getDONumber());
 		apply_Btn.click();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
 		distributionOrder_chkbox.click();
@@ -1607,7 +1607,7 @@ public class DistributionOrdersPage {
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		SeleniumTestHelper.waitForElementToBeClickable(driver, rsnCode, 50);
 		rsnCode.click();
-		rsnCode.sendKeys("SCN-Soft Cancel");
+		rsnCode.sendKeys("CP – Cancel Request – Processed Order");
 		// rsnCode.sendKeys(Keys.TAB);
 		SeleniumTestHelper.assertTrue(true);
 		Thread.sleep(1000);
@@ -2078,5 +2078,28 @@ public class DistributionOrdersPage {
 			 * Steps.ItemDataMap.get(0).get("CmbneOLPNQty"), "CmbneOLPNQty"); }
 			 */
 		}
+	}
+	public void cancelDO() throws Exception {
+	homepage.MenuItems_Distribution_Selection("Distribution Orders");
+	SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+	primaryField.sendKeys("Distribution Order");
+	Screenshots.captureSnapshot(driver);
+	SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+	distributionOrderID.click();
+	distributionOrderID.sendKeys(Items.getDONumber());
+	Screenshots.captureSnapshot(driver);
+	apply_Btn.click();
+	SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+	Screenshots.captureSnapshot(driver);
+	distributionOrder_chkbox.click();
+	SeleniumTestHelper.waitForElementToBeClickable(driver, moreBtn, 50);
+	Screenshots.captureSnapshot(driver);
+	moreBtn.click();
+	SeleniumTestHelper.waitForElementToBeDisplayed(driver, ViewShipConfirm, 50);
+	Screenshots.captureSnapshot(driver);
+	SeleniumTestHelper.assertEquals(CnclBtn.isDisplayed(), true);
+	CnclBtn.click();
+	Thread.sleep(5000);
+	Screenshots.captureSnapshot(driver);
 	}
 }
