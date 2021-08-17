@@ -236,6 +236,29 @@ automatically created with remaining qty
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE2" menu
 	Then user opens ASN screen and searches for the 2nd ASN and verify its status "40 - Receiving Verified"
 	Then user log out from application
+
+@DailyRegression_QSC @ScenarioOB10_1
+Scenario: Distribution Order creation - Single Line Non Serialized Parcel F2D FDE
+	Given I have excel data 
+		| QSC_DailyRegressionOB10_1 |
+	And Open the chrome browser by selenium 
+	When user update "Multi Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	And user updates the shipVia
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "Parcel Pick Wave" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created
+	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
+	Then user search for DO and confirms it
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 	
 @DailyRegression_QSC @ScenarioIB11
 Scenario: Receiving Partial Qty from both the lines of an ASN- Multi Line
@@ -294,3 +317,73 @@ Scenario: Distribution Order creation - Single Line LTL FDFE LTLE
 	And user cancels the DO
 	And user opens DO screen and searches for the DistributionOrder and verify its status "200 - Cancelled"
 	
+@DailyRegression_QSC @ScenarioOB01
+Scenario: Distribution Order creation - Single Line Serialized Parcel PO FDE
+	Given I have excel data 
+		| QSC_DailyRegressionOB01 |
+	And Open the chrome browser by selenium 
+	When user update "Single Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	And user updates the shipVia
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "Parcel Pick Wave" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created
+	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
+	Then user search for DO and confirms it
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	
+	
+@DailyRegression_QSC @ScenarioOB02
+Scenario: Distribution Order creation - Single Line Non Serialized Parcel F2D FDE
+	Given I have excel data 
+		| QSC_DailyRegressionOB02 |
+	And Open the chrome browser by selenium 
+	When user update "Single Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	And user updates the shipVia
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "Parcel Pick Wave" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created
+	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
+	Then user search for DO and confirms it
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+		
+@DailyRegression_QSC @ScenarioOB04
+Scenario: Distribution Order creation - Multi Line Parcel F2D FDE
+	Given I have excel data 
+		| QSC_DailyRegressionOB04 |
+	And Open the chrome browser by selenium 
+	When user update "Multi Line DO" for dropping into fedexnet application 
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	And user updates the shipVia
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "Parcel Pick Wave" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created
+	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
+	Then user search for DO and confirms it
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+		

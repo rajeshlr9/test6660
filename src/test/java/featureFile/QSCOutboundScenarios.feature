@@ -515,6 +515,7 @@ Scenario: Distribution Order creation - Single Line Parcel LTL LTL
 	Then user log out from Fedenxet application
 	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	And user updates the shipVia
 	Then user verifies the item details in Distribuion Order page 
 	And user runs the "Parcel Pick Wave" 
 	Then user views wave and verify the allocation of inventory 
@@ -522,9 +523,6 @@ Scenario: Distribution Order creation - Single Line Parcel LTL LTL
 	And user open Task screen & verifies task is created for DO in the wave process 
 	And user open RF Menu and complete the pick tasks created 
 	And user open RF Menu and complete the pack tasks created
-	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
-	Then fetch the OLPN number
-	#And user opens RF menu and completes Shipping using "MM3 Anchor oLPN" menu
-	#And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged"
-	#And user navigates to shippment planning workspace
-	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
+	Then user search for DO and confirms it
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"

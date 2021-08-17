@@ -210,6 +210,17 @@ public class StepDefOutBound {
 		}
 	}
 	
+	@And("^user updates the shipVia$")
+	public void user_updates_the_shipVia()	throws Throwable {
+		try {
+			doPage.updateShipVia();
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
 	@Then("^user verifies the item details in Distribuion Order page$")
 	public void user_verifies_the_item_details_in_Distribuion_Order_page() throws Exception {
 		try {

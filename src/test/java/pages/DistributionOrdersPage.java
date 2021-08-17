@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import com.cucumber.listener.Reporter;
@@ -235,6 +237,30 @@ public class DistributionOrdersPage {
 	public WebElement itemNumber;
 	@FindBy(xpath = "//select[@id='dataForm:adjustReasonSelect']")
 	public WebElement rsnCode;
+	
+	@FindBy(id="dataForm:DODetailsMainHeader_Edit_button")
+	public WebElement dOEditBtn;
+				
+	@FindBy(id="dataForm:DOEdit_HeaderTab_PAN_DesignatedResources_Title_OT")
+	public WebElement editDesignatedResources;
+	
+	@FindBy(id="dataForm:DODetailsHeader_PAN_DesignatedResources_Title_OT")
+	public WebElement designatedResources;
+	
+	@FindBy(id="dataForm:DOEdit_HeaderTab_InText_Carrier")
+	public WebElement carrier;
+	
+	@FindBy(id="dataForm:DOEdit_HeaderTab_SOM_Servicelevel")
+	public WebElement servicelevel;
+	
+	@FindBy(id="dataForm:DOEdit_HeaderTab_Drop_Shipvia")
+	public WebElement shipvia;
+	
+	@FindBy(id="dataForm:DOEdit_save_button")
+	public WebElement saveBtn;
+	
+	
+	
 
 	public String getDolinesStatus(String donumber) {
 
@@ -392,6 +418,43 @@ public class DistributionOrdersPage {
 			System.out.println("Status : " + oLPNStatusIndividual + " verified for oLPN : " + oLPNIndividual);
 		}
 
+	}
+	
+	public void updateShipVia() throws Exception {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(Items.getDONumber()); // DistributionOrders.getDOnumber()
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
+		viewBtn.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, dOEditBtn, 50);
+		dOEditBtn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, editDesignatedResources, 50);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", editDesignatedResources);
+		carrier.clear();
+		Thread.sleep(1000);
+		String shpViaarr[] = Steps.scenarioData.get("ShipVia").split(";");
+		Select shipViaOpton = new Select(shipvia);
+		shipViaOpton.selectByVisibleText(Steps.scenarioData.get("ShipVia"));
+		Thread.sleep(1000);
+		Select svcLevelOpton = new Select(servicelevel);
+		svcLevelOpton.selectByVisibleText("(none)");;
+		Thread.sleep(1000);
+		saveBtn.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, dOEditBtn, 50);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", designatedResources);
+		Assert.assertEquals(shipVia_Value.getText(), (shpViaarr[0]).trim());
+		//Thread.sleep(10000);
+		Thread.sleep(2000);
+		homepage.user_closes_openedwindow("Distribution Orders");
+		Thread.sleep(2000);
+		SeleniumTestHelper.Close_OpenedWindow("DO Detail - Distribution Order", driver);
 	}
 
 	public void checkOnlyoLPNSstatus() throws Exception {
