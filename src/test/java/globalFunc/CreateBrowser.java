@@ -171,4 +171,8 @@ public class CreateBrowser {
 			
 			return seleniumDriver;
 	}
+	
+	public void createSingletonBrsrInstance() {
+		
+	}
 }

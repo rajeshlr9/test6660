@@ -949,8 +949,8 @@ public class DistributionOrdersPage {
 			Steps.logger.info("Wave no:" + Items.getWaveNumber());
 			Reporter.addStepLog("Wave no:" + Items.getWaveNumber());
 			//Items.setWaveNumber(waveNumberValue);
-			Thread.sleep(2000);
-			SeleniumTestHelper.waitForElementToBeClickable(driver, waveNumber, 50);
+			Thread.sleep(6000);
+			SeleniumTestHelper.waitForElementToBeClickable(driver, waveNumber, 150);
 			waveNumber.click();
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
