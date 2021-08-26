@@ -833,7 +833,7 @@ Given I have excel data
 	And Open the chrome browser by selenium
 	When user logs into the Manhattan application
 	And user opens RF menu and perform "MM3 Pack From Trans" operation in inventory menu
-	Then user search for the LPN in iLPN screen, and validate the iLPN statusOB
+	Then user search for the LPN in iLPN screen, and validate the iLPN statusOB as "10 - In inventory, Not putaway"
 	Then user log out from application
 	
 	

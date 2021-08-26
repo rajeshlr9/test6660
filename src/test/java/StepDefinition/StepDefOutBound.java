@@ -268,7 +268,8 @@ public class StepDefOutBound {
 			doPage.runWaveTemplate(waveType);
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
-			System.out.println(e);
+			System.out.println("line number"+e.getStackTrace()[0].getLineNumber() );
+			System.out.println(e );
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
@@ -590,15 +591,15 @@ System.out.println(e);
 		}
 	}
 	
-	@Then("^user search for the LPN in iLPN screen, and validate the iLPN statusOB$")
-	public void user_opens_iLPN_and_validate_iLPN_status_OB() throws Exception {
+	@Then("^user search for the LPN in iLPN screen, and validate the iLPN statusOB as \"([^\"]*)\"$")
+	public void user_search_for_the_LPN_in_iLPN_screen_and_validate_the_iLPN_statusOB_as(String arg1) throws Throwable {
 		homePage1.MenuItems_Distribution_Selection("iLPNs");
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		try {
 			for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
 				iLPNPage.searchForTheILPNAndViewIt(RFMenuPage.iLPNz.get(i));
-				iLPNPage.validateiLPNStatusAndQty_trans();
+				iLPNPage.validateiLPNStatusAndQty_trans(arg1);
 			}
 		} catch (Exception e) {
 			Steps.testRes = "Failed";

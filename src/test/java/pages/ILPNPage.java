@@ -159,6 +159,10 @@ public class ILPNPage {
 	
 	@FindBy(xpath = "//span[contains(@id,':1:CTO_LPNListTPM_LPN_Qty')]")
 	public WebElement secondLPNQty;
+	
+	@FindBy(xpath = "//span[@id='dataForm:LPNCommonHeader_LPNFacilityStatus_outputText']")
+	public WebElement LPNFacilityStatus;
+	
 
 	public void searchLPNCancelItAndVerifyLPNFacilityStatus(int noOfItems, String status)
 			throws Exception {
@@ -612,16 +616,16 @@ public void adjustiLPNQuantityWith(String adjust, int noOfItem) throws Exception
 		homePage.userClosesOpenedwindow("iLPNs - iLPN Details");
 	}
 	
-	public void validateiLPNStatusAndQty_trans() throws Exception{
+	public void validateiLPNStatusAndQty_trans(String arg1) throws Exception{
 		   
 		   SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNstatus, 10);
 		   SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNqty, 10);
-		   if(iLPNstatus.getText().contains("In-Stock") ) {
-			   Steps.logger.info("iLPN status is:"+iLPNstatus.getText().trim()+" & iLPN qty is:"+iLPNqty.getText());
-			   Reporter.addStepLog("iLPN status is:"+iLPNstatus.getText().trim()+" & iLPN qty is:"+iLPNqty.getText());
+		   if(LPNFacilityStatus.getText().contains(arg1) ) {
+			   Steps.logger.info("iLPN status is:"+LPNFacilityStatus.getText().trim()+" & iLPN qty is:"+iLPNqty.getText());
+			   Reporter.addStepLog("iLPN status is:"+LPNFacilityStatus.getText().trim()+" & iLPN qty is:"+iLPNqty.getText());
 		   }else {
 			   Steps.testRes = "Failed";
-			   SeleniumTestHelper.assertEquals(iLPNstatus.getText(), "In-Stock");
+			   SeleniumTestHelper.assertEquals(LPNFacilityStatus.getText(), arg1);
 		   }
 		   homePage.userClosesOpenedwindow("iLPNs - iLPN Details");
 	   }

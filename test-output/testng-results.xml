@@ -1,53 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
-      <![CDATA[Execution started for : Receiving Case : Single Line, Single iLPN]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : Multi Line Receiving- Multi Line, Multiple iLPN]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : Distribution Order creation - Single Line LTL LTL LTL]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : Distribution Order creation - Multi Line LTLFDFE LTLP]]>
+      <![CDATA[Execution started for : Combine the OLPN at weighed status]]>
     </line>
   </reporter-output>
-  <suite started-at="2021-08-17T03:25:32 GMT" name="Suite" finished-at="2021-08-17T03:56:48 GMT" duration-ms="1875225">
+  <suite started-at="2021-08-26T05:13:28 GMT" name="Suite" finished-at="2021-08-26T05:22:28 GMT" duration-ms="539992">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@5ae50ce6]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2021-08-17T03:25:32 GMT" name="Test" finished-at="2021-08-17T03:56:48 GMT" duration-ms="1875225">
+    <test started-at="2021-08-26T05:13:28 GMT" name="Test" finished-at="2021-08-26T05:22:28 GMT" duration-ms="539992">
       <class name="TestRunner.Runner">
-        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-17T03:25:33 GMT" name="createExtentReport" finished-at="2021-08-17T03:25:33 GMT" duration-ms="97" status="PASS">
+        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-26T05:13:28 GMT" name="createExtentReport" finished-at="2021-08-26T05:13:28 GMT" duration-ms="111" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createExtentReport -->
-        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-17T03:25:33 GMT" name="setUpClass" finished-at="2021-08-17T03:25:34 GMT" duration-ms="1109" status="PASS">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-26T05:13:28 GMT" name="setUpClass" finished-at="2021-08-26T05:13:29 GMT" duration-ms="1242" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-17T03:25:34 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2021-08-17T03:37:47 GMT" duration-ms="732218" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[QSC Inbound Scenarios]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-            <line>
-              <![CDATA[Execution started for : Receiving Case : Single Line, Single iLPN]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : Multi Line Receiving- Multi Line, Multiple iLPN]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- feature -->
-        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-17T03:37:47 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2021-08-17T03:56:47 GMT" duration-ms="1140279" status="PASS">
+        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-26T05:13:30 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2021-08-26T05:22:27 GMT" duration-ms="537049" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -57,18 +31,15 @@
           </params>
           <reporter-output>
             <line>
-              <![CDATA[Execution started for : Distribution Order creation - Single Line LTL LTL LTL]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : Distribution Order creation - Multi Line LTLFDFE LTLP]]>
+              <![CDATA[Execution started for : Combine the OLPN at weighed status]]>
             </line>
           </reporter-output>
         </test-method> <!-- feature -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-17T03:56:47 GMT" name="tearDownClass" finished-at="2021-08-17T03:56:48 GMT" duration-ms="800" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-26T05:22:27 GMT" name="tearDownClass" finished-at="2021-08-26T05:22:28 GMT" duration-ms="797" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-17T03:56:48 GMT" name="writeExtentReport" finished-at="2021-08-17T03:56:48 GMT" duration-ms="10" status="PASS">
+        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-26T05:22:28 GMT" name="writeExtentReport" finished-at="2021-08-26T05:22:28 GMT" duration-ms="26" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- writeExtentReport -->

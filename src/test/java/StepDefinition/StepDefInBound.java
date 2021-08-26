@@ -641,6 +641,7 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
+			System.out.println("line number"+e.getStackTrace()[0].getLineNumber() );
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}

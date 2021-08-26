@@ -1,6 +1,7 @@
 package entity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,7 @@ public class Items {
 	private static Map<String, String> itemWithQtyUOM = new HashMap<>();
 	private static String lpnID;
 	private static List<String>  taskTypeList= new ArrayList<>();
+	private static List<String>  AsnserialNumberList= new ArrayList<>();
 	private static List<String>  taskTypeValues= new ArrayList<>();
 	private static List<String>  newlpnID = new ArrayList<>();
 	private static String palletID;
@@ -412,6 +414,7 @@ public class Items {
 		return List_celtext.get(i);
 	}
 
+	
 	public static void setoLPN(String myitem) {
 		List_celtext.add(myitem);
 	}
@@ -419,6 +422,12 @@ public class Items {
 	public static int getoLPNListSize() {
 		return List_celtext.size();
 	}
+	public static List<String> getSortedoLPNList() {
+		
+		Collections.sort(List_celtext);
+		return List_celtext;
+	}
+	
 	public static String getoLPNStatus(int i) {
 		return List_celtext1.get(i);
 	}
@@ -443,6 +452,19 @@ public class Items {
 		taskTypeValues.add(taskTypeValue);
 	}
 
+	public static String getAsnserialNumberList(int i) {
+		return AsnserialNumberList.get(i);
+	}
+
+	public static List<String> getSortedAsnserialNumberList() {
+		 Collections.sort(AsnserialNumberList);
+		 return AsnserialNumberList;
+	}
+	public static void setAsnserialNumberList(String srNum) {
+		AsnserialNumberList.add(srNum);
+	}
+
+
 	public static String gettaskTypeList(int i) {
 		return taskTypeList.get(i);
 	}
@@ -450,8 +472,6 @@ public class Items {
 	public static void settaskTypeList(String taskType) {
 		taskTypeList.add(taskType);
 	}
-
-
 
 	public static String getnewiLPNPack(int i) {
 		return newlpnID.get(i);
@@ -564,6 +584,7 @@ public class Items {
 		taskTypeList.clear();
 		taskTypeValues.clear();
 		newlpnID.clear();
+		AsnserialNumberList.clear();
 
 
 	}

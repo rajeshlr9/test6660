@@ -585,7 +585,10 @@ public class RFMenuPage {
 	public WebElement NextEntLocationBtn;
 	@FindBy(xpath = "//span[text()='End Pallet']")
 	public WebElement EndPallet;
-
+	@FindBy(xpath = "//input[@id='itemId01ItemName']")
+	public WebElement itemIDElement;
+	
+	
 	@FindBy(xpath = "//input[@id='barcode1']")
 	public WebElement ilpnInRFCCreserveilpnTxtBox;
 	@FindBy(xpath = "//a[text()='Outbound']")
@@ -746,6 +749,12 @@ public class RFMenuPage {
 	@FindBy(xpath = "//input[@name='itemId01Brcd']")
 	public WebElement Splititembarcodetextbox;
 
+	@FindBy(xpath = "//input[@name='barcode2Brcd']")
+	public WebElement PackfrmTransbarcodetextbox;
+	
+	@FindBy(xpath = "//input[@name='barcode2ItemName']")
+	public WebElement PackfrmTransItemIdtextbox;
+	
 	@FindBy(xpath = "//input[@id='input1qty2']")
 	public WebElement SplititQtytextbox;
 
@@ -3137,13 +3146,27 @@ public class RFMenuPage {
 					System.out.println("LPN " + j + " : " + iLPNz.get(i));
 					Reporter.addStepLog("LPN " + j + " : " + iLPNz.get(i));
 					TL.sendKeys(Keys.ENTER);
-					itemBarcodeInRFcreateIlpnTxtBox
-					.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("Item")) );
-					Screenshots.captureSnapshot(driver);
-					itemBarcodeInRFcreateIlpnTxtBox.sendKeys(Keys.ENTER);
-					Screenshots.captureSnapshot(driver);
+					
+					if(PackfrmTransbarcodetextbox.isDisplayed())
+						while(!SeleniumTestHelper.isElementDisplayed(PackfrmTransItemIdtextbox)) {
+							driver.findElement(By.xpath("//span[@id='rfbtn_dataForm:switchKeyId']")).click();
+						}
+						//SeleniumTestHelper.waitForElementToBeDisplayed(driver,Splititembarcodetextbox, 20);
+						if(PackfrmTransItemIdtextbox.isDisplayed()) {
+							System.out.println("Item: " + String.valueOf(Steps.ItemDataMap.get(i).get("Item")));											
+							PackfrmTransItemIdtextbox.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("Item")));
+							Screenshots.captureSnapshot(driver);
+							Screenshots.captureSnapshot(driver);
+							PackfrmTransItemIdtextbox.sendKeys(Keys.ENTER);
+							Screenshots.captureSnapshot(driver);
+						}
+					
+					//itemBarcodeInRFcreateIlpnTxtBox.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("Item")) );
+					//Screenshots.captureSnapshot(driver);
+					//itemBarcodeInRFcreateIlpnTxtBox.sendKeys(Keys.ENTER);
+					//Screenshots.captureSnapshot(driver);
 					//Product status
-					Steps.logger.info("Enter Item Id: " + Steps.ItemDataMap.get(i).get("Item"));
+					Steps.logger.info("Entered Item Id: " + Steps.ItemDataMap.get(i).get("Item"));
 
 					qtyPackedInRFcreateIlpnTxtBox.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("ShippedQty")));
 					Screenshots.captureSnapshot(driver);
@@ -4188,6 +4211,7 @@ public class RFMenuPage {
 		serialNumbersInput.clear();
 		String serial="21"+newSerial;
 		Steps.logger.info("Serial no's entered: "+serial);
+		Items.setAsnserialNumberList(serial);
 		serialNumberInputParcel.sendKeys(serial);
 		Screenshots.captureSnapshot(driver);
 		Thread.sleep(1000);
@@ -4215,6 +4239,7 @@ public class RFMenuPage {
 		System.out.println("await5");
 		Thread.sleep(2000);
 		}
+		
 		else if (errorOrWarningMsg.getText().contains("Error")) {
 		Thread.sleep(1000);
 		Screenshots.captureSnapshot(driver);
@@ -5117,6 +5142,8 @@ public class RFMenuPage {
 			Screenshots.captureSnapshot(driver);
 			Steps.logger.info("Enter the value of oLPN: " + Items.getoLPN(0));
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, SplitFromoLPNtextbox, 20);
+			
+			
 			SplitFromoLPNtextbox.sendKeys(Items.getoLPN(0));
 			Thread.sleep(1000);
 			Screenshots.captureSnapshot(driver);
@@ -5137,19 +5164,44 @@ public class RFMenuPage {
 			Screenshots.captureSnapshot(driver);
 			Steps.logger.info("New oLPN created to split the qty: "+splittedolpn);
 			Thread.sleep(2000);
-			
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver,Splititembarcodetextbox, 20);
-
+			if(Splititembarcodetextbox.isDisplayed())
+			while(!SeleniumTestHelper.isElementDisplayed(itemIDElement)) {
+				driver.findElement(By.xpath("//span[@id='rfbtn_dataForm:switchKeyId']")).click();
+			}
+			//SeleniumTestHelper.waitForElementToBeDisplayed(driver,Splititembarcodetextbox, 20);
+			if(itemIDElement.isDisplayed()) {
 				System.out.println("Item: " + Steps.ItemDataMap.get(0).get("Item"));											
-				Splititembarcodetextbox.sendKeys(Steps.ItemDataMap.get(0).get("Item"));									
+				itemIDElement.sendKeys(Steps.ItemDataMap.get(0).get("Item"));									
 				Screenshots.captureSnapshot(driver);
-				Splititembarcodetextbox.sendKeys(Keys.ENTER);
+				itemIDElement.sendKeys(Keys.ENTER);
+			}
 			Thread.sleep(2000);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver,SplititQtytextbox, 20);
 				SplititQtytextbox.sendKeys(Steps.ItemDataMap.get(0).get("SplitoLPNQty"));							
 				Screenshots.captureSnapshot(driver);
 				SplititQtytextbox.sendKeys(Keys.ENTER);
-				Thread.sleep(5000);
+				Thread.sleep(3000);
+				int srNum=-1;
+				while(SeleniumTestHelper.isElementDisplayed(serialNumbersInput)) {
+					srNum++;
+					//do{
+					//if(SeleniumTestHelper.isElementDisplayed(serialNumbersInput)) {
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, serialNumbersInput, 50);
+					
+					Steps.logger.info("Serial no's entered: "+Items.getAsnserialNumberList(srNum));
+					serialNumberInputParcel.sendKeys(Items.getAsnserialNumberList(srNum));
+					Screenshots.captureSnapshot(driver);
+					Thread.sleep(1000);
+					//System.out.println("wait1");
+					serialNumberInputParcel.sendKeys(Keys.ENTER);
+					System.out.println("wait2");
+					Screenshots.captureSnapshot(driver);
+					
+					
+					Thread.sleep(2000);
+				//handle error here
+					}
+				Thread.sleep(3000);
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 10);
 				RFmenu_info.click();
 				Thread.sleep(2000);
@@ -5174,9 +5226,9 @@ public class RFMenuPage {
 			Steps.logger.info("Click on SplitCmbneoLPN method");
 			Thread.sleep(3000);
 			Screenshots.captureSnapshot(driver);
-			Steps.logger.info("Enter the value of oLPN: " + Items.getoLPN(0));
+			Steps.logger.info("Enter the value of oLPN: " + Items.getSortedoLPNList().get(0));
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, SplitFromoLPNtextbox, 20);
-			SplitFromoLPNtextbox.sendKeys(Items.getoLPN(0));
+			SplitFromoLPNtextbox.sendKeys(Items.getSortedoLPNList().get(0));
 			Screenshots.captureSnapshot(driver);
 			Thread.sleep(2000);
 			if(SeleniumTestHelper.isElementDisplayed(SplitFromoLPNtextbox)) {
@@ -5185,21 +5237,27 @@ public class RFMenuPage {
 			Thread.sleep(1000);	
 
 			Screenshots.captureSnapshot(driver);
-			Steps.logger.info("Enter the value of oLPN: " + Items.getoLPN(1));
+			Steps.logger.info("Enter the value of oLPN: " + Items.getSortedoLPNList().get(1));
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, SplitToLPNtextbox, 20);
-			SplitToLPNtextbox.sendKeys(Items.getoLPN(1));
+			SplitToLPNtextbox.sendKeys(Items.getSortedoLPNList().get(1));
 			Screenshots.captureSnapshot(driver);
 			Thread.sleep(2000);
 			if (SeleniumTestHelper.isElementDisplayed(SplitToLPNtextbox)) {
 			SplitToLPNtextbox.sendKeys(Keys.ENTER);
 			}
 			Thread.sleep(2000);
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver,Splititembarcodetextbox, 20);
+			
+			if(Splititembarcodetextbox.isDisplayed())
+				while(!SeleniumTestHelper.isElementDisplayed(itemIDElement)) {
+					driver.findElement(By.xpath("//span[@id='rfbtn_dataForm:switchKeyId']")).click();
+				}
+			//SeleniumTestHelper.waitForElementToBeDisplayed(driver,Splititembarcodetextbox, 20);
 
-				Steps.logger.info("Item-" + Steps.ItemDataMap.get(0).get("Item"));						
-				Splititembarcodetextbox.sendKeys(Steps.ItemDataMap.get(0).get("Item"));									
+				Steps.logger.info("Item-" + Steps.ItemDataMap.get(1).get("Item"));						
+				itemIDElement.sendKeys(Steps.ItemDataMap.get(1).get("Item"));									
 				Screenshots.captureSnapshot(driver);
-				Splititembarcodetextbox.sendKeys(Keys.ENTER);
+				Thread.sleep(2000);
+				itemIDElement.sendKeys(Keys.ENTER);
 				Steps.logger.info("Entered barcode number");
 			Thread.sleep(2000);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver,SplititQtytextbox, 20);
@@ -5207,6 +5265,27 @@ public class RFMenuPage {
 				SplititQtytextbox.sendKeys(Steps.ItemDataMap.get(0).get("CmbneOLPNQty"));							
 				Screenshots.captureSnapshot(driver);
 				SplititQtytextbox.sendKeys(Keys.ENTER);
+				Thread.sleep(2000);
+				//int srNum1=Integer.parseInt(Steps.ItemDataMap.get(0).get("ShippedQty"))-1;
+				while(SeleniumTestHelper.isElementDisplayed(serialNumbersInput)) {
+					//srNum1++;
+					//do{
+					//if(SeleniumTestHelper.isElementDisplayed(serialNumbersInput)) {
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, serialNumbersInput, 50);
+					
+					Steps.logger.info("Serial no's entered: "+Items.getSortedAsnserialNumberList().get(0));
+					serialNumberInputParcel.sendKeys(Items.getSortedAsnserialNumberList().get(0));
+					Screenshots.captureSnapshot(driver);
+					Thread.sleep(1000);
+					//System.out.println("wait1");00m
+					serialNumberInputParcel.sendKeys(Keys.ENTER);
+					System.out.println("wait2");
+					Screenshots.captureSnapshot(driver);
+					
+					
+					Thread.sleep(2000);
+				//handle error here
+					}
 				Thread.sleep(5000);
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 10);
 				RFmenu_info.click();

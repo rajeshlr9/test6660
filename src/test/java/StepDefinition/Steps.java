@@ -208,7 +208,7 @@ public class Steps {
 		}
 	}
 
-	@And("Open the IE by selenium")
+	@Given("Open the IE by selenium")
 	public void open_the_IE_and_launch_the_application_using_Selenium() throws Throwable {
 		// Write code here that turns the phrase above into concrete actions
 		try {
@@ -268,14 +268,13 @@ public class Steps {
 	public void AttachLeanFTIEBrowseTtoSeleniumTest() throws Throwable {
 		try {
 			Thread.sleep(10000);
-			System.out.println("page title2: " + pageTitle);
+			//System.out.println("page title2: " + pageTitle);
 			reusable.LeanFtInitialize.initializeLeanFt();
 			// LEANFT: Attach to the browser
-			// LeanFTDriver = BrowserFactory.attach(new
-			// BrowserDescription.Builder().type(BrowserType.INTERNET_EXPLORER).openTitle("Web
-			// Single Sign On").build());
-			LeanFTDriver = BrowserFactory.attach(
-					new BrowserDescription.Builder().title("WSSO Login").type(BrowserType.INTERNET_EXPLORER).build());
+			LeanFTDriver = BrowserFactory.attach(new
+			 BrowserDescription.Builder().type(BrowserType.INTERNET_EXPLORER).openTitle("Web Single Sign On").build());
+			//LeanFTDriver = BrowserFactory.attach(
+				//	new BrowserDescription.Builder().title("WSSO Login").type(BrowserType.INTERNET_EXPLORER).build());
 		} catch (Exception e) {
 			testRes = "Failed";
 			e.printStackTrace();

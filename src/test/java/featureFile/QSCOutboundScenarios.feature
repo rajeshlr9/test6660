@@ -247,25 +247,25 @@ Scenario: Modify\Adjust Olpn from Manhattan UI Single Line,OLPN in Weighed statu
 #	Then user views and Adjust the oLPN 
 #	Then user log out from application 
 		
-@QSC_OB009 @Regression_QSC @QSC_SplitoLPN
-Scenario: Spliting the OLPN at Printed status 
-	Given I have excel data 
-		| QSC_OBScenario009 |
-	And Open the chrome browser by selenium 
-	When user update "Single Line DO" for dropping into fedexnet application
-	And user logs into the FedexNet application
-	And user upload "850" XML file in fedexnet 
-	Then user log out from Fedenxet application
-	And user logs into the Manhattan application
-	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
-	Then user verifies the item details in Distribuion Order page 
-	And user runs the "LTL Pick Wave" 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
-	Then fetch the OLPN number
-	#Then user opens RF menu and perform "MM3 split OLPN" operation in inventory menu	
-	And user opens RF menu and completes "MM3 split OLPN" operation in Misc menu
-	Then user opens the OLPN screen and verify the splitted oLPNS status
-	Then user log out from application
+#@QSC_OB009 @Regression_QSC @QSC_SplitoLPN
+#Scenario: Spliting the OLPN at Printed status 
+#	Given I have excel data 
+#		| QSC_OBScenario009 |
+#	And Open the chrome browser by selenium 
+#	When user update "Single Line DO" for dropping into fedexnet application
+#	And user logs into the FedexNet application
+#	And user upload "850" XML file in fedexnet 
+#	Then user log out from Fedenxet application
+#	And user logs into the Manhattan application
+#	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+#	Then user verifies the item details in Distribuion Order page 
+#	And user runs the "LTL Pick Wave" 
+#	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
+#	Then fetch the OLPN number
+#	#Then user opens RF menu and perform "MM3 split OLPN" operation in inventory menu	
+#	And user opens RF menu and completes "MM3 split OLPN" operation in Misc menu
+#	Then user opens the OLPN screen and verify the splitted oLPNS status
+#	Then user log out from application
 	
 @QSC_OB010 @Regression_QSC @QSC_SplitoLPN
 Scenario: Spliting the OLPN at Weighed status 
@@ -292,25 +292,25 @@ Scenario: Spliting the OLPN at Weighed status
 	Then user opens the OLPN screen and verify the splitted oLPNS status
 	Then user log out from application
 	
-@QSC_OB011 @Regression_QSC @QSC_CombineoLPN 
-Scenario: Combine the OLPN at printed status 
-	Given I have excel data 
-		| QSC_OBScenario011 |
-	And Open the chrome browser by selenium 
-	When user update "Multi Line DO" for dropping into fedexnet application
-	And user logs into the FedexNet application
-	And user upload "850" XML file in fedexnet 
-	Then user log out from Fedenxet application
-	And user logs into the Manhattan application
-	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
-	Then user verifies the item details in Distribuion Order page 
-	And user runs the "LTL Pick Wave" 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
-	Then fetch the OLPN number
-	#Then user opens RF menu and perform "MM3 cmbne OLPN" operation in inventory menu
-	And user opens RF menu and completes "MM3 cmbne OLPN" operation in Misc menu	
-	Then user opens the OLPN screen and verify the combined oLPNS status
-	Then user log out from application	
+#@QSC_OB011 @Regression_QSC @QSC_CombineoLPN 
+#Scenario: Combine the OLPN at printed status 
+#	Given I have excel data 
+#		| QSC_OBScenario011 |
+#	And Open the chrome browser by selenium 
+#	When user update "Multi Line DO" for dropping into fedexnet application
+#	And user logs into the FedexNet application
+#	And user upload "850" XML file in fedexnet 
+#	Then user log out from Fedenxet application
+#	And user logs into the Manhattan application
+#	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+#	Then user verifies the item details in Distribuion Order page 
+#	And user runs the "LTL Pick Wave" 
+#	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
+#	Then fetch the OLPN number
+#	#Then user opens RF menu and perform "MM3 cmbne OLPN" operation in inventory menu
+#	And user opens RF menu and completes "MM3 cmbne OLPN" operation in Misc menu	
+#	Then user opens the OLPN screen and verify the combined oLPNS status
+#	Then user log out from application	
 	
 @QSC_OB012 @Regression_QSC @QSC_CombineoLPN
 Scenario: Combine the OLPN at weighed status 
@@ -505,11 +505,58 @@ Scenario Outline: Distribution Order creation - Single Line LTL service
 	
 	
 	@QSC_OB018 @Regression_QSC @QSC_ParcelDO
-Scenario: Distribution Order creation - Single Line Parcel LTL LTL
+Scenario: Distribution Order creation - Single Line Parcel	GHD	FDEG
 	Given I have excel data 
 		| QSC_OBScenario018 |
 	And Open the chrome browser by selenium 
 	When user update "Single Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	And user updates the shipVia
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "Parcel Pick Wave" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created
+	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
+	Then user search for DO and confirms it
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	
+
+	@QSC_OB019 @Regression_QSC @QSC_ParcelDO
+Scenario: Distribution Order creation - Multi Line different items Parcel	F2D	FDE
+	Given I have excel data 
+		| QSC_OBScenario019 |
+	And Open the chrome browser by selenium 
+	When user update "Multi Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	And user updates the shipVia
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "Parcel Pick Wave" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created
+	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
+	Then user search for DO and confirms it
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	
+@QSC_OB020 @Regression_QSC @QSC_ParcelDO
+Scenario: Distribution Order creation - Multi Line different items Parcel	F2D	FDE
+	Given I have excel data 
+		| QSC_OBScenario020 |
+	And Open the chrome browser by selenium 
+	When user update "Multi Line DO" for dropping into fedexnet application
 	And user logs into the FedexNet application
 	And user upload "850" XML file in fedexnet 
 	Then user log out from Fedenxet application

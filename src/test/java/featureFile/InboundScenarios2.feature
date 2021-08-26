@@ -1,8 +1,7 @@
 Feature: Inbound Scenarios
 
 @tagq3 
-Scenario: 
-	Open Browser by selenium and complete login using LeanFT (Work on same application) 
+Scenario: Open Browser by selenium and complete login using LeanFT (Work on same application) 
 	Given Open the IE by selenium 
 	Then Attach LeanFT IE browser to seleniumTest 
 	Then Login to OMS by LeanFT 
