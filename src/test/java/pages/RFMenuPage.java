@@ -568,7 +568,12 @@ public class RFMenuPage {
 	@FindBy(xpath = "//input[@id='subLocationEntry_Input']")
 	public WebElement RlocinputtxtBox;
 
-
+	@FindBy(xpath = "//input[@id='subLocationEntryUserDirected_Input']")
+	public WebElement subLocationUserDirected;
+	
+	@FindBy(xpath = "//input[@id='sL_Input']")
+	public WebElement subLocationUserDirected2;
+	
 	@FindBy(xpath = "//a[text()='RF- CC Act User']")
 	public WebElement rfCycleCountAct;
 	@FindBy(xpath = "//input[@id='test1']")
@@ -3606,13 +3611,28 @@ public class RFMenuPage {
 				for (int i = 0; i < iLPNz.size(); i++) {
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, altiLPNBoxafterputaway, 50);
 					altiLPNBoxafterputaway.sendKeys(iLPNz.get(i));
+					System.out.println("Entered Ilpn: "+iLPNz.get(i));
 					Screenshots.captureSnapshot(driver);
 					altiLPNBoxafterputaway.sendKeys(Keys.ENTER);
 					Screenshots.captureSnapshot(driver);
-
+					System.out.println("try1");
+					if(SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
+					if (errorOrWarningMsg.getText().contains("Info")) {
+						System.out.println("Info me :- " + errorOrWarningMsg.getText());
+						
+						Screenshots.addingScreenshottoExentReport();
+						acceptAndProceedBtn.click();
+					}
+					}
+					
+					Thread.sleep(2000);
 					List <WebElement> sugLOC= driver.findElements(By.id("capSubLocationViewSuggested"));
+					System.out.println("try2");
 					List <WebElement> RLOC= driver.findElements(By.id("dataForm:ifNotSuggestedMode"));
+					System.out.println("try3");
 					if(sugLOC.size()>0) {
+					//if(SeleniumTestHelper.isElementDisplayed(suggestedLoc)) {	
+						//List <WebElement> sugLOC= driver.findElements(By.id("capSubLocationViewSuggested"));
 						//SeleniumTestHelper.waitForElementToBeDisplayed(driver, suggestedLoc, 50);
 						String sugLoc=suggestedLoc.getText();
 						System.out.println(suggestedLoc.getText());
@@ -3669,6 +3689,8 @@ public class RFMenuPage {
 						Reporter.addStepLog("Putaway Completed. Item moved to:"+sysSuggestedLocSplit[1]+" location");
 					}
 					else if(RLOC.size()>0) {
+					//else if(SeleniumTestHelper.isElementDisplayed(RLoc)) {
+						//List <WebElement> RLOC= driver.findElements(By.id("dataForm:ifNotSuggestedMode"));
 						String RLocation;
 						String[] sysSuggestedLocSplit;
 						String loco;
@@ -3699,12 +3721,15 @@ public class RFMenuPage {
 						RlocinputtxtBox.click();
 						RlocinputtxtBox.sendKeys(LocBarCode);
 						Items.setupdtLoc(LocBarCode);
+						
+
 						}else {
 							RlocinputtxtBox.sendKeys(Steps.ItemDataMap.get(i).get("PutAwayOverride"));
 							Items.setupdtLoc(Steps.ItemDataMap.get(i).get("PutAwayOverride"));
 							
 						
 						}
+					
 						System.out.println("updtLoc is items.get fata: " + Items.getupdtLoc());
 						//RlocinputtxtBox.sendKeys(updtLoc);
 						Screenshots.captureSnapshot(driver);
@@ -3721,7 +3746,36 @@ public class RFMenuPage {
 						}
 						Steps.logger.info("Putaway Completed. iLPN "+ iLPNz.get(i)+ " moved to "+Items.getupdtLoc()+" location");
 						Reporter.addStepLog("Putaway Completed. iLPN "+ iLPNz.get(i)+ " moved to "+Items.getupdtLoc()+" location");
-					}
+					}else if(sugLOC.size()==0&&RLOC.size()==0) {
+						System.out.println("no location");
+						driver.switchTo().parentFrame();
+						System.out.println("Sys tech22");
+						String LocCode = reserveLocationPage.getReservelocationByitem(Steps.ItemDataMap.get(i).get("Item"));
+						SeleniumTestHelper.switchToInnerFrame(driver);
+						System.out.println("no loc 2");
+						//click only to get rid of open windows tab
+						subLocationUserDirected.click();		                 
+						subLocationUserDirected.sendKeys(LocCode);
+						Items.setupdtLoc(LocCode);
+						System.out.println("updtLoc is items.get fata: " + Items.getupdtLoc());
+						//RlocinputtxtBox.sendKeys(updtLoc);
+						Screenshots.captureSnapshot(driver);
+						
+						Thread.sleep(1000);
+						subLocationUserDirected.sendKeys(Keys.ENTER);
+						Screenshots.captureSnapshot(driver);
+						if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
+							System.out.println("accotaprocees");
+							globalFunc.Screenshots.seleniumSnapshot(driver);
+							acceptAndProceedBtn.click();
+							Thread.sleep(10000);
+							
+						}
+						Steps.logger.info("Putaway Completed. iLPN "+ iLPNz.get(i)+ " moved to "+Items.getupdtLoc()+" location");
+						Reporter.addStepLog("Putaway Completed. iLPN "+ iLPNz.get(i)+ " moved to "+Items.getupdtLoc()+" location");
+					
+					
+				}
 				}
 				homepage.userClosesOpenedwindow("RF Menu");
 
@@ -4821,6 +4875,20 @@ public class RFMenuPage {
 					Thread.sleep(2000);
 					Screenshots.captureSnapshot(driver);
 					//MM3AnchorLoc
+					
+					if(SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
+						if (errorOrWarningMsg.getText().contains("Info")) {
+							System.out.println("Info me :- " + errorOrWarningMsg.getText());
+							
+							Screenshots.addingScreenshottoExentReport();
+							acceptAndProceedBtn.click();
+						}
+						}
+					List <WebElement> sugLOC= driver.findElements(By.id("capSubLocationViewSuggested"));
+					System.out.println("try2");
+					List <WebElement> RLOC= driver.findElements(By.id("dataForm:ifNotSuggestedMode"));
+					System.out.println("try3");
+					if(RLOC.size()>0) {
 					String sysSuggestedLoc = altsuggestedLocLabel.getText();
 					String[] sysSuggestedLocSplit = sysSuggestedLoc.split(" ");
 					newSysSuggestedLoc = sysSuggestedLocSplit[1];
@@ -4860,6 +4928,37 @@ public class RFMenuPage {
 							Steps.testRes = "Failed";
 							Assert.assertTrue(false);
 						}
+					}
+					}else if(sugLOC.size()==0&&RLOC.size()==0) {
+						System.out.println("no location");
+						driver.switchTo().parentFrame();
+						System.out.println("Sys tech22");
+						List<String> LocCode = reserveLocationPage.getReservelocationandCodeByitem(Steps.ItemDataMap.get(i).get("Item"));
+						SeleniumTestHelper.switchToInnerFrame(driver);
+						System.out.println("no loc 2");
+						
+						System.out.println("a "+LocCode);
+						newSysSuggestedLoc = LocCode.get(0);
+						System.out.println("b "+newSysSuggestedLoc);
+						//click only to get rid of open windows tab
+						subLocationUserDirected2.click();		                 
+						subLocationUserDirected2.sendKeys(LocCode.get(1));
+						Items.setupdtLoc(LocCode.get(1));
+						System.out.println("updtLoc is items.get fata: " + Items.getupdtLoc());
+						//RlocinputtxtBox.sendKeys(updtLoc);
+						Screenshots.captureSnapshot(driver);
+						
+						Thread.sleep(1000);
+						subLocationUserDirected2.sendKeys(Keys.ENTER);
+						Screenshots.captureSnapshot(driver);
+						if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
+							System.out.println("accotaprocees");
+							globalFunc.Screenshots.seleniumSnapshot(driver);
+							acceptAndProceedBtn.click();
+							Thread.sleep(10000);
+							
+						}
+						LocCode.clear();
 					}
 					Steps.logger.info(
 							String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")) + " qty is received in LPN "
@@ -4962,7 +5061,7 @@ public class RFMenuPage {
 						String syssuggestedLoc1 = altsuggestedLocLabel.getText();
 						String[] syssuggestedLocSplit1 = syssuggestedLoc1.split(" ");
 						newSysSuggestedLoc = syssuggestedLocSplit1[1];
-						String loco1 = sysSuggestedLocSplit[1].trim();
+						String loco1 = syssuggestedLocSplit1[1].trim();
 						Thread.sleep(2000);
 						System.out.println(loco1);				
 						driver.switchTo().parentFrame();

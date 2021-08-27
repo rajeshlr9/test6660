@@ -334,6 +334,7 @@ public class ILPNPage {
 
 			lpn = RFMenuPage.iLPNz.get(i);
 			searchForTheILPNAndViewIt(lpn);
+			System.out.println("lpn "+lpn);
 			SeleniumTestHelper.waitForElementToBeClickable(driver, LocksTab, 50);
 			LocksTab.click();
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, lockCodeTable.get(0), 50);

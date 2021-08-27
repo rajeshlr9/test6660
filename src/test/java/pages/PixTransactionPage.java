@@ -148,10 +148,10 @@ public class PixTransactionPage {
 		
 		if(pixTranNumber.contains("620")) {
 			Thread.sleep(1000);
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, ExpandArrow, 20);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, ExpandArrow, 50);
 		     ExpandArrow.click();
 		        DateTime.TimeDateFunc();
-		        SeleniumTestHelper.waitForElementToBeDisplayed(driver, ExpandCreatedDateFrom, 20);
+		        SeleniumTestHelper.waitForElementToBeDisplayed(driver, ExpandCreatedDateFrom, 50);
 		        ExpandCreatedDateFrom.sendKeys(DateTime.strDate10);
 		        ExpandCreatedDateTo.sendKeys(DateTime.strDate9);
 		        Thread.sleep(1000);

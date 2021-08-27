@@ -1,6 +1,7 @@
 package pages;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -94,8 +95,23 @@ public class ReserveLocationPage {
 	
 	@FindBy(xpath="//input[@id='dataForm:b10']") 
 	public WebElement LocBarcode;
+		
+	@FindBy(xpath="//*[@id='dataForm:listView:filterId:itemLookUpId']") 
+	public WebElement filterId;
 	
+	@FindBy(xpath="//*[@id='dataForm:listView:filterId:filterIdapply']") 
+	public WebElement filterIdapply;
 	
+	@FindBy(id="checkAll_c0_dataForm:listView:dataTable") 
+	public WebElement firstLocation;
+	
+	@FindBy(xpath="//span[@id='dataForm:listView:dataTable:0:custId5']") 
+	public WebElement firstLocinTable;
+	
+	@FindBy(xpath="//*[@id='rmButton_1View1_8341']") 
+	public WebElement viewBtn1;
+	
+		
 	HomePage homePage = new HomePage();
 	
 	public void unlockLocation(String locationToBeLocked) throws InterruptedException, IOException{
@@ -200,6 +216,75 @@ driver.switchTo().frame(0);
 		    
 	}
 	
+	public String getReservelocationByitem(String item) throws Exception
+	{
+		String locBarCode= "";
+ 		//String emptyLocation = null;
+		try {
+		homePage.MenuItems_Configuration_Selection("Reserve Locations");	
+		Thread.sleep(5000);
+		//SeleniumTestHelper.switchToInnerFrame(driver);
+		driver.switchTo().defaultContent();
+		driver.switchTo().frame(1);
+        SeleniumTestHelper.waitForElementToBeDisplayed(driver, expandBtn, 20);
+        expandBtn.click();
+        Thread.sleep(5000);
+        filterId.sendKeys(item);
+        Thread.sleep(2000);
+        filterIdapply.click();
+        Thread.sleep(3000);
+        firstLocation.click();
+        Thread.sleep(2000);
+        viewBtn1.click();
+        Thread.sleep(2000);
+        locBarCode= LocBarcode.getAttribute("value");
+        System.out.println("Location barcode is: " +locBarCode);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	homePage.userClosesOpenedwindow("Reserve Locations - Reserve Location");
+	Thread.sleep(3000);
+	return locBarCode;
+
+	}
+	
+	public List<String> getReservelocationandCodeByitem(String item) throws Exception
+	{
+		List<String>LocValues = new ArrayList<String>();
+		//String locBarCode= "";
+ 		//String emptyLocation = null;
+		try {
+		homePage.MenuItems_Configuration_Selection("Reserve Locations");	
+		Thread.sleep(5000);
+		//SeleniumTestHelper.switchToInnerFrame(driver);
+		driver.switchTo().defaultContent();
+		driver.switchTo().frame(1);
+        SeleniumTestHelper.waitForElementToBeDisplayed(driver, expandBtn, 20);
+        expandBtn.click();
+        Thread.sleep(5000);
+        filterId.sendKeys(item);
+        Thread.sleep(2000);
+        filterIdapply.click();
+        Thread.sleep(3000);
+        SeleniumTestHelper.waitForElementToBeDisplayed(driver, firstLocinTable, 50);
+        LocValues.add(firstLocinTable.getText());
+        firstLocation.click();
+        Thread.sleep(2000);
+        viewBtn1.click();
+        Thread.sleep(2000);
+        LocValues.add(LocBarcode.getAttribute("value"));
+        //System.out.println("Location barcode is: " +locBarCode);
+       
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	homePage.userClosesOpenedwindow("Reserve Locations - Reserve Location");
+	Thread.sleep(3000);
+	 return LocValues;
+
+	}
 	public void lockLocation(String locationToBeLocked, String lockCodeToBeSelected) throws InterruptedException, IOException{
  		SeleniumTestHelper.switchToInnerFrame(driver);
  		String Invselected = null;
