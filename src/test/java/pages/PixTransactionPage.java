@@ -214,7 +214,8 @@ public class PixTransactionPage {
 			
 				SeleniumTestHelper.selectFromDropDown(savedFilterTransactionType, pixTranNumber, "visibletext");
 				Screenshots.captureSnapshot(driver);
-			savedFilteriLPN.sendKeys(RFMenuPage.iLPNz.get(i));
+			//savedFilteriLPN.sendKeys(RFMenuPage.iLPNz.get(i));
+			savedFilteriLPN.sendKeys(Items.getLpns(i));
 			Screenshots.captureSnapshot(driver);
 			addsavedFilter.click();
 			Thread.sleep(2000);
@@ -230,13 +231,17 @@ public class PixTransactionPage {
 			pixTransValue= driver.findElement(By.id("dataForm:lview:dataTable:0:v_trantype")).getText();
 			if(pixTranNumber.contains("606")){
 			SeleniumTestHelper.assertEquals(pixTransValue, "606");
-			Steps.logger.info("606 Pix generated for iLPN "+RFMenuPage.iLPNz.get(i));
-			Reporter.addStepLog("606 Pix generated for iLPN "+RFMenuPage.iLPNz.get(i));
+			//Steps.logger.info("606 Pix generated for iLPN "+RFMenuPage.iLPNz.get(i));
+			//Reporter.addStepLog("606 Pix generated for iLPN "+RFMenuPage.iLPNz.get(i));
+			Steps.logger.info("606 Pix generated for iLPN "+Items.getLpns(i));
+			Reporter.addStepLog("606 Pix generated for iLPN "+Items.getLpns(i));
 		}
 		else if(pixTranNumber.contains("603")){
 				SeleniumTestHelper.assertEquals(pixTransValue, "603");
-				Steps.logger.info("603 Pix generated for iLPN "+RFMenuPage.iLPNz.get(i));
-				Reporter.addStepLog("603 Pix generated for iLPN "+RFMenuPage.iLPNz.get(i));
+				//Steps.logger.info("603 Pix generated for iLPN "+RFMenuPage.iLPNz.get(i));
+				//Reporter.addStepLog("603 Pix generated for iLPN "+RFMenuPage.iLPNz.get(i));
+				Steps.logger.info("603 Pix generated for iLPN "+Items.getLpns(i));
+				Reporter.addStepLog("603 Pix generated for iLPN "+Items.getLpns(i));
 			}
 			Thread.sleep(1000);
 			/*boolean waitFortenMinutesForStatusChange = Boolean.parseBoolean(Config.getProperty("waitForTenMinutesForPixStatusChange"));
@@ -361,7 +366,8 @@ public class PixTransactionPage {
 		Screenshots.captureSnapshot(driver);
 		dateTo.sendKeys("Today");
 		Screenshots.captureSnapshot(driver);
-		savedFilteriLPN.sendKeys(RFMenuPage.iLPNz.get(0));
+		//savedFilteriLPN.sendKeys(RFMenuPage.iLPNz.get(0));
+		savedFilteriLPN.sendKeys(Items.getLpns(0));
 		Screenshots.captureSnapshot(driver);
 		addsavedFilter.click();
 		SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 50);
@@ -444,7 +450,8 @@ public class PixTransactionPage {
 		Screenshots.captureSnapshot(driver);
 		dateTo.sendKeys("Today");
 		Screenshots.captureSnapshot(driver);
-		savedFilteriLPN.sendKeys(RFMenuPage.iLPNz.get(0));
+		//savedFilteriLPN.sendKeys(RFMenuPage.iLPNz.get(0));
+		savedFilteriLPN.sendKeys(Items.getLpns(0));
 		Screenshots.captureSnapshot(driver);
 		addsavedFilter.click();
 		SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 50);
@@ -525,7 +532,8 @@ public class PixTransactionPage {
 		Screenshots.captureSnapshot(driver);
 		dateTo.sendKeys("Today");
 		Screenshots.captureSnapshot(driver);
-		savedFilteriLPN.sendKeys(RFMenuPage.iLPNz.get(0));
+		//savedFilteriLPN.sendKeys(RFMenuPage.iLPNz.get(0));
+		savedFilteriLPN.sendKeys(Items.getLpns(0));
 		Screenshots.captureSnapshot(driver);
 		addsavedFilter.click();
 		SeleniumTestHelper.waitForElementToBeClickable(driver, quickFilter, 50);

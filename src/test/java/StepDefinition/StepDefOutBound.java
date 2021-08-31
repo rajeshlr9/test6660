@@ -597,8 +597,10 @@ System.out.println(e);
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		try {
-			for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
-				iLPNPage.searchForTheILPNAndViewIt(RFMenuPage.iLPNz.get(i));
+			//for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
+			for (int i = 0; i < Items.getLpnsLength(); i++) {	
+			//	iLPNPage.searchForTheILPNAndViewIt(RFMenuPage.iLPNz.get(i));
+				iLPNPage.searchForTheILPNAndViewIt(Items.getLpns(i));
 				iLPNPage.validateiLPNStatusAndQty_trans(arg1);
 			}
 		} catch (Exception e) {

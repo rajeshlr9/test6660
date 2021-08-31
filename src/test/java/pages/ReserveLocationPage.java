@@ -370,7 +370,8 @@ driver.switchTo().frame(0);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, currentQty, 20);
 		Screenshots.captureSnapshot(driver);
 		reserveLocationqtyafterupdate= currentQty.getText();
-		int iLPNsize=	RFMenuPage.iLPNz.size();
+		//int iLPNsize=	RFMenuPage.iLPNz.size();
+		int iLPNsize=	Items.getLpnsLength();
 		System.out.println("iLPNsize: "+iLPNsize);
 		String newqty= String.valueOf(Integer.parseInt(reserveLocationqty)+iLPNsize);
 		System.out.println("newqty: "+newqty);
@@ -403,9 +404,11 @@ driver.switchTo().frame(0);
 		LPNsBtn.click();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPntxtBoxResLoc, 20);
 		Screenshots.captureSnapshot(driver);
-		for (int j = 0; j < RFMenuPage.iLPNz.size(); j++) {
+		//for (int j = 0; j < RFMenuPage.iLPNz.size(); j++) {
+		for (int j = 0; j < Items.getLpnsLength(); j++) {
 			iLPntxtBoxResLoc.clear();
-		iLPntxtBoxResLoc.sendKeys(RFMenuPage.iLPNz.get(j));
+		//iLPntxtBoxResLoc.sendKeys(RFMenuPage.iLPNz.get(j));
+		iLPntxtBoxResLoc.sendKeys(Items.getLpns(j));
 		Thread.sleep(1000);
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPnResLocApplyBtn, 20);
@@ -416,7 +419,8 @@ driver.switchTo().frame(0);
 		String iLPN=iLPNvalue.getText();
 		System.out.println("iLPN:"+iLPN);
 		
-		SeleniumTestHelper.assertEquals(iLPN, RFMenuPage.iLPNz.get(j));
+		//SeleniumTestHelper.assertEquals(iLPN, RFMenuPage.iLPNz.get(j));
+		SeleniumTestHelper.assertEquals(iLPN, Items.getLpns(j));
 		/*
 		 * if(iLPN.equals(RFMenuPage.iLPNz.get(j))) {
 		 * Steps.logger.info("iLPN:"+iLPN+" is present in inspection zone");
@@ -481,7 +485,8 @@ driver.switchTo().frame(0);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPntxtBoxResLoc, 20);
 		Screenshots.captureSnapshot(driver);
 		Thread.sleep(2000);
-		iLPntxtBoxResLoc.sendKeys(RFMenuPage.iLPNz.get(0));
+		//iLPntxtBoxResLoc.sendKeys(RFMenuPage.iLPNz.get(0));
+		iLPntxtBoxResLoc.sendKeys(Items.getLpns(0));
 		Thread.sleep(10000);
 		iLPnResLocApplyBtn.click();
 		Thread.sleep(3000);

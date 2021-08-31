@@ -294,7 +294,7 @@ public class ItemInvenByLocationPage {
 	    }
 	
 	//Rakesh
-		public void GetMovedLPNQuantityByItemandLoc(String item,String RecLocn,ArrayList<String> iLPNz) throws Exception {
+		public void GetMovedLPNQuantityByItemandLoc(String item,String RecLocn,List<String> iLPNz) throws Exception {
 			//homepage.MenuItems_Distribution_Selection("Item Inventory by Location");
 			//SeleniumTestHelper.switchToInnerFrame(driver);
 			displayLoc_field.sendKeys(RecLocn);

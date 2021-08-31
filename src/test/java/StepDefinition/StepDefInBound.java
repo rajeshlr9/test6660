@@ -865,8 +865,10 @@ public class StepDefInBound {
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		try {
-			for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
-				iLPNPage.searchForTheILPNAndViewIt(RFMenuPage.iLPNz.get(i));
+			//for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
+			for (int i = 0; i < Items.getLpnsLength(); i++) {	
+				//iLPNPage.searchForTheILPNAndViewIt(RFMenuPage.iLPNz.get(i));
+				iLPNPage.searchForTheILPNAndViewIt(Items.getLpns(i));
 				iLPNPage.validateiLPNStatusAndQty();
 			}
 		} catch (Exception e) {
@@ -883,8 +885,10 @@ public class StepDefInBound {
 			Screenshots.captureSnapshot(driver);
 			Steps.logger.info("Open iLPN screen");
 			SeleniumTestHelper.switchToInnerFrame(driver);
-			for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
-				iLPNPage.searchForTheILPNAndViewIt(RFMenuPage.iLPNz.get(i));
+			//for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
+			for (int i = 0; i < Items.getLpnsLength(); i++) {
+				//iLPNPage.searchForTheILPNAndViewIt(RFMenuPage.iLPNz.get(i));
+				iLPNPage.searchForTheILPNAndViewIt(Items.getLpns(i));
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNPage.LocksTab, 50);
 				iLPNPage.lockiLPN();
 			}
@@ -902,8 +906,10 @@ public class StepDefInBound {
 			Screenshots.captureSnapshot(driver);
 			Steps.logger.info("Open iLPN screen");
 			SeleniumTestHelper.switchToInnerFrame(driver);
-			for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
-				iLPNPage.searchForTheILPNAndViewIt(RFMenuPage.iLPNz.get(i));
+		//	for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
+			for (int i = 0; i < Items.getLpnsLength(); i++) {			
+				//iLPNPage.searchForTheILPNAndViewIt(RFMenuPage.iLPNz.get(i));
+				iLPNPage.searchForTheILPNAndViewIt(Items.getLpns(i));
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNPage.LocksTab, 50);
 				iLPNPage.unlockiLPN();
 			}
@@ -991,8 +997,9 @@ public class StepDefInBound {
 			Steps.logger.info("Open Item Inventory by Location menu");
 			Reporter.addStepLog("Open Item Inventory by Location menu");
 			SeleniumTestHelper.switchToInnerFrame(driver);
-			itemInvenByLocationPage.GetMovedLPNQuantityByItemandLoc(Items.getItemsForReceivingASN(0),
-					Steps.scenarioData.get("RecLocation"), rfMenu.iLPNz);
+			itemInvenByLocationPage.GetMovedLPNQuantityByItemandLoc(Items.getItemsForReceivingASN(0),Steps.scenarioData.get("RecLocation"),Items.getAllLpns());
+					//Steps.scenarioData.get("RecLocation"), rfMenu.iLPNz);
+					
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();

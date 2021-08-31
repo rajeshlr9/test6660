@@ -128,7 +128,14 @@ public class Items {
 	public static void setLpns(String lpn) {
 		ilpns.add(lpn);
 	}
-
+	public static int getLpnsLength() {
+		return ilpns.size();
+	}
+	public static List<String> getAllLpns() {
+		return ilpns;
+	}
+	
+	
 	public static String getAsnNumber() {
 		return asnNumber;
 	}
@@ -535,7 +542,7 @@ public class Items {
 		itemWithQtyUOMDO.clear();
 		itemWithShippedQtyDO.clear();
 		Steps.testRes="";
-		RFMenuPage.iLPNz.clear();
+		//RFMenuPage.iLPNz.clear();
 		KelliPages.partialASNValue=null;
 		KelliPages.itemList.clear();
 		waveNumber=null;

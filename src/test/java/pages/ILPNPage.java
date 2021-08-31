@@ -232,16 +232,21 @@ public class ILPNPage {
    public void verifyiLPNStatus(String status) throws Exception{
 		
 		SeleniumTestHelper.switchToInnerFrame(driver);
-		for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
+		//for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
+		for (int i = 0; i < Items.getLpnsLength(); i++) {
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, inputLPNSearchTextBox, 50);
 			inputLPNSearchTextBox.clear();
-			inputLPNSearchTextBox.sendKeys(RFMenuPage.iLPNz.get(i));
+			//inputLPNSearchTextBox.sendKeys(RFMenuPage.iLPNz.get(i));
+			inputLPNSearchTextBox.sendKeys(Items.getLpns(i));
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, applySearchBtn, 50);
 			applySearchBtn.click();
-			String iLPN_Status=driver.findElement(By.xpath("//span[text()='"+RFMenuPage.iLPNz.get(i)+"']/following::span[contains(@id,'Outbound_lpnFacilityStatus')]")).getText();
+			//String iLPN_Status=driver.findElement(By.xpath("//span[text()='"+RFMenuPage.iLPNz.get(i)+"']/following::span[contains(@id,'Outbound_lpnFacilityStatus')]")).getText();
+			String iLPN_Status=driver.findElement(By.xpath("//span[text()='"+Items.getLpns(i)+"']/following::span[contains(@id,'Outbound_lpnFacilityStatus')]")).getText();
 			SeleniumTestHelper.assertEquals(iLPN_Status, status);
-			Steps.logger.info("Status for iLPN "+RFMenuPage.iLPNz.get(i)+" is "+status);
-			Reporter.addStepLog("Status for iLPN "+RFMenuPage.iLPNz.get(i)+" is "+status);
+			//Steps.logger.info("Status for iLPN "+RFMenuPage.iLPNz.get(i)+" is "+status);
+			//Reporter.addStepLog("Status for iLPN "+RFMenuPage.iLPNz.get(i)+" is "+status);
+			Steps.logger.info("Status for iLPN "+Items.getLpns(i)+" is "+status);
+			Reporter.addStepLog("Status for iLPN "+Items.getLpns(i)+" is "+status);
 		}
 	}
 
@@ -330,9 +335,10 @@ public class ILPNPage {
 		Screenshots.captureSnapshot(driver);
 		Steps.logger.info("Open iLPN screen");
 		SeleniumTestHelper.switchToInnerFrame(driver);
-		for (i = 0, j = 0; i < RFMenuPage.iLPNz.size(); i++) {
-
-			lpn = RFMenuPage.iLPNz.get(i);
+		//for (i = 0, j = 0; i < RFMenuPage.iLPNz.size(); i++) {
+		for (i = 0, j = 0; i < Items.getLpnsLength(); i++) {
+			//lpn = RFMenuPage.iLPNz.get(i);
+			lpn = Items.getLpns(i);
 			searchForTheILPNAndViewIt(lpn);
 			System.out.println("lpn "+lpn);
 			SeleniumTestHelper.waitForElementToBeClickable(driver, LocksTab, 50);
@@ -564,8 +570,10 @@ public void adjustiLPNQuantityWith(String adjust, int noOfItem) throws Exception
 		Steps.logger.info("Open iLPN screen");
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.switchToInnerFrame(driver);
-		for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
-			searchForTheILPNAndViewIt(RFMenuPage.iLPNz.get(i));
+		//for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
+		for (int i = 0; i < Items.getLpnsLength(); i++) {			
+			//searchForTheILPNAndViewIt(RFMenuPage.iLPNz.get(i));
+			searchForTheILPNAndViewIt(Items.getLpns(i));
 		
 			switch (opeartion) {
 			case "Increase Qty":
