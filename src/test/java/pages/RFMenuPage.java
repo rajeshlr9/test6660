@@ -3923,7 +3923,15 @@ public class RFMenuPage {
 				Screenshots.captureSnapshot(driver);
 				altiLPNBoxafterputaway.sendKeys(Keys.ENTER);
 				Screenshots.captureSnapshot(driver);
-
+				System.out.println("trytango");
+				if(SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
+				if (errorOrWarningMsg.getText().contains("Info")) {
+					System.out.println("Info me :- " + errorOrWarningMsg.getText());
+					
+					Screenshots.addingScreenshottoExentReport();
+					acceptAndProceedBtn.click();
+				}
+				}
 				 List <WebElement> sugLOC= driver.findElements(By.id("capSubLocationViewSuggested"));
 				List <WebElement> RLOC= driver.findElements(By.id("dataForm:ifNotSuggestedMode"));
 				if(sugLOC.size()>0) {
@@ -3981,9 +3989,9 @@ public class RFMenuPage {
 				Reporter.addStepLog("Bulk Putaway Completed. iLPN "+ Items.getLpns(i)+ " moved to "+sysSuggestedLocSplit[1]+" location");
 				
 				}else if(sugLOC.size()==0&&RLOC.size()==0) {
-					System.out.println("no location");
+					System.out.println("no location tango");
 					driver.switchTo().parentFrame();
-					System.out.println("Sys tech22");
+					System.out.println("Sys techtango");
 					//String LocCode = reserveLocationPage.getReservelocationByitem(Steps.ItemDataMap.get(i).get("Item"));
 					String LocCode = reserveLocationPage.getReservelocationByitem(Items.getItemsForReceivingASN(i));
 					SeleniumTestHelper.switchToInnerFrame(driver);

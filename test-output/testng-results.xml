@@ -1,27 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
+    <line>
+      <![CDATA[Execution started for : Receiving Case : Single Line, Single iLPN]]>
+    </line>
+    <line>
+      <![CDATA[Execution started for : Receiving Case : Single Line, Multiple iLPN]]>
+    </line>
+    <line>
+      <![CDATA[Execution started for : Multi Line Receiving- Multi Line, Multiple iLPN]]>
+    </line>
+    <line>
+      <![CDATA[Execution started for : B-459309 Receive Damages- Receiving Damaged Product using MM3 Recv-Damages & Putaway]]>
+    </line>
+    <line>
+      <![CDATA[Execution started for : B-467729 – Configure Manhattan for RF lock-unlock iLPN-- Lock an iLPN using the user provided lock code]]>
+    </line>
+    <line>
+      <![CDATA[Execution started for : B-467729 – Configure Manhattan for RF lock-unlock iLPN-- Unlock an iLPN which already has some lock]]>
+    </line>
+    <line>
+      <![CDATA[Execution started for : B-474831 FXL-FFD-CIL-MH_Inventory Control-Base Transactions# 4- Consume iLPN having no lock]]>
+    </line>
+    <line>
+      <![CDATA[Execution started for : B-474831 FXL-FFD-CIL-MH_Inventory Control-Base Transactions# 4- Consume iLPN having lock code]]>
+    </line>
+    <line>
+      <![CDATA[Execution started for : Heavy Items Putaway]]>
+    </line>
     <line>
       <![CDATA[Execution started for : Receiving ASN & completing oversized Putaway]]>
     </line>
+    <line>
+      <![CDATA[Execution started for : Normal Items Putaway]]>
+    </line>
   </reporter-output>
-  <suite started-at="2021-08-31T14:30:22 GMT" name="Suite" finished-at="2021-08-31T14:31:35 GMT" duration-ms="72674">
+  <suite started-at="2021-09-01T07:57:49 GMT" name="Suite" finished-at="2021-09-01T08:53:43 GMT" duration-ms="3354739">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@5ae50ce6]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2021-08-31T14:30:22 GMT" name="Test" finished-at="2021-08-31T14:31:35 GMT" duration-ms="72674">
+    <test started-at="2021-09-01T07:57:49 GMT" name="Test" finished-at="2021-09-01T08:53:43 GMT" duration-ms="3354739">
       <class name="TestRunner.Runner">
-        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-31T14:30:22 GMT" name="createExtentReport" finished-at="2021-08-31T14:30:22 GMT" duration-ms="106" status="PASS">
+        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-09-01T07:57:49 GMT" name="createExtentReport" finished-at="2021-09-01T07:57:49 GMT" duration-ms="169" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createExtentReport -->
-        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-31T14:30:22 GMT" name="setUpClass" finished-at="2021-08-31T14:30:23 GMT" duration-ms="1129" status="PASS">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-09-01T07:57:49 GMT" name="setUpClass" finished-at="2021-09-01T07:57:50 GMT" duration-ms="1382" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-31T14:30:24 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2021-08-31T14:31:34 GMT" duration-ms="69921" status="FAIL">
+        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-09-01T07:57:51 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2021-09-01T08:53:42 GMT" duration-ms="3351291" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -29,83 +59,47 @@
               </value>
             </param>
           </params>
-          <exception class="cucumber.runtime.CucumberException">
-            <message>
-              <![CDATA[java.lang.AssertionError: unexpected alert open: {Alert text : }
-  (Session info: chrome=92.0.4515.159): {Alert text : 
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'OCIDDFL1SYSTEMT', ip: '10.60.27.35', os.name: 'Windows Server 2016', os.arch: 'amd64', os.version: '10.0', java.version: '14.0.1'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 92.0.4515.159, chrome: {chromedriverVersion: 91.0.4472.101 (af52a90bf870..., userDataDir: C:\Users\FFD-SY~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:64424}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: fae345b6b38fc30e9edc5d49ebdb350a
-*** Element info: {Using=xpath, value=//span[@class= 'x-btn-inner x-btn-inner-default-small' and text()='Apply' ]} expected [true] but found [false]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[cucumber.runtime.CucumberException: java.lang.AssertionError: unexpected alert open: {Alert text : }
-  (Session info: chrome=92.0.4515.159): {Alert text : 
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'OCIDDFL1SYSTEMT', ip: '10.60.27.35', os.name: 'Windows Server 2016', os.arch: 'amd64', os.version: '10.0', java.version: '14.0.1'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 92.0.4515.159, chrome: {chromedriverVersion: 91.0.4472.101 (af52a90bf870..., userDataDir: C:\Users\FFD-SY~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:64424}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: fae345b6b38fc30e9edc5d49ebdb350a
-*** Element info: {Using=xpath, value=//span[@class= 'x-btn-inner x-btn-inner-default-small' and text()='Apply' ]} expected [true] but found [false]
-at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
-at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:564)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:135)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:821)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1510)
-at org.testng.TestRunner.privateRun(TestRunner.java:767)
-at org.testng.TestRunner.run(TestRunner.java:588)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
-at org.testng.SuiteRunner.run(SuiteRunner.java:286)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1214)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1136)
-at org.testng.TestNG.runSuites(TestNG.java:1066)
-at org.testng.TestNG.run(TestNG.java:1034)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-Caused by: java.lang.AssertionError: unexpected alert open: {Alert text : }
-  (Session info: chrome=92.0.4515.159): {Alert text : 
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'OCIDDFL1SYSTEMT', ip: '10.60.27.35', os.name: 'Windows Server 2016', os.arch: 'amd64', os.version: '10.0', java.version: '14.0.1'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 92.0.4515.159, chrome: {chromedriverVersion: 91.0.4472.101 (af52a90bf870..., userDataDir: C:\Users\FFD-SY~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:64424}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: fae345b6b38fc30e9edc5d49ebdb350a
-*** Element info: {Using=xpath, value=//span[@class= 'x-btn-inner x-btn-inner-default-small' and text()='Apply' ]} expected [true] but found [false]
-at org.testng.Assert.fail(Assert.java:97)
-at org.testng.Assert.failNotEquals(Assert.java:968)
-at org.testng.Assert.assertTrue(Assert.java:43)
-at StepDefinition.StepDefInBound.user_opens_ASN_screen_and_searches_for_the_ASN_and_verify_its_status(StepDefInBound.java:465)
-at ✽.Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"(QSCInboundScenarios.feature:800)
-]]>
-            </full-stacktrace>
-          </exception> <!-- cucumber.runtime.CucumberException -->
           <reporter-output>
+            <line>
+              <![CDATA[Execution started for : Receiving Case : Single Line, Single iLPN]]>
+            </line>
+            <line>
+              <![CDATA[Execution started for : Receiving Case : Single Line, Multiple iLPN]]>
+            </line>
+            <line>
+              <![CDATA[Execution started for : Multi Line Receiving- Multi Line, Multiple iLPN]]>
+            </line>
+            <line>
+              <![CDATA[Execution started for : B-459309 Receive Damages- Receiving Damaged Product using MM3 Recv-Damages & Putaway]]>
+            </line>
+            <line>
+              <![CDATA[Execution started for : B-467729 – Configure Manhattan for RF lock-unlock iLPN-- Lock an iLPN using the user provided lock code]]>
+            </line>
+            <line>
+              <![CDATA[Execution started for : B-467729 – Configure Manhattan for RF lock-unlock iLPN-- Unlock an iLPN which already has some lock]]>
+            </line>
+            <line>
+              <![CDATA[Execution started for : B-474831 FXL-FFD-CIL-MH_Inventory Control-Base Transactions# 4- Consume iLPN having no lock]]>
+            </line>
+            <line>
+              <![CDATA[Execution started for : B-474831 FXL-FFD-CIL-MH_Inventory Control-Base Transactions# 4- Consume iLPN having lock code]]>
+            </line>
+            <line>
+              <![CDATA[Execution started for : Heavy Items Putaway]]>
+            </line>
             <line>
               <![CDATA[Execution started for : Receiving ASN & completing oversized Putaway]]>
             </line>
+            <line>
+              <![CDATA[Execution started for : Normal Items Putaway]]>
+            </line>
           </reporter-output>
         </test-method> <!-- feature -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-31T14:31:34 GMT" name="tearDownClass" finished-at="2021-08-31T14:31:35 GMT" duration-ms="800" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-09-01T08:53:42 GMT" name="tearDownClass" finished-at="2021-09-01T08:53:43 GMT" duration-ms="1174" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-08-31T14:31:35 GMT" name="writeExtentReport" finished-at="2021-08-31T14:31:35 GMT" duration-ms="22" status="PASS">
+        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-09-01T08:53:43 GMT" name="writeExtentReport" finished-at="2021-09-01T08:53:43 GMT" duration-ms="14" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- writeExtentReport -->
