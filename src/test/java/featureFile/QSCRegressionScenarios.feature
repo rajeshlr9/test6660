@@ -1,6 +1,6 @@
 Feature: QSC Outbound Scenarios 
 
-@DailyRegression_QSC @ScenarioOB3
+@DailyRegression_QSC @ScenarioOB3 @Outbound
 Scenario: Distribution Order creation - Single Line LTL FDFE LTLE 
 	Given I have excel data 
 		| QSC_DailyRegressionOB03 |
@@ -26,7 +26,7 @@ Scenario: Distribution Order creation - Single Line LTL FDFE LTLE
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 
 	
 
-@DailyRegression_QSC @ScenarioOB10
+@DailyRegression_QSC @ScenarioOB10 @Outbound
 Scenario: Distribution Order creation - Single Line LTL FDFE LTLE 
 	Given I have excel data 
 		| QSC_DailyRegressionOB10 |
@@ -52,7 +52,7 @@ Scenario: Distribution Order creation - Single Line LTL FDFE LTLE
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 
 		
 	
-@DailyRegression_QSC @ScenarioOB6
+@DailyRegression_QSC @ScenarioOB6 @Outbound
 Scenario: Distribution Order creation - Single Line LTL LTL LTL 
 	Given I have excel data 
 		| QSC_DailyRegressionOB06 |
@@ -77,7 +77,7 @@ Scenario: Distribution Order creation - Single Line LTL LTL LTL
 	And user navigates to shippment planning workspace 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 
 	
-@DailyRegression_QSC @ScenarioOB5
+@DailyRegression_QSC @ScenarioOB5 @Outbound
 Scenario: Distribution Order creation - Multi Line LTL	FDFE LTLP 
 	Given I have excel data 
 		| QSC_DailyRegressionOB05 |
@@ -102,7 +102,7 @@ Scenario: Distribution Order creation - Multi Line LTL	FDFE LTLP
 	And user navigates to shippment planning workspace 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 
 	
-@DailyRegression_QSC @ScenarioIB1
+@DailyRegression_QSC @ScenarioIB1 @Inbound
 Scenario: Receiving Case : Single Line, Single iLPN
 Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location through RF Menu
 	Given I have excel data
@@ -119,7 +119,7 @@ Creating ASN through Post Message UI, checking status of the shipment and comple
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 
 
-@DailyRegression_QSC @ScenarioIB3
+@DailyRegression_QSC @ScenarioIB3 @Inbound
 Scenario: Receiving Case : Single Line, Single iLPN with invalid item
 Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location through RF Menu
 	Given I have excel data
@@ -132,7 +132,7 @@ Creating ASN through Post Message UI, checking status of the shipment and comple
 	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN to be not available in Manhattan 
 
-@DailyRegression_QSC @ScenarioOB8
+@DailyRegression_QSC @ScenarioOB8 @Outbound
 Scenario: Distribution Order creation - Single Line LTL FDFE LTLE invalid item
 	Given I have excel data 
 		| QSC_DailyRegressionOB08 |
@@ -145,7 +145,7 @@ Scenario: Distribution Order creation - Single Line LTL FDFE LTLE invalid item
 	And user opens DO screen and searches for the DO
 
 
-@DailyRegression_QSC @ScenarioIB5
+@DailyRegression_QSC @ScenarioIB5 @Inbound
 Scenario: B-441160 Receiving Returned Un-Delivered Product using blind receipt & Putaway
 Receiving of Un-Delivered Product using blind receipt in MM3 Rtrn/Ovrg menu and verifying the status of the ASN & completing Putaway
 	Given I have excel data
@@ -158,7 +158,7 @@ Receiving of Un-Delivered Product using blind receipt in MM3 Rtrn/Ovrg menu and 
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	
 	
-@DailyRegression_QSC @ScenarioIB6
+@DailyRegression_QSC @ScenarioIB6 @Inbound
 Scenario: B-459309 Receive Damages- Receiving Damaged Product using MM3 Recv-Damages & Putaway
 Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verifying the status of the ASN & completing Putaway
 	Given I have excel data
@@ -181,7 +181,7 @@ Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verify
 	Then validates that the iLPN is also moved to inspection zone "QC710A1I7"
 	Then user log out from application
 	
-@DailyRegression_QSC @ScenarioIB7
+@DailyRegression_QSC @ScenarioIB7 @Inbound
 Scenario: Over Receiving of Products using blind receipt & Putaway
 Over reciving of products using blind receipt in MM3 Rtrn/Ovrg menu and verifying the status of the ASN & completing Putaway
 	Given I have excel data
@@ -198,7 +198,7 @@ Over reciving of products using blind receipt in MM3 Rtrn/Ovrg menu and verifyin
 	Then validates that the iLPN is also moved to inspection zone "QC111A1"
 	Then user log out from application
 	
-@DailyRegression_QSC @ScenarioIB8
+@DailyRegression_QSC @ScenarioIB8 @Inbound
 Scenario: Uploading the Single ASNLoad file from the Kelli application and validating order created in Manhattan Successfully
  	Given I have excel data
 	| QSC_KelliScenario001 |
@@ -214,7 +214,7 @@ Scenario: Uploading the Single ASNLoad file from the Kelli application and valid
 	Then user log out from application 
 	
 	
-@DailyRegression_QSC @ScenarioIB10
+@DailyRegression_QSC @ScenarioIB10 @Inbound
 Scenario: Receiving Partial Qty from an ASN- Single Line
 Creating ASN through Post Message UI, Complete receiving of partial qty, Verify the ASN Manually & validate new ASN is
 automatically created with remaining qty
@@ -237,7 +237,7 @@ automatically created with remaining qty
 	Then user opens ASN screen and searches for the 2nd ASN and verify its status "40 - Receiving Verified"
 	Then user log out from application
 
-@DailyRegression_QSC @ScenarioOB10_1
+@DailyRegression_QSC @ScenarioOB10_1 @Outbound
 Scenario: Distribution Order creation - Single Line Non Serialized Parcel F2D FDE
 	Given I have excel data 
 		| QSC_DailyRegressionOB10_1 |
@@ -260,7 +260,7 @@ Scenario: Distribution Order creation - Single Line Non Serialized Parcel F2D FD
 	Then user search for DO and confirms it
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 	
-@DailyRegression_QSC @ScenarioIB11
+@DailyRegression_QSC @ScenarioIB11 @Inbound
 Scenario: Receiving Partial Qty from both the lines of an ASN- Multi Line
 Creating ASN through Post Message UI, Complete receiving of partial qty from both the lines, Verify the ASN Manually & 
 validate new multi line ASN is automatically created with remaining qty for both lines
@@ -285,7 +285,7 @@ validate new multi line ASN is automatically created with remaining qty for both
 	Then user log out from application
 	
 	
-@DailyRegression_asQSC @ScenarioIB12
+@DailyRegression_asQSC @ScenarioIB12 @Inbound
 Scenario: Receiving Case : Single Line, Single iLPN
 Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location through RF Menu
 	Given I have excel data
@@ -303,7 +303,7 @@ Creating ASN through Post Message UI, checking status of the shipment and comple
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 		
-@DailyRegression_QSC @ScenarioOB11
+@DailyRegression_QSC @ScenarioOB11 @Outbound
 Scenario: Distribution Order creation - Single Line LTL FDFE LTLE 
 	Given I have excel data 
 		| QSC_DailyRegressionOB03 |
@@ -317,7 +317,7 @@ Scenario: Distribution Order creation - Single Line LTL FDFE LTLE
 	And user cancels the DO
 	And user opens DO screen and searches for the DistributionOrder and verify its status "200 - Cancelled"
 	
-@DailyRegression_QSC @ScenarioOB01
+@DailyRegression_QSC @ScenarioOB01 @Outbound
 Scenario: Distribution Order creation - Single Line Serialized Parcel PO FDE
 	Given I have excel data 
 		| QSC_DailyRegressionOB01 |
@@ -341,7 +341,7 @@ Scenario: Distribution Order creation - Single Line Serialized Parcel PO FDE
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 	
 	
-@DailyRegression_QSC @ScenarioOB02
+@DailyRegression_QSC @ScenarioOB02 @Outbound
 Scenario: Distribution Order creation - Single Line Non Serialized Parcel F2D FDE
 	Given I have excel data 
 		| QSC_DailyRegressionOB02 |
@@ -364,7 +364,7 @@ Scenario: Distribution Order creation - Single Line Non Serialized Parcel F2D FD
 	Then user search for DO and confirms it
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 		
-@DailyRegression_QSC @ScenarioOB04
+@DailyRegression_QSC @ScenarioOB04 @Outbound
 Scenario: Distribution Order creation - Multi Line Parcel F2D FDE
 	Given I have excel data 
 		| QSC_DailyRegressionOB04 |

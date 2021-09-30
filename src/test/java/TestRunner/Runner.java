@@ -23,6 +23,7 @@ import utils.ExtentReportUpdate;
 		strict = true,
 		dryRun = false,
 		tags={"@tag5"}, 
+				
 		features = {"src\\test\\java\\featureFile"},
 		glue = {"StepDefinition"},
 		//  format = { "pretty","html:resources\\cucumber-reports\\cucumber-report.html"},

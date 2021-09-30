@@ -958,6 +958,7 @@ public class DistributionOrdersPage {
 			int count = 0;
 			while (!actualStatus.equals("90 - Ship wave completed") && (count != 20)) {
 				refreshBtn.click();
+				//stale element
 				actualStatus = driver.findElement(By.xpath(shiwaveStatusxpath(waveTemplateDesc))).getText().trim();
 				Thread.sleep(5000);
 				count++;

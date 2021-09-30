@@ -2,104 +2,44 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
-      <![CDATA[Execution started for : Receiving Case : Single Line, Single iLPN]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : Receiving Case : Single Line, Multiple iLPN]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : Multi Line Receiving- Multi Line, Multiple iLPN]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-459309 Receive Damages- Receiving Damaged Product using MM3 Recv-Damages & Putaway]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-467729 – Configure Manhattan for RF lock-unlock iLPN-- Lock an iLPN using the user provided lock code]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-467729 – Configure Manhattan for RF lock-unlock iLPN-- Unlock an iLPN which already has some lock]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-474831 FXL-FFD-CIL-MH_Inventory Control-Base Transactions# 4- Consume iLPN having no lock]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : B-474831 FXL-FFD-CIL-MH_Inventory Control-Base Transactions# 4- Consume iLPN having lock code]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : Heavy Items Putaway]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : Receiving ASN & completing oversized Putaway]]>
-    </line>
-    <line>
-      <![CDATA[Execution started for : Normal Items Putaway]]>
+      <![CDATA[Execution started for : Distribution Order creation - Single Line LTL LTL LTL]]>
     </line>
   </reporter-output>
-  <suite started-at="2021-09-01T07:57:49 GMT" name="Suite" finished-at="2021-09-01T08:53:43 GMT" duration-ms="3354739">
+  <suite started-at="2021-09-30T05:02:26 GMT" name="Suite" finished-at="2021-09-30T05:11:53 GMT" duration-ms="566514">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@5ae50ce6]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2021-09-01T07:57:49 GMT" name="Test" finished-at="2021-09-01T08:53:43 GMT" duration-ms="3354739">
+    <test started-at="2021-09-30T05:02:26 GMT" name="Test" finished-at="2021-09-30T05:11:53 GMT" duration-ms="566514">
       <class name="TestRunner.Runner">
-        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-09-01T07:57:49 GMT" name="createExtentReport" finished-at="2021-09-01T07:57:49 GMT" duration-ms="169" status="PASS">
+        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-09-30T05:02:26 GMT" name="createExtentReport" finished-at="2021-09-30T05:02:26 GMT" duration-ms="113" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createExtentReport -->
-        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-09-01T07:57:49 GMT" name="setUpClass" finished-at="2021-09-01T07:57:50 GMT" duration-ms="1382" status="PASS">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-09-30T05:02:26 GMT" name="setUpClass" finished-at="2021-09-30T05:02:27 GMT" duration-ms="1135" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-09-01T07:57:51 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2021-09-01T08:53:42 GMT" duration-ms="3351291" status="PASS">
+        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-09-30T05:02:28 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2021-09-30T05:11:52 GMT" duration-ms="563887" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[QSC Inbound Scenarios]]>
+                <![CDATA[QSC Outbound Scenarios]]>
               </value>
             </param>
           </params>
           <reporter-output>
             <line>
-              <![CDATA[Execution started for : Receiving Case : Single Line, Single iLPN]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : Receiving Case : Single Line, Multiple iLPN]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : Multi Line Receiving- Multi Line, Multiple iLPN]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-459309 Receive Damages- Receiving Damaged Product using MM3 Recv-Damages & Putaway]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-467729 – Configure Manhattan for RF lock-unlock iLPN-- Lock an iLPN using the user provided lock code]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-467729 – Configure Manhattan for RF lock-unlock iLPN-- Unlock an iLPN which already has some lock]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-474831 FXL-FFD-CIL-MH_Inventory Control-Base Transactions# 4- Consume iLPN having no lock]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : B-474831 FXL-FFD-CIL-MH_Inventory Control-Base Transactions# 4- Consume iLPN having lock code]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : Heavy Items Putaway]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : Receiving ASN & completing oversized Putaway]]>
-            </line>
-            <line>
-              <![CDATA[Execution started for : Normal Items Putaway]]>
+              <![CDATA[Execution started for : Distribution Order creation - Single Line LTL LTL LTL]]>
             </line>
           </reporter-output>
         </test-method> <!-- feature -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-09-01T08:53:42 GMT" name="tearDownClass" finished-at="2021-09-01T08:53:43 GMT" duration-ms="1174" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-09-30T05:11:52 GMT" name="tearDownClass" finished-at="2021-09-30T05:11:52 GMT" duration-ms="692" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-09-01T08:53:43 GMT" name="writeExtentReport" finished-at="2021-09-01T08:53:43 GMT" duration-ms="14" status="PASS">
+        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-09-30T05:11:52 GMT" name="writeExtentReport" finished-at="2021-09-30T05:11:53 GMT" duration-ms="19" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- writeExtentReport -->

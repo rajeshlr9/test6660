@@ -20,6 +20,7 @@ public class DateTime {
 	public static String strDate12;
 	public static String strDate32;
 	public static String strDate67;
+	public static String strDate68;
 	public static void TimeDateFunc() {
 		
 		Date date = new Date(); 
@@ -79,4 +80,11 @@ public class DateTime {
 	     return "000"+strDate6;
 	}
 	
+	public static String splitiLPNFormat() {
+		String strDate68=null;
+		Date date = new Date();
+		SimpleDateFormat formatter68 = new SimpleDateFormat("yyMMddHHmmss");              
+	     strDate68= formatter68.format(date);
+	     return "00195192"+strDate68;
+	}
 }

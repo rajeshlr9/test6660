@@ -12,7 +12,7 @@ Feature: QSC Inbound Scenarios
 #	When user logs into Manhattan application using "Supervisor" Credentials
 #	Then user log out from application 
 
-@QSC_IB001 @Regression_QSC  @Smoke_QSC @QSC_EDIOrderReceiving
+@QSC_IB001 @Regression_QSC  @Smoke_QSC @QSC_EDIOrderReceiving @QSC_Inbound
 Scenario: Verify ASN creation through EDI
 Creating ASN through EDI & checking status of the shipment
 	Given I have excel data
@@ -27,7 +27,7 @@ Creating ASN through EDI & checking status of the shipment
 	Then user log out from application 
 
 	
-	@QSC_IB002 @Regression_QSC  @QSC_Rec&Putaway @Sanity_QSC
+	@QSC_IB002 @Regression_QSC  @QSC_Rec&Putaway @Sanity_QSC @QSC_Inbound
 Scenario: Receiving Case : Single Line, Single iLPN
 Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location through RF Menu
 	Given I have excel data
@@ -47,7 +47,7 @@ Creating ASN through Post Message UI, checking status of the shipment and comple
 	And user open reserve locations and naviagtes to validate iLPN
 	Then user log out from application 
 	
-	@QSC_IB00321 @Regression_QSC  @QSC_Rec&Putaway
+	@QSC_IB00321 @Regression_QSC  @QSC_Rec&Putaway @QSC_Inbound
 Scenario: Receiving Case : Single Line, Multiple iLPN
 Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location 
 through RF Menu
@@ -68,7 +68,7 @@ through RF Menu
 	And user open reserve locations and naviagtes to validate iLPN
 	Then user log out from application 
 	
-	@QSC_IB003 @Regression_QSC @QSC_BypassStagingLocationRec @Sanity_QSC
+	@QSC_IB003 @Regression_QSC @QSC_BypassStagingLocationRec @Sanity_QSC @QSC_Inbound
 Scenario: B-345747 MANH - Receive and bypass stage or holding
 Creating ASN through Post Message UI and complete receiving bypasing through staging location & validating LPN in Inventory by location
 	Given I have excel data
@@ -124,7 +124,7 @@ Creating ASN through Post Message UI and complete receiving bypasing through sta
 #	Then user log out from application 	
 	
 	
-	@QSC_IB005 @Regression_QSC @QSC_SplitiLPN
+	@QSC_IB005 @Regression_QSC @QSC_SplitiLPN @QSC_Inbound
 Scenario: B-345784 MANH - Break Split LPN IB
 Creating ASN through Post Message UI and receiving in 2 LPN's. Move few quantities from 1st LPN to 2nd location & validating LPN's in Inventory by location
 	Given I have excel data
@@ -143,7 +143,7 @@ Creating ASN through Post Message UI and receiving in 2 LPN's. Move few quantiti
 	#Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started"
 	Then user log out from application 
 	
-	@QSC_IB006 @Regression_QSC @QSC_Rec&Putaway
+	@QSC_IB006 @Regression_QSC @QSC_Rec&Putaway @QSC_Inbound
 Scenario: Multi Line Receiving- Multi Line, Multiple iLPN
 Creating 2 line ASN through Post Message UI, checking status of the shipment and complete receiving in Staging location through RF Menu
 	Given I have excel data
@@ -164,7 +164,7 @@ Creating 2 line ASN through Post Message UI, checking status of the shipment and
 	Then user log out from application 
 
 	
-	@QSC_IB007 @Regression_QSC @QSC_BlindReceipt
+	@QSC_IB007 @Regression_QSC @QSC_BlindReceipt @QSC_Inbound
 Scenario: B-441160 Receiving Returned Un-Delivered Product using blind receipt & Putaway
 Receiving of Un-Delivered Product using blind receipt in MM3 Rtrn/Ovrg menu and verifying the status of the ASN & completing Putaway
 	Given I have excel data
@@ -205,7 +205,7 @@ Receiving of Un-Delivered Product using blind receipt in MM3 Rtrn/Ovrg menu and 
 #	Then validates that the iLPN is also moved to inspection zone "QC111A1"
 #	Then user log out from application
 	
-	@QSC_IB009 @Regression_QSC @QSC_DamagedReceivePutaway
+	@QSC_IB009 @Regression_QSC @QSC_DamagedReceivePutaway @QSC_Inbound
 Scenario: B-459309 Receive Damages- Receiving Damaged Product using MM3 Recv-Damages & Putaway
 Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verifying the status of the ASN & completing Putaway
 	Given I have excel data
@@ -227,7 +227,7 @@ Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verify
 	Then validates that the iLPN is also moved to inspection zone "QC111A1"
 	Then user log out from application
 	
-	@QSC_IB010 @Regression_QSC @QSC_BlindReceipt
+	@QSC_IB010 @Regression_QSC @QSC_BlindReceipt @QSC_Inbound
 Scenario: B-459309 Receive Return Damages- Receiving of Damaged Returned Product using blind receipt & completing Putaway
 Receiving of Damaged Returned Product using blind receipt in MM3 Rtrn/Ovrg menu and verifying the status of the ASN & completing Putaway
 	Given I have excel data
@@ -244,7 +244,7 @@ Receiving of Damaged Returned Product using blind receipt in MM3 Rtrn/Ovrg menu 
 	Then validates that the iLPN is also moved to inspection zone "QC111A1"
 	Then user log out from application
 	
-	@QSC_IB010_1 @Regression_QSC @QSC_BlindReceipt
+	@QSC_IB010_1 @Regression_QSC @QSC_BlindReceipt @QSC_Inbound
 Scenario: Over Receiving of Products using blind receipt & Putaway
 Over reciving of products using blind receipt in MM3 Rtrn/Ovrg menu and verifying the status of the ASN & completing Putaway
 	Given I have excel data
@@ -261,7 +261,7 @@ Over reciving of products using blind receipt in MM3 Rtrn/Ovrg menu and verifyin
 	Then validates that the iLPN is also moved to inspection zone "QC111A1"
 	Then user log out from application
 	
-	@QSC_IB011 @Regression_QSC @QSC_LockUnlockFunctionality
+	@QSC_IB011 @Regression_QSC @QSC_LockUnlockFunctionality @QSC_Inbound
 Scenario: B-467729 – Configure Manhattan for RF lock-unlock iLPN-- Lock an iLPN using the user provided lock code
 Create an iLPN using RF MM3 Create iLPN option and apply the lock code provided by user
 	Given I have excel data
@@ -274,7 +274,7 @@ Create an iLPN using RF MM3 Create iLPN option and apply the lock code provided 
 	And validates the PIX Transactions "300,606" for this operation
 	Then user log out from application 
 	
-	@QSC_IB012 @Regression_QSC @QSC_LockUnlockFunctionality
+	@QSC_IB012 @Regression_QSC @QSC_LockUnlockFunctionality @QSC_Inbound
 Scenario: B-467729 – Configure Manhattan for RF lock-unlock iLPN-- Unlock an iLPN which already has some lock
 	Given I have excel data
 	| QSC_IBScenario012 |
@@ -286,7 +286,7 @@ Scenario: B-467729 – Configure Manhattan for RF lock-unlock iLPN-- Unlock an i
 	And validates the PIX Transactions "300,606" for this operation
 	Then user log out from application 
 	
-	@QSC_IB013 @Regression_QSC @QSC_InventoryAdjustments
+	@QSC_IB013 @Regression_QSC @QSC_InventoryAdjustments @QSC_Inbound
 Scenario: B-427075 Inventory Adjustments- Increase iLPN qty having no lock code
 Creating ASN through Post Message UI and complete receiving bypasing through staging location & modify the 
 iLPN by increasing the quantity & verify the iLPN, ASN and PIX transaction
@@ -307,7 +307,7 @@ iLPN by increasing the quantity & verify the iLPN, ASN and PIX transaction
 	Then user log out from application 
 
 
-@QSC_IB014 @Regression_QSC @QSC_InventoryAdjustments
+@QSC_IB014 @Regression_QSC @QSC_InventoryAdjustments @QSC_Inbound
 Scenario: B-427075 Inventory Adjustments- Decrease iLPN qty having no lock code
 Creating ASN through Post Message UI and complete receiving bypasing through staging location & modify the 
 iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
@@ -327,7 +327,7 @@ iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
 	And validates the PIX Transactions "300" for modifying iLPN
 	Then user log out from application 
 	
-	@QSC_IB015 @Regression_QSC @QSC_InventoryAdjustments
+	@QSC_IB015 @Regression_QSC @QSC_InventoryAdjustments @QSC_Inbound
 Scenario: B-427075 Inventory Adjustments- Increase iLPN qty having unallocatable lock code
 Creating ASN through Post Message UI and complete receiving and verify the ASN & modify the 
 iLPN by increasing the quantity & verify the iLPN, ASN and PIX transaction
@@ -350,7 +350,7 @@ iLPN by increasing the quantity & verify the iLPN, ASN and PIX transaction
 	Then user log out from application 
 
 
-@QSC_IB016 @Regression_QSC @QSC_InventoryAdjustments
+@QSC_IB016 @Regression_QSC @QSC_InventoryAdjustments @QSC_Inbound
 Scenario: B-427075 Inventory Adjustments- Decrease iLPN qty having unallocatable lock code
 Creating ASN through Post Message UI and complete receiving bypasing through staging location & modify the 
 iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
@@ -372,7 +372,7 @@ iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
 	And validates the PIX Transactions "606" for modifying iLPN
 	Then user log out from application 
 	
-	@QSC_IB017 @Regression_QSC @QSC_InventoryAdjustments
+	@QSC_IB017 @Regression_QSC @QSC_InventoryAdjustments @QSC_Inbound
 Scenario: B-427075 Inventory Adjustments- Delete line from an iLPN having no lock code
 Creating ASN through Post Message UI and complete receiving bypasing through staging location & modify the 
 iLPN by deleting the line & verify the iLPN, ASN & PIX transaction
@@ -392,7 +392,7 @@ iLPN by deleting the line & verify the iLPN, ASN & PIX transaction
 	And validates the PIX Transactions "300" for modifying iLPN
 	Then user log out from application 
 	
-@QSC_IB018 @Regression_QSC @QSC_InventoryAdjustments
+@QSC_IB018 @Regression_QSC @QSC_InventoryAdjustments @QSC_Inbound
 Scenario: B-427075 FXL-FFD-CIL-MH_I Inventory Adjustments- Delete line from an iLPN having unallocatable lock code after ASN verification
 Creating ASN through Post Message UI and complete receiving bypasing through staging location & modify the 
 iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
@@ -415,7 +415,7 @@ iLPN by increasing the quantity & verify the iLPN, ASN & PIX transaction
 	And validates the PIX Transactions "606" for modifying iLPN
 	Then user log out from application 
 	
-	@QSC_IB019 @Regression_QSC @QSC_ConsumeiLPN
+	@QSC_IB019 @Regression_QSC @QSC_ConsumeiLPN @QSC_Inbound
 Scenario: B-474831 FXL-FFD-CIL-MH_Inventory Control-Base Transactions# 4- Consume iLPN having no lock
 Creating ASN through Post Message UI and complete receiving bypasing through staging location & 
 validating iLPN have no lock & consume the iLPN using RF Menu. Also validate PIX transaction
@@ -435,7 +435,7 @@ validating iLPN have no lock & consume the iLPN using RF Menu. Also validate PIX
 	And validates the PIX Transactions "300" for consuming iLPN
 	Then user log out from application 
 	
-	@QSC_IB020 @Regression_QSC  @QSC_ConsumeiLPN
+	@QSC_IB020 @Regression_QSC  @QSC_ConsumeiLPN @QSC_Inbound
 Scenario: B-474831 FXL-FFD-CIL-MH_Inventory Control-Base Transactions# 4- Consume iLPN having lock code
 Creating iLPN through MM3 Create iLPN menu & applythe lock code,validating iLPN have some lock code & consume 
 the iLPN using RF Menu. Also validate PIX transaction.
@@ -516,7 +516,7 @@ Given I have excel data
 #	Then validates that the iLPN is also moved to inspection zone "QC111A1"
 #	Then user log out from application 
 	
-	@QSC_IB024 @Regression_QSC  @QSC_AutoCloseASN
+	@QSC_IB024 @Regression_QSC  @QSC_AutoCloseASN @QSC_Inbound
 Scenario: Auto Close ASN- Receving qty matches Shipped qty -single Line
 Creating ASN through Post Message UI, complete receiving where Receving qty matches Shipped qty, Validating status and PIX messages
 	Given I have excel data
@@ -535,7 +535,7 @@ Creating ASN through Post Message UI, complete receiving where Receving qty matc
 	And validates the PIX message "603 - Verify receipt"
 	Then user log out from application
 	
-	@QSC_IB025 @Regression_QSC  @QSC_AutoCloseASN
+	@QSC_IB025 @Regression_QSC  @QSC_AutoCloseASN @QSC_Inbound
 Scenario: Auto Close ASN- Receving qty matches Shipped qty - Multi Line
 Creating ASN through Post Message UI, complete receiving of both lines where Receving qty matches Shipped qty, Validating status and PIX messages
 	Given I have excel data
@@ -574,7 +574,7 @@ Creating ASN through Post Message UI, complete receiving of both lines where Rec
 #	And validates the PIX message "603 - Verify receipt"
 #	Then user log out from application
 	
-	@QSC_IB027 @Regression_QSC  @QSC_AutoCloseASN
+	@QSC_IB027 @Regression_QSC  @QSC_AutoCloseASN @QSC_Inbound
 Scenario: Auto Close ASN- Receving qty is less than Shipped qty -single Line
 Creating ASN through Post Message UI, complete receiving where Receving qty is less than Shipped qty, Validating status and PIX messages
 	Given I have excel data
@@ -612,7 +612,7 @@ Creating ASN through Post Message UI, complete receiving where Receving qty is l
 #	Then user log out from application
 	
 
-	@QSC_IB029 @Regression_QSC  @QSC_PartiallyVerified
+	@QSC_IB029 @Regression_QSC  @QSC_PartiallyVerified @QSC_Inbound
 Scenario: Receiving Partial Qty from an ASN- Single Line
 Creating ASN through Post Message UI, Complete receiving of partial qty, Verify the ASN Manually & validate new ASN is
 automatically created with remaining qty
@@ -633,7 +633,7 @@ automatically created with remaining qty
 	Then user verifies new ASN is created with remaining qty
 	Then user log out from application
 	
-	@QSC_IB030 @Regression_QSC  @QSC_PartiallyVerified
+	@QSC_IB030 @Regression_QSC  @QSC_PartiallyVerified @QSC_Inbound
 Scenario: Receiving Partial Qty from both the lines of an ASN- Multi Line
 Creating ASN through Post Message UI, Complete receiving of partial qty from both the lines, Verify the ASN Manually & 
 validate new multi line ASN is automatically created with remaining qty for both lines
@@ -655,7 +655,7 @@ validate new multi line ASN is automatically created with remaining qty for both
 	Then user verifies new ASN is created with remaining qty
 	Then user log out from application
 	
-	@QSC_IB031 @Regression_QSC  @QSC_PartiallyVerified
+	@QSC_IB031 @Regression_QSC  @QSC_PartiallyVerified @QSC_Inbound
 Scenario: Receiving 1st line with all quantities and 2nd line with partial quantities of an ASN 
 Creating ASN through Post Message UI, Complete receiving 1st line with all quantities and 2nd line with partial 
 quantities of an ASN , Verify the ASN Manually & validate new multi line ASN is automatically created with 
@@ -678,7 +678,7 @@ remaining qty
 	Then user verifies new ASN is created with remaining qty
 	Then user log out from application
 	
-	@QSC_IB032 @Regression_QSC  @QSC_PartiallyVerified
+	@QSC_IB032 @Regression_QSC  @QSC_PartiallyVerified @QSC_Inbound
 Scenario: Receiving Partial Qty from both the lines of an ASN- Multi Line having same items 
 Creating ASN through Post Message UI, Complete receiving Receiving Partial Qty from both the lines 
 of an ASN- Multi Line having same items, Verify the ASN Manually & validate new multi line ASN is automatically 
@@ -724,7 +724,7 @@ created with remaining qty
 #	Then user verifies new ASN is created with remaining qty
 #	Then user log out from application
 	
-	@QSC_IB034 @Regression_QSC  @QSC_PartiallyVerified
+	@QSC_IB034 @Regression_QSC  @QSC_PartiallyVerified @QSC_Inbound
 Scenario: Receiving 1st line with all quantities and 2nd line with partial quantities of an ASN- Multi Line with same items 
 Creating ASN through Post Message UI, Receiving 1st line with all quantities and 2nd line with partial quantities of an ASN- Multi Line with same items , Verify 
 the ASN Manually & validate new ASN is automatically created with remaining qty from 2nd line
@@ -767,7 +767,7 @@ the ASN Manually & validate new ASN is automatically created with remaining qty 
 #	Then user log out from application
 	
 	
-	@QSC_IB036 @Regression_QSC  @QSC_Putaway
+	@QSC_IB036 @Regression_QSC  @QSC_Putaway @QSC_Inbound
 Scenario: Heavy Items Putaway
 Receving ASN & completing Heavy Items Putaway
 	Given I have excel data
@@ -786,7 +786,7 @@ Receving ASN & completing Heavy Items Putaway
 	And user open reserve locations and naviagtes to validate iLPN
 	Then user log out from application
 	
-	@QSC_IB037 @Regression_QSC @QSC_Putaway
+	@QSC_IB037 @Regression_QSC @QSC_Putaway @QSC_Inbound
 Scenario: Receiving ASN & completing oversized Putaway
 Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location & completing oversized Putaway
 Given I have excel data
@@ -806,7 +806,7 @@ And user open reserve locations and naviagtes to validate iLPN
 Then user log out from application
 	
 	
-@QSC_IB038 @Regression_QSC  @QSC_Putaway
+@QSC_IB038 @Regression_QSC  @QSC_Putaway @QSC_Inbound
 Scenario: Normal Items Putaway
 Receving ASN & completing Normal Items Putaway
 	Given I have excel data
@@ -826,7 +826,7 @@ Receving ASN & completing Normal Items Putaway
 	Then user log out from application	
 	
 	
-	@QSC_IB042 @Regression_QSC  @QSC_PackCasefromTransitional
+	@QSC_IB042 @Regression_QSC  @QSC_PackCasefromTransitional @QSC_Inbound
 Scenario:  MM3 RF Pack Case from Transitional
 Given I have excel data
 	| QSC_IBScenario042 |

@@ -134,6 +134,7 @@ public class AsnsPage {
 	public WebElement editHeaderAddSealSequenceNumTxtSecond;
 	
 	public void getASNandPONumber(String asnId) throws Exception {
+		
 		homepage.MenuItems_Distribution_Selection("ASNs");
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 120);

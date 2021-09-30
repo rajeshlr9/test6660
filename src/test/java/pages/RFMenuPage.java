@@ -2516,6 +2516,7 @@ public class RFMenuPage {
 					ItemName.sendKeys(Keys.ENTER);
 					Screenshots.captureSnapshot(driver);
 					Steps.logger.info("Enter Item Id: " + Steps.ItemDataMap.get(i).get("Item"));
+					Thread.sleep(10000);
 					prodStatusTxtBox.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("ProductStatus")));
 					Screenshots.captureSnapshot(driver);
 					prodStatusTxtBox.sendKeys(Keys.ENTER);
@@ -3190,7 +3191,10 @@ public class RFMenuPage {
 					//Screenshots.captureSnapshot(driver);
 					//Product status
 					Steps.logger.info("Entered Item Id: " + Steps.ItemDataMap.get(i).get("Item"));
-
+					productStatusTxtBox.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("ProductStatus")));
+					Screenshots.captureSnapshot(driver);
+							productStatusTxtBox.sendKeys(Keys.ENTER);
+										Screenshots.captureSnapshot(driver);
 					qtyPackedInRFcreateIlpnTxtBox.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("ShippedQty")));
 					Screenshots.captureSnapshot(driver);
 					qtyPackedInRFcreateIlpnTxtBox.sendKeys(Keys.ENTER);
@@ -3217,6 +3221,7 @@ public class RFMenuPage {
 								String.valueOf(Steps.ItemDataMap.get(i).get("ShippedQty")) + " qty is received in LPN "
 										+ Items.getLpns(i) + " for Item- " + Steps.ItemDataMap.get(i).get("Item"));
 					}
+					Thread.sleep(5000);
 					if (SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
 						SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
 						if (errorOrWarningMsg.getText().contains("Error")) {
@@ -4150,6 +4155,7 @@ public class RFMenuPage {
 		SeleniumTestHelper.assertTrue(Task_input_field.isDisplayed());
 		Screenshots.captureSnapshot(driver);
 		Task_input_field.sendKeys(Keys.ENTER);
+		Steps.logger.info("Entered the task value: "+Items.getTaskTypeValues(i));
 		Thread.sleep(1000);
 		Screenshots.captureSnapshot(driver);
 		//pallet id 10 digit value
@@ -4158,6 +4164,7 @@ public class RFMenuPage {
 		String Palletval = globalFunc.DateTime.strDate6;
 		ilpnInRFModifyilpnTxtBox.sendKeys(Palletval);
 		System.out.println("Pallet value: "+Palletval);
+		Steps.logger.info("Entered the Pallet value: "+Palletval);
 		Thread.sleep(1000);
 		ilpnInRFModifyilpnTxtBox.sendKeys(Keys.ENTER);
 		Thread.sleep(1000);
@@ -5233,6 +5240,7 @@ public class RFMenuPage {
 				for (int i = 0; i < Items.getLpnsLength(); i++) {
 					SeleniumTestHelper.isElementDisplayed(consumeilpnTxtBox);
 					//consumeilpnTxtBox.sendKeys(iLPNz.get(i));
+					Steps.logger.info(Items.getLpns(i));
 					consumeilpnTxtBox.sendKeys(Items.getLpns(i));
 					Screenshots.captureSnapshot(driver);
 					consumeilpnTxtBox.sendKeys( Keys.ENTER);
@@ -5347,7 +5355,7 @@ public class RFMenuPage {
 			Thread.sleep(3000);				
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver,SplitToLPNtextbox, 20);
-			splittedolpn=DateTime.current_date_time();	
+			splittedolpn=DateTime.splitiLPNFormat();	
 			System.out.println(splittedolpn);
 			SplitToLPNtextbox.sendKeys(splittedolpn);
 			Thread.sleep(1000);

@@ -1,19 +1,19 @@
 Feature: QSC Outbound Scenarios 
 
-@QSC_OB000 @Regression_QSC @QSC_EDIOrderShipping @Sanity_QSC
-Scenario: Distribution Order creation - Single Line 
-	Given I have excel data 
-		| QSC_OBScenario001 |
-	And Open the chrome browser by selenium 
-	When user update "Single Line DO" for dropping into fedexnet application
-	And user logs into the FedexNet application
-	And user upload "850" XML file in fedexnet 
-	Then user log out from Fedenxet application
-	And user logs into the Manhattan application
-	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
-	Then user log out from application 
+#@QSC_OB000 @Regression_QSC @QSC_EDIOrderShipping @Sanity_QSC
+#Scenario: Distribution Order creation - Single Line 
+#	Given I have excel data 
+#		| QSC_OBScenario001 |
+#	And Open the chrome browser by selenium 
+#	When user update "Single Line DO" for dropping into fedexnet application
+#	And user logs into the FedexNet application
+#	And user upload "850" XML file in fedexnet 
+#	Then user log out from Fedenxet application
+#	And user logs into the Manhattan application
+#	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+#	Then user log out from application 
 	
-	@QSC_OB001 @Regression_QSC @QSC_LTLDO
+	@QSC_OB001 @Regression_QSC @QSC_LTLDO @QSC_Outbound
 Scenario: Distribution Order creation - Single Line LTL LTL LTL
 	Given I have excel data 
 		| QSC_OBScenario001 |
@@ -39,7 +39,7 @@ Scenario: Distribution Order creation - Single Line LTL LTL LTL
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 	
 	
-	@QSC_OB002 @Regression_QSC @QSC_LTLDO
+	@QSC_OB002 @Regression_QSC @QSC_LTLDO @QSC_Outbound
 Scenario: Distribution Order creation - Multi Line LTL	LTL	LTL 
 	Given I have excel data 
 		| QSC_OBScenario002 |
@@ -121,25 +121,25 @@ Scenario: Distribution Order creation - Multi Line LTL	LTL	LTL
 #	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 
 #	Then user log out from application 
 	
-@QSC_OB003 @Regression_QSC @QSC_Shipping 
-Scenario: Distribution Order Shipping - Single Line Shortage 
-	Given I have excel data 
-		| QSC_OBScenario003 |
-	And Open the chrome browser by selenium 
-	When user update "Single Line DO" for dropping into fedexnet application
-	And user logs into the FedexNet application
-	And user upload "850" XML file in fedexnet 
-	Then user log out from Fedenxet application
-	And user logs into the Manhattan application
-	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
-	Then user verifies the item details in Distribuion Order page 
-	And user runs the "Standard wave" 
-	Then user views wave and verify order got deselected from wave 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
-	Then user log out from application 
+#@QSC_OB003 @Regression_QSC @QSC_Shipping 
+#Scenario: Distribution Order Shipping - Single Line Shortage 
+#	Given I have excel data 
+#		| QSC_OBScenario003 |
+#	And Open the chrome browser by selenium 
+#	When user update "Single Line DO" for dropping into fedexnet application
+#	And user logs into the FedexNet application
+#	And user upload "850" XML file in fedexnet 
+#	Then user log out from Fedenxet application
+#	And user logs into the Manhattan application
+#	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+#	Then user verifies the item details in Distribuion Order page 
+#	And user runs the "Standard wave" 
+#	Then user views wave and verify order got deselected from wave 
+#	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+#	Then user log out from application 
 	
 	
-@QSC_OB004 @Regression_QSC @QSC_AdjustoLPN 
+@QSC_OB004 @Regression_QSC @QSC_AdjustoLPN  @QSC_Outbound
 Scenario: Modify\Adjust Olpn from Manhattan UI -Single Line, OLPN in Printed status and Order at DC Allocated status 
 	Given I have excel data 
 		| QSC_OBScenario004 |
@@ -157,7 +157,7 @@ Scenario: Modify\Adjust Olpn from Manhattan UI -Single Line, OLPN in Printed sta
 	Then user log out from application 
 	
 	
-@QSC_OB005 @Regression_QSC @QSC_AdjustoLPN 
+@QSC_OB005 @Regression_QSC @QSC_AdjustoLPN @QSC_Outbound
 Scenario: Modify\Adjust Olpn from Manhattan UI Single Line,OLPN in Weighed status and Order at Weighed status-New Quantity  lesser than Current Quantity 
 	Given I have excel data 
 		| QSC_OBScenario005 |
@@ -179,7 +179,7 @@ Scenario: Modify\Adjust Olpn from Manhattan UI Single Line,OLPN in Weighed statu
 	Then user views and Adjust the oLPN 
 	Then user log out from application 
 	
-@QSC_OB006 @Regression_QSC @QSC_AdjustoLPN 
+@QSC_OB006 @Regression_QSC @QSC_AdjustoLPN  @QSC_Outbound
 Scenario: Modify\Adjust Olpn from Manhattan UI Single Line,OLPN in Weighed status and Order at Weighed status-New Quantity  more than Current Quantity 
 	Given I have excel data 
 		| QSC_OBScenario006 |
@@ -267,7 +267,7 @@ Scenario: Modify\Adjust Olpn from Manhattan UI Single Line,OLPN in Weighed statu
 #	Then user opens the OLPN screen and verify the splitted oLPNS status
 #	Then user log out from application
 	
-@QSC_OB010 @Regression_QSC @QSC_SplitoLPN
+@QSC_OB010 @Regression_QSC @QSC_SplitoLPN @QSC_Outbound
 Scenario: Spliting the OLPN at Weighed status 
 	Given I have excel data 
 		| QSC_OBScenario010 |
@@ -312,7 +312,7 @@ Scenario: Spliting the OLPN at Weighed status
 #	Then user opens the OLPN screen and verify the combined oLPNS status
 #	Then user log out from application	
 	
-@QSC_OB012 @Regression_QSC @QSC_CombineoLPN
+@QSC_OB012 @Regression_QSC @QSC_CombineoLPN @QSC_Outbound
 Scenario: Combine the OLPN at weighed status 
 	Given I have excel data 
 		| QSC_OBScenario012 |
@@ -338,7 +338,7 @@ Scenario: Combine the OLPN at weighed status
 	Then user log out from application	
 	
 	
-@QSC_OB013 @Regression_QSC @QSC_CanceloLPN 
+@QSC_OB013 @Regression_QSC @QSC_CanceloLPN  @QSC_Outbound
 Scenario: Cancel OLPN - Cancel the OLPN at Printed status (SingleLine Sceanrios) 
 	Given I have excel data 
 		| QSC_OBScenario013 |
@@ -361,7 +361,7 @@ Scenario: Cancel OLPN - Cancel the OLPN at Printed status (SingleLine Sceanrios)
 	Then user log out from application 
 	
 	
-@QSC_OB014 @Regression_QSC @QSC_CanceloLPN 
+@QSC_OB014 @Regression_QSC @QSC_CanceloLPN  @QSC_Outbound
 Scenario: Cancel OLPN - Cancel the OLPN at Weighed status (SingleLine Sceanrios) 
 	Given I have excel data 
 		| QSC_OBScenario014 |
@@ -388,7 +388,7 @@ Scenario: Cancel OLPN - Cancel the OLPN at Weighed status (SingleLine Sceanrios)
 	And validates the PIX message "620 - Order transactions"
 	Then user log out from application 
 	
-@QSC_OB015 @Regression_QSC @QSC_CanceloLPN 
+@QSC_OB015 @Regression_QSC @QSC_CanceloLPN  @QSC_Outbound
 Scenario: Cancel OLPN - Cancel the OLPN at Shipped status (SingleLine Sceanrios) 
 	Given I have excel data 
 		| QSC_OBScenario015 |
@@ -419,7 +419,7 @@ Scenario: Cancel OLPN - Cancel the OLPN at Shipped status (SingleLine Sceanrios)
 	And validates the PIX message "620 - Order transactions"
 	Then user log out from application 
 	
-@QSC_OB016 @Regression_QSC @QSC_CanceloLPN 
+@QSC_OB016 @Regression_QSC @QSC_CanceloLPN  @QSC_Outbound
 Scenario: Cancel OLPN - Cancel the OLPN at Printed status (MultiLine Sceanrios) 
 	Given I have excel data 
 		| QSC_OBScenario016 |
@@ -441,7 +441,7 @@ Scenario: Cancel OLPN - Cancel the OLPN at Printed status (MultiLine Sceanrios)
 	And validates the PIX message "620 - Order transactions"
 	Then user log out from application 
 	
-@QSC_OB017 @Regression_QSC @QSC_CanceloLPN 
+@QSC_OB017 @Regression_QSC @QSC_CanceloLPN @QSC_Outbound
 Scenario: Cancel OLPN - Cancel the OLPN at Weighed status (MultiLine Sceanrios) 
 	Given I have excel data 
 		| QSC_OBScenario017 |
@@ -471,40 +471,40 @@ Scenario: Cancel OLPN - Cancel the OLPN at Weighed status (MultiLine Sceanrios)
 	Then user log out from application 
 	
 
-@ScenarioOB999
-Scenario Outline: Distribution Order creation - Single Line LTL service
-	Given I have excel data 
-		| QSC_OBScenario001 |
-	And Open the chrome browser by selenium 
-	When user update "Single Line DO" for dropping into fedexnet application with "<TrnsprtSvcLvl>","<TrnsprtSCAC>"
-	And user logs into the FedexNet application
-	And user upload "850" XML file in fedexnet 
-	Then user log out from Fedenxet application
-	And user logs into the Manhattan application
-	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
-	Then user verifies the item details in Distribuion Order page 
-	And user runs the "LTL Pick Wave" 
-	Then user views wave and verify the allocation of inventory 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
-	And user open Task screen & verifies task is created for DO in the wave process 
-	And user open RF Menu and complete the pick tasks created 
-	And user open RF Menu and complete the pack tasks created
-	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
-	Then fetch the OLPN number
-	And user opens RF menu and completes Shipping using "MM3 Anchor oLPN" menu
-	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged"
-	And user navigates to shippment planning workspace
-	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+#@ScenarioOB999
+#Scenario Outline: Distribution Order creation - Single Line LTL service
+#	Given I have excel data 
+#		| QSC_OBScenario001 |
+#	And Open the chrome browser by selenium 
+#	When user update "Single Line DO" for dropping into fedexnet application with "<TrnsprtSvcLvl>","<TrnsprtSCAC>"
+#	And user logs into the FedexNet application
+#	And user upload "850" XML file in fedexnet 
+#	Then user log out from Fedenxet application
+#	And user logs into the Manhattan application
+#	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+#	Then user verifies the item details in Distribuion Order page 
+#	And user runs the "LTL Pick Wave" 
+#	Then user views wave and verify the allocation of inventory 
+#	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+#	And user open Task screen & verifies task is created for DO in the wave process 
+#	And user open RF Menu and complete the pick tasks created 
+#	And user open RF Menu and complete the pack tasks created
+#	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
+#	Then fetch the OLPN number
+#	And user opens RF menu and completes Shipping using "MM3 Anchor oLPN" menu
+#	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged"
+#	And user navigates to shippment planning workspace
+#	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+#	
+#	Examples: 
+#		 | TrnsprtSvcLvl | TrnsprtSCAC | 
+#		 | LTL	 		 | LTL         | 
+#		 | LTLE	     	 | FDFE        | 
+#		 | LTLP		 	 | FDFE        | 
+#	
 	
-	Examples: 
-		 | TrnsprtSvcLvl | TrnsprtSCAC | 
-		 | LTL	 		 | LTL         | 
-		 | LTLE	     	 | FDFE        | 
-		 | LTLP		 	 | FDFE        | 
 	
-	
-	
-	@QSC_OB018 @Regression_QSC @QSC_ParcelDO
+	@QSC_OB018 @Regression_QSC @QSC_ParcelDO @QSC_Outbound
 Scenario: Distribution Order creation - Single Line Parcel	GHD	FDEG
 	Given I have excel data 
 		| QSC_OBScenario018 |
@@ -528,7 +528,7 @@ Scenario: Distribution Order creation - Single Line Parcel	GHD	FDEG
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 	
 
-	@QSC_OB019 @Regression_QSC @QSC_ParcelDO
+	@QSC_OB019 @Regression_QSC @QSC_ParcelDO @QSC_Outbound
 Scenario: Distribution Order creation - Multi Line different items Parcel	F2D	FDE
 	Given I have excel data 
 		| QSC_OBScenario019 |
@@ -551,7 +551,7 @@ Scenario: Distribution Order creation - Multi Line different items Parcel	F2D	FD
 	Then user search for DO and confirms it
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 	
-@QSC_OB020 @Regression_QSC @QSC_ParcelDO
+@QSC_OB020 @Regression_QSC @QSC_ParcelDO @QSC_Outbound
 Scenario: Distribution Order creation - Multi Line different items Parcel	F2D	FDE
 	Given I have excel data 
 		| QSC_OBScenario020 |

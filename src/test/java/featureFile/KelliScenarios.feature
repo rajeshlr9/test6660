@@ -13,6 +13,9 @@ Scenario: Uploading the Single ASNLoad file from the Kelli application and valid
 	And user logs into the Manhattan application
 	And fetches the actual ASN number and PO Number uploaded from Kelli
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 	Then user log out from application 
 	
 	@Kelli002 @Regression_QSC @QSC_KelliASNLoad

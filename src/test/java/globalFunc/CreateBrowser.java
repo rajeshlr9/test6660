@@ -15,6 +15,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import StepDefinition.Steps;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import utils.Config;
 import utils.SeleniumCustomListener;
 import utils.WebDriverDispatcher;
@@ -97,8 +98,8 @@ public class CreateBrowser {
 				break;
 				
 			case "@Platform":
-				
-				System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
+				WebDriverManager.chromedriver().setup();
+				//System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
 				ChromeOptions options2 = new ChromeOptions();
 				options2.addArguments("--start-maximized");
 				Map<String, Object> prefs2 = new HashMap<String, Object>();

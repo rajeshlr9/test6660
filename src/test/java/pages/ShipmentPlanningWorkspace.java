@@ -227,19 +227,42 @@ public WebDriver driver;
 		System.out.println("Confirm To Loaded and Unassign < Packed selected");
 		Thread.sleep(3000);
 		driver.findElement(By.id("dataForm:save_button")).click();
+		System.out.println("Clickd on Save button");
 		Thread.sleep(3000);
-		//homepage.user_closes_openedwindow("Close Shipment List");
-		Thread.sleep(8000);                                          
-		refreshBtn.click();
-		//distributionOrdersPage1.apply_Btn.click();
-		System.out.println("clicked on refresh button");
-		Thread.sleep(5000);
+		//************************workaround for refresh**************************
+		homepage.user_closes_openedwindow("Shipments");
+		Thread.sleep(2000);
+		homepage.MenuItems_Distribution_Selection("Shipments");
+		//Thread.sleep(3500);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrdersPage1.primaryField, 80);
+		distributionOrdersPage1.primaryField.sendKeys("Shipment");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, TCShipmentID1, 50);
+		TCShipmentID1.click();
+		TCShipmentID1.sendKeys(shipno);
+		Thread.sleep(2000);
+		distributionOrdersPage1.apply_Btn.click();
+		Thread.sleep(2000);	
 		String shipstatus1 = ShipmentStatus.getText();
-		System.out.println("shipment status is :" +shipstatus1);
+		System.out.println("shipment status is :" +shipstatus);
 		SeleniumTestHelper.assertEquals(shipstatus1, "80 - Delivered");
 		System.out.println("Status : " + shipstatus1 + " has been verified successfully for Shipno : " + shipno); 
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 		homepage.user_closes_openedwindow("Shipments");
+		//************************************************************************
+		//homepage.user_closes_openedwindow("Close Shipment List");
+		//System.out.println("Display refresh button: "+refreshBtn.isDisplayed());
+		//WebDriverWait wait = new WebDriverWait(driver, 30);
+		//wait.until(ExpectedConditions.elementToBeClickable(refreshBtn));	
+		//refreshBtn.click();
+		
+		//System.out.println("clicked on refresh button");
+		//Thread.sleep(5000);
+		//String shipstatus1 = ShipmentStatus.getText();
+		//System.out.println("shipment status is :" +shipstatus1);
+		//SeleniumTestHelper.assertEquals(shipstatus1, "80 - Delivered");
+		//System.out.println("Status : " + shipstatus1 + " has been verified successfully for Shipno : " + shipno); 
+		//Thread.sleep(5000);
+		//homepage.user_closes_openedwindow("Shipments");
 	}
 	
 
