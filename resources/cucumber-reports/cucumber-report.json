@@ -5,58 +5,266 @@
       {
         "comments": [
           {
-            "line": 3,
-            "value": "#@QSC_OB000 @Regression_QSC @QSC_EDIOrderShipping @Sanity_QSC"
+            "line": 204,
+            "value": "#@QSC_OB007 @Regression_QSC @QSC_AdjustoLPN"
           },
           {
-            "line": 4,
-            "value": "#Scenario: Distribution Order creation - Single Line"
+            "line": 205,
+            "value": "#Scenario: Distribution Order Shipping - Multi Line,One Line at Printed status and second line as Weighed,"
           },
           {
-            "line": 5,
+            "line": 206,
+            "value": "#correspondingly the order is at In Packing,New Quantity  more than Current Quantity"
+          },
+          {
+            "line": 207,
             "value": "#\tGiven I have excel data"
           },
           {
-            "line": 6,
-            "value": "#\t\t| QSC_OBScenario001 |"
+            "line": 208,
+            "value": "#\t\t| QSC_OBScenario007 |"
           },
           {
-            "line": 7,
+            "line": 209,
             "value": "#\tAnd Open the chrome browser by selenium"
           },
           {
-            "line": 8,
-            "value": "#\tWhen user update \"Single Line DO\" for dropping into fedexnet application"
+            "line": 210,
+            "value": "#\tWhen user update \"Multi Line DO\" for dropping into fedexnet application"
           },
           {
-            "line": 9,
+            "line": 211,
             "value": "#\tAnd user logs into the FedexNet application"
           },
           {
-            "line": 10,
+            "line": 212,
             "value": "#\tAnd user upload \"850\" XML file in fedexnet"
           },
           {
-            "line": 11,
+            "line": 213,
             "value": "#\tThen user log out from Fedenxet application"
           },
           {
-            "line": 12,
+            "line": 214,
             "value": "#\tAnd user logs into the Manhattan application"
           },
           {
-            "line": 13,
+            "line": 215,
             "value": "#\tAnd user opens DO screen and searches for the DistributionOrder and verify its status \"110 - Released\""
           },
           {
-            "line": 14,
+            "line": 216,
+            "value": "#\tThen user verifies the item details in Distribuion Order page"
+          },
+          {
+            "line": 217,
+            "value": "#\tAnd user runs the \"LTL Pick Wave\""
+          },
+          {
+            "line": 218,
+            "value": "#\tThen user views wave and verify the allocation of inventory"
+          },
+          {
+            "line": 219,
+            "value": "#\tAnd user opens DO screen and searches for the DistributionOrder and verify its status \"130 - DC Allocated\""
+          },
+          {
+            "line": 220,
+            "value": "#\tAnd user open Task screen \u0026 verifies task is created for DO in the wave process"
+          },
+          {
+            "line": 221,
+            "value": "#\tAnd user open RF Menu and complete a single task created"
+          },
+          {
+            "line": 222,
+            "value": "#\tThen user open Task screen \u0026 validate the status of single task"
+          },
+          {
+            "line": 223,
+            "value": "#\tAnd user opens DO screen and searches for the DistributionOrder and verify its status \"140 - In Packing\""
+          },
+          {
+            "line": 224,
+            "value": "#\tThen user views and Adjust the oLPN"
+          },
+          {
+            "line": 225,
+            "value": "#\tThen user log out from application"
+          },
+          {
+            "line": 226,
+            "value": "#"
+          },
+          {
+            "line": 227,
+            "value": "#@QSC_OB008 @Regression_QSC @QSC_AdjustoLPN"
+          },
+          {
+            "line": 228,
+            "value": "#Scenario: Distribution Order Shipping - Multi Line,One Line at Printed status and second line as Weighed,correspondingly"
+          },
+          {
+            "line": 229,
+            "value": "#the order is at In Packing,New Quantity lesser than Current Quantity"
+          },
+          {
+            "line": 230,
+            "value": "#\tGiven I have excel data"
+          },
+          {
+            "line": 231,
+            "value": "#\t\t| QSC_OBScenario008 |"
+          },
+          {
+            "line": 232,
+            "value": "#\tAnd Open the chrome browser by selenium"
+          },
+          {
+            "line": 233,
+            "value": "#\tWhen user update \"Multi Line DO\" for dropping into fedexnet application"
+          },
+          {
+            "line": 234,
+            "value": "#\tAnd user logs into the FedexNet application"
+          },
+          {
+            "line": 235,
+            "value": "#\tAnd user upload \"850\" XML file in fedexnet"
+          },
+          {
+            "line": 236,
+            "value": "#\tThen user log out from Fedenxet application"
+          },
+          {
+            "line": 237,
+            "value": "#\tAnd user logs into the Manhattan application"
+          },
+          {
+            "line": 238,
+            "value": "#\tAnd user opens DO screen and searches for the DistributionOrder and verify its status \"110 - Released\""
+          },
+          {
+            "line": 239,
+            "value": "#\tThen user verifies the item details in Distribuion Order page"
+          },
+          {
+            "line": 240,
+            "value": "#\tAnd user runs the \"LTL Pick Wave\""
+          },
+          {
+            "line": 241,
+            "value": "#\tThen user views wave and verify the allocation of inventory"
+          },
+          {
+            "line": 242,
+            "value": "#\tAnd user opens DO screen and searches for the DistributionOrder and verify its status \"130 - DC Allocated\""
+          },
+          {
+            "line": 243,
+            "value": "#\tAnd user open Task screen \u0026 verifies task is created for DO in the wave process"
+          },
+          {
+            "line": 244,
+            "value": "#\tAnd user open RF Menu and complete a single task created"
+          },
+          {
+            "line": 245,
+            "value": "#\tThen user open Task screen \u0026 validate the status of single task"
+          },
+          {
+            "line": 246,
+            "value": "#\tAnd user opens DO screen and searches for the DistributionOrder and verify its status \"140 - In Packing\""
+          },
+          {
+            "line": 247,
+            "value": "#\tThen user views and Adjust the oLPN"
+          },
+          {
+            "line": 248,
+            "value": "#\tThen user log out from application"
+          },
+          {
+            "line": 250,
+            "value": "#@QSC_OB009 @Regression_QSC @QSC_SplitoLPN"
+          },
+          {
+            "line": 251,
+            "value": "#Scenario: Spliting the OLPN at Printed status"
+          },
+          {
+            "line": 252,
+            "value": "#\tGiven I have excel data"
+          },
+          {
+            "line": 253,
+            "value": "#\t\t| QSC_OBScenario009 |"
+          },
+          {
+            "line": 254,
+            "value": "#\tAnd Open the chrome browser by selenium"
+          },
+          {
+            "line": 255,
+            "value": "#\tWhen user update \"Single Line DO\" for dropping into fedexnet application"
+          },
+          {
+            "line": 256,
+            "value": "#\tAnd user logs into the FedexNet application"
+          },
+          {
+            "line": 257,
+            "value": "#\tAnd user upload \"850\" XML file in fedexnet"
+          },
+          {
+            "line": 258,
+            "value": "#\tThen user log out from Fedenxet application"
+          },
+          {
+            "line": 259,
+            "value": "#\tAnd user logs into the Manhattan application"
+          },
+          {
+            "line": 260,
+            "value": "#\tAnd user opens DO screen and searches for the DistributionOrder and verify its status \"110 - Released\""
+          },
+          {
+            "line": 261,
+            "value": "#\tThen user verifies the item details in Distribuion Order page"
+          },
+          {
+            "line": 262,
+            "value": "#\tAnd user runs the \"LTL Pick Wave\""
+          },
+          {
+            "line": 263,
+            "value": "#\tAnd user opens DO screen and searches for the DistributionOrder and verify its status \"130 - DC Allocated\""
+          },
+          {
+            "line": 264,
+            "value": "#\tThen fetch the OLPN number"
+          },
+          {
+            "line": 265,
+            "value": "#\t#Then user opens RF menu and perform \"MM3 split OLPN\" operation in inventory menu"
+          },
+          {
+            "line": 266,
+            "value": "#\tAnd user opens RF menu and completes \"MM3 split OLPN\" operation in Misc menu"
+          },
+          {
+            "line": 267,
+            "value": "#\tThen user opens the OLPN screen and verify the splitted oLPNS status"
+          },
+          {
+            "line": 268,
             "value": "#\tThen user log out from application"
           }
         ],
         "before": [
           {
             "result": {
-              "duration": 962100,
+              "duration": 1159700,
               "status": "passed"
             },
             "match": {
@@ -65,7 +273,7 @@
           },
           {
             "result": {
-              "duration": 92041400,
+              "duration": 108492400,
               "status": "passed"
             },
             "match": {
@@ -73,14 +281,14 @@
             }
           }
         ],
-        "line": 17,
-        "name": "Distribution Order creation - Single Line LTL LTL LTL",
+        "line": 271,
+        "name": "Spliting the OLPN at Weighed status",
         "description": "",
-        "id": "qsc-outbound-scenarios;distribution-order-creation---single-line-ltl-ltl-ltl",
+        "id": "qsc-outbound-scenarios;spliting-the-olpn-at-weighed-status",
         "after": [
           {
             "result": {
-              "duration": 1073114900,
+              "duration": 1015023300,
               "status": "passed"
             },
             "match": {
@@ -93,10 +301,10 @@
         "steps": [
           {
             "result": {
-              "duration": 2370854100,
+              "duration": 3147537800,
               "status": "passed"
             },
-            "line": 18,
+            "line": 272,
             "name": "I have excel data",
             "match": {
               "location": "Steps.readExcelData(DataTable)"
@@ -104,19 +312,19 @@
             "rows": [
               {
                 "cells": [
-                  "QSC_OBScenario001"
+                  "QSC_OBScenario010"
                 ],
-                "line": 19
+                "line": 273
               }
             ],
             "keyword": "Given "
           },
           {
             "result": {
-              "duration": 3606396900,
+              "duration": 3811354100,
               "status": "passed"
             },
-            "line": 20,
+            "line": 274,
             "name": "Open the chrome browser by selenium",
             "match": {
               "location": "Steps.open_the_chrome_and_launch_the_application_using_Selenium()"
@@ -125,10 +333,10 @@
           },
           {
             "result": {
-              "duration": 1064443200,
+              "duration": 926079900,
               "status": "passed"
             },
-            "line": 21,
+            "line": 275,
             "name": "user update \"Single Line DO\" for dropping into fedexnet application",
             "match": {
               "arguments": [
@@ -143,10 +351,10 @@
           },
           {
             "result": {
-              "duration": 4412733500,
+              "duration": 4541330000,
               "status": "passed"
             },
-            "line": 22,
+            "line": 276,
             "name": "user logs into the FedexNet application",
             "match": {
               "location": "StepDefInBound.user_logs_into_the_FedexNet_application()"
@@ -155,10 +363,10 @@
           },
           {
             "result": {
-              "duration": 11586833600,
+              "duration": 12385200500,
               "status": "passed"
             },
-            "line": 23,
+            "line": 277,
             "name": "user upload \"850\" XML file in fedexnet",
             "match": {
               "arguments": [
@@ -173,10 +381,10 @@
           },
           {
             "result": {
-              "duration": 5168321700,
+              "duration": 5246869600,
               "status": "passed"
             },
-            "line": 24,
+            "line": 278,
             "name": "user log out from Fedenxet application",
             "match": {
               "location": "StepDefInBound.user_logout_from_fedexnet()"
@@ -185,10 +393,10 @@
           },
           {
             "result": {
-              "duration": 5754522900,
+              "duration": 6013845800,
               "status": "passed"
             },
-            "line": 25,
+            "line": 279,
             "name": "user logs into the Manhattan application",
             "match": {
               "location": "StepDefInBound.user_logs_into_the_Manhattan_application()"
@@ -197,10 +405,10 @@
           },
           {
             "result": {
-              "duration": 9231952900,
+              "duration": 9236516700,
               "status": "passed"
             },
-            "line": 26,
+            "line": 280,
             "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"110 - Released\"",
             "match": {
               "arguments": [
@@ -215,10 +423,10 @@
           },
           {
             "result": {
-              "duration": 27169027300,
+              "duration": 28067306200,
               "status": "passed"
             },
-            "line": 27,
+            "line": 281,
             "name": "user verifies the item details in Distribuion Order page",
             "match": {
               "location": "StepDefOutBound.user_verifies_the_item_details_in_Distribuion_Order_page()"
@@ -227,10 +435,10 @@
           },
           {
             "result": {
-              "duration": 60844777500,
+              "duration": 62308566400,
               "status": "passed"
             },
-            "line": 28,
+            "line": 282,
             "name": "user runs the \"LTL Pick Wave\"",
             "match": {
               "arguments": [
@@ -245,10 +453,10 @@
           },
           {
             "result": {
-              "duration": 19858168900,
+              "duration": 20143036500,
               "status": "passed"
             },
-            "line": 29,
+            "line": 283,
             "name": "user views wave and verify the allocation of inventory",
             "match": {
               "location": "StepDefOutBound.user_user_views_wave_and_verify_the_allocation_of_inventory()"
@@ -257,10 +465,10 @@
           },
           {
             "result": {
-              "duration": 8656822300,
+              "duration": 9217253700,
               "status": "passed"
             },
-            "line": 30,
+            "line": 284,
             "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"130 - DC Allocated\"",
             "match": {
               "arguments": [
@@ -275,10 +483,10 @@
           },
           {
             "result": {
-              "duration": 18675352800,
+              "duration": 18854205600,
               "status": "passed"
             },
-            "line": 31,
+            "line": 285,
             "name": "user open Task screen \u0026 verifies task is created for DO in the wave process",
             "match": {
               "location": "StepDefOutBound.user_user_views_TaskScreen_and_verify_task_generated()"
@@ -287,10 +495,10 @@
           },
           {
             "result": {
-              "duration": 83135780900,
+              "duration": 83371917300,
               "status": "passed"
             },
-            "line": 32,
+            "line": 286,
             "name": "user open RF Menu and complete the pick tasks created",
             "match": {
               "location": "StepDefOutBound.user_user_opeb_RFMenu_and_complete_pick_tasks()"
@@ -299,10 +507,10 @@
           },
           {
             "result": {
-              "duration": 74372839700,
+              "duration": 101194305800,
               "status": "passed"
             },
-            "line": 33,
+            "line": 287,
             "name": "user open RF Menu and complete the pack tasks created",
             "match": {
               "location": "StepDefOutBound.user_user_opeb_RFMenu_and_complete_pack_tasks()"
@@ -311,10 +519,10 @@
           },
           {
             "result": {
-              "duration": 8774837800,
+              "duration": 9094018500,
               "status": "passed"
             },
-            "line": 34,
+            "line": 288,
             "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"160 - Weighed\"",
             "match": {
               "arguments": [
@@ -329,10 +537,10 @@
           },
           {
             "result": {
-              "duration": 18999115100,
+              "duration": 19640487000,
               "status": "passed"
             },
-            "line": 35,
+            "line": 289,
             "name": "fetch the OLPN number",
             "match": {
               "location": "StepDefOutBound.fetch_olpn()"
@@ -341,83 +549,69 @@
           },
           {
             "result": {
-              "duration": 52320426400,
+              "duration": 95285648100,
               "status": "passed"
             },
-            "line": 36,
-            "name": "user opens RF menu and completes Shipping using \"MM3 Anchor oLPN\" menu",
+            "comments": [
+              {
+                "line": 290,
+                "value": "#Then user opens RF menu and perform \"MM3 split OLPN\" operation in inventory menu"
+              }
+            ],
+            "line": 291,
+            "name": "user opens RF menu and completes \"MM3 split OLPN\" operation in Misc menu",
             "match": {
               "arguments": [
                 {
-                  "val": "MM3 Anchor oLPN",
-                  "offset": 49
+                  "val": "MM3 split OLPN",
+                  "offset": 34
                 }
               ],
-              "location": "StepDefOutBound.user_opens_RF_menu_and_completes_Receiving_using_menu(String)"
+              "location": "StepDefInBound.user_opens_RF_menu_and_perform_transaction_in_Misc_option(String)"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 8541715800,
+              "duration": 20540227600,
               "status": "passed"
             },
-            "line": 37,
-            "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"165 - Staged\"",
+            "line": 292,
+            "name": "user opens the OLPN screen and verify the splitted oLPNS status",
             "match": {
-              "arguments": [
-                {
-                  "val": "165 - Staged",
-                  "offset": 83
-                }
-              ],
-              "location": "StepDefOutBound.user_opens_DOscreen_andsearches_for_DOstatus(String)"
+              "location": "StepDefOutBound.check_splitted_oLPNS_status()"
             },
-            "keyword": "And "
+            "keyword": "Then "
           },
           {
             "result": {
-              "duration": 128973809600,
+              "duration": 14260158700,
               "status": "passed"
             },
-            "line": 38,
-            "name": "user navigates to shippment planning workspace",
+            "line": 293,
+            "name": "user log out from application",
             "match": {
-              "location": "StepDefOutBound.ShipmentPlanning()"
+              "location": "StepDefInBound.user_log_out_from_application()"
             },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 8654403000,
-              "status": "passed"
-            },
-            "line": 39,
-            "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"190 - Shipped\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "190 - Shipped",
-                  "offset": 83
-                }
-              ],
-              "location": "StepDefOutBound.user_opens_DOscreen_andsearches_for_DOstatus(String)"
-            },
-            "keyword": "And "
+            "keyword": "Then "
           }
         ],
         "tags": [
           {
-            "line": 16,
-            "name": "@QSC_OB001"
+            "line": 270,
+            "name": "@QSC_OB010"
           },
           {
-            "line": 16,
+            "line": 270,
             "name": "@Regression_QSC"
           },
           {
-            "line": 16,
-            "name": "@QSC_LTLDO"
+            "line": 270,
+            "name": "@QSC_SplitoLPN"
+          },
+          {
+            "line": 270,
+            "name": "@QSC_Outbound"
           }
         ]
       }

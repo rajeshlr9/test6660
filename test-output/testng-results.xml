@@ -2,26 +2,26 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
-      <![CDATA[Execution started for : Distribution Order creation - Single Line LTL LTL LTL]]>
+      <![CDATA[Execution started for : Spliting the OLPN at Weighed status]]>
     </line>
   </reporter-output>
-  <suite started-at="2021-09-30T05:02:26 GMT" name="Suite" finished-at="2021-09-30T05:11:53 GMT" duration-ms="566514">
+  <suite started-at="2021-10-05T07:33:09 GMT" name="Suite" finished-at="2021-10-05T07:42:01 GMT" duration-ms="532005">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@5ae50ce6]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2021-09-30T05:02:26 GMT" name="Test" finished-at="2021-09-30T05:11:53 GMT" duration-ms="566514">
+    <test started-at="2021-10-05T07:33:09 GMT" name="Test" finished-at="2021-10-05T07:42:01 GMT" duration-ms="532005">
       <class name="TestRunner.Runner">
-        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-09-30T05:02:26 GMT" name="createExtentReport" finished-at="2021-09-30T05:02:26 GMT" duration-ms="113" status="PASS">
+        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-10-05T07:33:09 GMT" name="createExtentReport" finished-at="2021-10-05T07:33:09 GMT" duration-ms="149" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createExtentReport -->
-        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-09-30T05:02:26 GMT" name="setUpClass" finished-at="2021-09-30T05:02:27 GMT" duration-ms="1135" status="PASS">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-10-05T07:33:09 GMT" name="setUpClass" finished-at="2021-10-05T07:33:10 GMT" duration-ms="1277" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-09-30T05:02:28 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2021-09-30T05:11:52 GMT" duration-ms="563887" status="PASS">
+        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-10-05T07:33:11 GMT" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2021-10-05T07:42:00 GMT" duration-ms="529049" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -31,15 +31,15 @@
           </params>
           <reporter-output>
             <line>
-              <![CDATA[Execution started for : Distribution Order creation - Single Line LTL LTL LTL]]>
+              <![CDATA[Execution started for : Spliting the OLPN at Weighed status]]>
             </line>
           </reporter-output>
         </test-method> <!-- feature -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-09-30T05:11:52 GMT" name="tearDownClass" finished-at="2021-09-30T05:11:52 GMT" duration-ms="692" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-10-05T07:42:00 GMT" name="tearDownClass" finished-at="2021-10-05T07:42:01 GMT" duration-ms="869" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-09-30T05:11:52 GMT" name="writeExtentReport" finished-at="2021-09-30T05:11:53 GMT" duration-ms="19" status="PASS">
+        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@5ae50ce6]" started-at="2021-10-05T07:42:01 GMT" name="writeExtentReport" finished-at="2021-10-05T07:42:01 GMT" duration-ms="36" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- writeExtentReport -->

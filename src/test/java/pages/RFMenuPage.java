@@ -2958,7 +2958,11 @@ public class RFMenuPage {
 				for (int i = 0, j = 1; i < Steps.ItemDataMap.size(); i++, j++) {
 					globalFunc.DateTime.TimeDateFunc();
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, ilpnInRFcreateilpnTxtBox, 50);
+					if(Steps.scenarioData.get("LpnFLag").equals("consumeilpn")) {
+						ilpnInRFcreateilpnTxtBox.sendKeys((DateTime.strDate70)+Keys.ENTER);
+					}else {
 					ilpnInRFcreateilpnTxtBox.sendKeys(("0"+DateTime.strDate32)+Keys.ENTER);
+					}
 					Screenshots.captureSnapshot(driver);
 					if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
 						acceptAndProceedBtn.click();
@@ -4885,7 +4889,11 @@ public class RFMenuPage {
 					//lpnInputTxt.sendKeys(Keys.ENTER);
 					globalFunc.DateTime.TimeDateFunc();
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 50);
+					if(Steps.scenarioData.get("LpnFLag").equals("consumeilpn")) {
+						lpnInputTxt.sendKeys((DateTime.strDate70)+Keys.ENTER);
+					}else {
 					lpnInputTxt.sendKeys(("0"+DateTime.strDate32)+Keys.ENTER);
+					}
 					Screenshots.captureSnapshot(driver);
 					if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
 						acceptAndProceedBtn.click();
@@ -5344,8 +5352,6 @@ public class RFMenuPage {
 			Screenshots.captureSnapshot(driver);
 			Steps.logger.info("Enter the value of oLPN: " + Items.getoLPN(0));
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, SplitFromoLPNtextbox, 20);
-			
-			
 			SplitFromoLPNtextbox.sendKeys(Items.getoLPN(0));
 			Thread.sleep(1000);
 			Screenshots.captureSnapshot(driver);

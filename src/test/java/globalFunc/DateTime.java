@@ -21,6 +21,7 @@ public class DateTime {
 	public static String strDate32;
 	public static String strDate67;
 	public static String strDate68;
+	public static String strDate70;
 	public static void TimeDateFunc() {
 		
 		Date date = new Date(); 
@@ -47,6 +48,9 @@ public class DateTime {
        
         SimpleDateFormat formatter22 = new SimpleDateFormat("yyyyMMddHHmmss");              
         strDate32= formatter22.format(date); 
+
+        SimpleDateFormat formatter70 = new SimpleDateFormat("yyMMddHHmmss");              
+        strDate70= formatter70.format(date);
         
         SimpleDateFormat formatter7 = new SimpleDateFormat("yyyyMMddHHmmssSSS");              
         strDate7= formatter7.format(date);  
