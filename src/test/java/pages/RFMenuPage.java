@@ -3196,9 +3196,10 @@ public class RFMenuPage {
 					//Product status
 					Steps.logger.info("Entered Item Id: " + Steps.ItemDataMap.get(i).get("Item"));
 					productStatusTxtBox.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("ProductStatus")));
+					Steps.logger.info("Entered Product Status: " + String.valueOf(Steps.ItemDataMap.get(i).get("ProductStatus")));
 					Screenshots.captureSnapshot(driver);
-							productStatusTxtBox.sendKeys(Keys.ENTER);
-										Screenshots.captureSnapshot(driver);
+					productStatusTxtBox.sendKeys(Keys.ENTER);
+					//Screenshots.captureSnapshot(driver);
 					qtyPackedInRFcreateIlpnTxtBox.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("ShippedQty")));
 					Screenshots.captureSnapshot(driver);
 					qtyPackedInRFcreateIlpnTxtBox.sendKeys(Keys.ENTER);
