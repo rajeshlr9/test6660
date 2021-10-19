@@ -27,7 +27,7 @@ Scenario: Distribution Order creation - Single Line LTL FDFE LTLE
 	
 
 @DailyRegression_QSC @ScenarioOB10 @Outbound
-Scenario: Distribution Order creation - Single Line LTL FDFE LTLE 
+Scenario: Distribution Order creation - Single Line  SI LTL FDFE LTLE 
 	Given I have excel data 
 		| QSC_DailyRegressionOB10 |
 	And Open the chrome browser by selenium 

@@ -80,7 +80,7 @@
       <TrnsprtFrghtTermsCD>PP</TrnsprtFrghtTermsCD>
     </TrnsprtLp>
     <SpecInstrLp>
-      <SpecInstrCD>PICK</SpecInstrCD>
+      <SpecInstrCD>PACK</SpecInstrCD>
       <SpecInstr>Customer PO:yymmdd   |     |  </SpecInstr>
     </SpecInstrLp>
     <OrdLineItemLp>
