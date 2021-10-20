@@ -70,6 +70,7 @@ public class Runner extends AbstractTestNGCucumberTests {
 		// Reporter.loadXMLConfig(new
 		// File(FileReaderManager.getInstance().getConfigReader().getReportConfigPath()));
 		// Reporter.loadXMLConfig(new File("src/ConfigFiles/extent-config.xml"));
+		//Commented somelines
 
 	}
 	//@AfterClass
