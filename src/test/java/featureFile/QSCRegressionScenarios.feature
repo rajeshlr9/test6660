@@ -349,30 +349,30 @@ Scenario: Distribution Order creation - Single Line LTL FDFE LTLE invalid item
 	And user logs into the Manhattan application 
 	And user opens DO screen and searches for the DO
 
-@DailyRegression_QSC @ScenarioOB10 @QSC_CustomerTestingOutbound
-Scenario: Distribution Order creation - Single Line  SI LTL FDFE LTLE 
-	Given I have excel data 
-		| QSC_DailyRegressionOB10 |
-	And Open the chrome browser by selenium 
-	When user update "Single Line DO" for dropping into fedexnet application 
-	And user logs into the FedexNet application 
-	And user upload "850" XML file in fedexnet 
-	Then user log out from Fedenxet application 
-	And user logs into the Manhattan application 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
-	Then user verifies the item details in Distribuion Order page 
-	And user runs the "LTL Pick Wave" 
-	Then user views wave and verify the allocation of inventory 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
-	And user open Task screen & verifies task is created for DO in the wave process 
-	And user open RF Menu and complete the pick tasks created 
-	And user open RF Menu and complete the pack tasks created 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed" 
-	Then fetch the OLPN number 
-	And user opens RF menu and completes Shipping using "MM3 Anchor oLPN" menu 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged" 
-	And user navigates to shippment planning workspace 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 
+#@DailyRegression_QSC @ScenarioOB10 @QSC_CustomerTestingOutbound
+#Scenario: Distribution Order creation - Single Line  SI LTL FDFE LTLE 
+#	Given I have excel data 
+#		| QSC_DailyRegressionOB10 |
+#	And Open the chrome browser by selenium 
+#	When user update "Single Line DO" for dropping into fedexnet application 
+#	And user logs into the FedexNet application 
+#	And user upload "850" XML file in fedexnet 
+#	Then user log out from Fedenxet application 
+#	And user logs into the Manhattan application 
+#	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+#	Then user verifies the item details in Distribuion Order page 
+#	And user runs the "LTL Pick Wave" 
+#	Then user views wave and verify the allocation of inventory 
+#	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
+#	And user open Task screen & verifies task is created for DO in the wave process 
+#	And user open RF Menu and complete the pick tasks created 
+#	And user open RF Menu and complete the pack tasks created 
+#	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed" 
+#	Then fetch the OLPN number 
+#	And user opens RF menu and completes Shipping using "MM3 Anchor oLPN" menu 
+#	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged" 
+#	And user navigates to shippment planning workspace 
+#	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 
 		
 @DailyRegression_QSC @ScenarioOB11 @QSC_CustomerTestingOutbound
 Scenario: Distribution Order creation - Single Line LTL FDFE LTLE 

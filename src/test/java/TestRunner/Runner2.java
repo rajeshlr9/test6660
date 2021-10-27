@@ -22,7 +22,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 		strict = true,
 		dryRun = false,
 		//tags={"@tag1001,@tag1002,@tag1003,@tag1004,@tag1005,@tag1006,@tag1007,@tag1008,@tag1009,@tag1010,@tag1011,@tag1012,@tag1013,@tag1014,@tag1015,@tag1016,@tag1017,@tag1018,@tag1019,@tag10203"},
-		tags={"@ScenarioOB10_1"},
+		tags={"@ScenarioOB10"},
 		features = {"src\\test\\java\\featureFile"},
 		//features = {"src\\test\\java\\featureFile"},
 		glue = {"StepDefinition"},
