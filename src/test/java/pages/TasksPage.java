@@ -46,7 +46,7 @@ public class TasksPage {
 	public WebElement taskIDcolumn;
 	@FindBy(xpath = "(//table[@id='dataForm:lview:dataTable_body']/tbody/tr/td[2]/span[1])[1]")
 	public WebElement firstTaskId;
-	@FindBy(xpath = "//input[@id='dataForm:lview:filterId:filterIdapply']")
+	@FindBy(xpath = "//input[@id='dataForm:lview:filterId1:filterId1apply']")
 	public WebElement applyBtn;
 	@FindBy(id = "dataForm:lview:dataTable:0:statusVal")
 	public WebElement taskStatus;
@@ -71,7 +71,7 @@ public class TasksPage {
 	public WebElement TODate;
 	@FindBy(id = "dataForm:lview:filterId:field40value1")
 	public WebElement waveNoinputBox;
-	@FindBy(id = "dataForm:lview:filterId:field90value1")
+	@FindBy(xpath = "//input[@id='dataForm:lview:filterId1:field90value1']")
 	public WebElement orderNoinputBox;
 	@FindBy(xpath = "//input[@alt='Find Task generation reference number']")
 	public WebElement Taskgenerationreferencenumber;
