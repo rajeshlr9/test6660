@@ -31,6 +31,7 @@ import pages.RFMenuPage;
 import pages.ShipmentPlanningWorkspace;
 import pages.TasksPage;
 import pages.WavesPage;
+import pages.WeighAndManifestoLPNPage;
 import utils.SeleniumTestHelper;
 import utils.Xpathxml;
 
@@ -623,8 +624,65 @@ System.out.println(e);
 			e.printStackTrace();
 			Assert.assertTrue(false, e.getMessage());
 	
-}
-}
+		}
+	}
 	
+	@Then("^user opens the OLPN screen and retrieve the splitted oLPN$")
+	public void retrieve_splitted_oLPN_()throws Exception {
+	try {
+		doPage.retrieveSplittedToOLPN();
+		Steps.logger.info("Retrieved the Splitted OLPN");
+	} catch (Exception e) {
+		Steps.testRes = "Failed";
+		System.out.println(e);
+		Assert.assertTrue(false, e.getMessage());
+	}
+	}
+	
+	@And("^user perform weigh and manifest for splitted to OLPN$")
+	public void weighForTheOLPNAfterSplitAndMove()throws Exception{
+		WeighAndManifestoLPNPage weighAndManifest  = new WeighAndManifestoLPNPage();
+		homePage.MenuItems_Distribution_Selection("Weigh and Manifest oLPN");
+		Screenshots.captureSnapshot(driver);
+		try {
+			weighAndManifest.performWeighAndManifest();
+			Steps.logger.info("Performed Weigh on Splitted OLPN.");
+		}
+		catch  (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+	
+		}
+	}
+	
+	@Then("^user opens RF menu and completes Shipping using \"([^\"]*)\" menu after split move$")
+	public void user_opens_RF_menu_and_completes_shipping_after_split(String shippingMethod) throws Exception {
+		try {
+			homePage.MenuItems_Distribution_Selection("RF Menu");
+			Steps.logger.info("Open RF menu");
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			rfMenu.DOShippingProcessAfterSplitMove(shippingMethod);
+			Steps.logger.info("Performed shipping process after split and move");
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+
+	@And("^user opens DO screen and searches for the DO using Fulfillment Status as \"([^\"]*)\"$")
+	public void user_opens_DOscreen_and_Searches_for_DO_Using_FullfillmentStatus(String status)	throws Exception {
+		try {
+			doPage.getDOUsingFulfillmentStatus(status);
+			Reporter.addStepLog("DO Order status is verified successfully");
+			Steps.logger.info("DO Order status is verified successfully");
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
 	
 }

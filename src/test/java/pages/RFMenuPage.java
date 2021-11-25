@@ -5518,4 +5518,83 @@ public class RFMenuPage {
 				Assert.assertTrue(false, e.getMessage());
 			}
 	}
+	
+	public void DOShippingProcessAfterSplitMove(String shipMethod) throws Exception {
+		try {
+				//String oLPN = Items.getoLPN(0);
+			
+				//iLPNz = null;
+				Steps.logger.info("Start Shipping Process");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+				RFmenu_info.click();
+				Steps.logger.info("Clicked on RF Menu");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
+				Mainmenu.click();
+				Steps.logger.info("Clicked on Main Menu");
+				Thread.sleep(2000);
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfShipping, 50);
+				rfShipping.click();
+				
+				Steps.logger.info("Clicked on Shipping");
+				Screenshots.captureSnapshot(driver);
+				switch (shipMethod) {
+				case "MM3 Anchor oLPN":
+					while (!(SeleniumTestHelper.isElementDisplayed(MM3AnchoroLPN))) {
+						pageDown.click();
+					}
+					SeleniumTestHelper.assertTrue(MM3AnchoroLPN.isDisplayed());
+					Screenshots.captureSnapshot(driver);
+					SeleniumTestHelper.waitForElementToBeClickable(driver, MM3AnchoroLPN, 50);
+					MM3AnchoroLPN.click();
+					Steps.logger.info("Click on MM3 Anchor oLPN method");
+					// Thread.sleep(5000);
+					//for (int i = 0; i < DistributionOrders.oLPNList.size(); i++) {
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfman_oLPN, 50);
+					Screenshots.captureSnapshot(driver);
+					rfman_oLPN.sendKeys(DistributionOrders.oLPNList.get(0));
+					//rfman_oLPN.sendKeys("00195192211117142941");
+
+					//rfman_oLPN.sendKeys("00001951920000023309");
+					Thread.sleep(1000);
+					//rfman_oLPN.sendKeys(Keys.ENTER);
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, sublocn3, 50);
+					System.out.println("Sys tech1");
+					String sysSuggestedAncLoc = MM3AnchorLoc.getText();
+					String[] sysSuggestedAncLocSplit = sysSuggestedAncLoc.split(" ");
+					String SysSugAncLoc = sysSuggestedAncLocSplit[1].trim();
+					System.out.println(SysSugAncLoc);
+					System.out.println("Sys tech2");
+					driver.switchTo().parentFrame();
+					System.out.println("Sys tech22");
+					String LocCode = oCLPage.getLocation(SysSugAncLoc);
+					SeleniumTestHelper.switchToInnerFrame(driver);
+					System.out.println("Sys tech3");
+					//click only to get rid of open windows tab
+					sublocn3.click();
+					sublocn3.sendKeys(LocCode);
+					Thread.sleep(1000);
+					
+						sublocn3.sendKeys(Keys.ENTER);
+					
+					
+					//}
+					
+					break;
+
+				default:
+					//System.out.println("Inventory management starting with : " + inventoryFunctions + " menu");
+					break;
+				}
+				//System.out.println("Inventory management completed with : " + inventoryFunctions + " menu");
+				homepage.userClosesOpenedwindow("RF Menu");	
+				
+			} catch (Exception e) {
+				Steps.testRes = "Failed";
+				System.out.println("test red" + Steps.testRes);
+				e.printStackTrace();
+				Assert.assertTrue(false, e.getMessage());
+
+			}
+		}
+
 }

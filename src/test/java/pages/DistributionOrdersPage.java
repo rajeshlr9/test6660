@@ -3,6 +3,7 @@ package pages;
 import java.awt.AWTException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalInt;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -323,6 +324,14 @@ public class DistributionOrdersPage {
 	@FindBy(xpath = "(//div[class='mps-memo-item'])")
 	public WebElement DOPopup;
 
+	@FindBy(xpath = "(//label[text()='Primary Fields']//following::input[@role='combobox' and @data-ref='inputEl'])[3]") 
+	public WebElement primaryFieldStatus;
+	
+	@FindBy(xpath = "(//label[text()='Optional Fields']//following::input[@role='combobox' and @data-ref='inputEl'])[2]") 
+	public WebElement optionalField;
+	
+	@FindBy(xpath = "(//label[text()='Optional Fields']//following::input[@role='textbox' and @data-ref='inputEl'])[1]") 
+	public WebElement optionalFieldInputText;
 	
 	public void getDO() throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
@@ -2173,4 +2182,108 @@ public class DistributionOrdersPage {
 	Thread.sleep(5000);
 	Screenshots.captureSnapshot(driver);
 	}
+	
+	public void retrieveSplittedToOLPN() throws Exception {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		System.out.println("DISTRIBUTION");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		primaryField.sendKeys("Distribution Order");
+		System.out.println("sendkeys");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		System.out.println("click");
+
+		distributionOrderID.sendKeys(Items.getDONumber()); // DistributionOrders.getDOnumber()
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
+		viewBtn.click();
+		homepage.user_closes_openedwindow("Distribution Orders");
+		homepage.openWindows.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, lPNSTab, 50);
+		lPNSTab.click();
+		// To locate table.
+		Thread.sleep(5000);
+		WebElement mytable = driver
+				.findElement(By.xpath("//*[@id=\"dataForm:DODetailsLpnList_lv:LPNListTable_body\"]"));
+		System.out.println("table");
+		// To locate rows of table.
+		List<WebElement> rows_table = mytable.findElements(By.tagName("tr"));
+		// To calculate no of rows In table.
+		int rows_count = rows_table.size();
+		System.out.println("No of Rows ::" + rows_count);
+		System.out.println("no of rows");
+		// Loop will execute till the last row of table.
+		for (int row = 0; row < rows_count - 1; row++) {
+			// To locate columns(cells) of that specific row.
+			List<WebElement> Columns_row = rows_table.get(row).findElements(By.tagName("td"));
+			System.out.println("getrows::" + Columns_row.size());
+			String oLPN = Columns_row.get(1).getText();
+			String oLPNStatus = Columns_row.get(8).getText();
+			String oLPNQty = Columns_row.get(6).getText();
+			String qty[] = oLPNQty.split(" ");
+			Items.setoLPN(oLPN);
+			Items.setoLPNStatus(oLPNStatus);
+			Items.setoLPNQty(qty[0]);
+			System.out.println(Items.getoLPN(row));
+			System.out.println(Items.getoLPNStatus(row));
+			System.out.println(Items.getoLPNQty(row));
+			if (oLPN.equals(RFMenuPage.splittedolpn)) {
+				DistributionOrders.setoLPNList(oLPN);
+				System.out.println("oLPN list :"+DistributionOrders.oLPNList);
+				System.out.println("size of oLPN list :"+DistributionOrders.oLPNList.size());
+				System.out.println("Splitted to oLPN :"+DistributionOrders.oLPNList.get(0));
+			}
+		}
+		homepage.user_closes_openedwindow("DO Detail - Distribution Order");
+	}
+	
+	public void getDOUsingFulfillmentStatus(String status) throws Exception {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		Screenshots.captureSnapshot(driver);
+		primaryField.sendKeys("Fulfillment Status");
+		primaryField.sendKeys(Keys.ENTER);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryFieldStatus, 80);
+		primaryFieldStatus.sendKeys("110 - Released");
+		primaryFieldStatus.sendKeys(Keys.ENTER);
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, optionalField, 80);
+		optionalField.sendKeys("External SO / PO");
+		optionalField.sendKeys(Keys.ENTER);
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, optionalFieldInputText, 50);
+		System.out.println(Items.getDONumber());
+		optionalFieldInputText.sendKeys(Items.getDONumber());
+		Screenshots.captureSnapshot(driver);
+		apply_Btn.click();
+		System.out.println("clicked");
+		//SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		Screenshots.captureSnapshot(driver);
+		//WebElement actualDOstatus = driver.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[text()='"
+		//		+ Items.getDONumber() + "']//following::td[1]"));
+		int temp=0;
+		 while (!SeleniumTestHelper.isElementDisplayed(distributionOrder_chkbox) && (temp != 10)) {
+			 apply_Btn.click();
+			 Thread.sleep(3000);
+			 temp++;
+		 }
+		
+		 if(SeleniumTestHelper.isElementDisplayed(distributionOrder_chkbox)) {
+			 Reporter.addStepLog("DO is created");
+			 Assert.assertTrue(false);
+		 }else {
+			 Reporter.addStepLog("DO is not created");
+			 Assert.assertTrue(true); 
+		 }
+		 
+		
+		
+		homepage.user_closes_openedwindow("Distribution Orders");
+
+	}
+
 }

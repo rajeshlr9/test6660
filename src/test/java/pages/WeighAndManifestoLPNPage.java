@@ -6,7 +6,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
+import StepDefinition.Steps;
 import entity.DistributionOrders;
 import utils.Driver;
 import utils.SeleniumTestHelper;
@@ -15,15 +17,18 @@ public class WeighAndManifestoLPNPage {
 	
 	WebDriver driver;
 	
-	
+	HomePage homepage = new HomePage();
+	OlpnsPage olpnsPage = new OlpnsPage();
 	
 	public WeighAndManifestoLPNPage() {
-		this.driver = Driver.getInstance();
+		//this.driver = Driver.getInstance();
+		//PageFactory.initElements(driver, this);
+		this.driver = Steps.seleniumDriver;
 		PageFactory.initElements(driver, this);
 	}
 	
-	HomePage homepage = new HomePage();
-	OlpnsPage olpnsPage = new OlpnsPage();
+	//HomePage homepage = new HomePage();
+	//OlpnsPage olpnsPage = new OlpnsPage();
 	
 	@FindBy(xpath="//input[@id='dataForm:EnterLPNNumber']") public WebElement inputOLPNtxtbox;
 	@FindBy(xpath="//input[@id='dataForm:nextButtonAddLPN']") public WebElement nextBtn;
@@ -41,6 +46,9 @@ public class WeighAndManifestoLPNPage {
 	@FindBy(xpath="//span[@id='dataForm:oLPNStatus' and text()='Manifested']") public WebElement manifestedStatus;
 	//@FindBy(xpath="//select[@name='dataForm:shipviaList']") public WebElement ShipVia;
 	@FindBy(xpath="//select[@id='dataForm:shipviaList']/option[@selected='selected']") public WebElement ShipVia;
+	@FindBy(xpath="//input[@value='Weigh >']") public WebElement weighBtn;
+	@FindBy(xpath="//select[@id='dataForm:containerTypeList']") public WebElement oLPNType;
+	@FindBy(xpath="//input[@id='dataForm:exitButton']") public WebElement exitBtn;
 	
 	public void weighandManifestoLPN(String olpnStatus) throws InterruptedException, IOException{
 		
@@ -74,7 +82,9 @@ public class WeighAndManifestoLPNPage {
 	
 	public void weighandManifestValidateweight() throws Exception{
 		
-		for(int i=0 ;i < DistributionOrders.oLPNwithActive.size();i++)
+		//for(int i=0 ;i < DistributionOrders.oLPNwithActive.size();i++)
+		for(int i=0 ;i < DistributionOrders.oLPNList.size();i++)
+
 		{
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, inputOLPNtxtbox, 50);
 			inputOLPNtxtbox.clear();
@@ -164,6 +174,51 @@ public class WeighAndManifestoLPNPage {
 		SeleniumTestHelper.assertEquals(manifestedStatus.isDisplayed(), true); 
 		
 		}
+	}
+	
+	public void performWeighAndManifest() throws Exception {
+		homepage.openWindows.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, inputOLPNtxtbox, 50);
+		inputOLPNtxtbox.clear();
+		inputOLPNtxtbox.sendKeys(DistributionOrders.oLPNList.get(0));
+		SeleniumTestHelper.assertEquals(inputOLPNtxtbox.isDisplayed(), true);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, nextBtn, 50);
+		nextBtn.click();
+		Thread.sleep(2000);
+		Select oLPNTypeSelector = new Select(oLPNType);
+		oLPNTypeSelector.selectByVisibleText("QSC Pallet");
+		Thread.sleep(1000);
+		
+		String actWeight = EstimatedWeight.getText();
+		double result = Double.parseDouble(actWeight);
+		double maxWeight=result+5;
+		System.out.println(result);
+		System.out.println("maxWeight"+maxWeight);
+		ActualWeightInput.sendKeys(String.valueOf(maxWeight));
+		Thread.sleep(2000);
+		weighBtn.click();
+		Thread.sleep(2000);
+		System.out.println("Clicked on weigh button");
+		
+		if(SeleniumTestHelper.isElementDisplayed(weightEnteredExceedErrormsg)){
+			
+			SeleniumTestHelper.assertEquals(weightEnteredExceedErrormsg.isDisplayed(), true);
+			closeMsgBtn.click();
+		}
+		ActualWeightInput.clear();
+		ActualWeightInput.sendKeys(actWeight);
+		weighBtn.click();
+		System.out.println("Clicked on weigh button");
+		Thread.sleep(2000);
+		if(SeleniumTestHelper.isElementDisplayed(shipViaEmptyErrormsg))
+		{
+			closeMsgBtn.click();
+		}
+		Thread.sleep(2000);
+		exitBtn.click();
+		homepage.user_closes_openedwindow("Weigh and Manifest oLPN - Weigh and...");
+
 	}
 	
 	}

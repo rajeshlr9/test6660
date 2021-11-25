@@ -144,6 +144,9 @@ public class StepDefInBound {
 				else if (env.equalsIgnoreCase("L4")) {
 					driver.get(Config.getProperty("ManhattanURL_L4"));
 					Steps.logger.info("L4 Environment");
+			}else if (env.equalsIgnoreCase("L5")) {
+				driver.get(Config.getProperty("ManhattanURL_L5"));
+				Steps.logger.info("L5 Environment");
 			}
 			manhattanLoginPage.loginToManhattanApp();
 		} catch (Exception e) {
@@ -172,6 +175,9 @@ public class StepDefInBound {
 				else if (env.equalsIgnoreCase("L4")) {
 					driver.get(Config.getProperty("FedexNetURL_STAGE"));
 					Steps.logger.info("STAGE Environment");
+			}else if (env.equalsIgnoreCase("L5")) {
+				driver.get(Config.getProperty("FedexNetURL_DEV"));
+				Steps.logger.info("Dev Environment");
 			}
 			FedexnetPage.logintoFedexNet();
 		} catch (Exception e) {
@@ -194,6 +200,10 @@ public class StepDefInBound {
 				dropEnv="FSCSQA";
 			}
 				else if (env.equalsIgnoreCase("L4")) {
+					dropEnv="FSCSUA";
+			}
+				else if (env.equalsIgnoreCase("L5")) {
+					System.out.println("L5 Env - FSCSUA");
 					dropEnv="FSCSUA";
 			}
 			if(fileType.equals("856")||fileType.equals("943")) {			

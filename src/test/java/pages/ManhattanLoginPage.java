@@ -126,6 +126,12 @@ public class ManhattanLoginPage extends Steps {
 					password.sendKeys(Config.getProperty("L4Password_Admin"));
 					Steps.logger.info("L4Password: " + Config.getProperty("L4Password_Admin"));
 
+				}else if (env.equalsIgnoreCase("L5")) {
+					username.sendKeys(Config.getProperty("L5Username_Admin"));
+					Steps.logger.info("L5UserName: " + Config.getProperty("L5Username_Admin"));
+					password.sendKeys(Config.getProperty("L5Password_Admin"));
+					Steps.logger.info("L5Password: " + Config.getProperty("L5Password_Admin"));
+
 				}
 
 				Screenshots.captureSnapshot(driver);
