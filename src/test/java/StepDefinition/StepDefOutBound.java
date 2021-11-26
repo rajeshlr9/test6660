@@ -24,6 +24,7 @@ import pages.DistributionOrderProfilesPage;
 import pages.DistributionOrdersPage;
 import pages.HomePage;
 import pages.ILPNPage;
+import pages.ManhattanLoginPage;
 import pages.OlpnsPage;
 import pages.OrderConsolidationLocationPage;
 import pages.PostMessagePage;
@@ -177,6 +178,12 @@ public class StepDefOutBound {
 	@And("^user opens DO screen and searches for the DistributionOrder and verify its status \"([^\"]*)\"$")
 	public void user_opens_DOscreen_andsearches_for_DOstatus(String status)	throws Exception {
 		try {
+//			String env = ManhattanLoginPage.environment;
+//			if(status.equalsIgnoreCase("110 - Released") && env.equalsIgnoreCase("L2")) {
+//				doPage.getDOStatusUsingFulfillment(status);
+//			}else {
+//				doPage.getDoStatus(status);
+//			}
 			doPage.getDoStatus(status);
 			Reporter.addStepLog("DO Order status is verified successfully");
 			Steps.logger.info("DO Order status is verified successfully");
@@ -672,17 +679,17 @@ System.out.println(e);
 		}
 	}
 
-	@And("^user opens DO screen and searches for the DO using Fulfillment Status as \"([^\"]*)\"$")
-	public void user_opens_DOscreen_and_Searches_for_DO_Using_FullfillmentStatus(String status)	throws Exception {
-		try {
-			doPage.getDOUsingFulfillmentStatus(status);
-			Reporter.addStepLog("DO Order status is verified successfully");
-			Steps.logger.info("DO Order status is verified successfully");
-		} catch (Exception e) {
-			Steps.testRes = "Failed";
-			System.out.println(e);
-			Assert.assertTrue(false, e.getMessage());
-		}
-	}
+//	@And("^user opens DO screen and searches for the DO using Fulfillment Status as \"([^\"]*)\"$")
+//	public void user_opens_DOscreen_and_Searches_for_DO_Using_FullfillmentStatus(String status)	throws Exception {
+//		try {
+//			doPage.getDOStatusUsingFulfillment(status);
+//			Reporter.addStepLog("DO Order status is verified successfully");
+//			Steps.logger.info("DO Order status is verified successfully");
+//		} catch (Exception e) {
+//			Steps.testRes = "Failed";
+//			System.out.println(e);
+//			Assert.assertTrue(false, e.getMessage());
+//		}
+//	}
 	
 }

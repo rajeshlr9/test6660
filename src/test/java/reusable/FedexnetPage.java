@@ -72,13 +72,8 @@ public class FedexnetPage  extends Steps {
 	}
 	
 	public void dropOrder(String dropEnv, String filetype, String filepath) throws Exception {
-		
+
 		System.out.println("drop order");
-		
-		System.out.println("dropEnvr:"+dropEnv);
-		System.out.println("filetype:"+filetype);
-		System.out.println("filepath"+filepath);
-		
 		driver.switchTo().frame("LinkFrame");
 		Thread.sleep(1000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, TransferDoc, 50);
@@ -100,10 +95,6 @@ public class FedexnetPage  extends Steps {
 	      {
 	    	  String AppValue =driver.findElement(By.xpath("/html/body/form/table[4]/tbody/tr["+i+"]/td[3]/input")).getAttribute("value");
 	    	  String RecNameValue =driver.findElement(By.xpath("/html/body/form/table[4]/tbody/tr["+i+"]/td[2]/input")).getAttribute("value");
-	    	  System.out.println(AppValue);
-	    	  System.out.println(RecNameValue);
-	    	  System.out.println(filetype);
-	    	  System.out.println("-------------");
 	    	  if(RecNameValue.equals(dropEnv)&& AppValue.equals(filetype)) {
 	    		  System.out.println("match");
 	    		 driver.findElement(By.xpath("/html/body/form/table[4]/tbody/tr["+i+"]/td[1]/input")).click();

@@ -2240,7 +2240,7 @@ public class DistributionOrdersPage {
 		homepage.user_closes_openedwindow("DO Detail - Distribution Order");
 	}
 	
-	public void getDOUsingFulfillmentStatus(String status) throws Exception {
+	public void getDOStatusUsingFulfillment(String status) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
@@ -2274,13 +2274,24 @@ public class DistributionOrdersPage {
 		
 		 if(SeleniumTestHelper.isElementDisplayed(distributionOrder_chkbox)) {
 			 Reporter.addStepLog("DO is created");
-			 Assert.assertTrue(false);
+			 Assert.assertTrue(true);
 		 }else {
 			 Reporter.addStepLog("DO is not created");
-			 Assert.assertTrue(true); 
+			 Assert.assertTrue(false); 
 		 }
 		 
-		
+		 String actualDONumber = driver.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[contains(text(),'')]")).getText();
+		 System.out.println("actual do number"+actualDONumber);
+		 Items.setDONumber(actualDONumber);
+		 System.out.println("New DO Number is"+Items.getDONumber());
+		 SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+			Screenshots.captureSnapshot(driver);
+			String actualDOstatus = driver.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[text()='"
+					+ Items.getDONumber() + "']//following::td[1]")).getText();
+			SeleniumTestHelper.assertEquals(actualDOstatus, status);
+			Reporter.addStepLog("DO Order status:" + actualDOstatus);
+			Steps.logger.info("DO Order status:" + actualDOstatus);
+			Thread.sleep(2000);
 		
 		homepage.user_closes_openedwindow("Distribution Orders");
 
