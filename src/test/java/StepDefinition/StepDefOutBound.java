@@ -178,13 +178,13 @@ public class StepDefOutBound {
 	@And("^user opens DO screen and searches for the DistributionOrder and verify its status \"([^\"]*)\"$")
 	public void user_opens_DOscreen_andsearches_for_DOstatus(String status)	throws Exception {
 		try {
-//			String env = ManhattanLoginPage.environment;
-//			if(status.equalsIgnoreCase("110 - Released") && env.equalsIgnoreCase("L2")) {
-//				doPage.getDOStatusUsingFulfillment(status);
-//			}else {
-//				doPage.getDoStatus(status);
-//			}
-			doPage.getDoStatus(status);
+			String env = ManhattanLoginPage.environment;
+			if(status.equalsIgnoreCase("110 - Released") && env.equalsIgnoreCase("L2")) {
+				doPage.getDOStatusUsingFulfillment(status);
+			}else {
+				doPage.getDoStatus(status);
+			}
+			//doPage.getDoStatus(status);
 			Reporter.addStepLog("DO Order status is verified successfully");
 			Steps.logger.info("DO Order status is verified successfully");
 		} catch (Exception e) {

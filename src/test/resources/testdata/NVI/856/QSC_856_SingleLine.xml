@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FGSCSSTDShipNotify>
+  <FGSCSHdr>
+    <CrtDtTm>yyyymmdd023022</CrtDtTm>
+    <MsgID>129253</MsgID>
+    <MsgType>856</MsgType>
+    <SndTPQualCD>ZZ</SndTPQualCD>
+    <SndTP>QSC</SndTP>
+    <RcvTPQualCD>ZZ</RcvTPQualCD>
+    <RcvTP>FSCS</RcvTP>
+  </FGSCSHdr>
+  <ShipNotifHdrLp>
+    <ShipPurpCD>00</ShipPurpCD>
+    <ShipID>yymmdd</ShipID>
+    <ShipDate>yyyymmdd</ShipDate>
+    <ShipWeight>33549.93</ShipWeight>
+    <ShipWeightUOM>LB</ShipWeightUOM>
+    <ShipWeightQual>G</ShipWeightQual>
+    <AdrLp>
+      <AdrType>RC</AdrType>
+      <AdrIDQual>54</AdrIDQual>
+      <AdrID>MEM3</AdrID>
+    </AdrLp>
+    <DtTmLp>
+      <DtTmQual>070</DtTmQual>
+      <Date GmtOffset= "-08:00" Time="013056" >yyyymmdd</Date>
+    </DtTmLp>
+    <RefLp>
+      <RefIDQual>QSC</RefIDQual>
+      <RefID>yymmdd</RefID>
+    </RefLp>
+    <TrnsprtLp>
+      <TrnsprtShipID>yymmdd</TrnsprtShipID>
+      <TrnsprtSCAC></TrnsprtSCAC>
+      <TrnsprtTrailerNo>yymmdd</TrnsprtTrailerNo>
+    </TrnsprtLp>
+    <ShipOrdLp>
+      <OrdNbr>yymmdd</OrdNbr>
+      <OrdDate GmtOffset= "-08:00" Time="013056" >yyyymmdd</OrdDate>
+      <ShipLineItemLp>
+        <ItemLnNbr>1</ItemLnNbr>
+        <ItemID>FG-000100-02</ItemID>
+        <ItemQty>10</ItemQty>
+        <ItemShipQty>10</ItemShipQty>
+        <ItemUOM>EA</ItemUOM>
+      </ShipLineItemLp>
+    </ShipOrdLp>
+  </ShipNotifHdrLp>
+</FGSCSSTDShipNotify>

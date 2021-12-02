@@ -56,9 +56,9 @@ public class Xpathxml {
 	public String inputOBFilePath = dirPath + "/src/test/resources/testdata/Outbound/" +Steps.scenarioData.get("Account") + "/InputOB.xml";
 	
 	//Fedexnet files
-	public String SingleLineInboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/856/QSC_856_SingleLine.xml";
-	public String MultiLineInboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/856/QSC_856_MultiLine.xml";
-	public String inputEDIInboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/856/QSC_856_InputFile.xml";
+	public String SingleLineInboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/856/"+Steps.scenarioData.get("Account")+"_856_SingleLine.xml";
+	public String MultiLineInboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/856/"+Steps.scenarioData.get("Account")+"_856_MultiLine.xml";
+	public String inputEDIInboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/856/"+Steps.scenarioData.get("Account")+"_856_InputFile.xml";
 	
 	public String SingleLineOutboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/850/QSC_850_SingleLine.xml";
 	public String MultiLineOutboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/850/QSC_850_MultiLine.xml";
@@ -520,6 +520,8 @@ public class Xpathxml {
 	public void user_create_EDI_file(String xmlType) throws FileNotFoundException, XPathExpressionException, IOException, SAXException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
 		
 		if(xmlType.equals("Single Line PO")){
+			Steps.logger.info("Contents Copy from : "+SingleLineInboundFilePath);
+			Steps.logger.info("Contents Copy to : "+inputEDIInboundFilePath);
 			user_copy_content_from_source_to_target(SingleLineInboundFilePath, inputEDIInboundFilePath);
 		}else if(xmlType.equals("Multi Line PO")){
 			user_copy_content_from_source_to_target(MultiLineInboundFilePath, inputEDIInboundFilePath);

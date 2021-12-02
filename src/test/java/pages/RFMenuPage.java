@@ -5521,42 +5521,35 @@ public class RFMenuPage {
 	
 	public void DOShippingProcessAfterSplitMove(String shipMethod) throws Exception {
 		try {
-				//String oLPN = Items.getoLPN(0);
-			
-				//iLPNz = null;
-				Steps.logger.info("Start Shipping Process");
-				SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
-				RFmenu_info.click();
-				Steps.logger.info("Clicked on RF Menu");
-				SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
-				Mainmenu.click();
-				Steps.logger.info("Clicked on Main Menu");
-				Thread.sleep(2000);
-				SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfShipping, 50);
-				rfShipping.click();
-				
-				Steps.logger.info("Clicked on Shipping");
+			Steps.logger.info("Start Shipping Process");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+			RFmenu_info.click();
+			Steps.logger.info("Clicked on RF Menu");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
+			Mainmenu.click();
+			Steps.logger.info("Clicked on Main Menu");
+			Thread.sleep(2000);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfShipping, 50);
+			rfShipping.click();
+
+			Steps.logger.info("Clicked on Shipping");
+			Screenshots.captureSnapshot(driver);
+			switch (shipMethod) {
+			case "MM3 Anchor oLPN":
+				while (!(SeleniumTestHelper.isElementDisplayed(MM3AnchoroLPN))) {
+					pageDown.click();
+				}
+				SeleniumTestHelper.assertTrue(MM3AnchoroLPN.isDisplayed());
 				Screenshots.captureSnapshot(driver);
-				switch (shipMethod) {
-				case "MM3 Anchor oLPN":
-					while (!(SeleniumTestHelper.isElementDisplayed(MM3AnchoroLPN))) {
-						pageDown.click();
-					}
-					SeleniumTestHelper.assertTrue(MM3AnchoroLPN.isDisplayed());
-					Screenshots.captureSnapshot(driver);
-					SeleniumTestHelper.waitForElementToBeClickable(driver, MM3AnchoroLPN, 50);
-					MM3AnchoroLPN.click();
-					Steps.logger.info("Click on MM3 Anchor oLPN method");
-					// Thread.sleep(5000);
-					//for (int i = 0; i < DistributionOrders.oLPNList.size(); i++) {
+				SeleniumTestHelper.waitForElementToBeClickable(driver, MM3AnchoroLPN, 50);
+				MM3AnchoroLPN.click();
+				Steps.logger.info("Click on MM3 Anchor oLPN method");
+				Thread.sleep(5000);
+				for (int i = 0; i < DistributionOrders.oLPNList.size(); i++) {
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfman_oLPN, 50);
 					Screenshots.captureSnapshot(driver);
-					rfman_oLPN.sendKeys(DistributionOrders.oLPNList.get(0));
-					//rfman_oLPN.sendKeys("00195192211117142941");
-
-					//rfman_oLPN.sendKeys("00001951920000023309");
+					rfman_oLPN.sendKeys(DistributionOrders.oLPNList.get(i));
 					Thread.sleep(1000);
-					//rfman_oLPN.sendKeys(Keys.ENTER);
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, sublocn3, 50);
 					System.out.println("Sys tech1");
 					String sysSuggestedAncLoc = MM3AnchorLoc.getText();
@@ -5569,32 +5562,201 @@ public class RFMenuPage {
 					String LocCode = oCLPage.getLocation(SysSugAncLoc);
 					SeleniumTestHelper.switchToInnerFrame(driver);
 					System.out.println("Sys tech3");
-					//click only to get rid of open windows tab
+					// click only to get rid of open windows tab
 					sublocn3.click();
 					sublocn3.sendKeys(LocCode);
 					Thread.sleep(1000);
-					
-						sublocn3.sendKeys(Keys.ENTER);
-					
-					
-					//}
-					
-					break;
-
-				default:
-					//System.out.println("Inventory management starting with : " + inventoryFunctions + " menu");
-					break;
+					sublocn3.sendKeys(Keys.ENTER);
 				}
-				//System.out.println("Inventory management completed with : " + inventoryFunctions + " menu");
-				homepage.userClosesOpenedwindow("RF Menu");	
+				break;
+
+			default:
+				break;
 				
-			} catch (Exception e) {
-				Steps.testRes = "Failed";
-				System.out.println("test red" + Steps.testRes);
-				e.printStackTrace();
-				Assert.assertTrue(false, e.getMessage());
-
 			}
-		}
+			homepage.userClosesOpenedwindow("RF Menu");
 
-}
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println("test red" + Steps.testRes);
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+
+		}
+	}
+
+	public void SplitAndMoveUsingMiscellaneous(String operation, boolean useNewOLPN) throws Exception {
+		try {
+			switch (operation) {
+			case "MM3 split OLPN":
+				System.out.println("Steps.ItemDataMap.size()" + Steps.ItemDataMap.size());
+				for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
+					String iLPN = null;
+					// iLPNz = null;
+					Steps.logger.info("Start Receiving Process");
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+					RFmenu_info.click();
+					Steps.logger.info("Clicked on RF Menu");
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
+					Mainmenu.click();
+					Steps.logger.info("Clicked on Main Menu");
+					Thread.sleep(2000);
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuMisc, 50);
+					rfMenuMisc.click();
+					Steps.logger.info("Clicked on Miscellaneous Menu");
+					Screenshots.captureSnapshot(driver);
+
+					while (!(SeleniumTestHelper.isElementDisplayed(SplitCmbneoLPN))) {
+						pageDown.click();
+						Thread.sleep(5000);
+					}
+					SeleniumTestHelper.assertTrue(SplitCmbneoLPN.isDisplayed());
+					Screenshots.captureSnapshot(driver);
+					SplitCmbneoLPN.click();
+					Steps.logger.info("Click on splitCmbneoLPN method");
+					Thread.sleep(3000);
+					Screenshots.captureSnapshot(driver);
+					Steps.logger.info("Enter the value of oLPN: " + Items.getoLPN(i));
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, SplitFromoLPNtextbox, 20);
+					SplitFromoLPNtextbox.sendKeys(Items.getoLPN(i));
+					Thread.sleep(1000);
+					Screenshots.captureSnapshot(driver);
+					if (SeleniumTestHelper.isElementDisplayed(SplitFromoLPNtextbox)) {
+						SplitFromoLPNtextbox.sendKeys(Keys.ENTER);
+					}
+					Thread.sleep(3000);
+					Screenshots.captureSnapshot(driver);
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, SplitToLPNtextbox, 20);
+
+					if (useNewOLPN) {
+						splittedolpn = DateTime.splitiLPNFormat();
+						Steps.logger.info("Use new OLPN" + splittedolpn);
+					} else {
+						if (splittedolpn == null) {
+							splittedolpn = DateTime.splitiLPNFormat();
+							Steps.logger.info("Use Same OLPN" + splittedolpn);
+						}
+					}
+					System.out.println(splittedolpn);
+					SplitToLPNtextbox.sendKeys(splittedolpn);
+					Thread.sleep(1000);
+					Screenshots.captureSnapshot(driver);
+					if (SeleniumTestHelper.isElementDisplayed(SplitToLPNtextbox)) {
+						SplitToLPNtextbox.sendKeys(Keys.ENTER);
+					}
+					Screenshots.captureSnapshot(driver);
+					Steps.logger.info("New oLPN created to split the qty: " + splittedolpn);
+					Thread.sleep(2000);
+					if (Splititembarcodetextbox.isDisplayed())
+						while (!SeleniumTestHelper.isElementDisplayed(itemIDElement)) {
+							driver.findElement(By.xpath("//span[@id='rfbtn_dataForm:switchKeyId']")).click();
+						}
+					if (itemIDElement.isDisplayed()) {
+						System.out.println("Item: " + Steps.ItemDataMap.get(i).get("Item"));
+						itemIDElement.sendKeys(Steps.ItemDataMap.get(i).get("Item"));
+						Screenshots.captureSnapshot(driver);
+						itemIDElement.sendKeys(Keys.ENTER);
+						Thread.sleep(2000);
+						System.out.println("Entered the item..");
+						Thread.sleep(2000);
+					}
+					if (SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
+						System.out.println("I value :" + i);
+						if (i == 0) {
+							Thread.sleep(1000);
+							Screenshots.captureSnapshot(driver);
+							acceptAndProceedBtn.click();
+							Thread.sleep(2000);
+							Thread.sleep(2000);
+							if (Splititembarcodetextbox.isDisplayed())
+								while (!SeleniumTestHelper.isElementDisplayed(itemIDElement)) {
+									driver.findElement(By.xpath("//span[@id='rfbtn_dataForm:switchKeyId']")).click();
+								}
+							Thread.sleep(2000);
+							itemIDElement.clear();
+							Thread.sleep(2000);
+							itemIDElement.sendKeys(Steps.ItemDataMap.get(i + 1).get("Item"));
+							System.out.println("Entered the item..");
+							Screenshots.captureSnapshot(driver);
+							itemIDElement.sendKeys(Keys.ENTER);
+							Thread.sleep(2000);
+						} else {
+							// Steps.logger.info(errorOrWarningMsg.getText());
+							Thread.sleep(1000);
+							Screenshots.captureSnapshot(driver);
+							acceptAndProceedBtn.click();
+							Thread.sleep(2000);
+							Thread.sleep(2000);
+							if (Splititembarcodetextbox.isDisplayed())
+								while (!SeleniumTestHelper.isElementDisplayed(itemIDElement)) {
+									driver.findElement(By.xpath("//span[@id='rfbtn_dataForm:switchKeyId']")).click();
+								}
+							Thread.sleep(2000);
+							itemIDElement.clear();
+							Thread.sleep(2000);
+							itemIDElement.sendKeys(Steps.ItemDataMap.get(i - 1).get("Item"));
+							System.out.println("Entered the item..");
+							Screenshots.captureSnapshot(driver);
+							itemIDElement.sendKeys(Keys.ENTER);
+							Thread.sleep(2000);
+
+						}
+
+					}
+
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, SplititQtytextbox, 20);
+					SplititQtytextbox.sendKeys(Steps.ItemDataMap.get(i).get("SplitoLPNQty"));
+					Screenshots.captureSnapshot(driver);
+					SplititQtytextbox.sendKeys(Keys.ENTER);
+
+					Thread.sleep(3000);
+					int srNum = -1;
+					while (SeleniumTestHelper.isElementDisplayed(serialNumbersInput)) {
+						srNum++;
+						// do{
+						// if(SeleniumTestHelper.isElementDisplayed(serialNumbersInput)) {
+						SeleniumTestHelper.waitForElementToBeDisplayed(driver, serialNumbersInput, 50);
+
+						Steps.logger.info("Serial no's entered: " + Items.getAsnserialNumberList(srNum));
+						serialNumberInputParcel.sendKeys(Items.getAsnserialNumberList(srNum));
+						Screenshots.captureSnapshot(driver);
+						Thread.sleep(1000);
+						// System.out.println("wait1");
+						serialNumberInputParcel.sendKeys(Keys.ENTER);
+						System.out.println("wait2");
+						Screenshots.captureSnapshot(driver);
+
+						Thread.sleep(2000);
+						// handle error here
+					}
+					Thread.sleep(3000);
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 10);
+					RFmenu_info.click();
+					Thread.sleep(2000);
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, EndoLPN, 10);
+					EndoLPN.click();
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+					RFmenu_info.click();
+					Screenshots.captureSnapshot(driver);
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, ExitBtn, 50);
+					ExitBtn.click();
+					System.out.println("Clicked on Exit Button");
+				}
+				System.out.println("Exit the for loop");
+				break;
+
+			default:
+				break;
+			}
+			homepage.userClosesOpenedwindow("RF Menu");
+
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println("test red" + Steps.testRes);
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+
+		}
+	}
+
+	}

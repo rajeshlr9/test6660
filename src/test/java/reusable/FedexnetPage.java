@@ -53,18 +53,22 @@ public class FedexnetPage  extends Steps {
 	public WebElement topFrame;
 	
 	public static String environment = Config.getProperty("Environment");
+	public static String account = Config.getProperty("Account");
 
 	public  void logintoFedexNet() throws Exception {
 		
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, username, 100);
 		String env = environment;
 		// String userType= Config.getProperty("UserRole");
+		//String userType= Config.getProperty("UserRole");
+		String custAccount = account; 
+		System.out.println("customer account"+custAccount);
 		if (env.equalsIgnoreCase("L1") || env.equalsIgnoreCase("@Env") || env.equalsIgnoreCase("L2")|| env.equalsIgnoreCase("L5")) {
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, username, 50);
-			username.sendKeys(Config.getProperty("FedexNetUsername_DEV"));
-			Steps.logger.info("DEVUserName: " + Config.getProperty("FedexNetUsername_DEV"));
-			password.sendKeys(Config.getProperty("FedexNetPassword_DEV"));
-			Steps.logger.info("DEVPassword: " + Config.getProperty("FedexNetPassword_DEV"));
+			username.sendKeys(Config.getProperty("FedexNetUsername_DEV"+"_"+custAccount));
+			Steps.logger.info("DEVUserName: " + Config.getProperty("FedexNetUsername_DEV"+"_"+custAccount));
+			password.sendKeys(Config.getProperty("FedexNetPassword_DEV"+"_"+custAccount));
+			Steps.logger.info("DEVPassword: " + Config.getProperty("FedexNetPassword_DEV"+"_"+custAccount));
 			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(signInBtn));
 			signInBtn.click();
 			Thread.sleep(3000);
@@ -73,7 +77,6 @@ public class FedexnetPage  extends Steps {
 	
 	public void dropOrder(String dropEnv, String filetype, String filepath) throws Exception {
 
-		System.out.println("drop order");
 		driver.switchTo().frame("LinkFrame");
 		Thread.sleep(1000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, TransferDoc, 50);
@@ -96,16 +99,16 @@ public class FedexnetPage  extends Steps {
 	    	  String AppValue =driver.findElement(By.xpath("/html/body/form/table[4]/tbody/tr["+i+"]/td[3]/input")).getAttribute("value");
 	    	  String RecNameValue =driver.findElement(By.xpath("/html/body/form/table[4]/tbody/tr["+i+"]/td[2]/input")).getAttribute("value");
 	    	  if(RecNameValue.equals(dropEnv)&& AppValue.equals(filetype)) {
-	    		  System.out.println("match");
+	    		 Steps.logger.info("Expected drop Env. "+dropEnv+" and File type "+filetype+ " matched");
 	    		 driver.findElement(By.xpath("/html/body/form/table[4]/tbody/tr["+i+"]/td[1]/input")).click();
 	    	  break;
 	    	  }else if(RecNameValue.equals(dropEnv)&& AppValue.equals(filetype+"UA")) {
-	    		  System.out.println("match");
+	    		 Steps.logger.info("Expected drop Env. "+dropEnv+" and File type "+filetype+"UA"+ " matched");
 	    		 driver.findElement(By.xpath("/html/body/form/table[4]/tbody/tr["+i+"]/td[1]/input")).click();
 	    	  break;
 	    	  }    	 
 	      }
-	      driver.switchTo().parentFrame();		
+	      	driver.switchTo().parentFrame();		
 		//	driver.switchTo().frame("ApplicationFrame");
 			driver.switchTo().frame("bottomFrame");			
 			Thread.sleep(1000);		
@@ -124,10 +127,10 @@ public class FedexnetPage  extends Steps {
 			String validationMsg = driver.findElement(By.xpath("/html/body/form/table[3]/tbody/tr[1]/td")).getText();
 	
 			if(validationMsg.contains("Acknowledgement received")) {
-				System.out.println("Upload successful");
+				Steps.logger.info("Upload successful");
 				
 			}else {
-				System.out.println("Upload Unsuccessful");
+				Steps.logger.info("Upload Unsuccessful");
 			}
 	}
 

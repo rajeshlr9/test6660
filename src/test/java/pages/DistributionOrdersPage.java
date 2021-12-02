@@ -383,6 +383,8 @@ public class DistributionOrdersPage {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
 		Screenshots.captureSnapshot(driver);
 		distributionOrderID.click();
+		//
+		//Items.setDONumber("QSC202112011519");
 		System.out.println(Items.getDONumber());
 		distributionOrderID.sendKeys(Items.getDONumber());
 		Screenshots.captureSnapshot(driver);
@@ -1956,16 +1958,19 @@ public class DistributionOrdersPage {
 			System.out.println("getrows::" + Columns_row.size());
 			String oLPN = Columns_row.get(1).getText();
 			String oLPNStatus = Columns_row.get(8).getText();
-			if(Columns_row.get(8).getText().equals("30 - Weighed")) {
+			System.out.println(oLPNStatus);
+			if(Columns_row.get(8).getText().equals("30 - Weighed") || Columns_row.get(8).getText().equals("30 - Weighed")) {
+				System.out.println("OLPNStatus"+oLPNStatus);
 				Items.setoLPN(oLPN);
-				System.out.println("oLPN : "+"i: "+Items.getoLPN(row));
+				System.out.println(Items.getoLPNListSize());
+				//System.out.println("oLPN : "+"i: "+Items.getoLPN(row));
 			}
 		}
 		homepage.user_closes_openedwindow("DO Detail - Distribution Order");
 	}
 
 	public void fetchoLPNSnumber() throws Exception {
-
+		System.out.println("Fetch OLPN -");
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		System.out.println("DISTRIBUTION");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
@@ -2232,9 +2237,14 @@ public class DistributionOrdersPage {
 			System.out.println(Items.getoLPNQty(row));
 			if (oLPN.equals(RFMenuPage.splittedolpn)) {
 				DistributionOrders.setoLPNList(oLPN);
-				System.out.println("oLPN list :"+DistributionOrders.oLPNList);
-				System.out.println("size of oLPN list :"+DistributionOrders.oLPNList.size());
-				System.out.println("Splitted to oLPN :"+DistributionOrders.oLPNList.get(0));
+				System.out.println("oLPN list :" + DistributionOrders.oLPNList);
+				System.out.println("size of oLPN list :" + DistributionOrders.oLPNList.size());
+				System.out.println("Splitted to oLPN :" + DistributionOrders.oLPNList.get(0));
+			} else if (oLPNStatus.equals("20 - Packed")) {
+				DistributionOrders.setoLPNList(oLPN);
+				System.out.println("oLPN list :" + DistributionOrders.oLPNList);
+				System.out.println("size of oLPN list :" + DistributionOrders.oLPNList.size());
+				System.out.println("Splitted to oLPN :" + DistributionOrders.oLPNList.get(0));
 			}
 		}
 		homepage.user_closes_openedwindow("DO Detail - Distribution Order");
@@ -2261,38 +2271,41 @@ public class DistributionOrdersPage {
 		Screenshots.captureSnapshot(driver);
 		apply_Btn.click();
 		System.out.println("clicked");
-		//SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		// SeleniumTestHelper.waitForElementToBeDisplayed(driver,
+		// distributionOrder_chkbox, 50);
 		Screenshots.captureSnapshot(driver);
-		//WebElement actualDOstatus = driver.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[text()='"
-		//		+ Items.getDONumber() + "']//following::td[1]"));
-		int temp=0;
-		 while (!SeleniumTestHelper.isElementDisplayed(distributionOrder_chkbox) && (temp != 10)) {
-			 apply_Btn.click();
-			 Thread.sleep(3000);
-			 temp++;
-		 }
-		
-		 if(SeleniumTestHelper.isElementDisplayed(distributionOrder_chkbox)) {
-			 Reporter.addStepLog("DO is created");
-			 Assert.assertTrue(true);
-		 }else {
-			 Reporter.addStepLog("DO is not created");
-			 Assert.assertTrue(false); 
-		 }
-		 
-		 String actualDONumber = driver.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[contains(text(),'')]")).getText();
-		 System.out.println("actual do number"+actualDONumber);
-		 Items.setDONumber(actualDONumber);
-		 System.out.println("New DO Number is"+Items.getDONumber());
-		 SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
-			Screenshots.captureSnapshot(driver);
-			String actualDOstatus = driver.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[text()='"
-					+ Items.getDONumber() + "']//following::td[1]")).getText();
-			SeleniumTestHelper.assertEquals(actualDOstatus, status);
-			Reporter.addStepLog("DO Order status:" + actualDOstatus);
-			Steps.logger.info("DO Order status:" + actualDOstatus);
-			Thread.sleep(2000);
-		
+		// WebElement actualDOstatus =
+		// driver.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[text()='"
+		// + Items.getDONumber() + "']//following::td[1]"));
+		int temp = 0;
+		while (!SeleniumTestHelper.isElementDisplayed(distributionOrder_chkbox) && (temp != 10)) {
+			apply_Btn.click();
+			Thread.sleep(3000);
+			temp++;
+		}
+
+		if (SeleniumTestHelper.isElementDisplayed(distributionOrder_chkbox)) {
+			Reporter.addStepLog("DO is created");
+			Assert.assertTrue(true);
+		} else {
+			Reporter.addStepLog("DO is not created");
+			Assert.assertTrue(false);
+		}
+
+		String actualDONumber = driver
+				.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[contains(text(),'')]")).getText();
+		System.out.println("actual do number" + actualDONumber);
+		Items.setDONumber(actualDONumber);
+		System.out.println("New DO Number is" + Items.getDONumber());
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		Screenshots.captureSnapshot(driver);
+		String actualDOstatus = driver.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[text()='"
+				+ Items.getDONumber() + "']//following::td[1]")).getText();
+		SeleniumTestHelper.assertEquals(actualDOstatus, status);
+		Reporter.addStepLog("DO Order status:" + actualDOstatus);
+		Steps.logger.info("DO Order status:" + actualDOstatus);
+		Thread.sleep(2000);
+
 		homepage.user_closes_openedwindow("Distribution Orders");
 
 	}

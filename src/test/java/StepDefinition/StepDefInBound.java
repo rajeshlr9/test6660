@@ -1082,4 +1082,34 @@ public class StepDefInBound {
 	 * SeleniumTestHelper.switchToInnerFrame(driver);
 	 * rfMenu.ASNReceivingProcess(noOfItems, receivingMethod); }
 	 */
+	
+	@And ("^user opens RF menu and completes split move using \"([^\"]*)\" operation in Misc menu$")
+	public void user_opens_RF_menu_and_completes_split_move_in_Misc_option(String operation) throws Exception {
+		try {
+			homePage.MenuItems_Distribution_Selection("RF Menu");
+			Steps.logger.info("Open RF menu");
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			rfMenu.SplitAndMoveUsingMiscellaneous(operation,true);
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
+	@And ("^user opens RF menu and performs split move using \"([^\"]*)\" operation in Misc menu$")
+	public void user_opens_RF_menu_and_performs_split_move_in_Misc_option(String operation) throws Exception {
+		try {
+			homePage.MenuItems_Distribution_Selection("RF Menu");
+			Steps.logger.info("Open RF menu");
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			rfMenu.SplitAndMoveUsingMiscellaneous(operation,false);
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
 }
