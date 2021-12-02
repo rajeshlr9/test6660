@@ -625,6 +625,8 @@ System.out.println(e);
 		//Screenshots.captureSnapshot(driver);
 		try {
 		ShipPlan.Ship();
+		Reporter.addStepLog("Completd Task on Shipment Planning Workspace.");
+		Steps.logger.info("Completd Task on Shipment Planning Workspace.");
 		}
 		catch  (Exception e) {
 			Steps.testRes = "Failed";
@@ -638,6 +640,7 @@ System.out.println(e);
 	public void retrieve_splitted_oLPN_()throws Exception {
 	try {
 		doPage.retrieveSplittedToOLPN();
+		Reporter.addStepLog("Retrieved the Splitted OLPN");
 		Steps.logger.info("Retrieved the Splitted OLPN");
 	} catch (Exception e) {
 		Steps.testRes = "Failed";
@@ -653,6 +656,7 @@ System.out.println(e);
 		Screenshots.captureSnapshot(driver);
 		try {
 			weighAndManifest.performWeighAndManifest();
+			Reporter.addStepLog("Performed Weigh on Splitted OLPN.");
 			Steps.logger.info("Performed Weigh on Splitted OLPN.");
 		}
 		catch  (Exception e) {
@@ -671,7 +675,8 @@ System.out.println(e);
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			rfMenu.DOShippingProcessAfterSplitMove(shippingMethod);
-			Steps.logger.info("Performed shipping process after split and move");
+			Reporter.addStepLog("Completed shipping process after split and move");
+			Steps.logger.info("Completed shipping process after split and move");
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();

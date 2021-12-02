@@ -1091,6 +1091,8 @@ public class StepDefInBound {
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			rfMenu.SplitAndMoveUsingMiscellaneous(operation,true);
+			Reporter.addStepLog("Completed Split and Move from Misc Menu");
+			Steps.logger.info("Completed Split and Move from Misc Menu");
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
@@ -1106,6 +1108,8 @@ public class StepDefInBound {
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			rfMenu.SplitAndMoveUsingMiscellaneous(operation,false);
+			Reporter.addStepLog("Performed Split and Move from Misc Menu.");
+			Steps.logger.info("Performed Split and Move from Misc Menu");
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();

@@ -577,7 +577,7 @@ Scenario: Distribution Order creation - Multi Line different items Parcel	F2D	FD
 @QSC_OB021 @Regression_QSC @QSC_SplitCombineoLPN @QSC_Outbound
 Scenario: Spliting the OLPN at Weighed status 
 	Given I have excel data 
-		| QSC_OBScenario010 |
+		| QSC_OBScenario021 |
 	And Open the chrome browser by selenium 
 	When user update "Single Line DO" for dropping into fedexnet application
 	And user logs into the FedexNet application
@@ -607,7 +607,7 @@ Scenario: Spliting the OLPN at Weighed status
 @QSC_OB022 @Regression_QSC @QSC_LTLDO @QSC_Outbound @QSC_SplitCombineoLPN
 Scenario: Combine the OLPN at weighed status
 	Given I have excel data 
-		| QSC_OBScenario002 |
+		| QSC_OBScenario022 |
 	And Open the chrome browser by selenium 
 	When user update "Multi Line DO" for dropping into fedexnet application
 	And user logs into the FedexNet application
@@ -638,7 +638,7 @@ Scenario: Combine the OLPN at weighed status
 @QSC_OB023 @Regression_QSC @QSC_LTLDO @QSC_Outbound @QSC_SplitCombineoLPN
 Scenario: Combine the OLPN at weighed status
 	Given I have excel data 
-		| QSC_OBScenario002 |
+		| QSC_OBScenario023 |
 	And Open the chrome browser by selenium 
 	When user update "Multi Line DO" for dropping into fedexnet application
 	And user logs into the FedexNet application

@@ -212,7 +212,7 @@ public class WeighAndManifestoLPNPage {
 			ActualWeightInput.clear();
 			ActualWeightInput.sendKeys(actWeight);
 			weighBtn.click();
-			System.out.println("Clicked on weigh button");
+			Steps.logger.info("Clicked on weigh button");
 			Thread.sleep(2000);
 			if (SeleniumTestHelper.isElementDisplayed(shipViaEmptyErrormsg)) {
 				closeMsgBtn.click();
@@ -223,6 +223,7 @@ public class WeighAndManifestoLPNPage {
 			}
 		}
 		exitBtn.click();
+		Steps.logger.info("Weigh and Manifest of oLPN done successfully");
 		homepage.user_closes_openedwindow("Weigh and Manifest oLPN - Weigh and...");
 
 	}
