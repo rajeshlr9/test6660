@@ -49,7 +49,7 @@ Receiving of Un-Delivered Product using blind receipt in MM3 Rtrn/Ovrg menu and 
 Scenario: B-459309 Receive Damages- Receiving Damaged Product using MM3 Recv-Damages & Putaway
 Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verifying the status of the ASN & completing Putaway
 	Given I have excel data
-	| QSC_DailyRegressionIB06 |
+	| QSC_IBScenario009 |
 	And Open the chrome browser by selenium
 	When user update "Single Line PO" for dropping into fedexnet application
 	And user logs into the FedexNet application
@@ -62,10 +62,11 @@ Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verify
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open iLPN and unlock the existing code
-	And user open reserve locations & naviagtes to "QC710A1I7" zone and fetches the current quantity
+	And user open reserve locations & naviagtes to "QC708A1K6" zone and fetches the current quantity
+	
 	And user opens RF menu and completes Putaway using "MM3 Ptwy CASE" menu
-	Then user navigates to reserve locations & validates that the quantity is increased in "QC710A1I7" by no of iLPN's moved
-	Then validates that the iLPN is also moved to inspection zone "QC710A1I7"
+	Then user navigates to reserve locations & validates that the quantity is increased in "QC708A1K6" by no of iLPN's moved
+	Then validates that the iLPN is also moved to inspection zone "QC708A1K6"
 	Then user log out from application
 	
 @DailyRegression_QSC @ScenarioIB7 @QSC_CustomerTestingInbound
