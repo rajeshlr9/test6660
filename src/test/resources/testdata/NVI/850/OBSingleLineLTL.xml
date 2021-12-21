@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FGSCSSTDOrder>
+<FGSCSHdr>
+<CrtDtTm>20211020093116</CrtDtTm>
+<MsgID>7f252d1db112421fb69654e2c4cc</MsgID>
+<MsgType>850</MsgType>
+<SndTPQualCD>ZZ</SndTPQualCD>
+<SndTP>NAVICO</SndTP>
+<RcvTPQualCD>ZZ</RcvTPQualCD>
+<RcvTP>FSCS</RcvTP>
+</FGSCSHdr>
+<OrderHdrLp>
+<OrdType>98</OrdType>
+<OrdNbr>120220215-PO</OrdNbr>
+<AdrLp>
+<AdrType>ST</AdrType>
+<AdrName>CWR ELECTRONICS INC</AdrName>
+<AdrIDQual>93</AdrIDQual>
+<AdrID></AdrID>
+<AdrLine1>18 BUTLER AVE</AdrLine1>
+<AdrLine2 />
+<AdrLine3 />
+<AdrCity>BAYVILLE</AdrCity>
+<AdrStProv>NJ</AdrStProv>
+<AdrPstl>08721</AdrPstl>
+<AdrCntry>US</AdrCntry>
+<AdrPhone>7322379300</AdrPhone>
+</AdrLp>
+<AdrLp>
+<AdrType>BT</AdrType>
+<AdrName>CWR ELECTRONICS INC</AdrName>
+<AdrIDQual>93</AdrIDQual>
+<AdrID />
+<AdrLine1>18 BUTLER AVE</AdrLine1>
+<AdrLine2 />
+<AdrCity>BAYVILLE</AdrCity>
+<AdrStProv>NJ</AdrStProv>
+<AdrPstl>08721</AdrPstl>
+<AdrCntry>US</AdrCntry>
+<AdrPhone>732-237-9300</AdrPhone>
+</AdrLp>
+<AdrLp>
+<AdrType>WH</AdrType>
+<AdrIDQual>54</AdrIDQual>
+<AdrID>MEM1</AdrID>
+</AdrLp>
+<RefLp>
+<RefIDQual>YD</RefIDQual>
+<RefID>NVI</RefID>
+</RefLp>
+<RefLp>
+<RefIDQual>CO</RefIDQual>
+<RefID>185584</RefID>
+<RefDesc>Navico Customer Purchase Order Number</RefDesc>
+</RefLp>
+<RefLp>
+<RefIDQual>ZZ</RefIDQual>
+<RefID>LBLREF1</RefID>
+<RefDesc>185584</RefDesc>
+</RefLp>
+<TrnsprtLp>
+<TrnsprtSvcLvl>F2D</TrnsprtSvcLvl>
+<TrnsprtSCAC>FDE</TrnsprtSCAC>
+<TrnsprtCarrAcct />
+<TrnsprtFrghtTermsCD>PP</TrnsprtFrghtTermsCD>
+</TrnsprtLp>
+<ShipDocLp>
+<ShipDocCD>SPEND</ShipDocCD>
+<ShipDocTxt>2</ShipDocTxt>
+</ShipDocLp>
+<ShipDocLp>
+<ShipDocCD>SPDEL</ShipDocCD>
+<ShipDocTxt>Y</ShipDocTxt>
+</ShipDocLp>
+<OrdLineItemLp>
+<ItemLnNbr>168.0</ItemLnNbr>
+<ItemID>00-10528-001</ItemID>
+<ItemDesc>NAVICO,CABLE,RADAR,FOR 10/25kW SCAN,20M</ItemDesc>
+<ItemQty>5</ItemQty>
+<ItemUOM>EA</ItemUOM>
+<DtTmLp>
+<DtTmQual>010</DtTmQual>
+<Date GmtOffset="-06:00" Time="1200">20211202</Date>
+</DtTmLp>
+<RefLp>
+<RefIDQual>IN</RefIDQual>
+<RefID>000-10528-001</RefID>
+</RefLp>
+<SpecInstrLp>
+<SpecInstrCD>PICK</SpecInstrCD>
+<SpecInstr>Customer PO:I14704-AP</SpecInstr>
+</SpecInstrLp>
+</OrdLineItemLp>
+</OrderHdrLp>
+</FGSCSSTDOrder>

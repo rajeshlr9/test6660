@@ -1,7 +1,7 @@
 Feature: QSC Outbound Scenarios 
 
 
-@QSC_SanityScenarioTesting1 @QSC_EDIOrderReceiving
+@Regression_SanityScenarioTesting1 @QSC_EDIOrderReceiving @Sanity_QSC
 Scenario: Receiving Case : Single Line, Single iLPN
 Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location through RF Menu
 	Given I have excel data
@@ -17,7 +17,7 @@ Creating ASN through Post Message UI, checking status of the shipment and comple
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 
-@QSC_SanityScenarioTesting2 @QSC_Rec&Putaway
+@QSC_SanityScenarioTesting2 @QSC_Rec&Putaway @Sanity_QSC
 Scenario: Multi Line Receiving- Multi Line, Multiple iLPN
 Creating 2 line ASN through Post Message UI, checking status of the shipment and complete receiving in Staging location through RF Menu
 	Given I have excel data
@@ -37,7 +37,7 @@ Creating 2 line ASN through Post Message UI, checking status of the shipment and
 	And user open reserve locations and naviagtes to validate iLPN
 	Then user log out from application 
 	
-@QSC_SanityScenarioTesting3 @QSC_BlindReceiptValidateLockCode
+@QSC_SanityScenarioTesting3 @QSC_BlindReceiptValidateLockCode @Sanity_QSC
 Scenario: B-441160 Receiving Returned Un-Delivered Product using blind receipt & Putaway
 Receiving of Un-Delivered Product using blind receipt in MM3 Rtrn/Ovrg menu and verifying the status of the ASN & completing Putaway
 	Given I have excel data
@@ -50,7 +50,7 @@ Receiving of Un-Delivered Product using blind receipt in MM3 Rtrn/Ovrg menu and 
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	
 	
-@QSC_SanityScenarioTesting4 @QSC_DamagedReceivePutaway
+@QSC_SanityScenarioTesting4 @QSC_DamagedReceivePutaway @Sanity_QSC
 Scenario: B-459309 Receive Damages- Receiving Damaged Product using MM3 Recv-Damages & Putaway
 Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verifying the status of the ASN & completing Putaway
 	Given I have excel data
@@ -75,7 +75,7 @@ Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verify
 	Then user log out from application
 	
 
-@QSC_SanityScenarioTesting5 @QSC_ParcelDO
+@QSC_SanityScenarioTesting5 @QSC_ParcelDO @Sanity_QSC
 Scenario: Distribution Order creation - Single Line Serialized Parcel PO FDE
 	Given I have excel data 
 		| QSC_DailyRegressionOB01 |
@@ -99,7 +99,7 @@ Scenario: Distribution Order creation - Single Line Serialized Parcel PO FDE
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 	
 	
-@QSC_SanityScenarioTesting6 @QSC_LTLDO
+@QSC_SanityScenarioTesting6 @QSC_LTLDO @Sanity_QSC
 Scenario: Distribution Order creation - Multi Line LTL	FDFE LTLP 
 	Given I have excel data 
 		| QSC_DailyRegressionOB05 |

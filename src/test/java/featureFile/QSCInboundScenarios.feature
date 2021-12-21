@@ -27,7 +27,7 @@ Creating ASN through EDI & checking status of the shipment
 	Then user log out from application 
 
 	
-	@QSC_IB002 @Regression_QSC  @QSC_Rec&Putaway @Sanity_QSC @QSC_Inbound
+	@QSC_IB002 @Regression_QSC  @QSC_Rec&Putaway @SanityTest_QSC @QSC_Inbound
 Scenario: Receiving Case : Single Line, Single iLPN
 Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location through RF Menu
 	Given I have excel data
@@ -68,7 +68,7 @@ through RF Menu
 	And user open reserve locations and naviagtes to validate iLPN
 	Then user log out from application 
 	
-	@QSC_IB003 @Regression_QSC @QSC_BypassStagingLocationRec @Sanity_QSC @QSC_Inbound
+	@QSC_IB003 @Regression_QSC @QSC_BypassStagingLocationRec @SanityTest_QSC @QSC_Inbound
 Scenario: B-345747 MANH - Receive and bypass stage or holding
 Creating ASN through Post Message UI and complete receiving bypasing through staging location & validating LPN in Inventory by location
 	Given I have excel data
@@ -475,7 +475,7 @@ Given I have excel data
 #	Then user log out from application 
 #	
 #	
-#	@QSC_IB022 @Regression_QSC @QSC_PutawayDamagedAndUndeliveredProducts @Sanity_QSC
+#	@QSC_IB022 @Regression_QSC @QSC_PutawayDamagedAndUndeliveredProducts @SanityTest_QSC
 #Scenario: B- 466712 Putaway – Damaged Products that was received using MM3 Recv-Damages
 #Receiving of Damaged Product in MM3 Recv-Damages menu and complete putaway to inspection area. Validate the iLPN moved 
 #to inspection area and	“QC111A1” Locations Current Quantity will be incremented with no of LPN’s moved to location

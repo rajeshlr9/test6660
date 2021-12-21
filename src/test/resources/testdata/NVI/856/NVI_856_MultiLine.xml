@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FGSCSSTDShipNotify>
+  <FGSCSHdr>
+    <CrtDtTm>yyyymmdd023022</CrtDtTm>
+    <MsgID>129253</MsgID>
+    <MsgType>856</MsgType>
+    <SndTPQualCD>ZZ</SndTPQualCD>
+    <SndTP>NAVICO</SndTP>
+    <RcvTPQualCD>ZZ</RcvTPQualCD>
+    <RcvTP>FSCS</RcvTP>
+  </FGSCSHdr>
+  <ShipNotifHdrLp>
+    <ShipID>yymmdd</ShipID>
+    <AdrLp>
+      <AdrType>RC</AdrType>
+      <AdrIDQual>54</AdrIDQual>
+      <AdrID>MEM1</AdrID>
+    </AdrLp>
+    <ShipOrdLp>
+      <OrdNbr>yymmdd</OrdNbr>
+      <ShipLineItemLp>
+        <ItemLnNbr>1</ItemLnNbr>
+        <ItemID>00-10528-001</ItemID>
+        <ItemShipQty>30.00000000</ItemShipQty>
+        <ItemAttrLp>
+		  <AttrCD>C3</AttrCD>
+		  <AttrVal>RTS</AttrVal>
+		</ItemAttrLp>
+      </ShipLineItemLp>
+	  <ShipLineItemLp>
+        <ItemLnNbr>2</ItemLnNbr>
+        <ItemID>00-10528-001</ItemID>
+        <ItemShipQty>30.00000000</ItemShipQty>
+        <ItemAttrLp>
+		  <AttrCD>C3</AttrCD>
+		  <AttrVal>RTS</AttrVal>
+		</ItemAttrLp>
+      </ShipLineItemLp>
+    </ShipOrdLp>
+  </ShipNotifHdrLp>
+</FGSCSSTDShipNotify>

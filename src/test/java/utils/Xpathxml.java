@@ -60,9 +60,9 @@ public class Xpathxml {
 	public String MultiLineInboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/856/"+Steps.scenarioData.get("Account")+"_856_MultiLine.xml";
 	public String inputEDIInboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/856/"+Steps.scenarioData.get("Account")+"_856_InputFile.xml";
 	
-	public String SingleLineOutboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/850/QSC_850_SingleLine.xml";
-	public String MultiLineOutboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/850/QSC_850_MultiLine.xml";
-	public String inputEDIOutboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/850/QSC_850_InputFile.xml";
+	public String SingleLineOutboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/850/"+Steps.scenarioData.get("Account")+"_850_SingleLine.xml";
+	public String MultiLineOutboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/850/"+Steps.scenarioData.get("Account")+"_850_MultiLine.xml";
+	public String inputEDIOutboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/850/"+Steps.scenarioData.get("Account")+"_850_InputFile.xml";
 	
 	public static String ASNNumber = null;
 	
@@ -561,11 +561,14 @@ public class Xpathxml {
 				System.out.println("Shipped Qty : " + shpQty + " has been updated successfully");
 				Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
 				
-				uom = Steps.ItemDataMap.get(i).get("UOM");
-				ModifyXmlfile(ASNItemUOM(i + 1), uom, path);
-				System.out.println("QtyUOM : " + uom + " has been updated successfully");
-				Steps.logger.info("QtyUOM : " + uom + " has been updated successfully");
-
+				if(Steps.scenarioData.get("Account").equalsIgnoreCase("QSC")) {
+			
+					uom = Steps.ItemDataMap.get(i).get("UOM");
+					ModifyXmlfile(ASNItemUOM(i + 1), uom, path);
+					System.out.println("QtyUOM : " + uom + " has been updated successfully");
+					Steps.logger.info("QtyUOM : " + uom + " has been updated successfully");
+				}
+				
 				Items.setItemsForReceivingASN(itemName);
 				Items.setItemWithShippedASNQty(itemName, Integer.parseInt(shpQty));
 				Items.setItemWithQtyUOM(itemName, uom);
