@@ -209,6 +209,18 @@ under the License.
       <mirrorOf>Maven</mirrorOf>
       <name>Nexus</name>
       <url>https://nexus.prod.cloud.fedex.com:8443/nexus/repository/devframeworkrepo/</url>
+    </mirror>
+     <mirror>
+      <id>mirrorId</id>
+      <mirrorOf>Maven</mirrorOf>
+      <name>Nexus</name>
+      <url>https://nexus.prod.cloud.fedex.com:8443/nexus/repository/148-FBO/</url>
+    </mirror>
+     <mirror>
+      <id>mirrorId</id>
+      <mirrorOf>Maven</mirrorOf>
+      <name>Nexus</name>
+      <url>https://nexus.prod.cloud.fedex.com:8443/nexus/repository/hortonworks-public/</url>
     </mirror>     
   </mirrors>
 
