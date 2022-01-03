@@ -77,9 +77,7 @@ public class CreateBrowser {
 				
 			case "OCI_Windows-Chrome":
 				
-				System.setProperty("webdriver.chrome.driver", "C:\\Users\\ffd-sys-team\\git\\ffd-manhattan-testautomation\\src\\test\\resources\\chromedriver.exe");
-				//System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
-				System.out.println(Steps.dir + "\\drivers");
+				System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("--start-maximized");
 				options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
