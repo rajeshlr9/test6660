@@ -1,0 +1,105 @@
+pipeline{
+    agent any
+    parameters {
+extendedChoice(description: 'Select Environment', 
+                       multiSelectDelimiter: ',', 
+                       name: 'Environment',
+                       quoteValue: false, 
+                       type: 'PT_SINGLE_SELECT',
+                       value: 'L1,L2,L3,L4,L5',
+                       visibleItemCount: 3)
+extendedChoice(description: 'Select Customer', 
+                       multiSelectDelimiter: ',', 
+                       name: 'Customer',
+                       quoteValue: false, 
+                       type: 'PT_CHECKBOX',
+                       value: 'QSC,NVI,ABT',
+                       visibleItemCount: 3)
+extendedChoice(description: 'Select Suite', 
+                       multiSelectDelimiter: ',', 
+                       name: 'Suite',
+                       quoteValue: false, 
+                       type: 'PT_SINGLE_SELECT',
+                       value: 'Sanity,Regression',
+                       visibleItemCount: 3)
+                }
+    stages {
+        stage ("Running parallel job"){
+        parallel{
+       stage ("QSC"){
+           when {
+               expression {
+                    params.Customer != null
+                          }
+                }
+            steps {
+                script {
+                    def values = params.Customer.split(',')
+                     for (i in values) 
+                     {
+                      if (i == "QSC")
+                      {
+                          sleep(30)
+                      build job: 'QSC', parameters: [
+                          string(name: 'Environment', value: "${params.Environment}"),
+                          string(name: 'Suite', value: "${params.Suite}")]
+                      }
+                      else
+                      {
+                          echo "QSC not selected"
+                      }
+                     }
+                }
+                            }
+       }
+            stage ("NVI"){
+           when {
+               expression {
+                    params.Customer != null
+                          }
+                }
+            steps {
+                               script {
+                    def values1= params.Customer.split(',')
+                     for (j in values1) {
+                      if (j == "NVI")
+                      { 
+                          sleep(30)
+                      build job: 'NVI', parameters: [
+                          string(name: 'Environment', value: "${params.Environment}"),
+                          string(name: 'Suite', value: "${params.Suite}")]
+                      }
+                      else
+                      {
+                          echo "NVI not selected"
+                      }
+                     }
+                }
+                        }
+            }
+            stage ("ABT"){
+           when {
+               expression {
+                    params.Customer != null
+                          }
+                }
+            steps {
+                                script {
+                    def values2 = params.Customer.split(',')
+                     for (h in values2) {
+                      if (h == "ABT")
+                      { 
+                      build (job: 'TestABT')
+                      }
+                      else
+                      {
+                          echo "ABT not selected"
+                      }
+                     }
+                            }
+            }
+            }
+        }
+            }
+        }
+}

@@ -78,6 +78,7 @@ public class CreateBrowser {
 			case "OCI_Windows-Chrome":
 				
 				System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
+				System.out.println(Steps.dir + "\\drivers");
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("--start-maximized");
 				options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
@@ -93,6 +94,7 @@ public class CreateBrowser {
 	
 				seleniumDriver = new ChromeDriver(options);
 				seleniumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				System.out.println(options.getVersion());
 				//seleniumDriver.manage().deleteAllCookies();
 				Steps.logger.info("Chrome browser is open");
 				break;
