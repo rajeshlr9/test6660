@@ -1,4 +1,4 @@
-Feature: QSC Outbound Scenarios 
+Feature: QSC Santiry Scenarios 
 
 
 @Regression_SanityScenarioTesting1 @QSC_EDIOrder_Receiving @Sanity_QSC
