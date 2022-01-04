@@ -8,14 +8,14 @@ Creating ASN through Post Message UI, checking status of the shipment and comple
 	| QSC_IBScenario002 |
 	And Open the chrome browser by selenium
 	When user update "Single Line PO" for dropping into fedexnet application
-#	And user logs into the FedexNet application
-#	And user upload "856" XML file in fedexnet
-#	Then user log out from Fedenxet application
-#	And user logs into the Manhattan application
-#	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
-#	And user views ASN, get and verify item details 
-#	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
-#	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 
 @QSC_SanityScenarioTesting2 @QSC_Rec_Putaway @Sanity_QSC
 Scenario: Multi Line Receiving- Multi Line, Multiple iLPN
