@@ -1,6 +1,6 @@
 Feature: Navico Inbound Scenarios
 
-@NAVICO_IB001
+@NAVICO_IB001 @Sanity_NAVICO
 Scenario: Verify ASN creation through EDI - Single Line
 Creating ASN through EDI & checking status of the shipment
 	Given I have excel data
@@ -14,7 +14,7 @@ Creating ASN through EDI & checking status of the shipment
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	Then user log out from application 
 	
-@NAVICO_IB002
+@NAVICO_IB002 @Sanity_NAVICO
 Scenario: Verify ASN creation through EDI - Multiline
 	Given I have excel data
 	| NVI_IBScenario006 |
@@ -27,7 +27,7 @@ Scenario: Verify ASN creation through EDI - Multiline
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	Then user log out from application	
 	
-@NAVICO_IB003
+@NAVICO_IB003 @Sanity_NAVICO
 Scenario: Verify ASN creation through EDI
 Creating ASN through EDI & performing Receving for Single Line
 	Given I have excel data
