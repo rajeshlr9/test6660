@@ -173,7 +173,7 @@ validate new multi line ASN is automatically created with remaining qty for both
 	Then user log out from application
 	
 	
-@DailyRegression_asQSC @ScenarioIB12 @QSC_CustomerTestingInbound
+@DailyRegression_QSC @ScenarioIB12 @QSC_CustomerTestingInbound
 Scenario: Receiving Case : Single Line, Single iLPN
 Creating ASN through fedexnet, checking status of the shipment and completed receiving in Staging location through RF Menu
 	Given I have excel data
@@ -212,7 +212,7 @@ Scenario: Distribution Order creation - Single Line Serialized Parcel PO FDE
 	And user open RF Menu and complete the pick tasks created 
 	And user open RF Menu and complete the pack tasks created
 	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
-	Then user search for DO and confirms it
+	#Then user search for DO and confirms it
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 	
 	
@@ -236,7 +236,7 @@ Scenario: Distribution Order creation - Single Line Non Serialized Parcel F2D FD
 	And user open RF Menu and complete the pick tasks created 
 	And user open RF Menu and complete the pack tasks created
 	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
-	Then user search for DO and confirms it
+	#Then user search for DO and confirms it
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 			
 @DailyRegression_QSC @ScenarioOB3 @QSC_CustomerTestingOutbound
@@ -284,7 +284,7 @@ Scenario: Distribution Order creation - Multi Line Parcel F2D FDE
 	And user open RF Menu and complete the pick tasks created 
 	And user open RF Menu and complete the pack tasks created
 	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
-	Then user search for DO and confirms it
+	#Then user search for DO and confirms it
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 
 

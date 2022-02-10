@@ -179,11 +179,13 @@ public class StepDefOutBound {
 	public void user_opens_DOscreen_andsearches_for_DOstatus(String status)	throws Exception {
 		try {
 			String env = ManhattanLoginPage.environment;
-			if(status.equalsIgnoreCase("110 - Released") && env.equalsIgnoreCase("L2")) {
+			//if(status.equalsIgnoreCase("110 - Released") && env.equalsIgnoreCase("L2")) {
+			if(status.equalsIgnoreCase("110 - Released")) {
 				doPage.getDOStatusUsingFulfillment(status);
-			}else {
-				doPage.getDoStatus(status);
 			}
+//			else {
+//				doPage.getDoStatus(status);
+//			}
 			//doPage.getDoStatus(status);
 			Reporter.addStepLog("DO Order status is verified successfully");
 			Steps.logger.info("DO Order status is verified successfully");
