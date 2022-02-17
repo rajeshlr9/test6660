@@ -389,4 +389,96 @@ Scenario: Distribution Order creation - Single Line LTL FDFE LTLE
 	And user cancels the DO
 	And user opens DO screen and searches for the DistributionOrder and verify its status "200 - Cancelled"
 	
+@DailyRegression_QSC @QSC_CustomerTestingOutbound @QSC_SplitAndCombineoLPN
+Scenario: Spliting the OLPN at Weighed status 
+	Given I have excel data 
+		| QSC_OBScenario021 |
+	And Open the chrome browser by selenium 
+	When user update "Single Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "LTL Pick Wave" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
+	Then fetch the OLPN number
+	And user opens RF menu and completes "MM3 split OLPN" operation in Misc menu
+	And user opens the OLPN screen and retrieve the splitted oLPN
+	And user perform weigh and manifest for splitted to OLPN
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
+	And user opens RF menu and completes Shipping using "MM3 Anchor oLPN" menu after split move
+	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged"
+	And user navigates to shippment planning workspace
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	Then user log out from application	
+	
+@DailyRegression_QSC @QSC_CustomerTestingOutbound @QSC_SplitCombineoLPN
+Scenario: Combine the OLPN at weighed status
+	Given I have excel data 
+		| QSC_OBScenario022 |
+	And Open the chrome browser by selenium 
+	When user update "Multi Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "LTL Pick Wave" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
+	Then fetch the OLPN number with only 30 weighed status 
+	And user opens RF menu and completes split move using "MM3 split OLPN" operation in Misc menu
+	And user opens DO screen and searches for the DistributionOrder and verify its status "150 - Packed"
+	And user opens the OLPN screen and retrieve the splitted oLPN
+	And user perform weigh and manifest for splitted to OLPN
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
+	And user opens RF menu and completes Shipping using "MM3 Anchor oLPN" menu after split move
+	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged"
+	And user navigates to shippment planning workspace
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	Then user log out from application	
+	
+@DailyRegression_QSC @QSC_CustomerTestingOutbound @QSC_SplitCombineoLPN
+Scenario: Combine the OLPN at weighed status
+	Given I have excel data 
+		| QSC_OBScenario023 |
+	And Open the chrome browser by selenium 
+	When user update "Multi Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "LTL Pick Wave" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
+	Then fetch the OLPN number with only 30 weighed status 
+	And user opens RF menu and performs split move using "MM3 split OLPN" operation in Misc menu
+	And user opens DO screen and searches for the DistributionOrder and verify its status "150 - Packed"
+	And user opens the OLPN screen and retrieve the splitted oLPN
+	And user perform weigh and manifest for splitted to OLPN
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
+	And user opens RF menu and completes Shipping using "MM3 Anchor oLPN" menu after split move
+	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged"
+	And user navigates to shippment planning workspace
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	Then user log out from application	
+	
 		
