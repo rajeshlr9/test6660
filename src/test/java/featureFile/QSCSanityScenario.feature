@@ -67,13 +67,12 @@ Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verify
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open iLPN and unlock the existing code
-	And user open reserve locations & naviagtes to "QC708A1K6" zone and fetches the current quantity
+	And user open reserve locations & naviagtes to "QC706A1M2" zone and fetches the current quantity
 	And user opens RF menu and completes Putaway using "MM3 Ptwy CASE" menu
-	Then user navigates to reserve locations & validates that the quantity is increased in "QC708A1K6" by no of iLPN's moved
-	Then validates that the iLPN is also moved to inspection zone "QC708A1K6"
+	Then user navigates to reserve locations & validates that the quantity is increased in "QC706A1M2" by no of iLPN's moved
+	Then validates that the iLPN is also moved to inspection zone "QC706A1M2"
 	Then user log out from application
 	
-
 @QSC_SanityScenarioTesting5 @QSC_Parcel_DO @Sanity_QSC
 Scenario: Distribution Order creation - Single Line Serialized Parcel PO FDE
 	Given I have excel data 
