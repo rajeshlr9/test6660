@@ -89,6 +89,7 @@ public class DateTime {
 		Date date = new Date();
 		SimpleDateFormat formatter68 = new SimpleDateFormat("yyMMddHHmmss");              
 	     strDate68= formatter68.format(date);
-	     return "00195192"+strDate68;
+	     strDate68=strDate68.substring(0, 10);
+	     return "0000195192"+strDate68;
 	}
 }

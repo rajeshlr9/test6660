@@ -1,4 +1,4 @@
-Feature: QSC Outbound Scenarios 
+Feature: QSC Regression Outbound And Inbound Scenarios 
 
 
 @DailyRegression_QSC @ScenarioIB1 @QSC_CustomerTestingInbound
@@ -389,10 +389,10 @@ Scenario: Distribution Order creation - Single Line LTL FDFE LTLE
 	And user cancels the DO
 	And user opens DO screen and searches for the DistributionOrder and verify its status "200 - Cancelled"
 	
-@DailyRegression_QSC @QSC_CustomerTestingOutbound @QSC_SplitAndCombineoLPN
+@DailyRegression_QSC @QSC_CustomerTestingOutbound @QSC_SplitAndCombineoLPN1
 Scenario: Spliting the OLPN at Weighed status 
 	Given I have excel data 
-		| QSC_OBScenario021 |
+	| QSC_DailyRegressionOB06 |
 	And Open the chrome browser by selenium 
 	When user update "Single Line DO" for dropping into fedexnet application
 	And user logs into the FedexNet application
@@ -419,10 +419,10 @@ Scenario: Spliting the OLPN at Weighed status
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 	Then user log out from application	
 	
-@DailyRegression_QSC @QSC_CustomerTestingOutbound @QSC_SplitCombineoLPN
+@DailyRegression_QSC @QSC_CustomerTestingOutbound @QSC_SplitCombineoLPN2
 Scenario: Combine the OLPN at weighed status
 	Given I have excel data 
-		| QSC_OBScenario022 |
+		| QSC_DailyRegressionOB05 |
 	And Open the chrome browser by selenium 
 	When user update "Multi Line DO" for dropping into fedexnet application
 	And user logs into the FedexNet application

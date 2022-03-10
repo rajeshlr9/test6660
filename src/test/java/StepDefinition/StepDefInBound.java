@@ -693,6 +693,10 @@ public class StepDefInBound {
 			Steps.logger.info("Open Reserve Locations");
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
+			
+			String env = ManhattanLoginPage.environment;
+			System.out.println("Environment:"+env);
+			
 			resLocPage.fetchQty(INSZone);
 			System.out.println("reserveLocationqty:"+resLocPage.reserveLocationqty);
 			homePage.user_closes_openedwindow("Reserve Locations - Reserve Location");
