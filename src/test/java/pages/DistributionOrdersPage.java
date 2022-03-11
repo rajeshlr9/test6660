@@ -971,7 +971,7 @@ public class DistributionOrdersPage {
 				refreshBtn.click();
 				//stale element
 				actualStatus = driver.findElement(By.xpath(shiwaveStatusxpath(waveTemplateDesc))).getText().trim();
-				Thread.sleep(5000);
+				Thread.sleep(10000);
 				count++;
 			}
 			Steps.logger.info("Wave status:" + actualStatus);
