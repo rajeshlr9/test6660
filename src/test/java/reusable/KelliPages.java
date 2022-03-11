@@ -180,7 +180,30 @@ public class KelliPages {
 				Steps.testRes = "Failed";
 				Assert.assertTrue(false);
 			}
-		} else if (env.equalsIgnoreCase("TEST")) {
+		}else if(env.equalsIgnoreCase("L5")) {
+			driver.get(Config.getProperty("Kelli_Dev_URL_L5"));
+			userVal = Config.getProperty("Kelli_Dev_Username");
+			//driver.navigate().to("javascript:document.getElementById('overridelink').click()");
+
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, userid, 20);
+			userid.sendKeys(Config.getProperty("Kelli_Dev_Username"));
+
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, password, 30);
+			password.sendKeys(Config.getProperty("Kelli_Dev_Pwd"));
+
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, loginbutton, 50);
+			loginbutton.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, WelcomeSYSTEMUSER, 50);
+			if(WelcomeSYSTEMUSER.getText().contains("Welcome")) {
+				Steps.logger.info("Log in to Kelli application successful");
+			}else {
+				Steps.logger.info("Log in to Kelli application is unsuccessful");
+				Steps.testRes = "Failed";
+				Assert.assertTrue(false);
+			}
+
+		}
+		else if (env.equalsIgnoreCase("TEST")) {
 			driver.get(Config.getProperty("Kelli_QA_URL"));
 			userVal = Config.getProperty("Kelli_QA_username");
 			driver.navigate().to("javascript:document.getElementById('overridelink').click()");

@@ -63,7 +63,7 @@ public class FedexnetPage  extends Steps {
 		//String userType= Config.getProperty("UserRole");
 		String custAccount = account; 
 		System.out.println("customer account"+custAccount);
-		if (env.equalsIgnoreCase("L1") || env.equalsIgnoreCase("@Env") || env.equalsIgnoreCase("L2")|| env.equalsIgnoreCase("L5")) {
+		if (env.equalsIgnoreCase("L1") || env.equalsIgnoreCase("@Env") || env.equalsIgnoreCase("L2")|| env.equalsIgnoreCase("L5")|| env.equalsIgnoreCase("L4")) {
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, username, 50);
 			username.sendKeys(Config.getProperty("FedexNetUsername_DEV"+"_"+custAccount));
 			Steps.logger.info("DEVUserName: " + Config.getProperty("FedexNetUsername_DEV"+"_"+custAccount));
