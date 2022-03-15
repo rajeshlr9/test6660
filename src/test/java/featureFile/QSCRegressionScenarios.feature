@@ -389,7 +389,7 @@ Scenario: Distribution Order creation - Single Line LTL FDFE LTLE
 	And user cancels the DO
 	And user opens DO screen and searches for the DistributionOrder and verify its status "200 - Cancelled"
 	
-@DailyRegression_QSC @QSC_CustomerTestingOutbound @SplitMoveoLPN_QSC
+@DailyRegression_QSC @QSC_CustomerTestingOutbound @SplitMoveoLPN1_QSC
 Scenario: Spliting the OLPN at Weighed status 
 	Given I have excel data 
 	| QSC_DailyRegressionOB06 |
@@ -450,7 +450,7 @@ Scenario: Combine the OLPN at weighed status
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 	Then user log out from application	
 	
-@DailyRegression_QSC @QSC_CustomerTestingOutbound @SplitMoveoLPN_QSC
+@DailyRegression_QSC @QSC_CustomerTestingOutbound @SplitMoveoLPN3_QSC
 Scenario: Combine the OLPN at weighed status
 	Given I have excel data 
 		| QSC_DailyRegressionOB05 |

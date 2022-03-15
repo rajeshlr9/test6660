@@ -186,10 +186,10 @@ public class KelliPages {
 			//driver.navigate().to("javascript:document.getElementById('overridelink').click()");
 
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, userid, 20);
-			userid.sendKeys(Config.getProperty("Kelli_Dev_Username"));
+			userid.sendKeys(Config.getProperty("Kelli_Dev_Username_L5"));
 
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, password, 30);
-			password.sendKeys(Config.getProperty("Kelli_Dev_Pwd"));
+			password.sendKeys(Config.getProperty("Kelli_Dev_Pwd_L5"));
 
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, loginbutton, 50);
 			loginbutton.click();
