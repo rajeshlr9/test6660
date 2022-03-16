@@ -2,6 +2,7 @@ package pages;
 
 import java.io.IOException;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -188,6 +189,10 @@ public class WeighAndManifestoLPNPage {
 			SeleniumTestHelper.assertEquals(inputOLPNtxtbox.isDisplayed(), true);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, nextBtn, 50);
 			nextBtn.click();
+			Thread.sleep(2000);
+			if(driver.findElement(By.xpath("//table[@class='pophead']//div[@class='pop_close']")).isDisplayed()) {
+				break;
+			}
 			Thread.sleep(2000);
 			Select oLPNTypeSelector = new Select(oLPNType);
 			oLPNTypeSelector.selectByVisibleText("QSC Pallet");
