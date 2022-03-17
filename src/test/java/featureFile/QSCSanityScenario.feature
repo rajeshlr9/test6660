@@ -50,7 +50,7 @@ Receiving of Un-Delivered Product using blind receipt in MM3 Rtrn/Ovrg menu and 
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	
 	
-@QSC_SanityScenarioTesting4 @QSC_Damaged_ReceivePutaway @Sanity_QSC
+@QSC_SanityScenarioTesting4 @QSC_Damaged_ReceivePutaway @Sanity_QSCIgnoreDueToInspectionZoneIssue
 Scenario: B-459309 Receive Damages- Receiving Damaged Product using MM3 Recv-Damages & Putaway
 Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verifying the status of the ASN & completing Putaway
 	Given I have excel data
