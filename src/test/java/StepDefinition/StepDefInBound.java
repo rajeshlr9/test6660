@@ -140,10 +140,9 @@ public class StepDefInBound {
 			} else if (env.equalsIgnoreCase("L2") ) {
 				driver.get(Config.getProperty("ManhattanURL_L2"));
 				Steps.logger.info("L2 Environment");
-			}
-				else if (env.equalsIgnoreCase("L4")) {
+			} else if (env.equalsIgnoreCase("L4")) {
 					driver.get(Config.getProperty("ManhattanURL_L4"));
-					Steps.logger.info("L4 Environment");
+					Steps.logger.info("L4 Environment Manhattan URL :"+Config.getProperty("ManhattanURL_L4"));
 			}else if (env.equalsIgnoreCase("L5")) {
 				driver.get(Config.getProperty("ManhattanURL_L5"));
 				Steps.logger.info("L5 Environment");
@@ -171,8 +170,7 @@ public class StepDefInBound {
 			} else if (env.equalsIgnoreCase("L3") ) {
 				driver.get(Config.getProperty("FedexNetURL_TEST"));
 				Steps.logger.info("TEST Environment");
-			}
-				else if (env.equalsIgnoreCase("L4")) {
+			}else if (env.equalsIgnoreCase("L4")) {
 					driver.get(Config.getProperty("FedexNetURL_STAGE"));
 					Steps.logger.info("STAGE Environment");
 			}else if (env.equalsIgnoreCase("L5")) {
