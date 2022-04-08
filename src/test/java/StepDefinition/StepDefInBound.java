@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -17,7 +18,9 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import entity.Items;
+import globalFunc.FileUtilities;
 import globalFunc.Screenshots;
+import globalFunc.UnZipUtility;
 import pages.AsnsPage;
 import pages.HomePage;
 import pages.ILPNPage;
@@ -31,6 +34,7 @@ import pages.ReserveLocationPage;
 import reusable.FedexnetPage;
 import reusable.KelliPages;
 import reusable.ModifyXML;
+import reusable.ValidateFilesAfterReceving;
 import utils.Config;
 import utils.SeleniumTestHelper;
 import utils.Xpathxml;
@@ -50,6 +54,7 @@ public class StepDefInBound {
 	PixTransactionPage pixTransaction = new PixTransactionPage();
 	ReserveLocationPage resLocPage = new ReserveLocationPage();
 	ItemsPage itemsPage= new ItemsPage();
+	ValidateFilesAfterReceving vfr = new ValidateFilesAfterReceving();
 
 	String itemName = null;
 	String GtinNum = null;
@@ -1115,6 +1120,98 @@ public class StepDefInBound {
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
+	@And("^user verify the \"([^\"]*)\" file in fedexnet$")
+	public void user_verify_the_861_file_in_fedexnet(String fileType) throws Exception {
+		try {
+			String env = ManhattanLoginPage.environment;
+			String tpid = null;
+			if (env.equalsIgnoreCase("L1") || env.equalsIgnoreCase("@Env") || env.equalsIgnoreCase("L2")) {
+				tpid = "FSCS";
+			} else if (env.equalsIgnoreCase("L3")) {
+				tpid = "FSCSQA";
+			} else if (env.equalsIgnoreCase("L4")) {
+				tpid = "FSCSUA";
+			} else if (env.equalsIgnoreCase("L5")) {
+				tpid = "FSCSUA";
+			}
+			Steps.logger.info("Sender Qual Code - TPID	:" + tpid);
+
+			if (fileType.equals("856") || fileType.equals("943")) {
+				Steps.logger.info("Verify 856 Files");
+				if (env.equalsIgnoreCase("L1") || env.equalsIgnoreCase("@Env") || env.equalsIgnoreCase("L2")) {
+					Screenshots.captureSnapshot(driver);
+					Steps.logger.info("Validation of 856 File");
+					FedexnetPage.verify861And856Files(tpid, "856", "");
+					String fileNameRetrieved = vfr.downloadTheFileFromFedexNet(tpid, "856");
+					Steps.logger.info("File name retrieved  :"+fileNameRetrieved);
+					FileUtilities.verifyOrderNumIn856File(fileNameRetrieved);
+				} else if (env.equalsIgnoreCase("L4") || env.equalsIgnoreCase("L5")) {
+					Screenshots.captureSnapshot(driver);
+					Steps.logger.info("Validation of 856 File");
+					FedexnetPage.verify861And856Files(tpid, "856UA", "");
+					String fileNameRetrieved = vfr.downloadTheFileFromFedexNet(tpid, "856UA");
+					Steps.logger.info(fileNameRetrieved);
+					FileUtilities.verifyOrderNumIn856File(fileNameRetrieved);
+				}
+				Reporter.addStepLog("Verified the 856 Files");
+			} else if (fileType.equals("850") || fileType.equals("940")) {
+				Steps.logger.info("Verify 850 Files");
+			} else if (fileType.equals("861")) {
+				Steps.logger.info("Verify 861 Files");
+				if (env.equalsIgnoreCase("L1") || env.equalsIgnoreCase("@Env") || env.equalsIgnoreCase("L2")) {
+					Screenshots.captureSnapshot(driver);
+					Steps.logger.info("Validation of 861 File");
+					FedexnetPage.verify861And856Files(tpid, "861", "");
+					String fileNameRetrieved = vfr.downloadTheFileFromFedexNet(tpid, "861");
+					Steps.logger.info(fileNameRetrieved);
+					FileUtilities.verifyOrderNumIn856File(fileNameRetrieved);
+				} else if (env.equalsIgnoreCase("L4") || env.equalsIgnoreCase("L5")) {
+					Screenshots.captureSnapshot(driver);
+					Steps.logger.info("Validation of 861 File");
+					FedexnetPage.verify861And856Files(tpid, "861UA", "");
+					String fileNameRetrieved = vfr.downloadTheFileFromFedexNet(tpid, "861UA");
+					Steps.logger.info(fileNameRetrieved);
+					FileUtilities.verifyOrderNumIn856File(fileNameRetrieved);
+				}
+				Reporter.addStepLog("Verified the 856 Files");
+			}
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
+	//Login to FedexNet for Verify 861 and 856 files
+	@Then("^user logs into the FedexNet application for verify files$")
+	public void user_logs_into_the_FedexNet_application_for_verify_files()throws Exception {
+		try {
+			String env = Config.getProperty("Environment");
+
+			if (env.equalsIgnoreCase("L1") || env.equalsIgnoreCase("@Env") || env.equalsIgnoreCase("L2")) {
+				driver.get(Config.getProperty("FedexNetURL_DEV"));
+				Steps.logger.info("Dev Environment");
+			} else if (env.equalsIgnoreCase("L3")) {
+				driver.get(Config.getProperty("FedexNetURL_TEST"));
+				Steps.logger.info("TEST Environment");
+			} else if (env.equalsIgnoreCase("L4")) {
+				driver.get(Config.getProperty("FedexNetURL_STAGE"));
+				Steps.logger.info("STAGE Environment");
+			} else if (env.equalsIgnoreCase("L5")) {
+				driver.get(Config.getProperty("FedexNetURL_DEV"));
+				Steps.logger.info("Dev Environment");
+			}
+			Steps.logger.info("Trying to Login to FedexNet For 861/856 File Validation");
+			FedexnetPage.logintoFedexNetForFileValidation();
+			Steps.logger.info("User Logged In to FedexNet");
+			Reporter.addStepLog("Logged In to FedexNet Application Successfully...");
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}

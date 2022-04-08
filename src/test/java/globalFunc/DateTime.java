@@ -87,9 +87,9 @@ public class DateTime {
 	public static String splitiLPNFormat() {
 		String strDate68=null;
 		Date date = new Date();
-		SimpleDateFormat formatter68 = new SimpleDateFormat("yyMMddHHmmss");              
+		SimpleDateFormat formatter68 = new SimpleDateFormat("yyMMddHHss");              
 	     strDate68= formatter68.format(date);
-	     strDate68=strDate68.substring(0, 10);
+	     //strDate68=strDate68.substring(0, 10);
 	     return "0000195192"+strDate68;
 	}
 }

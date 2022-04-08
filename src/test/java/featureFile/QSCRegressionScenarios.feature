@@ -16,7 +16,10 @@ Creating ASN through Post Message UI, checking status of the shipment and comple
 	And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
-
+	And user log out from application 
+	And user logs into the FedexNet application for verify files
+	And user verify the "861" file in fedexnet
+	Then user log out from Fedenxet application
 
 @DailyRegression_QSC @ScenarioIB3 @QSC_CustomerTestingInbound
 Scenario: Receiving Case : Single Line, Single iLPN with invalid item
@@ -80,10 +83,10 @@ Over reciving of products using blind receipt in MM3 Rtrn/Ovrg menu and verifyin
 	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started"
 	And user verifies the ASN "40 - Receiving Verified"
 	Then user search for the LPN in iLPN screen, and validate the lock code
-	And user open reserve locations & naviagtes to "QC111A1" zone and fetches the current quantity
+	And user open reserve locations & naviagtes to "QC819A13G" zone and fetches the current quantity
 	And user opens RF menu and completes Putaway using "MM3 Ptwy CASE" menu
-	Then user navigates to reserve locations & validates that the quantity is increased in "QC111A1" by no of iLPN's moved
-	Then validates that the iLPN is also moved to inspection zone "QC111A1"
+	Then user navigates to reserve locations & validates that the quantity is increased in "QC819A13G" by no of iLPN's moved
+	Then validates that the iLPN is also moved to inspection zone "QC819A13G"
 	Then user log out from application
 	
 @DailyRegression_QSC @ScenarioIB8 @QSC_CustomerTestingInbound
@@ -100,7 +103,6 @@ Scenario: Uploading the Single ASNLoad file from the Kelli application and valid
 	And fetches the actual ASN number and PO Number uploaded from Kelli
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	Then user log out from application 
-	
 	
 @DailyRegression_QSC @ScenarioIB10 @QSC_CustomerTestingInbound
 Scenario: Receiving Partial Qty from an ASN- Single Line
@@ -123,7 +125,10 @@ automatically created with remaining qty
 	Then user verifies new ASN is created with remaining qty
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE2" menu
 	Then user opens ASN screen and searches for the 2nd ASN and verify its status "40 - Receiving Verified"
-	Then user log out from application
+	And user log out from application 
+	And user logs into the FedexNet application for verify files
+	And user verify the "861" file in fedexnet
+	Then user log out from Fedenxet application
 
 @DailyRegression_QSC @ScenarioOB10_1 @QSC_CustomerTestingOutbound
 Scenario: Distribution Order creation - Single Line Non Serialized Parcel F2D FDE
@@ -170,8 +175,10 @@ validate new multi line ASN is automatically created with remaining qty for both
 	Then user verifies new ASN is created with remaining qty
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE2" menu
 	Then user opens ASN screen and searches for the 2nd ASN and verify its status "40 - Receiving Verified"
-	Then user log out from application
-	
+	And user log out from application 
+	And user logs into the FedexNet application for verify files
+	And user verify the "861" file in fedexnet
+	Then user log out from Fedenxet application
 	
 @DailyRegression_QSC @ScenarioIB12 @QSC_CustomerTestingInbound
 Scenario: Receiving Case : Single Line, Single iLPN
@@ -190,7 +197,10 @@ Creating ASN through fedexnet, checking status of the shipment and completed rec
 	And user opens RF menu and completes Receiving using "MM3 Recv-Damages" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
-		
+	And user log out from application 
+	And user logs into the FedexNet application for verify files
+	And user verify the "861" file in fedexnet
+	Then user log out from Fedenxet application	
 
 @DailyRegression_QSC @ScenarioOB01 @QSC_CustomerTestingOutbound
 Scenario: Distribution Order creation - Single Line Serialized Parcel PO FDE
@@ -214,7 +224,10 @@ Scenario: Distribution Order creation - Single Line Serialized Parcel PO FDE
 	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
 	#Then user search for DO and confirms it
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
-	
+	And user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application	
 	
 @DailyRegression_QSC @ScenarioOB02 @QSC_CustomerTestingOutbound
 Scenario: Distribution Order creation - Single Line Non Serialized Parcel F2D FDE
@@ -238,7 +251,11 @@ Scenario: Distribution Order creation - Single Line Non Serialized Parcel F2D FD
 	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
 	#Then user search for DO and confirms it
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
-			
+	And user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application
+		
 @DailyRegression_QSC @ScenarioOB3 @QSC_CustomerTestingOutbound
 Scenario: Distribution Order creation - Single Line LTL FDFE LTLE 
 	Given I have excel data 
@@ -263,7 +280,11 @@ Scenario: Distribution Order creation - Single Line LTL FDFE LTLE
 	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged" 
 	And user navigates to shippment planning workspace 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 
-	
+	And user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application	
+		
 @DailyRegression_QSC @ScenarioOB04 @QSC_CustomerTestingOutbound
 Scenario: Distribution Order creation - Multi Line Parcel F2D FDE
 	Given I have excel data 
@@ -286,7 +307,10 @@ Scenario: Distribution Order creation - Multi Line Parcel F2D FDE
 	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
 	#Then user search for DO and confirms it
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
-
+	And user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application	
 
 @DailyRegression_QSC @ScenarioOB5 @QSC_CustomerTestingOutbound
 Scenario: Distribution Order creation - Multi Line LTL	FDFE LTLP 
@@ -312,7 +336,11 @@ Scenario: Distribution Order creation - Multi Line LTL	FDFE LTLP
 	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged" 
 	And user navigates to shippment planning workspace 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 	
-
+	And user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application	
+	
 @DailyRegression_QSC @ScenarioOB6 @QSC_CustomerTestingOutbound
 Scenario: Distribution Order creation - Single Line LTL LTL LTL 
 	Given I have excel data 
@@ -337,7 +365,11 @@ Scenario: Distribution Order creation - Single Line LTL LTL LTL
 	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged" 
 	And user navigates to shippment planning workspace 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 
-
+	And user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application	
+	
 @DailyRegression_QSC @ScenarioOB8 @QSC_CustomerTestingOutbound
 Scenario: Distribution Order creation - Single Line LTL FDFE LTLE invalid item
 	Given I have excel data 
@@ -418,6 +450,9 @@ Scenario: Spliting the OLPN at Weighed status
 	And user navigates to shippment planning workspace
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 	Then user log out from application	
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application	
 	
 @DailyRegressionIgnore_QSC @QSC_CustomerTestingOutbound @SplitMoveoLPN2_QSC @SplitMoveoLPN_QSC
 Scenario: Combine the OLPN at weighed status

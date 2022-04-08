@@ -2,6 +2,7 @@ package reusable;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -51,6 +52,45 @@ public class FedexnetPage  extends Steps {
 	
 	@FindBy(xpath = "//frame[@name='topFrame']")
 	public WebElement topFrame;
+	
+	//added below xpath to support 861 and 851 files validation
+	
+	@FindBy(xpath = "//a[text()='Document Queue']")
+	public WebElement documentQueueLink;
+	
+	@FindBy(xpath = "//a[text()='Filter']")
+	public WebElement filterLink;
+
+
+	@FindBy(xpath = "//input[@name='txtSndrTPID']")
+	public WebElement senderTPIDInput;
+	
+	@FindBy(xpath = "//input[@name='btnSearchSender']")
+	public WebElement searchBtnForSender;
+
+	@FindBy(xpath = "//input[@name='txtRcvrTPID']")
+	public WebElement receiverTPIDInput;
+	
+	@FindBy(xpath = "//input[@name='btnSearchReceiver']")
+	public WebElement searchBtnForReceiver;
+
+	@FindBy(xpath = "//input[@name='rdoSelectApp'][1]")
+	public WebElement radioSelectApp;
+	
+	@FindBy(xpath = "//input[@name='txtAppType']")
+	public WebElement appTypeInput;
+	
+	@FindBy(xpath = "//input[@name='btnSearchSubType']")
+	public WebElement searchBtnForAppType;
+
+	@FindBy(xpath = "//input[@name='btnOk']")
+	public WebElement okBtn;
+	
+//	@FindBy(xpath = "//input[@name='rdoDocChoice' and @value='0']")
+//	public WebElement selectFirstRadioAfterFilter;
+//	
+//	@FindBy(xpath = "//input[@name='btnDoc' and @value='View Doc']")
+//	public WebElement viewDocBtn;
 	
 	public static String environment = Config.getProperty("Environment");
 	public static String account = Config.getProperty("Account");
@@ -147,6 +187,76 @@ public class FedexnetPage  extends Steps {
 		Thread.sleep(3000);
 		Steps.logger.info("User logged out from Fedexnet");
 		
+	}
+	
+	public void verify861And856Files(String dropEnv, String filetype, String filepath)throws Exception {
+		try {
+			driver.switchTo().frame("LinkFrame");
+			Thread.sleep(1000);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, documentQueueLink, 50);
+			documentQueueLink.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, filterLink, 50);
+			filterLink.click();
+			Thread.sleep(1000);
+			driver.switchTo().parentFrame();
+			driver.switchTo().frame("ApplicationFrame");
+			driver.switchTo().frame("mainFrame");
+			Thread.sleep(1000);
+			Steps.logger.info("selected the link and swith to frame");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, senderTPIDInput, 50);
+			senderTPIDInput.sendKeys(dropEnv);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, searchBtnForSender, 50);
+			searchBtnForSender.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, receiverTPIDInput, 50);
+			receiverTPIDInput.sendKeys("QSC");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, searchBtnForReceiver, 50);
+			searchBtnForReceiver.click();
+
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, radioSelectApp, 50);
+			radioSelectApp.click();
+
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, appTypeInput, 50);
+			appTypeInput.sendKeys(filetype);
+
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, searchBtnForAppType, 50);
+			searchBtnForAppType.click();
+			Steps.logger.info("Clicked on Search button after providing input as 861");
+
+			driver.switchTo().defaultContent();
+			driver.switchTo().parentFrame();
+			driver.switchTo().frame("ApplicationFrame");
+			driver.switchTo().frame("bottomFrame");
+
+			Steps.logger.info("switched to bottom frame frame");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, okBtn, 50);
+			okBtn.click();
+			driver.switchTo().defaultContent();
+			Thread.sleep(5000);
+			Steps.logger.info("clicked on Ok button successfully");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public void logintoFedexNetForFileValidation() throws Exception {
+
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, username, 100);
+		String env = environment;
+		String custAccount = account;
+		Steps.logger.info("customer account" + custAccount);
+		if (env.equalsIgnoreCase("L1") || env.equalsIgnoreCase("@Env") || env.equalsIgnoreCase("L2")
+				|| env.equalsIgnoreCase("L5") || env.equalsIgnoreCase("L4")) {
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, username, 50);
+			username.sendKeys(Config.getProperty("FedexNetUsername_FileVerify" + "_" + custAccount));
+			Steps.logger.info("Entered UserName: " + Config.getProperty("FedexNetUsername_FileVerify" + "_" + custAccount));
+			password.sendKeys(Config.getProperty("FedexNetPassword_FileVerify" + "_" + custAccount));
+			Steps.logger.info("Entered Password: " + Config.getProperty("FedexNetPassword_FileVerify" + "_" + custAccount));
+			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(signInBtn));
+			signInBtn.click();
+			Steps.logger.info("Clicked on SignIn Button");
+			Reporter.addStepLog("Entered Credentails and Clicked on SignIn Button...");
+			Thread.sleep(240000);
+		}
 	}
 	
 }

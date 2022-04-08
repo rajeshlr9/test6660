@@ -9,8 +9,10 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import org.apache.commons.io.FileUtils;
+import org.testng.Assert;
 
 import StepDefinition.Steps;
+import entity.Items;
 import utils.Config;
 
 public class FileUtilities {
@@ -104,17 +106,57 @@ public class FileUtilities {
 		}
     }
     
- public static void copyScreenshotFiles() {
-	 String sourceFolder = System.getProperty("user.dir")+ "\\resources\\Screenshots\\";
-	 String targetFolder = "C:\\ReportFiles\\Screenshots";
-	 File source= new File(sourceFolder);
-	 File target= new File(targetFolder);
-	 try {
-		FileUtils.copyDirectory(source, target);
-		Steps.logger.info("Screenshots copied successfully to other folder");
-	} catch (IOException e) {
-		e.printStackTrace();
+	public static void copyScreenshotFiles() {
+		String sourceFolder = System.getProperty("user.dir") + "\\resources\\Screenshots\\";
+		String targetFolder = "C:\\ReportFiles\\Screenshots";
+		File source = new File(sourceFolder);
+		File target = new File(targetFolder);
+		try {
+			FileUtils.copyDirectory(source, target);
+			Steps.logger.info("Screenshots copied successfully to other folder");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
-	 
-    }
+ 
+	public static void verifyOrderNumIn861File(String fileName) throws Exception{
+		try {
+			String zipFilePath = "C:\\Users\\ffd-sys-team\\Downloads\\" + fileName + ".zip";
+			String destDirectory = "C:\\Users\\ffd-sys-team\\Downloads\\TestExtract";
+			UnZipUtility unZipClass = new UnZipUtility();
+			unZipClass.unzip(zipFilePath, destDirectory);
+			List<String> stringfile = unZipClass
+					.readFile("C:\\Users\\ffd-sys-team\\Downloads\\TestExtract\\" + fileName + ".fnf");
+			System.out.println("XML File Contents"+stringfile);
+			String orderNum = Items.getAsnNumber();
+			String finalOrderNum[] = orderNum.split("-");
+			System.out.println(stringfile.contains("<OrdNbr>" + finalOrderNum[0] + "</OrdNbr>"));
+			System.out.println(stringfile.contains("<ConditionCD>07</ConditionCD>"));
+			Assert.assertTrue(stringfile.contains("<OrdNbr>" + finalOrderNum[0] + "</OrdNbr>"), "Order Number mismatch");
+			Assert.assertTrue(stringfile.contains("<ConditionCD>07</ConditionCD>"), "ConditionCD mismatch");
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public static void verifyOrderNumIn856File(String fileName) throws Exception{
+		try {
+			String zipFilePath = "C:\\Users\\ffd-sys-team\\Downloads\\" + fileName + ".zip";
+			String destDirectory = "C:\\Users\\ffd-sys-team\\Downloads\\TestExtract";
+			UnZipUtility unZipClass = new UnZipUtility();
+			unZipClass.unzip(zipFilePath, destDirectory);
+			List<String> stringfile = unZipClass
+					.readFile("C:\\Users\\ffd-sys-team\\Downloads\\TestExtract\\" + fileName + ".fnf");
+			System.out.println(stringfile);
+			String orderNum = Items.getDONumber();
+			System.out.println("orderNumber:" + orderNum);
+			System.out.println(stringfile.contains("<ShipID>" + orderNum + "</ShipID>"));
+			Assert.assertTrue(stringfile.contains("<ShipID>" + orderNum + "</ShipID>"), "OrderNum or ShipID mismatch");
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 }
