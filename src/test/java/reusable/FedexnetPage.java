@@ -146,7 +146,11 @@ public class FedexnetPage  extends Steps {
 	    		 Steps.logger.info("Expected drop Env. "+dropEnv+" and File type "+filetype+"UA"+ " matched");
 	    		 driver.findElement(By.xpath("/html/body/form/table[4]/tbody/tr["+i+"]/td[1]/input")).click();
 	    	  break;
-	    	  }    	 
+			} else if (RecNameValue.equals(dropEnv) && AppValue.equals(filetype + "QA")) {
+				Steps.logger.info("Expected drop Env. " + dropEnv + " and File type " + filetype + "QA" + " matched");
+				driver.findElement(By.xpath("/html/body/form/table[4]/tbody/tr[" + i + "]/td[1]/input")).click();
+				break;
+			}      	 
 	      }
 	      	driver.switchTo().parentFrame();		
 		//	driver.switchTo().frame("ApplicationFrame");

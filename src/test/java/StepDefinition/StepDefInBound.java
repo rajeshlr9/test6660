@@ -203,7 +203,7 @@ public class StepDefInBound {
 				dropEnv="FSCSQA";
 			}
 				else if (env.equalsIgnoreCase("L4")) {
-					dropEnv="FSCSUA";
+					dropEnv="FSCSQA";
 			}
 				else if (env.equalsIgnoreCase("L5")) {
 					System.out.println("L5 Env - FSCSUA");
@@ -1134,7 +1134,7 @@ public class StepDefInBound {
 			} else if (env.equalsIgnoreCase("L3")) {
 				tpid = "FSCSQA";
 			} else if (env.equalsIgnoreCase("L4")) {
-				tpid = "FSCSUA";
+				tpid = "FSCSQA";
 			} else if (env.equalsIgnoreCase("L5")) {
 				tpid = "FSCSUA";
 			}
@@ -1149,7 +1149,14 @@ public class StepDefInBound {
 					String fileNameRetrieved = vfr.downloadTheFileFromFedexNet(tpid, "856");
 					Steps.logger.info("File name retrieved  :"+fileNameRetrieved);
 					FileUtilities.verifyOrderNumIn856File(fileNameRetrieved);
-				} else if (env.equalsIgnoreCase("L4") || env.equalsIgnoreCase("L5")) {
+				} else if (env.equalsIgnoreCase("L4")) {
+					Screenshots.captureSnapshot(driver);
+					Steps.logger.info("Validation of 856 File");
+					FedexnetPage.verify861And856Files(tpid, "856QA", "");
+					String fileNameRetrieved = vfr.downloadTheFileFromFedexNet(tpid, "856QA");
+					Steps.logger.info(fileNameRetrieved);
+					FileUtilities.verifyOrderNumIn856File(fileNameRetrieved);
+				} else if (env.equalsIgnoreCase("L5")) {
 					Screenshots.captureSnapshot(driver);
 					Steps.logger.info("Validation of 856 File");
 					FedexnetPage.verify861And856Files(tpid, "856UA", "");
@@ -1157,6 +1164,7 @@ public class StepDefInBound {
 					Steps.logger.info(fileNameRetrieved);
 					FileUtilities.verifyOrderNumIn856File(fileNameRetrieved);
 				}
+				
 				Reporter.addStepLog("Verified the 856 Files");
 			} else if (fileType.equals("850") || fileType.equals("940")) {
 				Steps.logger.info("Verify 850 Files");
@@ -1169,7 +1177,14 @@ public class StepDefInBound {
 					String fileNameRetrieved = vfr.downloadTheFileFromFedexNet(tpid, "861");
 					Steps.logger.info(fileNameRetrieved);
 					FileUtilities.verifyOrderNumIn856File(fileNameRetrieved);
-				} else if (env.equalsIgnoreCase("L4") || env.equalsIgnoreCase("L5")) {
+				} else if (env.equalsIgnoreCase("L4")) {
+					Screenshots.captureSnapshot(driver);
+					Steps.logger.info("Validation of 861 File");
+					FedexnetPage.verify861And856Files(tpid, "861QA", "");
+					String fileNameRetrieved = vfr.downloadTheFileFromFedexNet(tpid, "861QA");
+					Steps.logger.info(fileNameRetrieved);
+					FileUtilities.verifyOrderNumIn856File(fileNameRetrieved);
+				}  else if (env.equalsIgnoreCase("L5")) {
 					Screenshots.captureSnapshot(driver);
 					Steps.logger.info("Validation of 861 File");
 					FedexnetPage.verify861And856Files(tpid, "861UA", "");
