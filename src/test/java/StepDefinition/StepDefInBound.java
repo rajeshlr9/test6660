@@ -1170,6 +1170,7 @@ public class StepDefInBound {
 				Steps.logger.info("Verify 850 Files");
 			} else if (fileType.equals("861")) {
 				Steps.logger.info("Verify 861 Files");
+				System.out.println("verify 861 files");
 				if (env.equalsIgnoreCase("L1") || env.equalsIgnoreCase("@Env") || env.equalsIgnoreCase("L2")) {
 					Screenshots.captureSnapshot(driver);
 					Steps.logger.info("Validation of 861 File");
@@ -1190,7 +1191,7 @@ public class StepDefInBound {
 					FedexnetPage.verify861And856Files(tpid, "861UA", "");
 					String fileNameRetrieved = vfr.downloadTheFileFromFedexNet(tpid, "861UA");
 					Steps.logger.info(fileNameRetrieved);
-					FileUtilities.verifyOrderNumIn856File(fileNameRetrieved);
+					FileUtilities.verifyOrderNumIn861File(fileNameRetrieved);
 				}
 				Reporter.addStepLog("Verified the 856 Files");
 			}
