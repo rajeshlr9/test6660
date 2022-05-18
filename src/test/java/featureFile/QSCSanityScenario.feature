@@ -1,7 +1,7 @@
 Feature: QSC Santiry Scenarios 
 
 
-@Regression_SanityScenarioTesting1 @QSC_EDIOrder_Receiving @Sanity_QSC
+@QSC_SanityScenarioTesting1 @QSC_EDIOrder_Receiving @Sanity_QSC
 Scenario: Receiving Case : Single Line, Single iLPN
 Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location through RF Menu
 	Given I have excel data
