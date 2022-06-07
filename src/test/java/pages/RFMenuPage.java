@@ -4848,6 +4848,10 @@ public class RFMenuPage {
 			Mainmenu.click();
 			Steps.logger.info("Clicked on Main Menu");
 			Thread.sleep(2000);
+			//Code added for click on PageDown so that Misc option will be visible.
+			pageDown.click();
+			Steps.logger.info("Clicked on Page Down");
+			Thread.sleep(2000);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuMisc, 50);
 			rfMenuMisc.click();
 			Steps.logger.info("Clicked on Miscellaneous Menu");
