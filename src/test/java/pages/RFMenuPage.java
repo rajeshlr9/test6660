@@ -9,6 +9,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.server.handler.SendKeys;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -291,8 +293,11 @@ public class RFMenuPage {
 	@FindBy(xpath = "//input[@id='locn_Input']")   public static WebElement Rloc_field;
 	@FindBy(xpath = "//input[@id='dataForm:q1ty2']")  public static WebElement numbersOfLPN_field;
 
-	@FindBy(xpath="//div[@id='dataForm:notPalletPageQty']") public WebElement suggestedQty;
-	@FindBy(xpath="//*[@id='input1qtyQty51']") public WebElement taskQtyTxtBox;
+	//@FindBy(xpath="//div[@id='dataForm:notPalletPageQty']") public WebElement suggestedQty;
+	@FindBy(xpath="//div[@id='dataForm:brk1']/div[contains(text(),'EA')]") public WebElement suggestedQty1;
+
+	//@FindBy(xpath="//*[@id='input1qtyQty51']") public WebElement taskQtyTxtBox;
+	@FindBy(xpath="//div[@id='dataForm:brk1']/div/following::input[1]") public WebElement taskQtyTxtBox1;
 
 	@FindBy(xpath = "//input[starts-with(@id, 'barcode')]")   public static WebElement iLPNInputBx;
 	@FindBy(xpath = "//div[@id='dataForm:divFullPlt2']")   public static WebElement promptedPallet;
@@ -301,6 +306,24 @@ public class RFMenuPage {
 	@FindBy(xpath = "//div[@id='dataForm:div012']")   public static WebElement suggestedCloc;
 	@FindBy(xpath = "//input[@id='sublocn1_Input']")   public static WebElement clocInputBx;
 	@FindBy(xpath="//span[@value='End iLPN']") public WebElement end_iLPN_btn;
+	
+	@FindBy(xpath = "//a[text()='Packing']")
+	public WebElement Packing;
+
+	@FindBy(xpath = "//a[text()='MM3 PackTote-PCL']")
+	public WebElement MM3PackTotePCL;
+	
+	@FindBy(xpath = "//div[@Id='ot1']")
+	public WebElement MM3PackTotePCLText;
+
+	@FindBy(xpath = "//input[@id='barcode']")
+	public WebElement ToteInput;
+	
+	@FindBy(xpath="//div[@id='dataForm:id_121']/div[contains(text(),'EA')]")
+	public WebElement suggestQty;
+	
+	@FindBy(xpath="//div[@id='dataForm:id_121']/div/following::input[1]") public WebElement taskQtyTextBox;
+
 
 	public WebElement getReceivingMenu(String menu) {
 		String rfMenu = receiveMenu.replace("<RECEIVE_MENU>", menu);
@@ -344,8 +367,14 @@ public class RFMenuPage {
 	@FindBy(xpath = "//span[text()='Enter']")
 	public WebElement changeTaskGroupEnter;
 
-	@FindBy(xpath = "//input[@id='confirmlocation_Input']")
-	public WebElement confirmlocation_Input;
+	//@FindBy(xpath = "//input[@id='confirmlocation_Input']")
+	@FindBy(xpath = "//input[@id='location4_Input']")
+	public WebElement confirmlocation_Input1;
+	
+	//adedd by 4292839
+	@FindBy(xpath = "//table[@id='bindkeys_toolbar']//span[@id='rfbtn_dataForm:InfoAcceptKey']")
+	public WebElement AcceptProceedForTote;
+	//span[@id='rfbtn_dataForm:InfoAcceptKey']
 	
 	@FindBy(xpath = "//input[@id='dataForm:INT']")
 	public WebElement INT_field;
@@ -401,8 +430,9 @@ public class RFMenuPage {
 	@FindBy(xpath = "//input[@id='barcode']")
 	public WebElement ilpnInRFcreateilpnTxtBox;
 
-	@FindBy(xpath = "//input[@id='barcode1']")
-	public WebElement ilpnInRFModifyilpnTxtBox;
+	//@FindBy(xpath = "//input[@id='barcode1']")
+	@FindBy(xpath = "//input[@id='barcode1' or @id='barcode']")
+	public WebElement ilpnInRFModifyilpnTxtBox1;
 
 	@FindBy(xpath = "//input[@id='input1qty1']")
 	public WebElement QtyTxtBoxInRFModifyilpn;
@@ -784,6 +814,24 @@ public class RFMenuPage {
 	@FindBy(xpath = "//span[@id='rfbtn_dataForm:InfoAcceptKey']")
 	public WebElement InfoAcceptKey;
 	
+	@FindBy(xpath = "//div[@class='caption']//span[@id='dataForm:locn21']")
+	public WebElement oLPNNumberDisplayed;
+	
+	@FindBy(xpath = "//input[@id='tote1re']")
+	public WebElement oLPNNumberInputField;
+	
+	@FindBy(xpath = "//input[@id='confirmlocation_Input']")
+	public WebElement confirmlocation_Input;
+
+	@FindBy(xpath="//div[@id='dataForm:notPalletPageQty']") 
+	public WebElement suggestedQty;
+	
+	@FindBy(xpath="//*[@id='input1qtyQty51']") 
+	public WebElement taskQtyTxtBox;
+
+	@FindBy(xpath = "//input[@id='barcode1']")
+	public WebElement ilpnInRFModifyilpnTxtBox;
+
 	public void ASNReceivingProcess(int noOfItems, String receivingMethod, String recLocation) throws Exception {
 		String iLPN = null;
 		String fututeDate = SeleniumTestHelper.user_generate_estimated_delivery_date(365);
@@ -4083,198 +4131,313 @@ public class RFMenuPage {
 		//homepage.userClosesOpenedwindow("RF Menu");
 	}
 	
-	public void completeTasks() throws Exception {
-		//RFMenuPage rfPage =new RFMenuPage();
-		System.out.println("Task Count: "+Items.getTaskCount());
+	public void completeTasksForNVI() throws Exception {
+		// RFMenuPage rfPage =new RFMenuPage();
+		System.out.println("Task Count: " + Items.getTaskCount());
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		for (int i = 0; i < Items.getTaskCount(); i++) {
-		//rfPage.changeTasks(Items.gettaskTypeList(i));
-		Steps.logger.info("Start Pick Task Completion Process for : " +taskPage.tasks[i]);
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
-		RFmenu_info.click();
-		Screenshots.captureSnapshot(driver);
-		Steps.logger.info("Clicked on RF Menu");
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
-		Mainmenu.click();
-		Screenshots.captureSnapshot(driver);
-		Steps.logger.info("Clicked on Main Menu");
-		Thread.sleep(1000);
-		Screenshots.captureSnapshot(driver);
+			// rfPage.changeTasks(Items.gettaskTypeList(i));
+			Steps.logger.info("Start Pick Task Completion Process for : " + taskPage.tasks[i]);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+			RFmenu_info.click();
+			Screenshots.captureSnapshot(driver);
+			Steps.logger.info("Clicked on RF Menu");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
+			Mainmenu.click();
+			Screenshots.captureSnapshot(driver);
+			Steps.logger.info("Clicked on Main Menu");
+			Thread.sleep(1000);
+			Screenshots.captureSnapshot(driver);
 
-		 SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 20);
-		RFmenu_info.click();
-		Screenshots.captureSnapshot(driver);
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ChgTaskGrpBtn, 5);
-		ChgTaskGrpBtn.click();
-		Screenshots.captureSnapshot(driver);
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, taskGrpInput, 5);
-		taskGrpInput.clear();
-		Thread.sleep(1000);
-		if(Steps.scenarioData.get("Wave Type").equals("LTL")) {
-		if(Items.gettaskTypeList(i).contains("Partial")) {
-		taskGrpInput.sendKeys("QLP");
-		}else{// if(Items.gettaskTypeList(i).equals("iLPN pull from reserve/pack & hold")) {
-		taskGrpInput.sendKeys("QLF");
-		}
-		}else if(Steps.scenarioData.get("Wave Type").equals("Parcel")) {
-	//	if(Items.gettaskTypeList(i).contains("Partial")) {
-		taskGrpInput.sendKeys("QPP");
-		//}else {// if(Items.gettaskTypeList(i).equals("iLPN pull from reserve/pack & hold")) {
-		//taskGrpInput.sendKeys("QPP");
-		//}
-		}
-		Thread.sleep(2000);
-		EnterBtn.click();
-		Thread.sleep(3000);
-		Steps.logger.info("Task group changed uccessfully");
-		Reporter.addStepLog("Task group changed successfully");
-		//homepage.userClosesOpenedwindow("RF Menu");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 20);
+			RFmenu_info.click();
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, ChgTaskGrpBtn, 5);
+			ChgTaskGrpBtn.click();
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, taskGrpInput, 5);
+			taskGrpInput.clear();
+			Thread.sleep(1000);
 
-		String qty = null;
-		//SeleniumTestHelper.switchToInnerFrame(driver);
-		Steps.logger.info("Start Pick Task Process");
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
-		RFmenu_info.click();
-		Screenshots.captureSnapshot(driver);
-		Steps.logger.info("Clicked on RF Menu");
-		Thread.sleep(1000);
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
-		Mainmenu.click();
-		Screenshots.captureSnapshot(driver);
-		Steps.logger.info("Clicked on Main Menu");
-		Thread.sleep(1000);
-		Screenshots.captureSnapshot(driver);
+			String acnt = ManhattanLoginPage.account;
+			System.out.println("Account:" + acnt);
 
-		 SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 20);
-		RFmenu_info.click();
-		Screenshots.captureSnapshot(driver);
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, EnterTaskBtn, 5);
-		EnterTaskBtn.click();
-		Screenshots.captureSnapshot(driver);
-		System.out.println("task length:"+taskPage.tasks.length);
-		//for (int i = 0; i < taskPage.tasks.length; i++) {
-		Steps.logger.info("Started task completion for task: "+taskPage.tasks[i]);
-		//Task_input_field.sendKeys(taskPage.tasks[i] );
-		Task_input_field.sendKeys(Items.getTaskTypeValues(i));
+			if (acnt.equalsIgnoreCase("QSC") || acnt.equalsIgnoreCase("@Account")) {
+				if (Steps.scenarioData.get("Wave Type").equals("LTL")) {
+					if (Items.gettaskTypeList(i).contains("Partial")) {
+						taskGrpInput.sendKeys("QLP");
+					} else {// if(Items.gettaskTypeList(i).equals("iLPN pull from reserve/pack & hold")) {
+						taskGrpInput.sendKeys("QLF");
+					}
+				} else if (Steps.scenarioData.get("Wave Type").equals("Parcel")) {
+					// if(Items.gettaskTypeList(i).contains("Partial")) {
+					taskGrpInput.sendKeys("QPP");
+					// }else {// if(Items.gettaskTypeList(i).equals("iLPN pull from reserve/pack &
+					// hold")) {
+					// taskGrpInput.sendKeys("QPP");
+					// }
+				}
+				Thread.sleep(2000);
+			} else {
+				if (Steps.scenarioData.get("Wave Type").equals("LTL")) {
+					if (Items.gettaskTypeList(i).contains("Partial")) {
+						taskGrpInput.sendKeys("QLP");
+					} else {// if(Items.gettaskTypeList(i).equals("iLPN pull from reserve/pack & hold")) {
+						taskGrpInput.sendKeys("NLT");
+					}
+				} else if (Steps.scenarioData.get("Wave Type").equals("Parcel")) {
+					// if(Items.gettaskTypeList(i).contains("Partial")) {
+					taskGrpInput.sendKeys("NPT");
+					// }else {// if(Items.gettaskTypeList(i).equals("iLPN pull from reserve/pack &
+					// hold")) {
+					// taskGrpInput.sendKeys("QPP");
+					// }
+				}
+				Thread.sleep(2000);
+			}
 
-		SeleniumTestHelper.assertTrue(Task_input_field.isDisplayed());
-		Screenshots.captureSnapshot(driver);
-		Task_input_field.sendKeys(Keys.ENTER);
-		Steps.logger.info("Entered the task value: "+Items.getTaskTypeValues(i));
-		Thread.sleep(1000);
-		Screenshots.captureSnapshot(driver);
-		//pallet id 10 digit value
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ilpnInRFModifyilpnTxtBox, 10);
-		globalFunc.DateTime.TimeDateFunc();
-		String Palletval = globalFunc.DateTime.strDate6;
-		ilpnInRFModifyilpnTxtBox.sendKeys(Palletval);
-		System.out.println("Pallet value: "+Palletval);
-		Steps.logger.info("Entered the Pallet value: "+Palletval);
-		Thread.sleep(1000);
-		ilpnInRFModifyilpnTxtBox.sendKeys(Keys.ENTER);
-		Thread.sleep(1000);
-		while(SeleniumTestHelper.isElementDisplayed(promptediLPN)) {
-			while(SeleniumTestHelper.isElementDisplayed(promptediLPN)) {
-		//do {
-		//if(SeleniumTestHelper.isElementDisplayed(promptediLPN)) {
-		String iLPN = null;
-		iLPN = promptediLPN.getText();
-		System.out.println(iLPN+" "+i);
-		String iLPNarray[] = iLPN.split(":");
-		iLPN = iLPNarray[1].trim();
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNInputBx, 10);
-		iLPNInputBx.clear();
-		iLPNInputBx.sendKeys(iLPN);
-		if(!Items.gettaskTypeList(i).contains("Partial")) {
-		Items.setnewiLPNPack(iLPN);
-		Items.settaskVals(Items.getTaskTypeValues(i), iLPN);
-		}
-		Thread.sleep(1000);
-		SeleniumTestHelper.assertTrue(iLPNInputBx.isDisplayed());
-		Screenshots.captureSnapshot(driver);
-		iLPNInputBx.sendKeys(Keys.ENTER);
-		Thread.sleep(1000); Screenshots.captureSnapshot(driver);
-		}
-		if(SeleniumTestHelper.isElementDisplayed(suggestedQty)) {
-		String text= suggestedQty.getText();
-		String split[]= text.split("Qty:");
-		String split2[]= split[1].split(" ");
-		qty= split2[0].trim();
-		System.out.println("Suggested Qty: "+qty);
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, taskQtyTxtBox, 5);
-		taskQtyTxtBox.sendKeys(qty);
-		Screenshots.captureSnapshot(driver);
-		SeleniumTestHelper.assertTrue(taskQtyTxtBox.isDisplayed());
-		taskQtyTxtBox.sendKeys(Keys.ENTER);
-		Thread.sleep(1000);
-		Screenshots.captureSnapshot(driver);
-		Thread.sleep(1000);
-		System.out.println(i+" done add qty");
-		}
-		//Enter new iLPN
-		if(SeleniumTestHelper.isElementDisplayed(MM3iLPNInquirytxtBox)) {
-		System.out.println("iLPN1");
-		globalFunc.DateTime.TimeDateFunc();
-		String newiLPN = globalFunc.DateTime.strDate11;
-		MM3iLPNInquirytxtBox.sendKeys(newiLPN);
-		Items.settaskVals(Items.getTaskTypeValues(i), newiLPN);
-		System.out.println("new iLPN: "+ i+" "+ newiLPN );
-		Thread.sleep(1000);
-		Items.setnewiLPNPack(newiLPN);
-		MM3iLPNInquirytxtBox.sendKeys(Keys.ENTER);
-		Thread.sleep(1000);
-		System.out.println("iLPN3");
-		}
-		}
-		//}while(SeleniumTestHelper.isElementDisplayed(promptediLPN));
-		/*
-		* while(SeleniumTestHelper.isElementDisplayed(serialNumbersInput)) {
-		* SeleniumTestHelper.waitForElementToBeDisplayed(driver, serialNumbersInput,
-		* 50); serialNumbersInput.clear(); String
-		* serial="21"+globalFunc.DateTime.current_date_time();
-		* Steps.logger.info("Serial no's entered: "+serial);
-		* serialNumbersInput.sendKeys(serial); Screenshots.captureSnapshot(driver);
-		* serialNumbersInput.sendKeys(Keys.ENTER); Screenshots.captureSnapshot(driver);
-		* SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg,
-		* 50); if(errorOrWarningMsg.getText().contains("create a new one?")) {
-		* Thread.sleep(1000); Screenshots.captureSnapshot(driver);
-		* acceptAndProceedBtn.click(); Thread.sleep(2000); } else if
-		* (errorOrWarningMsg.getText().contains("Error")) { Thread.sleep(1000);
-		* Screenshots.captureSnapshot(driver); Steps.testRes = "Failed";
-		* Assert.assertTrue(false); } Screenshots.captureSnapshot(driver); }
-		*/
+//			if (Steps.scenarioData.get("Wave Type").equals("LTL")) {
+//				if (Items.gettaskTypeList(i).contains("Partial")) {
+//					taskGrpInput.sendKeys("QLP");
+//				} else {// if(Items.gettaskTypeList(i).equals("iLPN pull from reserve/pack & hold")) {
+//					taskGrpInput.sendKeys("QLF");
+//				}
+//			} else if (Steps.scenarioData.get("Wave Type").equals("Parcel")) {
+//				// if(Items.gettaskTypeList(i).contains("Partial")) {
+//				taskGrpInput.sendKeys("QPP");
+//				// }else {// if(Items.gettaskTypeList(i).equals("iLPN pull from reserve/pack &
+//				// hold")) {
+//				// taskGrpInput.sendKeys("QPP");
+//				// }
+//			}
+//			Thread.sleep(2000);
+			EnterBtn.click();
+			Thread.sleep(3000);
+			Steps.logger.info("Task group changed uccessfully");
+			Reporter.addStepLog("Task group changed successfully");
+			// homepage.userClosesOpenedwindow("RF Menu");
 
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, confirmlocation_Input, 50);
-		//get pack loc
-		String sysSuggestedAncLoc = Rloc.getText();
-		String[] sysSuggestedAncLocSplit = sysSuggestedAncLoc.split(":");
-		String SysSugAncLoc = sysSuggestedAncLocSplit[1].trim();
-		System.out.println(SysSugAncLoc);
-		driver.switchTo().parentFrame();
-		String LocBarCode = reserveLocationPage.getReservelocation(SysSugAncLoc);
-		SeleniumTestHelper.switchToInnerFrame(driver);
-		System.out.println("Sys tech3");
-		//click only to get rid of open windows tab
-		confirmlocation_Input.click();
-		confirmlocation_Input.sendKeys(LocBarCode);
-		Screenshots.captureSnapshot(driver);
-		confirmlocation_Input.sendKeys(Keys.ENTER);
-		Thread.sleep(1000);
-		//SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
-		//RFmenu_info.click();
-		//Screenshots.captureSnapshot(driver);
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ExitBtn, 50);
-		ExitBtn.click();
-		Screenshots.captureSnapshot(driver);
-		Steps.logger.info("Pick Task is completed successfully: "+taskPage.tasks[i]);
-		Reporter.addStepLog("Pick Task is completed successfully: "+taskPage.tasks[i]);
+			String qty = null;
+			// SeleniumTestHelper.switchToInnerFrame(driver);
+			Steps.logger.info("Start Pick Task Process");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+			RFmenu_info.click();
+			Screenshots.captureSnapshot(driver);
+			Steps.logger.info("Clicked on RF Menu");
+			Thread.sleep(1000);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
+			Mainmenu.click();
+			Screenshots.captureSnapshot(driver);
+			Steps.logger.info("Clicked on Main Menu");
+			Thread.sleep(1000);
+			Screenshots.captureSnapshot(driver);
+
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 20);
+			RFmenu_info.click();
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, EnterTaskBtn, 5);
+			EnterTaskBtn.click();
+			Screenshots.captureSnapshot(driver);
+			System.out.println("task length:" + taskPage.tasks.length);
+			// for (int i = 0; i < taskPage.tasks.length; i++) {
+			Steps.logger.info("Started task completion for task: " + taskPage.tasks[i]);
+			// Task_input_field.sendKeys(taskPage.tasks[i] );
+			Task_input_field.sendKeys(Items.getTaskTypeValues(i));
+
+			SeleniumTestHelper.assertTrue(Task_input_field.isDisplayed());
+			Screenshots.captureSnapshot(driver);
+			Task_input_field.sendKeys(Keys.ENTER);
+			Steps.logger.info("Entered the task value: " + Items.getTaskTypeValues(i));
+			Thread.sleep(1000);
+			Screenshots.captureSnapshot(driver);
+			// pallet id 10 digit value
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, ilpnInRFModifyilpnTxtBox1, 10);
+			globalFunc.DateTime.TimeDateFunc();
+			String Palletval = globalFunc.DateTime.strDate6;
+			ilpnInRFModifyilpnTxtBox1.sendKeys(Palletval);
+			System.out.println("Pallet value: " + Palletval);
+			Steps.logger.info("Entered the Pallet value: " + Palletval);
+			Thread.sleep(1000);
+			ilpnInRFModifyilpnTxtBox1.sendKeys(Keys.ENTER);
+			Thread.sleep(1000);
+			while (SeleniumTestHelper.isElementDisplayed(promptediLPN)) {
+				while (SeleniumTestHelper.isElementDisplayed(promptediLPN)) {
+					// do {
+					// if(SeleniumTestHelper.isElementDisplayed(promptediLPN)) {
+					String iLPN = null;
+					iLPN = promptediLPN.getText();
+					System.out.println(iLPN + " " + i);
+					String iLPNarray[] = iLPN.split(":");
+					iLPN = iLPNarray[1].trim();
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNInputBx, 10);
+					iLPNInputBx.clear();
+					iLPNInputBx.sendKeys(iLPN);
+					if (!Items.gettaskTypeList(i).contains("Partial")) {
+						Items.setnewiLPNPack(iLPN);
+						Items.settaskVals(Items.getTaskTypeValues(i), iLPN);
+					}
+					Thread.sleep(1000);
+					SeleniumTestHelper.assertTrue(iLPNInputBx.isDisplayed());
+					Screenshots.captureSnapshot(driver);
+					iLPNInputBx.sendKeys(Keys.ENTER);
+					Thread.sleep(1000);
+					Screenshots.captureSnapshot(driver);
+				}
+				if (SeleniumTestHelper.isElementDisplayed(suggestedQty1)) {
+					String text = suggestedQty1.getText();
+					String split[] = text.split("Qty:");
+					String split2[] = split[1].split(" ");
+					qty = split2[0].trim();
+					System.out.println("Suggested Qty: " + qty);
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, taskQtyTxtBox1, 5);
+					taskQtyTxtBox1.sendKeys(qty);
+					Screenshots.captureSnapshot(driver);
+					SeleniumTestHelper.assertTrue(taskQtyTxtBox1.isDisplayed());
+					taskQtyTxtBox1.sendKeys(Keys.ENTER);
+					Thread.sleep(1000);
+					Screenshots.captureSnapshot(driver);
+					Thread.sleep(1000);
+					System.out.println(i + " done add qty");
+				}
+				// Enter new iLPN
+				if (SeleniumTestHelper.isElementDisplayed(MM3iLPNInquirytxtBox)) {
+					System.out.println("iLPN1");
+					globalFunc.DateTime.TimeDateFunc();
+					String newiLPN = globalFunc.DateTime.strDate11;
+					MM3iLPNInquirytxtBox.sendKeys(newiLPN);
+					Items.settaskVals(Items.getTaskTypeValues(i), newiLPN);
+					System.out.println("new iLPN: " + i + " " + newiLPN);
+					Thread.sleep(1000);
+					Items.setnewiLPNPack(newiLPN);
+					MM3iLPNInquirytxtBox.sendKeys(Keys.ENTER);
+					Thread.sleep(1000);
+					System.out.println("iLPN3");
+				}
+			}
+			// }while(SeleniumTestHelper.isElementDisplayed(promptediLPN));
+			/*
+			 * while(SeleniumTestHelper.isElementDisplayed(serialNumbersInput)) {
+			 * SeleniumTestHelper.waitForElementToBeDisplayed(driver, serialNumbersInput,
+			 * 50); serialNumbersInput.clear(); String
+			 * serial="21"+globalFunc.DateTime.current_date_time();
+			 * Steps.logger.info("Serial no's entered: "+serial);
+			 * serialNumbersInput.sendKeys(serial); Screenshots.captureSnapshot(driver);
+			 * serialNumbersInput.sendKeys(Keys.ENTER); Screenshots.captureSnapshot(driver);
+			 * SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg,
+			 * 50); if(errorOrWarningMsg.getText().contains("create a new one?")) {
+			 * Thread.sleep(1000); Screenshots.captureSnapshot(driver);
+			 * acceptAndProceedBtn.click(); Thread.sleep(2000); } else if
+			 * (errorOrWarningMsg.getText().contains("Error")) { Thread.sleep(1000);
+			 * Screenshots.captureSnapshot(driver); Steps.testRes = "Failed";
+			 * Assert.assertTrue(false); } Screenshots.captureSnapshot(driver); }
+			 */
+			
+			//modified by 4292839
+			if(SeleniumTestHelper.isElementDisplayed(confirmlocation_Input1)) {
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, confirmlocation_Input1, 50);
+			}
+			// get pack loc
+			
+			//added by 4292839
+			if (acnt.equalsIgnoreCase("QSC") || acnt.equalsIgnoreCase("@Env")) {
+				String sysSuggestedAncLoc = Rloc.getText();
+				String[] sysSuggestedAncLocSplit = sysSuggestedAncLoc.split(":");
+				String SysSugAncLoc = sysSuggestedAncLocSplit[1].trim();
+				System.out.println(SysSugAncLoc);
+				driver.switchTo().parentFrame();
+				String LocBarCode = reserveLocationPage.getReservelocation(SysSugAncLoc);
+				SeleniumTestHelper.switchToInnerFrame(driver);
+				System.out.println("Sys tech3");
+				// click only to get rid of open windows tab
+				confirmlocation_Input1.click();
+				confirmlocation_Input1.sendKeys(LocBarCode);
+				Screenshots.captureSnapshot(driver);
+				confirmlocation_Input1.sendKeys(Keys.ENTER);
+				Thread.sleep(1000);
+				
+				
+			}else {
+				
+				if (SeleniumTestHelper.isElementDisplayed(suggestedQty1)) {
+					String text = suggestedQty1.getText();
+					System.out.println("Suggested Qty : "+text);
+					String split[] = text.split("Qty:");
+					System.out.println("S1"+split[1]);
+					String split2[] = split[1].split(" ");
+					System.out.println("S2"+split2[1]);
+					qty = split2[1].trim();
+					System.out.println("Suggested Qty: " + qty);
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, taskQtyTxtBox1, 5);
+					//taskQtyTxtBox.sendKeys(qty);//modify temporariliy for testing
+					taskQtyTxtBox1.sendKeys(qty);
+					Screenshots.captureSnapshot(driver);
+					SeleniumTestHelper.assertTrue(taskQtyTxtBox1.isDisplayed());
+					taskQtyTxtBox1.sendKeys(Keys.ENTER);
+					Thread.sleep(1000);
+					Screenshots.captureSnapshot(driver);
+					Thread.sleep(1000);
+					System.out.println(i + " done add qty");
+				}
+
+				System.out.println("Enter reserve location ");
+				// click only to get rid of open windows tab
+				SeleniumTestHelper.switchToInnerFrame(driver);
+				System.out.println("Sys tech3");
+			// click only to get rid of open windows tab
+//				confirmlocation_Input.click();
+				confirmlocation_Input1.click();
+				confirmlocation_Input1.sendKeys("PCPKA015G");
+				Screenshots.captureSnapshot(driver);
+				confirmlocation_Input1.sendKeys(Keys.ENTER);
+				System.out.println("Entered the Location  code successfully");
+				Thread.sleep(3000);
+				//SeleniumTestHelper.waitForElementToBeDisplayed(driver, AcceptProceedForTote, 50);
+				//driver.switchTo().defaultContent();
+				//SeleniumTestHelper.jsClick(AcceptProceedForTote);
+				System.out.println("Wait for the Acceept and COntinue button");
+				if(SeleniumTestHelper.isElementDisplayed(AcceptProceedForTote)) {
+					System.out.println("Accept button displayed");
+				AcceptProceedForTote.click();
+				System.out.println("Clicked on Accept btn");
+				}
+				System.out.println("Clicked on Accept and continue");
+
+			}
+			
+//commented these lines upto 4338 from 4324 by 4292839			
+//			String sysSuggestedAncLoc = Rloc.getText();
+//			String[] sysSuggestedAncLocSplit = sysSuggestedAncLoc.split(":");
+//			String SysSugAncLoc = sysSuggestedAncLocSplit[1].trim();
+//			System.out.println(SysSugAncLoc);
+//			driver.switchTo().parentFrame();
+//			String LocBarCode = reserveLocationPage.getReservelocation(SysSugAncLoc);
+//			SeleniumTestHelper.switchToInnerFrame(driver);
+//			System.out.println("Sys tech3");
+//			// click only to get rid of open windows tab
+//			confirmlocation_Input.click();
+//			confirmlocation_Input.sendKeys(LocBarCode);
+//			Screenshots.captureSnapshot(driver);
+//			confirmlocation_Input.sendKeys(Keys.ENTER);
+//			Thread.sleep(1000);
+			// SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+			// RFmenu_info.click();
+			// Screenshots.captureSnapshot(driver);
+			System.out.println("Click on Exit button");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, ExitBtn, 50);
+			ExitBtn.click();
+			Screenshots.captureSnapshot(driver);
+			Steps.logger.info("Pick Task is completed successfully: " + taskPage.tasks[i]);
+			Reporter.addStepLog("Pick Task is completed successfully: " + taskPage.tasks[i]);
 		}
-		for(int i=0;i<Items.gettaskValsSize();i++) {
-		System.out.println("Task: "+Items.getTaskTypeValues(i));
+		for (int i = 0; i < Items.gettaskValsSize(); i++) {
+			System.out.println("Task: " + Items.getTaskTypeValues(i));
 		}
 		homepage.userClosesOpenedwindow("RF Menu");
-		}
+	}
 		public void completePackTasks() throws Exception {
+			
+			
+			
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		Steps.logger.info("Start Pack Task Completion Process");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
@@ -5762,5 +5925,404 @@ public class RFMenuPage {
 
 		}
 	}
+	//Code snippet added below to support Pack task for NVI customer
+	public void completePackTasksForNVI() throws Exception {
+
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		Steps.logger.info("Start Pack Task Completion Process");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+		RFmenu_info.click();
+		Screenshots.captureSnapshot(driver);
+		Steps.logger.info("Clicked on RF Menu");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
+		Mainmenu.click();
+		Screenshots.captureSnapshot(driver);
+		Steps.logger.info("Clicked on Main Menu");
+		Thread.sleep(1000);
+		Screenshots.captureSnapshot(driver);
+
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Packing, 20);
+		Packing.click();
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, MM3PackTotePCL, 5);
+		MM3PackTotePCL.click();
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ToteInput, 5);
+		ToteInput.clear();
+		Thread.sleep(1000);
+		
+		String toteValue = globalFunc.DateTime.strDate6;
+		ToteInput.sendKeys(toteValue);
+		System.out.println("Pallet value: " + toteValue);
+		Steps.logger.info("Entered the Pallet value: " + toteValue);
+		Thread.sleep(1000);
+		ToteInput.sendKeys(Keys.ENTER);
+		Thread.sleep(1000);
+		
+		Thread.sleep(2000);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, MM3PackTotePCLText, 10);
+		new Actions(driver).moveToElement(MM3PackTotePCLText).build().perform();
+
+		Actions action = new Actions(this.driver);
+		action.sendKeys(Keys.ENTER).build().perform();
+			
+		Thread.sleep(3000);
+		Steps.logger.info("Entered the Tote Number successfully");
+		Reporter.addStepLog("Tote Number Entered Successfully");
+
+		String qty = null;
+		// SeleniumTestHelper.switchToInnerFrame(driver);
+		Steps.logger.info("Start Pack Task Completion Process");
+		
+		SeleniumTestHelper.waitForElementToBeClickable(driver, itemBarcode_CC_Complete, 10);
+		itemBarcode_CC_Complete.click();
+		System.out.println("item id "+Steps.scenarioData.get("ItemBarcode"));
+		itemBarcode_CC_Complete.sendKeys(Steps.scenarioData.get("ItemBarcode"));
+		Screenshots.captureSnapshot(driver);
+		itemBarcode_CC_Complete.sendKeys(Keys.ENTER);
+		
+		if (SeleniumTestHelper.isElementDisplayed(suggestQty)) {
+			String text = suggestQty.getText();
+			System.out.println("Suggested Qty : "+text);
+			String split[] = text.split("Qty:");
+			System.out.println("S1"+split[1]);
+			String split2[] = split[1].split(" ");
+			System.out.println("S2"+split2[1]);
+			qty = split2[1].trim();
+			System.out.println("Suggested Qty: " + qty);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, taskQtyTextBox, 5);
+			//taskQtyTxtBox.sendKeys(qty);//modify temporariliy for testing
+			taskQtyTextBox.sendKeys(qty);
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.assertTrue(taskQtyTextBox.isDisplayed());
+			taskQtyTextBox.sendKeys(Keys.ENTER);
+			Thread.sleep(1000);
+			Screenshots.captureSnapshot(driver);
+			Thread.sleep(1000);
+			System.out.println("Entered the Qty successfully");
+		}
+
+		
+//		RFmenu_info.click();
+//		Screenshots.captureSnapshot(driver);
+//		Steps.logger.info("Clicked on RF Menu");
+//		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
+//		Mainmenu.click();
+//		Screenshots.captureSnapshot(driver);
+//		Steps.logger.info("Clicked on Main Menu");
+//		Thread.sleep(1000);
+//		Screenshots.captureSnapshot(driver);
+
+//		SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 20);
+//		RFmenu_info.click();
+//		Steps.logger.info("Clicked on RF info");
+//		Screenshots.captureSnapshot(driver);
+//		SeleniumTestHelper.waitForElementToBeDisplayed(driver, EnterTaskBtn, 5);
+//		EnterTaskBtn.click();
+//		Steps.logger.info("Clicked on enter task button");
+//		Screenshots.captureSnapshot(driver);
+//		System.out.println("task length:" + taskPage.tasks.length);
+//		System.out.println("new ilpnpack length:" + Items.getnewiLPNPackSize());
+		Thread.sleep(1000);
+		// for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
+		// for (int i = 0; i < Items.getnewiLPNPackSize(); i++) {
+//		System.out.println(Items.gettaskValsSize());
+	//	for (int i = 0; i < Items.gettaskValsSize(); i++) {
+			// System.out.println("i am here : "+i);
+
+//			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNInputBx, 10);
+//			iLPNInputBx.clear();
+//			iLPNInputBx.sendKeys(Items.gettaskVals(Items.getTaskTypeValues(i)));
+//			Thread.sleep(1000);
+			// SeleniumTestHelper.assertTrue(iLPNInputBx.isDisplayed());
+			// Screenshots.captureSnapshot(driver);
+//			iLPNInputBx.sendKeys(Keys.ENTER);
+//			Thread.sleep(1000);
+//			Screenshots.captureSnapshot(driver);
+//			// }
+//			// while(SeleniumTestHelper.isElementDisplayed(iLPNInputBx)) {
+		while (SeleniumTestHelper.isElementDisplayed(serialNumbersInput)) {
+			// do{
+			// if(SeleniumTestHelper.isElementDisplayed(serialNumbersInput)) {
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, serialNumbersInput, 50);
+			globalFunc.DateTime.TimeDateFunc();
+			String newSerial = globalFunc.DateTime.strDate12;
+			serialNumbersInput.clear();
+			String serial = "21" + newSerial;
+			Steps.logger.info("Serial no's entered: " + serial);
+			Items.setAsnserialNumberList(serial);
+			serialNumberInputParcel.sendKeys(serial);
+			Screenshots.captureSnapshot(driver);
+			Thread.sleep(1000);
+			// System.out.println("wait1");
+			serialNumberInputParcel.sendKeys(Keys.ENTER);
+			System.out.println("wait2");
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
+			System.out.println("wait3");
+			Thread.sleep(4000);
+			if (errorOrWarningMsg.getText().contains("create a new one?")) {
+				System.out.println("await4");
+				Thread.sleep(4000);
+				Screenshots.captureSnapshot(driver);
+				// acceptAndProceedBtn.click();
+				// if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
+				RFmenu_info.click();
+				Thread.sleep(1000);
+				RFmenu_info.click();
+				acceptAndProceedBtn.click();
+				// }
+				// JavascriptExecutor executor = (JavascriptExecutor)driver;
+				// executor.executeScript("arguments[0].click();", acceptAndProceedBtn);
+				System.out.println("await5");
+				Thread.sleep(2000);
+			}
+
+			else if (errorOrWarningMsg.getText().contains("Error")) {
+				Thread.sleep(1000);
+				Screenshots.captureSnapshot(driver);
+				Steps.testRes = "Failed";
+				Assert.assertTrue(false);
+			}
+			// }while(SeleniumTestHelper.isElementDisplayed(serialNumbersInput));
+		}
+			Screenshots.captureSnapshot(driver);
+			
+			if (SeleniumTestHelper.isElementDisplayed(oLPNNumberDisplayed)) {
+				String textOLPNNumber = oLPNNumberDisplayed.getText();
+				System.out.println("OLPN Number : "+textOLPNNumber);
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, oLPNNumberInputField, 5);
+				//taskQtyTxtBox.sendKeys(qty);//modify temporariliy for testing
+				oLPNNumberInputField.sendKeys(textOLPNNumber);
+				System.out.println("Enter the number");
+				//SeleniumTestHelper.assertTrue(oLPNNumberInputField.isDisplayed());
+				//oLPNNumberInputField.sendKeys(Keys.ENTER);
+				Thread.sleep(1000);
+				System.out.println("Entered the OLPNNumber successfully");
+
+			}
+			
+			System.out.println("Going to click on Info Accept button");
+			
+			
+			
+			// }
+			if (SeleniumTestHelper.isElementDisplayed(InfoAcceptKey)) {
+				System.out.println("click on Info Accept button");
+				Steps.logger.info("Clicking on Info accept key");
+				Thread.sleep(10000);
+				RFmenu_info.click();
+				Thread.sleep(1000);
+				RFmenu_info.click();
+				InfoAcceptKey.click();
+				Steps.logger.info("Clicked on Info accept key");
+			}
+			// SeleniumTestHelper.waitForElementToBeDisplayed(driver, InfoAcceptKey, 50);
+		//}
+		Thread.sleep(1000);
+		// SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+		// RFmenu_info.click();
+		// Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ExitBtn, 50);
+		ExitBtn.click();
+		Steps.logger.info("Clicked on Exit key");
+		Screenshots.captureSnapshot(driver);
+		Steps.logger.info("Pack Task is completed successfully");
+		Reporter.addStepLog("Pack Task is completed successfully");
+		homepage.userClosesOpenedwindow("RF Menu");
+	}
+	
+	public void completeTasks() throws Exception {
+		//RFMenuPage rfPage =new RFMenuPage();
+		System.out.println("Task Count: "+Items.getTaskCount());
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		for (int i = 0; i < Items.getTaskCount(); i++) {
+		//rfPage.changeTasks(Items.gettaskTypeList(i));
+		Steps.logger.info("Start Pick Task Completion Process for : " +taskPage.tasks[i]);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+		RFmenu_info.click();
+		Screenshots.captureSnapshot(driver);
+		Steps.logger.info("Clicked on RF Menu");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
+		Mainmenu.click();
+		Screenshots.captureSnapshot(driver);
+		Steps.logger.info("Clicked on Main Menu");
+		Thread.sleep(1000);
+		Screenshots.captureSnapshot(driver);
+
+		 SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 20);
+		RFmenu_info.click();
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ChgTaskGrpBtn, 5);
+		ChgTaskGrpBtn.click();
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, taskGrpInput, 5);
+		taskGrpInput.clear();
+		Thread.sleep(1000);
+		if(Steps.scenarioData.get("Wave Type").equals("LTL")) {
+		if(Items.gettaskTypeList(i).contains("Partial")) {
+		taskGrpInput.sendKeys("QLP");
+		}else{// if(Items.gettaskTypeList(i).equals("iLPN pull from reserve/pack & hold")) {
+		taskGrpInput.sendKeys("QLF");
+		}
+		}else if(Steps.scenarioData.get("Wave Type").equals("Parcel")) {
+	//	if(Items.gettaskTypeList(i).contains("Partial")) {
+		taskGrpInput.sendKeys("QPP");
+		//}else {// if(Items.gettaskTypeList(i).equals("iLPN pull from reserve/pack & hold")) {
+		//taskGrpInput.sendKeys("QPP");
+		//}
+		}
+		Thread.sleep(2000);
+		EnterBtn.click();
+		Thread.sleep(3000);
+		Steps.logger.info("Task group changed uccessfully");
+		Reporter.addStepLog("Task group changed successfully");
+		//homepage.userClosesOpenedwindow("RF Menu");
+
+		String qty = null;
+		//SeleniumTestHelper.switchToInnerFrame(driver);
+		Steps.logger.info("Start Pick Task Process");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+		RFmenu_info.click();
+		Screenshots.captureSnapshot(driver);
+		Steps.logger.info("Clicked on RF Menu");
+		Thread.sleep(1000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
+		Mainmenu.click();
+		Screenshots.captureSnapshot(driver);
+		Steps.logger.info("Clicked on Main Menu");
+		Thread.sleep(1000);
+		Screenshots.captureSnapshot(driver);
+
+		 SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 20);
+		RFmenu_info.click();
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, EnterTaskBtn, 5);
+		EnterTaskBtn.click();
+		Screenshots.captureSnapshot(driver);
+		System.out.println("task length:"+taskPage.tasks.length);
+		//for (int i = 0; i < taskPage.tasks.length; i++) {
+		Steps.logger.info("Started task completion for task: "+taskPage.tasks[i]);
+		//Task_input_field.sendKeys(taskPage.tasks[i] );
+		Task_input_field.sendKeys(Items.getTaskTypeValues(i));
+
+		SeleniumTestHelper.assertTrue(Task_input_field.isDisplayed());
+		Screenshots.captureSnapshot(driver);
+		Task_input_field.sendKeys(Keys.ENTER);
+		Steps.logger.info("Entered the task value: "+Items.getTaskTypeValues(i));
+		Thread.sleep(1000);
+		Screenshots.captureSnapshot(driver);
+		//pallet id 10 digit value
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ilpnInRFModifyilpnTxtBox, 10);
+		globalFunc.DateTime.TimeDateFunc();
+		String Palletval = globalFunc.DateTime.strDate6;
+		ilpnInRFModifyilpnTxtBox.sendKeys(Palletval);
+		System.out.println("Pallet value: "+Palletval);
+		Steps.logger.info("Entered the Pallet value: "+Palletval);
+		Thread.sleep(1000);
+		ilpnInRFModifyilpnTxtBox.sendKeys(Keys.ENTER);
+		Thread.sleep(1000);
+		while(SeleniumTestHelper.isElementDisplayed(promptediLPN)) {
+			while(SeleniumTestHelper.isElementDisplayed(promptediLPN)) {
+		//do {
+		//if(SeleniumTestHelper.isElementDisplayed(promptediLPN)) {
+		String iLPN = null;
+		iLPN = promptediLPN.getText();
+		System.out.println(iLPN+" "+i);
+		String iLPNarray[] = iLPN.split(":");
+		iLPN = iLPNarray[1].trim();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNInputBx, 10);
+		iLPNInputBx.clear();
+		iLPNInputBx.sendKeys(iLPN);
+		if(!Items.gettaskTypeList(i).contains("Partial")) {
+		Items.setnewiLPNPack(iLPN);
+		Items.settaskVals(Items.getTaskTypeValues(i), iLPN);
+		}
+		Thread.sleep(1000);
+		SeleniumTestHelper.assertTrue(iLPNInputBx.isDisplayed());
+		Screenshots.captureSnapshot(driver);
+		iLPNInputBx.sendKeys(Keys.ENTER);
+		Thread.sleep(1000); Screenshots.captureSnapshot(driver);
+		}
+		if(SeleniumTestHelper.isElementDisplayed(suggestedQty)) {
+		String text= suggestedQty.getText();
+		String split[]= text.split("Qty:");
+		String split2[]= split[1].split(" ");
+		qty= split2[0].trim();
+		System.out.println("Suggested Qty: "+qty);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, taskQtyTxtBox, 5);
+		taskQtyTxtBox.sendKeys(qty);
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.assertTrue(taskQtyTxtBox.isDisplayed());
+		taskQtyTxtBox.sendKeys(Keys.ENTER);
+		Thread.sleep(1000);
+		Screenshots.captureSnapshot(driver);
+		Thread.sleep(1000);
+		System.out.println(i+" done add qty");
+		}
+		//Enter new iLPN
+		if(SeleniumTestHelper.isElementDisplayed(MM3iLPNInquirytxtBox)) {
+		System.out.println("iLPN1");
+		globalFunc.DateTime.TimeDateFunc();
+		String newiLPN = globalFunc.DateTime.strDate11;
+		MM3iLPNInquirytxtBox.sendKeys(newiLPN);
+		Items.settaskVals(Items.getTaskTypeValues(i), newiLPN);
+		System.out.println("new iLPN: "+ i+" "+ newiLPN );
+		Thread.sleep(1000);
+		Items.setnewiLPNPack(newiLPN);
+		MM3iLPNInquirytxtBox.sendKeys(Keys.ENTER);
+		Thread.sleep(1000);
+		System.out.println("iLPN3");
+		}
+		}
+		//}while(SeleniumTestHelper.isElementDisplayed(promptediLPN));
+		/*
+		* while(SeleniumTestHelper.isElementDisplayed(serialNumbersInput)) {
+		* SeleniumTestHelper.waitForElementToBeDisplayed(driver, serialNumbersInput,
+		* 50); serialNumbersInput.clear(); String
+		* serial="21"+globalFunc.DateTime.current_date_time();
+		* Steps.logger.info("Serial no's entered: "+serial);
+		* serialNumbersInput.sendKeys(serial); Screenshots.captureSnapshot(driver);
+		* serialNumbersInput.sendKeys(Keys.ENTER); Screenshots.captureSnapshot(driver);
+		* SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg,
+		* 50); if(errorOrWarningMsg.getText().contains("create a new one?")) {
+		* Thread.sleep(1000); Screenshots.captureSnapshot(driver);
+		* acceptAndProceedBtn.click(); Thread.sleep(2000); } else if
+		* (errorOrWarningMsg.getText().contains("Error")) { Thread.sleep(1000);
+		* Screenshots.captureSnapshot(driver); Steps.testRes = "Failed";
+		* Assert.assertTrue(false); } Screenshots.captureSnapshot(driver); }
+		*/
+
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, confirmlocation_Input, 50);
+		//get pack loc
+		String sysSuggestedAncLoc = Rloc.getText();
+		String[] sysSuggestedAncLocSplit = sysSuggestedAncLoc.split(":");
+		String SysSugAncLoc = sysSuggestedAncLocSplit[1].trim();
+		System.out.println(SysSugAncLoc);
+		driver.switchTo().parentFrame();
+		String LocBarCode = reserveLocationPage.getReservelocation(SysSugAncLoc);
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		System.out.println("Sys tech3");
+		//click only to get rid of open windows tab
+		confirmlocation_Input.click();
+		confirmlocation_Input.sendKeys(LocBarCode);
+		Screenshots.captureSnapshot(driver);
+		confirmlocation_Input.sendKeys(Keys.ENTER);
+		Thread.sleep(1000);
+		//SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+		//RFmenu_info.click();
+		//Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ExitBtn, 50);
+		ExitBtn.click();
+		Screenshots.captureSnapshot(driver);
+		Steps.logger.info("Pick Task is completed successfully: "+taskPage.tasks[i]);
+		Reporter.addStepLog("Pick Task is completed successfully: "+taskPage.tasks[i]);
+		}
+		for(int i=0;i<Items.gettaskValsSize();i++) {
+		System.out.println("Task: "+Items.getTaskTypeValues(i));
+		}
+		homepage.userClosesOpenedwindow("RF Menu");
+		}
+
 
 	}

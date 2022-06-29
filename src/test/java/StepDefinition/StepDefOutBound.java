@@ -183,9 +183,9 @@ public class StepDefOutBound {
 			if(status.equalsIgnoreCase("110 - Released")) {
 				doPage.getDOStatusUsingFulfillment(status);
 			}
-//			else {
-//				doPage.getDoStatus(status);
-//			}
+			else {
+				doPage.getDoStatus(status);
+			}
 			//doPage.getDoStatus(status);
 			Reporter.addStepLog("DO Order status is verified successfully");
 			Steps.logger.info("DO Order status is verified successfully");
@@ -382,7 +382,21 @@ public class StepDefOutBound {
 		try {
 			homePage1.MenuItems_Distribution_Selection("RF Menu");
 			Screenshots.captureSnapshot(driver);
-			rfMenu.completeTasks();
+			
+			String env = ManhattanLoginPage.environment;
+			System.out.println("Environment:"+env);
+			
+			String acnt = ManhattanLoginPage.account;
+			System.out.println("Account:" + acnt);
+
+			if (acnt.equalsIgnoreCase("QSC") || acnt.equalsIgnoreCase("@Account")) {
+				rfMenu.completeTasks();
+			}else {
+				rfMenu.completeTasksForNVI();
+			}
+			
+			
+			//rfMenu.completeTasks();
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			System.out.println(e);
@@ -396,7 +410,17 @@ public class StepDefOutBound {
 		try {
 			homePage1.MenuItems_Distribution_Selection("RF Menu");
 			Screenshots.captureSnapshot(driver);
-			rfMenu.completePackTasks();
+			String env = ManhattanLoginPage.environment;
+			System.out.println("Environment:"+env);
+			
+			String acnt = ManhattanLoginPage.account;
+			System.out.println("Account:" + acnt);
+
+			if (acnt.equalsIgnoreCase("QSC") || acnt.equalsIgnoreCase("@Account")) {
+				rfMenu.completePackTasks();
+			}else {
+				rfMenu.completePackTasksForNVI();
+			}
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			System.out.println(e);

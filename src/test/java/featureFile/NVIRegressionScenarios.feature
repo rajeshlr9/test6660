@@ -147,7 +147,7 @@ Creating 2 line ASN through Post Message UI, checking status of the shipment and
 	And user open reserve locations and naviagtes to validate iLPN
 	Then user log out from application
 
-@NVI_IBS009 @NAVICO_InBoundScenario @NVI_SplitiLPN 
+@NVI_IBS009 @NAVICO_InBoundScenario @NVI_SplitiLPN
 Scenario: Over Receiving of Products using blind receipt & Putaway
 Over reciving of products using blind receipt in MM3 Rtrn/Ovrg menu and verifying the status of the ASN & completing Putaway
 	Given I have excel data
@@ -182,10 +182,10 @@ Receiving of Damaged Products in MM3 Recv-Damages option from RF menu and verify
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open iLPN and unlock the existing code
 	#And user open reserve locations & naviagtes to "QC708A1K6" zone and fetches the current quantity
-	And user open reserve locations & naviagtes to "0357E060M" zone and fetches the current quantity	
+	And user open reserve locations & naviagtes to "0514F039Y" zone and fetches the current quantity	
 	And user opens RF menu and completes Putaway using "MM3 Ptwy CASE" menu
-	Then user navigates to reserve locations & validates that the quantity is increased in "0357E060M" by no of iLPN's moved
-	Then validates that the iLPN is also moved to inspection zone "0357E060M"
+	#Then user navigates to reserve locations & validates that the quantity is increased in "0514F039Y" by no of iLPN's moved
+	#Then validates that the iLPN is also moved to inspection zone "0514F039Y"
 	Then user log out from application
 	
 @NVI_IBS011 @NAVICO_InBoundScenario @NVI_SplitiLPN

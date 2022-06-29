@@ -32,7 +32,8 @@ public class ManhattanLoginPage extends Steps {
 	public static String TestedBy = null;
 
 	public static String environment = Config.getProperty("Environment"); // Different environments Dev and Test
-
+	public static String account = Config.getProperty("Account"); //Different accounts QSC and NVI 
+	
 	@FindBy(id = "username")
 	public WebElement username;
 
