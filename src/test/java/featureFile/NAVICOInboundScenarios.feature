@@ -368,3 +368,123 @@ Scenario: Distribution Order creation - Single Line Serialized Parcel PO FDE
 	#Then user search for DO and confirms it
 	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 	And user log out from application
+	
+@NAVICO_OB07Test
+Scenario: Distribution Order creation - Single Line LTL FDFE LTLE 
+	Given I have excel data 
+		| NVI_OBScenario006 |
+	And Open the chrome browser by selenium 
+	When user update "Single Line DO" for dropping into fedexnet application 
+	And user logs into the FedexNet application 
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application 
+	And user logs into the Manhattan application 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "NVI No-KIT Wave - LTL" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
+	And user open Task screen & verifies task is created for DO in the wave process 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed" 
+	Then fetch the OLPN number 
+	And user opens RF menu and completes Shipping using "MM3 Anchor oLPN" menu 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged" 
+	And user navigates to shippment planning workspace 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 
+	And user log out from application
+#	And user logs into the FedexNet application for verify files
+#	And user verify the "856" file in fedexnet
+#	Then user log out from Fedenxet application	
+
+@NAVICO_OB08Test
+Scenario: Distribution Order creation - Multi Line Parcel PO FDE
+	Given I have excel data 
+		| NVI_OBScenario007 |
+	And Open the chrome browser by selenium 
+	When user update "Multi Line DO" for dropping into fedexnet application 
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	And user updates the shipVia
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "NVI No-KIT Wave -PCL" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created
+	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
+	#Then user search for DO and confirms it
+	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	And user log out from application
+	
+@NAVICO_OB09Test
+Scenario: Distribution Order creation - Single Line Non Serialized Parcel F2D FDE
+	Given I have excel data 
+		| NVI_OBScenario005 |
+	And Open the chrome browser by selenium 
+	When user update "Single Line DO" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	And user updates the shipVia
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "NVI No-KIT Wave -PCL" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user open Task screen & verifies task is created for DO in the wave process 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created
+	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
+	#Then user search for DO and confirms it
+	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	And user log out from application
+	
+@NAVICO_OB10Test
+Scenario: Distribution Order creation - Multi Line LTL	FDFE LTLP 
+	Given I have excel data 
+		| NVI_OBScenario009 |
+	And Open the chrome browser by selenium 
+	When user update "Multi Line DO" for dropping into fedexnet application 
+	And user logs into the FedexNet application 
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application 
+	And user logs into the Manhattan application 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "NVI No-KIT Wave - LTL" 
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated" 
+	And user open Task screen & verifies task is created for DO in the wave process 
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed" 
+	Then fetch the OLPN number with only 30 weighed status 
+	And user opens RF menu and completes Shipping using "MM3 Anchor oLPN" menu 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged" 
+	#And user navigates to shippment planning workspace 
+	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 	
+	And user log out from application
+#	And user logs into the FedexNet application for verify files
+#	And user verify the "856" file in fedexnet
+#	Then user log out from Fedenxet application	
+
+@NAVICO_OB11Test
+Scenario: Distribution Order creation - Single Line LTL FDFE LTLE 
+	Given I have excel data 
+		| NVI_OBScenario006 |
+	And Open the chrome browser by selenium 
+	When user update "Single Line DO" for dropping into fedexnet application 
+	And user logs into the FedexNet application 
+	And user upload "850" XML file in fedexnet 
+	Then user log out from Fedenxet application 
+	And user logs into the Manhattan application 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	And user cancels the DO
+	And user opens DO screen and searches for the DistributionOrder and verify its status "200 - Cancelled"

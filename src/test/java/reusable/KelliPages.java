@@ -45,6 +45,7 @@ public class KelliPages {
 	public static String partialASNValue= "";
 	public String dir = System.getProperty("user.dir");
 	public String KelliSingleLineASNfilePath = dir + "\\TestData\\Kelli\\Kelli ASN Load Single Line.xls";
+	public String KelliSingleLineASNfilePathForNVI = dir + "\\TestData\\Kelli\\Kelli ASN Load Single Line_NVI.xls";
 	public String KelliMultiLineASNfilePath = dir + "\\TestData\\Kelli\\Kelli ASN Load Multi Line.xls";
 	public String KelliItemloadfilePath = dir + "\\TestData\\Kelli\\Item Load.xls";
 	public String KelliLocationloadfilePath = dir + "\\TestData\\Kelli\\Location Load.xls";
@@ -59,6 +60,8 @@ public class KelliPages {
 		PageFactory.initElements(driver, this);
 
 	}
+
+	public static String account = Config.getProperty("Account"); //Different accounts QSC and NVI 
 
 	@FindBy(xpath = "//input[contains(@id,'login:userId')]")
 	public WebElement userid;
@@ -254,17 +257,49 @@ public class KelliPages {
 				Steps.testRes = "Failed";
 				Assert.assertTrue(false);
 			}
+		}else if(env.equalsIgnoreCase("L4")) {
+			driver.get(Config.getProperty("Kelli_Dev_URL_L4"));
+			userVal = Config.getProperty("Kelli_Dev_Username_L4");
+			//driver.navigate().to("javascript:document.getElementById('overridelink').click()");
+
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, userid, 20);
+			userid.sendKeys(Config.getProperty("Kelli_Dev_Username_L4"));
+
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, password, 30);
+			password.sendKeys(Config.getProperty("Kelli_Dev_Pwd_L4"));
+
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, loginbutton, 50);
+			loginbutton.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, WelcomeSYSTEMUSER, 50);
+			if(WelcomeSYSTEMUSER.getText().contains("Welcome")) {
+				Steps.logger.info("Log in to Kelli application successful");
+			}else {
+				Steps.logger.info("Log in to Kelli application is unsuccessful");
+				Steps.testRes = "Failed";
+				Assert.assertTrue(false);
+			}
 		}
 	}
 
 	// Updating Kelli ASN Load Sheet
 	public void updateASNLoadSheet(String fileType) throws Exception {
 		String kelliASNfilePath = null;
-		if (fileType.contains("Single Line")) {
-			kelliASNfilePath = KelliSingleLineASNfilePath;
-		} else if (fileType.contains("Multi Line")) {
-			kelliASNfilePath = KelliMultiLineASNfilePath;
+		
+		String accnt = KelliPages.account;
+		if (accnt.equalsIgnoreCase("QSC")) {
+			if (fileType.contains("Single Line")) {
+				kelliASNfilePath = KelliSingleLineASNfilePath;
+			} else if (fileType.contains("Multi Line")) {
+				kelliASNfilePath = KelliMultiLineASNfilePath;
+			}
+		} else {
+			if (fileType.contains("Single Line")) {
+				kelliASNfilePath = KelliSingleLineASNfilePathForNVI;
+			} else if (fileType.contains("Multi Line")) {
+				kelliASNfilePath = KelliMultiLineASNfilePath;
+			}
 		}
+		
 
 		File file = new File(kelliASNfilePath);
 
@@ -611,38 +646,62 @@ public class KelliPages {
 		Steps.logger.info("Clicked on upload button");
 
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, messagetype, 100);
-		
-		if(fileType.contains("Single Line ASN")) {
-			SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
-			choosefile.sendKeys(KelliSingleLineASNfilePath);
-	}
-		else if(fileType.contains("Multi Line ASN")) {
-			SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
-			choosefile.sendKeys(KelliMultiLineASNfilePath);
-	}
-	else if(fileType.contains("Single Line Order")) {
-		SeleniumTestHelper.selectFromDropDown(messagetype, "OrderLoad(WMS)", "visibletext");
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
-		choosefile.sendKeys(KelliSingleLineOrderfilePath);
-	}
-	else if(fileType.contains("Multi Line Order")) {
-		SeleniumTestHelper.selectFromDropDown(messagetype, "OrderLoad(WMS)", "visibletext");
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
-		choosefile.sendKeys(KelliMultiLineOrderfilePath);
-	}
-	else if(fileType.contains("Item")) {
-		SeleniumTestHelper.selectFromDropDown(messagetype, "ItemLoad(WMS)", "visibletext");
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
-		choosefile.sendKeys(KelliItemloadfilePath);
-	}
-	else if(fileType.contains("Location")) {
-		SeleniumTestHelper.selectFromDropDown(messagetype, "LocationLoad(WMS)", "visibletext");
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
-		choosefile.sendKeys(KelliLocationloadfilePath);
-	}
+		String accnt = KelliPages.account;
+		if (accnt.equalsIgnoreCase("QSC")) {
 
+			if (fileType.contains("Single Line ASN")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliSingleLineASNfilePath);
+			} else if (fileType.contains("Multi Line ASN")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliMultiLineASNfilePath);
+			} else if (fileType.contains("Single Line Order")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "OrderLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliSingleLineOrderfilePath);
+			} else if (fileType.contains("Multi Line Order")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "OrderLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliMultiLineOrderfilePath);
+			} else if (fileType.contains("Item")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "ItemLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliItemloadfilePath);
+			} else if (fileType.contains("Location")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "LocationLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliLocationloadfilePath);
+			}
+		} else {
+			if (fileType.contains("Single Line ASN")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliSingleLineASNfilePathForNVI);
+			} else if (fileType.contains("Multi Line ASN")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliMultiLineASNfilePath);
+			} else if (fileType.contains("Single Line Order")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "OrderLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliSingleLineOrderfilePath);
+			} else if (fileType.contains("Multi Line Order")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "OrderLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliMultiLineOrderfilePath);
+			} else if (fileType.contains("Item")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "ItemLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliItemloadfilePath);
+			} else if (fileType.contains("Location")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "LocationLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliLocationloadfilePath);
+			}
+
+		}
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, uploadfile, 100);
 		Steps.logger.info("Clicked on uploadfile");
 		uploadfile.click();

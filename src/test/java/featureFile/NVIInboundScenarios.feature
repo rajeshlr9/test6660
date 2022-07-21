@@ -1,6 +1,6 @@
 Feature: Inbound Scenarios 
 
-@NVI_IB001 @Regression_NVI @NVI_PostMsg  @Sanity_NVI
+@NVILegacy_IB001 @Regression_NVILegacy @NVILegacy_PostMsg  @Sanity_NVILegacy
 Scenario: Verify ASN creation through Post MessageUI-excel 
 	Creating ASN through Post Message UI & verifying the response, checking status of the shipment
 	Given I have excel data 
@@ -15,7 +15,7 @@ Scenario: Verify ASN creation through Post MessageUI-excel
 	Then user log out from application 
 	
 	
-@NVI_IB002 @Regression_NVI @NVI_BypassStagingLocPallet
+@NVILegacy_IB002 @Regression_NVILegacy @NVILegacy_BypassStagingLocPallet
 Scenario: Receiving of ASN bypassing staging location (Pallet) - Single Line, Single Pallet, Single iLPN
 	Creating ASN through Post Message UI, checking status of the shipment and completed receiving bypassing staging 
 	location (Pallet) - Single Line, Single Pallet, Single iLPN
@@ -34,7 +34,7 @@ Scenario: Receiving of ASN bypassing staging location (Pallet) - Single Line, Si
 	Then user views ASN, get and verify pallet status is "30 - Putaway" 
 	Then user log out from application 
 	
-@NVI_IB003 @Smoke @Regression_NVI @NVI_BypassStagingLocationRec 
+@NVILegacy_IB003 @Smoke @Regression_NVILegacy @NVILegacy_BypassStagingLocationRec 
 Scenario: Receiving of ASN bypassing staging location (Pallet) - Single Line, Single Pallet, Multiple iLPN
 	Creating ASN through Post Message UI, checking status of the shipment and completed receiving bypassing staging 
 	location (Pallet) - Single Line, Single Pallet, Multiple iLPN
@@ -53,7 +53,7 @@ Scenario: Receiving of ASN bypassing staging location (Pallet) - Single Line, Si
 	Then user views ASN, get and verify pallet status is "30 - Putaway" 
 	Then user log out from application 
 	
-@NVI_IB004 @Smoke @Regression_NVI @NVI_BypassStagingLocPallet 
+@NVILegacy_IB004 @Smoke @Regression_NVILegacy @NVILegacy_BypassStagingLocPallet 
 Scenario: Partial Receiving of ASN bypassing staging location (Pallet) - Single Line, Single Pallet, Single iLPN
 	Creating ASN through Post Message UI, checking status of the shipment and complete partial receiving bypassing staging 
 	location (Pallet) - Single Line, Single Pallet, Single iLPN
@@ -73,7 +73,7 @@ Scenario: Partial Receiving of ASN bypassing staging location (Pallet) - Single 
 	Then user log out from application 
 	
 	
-@NVI_IB005 @Regression_NVI @NVI_BypassStagingLocPallet 
+@NVILegacy_IB005 @Regression_NVILegacy @NVILegacy_BypassStagingLocPallet 
 Scenario: Over Receiving of ASN bypassing staging location (Pallet) - Single Line, Single Pallet, Single iLPN
 	Creating ASN through Post Message UI, checking status of the shipment and complete over receiving bypassing staging 
 	location (Pallet) - Single Line, Single Pallet, Single iLPN
@@ -93,7 +93,7 @@ Scenario: Over Receiving of ASN bypassing staging location (Pallet) - Single Lin
 	Then user log out from application 
 	
 	
-@NVI_IB006 @Smoke @Regression_NVI @NVI_BypassStagingLocPallet 
+@NVILegacy_IB006 @Smoke @Regression_NVILegacy @NVILegacy_BypassStagingLocPallet 
 Scenario: Receiving of ASN bypassing staging location (Pallet) - Multi Line, Single Pallet, Multiple iLPN
 	Creating ASN through Post Message UI, checking status of the shipment and complete receiving bypassing staging 
 	location (Pallet) - Multi Line, Single Pallet, Multiple iLPN
@@ -112,7 +112,7 @@ Scenario: Receiving of ASN bypassing staging location (Pallet) - Multi Line, Sin
 	Then user views ASN, get and verify pallet status is "30 - Putaway" 
 	Then user log out from application 
 	
-@NVI_IB007 @Smoke @Regression_NVI @NVI_BypassStagingLocPallet 
+@NVILegacy_IB007 @Smoke @Regression_NVILegacy @NVILegacy_BypassStagingLocPallet 
 Scenario: Receiving of ASN bypassing staging location (Pallet) - Multi Line, Multiple Pallet, Multiple iLPN
 	Creating ASN through Post Message UI, checking status of the shipment and complete receiving bypassing staging 
 	location (Pallet) - Multi Line, Multiple Pallet, Multiple iLPN
@@ -132,7 +132,7 @@ Scenario: Receiving of ASN bypassing staging location (Pallet) - Multi Line, Mul
 	Then user log out from application 
 
 	
-	@NVI_IB008 @Regression_NVI @NVI_BypassStagingLocCase
+	@NVILegacy_IB008 @Regression_NVILegacy @NVILegacy_BypassStagingLocCase
 Scenario: Receiving of ASN bypassing staging location (case) - Single Line, Single iLPN
 	Creating ASN through Post Message UI, checking status of the shipment and completed receiving bypassing staging 
 	location (case) - Single Line, Single iLPN
@@ -151,7 +151,7 @@ Scenario: Receiving of ASN bypassing staging location (case) - Single Line, Sing
 	Then user opens iLPN screen and validate iLPN status "30 - Putaway"
 	Then user log out from application 
 	
-	@NVI_IB009 @Regression_NVI @NVI_BypassStagingLocCase
+	@NVILegacy_IB009 @Regression_NVILegacy @NVILegacy_BypassStagingLocCase
 Scenario: Receiving of ASN bypassing staging location (case) - Single Line, Multiple iLPN
 	Creating ASN through Post Message UI, checking status of the shipment and completed receiving bypassing staging 
 	location (case) - Single Line, Multiple iLPN
@@ -170,7 +170,7 @@ Scenario: Receiving of ASN bypassing staging location (case) - Single Line, Mult
 	Then user opens iLPN screen and validate iLPN status "30 - Putaway"
 	Then user log out from application
 	
-	@NVI_IB010 @Regression_NVI @NVI_BypassStagingLocCase
+	@NVILegacy_IB010 @Regression_NVILegacy @NVILegacy_BypassStagingLocCase
 Scenario: Partial Receiving of ASN bypassing staging location (case) - Single Line, Single iLPN
 	Creating ASN through Post Message UI, checking status of the shipment and completed partial receiving bypassing staging 
 	location (case) - Single Line, Single iLPN
@@ -189,7 +189,7 @@ Scenario: Partial Receiving of ASN bypassing staging location (case) - Single Li
 	Then user opens iLPN screen and validate iLPN status "30 - Putaway"
 	Then user log out from application
 	
-	@NVI_IB011 @Regression_NVI @NVI_BypassStagingLocCase
+	@NVILegacy_IB011 @Regression_NVILegacy @NVILegacy_BypassStagingLocCase
 Scenario: Over Receiving of ASN bypassing staging location (case) - Single Line, Single iLPN
 	Creating ASN through Post Message UI, checking status of the shipment and completed over receiving bypassing staging 
 	location (case) - Single Line, Single iLPN
@@ -208,7 +208,7 @@ Scenario: Over Receiving of ASN bypassing staging location (case) - Single Line,
 	Then user opens iLPN screen and validate iLPN status "30 - Putaway"
 	Then user log out from application
 	
-	@NVI_IB012 @Regression_NVI @NVI_BypassStagingLocCase
+	@NVILegacy_IB012 @Regression_NVILegacy @NVILegacy_BypassStagingLocCase
 Scenario: Receiving of ASN bypassing staging location (case) - Multi Line, Multiple iLPN
 	Creating ASN through Post Message UI, checking status of the shipment and completed receiving bypassing staging 
 	location (case) - Multi Line, Multiple iLPN
@@ -227,7 +227,7 @@ Scenario: Receiving of ASN bypassing staging location (case) - Multi Line, Multi
 	Then user opens iLPN screen and validate iLPN status "30 - Putaway"
 	Then user log out from application
 	
-	@NVI_IB013 @Regression_NVI @NVI_PalletRec
+	@NVILegacy_IB013 @Regression_NVILegacy @NVILegacy_PalletRec
 Scenario: Receiving of ASN on to a Pallet - Single Line, Single Pallet, Single iLPN
 	Creating ASN through Post Message UI, checking status of the shipment and completed receiving in a 
 	Pallet - Single Line, Single Pallet, Single iLPN
@@ -246,7 +246,7 @@ Scenario: Receiving of ASN on to a Pallet - Single Line, Single Pallet, Single i
 	Then user views ASN, get and verify pallet status is "30 - Putaway" 
 	Then user log out from application 
 	
-	@NVI_IB014 @Regression_NVI @NVI_PalletRec
+	@NVILegacy_IB014 @Regression_NVILegacy @NVILegacy_PalletRec
 Scenario: Receiving of ASN on to a Pallet - Single Line, Single Pallet, Multiple iLPN
 	Creating ASN through Post Message UI, checking status of the shipment and completed receiving in a 
 	Pallet - Single Line, Single Pallet, Multiple iLPN
@@ -265,7 +265,7 @@ Scenario: Receiving of ASN on to a Pallet - Single Line, Single Pallet, Multiple
 	Then user views ASN, get and verify pallet status is "30 - Putaway" 
 	Then user log out from application 
 	
-	@NVI_IB015 @Regression_NVI @NVI_PalletRec
+	@NVILegacy_IB015 @Regression_NVILegacy @NVILegacy_PalletRec
 Scenario: Receiving of ASN on to a Pallet - Multi Line, Single Pallet, Multiple iLPN
 	Creating ASN through Post Message UI, checking status of the shipment and completed receiving in a 
 	Pallet - Multi Line, Single Pallet, Multiple iLPN
@@ -284,7 +284,7 @@ Scenario: Receiving of ASN on to a Pallet - Multi Line, Single Pallet, Multiple 
 	Then user views ASN, get and verify pallet status is "30 - Putaway" 
 	Then user log out from application 
 	
-	@NVI_IB016 @Regression_NVI @NVI_PalletRec
+	@NVILegacy_IB016 @Regression_NVILegacy @NVILegacy_PalletRec
 Scenario: Receiving of ASN on to a Pallet - Multi Line, Multiple Pallet, Multiple iLPN
 	Creating ASN through Post Message UI, checking status of the shipment and completed receiving in a 
 	Pallet - Multi Line, Multiple Pallet, Multiple iLPN
@@ -303,7 +303,7 @@ Scenario: Receiving of ASN on to a Pallet - Multi Line, Multiple Pallet, Multipl
 	Then user views ASN, get and verify pallet status is "30 - Putaway" 
 	Then user log out from application 
 	
-	@NVI_IB017 @Regression_NVI @NVI_PalletRec
+	@NVILegacy_IB017 @Regression_NVILegacy @NVILegacy_PalletRec
 Scenario: Partial Receiving of ASN on to a Pallet - Single Line, Single Pallet, Single iLPN
 	Creating ASN through Post Message UI, checking status of the shipment and completed partial receiving in a 
 	Pallet - Single Line, Single Pallet, Single iLPN
@@ -322,7 +322,7 @@ Scenario: Partial Receiving of ASN on to a Pallet - Single Line, Single Pallet, 
 	Then user views ASN, get and verify pallet status is "30 - Putaway" 
 	Then user log out from application 
 	
-	@NVI_IB018 @Regression_NVI @NVI_PalletRec
+	@NVILegacy_IB018 @Regression_NVILegacy @NVILegacy_PalletRec
 Scenario: Over Receiving of ASN on to a Pallet - Single Line, Single Pallet, Single iLPN
 	Creating ASN through Post Message UI, checking status of the shipment and completed over receiving in a 
 	Pallet - Single Line, Single Pallet, Single iLPN
@@ -341,7 +341,7 @@ Scenario: Over Receiving of ASN on to a Pallet - Single Line, Single Pallet, Sin
 	Then user views ASN, get and verify pallet status is "30 - Putaway" 
 	Then user log out from application 
 	
-	@NVI_IB019 @Regression_NVI @NVI_PalletRec
+	@NVILegacy_IB019 @Regression_NVILegacy @NVILegacy_PalletRec
 Scenario: Receiving of ASN on to a Pallet - Multi Line (same item in both lines), Multiple Pallet, Multiple iLPN
 	Creating ASN through Post Message UI, checking status of the shipment and completed receiving in a 
 	Pallet - Multi Line(same item in both lines), Multiple Pallet, Multiple iLPN
@@ -360,7 +360,7 @@ Scenario: Receiving of ASN on to a Pallet - Multi Line (same item in both lines)
 	Then user views ASN, get and verify pallet status is "30 - Putaway" 
 	Then user log out from application 
 	
-	@NVI_IB020 @Regression_NVI @NVI_PalletRec
+	@NVILegacy_IB020 @Regression_NVILegacy @NVILegacy_PalletRec
 Scenario: Receiving of ASN on to a Pallet - Multi Line (same item in both lines), Single Pallet, Multiple iLPN
 	Creating ASN through Post Message UI, checking status of the shipment and completed receiving in a 
 	Pallet - Multi Line(same item in both lines), Multiple Pallet, Multiple iLPN
@@ -379,7 +379,7 @@ Scenario: Receiving of ASN on to a Pallet - Multi Line (same item in both lines)
 	Then user views ASN, get and verify pallet status is "30 - Putaway" 
 	Then user log out from application
 	
-	@NVI_IB021 @Regression_NVI @NVI_DamagedReceive&Putaway
+	@NVILegacy_IB021 @Regression_NVILegacy @NVILegacy_DamagedReceive&Putaway
 Scenario: Receive Damages- Receiving Damaged Product using MM3 Recv-Damages & complete Putaway - Single Line
 Receiving of Damaged Products in MM3 Recv-Damages option & complete Putaway
 	Given I have excel data
@@ -401,7 +401,7 @@ Receiving of Damaged Products in MM3 Recv-Damages option & complete Putaway
 	Then validates that the iLPN is also moved to inspection zone "NV111A1"
 	Then user log out from application 
 	
-	@NVI_IB022 @Regression_NVI @NVI_DamagedReceive&Putaway
+	@NVILegacy_IB022 @Regression_NVILegacy @NVILegacy_DamagedReceive&Putaway
 Scenario: Receive Damages- Receiving Damaged Product using MM3 Recv-Damages & complete Putaway - Multi Line
 Receiving of Damaged Products in MM3 Recv-Damages option & complete Putaway
 	Given I have excel data
@@ -423,7 +423,7 @@ Receiving of Damaged Products in MM3 Recv-Damages option & complete Putaway
 	Then validates that the iLPN is also moved to inspection zone "NV111A1"
 	Then user log out from application 
 	
-	@NVI_IB023 @Regression_NVI @NVI_UnDeliveredReceive&Putaway
+	@NVILegacy_IB023 @Regression_NVILegacy @NVILegacy_UnDeliveredReceive&Putaway
 	Scenario: Receiving Returned Un-Delivered Product by creating ASN & completing Putaway - Single Line
 Receiving of Un-Delivered Product in MM3 returns menu by creating ASN, validating lock code and completing putaway
 	Given I have excel data
@@ -445,7 +445,7 @@ Receiving of Un-Delivered Product in MM3 returns menu by creating ASN, validatin
 	Then validates that the iLPN is also moved to inspection zone "NV111A1"
 	Then user log out from application
 
-	@NVI_IB024 @Regression_NVI @NVI_UnDeliveredReceive&Putaway
+	@NVILegacy_IB024 @Regression_NVILegacy @NVILegacy_UnDeliveredReceive&Putaway
 	Scenario: Receiving Returned Un-Delivered Product using blind receipt & completing Putaway
 Receiving Returned Un-Delivered Product using blind receipt & validaing lock code, Completing putaway 
 Given I have excel data
@@ -462,7 +462,7 @@ Given I have excel data
 	Then user log out from application 
 	
 	
-	@NVI_IB025 @Regression_NVI @NVI_CaseRec&Putaway
+	@NVILegacy_IB025 @Regression_NVILegacy @NVILegacy_CaseRec&Putaway
 Scenario: Receiving Case : Single Line, Single iLPN
 Creating ASN through Post Message UI, checking status of the shipment and completed receiving in Staging location through RF Menu
 	Given I have excel data

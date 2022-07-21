@@ -46,27 +46,17 @@
 		</AdrLp>
 		<RefLp>
 			<RefIDQual>YD</RefIDQual>
-			<RefID>C005641</RefID>
-		</RefLp>
-		<RefLp>
-			<RefIDQual>CCO</RefIDQual>
-			<RefID>063035-CCO</RefID>
-			<RefDesc></RefDesc>
+			<RefID>yymmdd</RefID>
 		</RefLp>
 		<RefLp>
 			<RefIDQual>CO</RefIDQual>
-			<RefID>185584</RefID>
+			<RefID>yymmdd</RefID>
 			<RefDesc>Navico Customer Purchase Order Number</RefDesc>
 		</RefLp>
 		<RefLp>
 			<RefIDQual>ZZ</RefIDQual>
-			<RefID>LBLREF1</RefID>
-			<RefDesc>185587</RefDesc>
-		</RefLp>
-		<RefLp>
-			<RefIDQual>STN</RefIDQual>
-			<RefID>STN NUMBER</RefID>
-			<RefDesc>STORE INFO</RefDesc>
+			<RefID>yymmdd</RefID>
+			<RefDesc>185584</RefDesc>
 		</RefLp>
 		<TrnsprtLp>
 			<TrnsprtSvcLvl>F2D</TrnsprtSvcLvl>
@@ -74,14 +64,6 @@
 			<TrnsprtCarrAcct />
 			<TrnsprtFrghtTermsCD>PP</TrnsprtFrghtTermsCD>
 		</TrnsprtLp>
-		<SpecInstrLp>
-			<SpecInstrCD>MRKF</SpecInstrCD>
-			<SpecInstr>916S</SpecInstr>
-		</SpecInstrLp>
-		<SpecInstrLp>
-			<SpecInstrCD>PACK</SpecInstrCD>
-			<SpecInstr>Customer PO:NVI05042022001</SpecInstr>
-		</SpecInstrLp>
 		<ShipDocLp>
 			<ShipDocCD>SPEND</ShipDocCD>
 			<ShipDocTxt>2</ShipDocTxt>
@@ -96,10 +78,6 @@
 			<ItemDesc>NAVICO,CABLE,RADAR,FOR 10/25kW SCAN,20M</ItemDesc>
 			<ItemQty>1</ItemQty>
 			<ItemUOM>EA</ItemUOM>
-			<ItemAttrLp>
-				<AttrCD>CO</AttrCD>
-				<AttrVal>NVI05042022001</AttrVal>
-			</ItemAttrLp>
 			<DtTmLp>
 				<DtTmQual>010</DtTmQual>
 				<Date GmtOffset="-07:00" Time="133026">yyyymmdd</Date>
@@ -114,15 +92,11 @@
 			</SpecInstrLp>
 		</OrdLineItemLp>
 		<OrdLineItemLp>
-			<ItemLnNbr>169.0</ItemLnNbr>
+			<ItemLnNbr>168.0</ItemLnNbr>
 			<ItemID>000-081221-002</ItemID>
 			<ItemDesc>NAVICO,CABLE,RADAR,FOR 10/25kW SCAN,20M</ItemDesc>
 			<ItemQty>1</ItemQty>
 			<ItemUOM>EA</ItemUOM>
-			<ItemAttrLp>
-				<AttrCD>CO</AttrCD>
-				<AttrVal>NVI05042022001</AttrVal>
-			</ItemAttrLp>
 			<DtTmLp>
 				<DtTmQual>010</DtTmQual>
 				<Date GmtOffset="-07:00" Time="133026">yyyymmdd</Date>

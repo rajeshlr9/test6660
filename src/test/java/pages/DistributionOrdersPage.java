@@ -1019,6 +1019,7 @@ public class DistributionOrdersPage {
 		String[] shippedQty = null;
 		String itemInDOPage = null;
 		// String DoID = distributionOrderIDtxt.getText();
+		System.out.println("Size of ItemDataMap"+Steps.ItemDataMap.size());
 		for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 			System.out.println("value of i "+i);
 			shippedQty = OriginalOrderedqty.get(i).getText().split("\\s+");
@@ -1689,7 +1690,12 @@ public class DistributionOrdersPage {
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		SeleniumTestHelper.waitForElementToBeClickable(driver, rsnCode, 50);
 		rsnCode.click();
-		rsnCode.sendKeys("CP – Cancel Request – Processed Order");
+		String account = ManhattanLoginPage.account;
+		if (account.equalsIgnoreCase("QSC") || account.equalsIgnoreCase("@Account")) {
+			rsnCode.sendKeys("CP – Cancel Request – Processed Order");
+		} else {
+			rsnCode.sendKeys("UD - OEM Damage");
+		}
 		// rsnCode.sendKeys(Keys.TAB);
 		SeleniumTestHelper.assertTrue(true);
 		Thread.sleep(1000);

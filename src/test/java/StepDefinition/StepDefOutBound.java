@@ -274,8 +274,19 @@ public class StepDefOutBound {
 
 	@And("^user runs the \"([^\"]*)\"$")
 	public void user_run_the_shipwave_template(String waveType) throws Exception {
+		String env = ManhattanLoginPage.environment;
+		String account = ManhattanLoginPage.account;
 		try {
+			if(account.equalsIgnoreCase("NVI") && env.equalsIgnoreCase("L4")) {
+				if(waveType.contains("NVI No-KIT Wave -PCL")) {
+					
+				doPage.runWaveTemplate("NVI No-KIT Wave-PCL");
+				}else {
+					doPage.runWaveTemplate(waveType);
+				}
+			}else {
 			doPage.runWaveTemplate(waveType);
+			}
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			System.out.println("line number"+e.getStackTrace()[0].getLineNumber() );
@@ -391,7 +402,7 @@ public class StepDefOutBound {
 
 			if (acnt.equalsIgnoreCase("QSC") || acnt.equalsIgnoreCase("@Account")) {
 				rfMenu.completeTasks();
-			}else {
+			}else{
 				rfMenu.completeTasksForNVI();
 			}
 			
