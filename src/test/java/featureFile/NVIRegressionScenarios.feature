@@ -86,7 +86,8 @@ automatically created with remaining qty
 	And user upload "856" XML file in fedexnet
 	Then user log out from Fedenxet application
 	And user logs into the Manhattan application
-	#Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit" 
+	#And user views ASN, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
 	Then user opens ASN screen and searches for the ASN and verify its status "30 - Receiving Started"
 	And validates the PIX message "606 - Un-allocable inventory adjustments"

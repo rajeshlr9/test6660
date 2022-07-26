@@ -935,6 +935,7 @@ public class DistributionOrdersPage {
 
 		List<WebElement> myframes = driver.findElements(By.tagName("Iframe"));
 		System.out.println("my framecount is   " + myframes.size());
+		Thread.sleep(2000);
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		driver.findElement(By.xpath("//input[@alt='Find Description']")).sendKeys(waveTemplateDesc);
 		Screenshots.captureSnapshot(driver);

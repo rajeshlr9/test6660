@@ -243,6 +243,7 @@ Scenario: Distribution Order creation - Single Line LTL FDFE LTLE
 	Then user log out from Fedenxet application 
 	And user logs into the Manhattan application 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	#And user updates the shipVia
 	Then user verifies the item details in Distribuion Order page 
 	And user runs the "NVI No-KIT Wave - LTL" 
 	Then user views wave and verify the allocation of inventory 
