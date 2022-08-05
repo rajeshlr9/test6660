@@ -6188,8 +6188,8 @@ public class RFMenuPage {
 				ToteInput.sendKeys(Keys.ENTER);
 				Thread.sleep(1000);
 
-				Thread.sleep(2000);
-				SeleniumTestHelper.waitForElementToBeClickable(driver, MM3PackTotePCLText, 10);
+				Thread.sleep(5000);
+				SeleniumTestHelper.waitForElementToBeClickable(driver, MM3PackTotePCLText, 20);
 				new Actions(driver).moveToElement(MM3PackTotePCLText).build().perform();
 
 				Actions action = new Actions(this.driver);

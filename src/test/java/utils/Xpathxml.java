@@ -56,8 +56,8 @@ public class Xpathxml {
 	public String inputOBFilePath = dirPath + "/src/test/resources/testdata/Outbound/" +Steps.scenarioData.get("Account") + "/InputOB.xml";
 	
 	//Fedexnet files
-	public String SingleLineInboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/856/"+Steps.scenarioData.get("Account")+"_856_SingleLine.xml";
 	public String MultiLineInboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/856/"+Steps.scenarioData.get("Account")+"_856_MultiLine.xml";
+	public String SingleLineInboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/856/"+Steps.scenarioData.get("Account")+"_856_SingleLine.xml";
 	public String inputEDIInboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/856/"+Steps.scenarioData.get("Account")+"_856_InputFile.xml";
 	
 	public String SingleLineOutboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/850/"+Steps.scenarioData.get("Account")+"_850_SingleLine.xml";
