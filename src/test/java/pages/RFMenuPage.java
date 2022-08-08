@@ -837,6 +837,16 @@ public class RFMenuPage {
 
 	@FindBy(xpath = "//input[@id='barcode1']")
 	public WebElement ilpnInRFModifyilpnTxtBox;
+	
+	String Palletval = "";
+	
+	public String getPAlletValue() {
+		return Palletval;
+	}
+	
+	public void setPAlletValue(String Palletval) {
+		this.Palletval = Palletval;
+	}
 
 	public void ASNReceivingProcess(int noOfItems, String receivingMethod, String recLocation) throws Exception {
 		String iLPN = null;
@@ -4258,10 +4268,11 @@ public class RFMenuPage {
 			// pallet id 10 digit value
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, ilpnInRFModifyilpnTxtBox1, 10);
 			globalFunc.DateTime.TimeDateFunc();
-			String Palletval = globalFunc.DateTime.strDate6;
+			Palletval = globalFunc.DateTime.strDate6;
 			ilpnInRFModifyilpnTxtBox1.sendKeys(Palletval);
 			System.out.println("Pallet value: " + Palletval);
 			Steps.logger.info("Entered the Pallet value: " + Palletval);
+			setPAlletValue(Palletval);
 			Thread.sleep(1000);
 			ilpnInRFModifyilpnTxtBox1.sendKeys(Keys.ENTER);
 			Thread.sleep(1000);
@@ -6180,9 +6191,10 @@ public class RFMenuPage {
 					Thread.sleep(1000);
 				}
 
-				String toteValue = globalFunc.DateTime.strDate6;
-				ToteInput.sendKeys(toteValue);
+				//String toteValue = globalFunc.DateTime.strDate6;
+				String toteValue = getPAlletValue();
 				System.out.println("Pallet value: " + toteValue);
+				ToteInput.sendKeys(toteValue);
 				Steps.logger.info("Entered the Pallet value: " + toteValue);
 				Thread.sleep(1000);
 				ToteInput.sendKeys(Keys.ENTER);
