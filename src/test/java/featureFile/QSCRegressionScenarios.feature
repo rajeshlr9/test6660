@@ -244,7 +244,7 @@ Scenario: Distribution Order creation - Single Line Serialized Parcel PO FDE
 	And user open RF Menu and complete the pack tasks created
 	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
 	#Then user search for DO and confirms it
-	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 	And user log out from application
 #	And user logs into the FedexNet application for verify files
 #	And user verify the "856" file in fedexnet
@@ -271,7 +271,7 @@ Scenario: Distribution Order creation - Single Line Non Serialized Parcel F2D FD
 	And user open RF Menu and complete the pack tasks created
 	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
 	#Then user search for DO and confirms it
-	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 	And user log out from application
 #	And user logs into the FedexNet application for verify files
 #	And user verify the "856" file in fedexnet
@@ -327,7 +327,7 @@ Scenario: Distribution Order creation - Multi Line Parcel F2D FDE
 	And user open RF Menu and complete the pack tasks created
 	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
 	#Then user search for DO and confirms it
-	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 	And user log out from application
 #	And user logs into the FedexNet application for verify files
 #	And user verify the "856" file in fedexnet
@@ -538,7 +538,7 @@ Scenario: Combine the OLPN at weighed status
 	Then user log out from application	
 	
 @DailyRegression_QSC @ScenarioOB07 @OBRegScenarios_QSC
-Scenario: Distribution Order creation - Single Line Serialized Parcel PO FDE
+Scenario: Distribution Order creation - Validation of Error Label
 	Given I have excel data 
 		| QSC_DailyRegressionOB11 |
 	And Open the chrome browser by selenium 
