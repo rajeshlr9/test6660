@@ -1,0 +1,82 @@
+package globalFunc;
+
+import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+
+import com.cucumber.listener.Reporter;
+import com.hp.lft.sdk.stdwin.Window;
+import com.hp.lft.sdk.web.Browser;
+
+import utils.Config;
+
+public class Screenshots {
+
+
+	public static void captureSnapshot(WebDriver webdriver) throws Exception {
+		
+		if(Config.getProperty("WordScreenshots").equals("true")) {
+		TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
+		File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+		DateTime.TimeDateFunc();
+		File DestFile = new File("resources\\Doc_Images\\"+Config.getProperty("Account")+"_" + DateTime.strDate7 + ".png");
+		FileUtils.copyFile(SrcFile, DestFile);
+		}
+	}
+	
+	public static void seleniumSnapshot(WebDriver webdriver) throws Exception {
+		TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
+		File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+		DateTime.TimeDateFunc();
+		File DestFile = new File("./resources/Screenshots/" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_" + DateTime.strDate3 + ".png");
+		FileUtils.copyFile(SrcFile, DestFile);
+	}
+
+	public static void LeanFTSnapshot(Browser leanFTDriver) throws Exception {
+		RenderedImage srcFile = leanFTDriver.getSnapshot();
+		File fileObj = new File("resources\\Screenshots\\" + DateTime.strDate3 + ".jpeg");
+		try {
+			ImageIO.write(srcFile, "jpg", fileObj);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void LeanFTSnapshot(Window leanFTDriver) throws Exception {
+		RenderedImage srcFile = leanFTDriver.getSnapshot();
+		File fileObj = new File("resources\\Screenshots\\" + DateTime.strDate3 + ".jpeg");
+		try {
+			ImageIO.write(srcFile, "jpg", fileObj);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void addingScreenshottoExentReport() throws Exception {
+	
+	if(Config.getProperty("RunEnvironment").equals("Jenkins")) {
+		
+		if(Config.getProperty("ViewonStaticServer").equals("true")) {
+			Reporter.addScreenCaptureFromPath("/Screenshots/"+Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
+		}
+		else {
+		
+		String JobName[]=Config.getProperty("Job_Name").split("/");
+	String path= "/jenkins/job/"+JobName[0]+"/job/"+ JobName[1]+"/job/"+ JobName[2]+"/job/"+ JobName[3]+"/ws/resources/Screenshots/";
+	
+	
+		Reporter.addScreenCaptureFromPath(path + Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
+	}
+	}
+	else {
+	Reporter.addScreenCaptureFromPath(System.getProperty("user.dir")+ "\\resources\\Screenshots\\" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_"+ DateTime.strDate3 + ".png");
+	}
+	}
+}

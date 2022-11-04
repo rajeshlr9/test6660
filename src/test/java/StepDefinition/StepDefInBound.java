@@ -36,6 +36,7 @@ import reusable.KelliPages;
 import reusable.ModifyXML;
 import reusable.ValidateFilesAfterReceving;
 import utils.Config;
+import utils.CreateAndUpdateEDIFiles;
 import utils.SeleniumTestHelper;
 import utils.Xpathxml;
 
@@ -55,6 +56,8 @@ public class StepDefInBound {
 	ReserveLocationPage resLocPage = new ReserveLocationPage();
 	ItemsPage itemsPage= new ItemsPage();
 	ValidateFilesAfterReceving vfr = new ValidateFilesAfterReceving();
+	//Added for APC customer to update x12 file
+	CreateAndUpdateEDIFiles createUpdateEdiInput = new CreateAndUpdateEDIFiles();
 
 	String itemName = null;
 	String GtinNum = null;
@@ -195,6 +198,7 @@ public class StepDefInBound {
 		try {
 			String env = ManhattanLoginPage.environment;
 			System.out.println("Environment:"+env);
+			String account = Config.getProperty("Account");
 			String dropEnv=null;
 			if (env.equalsIgnoreCase("L1")|| env.equalsIgnoreCase("@Env") || env.equalsIgnoreCase("L2")) {
 				dropEnv="FSCS";
@@ -209,10 +213,18 @@ public class StepDefInBound {
 					System.out.println("L5 Env - FSCSUA");
 					dropEnv="FSCSUA";
 			}
-			if(fileType.equals("856")||fileType.equals("943")) {			
-			FedexnetPage.dropOrder(dropEnv, fileType, xmlInput.inputEDIInboundFilePath);
-			}else if(fileType.equals("850")||fileType.equals("940")) {			
+			if(fileType.equals("856")||fileType.equals("943")) {
+				if (account.equalsIgnoreCase("APC")) {
+					FedexnetPage.dropOrder(dropEnv, fileType, createUpdateEdiInput.APCEDIInboundFilePath);
+				} else {
+					FedexnetPage.dropOrder(dropEnv, fileType, xmlInput.inputEDIInboundFilePath);
+				}
+			}else if(fileType.equals("850")||fileType.equals("940")) {	
+				if (account.equalsIgnoreCase("APC")) {
+					FedexnetPage.dropOrder(dropEnv, fileType, createUpdateEdiInput.APCEDIOutboundFilePath);
+				} else {
 				FedexnetPage.dropOrder(dropEnv, fileType, xmlInput.inputEDIOutboundFilePath);
+				}
 			}
 		}catch(Exception e){
 			System.out.println(e);
@@ -1225,6 +1237,20 @@ public class StepDefInBound {
 			FedexnetPage.logintoFedexNetForFileValidation();
 			Steps.logger.info("User Logged In to FedexNet");
 			Reporter.addStepLog("Logged In to FedexNet Application Successfully...");
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
+	//
+	@When("^user update EDI file \"([^\"]*)\" for dropping into fedexnet application$")
+	public void user_update_EDI_file_for(String fileType)	throws Exception {
+		try {
+			Steps.logger.info("x12 EDI File updation started");
+			createUpdateEdiInput.user_create_EDI_file(fileType);
+			createUpdateEdiInput.user_update_EDI_file(fileType);
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			System.out.println(e);

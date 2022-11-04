@@ -134,7 +134,7 @@ public class AsnsPage {
 	public WebElement editHeaderAddSealSequenceNumTxtSecond;
 	
 	public void getASNandPONumber(String asnId) throws Exception {
-		
+		String account = Config.getProperty("Account");
 		homepage.MenuItems_Distribution_Selection("ASNs");
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 120);
@@ -144,25 +144,31 @@ public class AsnsPage {
 				"//DIV[3]/DIV[1]/DIV[@role=\"presentation\"][1]/DIV[@role=\"presentation\"][1]/DIV[@role=\"presentation\"][1]/DIV[1]/DIV[1]/DIV[1]/DIV[1]/INPUT[@role=\"combobox\"][1]"))
 				.click();
 		driver.findElement(By.xpath("(//div[starts-with(@id,'mpslookupfield')])[5]")).click();
-		 Thread.sleep(2000);
-		 driver.findElement(By.xpath("(//input[contains(@class,'x-form-field x-form-text x-form-text-default')])[12]")).sendKeys("QSC");
-		 Thread.sleep(1000);
-		 driver.findElement(By.xpath("(//input[@name='asnId'])[2]")).sendKeys(asnId);
-		 Thread.sleep(1000);
-		 driver.findElement(By.xpath("//span[contains(text(),'Find')]")).click();
-		 Thread.sleep(2000);
-		 String ASNvalue= driver.findElement(By.xpath("(//div[contains(@class,'x-grid-cell-inner')])[1]")).getText();
-		 Items.setAsnNumber(ASNvalue);
-		 StringBuffer PONum= new StringBuffer(ASNvalue);
-		 PONum.delete(PONum.length()-2, PONum.length());
-		 String PONumber= PONum.toString();
-		 Items.setPONumber(PONumber);
-		 driver.findElement(By.xpath("(//div[contains(@class,'x-grid-cell-inner')])[1]")).click();
-		 Thread.sleep(2000);
-		 driver.findElement(By.xpath("(//span[contains(text(),'Select')])[1]")).click();
-		 Thread.sleep(2000);
-		 driver.findElement(By.xpath("//span[contains(text(),'Done')]")).click();
-		 homepage.userClosesOpenedwindow("ASNs");
+		Thread.sleep(2000);
+		if (account.equalsIgnoreCase("QSC")) {
+			driver.findElement(By.xpath("(//input[contains(@class,'x-form-field x-form-text x-form-text-default')])[12]")).sendKeys("QSC");
+		} else if (account.equalsIgnoreCase("NVi")) {
+			driver.findElement(By.xpath("(//input[contains(@class,'x-form-field x-form-text x-form-text-default')])[12]")).sendKeys("NVI");
+		} else {
+			driver.findElement(By.xpath("(//input[contains(@class,'x-form-field x-form-text x-form-text-default')])[14]")).sendKeys("APC");
+		}
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("(//input[@name='asnId'])[2]")).sendKeys(asnId);
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//span[contains(text(),'Find')]")).click();
+		Thread.sleep(2000);
+		String ASNvalue = driver.findElement(By.xpath("(//div[contains(@class,'x-grid-cell-inner')])[1]")).getText();
+		Items.setAsnNumber(ASNvalue);
+		StringBuffer PONum = new StringBuffer(ASNvalue);
+		PONum.delete(PONum.length() - 2, PONum.length());
+		String PONumber = PONum.toString();
+		Items.setPONumber(PONumber);
+		driver.findElement(By.xpath("(//div[contains(@class,'x-grid-cell-inner')])[1]")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("(//span[contains(text(),'Select')])[1]")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//span[contains(text(),'Done')]")).click();
+		homepage.userClosesOpenedwindow("ASNs");
 	}
 //for negative scenario with wrong 
 	public void verifyAsn(String asnId) throws Exception {

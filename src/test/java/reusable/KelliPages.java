@@ -46,6 +46,7 @@ public class KelliPages {
 	public String dir = System.getProperty("user.dir");
 	public String KelliSingleLineASNfilePath = dir + "\\TestData\\Kelli\\Kelli ASN Load Single Line.xls";
 	public String KelliSingleLineASNfilePathForNVI = dir + "\\TestData\\Kelli\\Kelli ASN Load Single Line_NVI.xls";
+	public String KelliSingleLineASNfilePathForAPC = dir + "\\TestData\\Kelli\\Kelli ASN Load Single Line_APC.xls";
 	public String KelliMultiLineASNfilePath = dir + "\\TestData\\Kelli\\Kelli ASN Load Multi Line.xls";
 	public String KelliItemloadfilePath = dir + "\\TestData\\Kelli\\Item Load.xls";
 	public String KelliLocationloadfilePath = dir + "\\TestData\\Kelli\\Location Load.xls";
@@ -286,20 +287,26 @@ public class KelliPages {
 		String kelliASNfilePath = null;
 		
 		String accnt = KelliPages.account;
+		System.out.println("Account : = "+accnt);
 		if (accnt.equalsIgnoreCase("QSC")) {
 			if (fileType.contains("Single Line")) {
 				kelliASNfilePath = KelliSingleLineASNfilePath;
 			} else if (fileType.contains("Multi Line")) {
 				kelliASNfilePath = KelliMultiLineASNfilePath;
 			}
-		} else {
+		} else if (accnt.equalsIgnoreCase("NVI")) {
 			if (fileType.contains("Single Line")) {
 				kelliASNfilePath = KelliSingleLineASNfilePathForNVI;
 			} else if (fileType.contains("Multi Line")) {
-				kelliASNfilePath = KelliMultiLineASNfilePath;
+				// kelliASNfilePath = KelliMultiLineASNfilePath;
+			}
+		} else if (accnt.equalsIgnoreCase("APC")){
+			if (fileType.contains("Single Line")) {
+				kelliASNfilePath = KelliSingleLineASNfilePathForAPC;
+			} else if (fileType.contains("Multi Line")) {
+				// kelliASNfilePath = KelliMultiLineASNfilePath;
 			}
 		}
-		
 
 		File file = new File(kelliASNfilePath);
 
@@ -674,7 +681,7 @@ public class KelliPages {
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
 				choosefile.sendKeys(KelliLocationloadfilePath);
 			}
-		} else {
+		} else if (accnt.equalsIgnoreCase("NVI")){
 			if (fileType.contains("Single Line ASN")) {
 				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
@@ -701,6 +708,12 @@ public class KelliPages {
 				choosefile.sendKeys(KelliLocationloadfilePath);
 			}
 
+		} else if (accnt.equalsIgnoreCase("APC")){
+			if (fileType.contains("Single Line ASN")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliSingleLineASNfilePathForAPC);
+			} 
 		}
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, uploadfile, 100);
 		Steps.logger.info("Clicked on uploadfile");

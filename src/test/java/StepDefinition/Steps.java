@@ -186,6 +186,7 @@ public class Steps {
 			ItemDataMap = ob.filterData(ob.readData(Config.getProperty("TestDataPath"), "ItemData"),
 					scenarioData.get("ItemReference"), "ItemData");
 			System.out.println(ItemDataMap);
+			System.out.println("Size of ItemDataMap"+ItemDataMap.size());
 			logger.info("Excel data stored in Hashmap");
 		} catch (Exception e) {
 			e.printStackTrace();

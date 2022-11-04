@@ -141,8 +141,11 @@ public class ManhattanLoginPage extends Steps {
 				Steps.logger.info("Clicked on Sign in Button");
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, facilitySelection, 180);
 				Thread.sleep(1000);
+				
 				String Facility = Steps.scenarioData.get("Facility");
 				String BusinnesUnit = Steps.scenarioData.get("Account");
+				Steps.logger.info("Facility is : "+Facility);
+				Steps.logger.info("Business Unit : "+BusinnesUnit);
 				
 				if (!facilityApplyBtn.getText().contains(Facility + " - " + BusinnesUnit)) {
 
