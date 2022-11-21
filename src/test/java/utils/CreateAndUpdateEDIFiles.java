@@ -42,11 +42,19 @@ public class CreateAndUpdateEDIFiles {
 	public static String strDate11;
 	public static String strDate5;
 	public static String strDate12;
+	public static String strDate6;
 	//public static String asnNumber;
 	//public static String doNumber;
+	public String SingleLineLotItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"-LotItem-WIP.x12";
+	public String SingleLineNormalItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"-NormalItem-WIP.x12";
+	public String SingleLineSerialItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"-SerialItem-WIP.x12";
 
-	
-	public String APCSingleLineInboundFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"01-856.x12";
+	//public String APCMultilineLineInboundFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"-LotItem-Multiline-WIP.x12";
+	public String MultiLineLotItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"-LotItem-Multiline-WIP.x12";
+	public String MultiLineNormalItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"-NormalItem-Multiline-WIP.x12";
+	public String MultiLineSerialItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"-SerialItem-Multiline-WIP.x12";
+
+	//public String APCSingleLineInboundFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"01-856.x12";
 	public String APCIBMultiLineSerializedFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"08-856.x12";
 	public String APCOBSingleLineFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"01-850.x12";
 
@@ -54,15 +62,38 @@ public class CreateAndUpdateEDIFiles {
 	public String APCEDIOutboundFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-850_InputFile.x12";
 
 	public void user_create_EDI_file(String fileType) throws FileNotFoundException, XPathExpressionException, IOException, SAXException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
-		
-		if(fileType.equals("APC Single Line PO")){
-			Steps.logger.info("Contents Copy from : "+APCSingleLineInboundFilePath);
-			Steps.logger.info("Contents Copy to : "+APCEDIInboundFilePath);
-			user_copy_edi_file_content_from_source_to_target(APCSingleLineInboundFilePath, APCEDIInboundFilePath);
-		}else if(fileType.equals("APC Multiline Serialized PO")){
-			user_copy_edi_file_content_from_source_to_target(APCIBMultiLineSerializedFilePath, APCEDIInboundFilePath);
-		}else if(fileType.equals("APC Single Line DO")){
-			user_copy_edi_file_content_from_source_to_target(APCOBSingleLineFilePath, APCEDIOutboundFilePath);
+		if (fileType.contains("PO")) {
+			if (fileType.equals("APC SingleLine PO - LotItems")) {
+				Steps.logger.info("Contents Copy from : " + SingleLineLotItemIBFilePath);
+				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(SingleLineLotItemIBFilePath, APCEDIInboundFilePath);
+			} else if (fileType.equals("APC SingleLine PO - NormalItems")) {
+				Steps.logger.info("Contents Copy from : " + SingleLineNormalItemIBFilePath);
+				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(SingleLineNormalItemIBFilePath, APCEDIInboundFilePath);
+			}else if (fileType.equals("APC SingleLine PO - SerailItems")) {
+				Steps.logger.info("Contents Copy from : " + SingleLineSerialItemIBFilePath);
+				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(SingleLineSerialItemIBFilePath, APCEDIInboundFilePath);
+			}else if (fileType.equals("APC MultiLine PO - LotItems")) {
+				Steps.logger.info("Contents Copy from : " + MultiLineLotItemIBFilePath);
+				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(MultiLineLotItemIBFilePath,APCEDIInboundFilePath);
+			}else if (fileType.equals("APC SingleLine PO - NormalItems")) {
+				Steps.logger.info("Contents Copy from : " + MultiLineNormalItemIBFilePath);
+				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(MultiLineNormalItemIBFilePath, APCEDIInboundFilePath);
+			}else if (fileType.equals("APC SingleLine PO - SerialItems")) {
+				Steps.logger.info("Contents Copy from : " + MultiLineSerialItemIBFilePath);
+				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(MultiLineSerialItemIBFilePath, APCEDIInboundFilePath);
+			}
+		} else if (fileType.contains("DO")) {
+			if (fileType.equals("APC SingleLine DO - LotItems")) {
+				Steps.logger.info("Contents Copy from : " + APCOBSingleLineFilePath);
+				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(APCOBSingleLineFilePath, APCEDIOutboundFilePath);
+			}
 		}
 //		else if(fileType.equals("Single Line DO")){
 //			user_copy_content_from_source_to_target(SingleLineOutboundFilePath, inputEDIOutboundFilePath);
@@ -79,34 +110,75 @@ public class CreateAndUpdateEDIFiles {
 				
 		SimpleDateFormat formatter5 = new SimpleDateFormat("yyMMdd");
 		strDate5 = formatter5.format(date);
-		System.out.println("Date in yyMMdd format" + strDate5);
+		Steps.logger.info("Date in yyMMdd format" + strDate5);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("HHmmss");
+		strDate6 = sdf.format(date);
+		Steps.logger.info("Date in HHmmss format" + strDate6);
 
 		SimpleDateFormat formatter11 = new SimpleDateFormat("ddHHmmsss");
 		strDate11 = formatter11.format(date);
-		System.out.println("ddHHmmsss" + strDate11);
+		Steps.logger.info("ddHHmmsss" + strDate11);
 		Random random = new Random();
 		int randomNum = random.nextInt(1000);
-		
+		String path=null;
 		if (fileType.contains("PO")) {
+			
+			path = APCEDIInboundFilePath;
+			
 			PODONumber = "APOC000000" + randomNum + "-" + strDate11;
 			Items.setPONumber(PODONumber);
 
 			Steps.logger.info("PONumber: " + Items.getPONumber());
 			Reporter.addStepLog("PONumber: " + Items.getPONumber());
-
-			if (fileType.equals("APC Single Line PO")) {
-				Steps.logger.info("Contents Copy from : " + APCSingleLineInboundFilePath);
+			
+			String itemName = null;
+			String shpQty = null;
+			String uom = null;
+			
+			if (fileType.contains("APC SingleLine PO")) {
 				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
-				updateEDIFile(APCEDIInboundFilePath, "yyMMdd", strDate5);
-				updateEDIFile(APCEDIInboundFilePath, "APOC000000001-ddHHmmsss", PODONumber);
+				modifyEDIFile(APCEDIInboundFilePath, "yyMMdd", strDate5);
+				modifyEDIFile(APCEDIInboundFilePath, "APOC000000001-ddHHmmsss", PODONumber);
+				modifyEDIFile(APCEDIInboundFilePath, "HHmmss", strDate6);
 				Steps.logger.info("PO Number is :" + PODONumber);
 				String ASNno = PODONumber + "-1";
 				Items.setAsnNumber(ASNno);
 				Steps.logger.info("ASNNumber: " + Items.getAsnNumber());
 				Reporter.addStepLog("ASNNumber: " + Items.getAsnNumber());
+				
+				for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
+					Steps.logger.info("Steps.ItemDataMap Size"+Steps.ItemDataMap.size());
+					itemName = Steps.ItemDataMap.get(i).get("Item");
+					
+					modifyEDIFile(APCEDIInboundFilePath, "XXXItemId", itemName);
+					Steps.logger.info("Item : " + itemName + " has been updated successfully");
+					Steps.logger.info("Item : " + itemName + " has been updated successfully");
+					
+					shpQty = Steps.ItemDataMap.get(i).get("ShippedQty");
+					modifyEDIFile(APCEDIInboundFilePath, "XXXItemQty", shpQty);
+					Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
+					Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
+					
+					uom = Steps.ItemDataMap.get(i).get("UOM");
+					modifyEDIFile(APCEDIInboundFilePath, "XXXUOM", uom);
+					modifyEDIFile(APCEDIInboundFilePath, "XXXItemUOM", shpQty);
+					Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
+					Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
+					
+					Items.setItemsForReceivingASN(itemName);
+					Items.setItemWithShippedASNQty(itemName, Integer.parseInt(shpQty));
+					Reporter.addStepLog("Item Id- " + Steps.ItemDataMap.get(i).get("Item") + ", Shipped Qty- "
+							+ Steps.ItemDataMap.get(i).get("ShippedQty"));
+					
+					Steps.logger.info("Item"+Items.getItemsForReceivingASN(i));
+					Steps.logger.info("Qty"+Steps.ItemDataMap.get(i).get("ShippedQty"));
+				}
+				
+				
 
 			} else if (fileType.equals("APC Multiline Serialized PO")) {
-				System.out.println("APC Multiline Serialized PO");
+				Steps.logger.info("APC Multiline Serialized PO");
 				Steps.logger.info("Contents Copy from : " + APCIBMultiLineSerializedFilePath);
 				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
 				updateEDIFile(APCEDIInboundFilePath, "yyMMdd", strDate5);
@@ -132,7 +204,7 @@ public class CreateAndUpdateEDIFiles {
 				updateEDIFile(APCEDIOutboundFilePath, "yyMMdd", strDate5);
 				updateEDIFile(APCEDIOutboundFilePath, "APCHHmmsss", PODONumber);
 				Steps.logger.info("Do Number is" + PODONumber);
-				System.out.println("Test");
+				Reporter.addStepLog("Do Number is" + PODONumber);
 			}
 		}
 		
@@ -196,6 +268,30 @@ public class CreateAndUpdateEDIFiles {
 	        e.printStackTrace();
 	    }
 	}
+	
+	//Code to Modify the EDI file content such as Item Name and Quantity
+		public static void modifyEDIFile(String filePath, String oldString, String newString) {
+		    File fileToBeModified = new File(filePath);
+		    StringBuilder oldContent = new StringBuilder();
+		    try (BufferedReader reader = new BufferedReader(new FileReader(fileToBeModified))) {
+		        String line = reader.readLine();
+		        while (line != null) {
+		            oldContent.append(line).append(System.lineSeparator());
+		            line = reader.readLine();
+		        }
+		        String content = oldContent.toString();
+		        String newContent = content.replaceAll(oldString, newString);
+		       // newContent = newContent.replaceAll("XXXItemQty", "1");
+		       // newContent = newContent.replaceAll("XXXItemId", "03P76-25");
+		        
+		        try (FileWriter writer = new FileWriter(fileToBeModified)) {
+		            writer.write(newContent);
+		        }
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
+		}
+
 
 
 	

@@ -22,6 +22,8 @@ public class DateTime {
 	public static String strDate67;
 	public static String strDate68;
 	public static String strDate70;
+	public static String strDate71;
+	
 	public static void TimeDateFunc() {
 		
 		Date date = new Date(); 
@@ -65,14 +67,20 @@ public class DateTime {
           Calendar c = Calendar.getInstance();
           Calendar c2 = Calendar.getInstance();
           Calendar c3 = Calendar.getInstance();
+          Calendar c4 = Calendar.getInstance();
          c.setTime(new Date()); // Now use today date.
          c.add(Calendar.DATE, 5); // Adding 5 days
          c2.add(Calendar.MINUTE, -5);
          c2.add(Calendar.HOUR, -4);
          c3.add(Calendar.HOUR, -4);
+         
+         c4.setTime(new Date());
+         c4.add(Calendar.DATE, 30);
+         
           strDate4 = formatter4.format(c.getTime());
           strDate9= formatter9.format(c3.getTime());
           strDate10= formatter10.format(c2.getTime());
+          strDate71 = formatter4.format(c4.getTime());
        
 	}
 	

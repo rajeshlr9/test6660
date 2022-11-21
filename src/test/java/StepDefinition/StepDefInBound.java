@@ -658,11 +658,17 @@ public class StepDefInBound {
 	@Then("^user opens RF menu and completes Receiving using \"([^\"]*)\" menu$")
 	public void user_opens_RF_menu_and_completes_Receiving_using_menu(String receivingMethod) throws Exception {
 		try {
+			String account = Config.getProperty("Account");
+
 			homePage.MenuItems_Distribution_Selection("RF Menu");
 			Steps.logger.info("Open RF menu");
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
-			rfMenu.ASNReceivingProcess(receivingMethod);
+			if (account.equalsIgnoreCase("APC")) {
+				rfMenu.ASNReceivingProcessForAPC(receivingMethod);
+			} else {
+				rfMenu.ASNReceivingProcess(receivingMethod);
+			}
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
@@ -1251,6 +1257,7 @@ public class StepDefInBound {
 			Steps.logger.info("x12 EDI File updation started");
 			createUpdateEdiInput.user_create_EDI_file(fileType);
 			createUpdateEdiInput.user_update_EDI_file(fileType);
+			Reporter.addStepLog("Created the EDI File Successfully...");
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			System.out.println(e);

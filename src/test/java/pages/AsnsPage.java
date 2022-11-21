@@ -304,7 +304,7 @@ public class AsnsPage {
 		for (int i = 1; i < lines.size(); i++) {
 			itemInASNPage = lines.get(i).getText();
 			System.out.println("Line Item:" + itemInASNPage);
-
+			//modifying the code - work in progress for fixing an issue
 			SeleniumTestHelper.assertEquals(itemInASNPage, Items.getItemsForReceivingASN(i - 1));
 			System.out.println("Item : " + itemInASNPage + " successfully verified in ASN page");
 
