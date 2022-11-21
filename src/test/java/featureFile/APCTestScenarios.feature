@@ -1,7 +1,7 @@
 Feature: This feature file contains the APC Regression Scenarios for both Inbound and Outbound scenarios.
 
 @InBoundScenario_APC_1 @IBRegScenarios_APC
-Scenario: Create, Upload,Veirify ASN Staus and Complete Receiving for SingleLine Lot Items
+Scenario: Create, Upload,Veirify ASN Staus and Complete Receiving for SingleLine Lot Items  for Cooler type item.
 	Given I have excel data
 	| APC_IBScenario001 |
 	Given Open the chrome browser by selenium
@@ -17,7 +17,7 @@ Scenario: Create, Upload,Veirify ASN Staus and Complete Receiving for SingleLine
 	And user log out from application   
 	
 @InBoundScenario_APC_2 @IBRegScenarios_APC
-Scenario: Create, Upload,Veirify ASN Staus and Complete Receiving for SingleLine Normal Items
+Scenario: Create, Upload,Veirify ASN Staus and Complete Receiving for SingleLine Normal Items  for Ambient type item.
 	Given I have excel data
 	| APC_IBScenario002 |
 	Given Open the chrome browser by selenium
@@ -33,7 +33,7 @@ Scenario: Create, Upload,Veirify ASN Staus and Complete Receiving for SingleLine
 	And user log out from application
 	
 @InBoundScenario_APC_3 @IBRegScenarios_APC
-Scenario: Create, Upload,Veirify ASN Staus and Complete Receiving for SingleLine Serial Items
+Scenario: Create, Upload,Veirify ASN Staus and Complete Receiving for SingleLine Serial Items  for Ambient type item.
 	Given I have excel data
 	| APC_IBScenario003 |
 	Given Open the chrome browser by selenium
@@ -65,7 +65,7 @@ Scenario: Create, Upload,Veirify ASN Staus and Complete Receiving for SingleLine
 	And user log out from application
 	
 @InBoundScenario_APC_5 @IBRegScenarios_APC
-Scenario:  Create, Upload,Veirify ASN Staus and Complete Receiving for SingleLine Normal Items for Abaxis type item. 
+Scenario:  Create, Upload,Veirify ASN Staus and Complete Receiving for SingleLine Normal Items for Freezer type item. 
 	Given I have excel data
 	| APC_IBScenario005 |
 	Given Open the chrome browser by selenium
@@ -81,7 +81,7 @@ Scenario:  Create, Upload,Veirify ASN Staus and Complete Receiving for SingleLin
 	And user log out from application 
 	
 @InBoundScenario_APC_6 @IBRegScenarios_APC
-Scenario:  Create, Upload,Veirify ASN Staus and Complete Receiving for SingleLine Normal Items for Freezer type item. 
+Scenario:  Create, Upload,Veirify ASN Staus and Complete Receiving for SingleLine Lot Items for Abaxis type item. 
 	Given I have excel data
 	| APC_IBScenario006 |
 	Given Open the chrome browser by selenium
