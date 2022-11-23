@@ -695,11 +695,16 @@ public class StepDefInBound {
 	@And("^user opens RF menu and completes Putaway using \"([^\"]*)\" menu$")
 	public void user_opens_RF_menu_and_completes_Putaway(String putawayMethod) throws Exception {
 		try {
+			String account = Config.getProperty("Account");
 			homePage.MenuItems_Distribution_Selection("RF Menu");
 			Steps.logger.info("Open RF menu");
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
-			rfMenu.putawayProcess(putawayMethod);
+			if (account.equalsIgnoreCase("APC")) {
+				rfMenu.putawayProcessForAPC(putawayMethod);
+			} else {
+				rfMenu.putawayProcess(putawayMethod);
+			}
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();

@@ -870,6 +870,10 @@ public class RFMenuPage {
 	public void setPAlletValue(String Palletval) {
 		this.Palletval = Palletval;
 	}
+	
+	@FindBy(xpath = "//a[text()='MM1 Ptwy iLPN']")
+	public WebElement MM1PutawayiLPN;
+
 
 	public void ASNReceivingProcess(int noOfItems, String receivingMethod, String recLocation) throws Exception {
 		String iLPN = null;
@@ -8747,6 +8751,599 @@ public class RFMenuPage {
 			Assert.assertTrue(false, e.getMessage());
 		}
 
+	}
+	// Code for APC Putaway Process
+	public void putawayProcessForAPC(String putawayMethod) throws Exception {
+		try {
+			
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			Steps.logger.info("Start Putaway Process");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+			RFmenu_info.click();
+			Screenshots.captureSnapshot(driver);
+			Steps.logger.info("Clicked on RF Menu");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
+			Mainmenu.click();
+			Screenshots.captureSnapshot(driver);
+			Steps.logger.info("Clicked on Main Menu");
+			Thread.sleep(1000);
+			Screenshots.captureSnapshot(driver);
+			System.out.println("It's going to perform the packing process...");
+			//
+//			for (int i = 0; i < Items.getTaskCount(); i++) {
+//				System.out.println(Items.gettaskTypeList(i));
+//			}
+
+			//if (Items.gettaskTypeList(0).contains("iLPN pull from reserve/pack & hold")) {
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 20);
+				RFmenu_info.click();
+				Screenshots.captureSnapshot(driver);
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, ChgTaskGrpBtn, 5);
+				ChgTaskGrpBtn.click();
+				Screenshots.captureSnapshot(driver);
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, taskGrpInput, 5);
+				taskGrpInput.clear();
+				Thread.sleep(1000);
+				taskGrpInput.sendKeys("NPK");
+				// taskGrpInput.sendKeys("QLD");
+				Thread.sleep(2000);
+				EnterBtn.click();
+				Thread.sleep(3000);
+				Steps.logger.info("Task group changed uccessfully");
+				Reporter.addStepLog("Task group changed successfully");
+
+				String qty = null;
+				// SeleniumTestHelper.switchToInnerFrame(driver);
+				Steps.logger.info("Start Pack Task Completion Process");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+				RFmenu_info.click();
+				Screenshots.captureSnapshot(driver);
+				Steps.logger.info("Clicked on RF Menu");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
+				Mainmenu.click();
+				Screenshots.captureSnapshot(driver);
+				Steps.logger.info("Clicked on Main Menu");
+				Thread.sleep(1000);
+				Screenshots.captureSnapshot(driver);
+
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 20);
+				RFmenu_info.click();
+				Steps.logger.info("Clicked on RF info");
+				Screenshots.captureSnapshot(driver);
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, EnterTaskBtn, 5);
+				EnterTaskBtn.click();
+				Steps.logger.info("Clicked on enter task button");
+				Screenshots.captureSnapshot(driver);
+				System.out.println("task length:" + taskPage.tasks.length);
+				System.out.println("new ilpnpack length:" + Items.getnewiLPNPackSize());
+				Thread.sleep(1000);
+				// for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
+				// for (int i = 0; i < Items.getnewiLPNPackSize(); i++) {
+				System.out.println(Items.gettaskValsSize());
+				for (int i = 0; i < Items.gettaskValsSize(); i++) {
+					// System.out.println("i am here : "+i);
+
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNInputBx, 10);
+					iLPNInputBx.clear();
+					iLPNInputBx.sendKeys(Items.gettaskVals(Items.getTaskTypeValues(i)));
+					System.out.println(Items.gettaskVals(Items.getTaskTypeValues(i)));
+					Thread.sleep(1000);
+					// SeleniumTestHelper.assertTrue(iLPNInputBx.isDisplayed());
+					// Screenshots.captureSnapshot(driver);
+					iLPNInputBx.sendKeys(Keys.ENTER);
+					Thread.sleep(1000);
+					Screenshots.captureSnapshot(driver);
+					// }
+					// while(SeleniumTestHelper.isElementDisplayed(iLPNInputBx)) {
+					while (SeleniumTestHelper.isElementDisplayed(serialNumbersInput)) {
+						// do{
+						// if(SeleniumTestHelper.isElementDisplayed(serialNumbersInput)) {
+						SeleniumTestHelper.waitForElementToBeDisplayed(driver, serialNumbersInput, 50);
+						globalFunc.DateTime.TimeDateFunc();
+						String newSerial = globalFunc.DateTime.strDate12;
+						serialNumbersInput.clear();
+						String serial = "21" + newSerial;
+						Steps.logger.info("Serial no's entered: " + serial);
+						Items.setAsnserialNumberList(serial);
+						serialNumberInputParcel.sendKeys(serial);
+						Screenshots.captureSnapshot(driver);
+						Thread.sleep(1000);
+						// System.out.println("wait1");
+						serialNumberInputParcel.sendKeys(Keys.ENTER);
+						System.out.println("wait2");
+						Screenshots.captureSnapshot(driver);
+						SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
+						System.out.println("wait3");
+						Thread.sleep(4000);
+						if (errorOrWarningMsg.getText().contains("create a new one?")) {
+							System.out.println("await4");
+							Thread.sleep(4000);
+							Screenshots.captureSnapshot(driver);
+							// acceptAndProceedBtn.click();
+							// if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
+							RFmenu_info.click();
+							Thread.sleep(1000);
+							RFmenu_info.click();
+							acceptAndProceedBtn.click();
+							// }
+							// JavascriptExecutor executor = (JavascriptExecutor)driver;
+							// executor.executeScript("arguments[0].click();", acceptAndProceedBtn);
+							System.out.println("await5");
+							Thread.sleep(2000);
+						}
+
+						else if (errorOrWarningMsg.getText().contains("Error")) {
+							Thread.sleep(1000);
+							Screenshots.captureSnapshot(driver);
+							Steps.testRes = "Failed";
+							Assert.assertTrue(false);
+						}
+						// }while(SeleniumTestHelper.isElementDisplayed(serialNumbersInput));
+					}
+					Screenshots.captureSnapshot(driver);
+					// }
+					if (SeleniumTestHelper.isElementDisplayed(InfoAcceptKey)) {
+						Steps.logger.info("Clicking on Info accept key");
+						Thread.sleep(10000);
+						RFmenu_info.click();
+						Thread.sleep(1000);
+						RFmenu_info.click();
+						InfoAcceptKey.click();
+						Steps.logger.info("Clicked on Info accept key");
+					}
+					// SeleniumTestHelper.waitForElementToBeDisplayed(driver, InfoAcceptKey, 50);
+				}
+				Thread.sleep(1000);
+				// SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+				// RFmenu_info.click();
+				// Screenshots.captureSnapshot(driver);
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, ExitBtn, 50);
+				ExitBtn.click();
+				Steps.logger.info("Clicked on Exit key");
+				Screenshots.captureSnapshot(driver);
+				Steps.logger.info("Pack Task is completed successfully");
+				Reporter.addStepLog("Pack Task is completed successfully");
+				homepage.userClosesOpenedwindow("RF Menu");
+			//}
+			
+			
+			
+			
+			
+			
+			
+			
+			Steps.logger.info("Start Putaway Process");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+			RFmenu_info.click();
+			Steps.logger.info("Clicked on RF Menu");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
+			Mainmenu.click();
+			Steps.logger.info("Clicked on Main Menu");
+			Thread.sleep(1000);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuPutaway, 50);
+			rfMenuPutaway.click();
+			Screenshots.captureSnapshot(driver);
+			Steps.logger.info("Clicked on Putaway");
+			switch (putawayMethod) {
+			case "MM1 Ptwy iLPN":
+
+				while (!(SeleniumTestHelper.isElementDisplayed(MM1PutawayiLPN))) {
+					pageDown.click();
+				}
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, MM1PutawayiLPN, 50);
+				MM1PutawayiLPN.click();
+				Screenshots.captureSnapshot(driver);
+				// for (int i = 0; i < iLPNz.size(); i++) {
+				for (int i = 0; i < Items.getLpnsLength(); i++) {
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, altiLPNBoxafterputaway, 50);
+					// altiLPNBoxafterputaway.sendKeys(iLPNz.get(i));
+					altiLPNBoxafterputaway.sendKeys(Items.getLpns(i));
+					// System.out.println("Entered Ilpn: "+iLPNz.get(i));
+					System.out.println("Entered Ilpn: " + Items.getLpns(i));
+					Screenshots.captureSnapshot(driver);
+					altiLPNBoxafterputaway.sendKeys(Keys.ENTER);
+					Screenshots.captureSnapshot(driver);
+					System.out.println("try1");
+					if (SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
+						if (errorOrWarningMsg.getText().contains("Info")) {
+							System.out.println("Info me :- " + errorOrWarningMsg.getText());
+
+							Screenshots.addingScreenshottoExentReport();
+							acceptAndProceedBtn.click();
+						}
+					}
+
+					Thread.sleep(2000);
+					List<WebElement> sugLOC = driver.findElements(By.id("capSubLocationViewSuggested"));
+					System.out.println("try2");
+					List<WebElement> RLOC = driver.findElements(By.id("dataForm:ifNotSuggestedMode"));
+					System.out.println("try3");
+					if (sugLOC.size() > 0) {
+						// if(SeleniumTestHelper.isElementDisplayed(suggestedLoc)) {
+						// List <WebElement> sugLOC=
+						// driver.findElements(By.id("capSubLocationViewSuggested"));
+						// SeleniumTestHelper.waitForElementToBeDisplayed(driver, suggestedLoc, 50);
+						String sugLoc = suggestedLoc.getText();
+						System.out.println(suggestedLoc.getText());
+						String[] sysSuggestedLocSplit = sugLoc.split("\n");
+						String loco = sysSuggestedLocSplit[1].trim();
+						System.out.println(loco);
+
+						driver.switchTo().parentFrame();
+						String LocBarCode = reserveLocationPage.getReservelocation(loco);
+						SeleniumTestHelper.switchToInnerFrame(driver);
+						System.out.println("Sys tech3");
+
+						/*
+						 * String[] spltarr = sysSuggestedLocSplit[1].split("-"); String str =
+						 * GlobalClass.removeZero(spltarr[1]); System.out.println(str); spltarr[1] =
+						 * str; String updtLoc = ""; for (String a : spltarr) updtLoc = updtLoc + a;
+						 */
+
+						// System.out.println("updtLoc is: " + updtLoc);
+						putawayLoctxtBox.click();
+						putawayLoctxtBox.sendKeys(LocBarCode);
+						Screenshots.captureSnapshot(driver);
+						Thread.sleep(1000);
+						putawayLoctxtBox.sendKeys(Keys.ENTER);
+						Screenshots.captureSnapshot(driver);
+
+						if (SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
+							System.out.println("testoing");
+							SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
+							if (errorOrWarningMsg.getText().contains("Error")) {
+								System.out.println("Info :- " + errorOrWarningMsg.getText());
+								Steps.logger.info(errorOrWarningMsg.getText());
+								globalFunc.Screenshots.seleniumSnapshot(driver);
+								Steps.testRes = "Failed";
+								Assert.assertTrue(false);
+								// Screenshots.addingScreenshottoExentReport();
+								// acceptAndProceedBtn.click();
+								// Screenshots.captureSnapshot(driver);
+								break;
+							} else if (errorOrWarningMsg.getText().contains("Warning")) {
+								System.out.println("Info me :- " + errorOrWarningMsg.getText());
+								globalFunc.Screenshots.seleniumSnapshot(driver);
+								Screenshots.addingScreenshottoExentReport();
+								acceptAndProceedBtn.click();
+								// Screenshots.captureSnapshot(driver);
+								// globalFunc.Screenshots.seleniumSnapshot(driver);
+								Steps.testRes = "Failed";
+								// Assert.assertTrue(false);
+							}
+						}
+						Steps.logger.info("Putaway Completed. Item moved to:" + sysSuggestedLocSplit[1] + " location");
+						Reporter.addStepLog(
+								"Putaway Completed. Item moved to:" + sysSuggestedLocSplit[1] + " location");
+					} else if (RLOC.size() > 0) {
+						// else if(SeleniumTestHelper.isElementDisplayed(RLoc)) {
+						// List <WebElement> RLOC=
+						// driver.findElements(By.id("dataForm:ifNotSuggestedMode"));
+						String RLocation;
+						String[] sysSuggestedLocSplit;
+						String loco;
+						String LocBarCode;
+						if (Steps.ItemDataMap.get(0).get("PutAwayOverride").equals("")) {
+							RLocation = RLoc.getText();
+							System.out.println(RLoc.getText());
+							sysSuggestedLocSplit = RLocation.split("Rloc: ");
+							System.out.println(sysSuggestedLocSplit[1]);
+							loco = sysSuggestedLocSplit[1].trim();
+							System.out.println(loco);
+
+							driver.switchTo().parentFrame();
+							LocBarCode = reserveLocationPage.getReservelocation(loco);
+							SeleniumTestHelper.switchToInnerFrame(driver);
+							System.out.println("Sys tech4");
+
+							/*
+							 * String[] spltarr = sysSuggestedLocSplit[1].split("-"); String str =
+							 * GlobalClass.removeZero(spltarr[1]); System.out.println(str); spltarr[1] =
+							 * str; String updtLoc = ""; for (String a : spltarr) updtLoc = updtLoc + a;
+							 */
+
+							// System.out.println("updtLoc is: " + updtLoc);
+
+							RlocinputtxtBox.click();
+							RlocinputtxtBox.sendKeys(LocBarCode);
+							Items.setupdtLoc(LocBarCode);
+
+						} else {
+							RlocinputtxtBox.sendKeys(Steps.ItemDataMap.get(i).get("PutAwayOverride"));
+							Items.setupdtLoc(Steps.ItemDataMap.get(i).get("PutAwayOverride"));
+
+						}
+
+						System.out.println("updtLoc is items.get fata: " + Items.getupdtLoc());
+						// RlocinputtxtBox.sendKeys(updtLoc);
+						Screenshots.captureSnapshot(driver);
+
+						Thread.sleep(1000);
+						RlocinputtxtBox.sendKeys(Keys.ENTER);
+						Screenshots.captureSnapshot(driver);
+						if (SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
+							System.out.println("accotaprocees");
+							globalFunc.Screenshots.seleniumSnapshot(driver);
+							acceptAndProceedBtn.click();
+							Thread.sleep(10000);
+
+						}
+						// Steps.logger.info("Putaway Completed. iLPN "+ iLPNz.get(i)+ " moved to
+						// "+Items.getupdtLoc()+" location");
+						// Reporter.addStepLog("Putaway Completed. iLPN "+ iLPNz.get(i)+ " moved to
+						// "+Items.getupdtLoc()+" location");
+						Steps.logger.info("Putaway Completed. iLPN " + Items.getLpns(i) + " moved to "
+								+ Items.getupdtLoc() + " location");
+						Reporter.addStepLog("Putaway Completed. iLPN " + Items.getLpns(i) + " moved to "
+								+ Items.getupdtLoc() + " location");
+
+					} else if (sugLOC.size() == 0 && RLOC.size() == 0) {
+						System.out.println("no location");
+						driver.switchTo().parentFrame();
+						System.out.println("Sys tech22");
+						// String LocCode =
+						// reserveLocationPage.getReservelocationByitem(Steps.ItemDataMap.get(i).get("Item"));
+						String LocCode = reserveLocationPage.getReservelocationByitem(Items.getItemsForReceivingASN(i));
+						SeleniumTestHelper.switchToInnerFrame(driver);
+						System.out.println("no loc 2");
+						// click only to get rid of open windows tab
+						subLocationUserDirected.click();
+						subLocationUserDirected.sendKeys(LocCode);
+						Items.setupdtLoc(LocCode);
+						System.out.println("updtLoc is items.get fata: " + Items.getupdtLoc());
+						// RlocinputtxtBox.sendKeys(updtLoc);
+						Screenshots.captureSnapshot(driver);
+
+						Thread.sleep(1000);
+						subLocationUserDirected.sendKeys(Keys.ENTER);
+						Screenshots.captureSnapshot(driver);
+						if (SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
+							System.out.println("accotaprocees");
+							globalFunc.Screenshots.seleniumSnapshot(driver);
+							acceptAndProceedBtn.click();
+							Thread.sleep(10000);
+
+						}
+						// Steps.logger.info("Putaway Completed. iLPN "+ iLPNz.get(i)+ " moved to
+						// "+Items.getupdtLoc()+" location");
+						// Reporter.addStepLog("Putaway Completed. iLPN "+ iLPNz.get(i)+ " moved to
+						// "+Items.getupdtLoc()+" location");
+						Steps.logger.info("Putaway Completed. iLPN " + Items.getLpns(i) + " moved to "
+								+ Items.getupdtLoc() + " location");
+						Reporter.addStepLog("Putaway Completed. iLPN " + Items.getLpns(i) + " moved to "
+								+ Items.getupdtLoc() + " location");
+
+					}
+				}
+				homepage.userClosesOpenedwindow("RF Menu");
+
+				break;
+			case "MM1 APC Ptwy Bulk":
+
+				while (!(SeleniumTestHelper.isElementDisplayed(MM3QSCPtwyBulk))) {
+					pageDown.click();
+				}
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, MM3QSCPtwyBulk, 50);
+				MM3QSCPtwyBulk.click();
+				Screenshots.captureSnapshot(driver);
+				// for (int i = 0; i < iLPNz.size(); i++) {
+				for (int i = 0; i < Items.getLpnsLength(); i++) {
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, altiLPNBoxafterputaway, 50);
+					// altiLPNBoxafterputaway.sendKeys(iLPNz.get(i));
+					altiLPNBoxafterputaway.sendKeys(Items.getLpns(i));
+					Screenshots.captureSnapshot(driver);
+					altiLPNBoxafterputaway.sendKeys(Keys.ENTER);
+					Screenshots.captureSnapshot(driver);
+
+					List<WebElement> sugLOC = driver.findElements(By.id("capSubLocationViewSuggested"));
+					List<WebElement> RLOC = driver.findElements(By.id("dataForm:ifNotSuggestedMode"));
+					if (sugLOC.size() > 0) {
+						// SeleniumTestHelper.waitForElementToBeDisplayed(driver, suggestedLoc, 50);
+						String sugLoc = suggestedLoc.getText();
+						System.out.println(suggestedLoc.getText());
+						String[] sysSuggestedLocSplit = sugLoc.split("\n");
+						String loco = sysSuggestedLocSplit[1].trim();
+						System.out.println(loco);
+
+						driver.switchTo().parentFrame();
+						String LocBarCode = reserveLocationPage.getReservelocation(loco);
+						SeleniumTestHelper.switchToInnerFrame(driver);
+						System.out.println("Sys tech3");
+
+						/*
+						 * String[] spltarr = sysSuggestedLocSplit[1].split("-"); String str =
+						 * GlobalClass.removeZero(spltarr[1]); System.out.println(str); spltarr[1] =
+						 * str; String updtLoc = ""; for (String a : spltarr) updtLoc = updtLoc + a;
+						 */
+
+						// System.out.println("updtLoc is: " + updtLoc);
+						putawayLoctxtBox.click();
+						putawayLoctxtBox.sendKeys(LocBarCode);
+
+						Items.setupdtLoc(LocBarCode);
+						System.out.println("updtLoc is items.get fata: " + Items.getupdtLoc());
+						Screenshots.captureSnapshot(driver);
+						Thread.sleep(1000);
+						putawayLoctxtBox.sendKeys(Keys.ENTER);
+						Screenshots.captureSnapshot(driver);
+						Steps.logger
+								.info("Bulk Putaway Completed. Item moved to:" + sysSuggestedLocSplit[1] + " location");
+						Reporter.addStepLog(
+								"Bulk Putaway Completed. Item moved to:" + sysSuggestedLocSplit[1] + " location");
+					} else if (RLOC.size() > 0) {
+						String RLocation = RLoc.getText();
+						System.out.println(RLoc.getText());
+						String[] sysSuggestedLocSplit = RLocation.split("Rloc: ");
+						System.out.println(sysSuggestedLocSplit[1]);
+						String[] spltarr = sysSuggestedLocSplit[1].split("-");
+						String str = GlobalClass.removeZero(spltarr[1]);
+						System.out.println(str);
+						spltarr[1] = str;
+						String updtLoc = "";
+						for (String a : spltarr)
+							updtLoc = updtLoc + a;
+
+						System.out.println("updtLoc is: " + updtLoc);
+						RlocinputtxtBox.sendKeys(updtLoc);
+						Screenshots.captureSnapshot(driver);
+						Thread.sleep(1000);
+						RlocinputtxtBox.sendKeys(Keys.ENTER);
+						Items.setupdtLoc(sysSuggestedLocSplit[1]);
+						System.out.println("updtLoc is items.get fata: " + Items.getupdtLoc());
+
+						Screenshots.captureSnapshot(driver);
+						// Steps.logger.info("Bulk Putaway Completed. iLPN "+ iLPNz.get(i)+ " moved to
+						// "+sysSuggestedLocSplit[1]+" location");
+						// Reporter.addStepLog("Bulk Putaway Completed. iLPN "+ iLPNz.get(i)+ " moved to
+						// "+sysSuggestedLocSplit[1]+" location");
+						Steps.logger.info("Bulk Putaway Completed. iLPN " + Items.getLpns(i) + " moved to "
+								+ sysSuggestedLocSplit[1] + " location");
+						Reporter.addStepLog("Bulk Putaway Completed. iLPN " + Items.getLpns(i) + " moved to "
+								+ sysSuggestedLocSplit[1] + " location");
+					}
+				}
+				homepage.userClosesOpenedwindow("RF Menu");
+
+				break;
+
+			case "MM1 Ptwy OverSized":
+
+				while (!(SeleniumTestHelper.isElementDisplayed(MM3PtwyOversized))) {
+					pageDown.click();
+				}
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, MM3PtwyOversized, 50);
+				MM3PtwyOversized.click();
+				Screenshots.captureSnapshot(driver);
+				// for (int i = 0; i < iLPNz.size(); i++) {
+				for (int i = 0; i < Items.getLpnsLength(); i++) {
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, altiLPNBoxafterputaway, 50);
+					// altiLPNBoxafterputaway.sendKeys(iLPNz.get(i));
+					altiLPNBoxafterputaway.sendKeys(Items.getLpns(i));
+					Screenshots.captureSnapshot(driver);
+					altiLPNBoxafterputaway.sendKeys(Keys.ENTER);
+					Screenshots.captureSnapshot(driver);
+					System.out.println("trytango");
+					if (SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
+						if (errorOrWarningMsg.getText().contains("Info")) {
+							System.out.println("Info me :- " + errorOrWarningMsg.getText());
+
+							Screenshots.addingScreenshottoExentReport();
+							acceptAndProceedBtn.click();
+						}
+					}
+					List<WebElement> sugLOC = driver.findElements(By.id("capSubLocationViewSuggested"));
+					List<WebElement> RLOC = driver.findElements(By.id("dataForm:ifNotSuggestedMode"));
+					if (sugLOC.size() > 0) {
+						// SeleniumTestHelper.waitForElementToBeDisplayed(driver, suggestedLoc, 50);
+						String sugLoc = suggestedLoc.getText();
+						System.out.println(suggestedLoc.getText());
+						String[] sysSuggestedLocSplit = sugLoc.split(":");
+						String loco = sysSuggestedLocSplit[1].trim();
+						System.out.println(loco);
+						driver.switchTo().parentFrame();
+						String LocBarCode = reserveLocationPage.getReservelocation(loco);
+						SeleniumTestHelper.switchToInnerFrame(driver);
+						System.out.println("Sys tech3");
+
+						/*
+						 * String[] spltarr = sysSuggestedLocSplit[1].split("-"); String str =
+						 * GlobalClass.removeZero(spltarr[1]); System.out.println(str); spltarr[1] =
+						 * str; String updtLoc = ""; for (String a : spltarr) updtLoc = updtLoc + a;
+						 */
+
+						// System.out.println("updtLoc is: " + updtLoc);
+						putawayLoctxtBox.click();
+						putawayLoctxtBox.sendKeys(LocBarCode);
+						Items.setupdtLoc(LocBarCode);
+						System.out.println("updtLoc is items.get fata: " + Items.getupdtLoc());
+						Screenshots.captureSnapshot(driver);
+						Thread.sleep(1000);
+						putawayLoctxtBox.sendKeys(Keys.ENTER);
+						Screenshots.captureSnapshot(driver);
+						Steps.logger
+								.info("Bulk Putaway Completed. Item moved to:" + sysSuggestedLocSplit[1] + " location");
+						Reporter.addStepLog(
+								"Bulk Putaway Completed. Item moved to:" + sysSuggestedLocSplit[1] + " location");
+					} else if (RLOC.size() > 0) {
+						String RLocation = RLoc.getText();
+						System.out.println(RLoc.getText());
+						String[] sysSuggestedLocSplit = RLocation.split(":");
+						System.out.println(sysSuggestedLocSplit[1]);
+						String loco = sysSuggestedLocSplit[1].trim();
+						System.out.println(loco);
+						driver.switchTo().parentFrame();
+						String LocBarCode = reserveLocationPage.getReservelocation(loco);
+						SeleniumTestHelper.switchToInnerFrame(driver);
+						System.out.println("Sys tech3");
+
+						Items.setupdtLoc(LocBarCode);
+						Thread.sleep(1000);
+						RlocinputtxtBox.click();
+						Thread.sleep(1000);
+						RlocinputtxtBox.sendKeys(LocBarCode + Keys.ENTER);
+						System.out.println("updtLoc is items.get fata: " + Items.getupdtLoc());
+						Screenshots.captureSnapshot(driver);
+						// Steps.logger.info("Bulk Putaway Completed. iLPN "+ iLPNz.get(i)+ " moved to
+						// "+sysSuggestedLocSplit[1]+" location");
+						// Reporter.addStepLog("Bulk Putaway Completed. iLPN "+ iLPNz.get(i)+ " moved to
+						// "+sysSuggestedLocSplit[1]+" location");
+						Steps.logger.info("Bulk Putaway Completed. iLPN " + Items.getLpns(i) + " moved to "
+								+ sysSuggestedLocSplit[1] + " location");
+						Reporter.addStepLog("Bulk Putaway Completed. iLPN " + Items.getLpns(i) + " moved to "
+								+ sysSuggestedLocSplit[1] + " location");
+
+					} else if (sugLOC.size() == 0 && RLOC.size() == 0) {
+						System.out.println("no location tango");
+						driver.switchTo().parentFrame();
+						System.out.println("Sys techtango");
+						// String LocCode =
+						// reserveLocationPage.getReservelocationByitem(Steps.ItemDataMap.get(i).get("Item"));
+						String LocCode = reserveLocationPage.getReservelocationByitem(Items.getItemsForReceivingASN(i));
+						SeleniumTestHelper.switchToInnerFrame(driver);
+						System.out.println("no loc 2");
+						// click only to get rid of open windows tab
+						subLocationUserDirected.click();
+						subLocationUserDirected.sendKeys(LocCode);
+						Items.setupdtLoc(LocCode);
+						System.out.println("updtLoc is items.get fata: " + Items.getupdtLoc());
+						// RlocinputtxtBox.sendKeys(updtLoc);
+						Screenshots.captureSnapshot(driver);
+
+						Thread.sleep(1000);
+						subLocationUserDirected.sendKeys(Keys.ENTER);
+						Screenshots.captureSnapshot(driver);
+						if (SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
+							System.out.println("accotaprocees");
+							globalFunc.Screenshots.seleniumSnapshot(driver);
+							acceptAndProceedBtn.click();
+							Thread.sleep(10000);
+
+						}
+						// Steps.logger.info("Putaway Completed. iLPN "+ iLPNz.get(i)+ " moved to
+						// "+Items.getupdtLoc()+" location");
+						// Reporter.addStepLog("Putaway Completed. iLPN "+ iLPNz.get(i)+ " moved to
+						// "+Items.getupdtLoc()+" location");
+						Steps.logger.info("Putaway Completed. iLPN " + Items.getLpns(i) + " moved to "
+								+ Items.getupdtLoc() + " location");
+						Reporter.addStepLog("Putaway Completed. iLPN " + Items.getLpns(i) + " moved to "
+								+ Items.getupdtLoc() + " location");
+
+					}
+				}
+				homepage.userClosesOpenedwindow("RF Menu");
+
+				break;
+
+			default:
+				System.out.println("Invalid putaway operation");
+			}
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println("test red" + Steps.testRes);
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
 	}
 	//
 
