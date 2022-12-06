@@ -197,7 +197,6 @@ public class StepDefInBound {
 		public void user_upload_the_xml_in_fedexnet(String fileType) {
 		try {
 			String env = ManhattanLoginPage.environment;
-			System.out.println("Environment:"+env);
 			String account = Config.getProperty("Account");
 			String dropEnv=null;
 			if (env.equalsIgnoreCase("L1")|| env.equalsIgnoreCase("@Env") || env.equalsIgnoreCase("L2")) {
@@ -738,11 +737,16 @@ public class StepDefInBound {
 	@And("^user open reserve locations and naviagtes to validate iLPN$")
 	public void  user_open_reserve_locations_and_naviagtes_to_validate_iLPN() throws Exception {
 		try {
+			String account = Config.getProperty("Account");
 			homePage.MenuItems_Configuration_Selection("Reserve Locations");
 			Steps.logger.info("Open Reserve Locations");
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
-			resLocPage.validateiLPNinReserveLoc();
+			if(account.equalsIgnoreCase("APC")) {
+				resLocPage.validateiLPNinReserveLocForAPC();
+			}else {
+				resLocPage.validateiLPNinReserveLoc();
+			}
 			System.out.println("reserveLocationqty:"+resLocPage.reserveLocationqty);
 			homePage.user_closes_openedwindow("Reserve Locations - iLPNs");
 		} catch (Exception e) {

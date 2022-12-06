@@ -107,11 +107,11 @@ public class CreateAndUpdateEDIFiles {
 			ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
 		Date date = new Date();
 		String PODONumber = "";
-				
+
 		SimpleDateFormat formatter5 = new SimpleDateFormat("yyMMdd");
 		strDate5 = formatter5.format(date);
 		Steps.logger.info("Date in yyMMdd format" + strDate5);
-		
+
 		SimpleDateFormat sdf = new SimpleDateFormat("HHmmss");
 		strDate6 = sdf.format(date);
 		Steps.logger.info("Date in HHmmss format" + strDate6);
@@ -121,21 +121,21 @@ public class CreateAndUpdateEDIFiles {
 		Steps.logger.info("ddHHmmsss" + strDate11);
 		Random random = new Random();
 		int randomNum = random.nextInt(1000);
-		String path=null;
+		String path = null;
 		if (fileType.contains("PO")) {
-			
+
 			path = APCEDIInboundFilePath;
-			
+
 			PODONumber = "APOC000000" + randomNum + "-" + strDate11;
 			Items.setPONumber(PODONumber);
 
 			Steps.logger.info("PONumber: " + Items.getPONumber());
 			Reporter.addStepLog("PONumber: " + Items.getPONumber());
-			
+
 			String itemName = null;
 			String shpQty = null;
 			String uom = null;
-			
+
 			if (fileType.contains("APC SingleLine PO")) {
 				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
 				modifyEDIFile(APCEDIInboundFilePath, "yyMMdd", strDate5);
@@ -146,36 +146,34 @@ public class CreateAndUpdateEDIFiles {
 				Items.setAsnNumber(ASNno);
 				Steps.logger.info("ASNNumber: " + Items.getAsnNumber());
 				Reporter.addStepLog("ASNNumber: " + Items.getAsnNumber());
-				
+
 				for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
-					Steps.logger.info("Steps.ItemDataMap Size"+Steps.ItemDataMap.size());
+					Steps.logger.info("Steps.ItemDataMap Size" + Steps.ItemDataMap.size());
 					itemName = Steps.ItemDataMap.get(i).get("Item");
-					
+
 					modifyEDIFile(APCEDIInboundFilePath, "XXXItemId", itemName);
 					Steps.logger.info("Item : " + itemName + " has been updated successfully");
 					Steps.logger.info("Item : " + itemName + " has been updated successfully");
-					
+
 					shpQty = Steps.ItemDataMap.get(i).get("ShippedQty");
 					modifyEDIFile(APCEDIInboundFilePath, "XXXItemQty", shpQty);
 					Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
 					Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
-					
+
 					uom = Steps.ItemDataMap.get(i).get("UOM");
 					modifyEDIFile(APCEDIInboundFilePath, "XXXUOM", uom);
 					modifyEDIFile(APCEDIInboundFilePath, "XXXItemUOM", shpQty);
 					Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
 					Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
-					
+
 					Items.setItemsForReceivingASN(itemName);
 					Items.setItemWithShippedASNQty(itemName, Integer.parseInt(shpQty));
 					Reporter.addStepLog("Item Id- " + Steps.ItemDataMap.get(i).get("Item") + ", Shipped Qty- "
 							+ Steps.ItemDataMap.get(i).get("ShippedQty"));
-					
-					Steps.logger.info("Item"+Items.getItemsForReceivingASN(i));
-					Steps.logger.info("Qty"+Steps.ItemDataMap.get(i).get("ShippedQty"));
+
+					Steps.logger.info("Item" + Items.getItemsForReceivingASN(i));
+					Steps.logger.info("Qty" + Steps.ItemDataMap.get(i).get("ShippedQty"));
 				}
-				
-				
 
 			} else {
 				Steps.logger.info("APC Multiline PO");
@@ -189,47 +187,44 @@ public class CreateAndUpdateEDIFiles {
 				Items.setAsnNumber(ASNno);
 				Steps.logger.info("ASNNumber: " + Items.getAsnNumber());
 				Reporter.addStepLog("ASNNumber: " + Items.getAsnNumber());
-				
 
-				
-				
 				for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
-					Steps.logger.info("Steps.ItemDataMap Size"+Steps.ItemDataMap.size());
+					Steps.logger.info("Steps.ItemDataMap Size" + Steps.ItemDataMap.size());
 					itemName = Steps.ItemDataMap.get(i).get("Item");
-					
-					modifyEDIFile(APCEDIInboundFilePath, "XXXItemId"+i, itemName);
+
+					modifyEDIFile(APCEDIInboundFilePath, "XXXItemId" + i, itemName);
 					Steps.logger.info("Item : " + itemName + " has been updated successfully");
 					Steps.logger.info("Item : " + itemName + " has been updated successfully");
-					
+
 					shpQty = Steps.ItemDataMap.get(i).get("ShippedQty");
-					modifyEDIFile(APCEDIInboundFilePath, "XXXItemQty"+i, shpQty);
+					modifyEDIFile(APCEDIInboundFilePath, "XXXItemQty" + i, shpQty);
 					Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
 					Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
-					
+
 					uom = Steps.ItemDataMap.get(i).get("UOM");
-					modifyEDIFile(APCEDIInboundFilePath, "XXXUOM"+i, uom);
-					modifyEDIFile(APCEDIInboundFilePath, "XXXItemUOM"+i, shpQty);
+					modifyEDIFile(APCEDIInboundFilePath, "XXXUOM" + i, uom);
+					modifyEDIFile(APCEDIInboundFilePath, "XXXItemUOM" + i, shpQty);
 					Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
 					Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
-					
+
 					Items.setItemsForReceivingASN(itemName);
 					Items.setItemWithShippedASNQty(itemName, Integer.parseInt(shpQty));
 					Reporter.addStepLog("Item Id- " + Steps.ItemDataMap.get(i).get("Item") + ", Shipped Qty- "
 							+ Steps.ItemDataMap.get(i).get("ShippedQty"));
-					
-					Steps.logger.info("Item"+Items.getItemsForReceivingASN(i));
-					Steps.logger.info("Qty"+Steps.ItemDataMap.get(i).get("ShippedQty"));
+
+					Steps.logger.info("Item" + Items.getItemsForReceivingASN(i));
+					Steps.logger.info("Qty" + Steps.ItemDataMap.get(i).get("ShippedQty"));
 				}
 			}
 
-		}else if (fileType.contains("DO")) {
+		} else if (fileType.contains("DO")) {
 			SimpleDateFormat formatter12 = new SimpleDateFormat("HHmmsss");
 			strDate12 = formatter12.format(date);
 			PODONumber = "APC" + strDate12;
 			Items.setDONumber(PODONumber);
-			Steps.logger.info("DO Number: "+PODONumber);
-			Reporter.addStepLog("DO Number: "+PODONumber);
-			
+			Steps.logger.info("DO Number: " + PODONumber);
+			Reporter.addStepLog("DO Number: " + PODONumber);
+
 			if (fileType.equals("APC Single Line DO")) {
 				Steps.logger.info("Contents Copy from : " + APCOBSingleLineFilePath);
 				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
@@ -239,15 +234,7 @@ public class CreateAndUpdateEDIFiles {
 				Reporter.addStepLog("Do Number is" + PODONumber);
 			}
 		}
-		
-		
-//		else if(fileType.equals("Multi Line PO")){
-//			user_copy_content_from_source_to_target(MultiLineInboundFilePath, inputEDIInboundFilePath);
-//		}else if(fileType.equals("Single Line DO")){
-//			user_copy_content_from_source_to_target(SingleLineOutboundFilePath, inputEDIOutboundFilePath);
-//		}else if(fileType.equals("Multi Line DO")){
-//			user_copy_content_from_source_to_target(MultiLineOutboundFilePath, inputEDIOutboundFilePath);
-//		}
+
 	}
 
 	//Copy files from one folder to another folder

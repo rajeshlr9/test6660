@@ -505,4 +505,88 @@ driver.switchTo().frame(0);
 		 */
 		
 	}
+	
+	public String getReservelocationByWorkGroup(String item) throws Exception
+	{
+		String locBarCode= "";
+ 		//String emptyLocation = null;
+		try {
+		homePage.MenuItems_Configuration_Selection("Reserve Locations");	
+		Thread.sleep(5000);
+		//SeleniumTestHelper.switchToInnerFrame(driver);
+		driver.switchTo().defaultContent();
+		driver.switchTo().frame(1);
+        SeleniumTestHelper.waitForElementToBeDisplayed(driver, expandBtn, 20);
+        expandBtn.click();
+        Thread.sleep(5000);
+        Select selWorkGroupArea = new Select(driver.findElement(By.id("dataForm:listView:filterId:field160value1")));
+        selWorkGroupArea.selectByVisibleText(item);
+       // filterId.sendKeys(item);
+        //Thread.sleep(2000);
+        filterIdapply.click();
+        
+        Thread.sleep(3000);
+        firstLocation.click();
+        Thread.sleep(2000);
+        viewBtn1.click();
+        Thread.sleep(2000);
+        locBarCode= LocBarcode.getAttribute("value");
+        System.out.println("Location barcode is: " +locBarCode);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	homePage.userClosesOpenedwindow("Reserve Locations - Reserve Location");
+	Thread.sleep(3000);
+	return locBarCode;
+
+	}
+	
+	public void validateiLPNinReserveLocForAPC() throws Exception {
+		try {
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, expandBtn, 20);
+			expandBtn.click();
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, locationBarcodetxtBox, 20);
+			locationBarcodetxtBox.sendKeys(Items.getupdtLoc());
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, ApplyBtn, 20);
+			ApplyBtn.click();
+			Thread.sleep(1000);
+			Screenshots.captureSnapshot(driver);
+			String getPutawayZone = driver.findElement(By.xpath("//span[@id='dataForm:listView:dataTable:0:custId16']"))
+					.getText();
+			Reporter.addStepLog("Putaway zone in reserve location is: " + getPutawayZone);
+			String itemType = Steps.scenarioData.get("PutawayType");
+			if (getPutawayZone.contains(itemType)) {
+				Reporter.addStepLog("Putaway zone in reserve location contains valid item type" + itemType);
+				Assert.assertTrue(true, "putaway zone starts with " + getPutawayZone.subSequence(0, 2));
+
+			} else {
+				Steps.testRes = "Failed";
+				Reporter.addStepLog("Putaway zone in reserve location is for Normal item in not " + getPutawayZone);
+				Assert.assertTrue(false, "Invalid Putaway zone");
+			}
+
+			Thread.sleep(2000);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, firstRsrvLoc, 20);
+			firstRsrvLoc.click();
+			Screenshots.captureSnapshot(driver);
+			LPNsBtn.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPntxtBoxResLoc, 20);
+			Screenshots.captureSnapshot(driver);
+			Thread.sleep(2000);
+			// iLPntxtBoxResLoc.sendKeys(RFMenuPage.iLPNz.get(0));
+			iLPntxtBoxResLoc.sendKeys(Items.getLpns(0));
+			Thread.sleep(10000);
+			iLPnResLocApplyBtn.click();
+			Thread.sleep(3000);
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNvalue, 20);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
 }
