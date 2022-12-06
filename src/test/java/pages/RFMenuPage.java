@@ -7573,8 +7573,6 @@ public class RFMenuPage {
 							Screenshots.addingScreenshottoExentReport();
 							acceptAndProceedBtn.click();
 						}
-					} else {
-						ExitBtn.click();
 					}
 					if (putawayType.contains("Ambient") || putawayType.contains("Cooler")
 							|| putawayType.contains("Abaxis")) {

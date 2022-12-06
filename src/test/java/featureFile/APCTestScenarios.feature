@@ -190,12 +190,10 @@ Scenario:  Receiving Multiline Lot Items with Same Items and Same Quantity for A
 	And user log out from application
 	
 @InBoundScenario_APC_11 @IBRegScenarios_APC
-Scenario:  #Receiving Multiline Lot Items of Freezer Type with Same Item and SameQuantity.
-           Rceiving Multiline Normal Items of Hazmath Type with Same Item and SameQuantity.  
+Scenario: Rceiving Multiline Normal Items of Hazmath Type with Same Item and SameQuantity.  
 	Given I have excel data
 	| APC_IBScenario011 |
 	Given Open the chrome browser by selenium
-	#Given user update EDI file "APC MultiLine PO - LotItems" for dropping into fedexnet application
 	Given user update EDI file "APC MultiLine PO - NormalItems" for dropping into fedexnet application
 	And user logs into the FedexNet application
 	And user upload "856" XML file in fedexnet
