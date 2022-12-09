@@ -6817,7 +6817,7 @@ public class RFMenuPage {
 						Screenshots.captureSnapshot(driver);
 					}
 					globalFunc.DateTime.TimeDateFunc();
-					SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 50);
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 20);
 					lpnInputTxt.sendKeys(("0" + DateTime.strDate32) + Keys.ENTER);
 					Screenshots.captureSnapshot(driver);
 					if (SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
@@ -6852,7 +6852,7 @@ public class RFMenuPage {
 					Screenshots.captureSnapshot(driver);
 
 					Steps.logger.info(DateTime.strDate71);
-					Thread.sleep(3000);
+					Thread.sleep(1000);
 					if (SeleniumTestHelper.isElementDisplayed(expMM)) {
 						SeleniumTestHelper.waitForElementToBeDisplayed(driver, expMM, 10);
 						expMM.sendKeys(DateTime.strDate71.split("/")[0]);
@@ -6860,7 +6860,7 @@ public class RFMenuPage {
 						expDD.sendKeys(DateTime.strDate71.split("/")[1]);
 						SeleniumTestHelper.waitForElementToBeDisplayed(driver, expYYYY, 10);
 						expYYYY.sendKeys(DateTime.strDate71.split("/")[2]);
-						Thread.sleep(5000);
+						Thread.sleep(1000);
 
 					}
 					Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")));
@@ -6876,13 +6876,13 @@ public class RFMenuPage {
 						expDD.sendKeys(DateTime.strDate71.split("/")[1]);
 						SeleniumTestHelper.waitForElementToBeDisplayed(driver, expYYYY, 10);
 						expYYYY.sendKeys(DateTime.strDate71.split("/")[2]);
-						Thread.sleep(5000);
+						Thread.sleep(1000);
 					}
 					// wip-end point
 					while (SeleniumTestHelper.isElementDisplayed(serialNumbersInput)) {
 						// do{
 						// if(SeleniumTestHelper.isElementDisplayed(serialNumbersInput)) {
-						SeleniumTestHelper.waitForElementToBeDisplayed(driver, serialNumbersInput, 50);
+						SeleniumTestHelper.waitForElementToBeDisplayed(driver, serialNumbersInput, 30);
 						globalFunc.DateTime.TimeDateFunc();
 						String newSerial = globalFunc.DateTime.strDate12;
 						serialNumbersInput.clear();
@@ -6938,7 +6938,7 @@ public class RFMenuPage {
 					// SeleniumTestHelper.waitForElementToBeDisplayed(driver, InfoAcceptKey, 50);
 
 					if (SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
-						SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
+						SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 30);
 						if (errorOrWarningMsg.getText().contains("Error")) {
 							Steps.logger.info("Info :- " + errorOrWarningMsg.getText());
 							Steps.logger.info(errorOrWarningMsg.getText());
@@ -6969,7 +6969,7 @@ public class RFMenuPage {
 						Screenshots.captureSnapshot(driver);
 						yyyy.sendKeys(futureDateAsArray[2]);
 					}
-					Thread.sleep(3000);
+					Thread.sleep(1000);
 					Screenshots.captureSnapshot(driver);
 					if (SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
 						acceptAndProceedBtn.click();
@@ -6998,7 +6998,7 @@ public class RFMenuPage {
 						// Thread.sleep(2000);
 						// lpnInputTxt.sendKeys(Keys.ENTER);
 						globalFunc.DateTime.TimeDateFunc();
-						SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 50);
+						SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 30);
 						lpnInputTxt.sendKeys(("0" + DateTime.strDate32) + Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
 						if (SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
@@ -7039,7 +7039,7 @@ public class RFMenuPage {
 						Item_qty.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
 						Steps.logger.info("Enter Qty: " + String.valueOf(Steps.ItemDataMap.get(i).get("RecQty2")));
-						Thread.sleep(3000);
+						Thread.sleep(1000);
 
 						if (SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
 							SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
@@ -7058,7 +7058,7 @@ public class RFMenuPage {
 								Screenshots.captureSnapshot(driver);
 							}
 						}
-						Thread.sleep(3000);
+						Thread.sleep(1000);
 						String fututeDate1 = String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
 						Steps.logger.info(fututeDate1);
 						Steps.logger.info("Enter fututeDate: " + fututeDate1);
@@ -7071,7 +7071,7 @@ public class RFMenuPage {
 							Screenshots.captureSnapshot(driver);
 							yyyy.sendKeys(futureDateAsArray1[2]);
 						}
-						Thread.sleep(3000);
+						Thread.sleep(1000);
 						Screenshots.captureSnapshot(driver);
 						if (SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
 							acceptAndProceedBtn.click();
@@ -7083,7 +7083,7 @@ public class RFMenuPage {
 						Reporter.addStepLog(
 								String.valueOf(Steps.ItemDataMap.get(i).get("RecQty2")) + " qty is received in LPN "
 										+ LPNnum1[1].trim() + " for Item- " + Items.getItemsForReceivingASN(i));
-						Thread.sleep(10000);
+						Thread.sleep(3000);
 					}
 				}
 				Steps.logger.info("Completed Receiving");
@@ -7482,7 +7482,7 @@ public class RFMenuPage {
 			}
 			Steps.logger.info("Receiving process completed with : " + receivingMethod + " menu");
 			homepage.userClosesOpenedwindow("RF Menu");
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			Steps.logger.info("test red" + Steps.testRes);

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -132,7 +133,7 @@ public class AsnsPage {
 
 	@FindBy(xpath = "//input[@id='dataForm:editASNSealNumberTable:newRow_2:SeqNbr']")
 	public WebElement editHeaderAddSealSequenceNumTxtSecond;
-	
+			
 	public void getASNandPONumber(String asnId) throws Exception {
 		String account = Config.getProperty("Account");
 		homepage.MenuItems_Distribution_Selection("ASNs");
@@ -147,16 +148,27 @@ public class AsnsPage {
 		Thread.sleep(2000);
 		if (account.equalsIgnoreCase("QSC")) {
 			driver.findElement(By.xpath("(//input[contains(@class,'x-form-field x-form-text x-form-text-default')])[12]")).sendKeys("QSC");
-		} else if (account.equalsIgnoreCase("NVi")) {
+		} else if (account.equalsIgnoreCase("NVI")) {
 			driver.findElement(By.xpath("(//input[contains(@class,'x-form-field x-form-text x-form-text-default')])[12]")).sendKeys("NVI");
 		} else {
-			driver.findElement(By.xpath("(//input[contains(@class,'x-form-field x-form-text x-form-text-default')])[14]")).sendKeys("APC");
+			//driver.findElement(By.xpath("(//input[contains(@class,'x-form-field x-form-text x-form-text-default')])[14]")).sendKeys("APC");
+		driver.findElement(By.xpath("//div[contains(text(),'Find ASN')]/following::input[1]")).sendKeys("APC");
 		}
 		Thread.sleep(1000);
-		driver.findElement(By.xpath("(//input[@name='asnId'])[2]")).sendKeys(asnId);
+		driver.findElement(By.xpath("//div[contains(text(),'Find ASN')]/following::input[2]")).sendKeys(asnId);
+		
+		int count = 0;
+		while (count < 3) {
+			Thread.sleep(15000);
+			System.out.println("Trying to click the Find Button and wait for ASN to get displayed..");
+			SeleniumTestHelper.waitForElementToBeClickable(driver,
+					driver.findElement(By.xpath("//span[contains(text(),'Find')]")), 10);
+			SeleniumTestHelper.clickOnButton(driver.findElement(By.xpath("//span[contains(text(),'Find')]")));
+			count++;
+		}
+		
 		Thread.sleep(1000);
-		driver.findElement(By.xpath("//span[contains(text(),'Find')]")).click();
-		Thread.sleep(2000);
+				
 		String ASNvalue = driver.findElement(By.xpath("(//div[contains(@class,'x-grid-cell-inner')])[1]")).getText();
 		Items.setAsnNumber(ASNvalue);
 		StringBuffer PONum = new StringBuffer(ASNvalue);

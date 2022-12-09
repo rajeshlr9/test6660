@@ -68,7 +68,7 @@ public class HomePage {
 
 	public void userClosesOpenedwindow(String Screenname) throws Exception {
 		driver.switchTo().defaultContent();
-		SeleniumTestHelper.WaitForElement(openWindows, 50);
+		SeleniumTestHelper.WaitForElement(openWindows, 30);
 		openWindows.click();
 		Thread.sleep(3000);
 		SeleniumTestHelper.Close_OpenedWindow(Screenname, driver);
