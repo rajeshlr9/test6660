@@ -6770,14 +6770,14 @@ public class RFMenuPage {
 			String iLPN = null;
 			// iLPNz = null;
 			Steps.logger.info("Start Receiving Process");
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 30);
 			RFmenu_info.click();
 			Steps.logger.info("Clicked on RF Menu");
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
 			Mainmenu.click();
 			Steps.logger.info("Clicked on Main Menu");
 			Thread.sleep(2000);
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuReceiving, 50);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuReceiving, 30);
 			rfMenuReceiving.click();
 			Steps.logger.info("Clicked on Receiving");
 			Screenshots.captureSnapshot(driver);
@@ -6790,11 +6790,11 @@ public class RFMenuPage {
 				}
 				SeleniumTestHelper.assertTrue(MM1Rec.isDisplayed());
 				Screenshots.captureSnapshot(driver);
-				SeleniumTestHelper.waitForElementToBeClickable(driver, MM1Rec, 50);
+				SeleniumTestHelper.waitForElementToBeClickable(driver, MM1Rec, 30);
 				MM1Rec.click();
 				Steps.logger.info("Click on " + receivingMethod + " method");
 				// Thread.sleep(5000);
-				SeleniumTestHelper.waitForElementToBeDisplayed(driver, inputASN, 50);
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, inputASN, 30);
 				Screenshots.captureSnapshot(driver);
 				inputASN.sendKeys(Items.getAsnNumber());
 				Screenshots.captureSnapshot(driver);
@@ -6817,7 +6817,7 @@ public class RFMenuPage {
 						Screenshots.captureSnapshot(driver);
 					}
 					globalFunc.DateTime.TimeDateFunc();
-					SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 20);
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 5);
 					lpnInputTxt.sendKeys(("0" + DateTime.strDate32) + Keys.ENTER);
 					Screenshots.captureSnapshot(driver);
 					if (SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
@@ -6928,7 +6928,7 @@ public class RFMenuPage {
 					// }
 					if (SeleniumTestHelper.isElementDisplayed(InfoAcceptKey)) {
 						Steps.logger.info("Clicking on Info accept key");
-						Thread.sleep(10000);
+						Thread.sleep(3000);
 						RFmenu_info.click();
 						Thread.sleep(1000);
 						RFmenu_info.click();
@@ -6998,7 +6998,7 @@ public class RFMenuPage {
 						// Thread.sleep(2000);
 						// lpnInputTxt.sendKeys(Keys.ENTER);
 						globalFunc.DateTime.TimeDateFunc();
-						SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 30);
+						SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnInputTxt, 20);
 						lpnInputTxt.sendKeys(("0" + DateTime.strDate32) + Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
 						if (SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {

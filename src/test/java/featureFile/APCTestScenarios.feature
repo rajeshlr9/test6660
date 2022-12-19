@@ -1,6 +1,6 @@
 Feature: This feature file contains the APC Regression Scenarios.
 
-@InBoundScenario_APC_1 @IBRegScenarios_APC
+@InBoundScenario_APC_1 @IBRegScenarios_APC @DailyRegression_APC 
 Scenario: Receiving SingleLine Lot Items for Cooler type item.
 	Given I have excel data
 	| APC_IBScenario001 |
@@ -19,7 +19,7 @@ Scenario: Receiving SingleLine Lot Items for Cooler type item.
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application   
 	
-@InBoundScenario_APC_2 @IBRegScenarios_APC
+@InBoundScenario_APC_2 @IBRegScenarios_APC @DailyRegression_APC
 Scenario: Receiving SingleLine Normal Items for Ambient type item.
 	Given I have excel data
 	| APC_IBScenario002 |
@@ -38,7 +38,7 @@ Scenario: Receiving SingleLine Normal Items for Ambient type item.
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application 
 	
-@InBoundScenario_APC_3 @IBRegScenarios_APC
+@InBoundScenario_APC_3 @IBRegScenarios_APC @DailyRegression_APC
 Scenario: Receiving for SingleLine Serial Items for Ambient type item.
 	Given I have excel data
 	| APC_IBScenario003 |
@@ -57,7 +57,7 @@ Scenario: Receiving for SingleLine Serial Items for Ambient type item.
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application 
 	
-@InBoundScenario_APC_4 @IBRegScenarios_APC
+@InBoundScenario_APC_4 @IBRegScenarios_APC @DailyRegression_APC
 Scenario: Receiving and Putaway for SingleLine Normal Items for Hazmat type item. 
 	Given I have excel data
 	| APC_IBScenario004 |
@@ -76,7 +76,7 @@ Scenario: Receiving and Putaway for SingleLine Normal Items for Hazmat type item
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application
 	
-@InBoundScenario_APC_5 @IBRegScenarios_APC
+@InBoundScenario_APC_5 @IBRegScenarios_APC @DailyRegression_APC
 Scenario:  Receiving and Putaway for SingleLine Lot Items for Freezer type item. 
 	Given I have excel data
 	| APC_IBScenario005 |
@@ -94,7 +94,7 @@ Scenario:  Receiving and Putaway for SingleLine Lot Items for Freezer type item.
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application
 		
-@InBoundScenario_APC_6 @IBRegScenarios_APC
+@InBoundScenario_APC_6 @IBRegScenarios_APC @DailyRegression_APC
 Scenario: Receiving and Putaway for SingleLine Lot Items for Abaxis type item. 
 	Given I have excel data
 	| APC_IBScenario006 |
@@ -113,7 +113,7 @@ Scenario: Receiving and Putaway for SingleLine Lot Items for Abaxis type item.
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application
 	  
-@InBoundScenario_APC_7 @IBRegScenarios_APC
+@InBoundScenario_APC_7 @IBRegScenarios_APC @DailyRegression_APC
 Scenario:  Receiving Multiline Lot Items of Cooler type having both items and quantity differ.  
 	Given I have excel data
 	| APC_IBScenario007 |
@@ -132,7 +132,7 @@ Scenario:  Receiving Multiline Lot Items of Cooler type having both items and qu
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application
 	
-@InBoundScenario_APC_8 @IBRegScenarios_APC
+@InBoundScenario_APC_8 @IBRegScenarios_APC @DailyRegression_APC
 Scenario:  Receiving Multiline Normal Items of Ambient type having both items and quantity differ. 
 	Given I have excel data
 	| APC_IBScenario008 |
@@ -151,7 +151,7 @@ Scenario:  Receiving Multiline Normal Items of Ambient type having both items an
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application
 	
-@InBoundScenario_APC_9 @IBRegScenarios_APC
+@InBoundScenario_APC_9 @IBRegScenarios_APC @DailyRegression_APC
 Scenario:  Receiving Multiline Serial Items of Ambient having both items differ but quantity same.
 	Given I have excel data
 	| APC_IBScenario009 |
@@ -170,7 +170,7 @@ Scenario:  Receiving Multiline Serial Items of Ambient having both items differ 
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application	
 	
-@InBoundScenario_APC_10 @IBRegScenarios_APC
+@InBoundScenario_APC_10 @IBRegScenarios_APC @DailyRegression_APC
 Scenario:  Receiving Multiline Lot Items with Same Items and Same Quantity for Abaxis Item  
 	Given I have excel data
 	| APC_IBScenario010 |
@@ -189,7 +189,7 @@ Scenario:  Receiving Multiline Lot Items with Same Items and Same Quantity for A
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application
 	
-@InBoundScenario_APC_11 @IBRegScenarios_APC
+@InBoundScenario_APC_11 @IBRegScenarios_APC @DailyRegression_APC
 Scenario: Rceiving Multiline Normal Items of Hazmath Type with Same Item and SameQuantity.  
 	Given I have excel data
 	| APC_IBScenario011 |
@@ -208,7 +208,7 @@ Scenario: Rceiving Multiline Normal Items of Hazmath Type with Same Item and Sam
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application
 
-@InBoundScenario_APC_12	@IBRegScenarios_APC
+@InBoundScenario_APC_12	@IBRegScenarios_APC @DailyRegression_APC
 Scenario:  Create and Upload X12 file Using Kelli and Veirify ASN Staus in Manhattan. 
  	Given I have excel data
 	| APC_KelliScenario001 |
