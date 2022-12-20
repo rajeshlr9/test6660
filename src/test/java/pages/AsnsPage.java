@@ -159,7 +159,7 @@ public class AsnsPage {
 		
 		int count = 0;
 		while (count < 3) {
-			Thread.sleep(30000);
+			Thread.sleep(60000);
 			System.out.println("Trying to click the Find Button and wait for ASN to get displayed..");
 			SeleniumTestHelper.waitForElementToBeClickable(driver,
 					driver.findElement(By.xpath("//span[contains(text(),'Find')]")), 10);
