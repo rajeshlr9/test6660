@@ -1,7 +1,9 @@
 package pages;
 
 import java.io.IOException;
+import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,7 +35,7 @@ public class ItemsPage {
 	String serialNumberFlag=null;
 	String serialNumber1=null;
 	//TestStubReader stubReader = new TestStubReader();
-	
+	public static String putawayType=null;
 
 	@FindBy(xpath = "//input[contains(@id,'itemLookUpId')]")
 	public WebElement itemNumber;
@@ -141,6 +143,9 @@ public class ItemsPage {
 	@FindBy (xpath="//select[@id='dataForm:ItemDetailsEditView_SOMDimensionUOM']")
 	public WebElement Dimension_UOM;
 	
+	@FindBy (xpath="//span[text()='Putaway type:']/../following-sibling::td[1]//span")
+	public WebElement putawayTypeAttribute;
+	
 	HomePage homePage = new HomePage();
 
 	public void user_opens_ItemsUI_and_verify_item_Attributes(int noOfItems, String serialNumber,
@@ -231,8 +236,6 @@ String slotMiscellaneous1= SlotMiscellaneous1.split("/")[i-1];
 			SeleniumTestHelper.assertEquals(Misc4text.getText(),slotMiscellaneous4);
 			System.out.println("Misc 4 verified sucessfully");
 			
-
-
 			driver.switchTo().defaultContent();
 			OpenWindows.click();
 			SeleniumTestHelper.Close_OpenedWindow("Items - View Item Facility", driver);
@@ -240,6 +243,7 @@ String slotMiscellaneous1= SlotMiscellaneous1.split("/")[i-1];
 		}
 
 	}
+	
 	public void verify_Items_description(int noOfItems,String ItemDescription) throws Exception
 	{
 		homePage.MenuItems_Configuration_Selection("Items");
@@ -352,6 +356,71 @@ String slotMiscellaneous1= SlotMiscellaneous1.split("/")[i-1];
 		homePage.userClosesOpenedwindow("Items");
 	
 	}
+	
+	public void user_opens_ItemsUI_and_get_putaway_AttributesValues(String ItemName) throws Exception {
+		try {
+		System.out.println("Inside user_opens_ItemsUI_and_get_putaway_AttributesValues");
+
+		homePage.MenuItems_Configuration_Selection("Items");
+
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		
+		
+		
+		
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, itemNumber, 50);
+
+		itemNumber.clear();
+		itemNumber.sendKeys(ItemName);
+		itemApplyButton.click();
+		
+		System.out.println("item name is :" + ItemName);
+
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, itemCheckbox, 50);
+		itemCheckbox.click();
+		viewButton.click();
+
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, warehouseTab, 50);
+		warehouseTab.click();
+		warehouseTab.click();
+
+		/*
+		 * JavascriptExecutor jse = (JavascriptExecutor) driver;
+		 * jse.executeScript("arguments[0].scrollIntoView();", SrlNumberReqd);
+		 */
+
+		for (int j = 0; j <= 1; j++) {
+
+			warehouseTab.sendKeys(Keys.PAGE_DOWN);
+		}
+
+		itemFacilityBtn.click();
+		itemCheckbox.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, viewButtonItemFaclilities, 50);
+		viewButtonItemFaclilities.click();
+
+		if (SeleniumTestHelper.isElementDisplayed(putawayTypeAttribute)) {
+			putawayType = putawayTypeAttribute.getText().trim();
+			System.out.println(putawayType);
+			ItemsPage.setPutawayType(putawayType);
+		}
+
+		driver.switchTo().defaultContent();
+		OpenWindows.click();
+		SeleniumTestHelper.Close_OpenedWindow("Items - View Item Facility", driver);
+		
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	public static String getPutawayType() {
+		return putawayType;
+	}
+	public static void setPutawayType(String putawayType) {
+		ItemsPage.putawayType = putawayType;
+	}
+
 }
 
 

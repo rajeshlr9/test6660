@@ -49,14 +49,19 @@ public class CreateAndUpdateEDIFiles {
 	public String SingleLineNormalItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"-NormalItem-WIP.x12";
 	public String SingleLineSerialItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"-SerialItem-WIP.x12";
 
-	//public String APCMultilineLineInboundFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"-LotItem-Multiline-WIP.x12";
 	public String MultiLineLotItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"-LotItem-Multiline-WIP.x12";
 	public String MultiLineNormalItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"-NormalItem-Multiline-WIP.x12";
 	public String MultiLineSerialItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"-SerialItem-Multiline-WIP.x12";
 
-	//public String APCSingleLineInboundFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"01-856.x12";
-	public String APCIBMultiLineSerializedFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"08-856.x12";
-	public String APCOBSingleLineFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"01-850.x12";
+	public String SingleLineLotItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-LotItem-WIP.x12";
+	public String SingleLineNormalItemParcelOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-Parcel.x12";
+	public String SingleLineNormalItemLTLOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-LTL.x12";
+	public String SingleLineSerialItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-SerialItem-WIP.x12";
+
+	//public String APCMultilineLineInboundFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-LotItem-Multiline-WIP.x12";
+	public String MultiLineLotItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-LotItem-Multiline-WIP.x12";
+	public String MultiLineNormalItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-Multiline-WIP.x12";
+	public String MultiLineSerialItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-SerialItem-Multiline-WIP.x12";
 
 	public String APCEDIInboundFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"-856_InputFile.x12";
 	public String APCEDIOutboundFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-850_InputFile.x12";
@@ -89,10 +94,39 @@ public class CreateAndUpdateEDIFiles {
 				user_copy_edi_file_content_from_source_to_target(MultiLineSerialItemIBFilePath, APCEDIInboundFilePath);
 			}
 		} else if (fileType.contains("DO")) {
-			if (fileType.equals("APC SingleLine DO - LotItems")) {
-				Steps.logger.info("Contents Copy from : " + APCOBSingleLineFilePath);
+//			if (fileType.equals("APC SingleLine DO - LotItems")) {
+//				Steps.logger.info("Contents Copy from : " + APCOBSingleLineFilePath);
+//				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
+//				user_copy_edi_file_content_from_source_to_target(APCOBSingleLineFilePath, APCEDIOutboundFilePath);
+//			}
+			if (fileType.equals("APC SingleLine PO - LotItems")) {
+				Steps.logger.info("Contents Copy from : " + SingleLineLotItemIBFilePath);
+				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(SingleLineLotItemIBFilePath, APCEDIInboundFilePath);
+			} else if (fileType.equals("APC SingleLine DO - NormalItems")) {
+				Steps.logger.info("Contents Copy from : " + SingleLineNormalItemParcelOBFilePath);
 				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
-				user_copy_edi_file_content_from_source_to_target(APCOBSingleLineFilePath, APCEDIOutboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(SingleLineNormalItemParcelOBFilePath, APCEDIOutboundFilePath);
+			} else if (fileType.equals("APC SingleLine DO - NormalItems - LTL")) {
+				Steps.logger.info("Contents Copy from : " + SingleLineNormalItemLTLOBFilePath);
+				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(SingleLineNormalItemLTLOBFilePath, APCEDIOutboundFilePath);
+			}else if (fileType.equals("APC SingleLine PO - SerailItems")) {
+				Steps.logger.info("Contents Copy from : " + SingleLineNormalItemParcelOBFilePath);
+				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(SingleLineNormalItemParcelOBFilePath, APCEDIOutboundFilePath);
+			}else if (fileType.equals("APC MultiLine PO - LotItems")) {
+				Steps.logger.info("Contents Copy from : " + MultiLineLotItemIBFilePath);
+				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(MultiLineLotItemIBFilePath,APCEDIInboundFilePath);
+			}else if (fileType.equals("APC MultiLine PO - NormalItems")) {
+				Steps.logger.info("Contents Copy from : " + MultiLineNormalItemIBFilePath);
+				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(MultiLineNormalItemIBFilePath, APCEDIInboundFilePath);
+			}else if (fileType.equals("APC MultiLine PO - SerialItems")) {
+				Steps.logger.info("Contents Copy from : " + MultiLineSerialItemIBFilePath);
+				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(MultiLineSerialItemIBFilePath, APCEDIInboundFilePath);
 			}
 		}
 //		else if(fileType.equals("Single Line DO")){
@@ -135,7 +169,7 @@ public class CreateAndUpdateEDIFiles {
 			String itemName = null;
 			String shpQty = null;
 			String uom = null;
-
+			
 			if (fileType.contains("APC SingleLine PO")) {
 				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
 				modifyEDIFile(APCEDIInboundFilePath, "yyMMdd", strDate5);
@@ -218,20 +252,76 @@ public class CreateAndUpdateEDIFiles {
 			}
 
 		} else if (fileType.contains("DO")) {
+			
+			path = APCEDIOutboundFilePath;
+			
 			SimpleDateFormat formatter12 = new SimpleDateFormat("HHmmsss");
 			strDate12 = formatter12.format(date);
 			PODONumber = "APC" + strDate12;
 			Items.setDONumber(PODONumber);
 			Steps.logger.info("DO Number: " + PODONumber);
 			Reporter.addStepLog("DO Number: " + PODONumber);
+			String itemName = null;
+			String shpQty = null;
+			String uom = null;
+			String TrnsprtSvcLvl = null;
+			String TrnsprtSCAC = null;
+			
 
-			if (fileType.equals("APC Single Line DO")) {
-				Steps.logger.info("Contents Copy from : " + APCOBSingleLineFilePath);
+			if (fileType.contains("APC SingleLine DO")) {
+				//Steps.logger.info("Contents Copy from : " + APCOBSingleLineFilePath);
 				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
-				updateEDIFile(APCEDIOutboundFilePath, "yyMMdd", strDate5);
-				updateEDIFile(APCEDIOutboundFilePath, "APCHHmmsss", PODONumber);
+				modifyEDIFile(APCEDIOutboundFilePath, "yyMMdd", strDate5);
+				modifyEDIFile(APCEDIOutboundFilePath, "APCHHmmsss", PODONumber);
+				modifyEDIFile(APCEDIOutboundFilePath, "HHmmss", strDate6);
 				Steps.logger.info("Do Number is" + PODONumber);
 				Reporter.addStepLog("Do Number is" + PODONumber);
+				
+				for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
+					Steps.logger.info("Steps.ItemDataMap Size" + Steps.ItemDataMap.size());
+					itemName = Steps.ItemDataMap.get(i).get("Item");
+
+					modifyEDIFile(APCEDIOutboundFilePath, "XXXItemId", itemName);
+					Steps.logger.info("Item : " + itemName + " has been updated successfully");
+					Steps.logger.info("Item : " + itemName + " has been updated successfully");
+
+					shpQty = Steps.ItemDataMap.get(i).get("ShippedQty");
+					modifyEDIFile(APCEDIOutboundFilePath, "XXXItemQty", shpQty);
+					Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
+					Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
+
+					uom = Steps.ItemDataMap.get(i).get("UOM");
+					modifyEDIFile(APCEDIOutboundFilePath, "XXXUOM", uom);
+					//modifyEDIFile(APCEDIOutboundFilePath, "XXXItemUOM" + i, shpQty);
+					Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
+					Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
+
+					if (itemName.contains("-")) {
+						itemName = itemName.replace("-", "");
+						modifyEDIFile(APCEDIOutboundFilePath, "XXXProxyItemId", itemName);
+					} else {
+						modifyEDIFile(APCEDIOutboundFilePath, "XXXProxyItemId", itemName);
+					}
+					
+					TrnsprtSvcLvl = Steps.scenarioData.get("TrnsprtSvcLvl");
+					modifyEDIFile(APCEDIOutboundFilePath, "XXXTransServLevel", TrnsprtSvcLvl);
+					System.out.println("TrnsprtSvcLvl : " + TrnsprtSvcLvl + " has been updated successfully");
+					Steps.logger.info("TrnsprtSvcLvl : " + TrnsprtSvcLvl + " has been updated successfully");
+					
+					TrnsprtSCAC = Steps.scenarioData.get("TrnsprtSCAC");
+					modifyEDIFile(APCEDIOutboundFilePath, "XXXTransCarrier", TrnsprtSCAC);
+					System.out.println("TrnsprtSCAC : " + TrnsprtSCAC + " has been updated successfully");
+					Steps.logger.info("TrnsprtSCAC : " + TrnsprtSCAC + " has been updated successfully");
+					
+					Items.setItemsForReceivingASN(itemName);
+					Items.setItemWithShippedASNQty(itemName, Integer.parseInt(shpQty));
+					Reporter.addStepLog("Item Id- " + Steps.ItemDataMap.get(i).get("Item") + ", Shipped Qty- "
+							+ Steps.ItemDataMap.get(i).get("ShippedQty"));
+
+					Steps.logger.info("Item" + Items.getItemsForReceivingASN(i));
+					Steps.logger.info("Qty" + Steps.ItemDataMap.get(i).get("ShippedQty"));
+				}
+
 			}
 		}
 

@@ -402,7 +402,10 @@ public class StepDefOutBound {
 
 			if (acnt.equalsIgnoreCase("QSC") || acnt.equalsIgnoreCase("@Account")) {
 				rfMenu.completeTasks();
-			}else{
+			}else if (acnt.equalsIgnoreCase("APC")){
+				rfMenu.completePickProcess("MM1 APC Pick LTL");
+			}
+			else {
 				rfMenu.completeTasksForNVI();
 			}
 			
@@ -429,6 +432,8 @@ public class StepDefOutBound {
 
 			if (acnt.equalsIgnoreCase("QSC") || acnt.equalsIgnoreCase("@Account")) {
 				rfMenu.completePackTasks();
+			}else if (acnt.equalsIgnoreCase("APC")){
+				rfMenu.completePackProcess("MM1 Prt OB Docs");
 			}else {
 				rfMenu.completePackTasksForNVI();
 			}

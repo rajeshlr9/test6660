@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -557,14 +558,18 @@ driver.switchTo().frame(0);
 			String getPutawayZone = driver.findElement(By.xpath("//span[@id='dataForm:listView:dataTable:0:custId16']"))
 					.getText();
 			Reporter.addStepLog("Putaway zone in reserve location is: " + getPutawayZone);
-			String itemType = Steps.scenarioData.get("PutawayType");
-			if (getPutawayZone.contains(itemType)) {
-				Reporter.addStepLog("Putaway zone in reserve location contains valid item type" + itemType);
-				Assert.assertTrue(true, "putaway zone starts with " + getPutawayZone.subSequence(0, 2));
-
+			//String itemType = Steps.scenarioData.get("PutawayType");
+			String volumeType = ItemsPage.getPutawayType().split(" ")[ItemsPage.getPutawayType().split(" ").length-2].trim();
+			System.out.println("Putaway Zone :"+getPutawayZone);
+			System.out.println("Volume Type :"+volumeType);
+			System.out.println("Validate if putaway zone contains expected volume for item"+getPutawayZone.contains(volumeType));
+			if (getPutawayZone.contains(volumeType)) {
+				Reporter.addStepLog("Putaway zone in reserve location contains valid item code" + ItemsPage.getPutawayType().split("-")[0].subSequence(0, 2));
+				Assert.assertTrue(getPutawayZone.contains(ItemsPage.getPutawayType().split("-")[0].subSequence(0, 2)), "putaway zone start with" + ItemsPage.getPutawayType().split("-")[0].subSequence(0, 1));
+				
 			} else {
 				Steps.testRes = "Failed";
-				Reporter.addStepLog("Putaway zone in reserve location is for Normal item in not " + getPutawayZone);
+				Reporter.addStepLog("Putaway zone in reserve location does not contain expected volume");
 				Assert.assertTrue(false, "Invalid Putaway zone");
 			}
 
@@ -588,5 +593,55 @@ driver.switchTo().frame(0);
 		}
 
 	}
+	
+	public String getReservelocationByPutawayZone(String itemId,String putawayCode) throws Exception
+	{
+		String locBarCode= "";
+ 		//String emptyLocation = null;
+		try {
+		homePage.MenuItems_Configuration_Selection("Reserve Locations");	
+		Thread.sleep(5000);
+		//SeleniumTestHelper.switchToInnerFrame(driver);
+		driver.switchTo().defaultContent();
+		driver.switchTo().frame(1);
+        SeleniumTestHelper.waitForElementToBeDisplayed(driver, expandBtn, 20);
+        expandBtn.click();
+        Thread.sleep(5000);
+        
+        filterId.sendKeys(itemId);
+        Thread.sleep(2000);
+        Select selPutawayZone = new Select(driver.findElement(By.id("dataForm:listView:filterId:field80value1")));
+        
+        List<WebElement> putawayZoneAllOptions = selPutawayZone.getOptions();
+        for(WebElement putawayZoneOption:putawayZoneAllOptions) {
+        	if(StringUtils.startsWith(putawayZoneOption.getText(), putawayCode)) {
+        		putawayZoneOption.click();
+        		Screenshots.captureSnapshot(driver);
+				Steps.logger.info("Selected the putaway zone "+putawayZoneOption.getText()+ " successfully");
+				System.out.println("Selected the putaway zone successfully");
+        	}
+        }
+       // selPutawayZone.selectByVisibleText(putawayZone);
+       // filterId.sendKeys(item);
+        //Thread.sleep(2000);
+        filterIdapply.click();
+        
+        Thread.sleep(3000);
+        firstLocation.click();
+        Thread.sleep(2000);
+        viewBtn1.click();
+        Thread.sleep(2000);
+        locBarCode= LocBarcode.getAttribute("value");
+        System.out.println("Location barcode is: " +locBarCode);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	homePage.userClosesOpenedwindow("Reserve Locations - Reserve Location");
+	Thread.sleep(3000);
+	return locBarCode;
+
+	}
+
 
 }

@@ -13,7 +13,8 @@ Scenario: Receiving SingleLine Lot Items for Cooler type item.
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details
 	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	And user opens Items screen and find putaway type 
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
@@ -33,6 +34,7 @@ Scenario: Receiving SingleLine Normal Items for Ambient type item.
 	And user views ASN, get and verify item details  
 	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	And user opens Items screen and find putaway type 
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
@@ -51,7 +53,8 @@ Scenario: Receiving for SingleLine Serial Items for Ambient type item.
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details
 	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	And user opens Items screen and find putaway type  
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
@@ -70,7 +73,8 @@ Scenario: Receiving and Putaway for SingleLine Normal Items for Hazmat type item
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details  
 	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	And user opens Items screen and find putaway type  
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
@@ -88,6 +92,7 @@ Scenario:  Receiving and Putaway for SingleLine Lot Items for Freezer type item.
 	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details
+	And user opens Items screen and find putaway type
 	And user opens RF menu and completes Receiving using "MM1 Recv-Ptwy FRZ" menu
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
 	Then user search for the LPN in iLPN screen, and validate the lock code
@@ -108,6 +113,7 @@ Scenario: Receiving and Putaway for SingleLine Lot Items for Abaxis type item.
 	And user views ASN, get and verify item details  
 	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
+	And user opens Items screen and find putaway type
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
@@ -126,7 +132,8 @@ Scenario:  Receiving Multiline Lot Items of Cooler type having both items and qu
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details  
 	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	And user opens Items screen and find putaway type 
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
@@ -145,7 +152,8 @@ Scenario:  Receiving Multiline Normal Items of Ambient type having both items an
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details  
 	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	And user opens Items screen and find putaway type 
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
@@ -164,7 +172,8 @@ Scenario:  Receiving Multiline Serial Items of Ambient having both items differ 
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details  
 	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	And user opens Items screen and find putaway type 
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
@@ -183,14 +192,15 @@ Scenario:  Receiving Multiline Lot Items with Same Items and Same Quantity for A
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details  
 	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	And user opens Items screen and find putaway type  
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application
 	
 @InBoundScenario_APC_11 @IBRegScenarios_APC @DailyRegression_APC
-Scenario: Rceiving Multiline Normal Items of Hazmath Type with Same Item and SameQuantity.  
+Scenario: Rceiving Multiline Normal Items with Same Item and Same Quantity for Hazmat Item.  
 	Given I have excel data
 	| APC_IBScenario011 |
 	Given Open the chrome browser by selenium
@@ -202,7 +212,8 @@ Scenario: Rceiving Multiline Normal Items of Hazmath Type with Same Item and Sam
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	And user views ASN, get and verify item details  
 	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	And user opens Items screen and find putaway type  
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
@@ -223,15 +234,35 @@ Scenario:  Create and Upload X12 file Using Kelli and Veirify ASN Staus in Manha
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 	Then user log out from application 
 		
-@ScriptDevelopment_APC_VerifyDOStatus_WIP
+@ScriptDevelopment_APC_VerifyDOStatus_WIP @IBRegScenarios_APC_WIP1
 Scenario: Create and Upload X12 File for SingleLine DO Order Creation
 Creating ASN through Post Message UI, Upload X12 Files for Single Line ASN Creation
 	Given I have excel data
-	| APC_IBScenario001 |
+	| APC_OBScenario01 |
 	Given Open the chrome browser by selenium
-	Given user update EDI file "APC Single Line DO" for dropping into fedexnet application
+	Given user update EDI file "APC SingleLine DO - NormalItems" for dropping into fedexnet application
 	And user logs into the FedexNet application
 	And user upload "850" XML file in fedexnet
 	Then user log out from Fedenxet application
-	#And user logs into the Manhattan application
-	#And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	
+@ScriptDevelopment_APC_VerifyDOStatus_WIP @IBRegScenarios_APC_WIP2
+Scenario: Create and Upload X12 File for SingleLine DO Order Creation
+Creating ASN through Post Message UI, Upload X12 Files for Single Line ASN Creation
+	Given I have excel data
+	| APC_OBScenario02 |
+	Given Open the chrome browser by selenium
+	Given user update EDI file "APC SingleLine DO - NormalItems - LTL" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "APC LTL Pick Wave"
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And fetch the OLPN number
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created 

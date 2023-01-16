@@ -1107,6 +1107,17 @@ public class StepDefInBound {
 		}
 	}
 	
+	@Then("^user opens Items screen and find putaway type$")
+	public void find_putaway_type() {
+		try {
+			itemsPage.user_opens_ItemsUI_and_get_putaway_AttributesValues(Steps.ItemDataMap.get(0).get("Item"));
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
 	/*
 	 * @Then("user opens RF menu and completes Receiving using \"([^\"]*)\" menu for (\\d+)$"
 	 * ) public void
