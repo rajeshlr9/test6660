@@ -2,6 +2,7 @@ package pages;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -7648,16 +7649,16 @@ public class RFMenuPage {
 					}
 					System.out.println("Item"+Steps.ItemDataMap.get(i).get("Item"));
 					System.out.println();
-					String putawayType = ItemsPage.getPutawayType();
+					HashMap<String,String> putawayType = ItemsPage.getPutawayType();
 					SeleniumTestHelper.switchToInnerFrame(driver);
 
 					System.out.println("Putaway type:"+putawayType);
-					if (putawayType.contains("Ambient") || putawayType.contains("Cooler")
-							|| putawayType.contains("Abaxis")) {
+					if (putawayType.get(Steps.ItemDataMap.get(i).get("Item")).contains("Ambient") || putawayType.get(Steps.ItemDataMap.get(i).get("Item")).contains("Cooler")
+							|| putawayType.get(Steps.ItemDataMap.get(i).get("Item")).contains("Abaxis")) {
 						// Read Work Group or Work Area and Fetch the Barcode
 						
 						if (SeleniumTestHelper.isElementDisplayed(subLocationUserDirected)) {
-							if(putawayType.contains("Abaxis")) {
+							if(putawayType.get(Steps.ItemDataMap.get(i).get("Item")).contains("Abaxis")) {
 								driver.switchTo().parentFrame();
 								String LocBarCode1 = reserveLocationPage.getReservelocationByWorkGroup("DRP/ABC");
 								SeleniumTestHelper.switchToInnerFrame(driver);
@@ -7679,7 +7680,7 @@ public class RFMenuPage {
 								System.out.println("Click on Exit button");
 								SeleniumTestHelper.waitForElementToBeDisplayed(driver, ExitBtn, 50);
 								ExitBtn.click();
-							} else if(putawayType.contains("Ambient")) {
+							} else if(putawayType.get(Steps.ItemDataMap.get(i).get("Item")).contains("Ambient")) {
 								driver.switchTo().parentFrame();
 								String LocBarCode1 = reserveLocationPage.getReservelocationByWorkGroup("RSA/APC");
 								SeleniumTestHelper.switchToInnerFrame(driver);
@@ -7701,7 +7702,7 @@ public class RFMenuPage {
 								System.out.println("Click on Exit button");
 								SeleniumTestHelper.waitForElementToBeDisplayed(driver, ExitBtn, 50);
 								ExitBtn.click();
-							} else if(putawayType.contains("Cooler")) {
+							} else if(putawayType.get(Steps.ItemDataMap.get(i).get("Item")).contains("Cooler")) {
 								driver.switchTo().parentFrame();
 								String LocBarCode1 = reserveLocationPage.getReservelocationByWorkGroup("RSC/APC");
 								SeleniumTestHelper.switchToInnerFrame(driver);
@@ -7753,8 +7754,8 @@ public class RFMenuPage {
 						}
 					} 
 
-					if (putawayType.contains("Ambient") || putawayType.contains("Cooler")
-							|| putawayType.contains("Abaxis")) {
+					if (putawayType.get(Steps.ItemDataMap.get(i).get("Item")).contains("Ambient") || putawayType.get(Steps.ItemDataMap.get(i).get("Item")).contains("Cooler")
+							|| putawayType.get(Steps.ItemDataMap.get(i).get("Item")).contains("Abaxis")) {
 						// Repeat the Putaway Process for second Task for Ambinet, Cooler and Abaxis
 						// item
 						SeleniumTestHelper.switchToInnerFrame(driver);
@@ -7953,7 +7954,7 @@ public class RFMenuPage {
 						System.out.println("Sys tech22");
 						// String LocCode =
 						// reserveLocationPage.getReservelocationByitem(Steps.ItemDataMap.get(i).get("Item"));
-						String putawayCode = putawayType.split("-")[0];
+						String putawayCode = putawayType.get(Steps.ItemDataMap.get(i).get("Item")).split("-")[0];
 						System.out.println("PutawayCode"+putawayCode);
 						String LocCode = reserveLocationPage.getReservelocationByPutawayZone(Steps.ItemDataMap.get(i).get("Item"),putawayCode);
 						SeleniumTestHelper.switchToInnerFrame(driver);

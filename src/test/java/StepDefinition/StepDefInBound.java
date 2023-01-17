@@ -1110,7 +1110,14 @@ public class StepDefInBound {
 	@Then("^user opens Items screen and find putaway type$")
 	public void find_putaway_type() {
 		try {
-			itemsPage.user_opens_ItemsUI_and_get_putaway_AttributesValues(Steps.ItemDataMap.get(0).get("Item"));
+			for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
+				System.out.println("Steps.ItemDataMap Size" + Steps.ItemDataMap.size());
+				Steps.logger.info("Steps.ItemDataMap Size" + Steps.ItemDataMap.size());
+				itemName = Steps.ItemDataMap.get(i).get("Item");
+				System.out.println("ItemName"+itemName);
+				itemsPage.user_opens_ItemsUI_and_get_putaway_AttributesValues(Steps.ItemDataMap.get(i).get("Item"));
+			}
+			//itemsPage.user_opens_ItemsUI_and_get_putaway_AttributesValues(Steps.ItemDataMap.get(0).get("Item"));
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();

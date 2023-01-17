@@ -1,6 +1,7 @@
 package pages;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -35,7 +36,7 @@ public class ItemsPage {
 	String serialNumberFlag=null;
 	String serialNumber1=null;
 	//TestStubReader stubReader = new TestStubReader();
-	public static String putawayType=null;
+	public static HashMap<String, String> putawayType=new HashMap<String,String>();
 
 	@FindBy(xpath = "//input[contains(@id,'itemLookUpId')]")
 	public WebElement itemNumber;
@@ -400,7 +401,7 @@ String slotMiscellaneous1= SlotMiscellaneous1.split("/")[i-1];
 		viewButtonItemFaclilities.click();
 
 		if (SeleniumTestHelper.isElementDisplayed(putawayTypeAttribute)) {
-			putawayType = putawayTypeAttribute.getText().trim();
+			putawayType.put(ItemName,putawayTypeAttribute.getText().trim());
 			System.out.println(putawayType);
 			ItemsPage.setPutawayType(putawayType);
 		}
@@ -414,10 +415,10 @@ String slotMiscellaneous1= SlotMiscellaneous1.split("/")[i-1];
 		}
 
 	}
-	public static String getPutawayType() {
+	public static HashMap<String,String> getPutawayType() {
 		return putawayType;
 	}
-	public static void setPutawayType(String putawayType) {
+	public static void setPutawayType(HashMap<String,String> putawayType) {
 		ItemsPage.putawayType = putawayType;
 	}
 

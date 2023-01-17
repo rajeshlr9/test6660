@@ -558,14 +558,14 @@ driver.switchTo().frame(0);
 			String getPutawayZone = driver.findElement(By.xpath("//span[@id='dataForm:listView:dataTable:0:custId16']"))
 					.getText();
 			Reporter.addStepLog("Putaway zone in reserve location is: " + getPutawayZone);
-			//String itemType = Steps.scenarioData.get("PutawayType");
-			String volumeType = ItemsPage.getPutawayType().split(" ")[ItemsPage.getPutawayType().split(" ").length-2].trim();
+			String itemType = Steps.scenarioData.get("PutawayType");
+			String putawayCode = ItemsPage.getPutawayType().get(Steps.ItemDataMap.get(0).get("Item")).substring(0, 2).trim();
+			System.out.println("Putaway Code"+putawayCode);
+			//String volumeType = ItemsPage.getPutawayType().split(" ")[ItemsPage.getPutawayType().split(" ").length-2].trim();
 			System.out.println("Putaway Zone :"+getPutawayZone);
-			System.out.println("Volume Type :"+volumeType);
-			System.out.println("Validate if putaway zone contains expected volume for item"+getPutawayZone.contains(volumeType));
-			if (getPutawayZone.contains(volumeType)) {
-				Reporter.addStepLog("Putaway zone in reserve location contains valid item code" + ItemsPage.getPutawayType().split("-")[0].subSequence(0, 2));
-				Assert.assertTrue(getPutawayZone.contains(ItemsPage.getPutawayType().split("-")[0].subSequence(0, 2)), "putaway zone start with" + ItemsPage.getPutawayType().split("-")[0].subSequence(0, 1));
+			if (getPutawayZone.contains(itemType)&& getPutawayZone.contains(putawayCode)) {
+				Reporter.addStepLog("Putaway zone in reserve location contains valid item type" + itemType);
+				Assert.assertTrue(getPutawayZone.contains(itemType), "putaway zone does not contains item type" + itemType);
 				
 			} else {
 				Steps.testRes = "Failed";
