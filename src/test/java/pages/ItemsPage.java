@@ -369,7 +369,7 @@ String slotMiscellaneous1= SlotMiscellaneous1.split("/")[i-1];
 		
 		
 		
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, itemNumber, 50);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, itemNumber, 30);
 
 		itemNumber.clear();
 		itemNumber.sendKeys(ItemName);
@@ -377,11 +377,11 @@ String slotMiscellaneous1= SlotMiscellaneous1.split("/")[i-1];
 		
 		System.out.println("item name is :" + ItemName);
 
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, itemCheckbox, 50);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, itemCheckbox, 30);
 		itemCheckbox.click();
 		viewButton.click();
 
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, warehouseTab, 50);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, warehouseTab, 30);
 		warehouseTab.click();
 		warehouseTab.click();
 

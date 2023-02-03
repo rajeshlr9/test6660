@@ -403,7 +403,11 @@ public class StepDefOutBound {
 			if (acnt.equalsIgnoreCase("QSC") || acnt.equalsIgnoreCase("@Account")) {
 				rfMenu.completeTasks();
 			}else if (acnt.equalsIgnoreCase("APC")){
-				rfMenu.completePickProcess("MM1 APC Pick LTL");
+				if (Steps.scenarioData.get("Wave Type").equals("LTL")) {
+					rfMenu.completePickProcess("MM1 APC Pick LTL");
+				} else {
+					rfMenu.completePickProcess("MM1 APC Pick PCL");
+				}
 			}
 			else {
 				rfMenu.completeTasksForNVI();
@@ -739,4 +743,21 @@ System.out.println(e);
 //		}
 //	}
 	
+	@And("^user perform weigh and manifest and verify status \"([^\"]*)\"$")
+	public void userPerformweighAndManifestForTheOLPN(String status)throws Exception{
+		WeighAndManifestoLPNPage weighAndManifest  = new WeighAndManifestoLPNPage();
+		homePage.MenuItems_Distribution_Selection("Weigh and Manifest oLPN");
+		Screenshots.captureSnapshot(driver);
+		try {
+			weighAndManifest.weighandManifestoLPN(status);
+			Reporter.addStepLog("Performed Weigh on Splitted OLPN.");
+			Steps.logger.info("Performed Weigh on Splitted OLPN.");
+		}
+		catch  (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+	
+		}
+	}
 }

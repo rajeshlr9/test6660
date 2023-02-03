@@ -42,9 +42,10 @@ public class ILPNPage {
 	public WebElement quickFilter;
 
 	//@FindBy(xpath = "//span[text()='LPN:']/../..//input[@type='text']")
-	@FindBy(id="dataForm:LPNListInOutboundMain_lv:LPNList_Inbound_filterId1:field10value1")
+	
+	@FindBy(xpath = "//input[@id='dataForm:LPNListInOutboundMain_lv:LPNList_Inbound_filterId1:field10value1']")
 	public WebElement inputLPNSearchTextBox;
-
+	
 	@FindBy(xpath = "(//span[text()='LPN:']/ancestor::*[position()=11]//input[@value='Apply'])[1]")
 	public WebElement applySearchBtn;
 
@@ -162,6 +163,18 @@ public class ILPNPage {
 	
 	@FindBy(xpath = "//span[@id='dataForm:LPNCommonHeader_LPNFacilityStatus_outputText']")
 	public WebElement LPNFacilityStatus;
+	
+	@FindBy(xpath = "//input[@id='LPNListInboundMain_commandbutton_SerialNumbers']")
+	public WebElement serialNumbersBtn;
+	
+	@FindBy(xpath = "//a[text()='Details']")
+	public WebElement detailsTab;
+	
+	@FindBy(xpath = "//span[@id='dataForm:srlNbr2']")
+	public WebElement serialNumberText;
+	
+	static String serialNumber;
+	
 	
 
 	public void searchLPNCancelItAndVerifyLPNFacilityStatus(int noOfItems, String status)
@@ -638,4 +651,52 @@ public void adjustiLPNQuantityWith(String adjust, int noOfItem) throws Exception
 		   }
 		   homePage.userClosesOpenedwindow("iLPNs - iLPN Details");
 	   }
+	
+		public String searchForTheILPNAndFetchSerialNumber(String iLPN) throws Exception {
+							
+				//homePage.MenuItems_Configuration_Selection("iLPNs");
+				homePage.MenuItems_Distribution_Selection("iLPNs");
+				//Thread.sleep(5000);
+				//SeleniumTestHelper.switchToInnerFrame(driver);
+				driver.switchTo().defaultContent();
+				driver.switchTo().frame(1);
+				
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, inputLPNSearchTextBox, 50);
+				//driver.findElement(By.xpath("//input[@id='dataForm:LPNListInOutboundMain_lv:LPNList_Inbound_filterId1:field10value1']")).clear();
+				inputLPNSearchTextBox.clear();
+				inputLPNSearchTextBox.sendKeys(iLPN);
+				Screenshots.captureSnapshot(driver);
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, applySearchBtn, 50);
+				applySearchBtn.click();
+				//SeleniumTestHelper.waitForElementToBeClickable(driver, firstCheckBx, 60);
+				Screenshots.captureSnapshot(driver);
+				Thread.sleep(3000);
+				//driver.findElement(By.xpath("//span[text()='" + iLPN + "']/../..//input[@type='checkbox']")).click();
+				driver.findElement(By.xpath("//input[@id='checkAll_c0_dataForm:LPNListInOutboundMain_lv:dataTable']")).click();
+				SeleniumTestHelper.waitForElementToBeClickable(driver, cancelSelectedLPN, 60);
+				serialNumbersBtn.click();
+				Thread.sleep(3000);
+				SeleniumTestHelper.waitForElementToBeClickable(driver, detailsTab, 120);
+				Screenshots.captureSnapshot(driver);
+				serialNumber = serialNumberText.getText();
+				//ILPNPage.setSerialNumber(serialNumber);
+				//System.out.println(ILPNPage.getSerialNumber());
+
+				backButton.click();
+				Thread.sleep(3000);
+
+				homePage.userClosesOpenedwindow("iLPNs");
+				//return serialNumber;
+			
+			return serialNumber;
+
+
+		}
+	public static String getSerialNumber() {
+		return serialNumber;
+	}
+	public static void setSerialNumber(String serNum) {
+		serialNumber = serNum;
+	}
+	
 }

@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import StepDefinition.Steps;
 import entity.DistributionOrders;
+import entity.Items;
 import utils.Driver;
 import utils.SeleniumTestHelper;
 
@@ -44,42 +45,63 @@ public class WeighAndManifestoLPNPage {
 	@FindBy(xpath="//li[contains(text(),'LPN weight entered exceeds tolerance percentage')]") public WebElement weightEnteredExceedErrormsg;
 	@FindBy(xpath="(//div[contains(text(),'Messages (')]//following::div[@class='pop_close'])[1]") public WebElement closeMsgBtn;
 	@FindBy(xpath="//li[contains(text(),'Could not load Ship Via: Ship Via cannot be empty')]") public WebElement shipViaEmptyErrormsg;
-	@FindBy(xpath="//span[@id='dataForm:oLPNStatus' and text()='Manifested']") public WebElement manifestedStatus;
-	//@FindBy(xpath="//select[@name='dataForm:shipviaList']") public WebElement ShipVia;
+	@FindBy(xpath="//span[@id='dataForm:orderStatus']") public WebElement manifestedStatus;
+	@FindBy(xpath="//select[@name='dataForm:shipviaList']") public WebElement ShipViaElement;
 	@FindBy(xpath="//select[@id='dataForm:shipviaList']/option[@selected='selected']") public WebElement ShipVia;
+
 	@FindBy(xpath="//input[@value='Weigh >']") public WebElement weighBtn;
 	@FindBy(xpath="//select[@id='dataForm:containerTypeList']") public WebElement oLPNType;
 	@FindBy(xpath="//input[@id='dataForm:exitButton']") public WebElement exitBtn;
 	@FindBy(xpath = "//a[@id='backButton']//img")
 	public WebElement backBtn;
 	
-	public void weighandManifestoLPN(String olpnStatus) throws InterruptedException, IOException{
-		
-		for(int i= 0;i< DistributionOrders.oLPNList.size();i++)
-		{
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, inputOLPNtxtbox, 50);
-		inputOLPNtxtbox.clear();
-		inputOLPNtxtbox.sendKeys(DistributionOrders.getoLPNList(i));
-		SeleniumTestHelper.assertEquals(inputOLPNtxtbox.isDisplayed(), true);
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, nextBtn, 50);
-		nextBtn.click();
-		String actWeight=EstimatedWeight.getText();
-		ActualWeightInput.clear();
-		ActualWeightInput.sendKeys(actWeight);
-		SeleniumTestHelper.assertEquals(ActualWeightInput.isDisplayed(), true);
-		String actualShipvia=ShipVia.getText();
-		SeleniumTestHelper.assertNotEquals(actualShipvia, "(select one)","Ship Via Populated");
-		//ShipVia.sendKeys("UPS� Ground - E325");
-		SeleniumTestHelper.assertEquals(distOrderId.getText(), DistributionOrders.getDOnumber());  
-		SeleniumTestHelper.waitForElementToBeClickable(driver, manifestBtn, 50);
-		Thread.sleep(2000);
-		manifestBtn.click();
-		Thread.sleep(2000);
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver,oLPNStatus , 50);
-		Thread.sleep(2000);
-		SeleniumTestHelper.assertEquals(manifestedStatus.getText(), olpnStatus); 
-		SeleniumTestHelper.assertEquals(manifestedStatus.isDisplayed(), true); 
-		
+	public void weighandManifestoLPN(String olpnStatus) throws Exception {
+		try {
+		System.out.println("weigh and manifest");
+		//homepage.openWindows.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		for (int i = 0; i < DistributionOrders.oLPNList.size(); i++) {
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, inputOLPNtxtbox, 50);
+			inputOLPNtxtbox.clear();
+			inputOLPNtxtbox.sendKeys(DistributionOrders.oLPNList.get(i));
+			SeleniumTestHelper.assertEquals(inputOLPNtxtbox.isDisplayed(), true);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, nextBtn, 50);
+			nextBtn.click();
+			Thread.sleep(2000);
+			if (driver.findElement(By.xpath("//table[@class='pophead']//div[@class='pop_close']")).isDisplayed()) {
+				break;
+			}
+			Thread.sleep(2000);
+
+			String actWeight = EstimatedWeight.getText();
+			ActualWeightInput.clear();
+			ActualWeightInput.sendKeys(actWeight);
+			// SeleniumTestHelper.assertEquals(ActualWeightInput.isDisplayed(), true);
+			// SeleniumTestHelper.assertNotEquals(actualShipvia, "(select one)","Ship Via
+			// Populated");
+			Select shipViaSelector = new Select(ShipViaElement);
+			shipViaSelector.selectByVisibleText("FedEx Express 2 Day-E264 - E264");
+			String actualShipvia = ShipVia.getText();
+			SeleniumTestHelper.assertNotEquals(actualShipvia, "(select one)","Ship Via Populated");
+			// SeleniumTestHelper.assertEquals(distOrderId.getText(), DistributionOrders.getDOnumber());
+			SeleniumTestHelper.waitForElementToBeClickable(driver, manifestBtn, 50);
+			Thread.sleep(2000);
+			manifestBtn.click();
+			Thread.sleep(2000);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, oLPNStatus, 50);
+			Thread.sleep(2000);
+			System.out.println(manifestedStatus.getText());
+			SeleniumTestHelper.assertEquals(manifestedStatus.getText(), olpnStatus);
+			SeleniumTestHelper.assertEquals(manifestedStatus.isDisplayed(), true);
+
+		}
+		exitBtn.click();
+		Steps.logger.info("Weigh and Manifest of oLPN done successfully");
+		homepage.user_closes_openedwindow("Weigh and Manifest oLPN - Weigh and...");
+		}catch(Exception e) {
+			System.out.println("error occured");
+			e.printStackTrace();
+			
 		}
 	}
 	

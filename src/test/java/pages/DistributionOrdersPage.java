@@ -2021,9 +2021,9 @@ public class DistributionOrdersPage {
 			Items.setoLPN(oLPN);
 			Items.setoLPNStatus(oLPNStatus);
 			Items.setoLPNQty(qty[0]);
-			System.out.println(Items.getoLPN(row));
-			System.out.println(Items.getoLPNStatus(row));
-			System.out.println(Items.getoLPNQty(row));
+			System.out.println("OLPN"+Items.getoLPN(row));
+			System.out.println("OLPN Status"+Items.getoLPNStatus(row));
+			System.out.println("OLPN Qty"+Items.getoLPNQty(row));
 		}
 		homepage.user_closes_openedwindow("DO Detail - Distribution Order");
 	}
