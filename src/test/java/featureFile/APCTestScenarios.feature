@@ -501,7 +501,7 @@ Scenario: SingleLine LTL Do Order for Lot Items
 	And user log out from application
 	
 @OutBoundScenario_APC_11 @OBRegScenarios_APC_Ignore @DailyRegression_APC_Ignore
-Scenario: Multiline Parcel Order with Serial Items having differnt Items Id
+Scenario: Multiline Parcel Order with Lot Items having differnt Items Id
 	Given I have excel data
 	| APC_IBScenario001 |
 	Given Open the chrome browser by selenium

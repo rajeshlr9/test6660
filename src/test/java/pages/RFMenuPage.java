@@ -1246,11 +1246,15 @@ public class RFMenuPage {
 				// Thread.sleep(5000);
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, inputASN, 50);
 				Screenshots.captureSnapshot(driver);
+				System.out.println("ASN to be enter"+Items.getAsnNumber());
+				inputASN.clear();
 				inputASN.sendKeys(Items.getAsnNumber().trim());
+				Thread.sleep(5000);
 				Screenshots.captureSnapshot(driver);
 				Steps.logger.info("Enter ASN number: " + Items.getAsnNumber());
 				SeleniumTestHelper.assertTrue(inputASN.isDisplayed());
 				inputASN.sendKeys(Keys.ENTER);
+				Thread.sleep(3000);
 				Screenshots.captureSnapshot(driver);
 				// Thread.sleep(2000);
 				for (int i = 0, j = 1; i < Steps.ItemDataMap.size(); i++, j++) {
