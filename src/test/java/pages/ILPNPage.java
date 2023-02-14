@@ -344,6 +344,7 @@ public class ILPNPage {
 		} else {
 			lockCode = new String[] { lockcodes };
 		}
+		Thread.sleep(2000);
 		homePage.MenuItems_Distribution_Selection("iLPNs");
 		Screenshots.captureSnapshot(driver);
 		Steps.logger.info("Open iLPN screen");

@@ -60,12 +60,14 @@ public class CreateAndUpdateEDIFiles {
 	//public String APCMultilineLineInboundFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-LotItem-Multiline-WIP.x12";
 	public String MultiLineLotItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-LotItem-Multiline-WIP.x12";
 	public String MultiLineNormalItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-Multiline.x12";
-	public String MultiLineSerialItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-SerialItem-Multiline-WIP.x12";
+	public String MultiLineSerialItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-SerialItem-Multiline.x12";
 
 	public String APCEDIInboundFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"-856_InputFile.x12";
 	public String APCEDIOutboundFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-850_InputFile.x12";
 
-	public void user_create_EDI_file(String fileType) throws FileNotFoundException, XPathExpressionException, IOException, SAXException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
+	public void user_create_EDI_file(String fileType)
+			throws FileNotFoundException, XPathExpressionException, IOException, SAXException,
+			ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
 		if (fileType.contains("PO")) {
 			if (fileType.equals("APC SingleLine PO - LotItems")) {
 				Steps.logger.info("Contents Copy from : " + SingleLineLotItemIBFilePath);
@@ -75,19 +77,19 @@ public class CreateAndUpdateEDIFiles {
 				Steps.logger.info("Contents Copy from : " + SingleLineNormalItemIBFilePath);
 				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
 				user_copy_edi_file_content_from_source_to_target(SingleLineNormalItemIBFilePath, APCEDIInboundFilePath);
-			}else if (fileType.equals("APC SingleLine PO - SerailItems")) {
+			} else if (fileType.equals("APC SingleLine PO - SerailItems")) {
 				Steps.logger.info("Contents Copy from : " + SingleLineSerialItemIBFilePath);
 				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
 				user_copy_edi_file_content_from_source_to_target(SingleLineSerialItemIBFilePath, APCEDIInboundFilePath);
-			}else if (fileType.equals("APC MultiLine PO - LotItems")) {
+			} else if (fileType.equals("APC MultiLine PO - LotItems")) {
 				Steps.logger.info("Contents Copy from : " + MultiLineLotItemIBFilePath);
 				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
-				user_copy_edi_file_content_from_source_to_target(MultiLineLotItemIBFilePath,APCEDIInboundFilePath);
-			}else if (fileType.equals("APC MultiLine PO - NormalItems")) {
+				user_copy_edi_file_content_from_source_to_target(MultiLineLotItemIBFilePath, APCEDIInboundFilePath);
+			} else if (fileType.equals("APC MultiLine PO - NormalItems")) {
 				Steps.logger.info("Contents Copy from : " + MultiLineNormalItemIBFilePath);
 				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
 				user_copy_edi_file_content_from_source_to_target(MultiLineNormalItemIBFilePath, APCEDIInboundFilePath);
-			}else if (fileType.equals("APC MultiLine PO - SerialItems")) {
+			} else if (fileType.equals("APC MultiLine PO - SerialItems")) {
 				Steps.logger.info("Contents Copy from : " + MultiLineSerialItemIBFilePath);
 				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
 				user_copy_edi_file_content_from_source_to_target(MultiLineSerialItemIBFilePath, APCEDIInboundFilePath);
@@ -105,23 +107,25 @@ public class CreateAndUpdateEDIFiles {
 			} else if (fileType.equals("APC SingleLine DO - NormalItems")) {
 				Steps.logger.info("Contents Copy from : " + SingleLineNormalItemOBFilePath);
 				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
-				user_copy_edi_file_content_from_source_to_target(SingleLineNormalItemOBFilePath, APCEDIOutboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(SingleLineNormalItemOBFilePath,
+						APCEDIOutboundFilePath);
 			} else if (fileType.equals("APC SingleLine DO - SerailItems")) {
 				Steps.logger.info("Contents Copy from : " + SingleLineSerialItemOBFilePath);
 				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
-				user_copy_edi_file_content_from_source_to_target(SingleLineSerialItemOBFilePath, APCEDIOutboundFilePath);
-			}else if (fileType.equals("APC MultiLine DO - LotItems")) {
+				user_copy_edi_file_content_from_source_to_target(SingleLineSerialItemOBFilePath,
+						APCEDIOutboundFilePath);
+			} else if (fileType.equals("APC MultiLine DO - LotItems")) {
 				Steps.logger.info("Contents Copy from : " + MultiLineLotItemIBFilePath);
 				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
-				user_copy_edi_file_content_from_source_to_target(MultiLineLotItemIBFilePath,APCEDIInboundFilePath);
-			}else if (fileType.equals("APC MultiLine DO - NormalItems")) {
+				user_copy_edi_file_content_from_source_to_target(MultiLineLotItemIBFilePath, APCEDIInboundFilePath);
+			} else if (fileType.equals("APC MultiLine DO - NormalItems")) {
 				Steps.logger.info("Contents Copy from : " + MultiLineNormalItemOBFilePath);
 				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
 				user_copy_edi_file_content_from_source_to_target(MultiLineNormalItemOBFilePath, APCEDIOutboundFilePath);
-			}else if (fileType.equals("APC MultiLine DO - SerialItems")) {
-				Steps.logger.info("Contents Copy from : " + MultiLineSerialItemIBFilePath);
-				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
-				user_copy_edi_file_content_from_source_to_target(MultiLineSerialItemIBFilePath, APCEDIInboundFilePath);
+			} else if (fileType.equals("APC MultiLine DO - SerialItems")) {
+				Steps.logger.info("Contents Copy from : " + MultiLineSerialItemOBFilePath);
+				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(MultiLineSerialItemOBFilePath, APCEDIOutboundFilePath);
 			}
 		}
 //		else if(fileType.equals("Single Line DO")){

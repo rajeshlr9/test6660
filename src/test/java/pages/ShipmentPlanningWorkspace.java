@@ -133,7 +133,6 @@ public WebDriver driver;
 		distributionOrdersPage1.primaryField.sendKeys("Distribution Order");
 		TCShipmentID.click();
 		TCShipmentID.sendKeys(Items.getDONumber());
-		//TCShipmentID.sendKeys("210628135320");
 		Thread.sleep(2000);		
 		distributionOrdersPage1.apply_Btn.click();		
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
@@ -200,15 +199,15 @@ public WebDriver driver;
 		System.out.println("enterd pro number");
 		Thread.sleep(2000);
 		Save.click();
-		Thread.sleep(2000);
 		homepage.user_closes_openedwindow("Shipment - Stop");
-		Thread.sleep(5000);
+		homepage.user_click_openedWindow("Shipments");
+		Thread.sleep(3000);
 		//Closing Shipment
 		MoreShipment.click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		CloseMoreShipment.click();
 		SeleniumTestHelper.switchToInnerFrame(driver);
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		if(!(printbolbox.isSelected()))
 	    {
 			printbolbox.click();

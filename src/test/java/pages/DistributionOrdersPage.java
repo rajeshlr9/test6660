@@ -375,6 +375,7 @@ public class DistributionOrdersPage {
 	
 	
 	public void getDoStatus(String expectedDOstatus) throws Exception {
+		Thread.sleep(2000);
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);

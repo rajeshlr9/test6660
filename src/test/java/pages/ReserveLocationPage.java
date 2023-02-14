@@ -553,7 +553,7 @@ driver.switchTo().frame(0);
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, ApplyBtn, 20);
 			ApplyBtn.click();
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 			Screenshots.captureSnapshot(driver);
 			String getPutawayZone = driver.findElement(By.xpath("//span[@id='dataForm:listView:dataTable:0:custId16']"))
 					.getText();

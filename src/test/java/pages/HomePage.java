@@ -145,5 +145,17 @@ public class HomePage {
 		SeleniumTestHelper.WaitForElement(openWindows, 50);
 		openWindows.click();
 		SeleniumTestHelper.Close_OpenedWindow(Screenname, driver);
+		Thread.sleep(3000);
+		Screenshots.captureSnapshot(driver);
+		Steps.logger.info("Closed the open Window");
+	}
+	public void user_click_openedWindow(String Screenname) throws Exception
+	{
+		driver.switchTo().defaultContent();
+		SeleniumTestHelper.WaitForElement(openWindows, 50);
+		openWindows.click();
+		Thread.sleep(3000);
+		Screenshots.captureSnapshot(driver);
+		Steps.logger.info("Closed the open Window");
 	}
 }

@@ -15,14 +15,14 @@ import globalFunc.GetScenarioStepSnapshots;
 import globalFunc.FileUtilities;
 import utils.Config;
 import utils.ExtentReportUpdate;
-
+ 
 
 
 @SuppressWarnings("deprecation")
 @CucumberOptions(
 		strict = true,
 		dryRun = false,
-		tags={"@tag5"}, 
+		tags={"@InBoundScenario_APC_1,@InBoundScenario_APC_11"}, 
 				
 		features = {"src\\test\\java\\featureFile"},
 		glue = {"StepDefinition"},
