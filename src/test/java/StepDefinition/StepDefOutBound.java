@@ -17,6 +17,7 @@ import com.cucumber.listener.Reporter;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import entity.DistributionOrders;
 import entity.Items;
 import globalFunc.Screenshots;
 import pages.AsnsPage;
@@ -234,8 +235,8 @@ public class StepDefOutBound {
 	@Then("^user verifies the item details in Distribuion Order page$")
 	public void user_verifies_the_item_details_in_Distribuion_Order_page() throws Exception {
 		try {
-			doPage.getDOdetails();
 			Reporter.addStepLog("DO Order item details verified successfully");
+			doPage.getDOdetails();
 			Steps.logger.info("DO Order item details verified successfully");
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
@@ -277,20 +278,20 @@ public class StepDefOutBound {
 		String env = ManhattanLoginPage.environment;
 		String account = ManhattanLoginPage.account;
 		try {
-			if(account.equalsIgnoreCase("NVI") && env.equalsIgnoreCase("L4")) {
-				if(waveType.contains("NVI No-KIT Wave -PCL")) {
-					
-				doPage.runWaveTemplate("NVI No-KIT Wave-PCL");
-				}else {
+			if (account.equalsIgnoreCase("NVI") && env.equalsIgnoreCase("L4")) {
+				if (waveType.contains("NVI No-KIT Wave -PCL")) {
+
+					doPage.runWaveTemplate("NVI No-KIT Wave-PCL");
+				} else {
 					doPage.runWaveTemplate(waveType);
 				}
-			}else {
-			doPage.runWaveTemplate(waveType);
+			} else {
+				doPage.runWaveTemplate(waveType);
 			}
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
-			System.out.println("line number"+e.getStackTrace()[0].getLineNumber() );
-			System.out.println(e );
+			System.out.println("line number" + e.getStackTrace()[0].getLineNumber());
+			System.out.println(e);
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
@@ -760,4 +761,19 @@ System.out.println(e);
 	
 		}
 	}
+	
+	@Then("^user verifies the shipVia populated in Distribuion Order page$")
+	public void user_verifies_the_shipVia_populated_in_Distribuion_Order_page() throws Exception {
+		try {
+			doPage.checkShipViaPopulated();
+			Reporter.addStepLog("DO Order item details verified successfully");
+			Steps.logger.info("DO Order item details verified successfully");
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
+	
 }

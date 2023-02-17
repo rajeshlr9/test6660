@@ -41,6 +41,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import entity.DistributionOrders;
 import entity.Items;
 import globalFunc.CreateBrowser;
 import globalFunc.DateTime;
@@ -164,6 +165,7 @@ public class Steps {
 			seleniumDriver = null;
 		}
 		Items.removeAllTheValuesFromMap();
+		DistributionOrders.removeAllTheValuesFromMap();
 		if(Config.getProperty("WordScreenshots").equals("true")) {
 			GetScenarioStepSnapshots.FolderScreenShotToWord(scenario.getName());
 		}

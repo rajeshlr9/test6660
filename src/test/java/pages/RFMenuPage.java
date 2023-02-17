@@ -6862,14 +6862,16 @@ public class RFMenuPage {
 			// iLPNz = null;
 			Steps.logger.info("Start Receiving Process");
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
+			Thread.sleep(3000);
 			RFmenu_info.click();
 			Steps.logger.info("Clicked on RF Menu");
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 50);
 			Mainmenu.click();
 			Steps.logger.info("Clicked on Main Menu");
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuReceiving, 50);
 			rfMenuReceiving.click();
+			Thread.sleep(3000);
 			Steps.logger.info("Clicked on Receiving");
 			Screenshots.captureSnapshot(driver);
 			switch (receivingMethod) {
@@ -6881,10 +6883,11 @@ public class RFMenuPage {
 				}
 				SeleniumTestHelper.assertTrue(MM1Rec.isDisplayed());
 				Screenshots.captureSnapshot(driver);
+				Thread.sleep(3000);
 				SeleniumTestHelper.waitForElementToBeClickable(driver, MM1Rec, 30);
 				MM1Rec.click();
 				Steps.logger.info("Click on " + receivingMethod + " method");
-				// Thread.sleep(5000);
+				Thread.sleep(5000);
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, inputASN, 30);
 				Screenshots.captureSnapshot(driver);
 				inputASN.sendKeys(Items.getAsnNumber());
@@ -7633,13 +7636,16 @@ public class RFMenuPage {
 					// Click on RF Menu Info Icon
 					SeleniumTestHelper.switchToInnerFrame(driver);
 					Steps.logger.info("Start Putaway Process");
+					Thread.sleep(3000);
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
 					RFmenu_info.click();
+					Thread.sleep(3000);
 					Screenshots.captureSnapshot(driver);
 					Steps.logger.info("Clicked on RF Menu Info");
 					// Click on Change Task Group and enter Task Group
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, ChgTaskGrpBtn, 15);
 					ChgTaskGrpBtn.click();
+					Thread.sleep(3000);
 					Screenshots.captureSnapshot(driver);
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, taskGrpInput, 15);
 					taskGrpInput.clear();
@@ -7664,14 +7670,16 @@ public class RFMenuPage {
 					SeleniumTestHelper.switchToInnerFrame(driver);
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
 					RFmenu_info.click();
+					Thread.sleep(3000);
 					Screenshots.captureSnapshot(driver);
 					Steps.logger.info("Clicked on RF Menu Info");
 					// Click on RF Main Menu
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
 					Mainmenu.click();
+					Thread.sleep(3000);
 					Screenshots.captureSnapshot(driver);
 					Steps.logger.info("Clicked on Main Menu");
-					Thread.sleep(5000);
+					Thread.sleep(3000);
 					Screenshots.captureSnapshot(driver);
 					// Click on Putaway Button
 					Thread.sleep(1000);
@@ -7683,6 +7691,7 @@ public class RFMenuPage {
 					while (!(SeleniumTestHelper.isElementDisplayed(MM1PutawayiLPN))) {
 						pageDown.click();
 					}
+					Thread.sleep(3000);
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, MM1PutawayiLPN, 50);
 					MM1PutawayiLPN.click();
 					Screenshots.captureSnapshot(driver);

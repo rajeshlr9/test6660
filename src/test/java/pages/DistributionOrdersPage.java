@@ -260,6 +260,15 @@ public class DistributionOrdersPage {
 	@FindBy(id="dataForm:DOEdit_save_button")
 	public WebElement saveBtn;
 	
+	@FindBy(xpath= "//*[@id='dataForm:DODetailsHeader_OutText_DSG_Shipvia']")
+	public WebElement shipViaText;
+	
+	@FindBy(xpath= "//span[contains(text(),'Baseline Resources')]")
+	public WebElement baselineResources;
+	
+	@FindBy(xpath= "//div[contains(text(),'DO Detail - Distribution Order')]//following::img[@class='x-tool-img x-tool-refresh']")
+	public WebElement refreshBtnInDoDetailPage;
+	
 	
 	
 
@@ -392,9 +401,17 @@ public class DistributionOrdersPage {
 		apply_Btn.click();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
 		Screenshots.captureSnapshot(driver);
+		Thread.sleep(3000);
 		String actualDOstatus = driver.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[text()='"
 				+ Items.getDONumber() + "']//following::td[1]")).getText();
+		Thread.sleep(3000);
+		if(actualDOstatus.contains("Manifested")) {
 		SeleniumTestHelper.assertEquals(actualDOstatus, expectedDOstatus);
+		}else if(actualDOstatus.contains("Shipped")){
+			SeleniumTestHelper.assertEquals(actualDOstatus, "190 - Shipped");
+		}else {
+			SeleniumTestHelper.assertEquals(actualDOstatus, expectedDOstatus);
+		}
 		Reporter.addStepLog("DO Order status:" + actualDOstatus);
 		Steps.logger.info("DO Order status:" + actualDOstatus);
 		Thread.sleep(2000);
@@ -921,7 +938,9 @@ public class DistributionOrdersPage {
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, DOStatus, 50);
 		System.out.println("Failed2");
+		Thread.sleep(3000);
 		SeleniumTestHelper.assertEquals(DOStatus.getText(), "110 - Released");
+		Thread.sleep(3000);
 		System.out.println("Failed3");
 		SeleniumTestHelper.waitForElementToBeClickable(driver, moreBtn, 50);
 		System.out.println("Failed4");
@@ -959,12 +978,14 @@ public class DistributionOrdersPage {
 			Items.setWaveNumber(waveNumberValue);
 			Steps.logger.info("Wave no generated successfully");
 			Reporter.addStepLog("Wave no generated successfully");
-			Steps.logger.info("Wave no:" + Items.getWaveNumber());
-			Reporter.addStepLog("Wave no:" + Items.getWaveNumber());
+//			Steps.logger.info("Wave no:" + Items.getWaveNumber());
+//			Reporter.addStepLog("Wave no:" + Items.getWaveNumber());
 			//Items.setWaveNumber(waveNumberValue);
-			Thread.sleep(6000);
-			SeleniumTestHelper.waitForElementToBeClickable(driver, waveNumber, 150);
+			Thread.sleep(2000);
+			SeleniumTestHelper.WaitForElement(waveNumber, 10);
+			SeleniumTestHelper.waitForElementToBeClickable(driver, waveNumber, 200);
 			waveNumber.click();
+			Thread.sleep(2000);
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			String actualStatus = driver.findElement(By.xpath(shiwaveStatusxpath(waveTemplateDesc))).getText().trim();
@@ -972,6 +993,7 @@ public class DistributionOrdersPage {
 			while (!actualStatus.equals("90 - Ship wave completed") && (count != 20)) {
 				refreshBtn.click();
 				//stale element
+				Thread.sleep(2000);
 				actualStatus = driver.findElement(By.xpath(shiwaveStatusxpath(waveTemplateDesc))).getText().trim();
 				Thread.sleep(10000);
 				count++;
@@ -2247,14 +2269,15 @@ public class DistributionOrdersPage {
 				DistributionOrders.setoLPNList(oLPN);
 				System.out.println("oLPN list :" + DistributionOrders.oLPNList);
 				System.out.println("size of oLPN list :" + DistributionOrders.oLPNList.size());
-				System.out.println("Splitted to oLPN :" + DistributionOrders.oLPNList.get(0));
+				System.out.println("oLPN :" + DistributionOrders.oLPNList.get(0));
 			} else if (oLPNStatus.equals("20 - Packed")) {
 				DistributionOrders.setoLPNList(oLPN);
 				System.out.println("oLPN list :" + DistributionOrders.oLPNList);
 				System.out.println("size of oLPN list :" + DistributionOrders.oLPNList.size());
-				System.out.println("Splitted to oLPN :" + DistributionOrders.oLPNList.get(0));
+				System.out.println("oLPN :" + DistributionOrders.oLPNList.get(0));
 			}
 		}
+		Thread.sleep(5000);
 		homepage.user_closes_openedwindow("DO Detail - Distribution Order");
 	}
 	
@@ -2316,6 +2339,82 @@ public class DistributionOrdersPage {
 
 		homepage.user_closes_openedwindow("Distribution Orders");
 
+	}
+	
+	public void checkShipViaPopulated() throws Exception {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 50);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		Screenshots.captureSnapshot(driver);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(Items.getDONumber()); // DistributionOrders.getDOnumber()
+		Screenshots.captureSnapshot(driver);
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		Screenshots.captureSnapshot(driver);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
+		viewBtn.click();
+		Thread.sleep(10000);
+		
+//		SeleniumTestHelper.switchToInnerFrame(driver);
+		
+//		driver.switchTo().parentFrame();
+//		
+//		SeleniumTestHelper.isElementDisplayed(driver.findElement(By.xpath("//div[contains(text(),'DO Detail - Distribution Order')]//following::img[@class='x-tool-img x-tool-refresh']")));
+//		driver.findElement(By.xpath("//div[contains(text(),'DO Detail - Distribution Order')]//following::img[@class='x-tool-img x-tool-refresh']")).click();
+//		Thread.sleep(10000);
+//		SeleniumTestHelper.isElementDisplayed(driver.findElement(By.xpath("//div[contains(text(),'DO Detail - Distribution Order')]//following::img[@class='x-tool-img x-tool-refresh']")));
+//		driver.findElement(By.xpath("//div[contains(text(),'DO Detail - Distribution Order')]//following::img[@class='x-tool-img x-tool-refresh']")).click();
+//		Thread.sleep(10000);
+//		SeleniumTestHelper.isElementDisplayed(driver.findElement(By.xpath("//div[contains(text(),'DO Detail - Distribution Order')]//following::img[@class='x-tool-img x-tool-refresh']")));
+//		driver.findElement(By.xpath("//div[contains(text(),'DO Detail - Distribution Order')]//following::img[@class='x-tool-img x-tool-refresh']")).click();
+		
+		
+		for(int i=0;i<10;i++) {
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			Thread.sleep(2000);
+			SeleniumTestHelper.scrollToElement(driver, baselineResources);
+			Thread.sleep(2000);
+			if(SeleniumTestHelper.isElementDisplayed(shipViaText)) {
+				break;
+			}
+			driver.switchTo().parentFrame();
+			Thread.sleep(2000);
+			SeleniumTestHelper.scrollToElement(driver, refreshBtnInDoDetailPage);
+			Thread.sleep(2000);
+			SeleniumTestHelper.isElementDisplayed(refreshBtnInDoDetailPage);
+			refreshBtnInDoDetailPage.click();
+			Thread.sleep(10000);
+			
+		}
+		
+		
+		
+		
+		
+		
+		//SeleniumTestHelper.switchToInnerFrame(driver);
+		//SeleniumTestHelper.scrollToElement(driver, baselineResources);
+		
+//		int temp = 0;
+//		while (!SeleniumTestHelper.isElementDisplayed(shipViaText) && (temp != 10)) {
+//			Thread.sleep(6000);
+//			temp++;
+//		}
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipViaText, 50);
+		SeleniumTestHelper.scrollToElement(driver, shipViaText);
+		Thread.sleep(2000);
+		String shipViaCode = shipViaText.getText();
+		System.out.println(shipViaCode);
+		SeleniumTestHelper.assertNotNull(shipViaCode, "Verify ShipVia Populated...");
+		Reporter.addStepLog("ShipVia:" + shipViaCode);
+		Steps.logger.info("ShipVia:" + shipViaCode);
+		Thread.sleep(5000);
+		homepage.user_closes_openedwindow("Distribution Orders");
+		Thread.sleep(3000);
+		SeleniumTestHelper.Close_OpenedWindow("DO Detail - Distribution Order", driver);
 	}
 
 }

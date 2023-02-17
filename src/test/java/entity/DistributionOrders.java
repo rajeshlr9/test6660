@@ -233,7 +233,7 @@ public class DistributionOrders {
 		oLPNForMixeditem.clear();
 		lineItemWithPO.clear();
 		packedOlpn = null;
-		
+		System.out.println("Removed all value stored in List and Map");
     }
 	public static int getTotalQty() {
 		return totalQty;

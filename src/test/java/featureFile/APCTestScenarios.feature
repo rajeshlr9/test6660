@@ -246,6 +246,7 @@ Scenario: SingleLine Parcel DO Order for Normal Item
 	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
 	Then user verifies the item details in Distribuion Order page 
+	Then user verifies the shipVia populated in Distribuion Order page 
 	And user runs the "APC PCL Pick Wave"
 	Then user views wave and verify the allocation of inventory 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
@@ -294,7 +295,8 @@ Scenario: SingleLine Parcel DO Order for Serial Item
 	Then user log out from Fedenxet application
 	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
-	Then user verifies the item details in Distribuion Order page 
+	Then user verifies the item details in Distribuion Order page
+	Then user verifies the shipVia populated in Distribuion Order page 
 	And user runs the "APC PCL Pick Wave"
 	Then user views wave and verify the allocation of inventory 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
@@ -345,6 +347,7 @@ Scenario: Multiline Parcel Do Order for Normal Items having Same Items Id
 	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
 	Then user verifies the item details in Distribuion Order page 
+	Then user verifies the shipVia populated in Distribuion Order page 
 	And user runs the "APC PCL Pick Wave"
 	Then user views wave and verify the allocation of inventory 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
@@ -354,8 +357,8 @@ Scenario: Multiline Parcel Do Order for Normal Items having Same Items Id
 	And user opens the OLPN screen and retrieve the splitted oLPN
 	And user perform weigh and manifest and verify status "170 - Manifested"
 	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
-	#Then user search for DO and confirms it
-	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
+	Then user search for DO and confirms it
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
 	Then user log out from application 
 	
 @OutBoundScenario_APC_6	@OBRegScenarios_APC_Ignore @DailyRegression_APC_Ignore
@@ -370,6 +373,7 @@ Scenario: Multiline Parcel Order for Normal Items having differnt Items Id
 	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
 	Then user verifies the item details in Distribuion Order page 
+	Then user verifies the shipVia populated in Distribuion Order page 
 	And user runs the "APC PCL Pick Wave"
 	Then user views wave and verify the allocation of inventory 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
@@ -420,6 +424,7 @@ Scenario:  Multiline Parcel Order with Serial Items having differnt Items Id
 	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
 	Then user verifies the item details in Distribuion Order page 
+	Then user verifies the shipVia populated in Distribuion Order page 
 	And user runs the "APC PCL Pick Wave"
 	Then user views wave and verify the allocation of inventory 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
@@ -458,7 +463,7 @@ Scenario:  Multiline LTL Order with Serial Items having differnt Items Id
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 	
 	And user log out from application
 	
-@OutBoundScenario_APC_10 @OBRegScenarios_APC @DailyRegression_APC
+@OutBoundScenario_APC_10 @OBRegScenarios_APC_Test @DailyRegression_APC
 Scenario: SingleLine LTL Do Order for Lot Items
 	Given I have excel data
 	| APC_IBScenario001 |
@@ -528,6 +533,7 @@ Scenario: Multiline Parcel Order with Lot Items having differnt Items Id
 	And user logs into the Manhattan application
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
+	Then user verifies the shipVia populated in Distribuion Order page 
 	And user runs the "APC PCL Pick Wave"
 	Then user views wave and verify the allocation of inventory 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
