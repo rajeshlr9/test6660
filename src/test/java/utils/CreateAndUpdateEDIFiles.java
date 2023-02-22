@@ -43,6 +43,7 @@ public class CreateAndUpdateEDIFiles {
 	public static String strDate5;
 	public static String strDate12;
 	public static String strDate6;
+	public static String strDate14;
 	//public static String asnNumber;
 	//public static String doNumber;
 	public String SingleLineLotItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"-LotItem-WIP.x12";
@@ -148,6 +149,10 @@ public class CreateAndUpdateEDIFiles {
 		SimpleDateFormat sdf = new SimpleDateFormat("HHmmss");
 		strDate6 = sdf.format(date);
 		Steps.logger.info("Date in HHmmss format" + strDate6);
+		
+		SimpleDateFormat sdff = new SimpleDateFormat("MMddHH");
+		strDate14 = sdff.format(date);
+		Steps.logger.info("Date in MMddHH format" + strDate14);
 
 		SimpleDateFormat formatter11 = new SimpleDateFormat("ddHHmmsss");
 		strDate11 = formatter11.format(date);
@@ -174,6 +179,7 @@ public class CreateAndUpdateEDIFiles {
 				modifyEDIFile(APCEDIInboundFilePath, "yyMMdd", strDate5);
 				modifyEDIFile(APCEDIInboundFilePath, "APOC000000001-ddHHmmsss", PODONumber);
 				modifyEDIFile(APCEDIInboundFilePath, "HHmmss", strDate6);
+				modifyEDIFile(APCEDIInboundFilePath, "MMddHH", strDate14);
 				Steps.logger.info("PO Number is :" + PODONumber);
 				String ASNno = PODONumber + "-1";
 				Items.setAsnNumber(ASNno);
@@ -215,6 +221,7 @@ public class CreateAndUpdateEDIFiles {
 				modifyEDIFile(APCEDIInboundFilePath, "yyMMdd", strDate5);
 				modifyEDIFile(APCEDIInboundFilePath, "APOC000000001-ddHHmmsss", PODONumber);
 				modifyEDIFile(APCEDIInboundFilePath, "HHmmss", strDate6);
+				modifyEDIFile(APCEDIInboundFilePath, "MMddHH", strDate14);
 				Steps.logger.info("PO Number is :" + PODONumber);
 				String ASNno = PODONumber + "-1";
 				Items.setAsnNumber(ASNno);
@@ -273,6 +280,7 @@ public class CreateAndUpdateEDIFiles {
 				modifyEDIFile(APCEDIOutboundFilePath, "yyMMdd", strDate5);
 				modifyEDIFile(APCEDIOutboundFilePath, "APCHHmmsss", PODONumber);
 				modifyEDIFile(APCEDIOutboundFilePath, "HHmmss", strDate6);
+				modifyEDIFile(APCEDIOutboundFilePath, "MMddHH", strDate14);
 				Steps.logger.info("Do Number is" + PODONumber);
 				Reporter.addStepLog("Do Number is" + PODONumber);
 				
@@ -327,6 +335,7 @@ public class CreateAndUpdateEDIFiles {
 				modifyEDIFile(APCEDIOutboundFilePath, "yyMMdd", strDate5);
 				modifyEDIFile(APCEDIOutboundFilePath, "APCHHmmsss", PODONumber);
 				modifyEDIFile(APCEDIOutboundFilePath, "HHmmss", strDate6);
+				modifyEDIFile(APCEDIOutboundFilePath, "MMddHH", strDate14);
 				Steps.logger.info("Do Number is" + PODONumber);
 				Reporter.addStepLog("Do Number is" + PODONumber);
 				

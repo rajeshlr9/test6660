@@ -99,9 +99,21 @@ public class WeighAndManifestoLPNPage {
 			String actualShipvia = ShipVia.getText();
 			SeleniumTestHelper.assertNotEquals(actualShipvia, "(select one)","Ship Via Populated");
 			// SeleniumTestHelper.assertEquals(distOrderId.getText(), DistributionOrders.getDOnumber());
-			SeleniumTestHelper.waitForElementToBeClickable(driver, manifestBtn, 50);
-			Thread.sleep(2000);
-			manifestBtn.click();
+			
+			if(Steps.scenarioData.get("Wave Type").equals("LTL")) {
+				
+				SeleniumTestHelper.waitForElementToBeClickable(driver, weighBtn, 50);
+				Thread.sleep(2000);
+				weighBtn.click();
+			}else {
+				SeleniumTestHelper.waitForElementToBeClickable(driver, manifestBtn, 50);
+				Thread.sleep(2000);
+				manifestBtn.click();
+			}
+			
+//			SeleniumTestHelper.waitForElementToBeClickable(driver, manifestBtn, 50);
+//			Thread.sleep(2000);
+//			manifestBtn.click();
 			
 			Thread.sleep(30000);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver,scanNextoLPN, 120);

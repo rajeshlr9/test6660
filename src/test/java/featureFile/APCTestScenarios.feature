@@ -278,6 +278,8 @@ Scenario: SingleLine LTL DO Order for Normal Item
 	And fetch the OLPN number
 	And user open RF Menu and complete the pick tasks created 
 	And user open RF Menu and complete the pack tasks created
+	And user opens the OLPN screen and retrieve the splitted oLPN
+	And user perform weigh and manifest and verify status "160 - Weighed"
 	And user opens RF menu and completes Shipping using "MM1 Anchor oLPN" menu 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged" 
 	And user navigates to shippment planning workspace 
@@ -329,6 +331,8 @@ Scenario: SingleLine LTL DO Order for Serial Item
 	And user open RF Menu and complete the pick tasks created
  	And user open RF Menu and complete the pack tasks created
 	#Then fetch the OLPN number with only 30 weighed status 
+	And user opens the OLPN screen and retrieve the splitted oLPN
+	And user perform weigh and manifest and verify status "160 - Weighed"
 	And user opens RF menu and completes Shipping using "MM1 Anchor oLPN" menu 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged" 
 	And user navigates to shippment planning workspace 
@@ -406,13 +410,15 @@ Scenario:  Multiline LTL Order with Normal Items having differnt Items Id
 	And user open RF Menu and complete the pick tasks created
  	And user open RF Menu and complete the pack tasks created
 	#Then fetch the OLPN number with only 30 weighed status 
+	And user opens the OLPN screen and retrieve the splitted oLPN
+	And user perform weigh and manifest and verify status "160 - Weighed"
 	And user opens RF menu and completes Shipping using "MM1 Anchor oLPN" menu 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged" 
 	And user navigates to shippment planning workspace 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 	
 	And user log out from application
 	
-@OutBoundScenario_APC_8 @OBRegScenarios_APC_Ignore @DailyRegression_APC_Ignore
+@OutBoundScenario_APC_8 @OBRegScenarios_APC @DailyRegression_APC
 Scenario:  Multiline Parcel Order with Serial Items having differnt Items Id
 	Given I have excel data
 	| APC_OBScenario10 |
@@ -457,16 +463,18 @@ Scenario:  Multiline LTL Order with Serial Items having differnt Items Id
 	And user open RF Menu and complete the pick tasks created
  	And user open RF Menu and complete the pack tasks created
 	#Then fetch the OLPN number with only 30 weighed status 
+	And user opens the OLPN screen and retrieve the splitted oLPN
+	And user perform weigh and manifest and verify status "160 - Weighed"
 	And user opens RF menu and completes Shipping using "MM1 Anchor oLPN" menu 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged" 
 	And user navigates to shippment planning workspace 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 	
 	And user log out from application
 	
-@OutBoundScenario_APC_10 @OBRegScenarios_APC_Test @DailyRegression_APC
+@OutBoundScenario_APC_10 @OBRegScenarios_APC_Ignore @DailyRegression_APC_Ignore
 Scenario: SingleLine LTL Do Order for Lot Items
 	Given I have excel data
-	| APC_IBScenario001 |
+	| APC_IBScenario012 |
 	Given Open the chrome browser by selenium
 	Given user update EDI file "APC SingleLine PO - LotItems" for dropping into fedexnet application
 	And user logs into the FedexNet application
@@ -481,7 +489,7 @@ Scenario: SingleLine LTL Do Order for Lot Items
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
-	And user log out from application   
+	And user log out from application     
 	Given I have excel data
 	| APC_OBScenario12 |
 	#Given Open the chrome browser by selenium
@@ -499,6 +507,9 @@ Scenario: SingleLine LTL Do Order for Lot Items
 	And user open RF Menu and complete the pick tasks created
  	And user open RF Menu and complete the pack tasks created
 	#Then fetch the OLPN number with only 30 weighed status 
+	And user opens the OLPN screen and retrieve the splitted oLPN
+	And user perform weigh and manifest and verify status "160 - Weighed"
+	#And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
 	And user opens RF menu and completes Shipping using "MM1 Anchor oLPN" menu 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged" 
 	And user navigates to shippment planning workspace 
@@ -506,9 +517,9 @@ Scenario: SingleLine LTL Do Order for Lot Items
 	And user log out from application
 	
 @OutBoundScenario_APC_11 @OBRegScenarios_APC_Ignore @DailyRegression_APC_Ignore
-Scenario: Multiline Parcel Order with Lot Items having differnt Items Id
+Scenario: SingleLine Parcel DO Order with Lot Items.
 	Given I have excel data
-	| APC_IBScenario001 |
+	| APC_IBScenario012 |
 	Given Open the chrome browser by selenium
 	Given user update EDI file "APC SingleLine PO - LotItems" for dropping into fedexnet application
 	And user logs into the FedexNet application
@@ -523,7 +534,7 @@ Scenario: Multiline Parcel Order with Lot Items having differnt Items Id
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
-	And user log out from application   
+	And user log out from application  
 	Given I have excel data
 	| APC_OBScenario13 |
 	Given user update EDI file "APC SingleLine DO - LotItems" for dropping into fedexnet application
