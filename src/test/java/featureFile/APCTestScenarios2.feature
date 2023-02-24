@@ -1,6 +1,6 @@
 Feature: This feature file contains the APC Regression Scenarios.
 
-@IBRegScenarios_APC_LotItem1 @LotScenario
+@IBRegScenarios_APC_LotItem1 @LotScenario_APC
 Scenario: SingleLine LTL ASN Order for Lot Items
 	Given I have excel data
 	| APC_IBScenario012 |
@@ -20,7 +20,7 @@ Scenario: SingleLine LTL ASN Order for Lot Items
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application  
 	
-@OBRegScenarios_APC_LotItem1 @LotScenario
+@OBRegScenarios_APC_LotItem1 @LotScenario_APC
 Scenario: SingleLine LTL Do Order for Lot Items
 	Given I have excel data
 	| APC_OBScenario12 |

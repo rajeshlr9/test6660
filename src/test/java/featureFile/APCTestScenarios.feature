@@ -556,5 +556,4 @@ Scenario: SingleLine Parcel DO Order with Lot Items.
 	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
 	#Then user search for DO and confirms it
 	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
-	Then user log out from application 
-	
+	Then user log out from application

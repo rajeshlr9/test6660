@@ -222,11 +222,14 @@ public class ILPNPage {
 		inputLPNSearchTextBox.clear();
 		inputLPNSearchTextBox.sendKeys(iLPN);
 		Screenshots.captureSnapshot(driver);
+		Thread.sleep(3000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, applySearchBtn, 50);
 		applySearchBtn.click();
+		Thread.sleep(3000);
 		SeleniumTestHelper.waitForElementToBeClickable(driver, firstCheckBx, 60);
 		Screenshots.captureSnapshot(driver);
 		driver.findElement(By.xpath("//span[text()='" + iLPN + "']/../..//input[@type='checkbox']")).click();
+		Thread.sleep(3000);
         SeleniumTestHelper.waitForElementToBeClickable(driver, cancelSelectedLPN, 60);
         viewLPNBtn.click();
         Thread.sleep(3000);
