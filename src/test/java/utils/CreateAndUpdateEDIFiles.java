@@ -57,7 +57,11 @@ public class CreateAndUpdateEDIFiles {
 	public String SingleLineLotItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-LotItem-SingleLine.x12";
 	public String SingleLineNormalItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-SingleLine.x12";
 	public String SingleLineSerialItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-SerialItem-SingleLine.x12";
-	
+	public String SingleLineNormalItemOBFilePathForUPSNServices = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-SingleLine-UPSN.x12";
+	public String SingleLineNormalItemOBFilePathwithpackInstruction = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-SingleLine-PackInstruction.x12";
+	public String SingleLineNormalItemOBFilePathwithInternationalOrder = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-SingleLine-InternationalOrder.x12";
+	public String SingleLineNormalItemOBFilePathwithTempStrip = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-SingleLine-TempStrip.x12";
+
 	//public String APCMultilineLineInboundFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-LotItem-Multiline-WIP.x12";
 	public String MultiLineLotItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-LotItem-Multiline-WIP.x12";
 	public String MultiLineNormalItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-Multiline.x12";
@@ -127,7 +131,31 @@ public class CreateAndUpdateEDIFiles {
 				Steps.logger.info("Contents Copy from : " + MultiLineSerialItemOBFilePath);
 				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
 				user_copy_edi_file_content_from_source_to_target(MultiLineSerialItemOBFilePath, APCEDIOutboundFilePath);
+			}else if (fileType.equals("APC SingleLine DO - TempStrip")) {
+				Steps.logger.info("Contents Copy from : " + SingleLineNormalItemOBFilePathwithTempStrip);
+				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(SingleLineNormalItemOBFilePathwithTempStrip,
+						APCEDIOutboundFilePath);
+			} 
+			else if (fileType.equals("APC SingleLine DO - NormalItems - Pack")) {
+				Steps.logger.info("Contents Copy from : " + SingleLineNormalItemOBFilePathwithpackInstruction);
+				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(SingleLineNormalItemOBFilePathwithpackInstruction,
+						APCEDIOutboundFilePath);
 			}
+			
+			else if (fileType.equals("APC SingleLine DO - NormalItems - InternationalOrder")) {
+				Steps.logger.info("Contents Copy from : " + SingleLineNormalItemOBFilePathwithInternationalOrder);
+				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(SingleLineNormalItemOBFilePathwithInternationalOrder,
+						APCEDIOutboundFilePath);
+			}
+			else if (fileType.equals("APC SingleLine DO - NormalItems - UPSN")) {
+				Steps.logger.info("Contents Copy from : " + SingleLineNormalItemOBFilePathForUPSNServices);
+				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(SingleLineNormalItemOBFilePathForUPSNServices,
+						APCEDIOutboundFilePath);
+			} 
 		}
 //		else if(fileType.equals("Single Line DO")){
 //			user_copy_content_from_source_to_target(SingleLineOutboundFilePath, inputEDIOutboundFilePath);

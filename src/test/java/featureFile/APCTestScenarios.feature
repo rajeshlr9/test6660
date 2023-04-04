@@ -557,3 +557,190 @@ Scenario: SingleLine Parcel DO Order with Lot Items.
 	#Then user search for DO and confirms it
 	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 	Then user log out from application
+	
+
+#@OutBoundScenario_APC_14 @OBRegScenarios_APC  @DailyRegression_APC
+#Scenario: SingleLine LTL DO Order for Normal Item having Ambient item
+#	Given I have excel data
+#	| APC_OBScenario15 |
+#	Given Open the chrome browser by selenium
+#	Given user update EDI file "APC SingleLine DO - NormalItems" for dropping into fedexnet application
+#	And user logs into the FedexNet application
+#	And user upload "850" XML file in fedexnet
+#	Then user log out from Fedenxet application
+#	And user logs into the Manhattan application
+#	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+#	Then user verifies the item details in Distribuion Order page 
+#	And user runs the "APC LTL Pick Wave"
+#	Then user views wave and verify the allocation of inventory 
+#	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+#	And fetch the OLPN number
+#	And user open RF Menu and complete the pick tasks created 
+#	And user open RF Menu and complete the pack tasks created
+#	And user opens the OLPN screen and retrieve the splitted oLPN
+#	And user perform weigh and manifest and verify status "160 - Weighed"
+#	And user opens RF menu and completes Shipping using "MM1 Anchor oLPN" menu 
+#	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged" 
+#	And user navigates to shippment planning workspace 
+#	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 	
+#	And user log out from application	
+
+@OutBoundScenario_APC_12	@OBRegScenarios_APC1  @DailyRegression_APC
+Scenario: SingleLine Parcel DO Order for Normal Item Hazmath type
+	Given I have excel data
+	| APC_OBScenario14 |
+	Given Open the chrome browser by selenium
+	Given user update EDI file "APC SingleLine DO - NormalItems" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
+	Then user verifies the item details in Distribuion Order page 
+	Then user verifies the shipVia populated in Distribuion Order page 
+	And user runs the "APC PCL Pick Wave"
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And fetch the OLPN number
+	And user open RF Menu and complete the pick tasks created
+	And user open RF Menu and complete the pack tasks created
+	And user opens the OLPN screen and retrieve the splitted oLPN
+	And user perform weigh and manifest and verify status "170 - Manifested"
+	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
+	#Then user search for DO and confirms it
+	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
+	Then user log out from application 
+	
+@OutBoundScenario_APC_13	@OBRegScenarios_APC1  @DailyRegression_APC
+Scenario: SingleLine Parcel DO Order for Normal Item for Pack instruction
+	Given I have excel data
+	| APC_OBScenario15 |
+	Given Open the chrome browser by selenium
+	Given user update EDI file "APC SingleLine DO - NormalItems - Pack" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
+	Then user verifies the item details in Distribuion Order page 
+	Then user verifies the shipVia populated in Distribuion Order page 
+	And user runs the "APC PCL Pick Wave"
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And fetch the OLPN number
+	And user open RF Menu and complete the pick tasks created
+	And user open RF Menu and complete the pack tasks created
+	And user opens the OLPN screen and retrieve the splitted oLPN
+	And user perform weigh and manifest and verify status "170 - Manifested"
+	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
+	#Then user search for DO and confirms it
+	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
+	Then user log out from application 
+	
+@OutBoundScenario_APC_14	@OBRegScenarios_APC1  @DailyRegression_APC
+Scenario: SingleLine Parcel DO Order for Normal Item for UPSN service
+	Given I have excel data
+	| APC_OBScenario16 |
+	Given Open the chrome browser by selenium
+	Given user update EDI file "APC SingleLine DO - NormalItems - UPSN" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
+	Then user verifies the item details in Distribuion Order page 
+	Then user verifies the shipVia populated in Distribuion Order page
+	And user runs the "APC PCL Pick Wave"
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And fetch the OLPN number
+	And user open RF Menu and complete the pick tasks created
+	And user open RF Menu and complete the pack tasks created
+	And user opens the OLPN screen and retrieve the splitted oLPN
+	And user perform weigh and manifest and verify status "170 - Manifested"
+	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
+	#Then user search for DO and confirms it
+	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
+	Then user log out from application
+	
+@OutBoundScenario_APC_15	@OBRegScenarios_APC1  @DailyRegression_APC
+Scenario: SingleLine LTL DO Order for Normal Item for International order
+	Given I have excel data
+	| APC_OBScenario17 |
+	Given Open the chrome browser by selenium
+	Given user update EDI file "APC SingleLine DO - NormalItems - InternationalOrder" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "APC LTL Pick Wave"
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And fetch the OLPN number
+	And user open RF Menu and complete the pick tasks created
+ 	And user open RF Menu and complete the pack tasks created
+	#Then fetch the OLPN number with only 30 weighed status 
+	And user opens the OLPN screen and retrieve the splitted oLPN
+	And user perform weigh and manifest and verify status "160 - Weighed"
+	#And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
+	And user opens RF menu and completes Shipping using "MM1 Anchor oLPN" menu 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged" 
+	And user navigates to shippment planning workspace 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 	
+	And user log out from application
+	
+@OutBoundScenario_APC_16	@OBRegScenarios_APC1  @DailyRegression_APC
+Scenario: SingleLine Parcel DO Order for Normal item Hazmath type for UPSN service
+	Given I have excel data
+	| APC_OBScenario18 |
+	Given Open the chrome browser by selenium
+	Given user update EDI file "APC SingleLine DO - NormalItems - UPSN" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released"
+	Then user verifies the item details in Distribuion Order page 
+	Then user verifies the shipVia populated in Distribuion Order page
+	And user runs the "APC PCL Pick Wave"
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And fetch the OLPN number
+	And user open RF Menu and complete the pick tasks created
+	And user open RF Menu and complete the pack tasks created
+	And user opens the OLPN screen and retrieve the splitted oLPN
+	And user perform weigh and manifest and verify status "170 - Manifested"
+	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
+	#Then user search for DO and confirms it
+	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
+	Then user log out from application
+	
+@OutBoundScenario_APC_17 @OBRegScenarios_APC1  @DailyRegression_APC
+Scenario: SingleLine LTL DO Order for Normal Item having Cooler item with temp strip
+	Given I have excel data
+	| APC_OBScenario19 |
+	Given Open the chrome browser by selenium
+	Given user update EDI file "APC SingleLine DO - TempStrip" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	Then user verifies the item details in Distribuion Order page 
+	And user runs the "APC LTL Pick Wave"
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And fetch the OLPN number
+	And user open RF Menu and complete the pick tasks created 
+	And user open RF Menu and complete the pack tasks created
+	And user opens the OLPN screen and retrieve the splitted oLPN
+	And user perform weigh and manifest and verify status "160 - Weighed"
+	And user opens RF menu and completes Shipping using "MM1 Anchor oLPN" menu 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "165 - Staged" 
+	And user navigates to shippment planning workspace 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 	
+	And user log out from application
+
+
