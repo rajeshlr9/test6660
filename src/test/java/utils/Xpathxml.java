@@ -63,6 +63,7 @@ public class Xpathxml {
 	public String SingleLineOutboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/850/"+Steps.scenarioData.get("Account")+"_850_SingleLine.xml";
 	public String MultiLineOutboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/850/"+Steps.scenarioData.get("Account")+"_850_MultiLine.xml";
 	public String inputEDIOutboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/850/"+Steps.scenarioData.get("Account")+"_850_InputFile.xml";
+	public String FourLineOutboundFilePath = dirPath + "/src/test/resources/testdata/"+Steps.scenarioData.get("Account") + "/850/"+Steps.scenarioData.get("Account")+"_850_FourLine.xml";
 	
 	public static String ASNNumber = null;
 	
@@ -529,6 +530,9 @@ public class Xpathxml {
 			user_copy_content_from_source_to_target(SingleLineOutboundFilePath, inputEDIOutboundFilePath);
 		}else if(xmlType.equals("Multi Line DO")){
 			user_copy_content_from_source_to_target(MultiLineOutboundFilePath, inputEDIOutboundFilePath);
+		}
+		else if(xmlType.equals("Four Line DO")){
+			user_copy_content_from_source_to_target(FourLineOutboundFilePath, inputEDIOutboundFilePath);
 		}
 	}
 	
