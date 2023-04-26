@@ -748,7 +748,7 @@ Scenario: SingleLine Parcel DO Order for Normal Item for International order wit
 	Given I have excel data
 	| APC_OBScenario20 |
 	Given Open the chrome browser by selenium
-	Given user update EDI file "APC SingleLine DO - NormalItems - InternationalOrder - LargeCost" for dropping into fedexnet application
+	Given user update EDI file "APC SingleLine DO - NormalItems - LargeCost" for dropping into fedexnet application
 	And user logs into the FedexNet application
 	And user upload "850" XML file in fedexnet
 	Then user log out from Fedenxet application

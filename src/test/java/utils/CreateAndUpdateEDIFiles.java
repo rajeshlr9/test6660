@@ -61,8 +61,8 @@ public class CreateAndUpdateEDIFiles {
 	public String SingleLineNormalItemOBFilePathwithpackInstruction = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-SingleLine-PackInstruction.x12";
 	public String SingleLineNormalItemOBFilePathwithInternationalOrder = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-SingleLine-InternationalOrder.x12";
 	public String SingleLineNormalItemOBFilePathwithTempStrip = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-SingleLine-TempStrip.x12";
-	public String SingleLineNormalItemOBFilePathwithInternationalOrderWithLargeCost = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-SingleLine-InternationalOrder -LargeCost.x12";
-	
+	public String SingleLineNormalItemOBFilePathWithLargeCost = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-SingleLine-LargeCost.x12";
+
 	//public String APCMultilineLineInboundFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-LotItem-Multiline-WIP.x12";
 	public String MultiLineLotItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-LotItem-Multiline-WIP.x12";
 	public String MultiLineNormalItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-Multiline.x12";
@@ -120,12 +120,6 @@ public class CreateAndUpdateEDIFiles {
 				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
 				user_copy_edi_file_content_from_source_to_target(SingleLineSerialItemOBFilePath,
 						APCEDIOutboundFilePath);
-			} else if (fileType.equals("APC SingleLine DO - NormalItems - InternationalOrder - LargeCost")) {
-				Steps.logger.info("Contents Copy from : " + SingleLineNormalItemOBFilePathwithInternationalOrderWithLargeCost);
-				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
-				user_copy_edi_file_content_from_source_to_target(SingleLineNormalItemOBFilePathwithInternationalOrderWithLargeCost,
-						APCEDIOutboundFilePath);
-			}
 			} else if (fileType.equals("APC MultiLine DO - LotItems")) {
 				Steps.logger.info("Contents Copy from : " + MultiLineLotItemIBFilePath);
 				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
@@ -163,13 +157,20 @@ public class CreateAndUpdateEDIFiles {
 				user_copy_edi_file_content_from_source_to_target(SingleLineNormalItemOBFilePathForUPSNServices,
 						APCEDIOutboundFilePath);
 			} 
+			else if (fileType.equals("APC SingleLine DO - NormalItems - LargeCost")) {
+				Steps.logger.info("Contents Copy from : " + SingleLineNormalItemOBFilePathWithLargeCost);
+				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(SingleLineNormalItemOBFilePathWithLargeCost,
+						APCEDIOutboundFilePath);
+			}
+		} 
 		}
 //		else if(fileType.equals("Single Line DO")){
 //			user_copy_content_from_source_to_target(SingleLineOutboundFilePath, inputEDIOutboundFilePath);
 //		}else if(fileType.equals("Multi Line DO")){
 //			user_copy_content_from_source_to_target(MultiLineOutboundFilePath, inputEDIOutboundFilePath);
 //		}
-	
+
 	
 	public void user_update_EDI_file(String fileType)
 			throws FileNotFoundException, XPathExpressionException, IOException, SAXException,

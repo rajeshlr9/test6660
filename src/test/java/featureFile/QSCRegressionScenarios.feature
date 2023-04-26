@@ -564,7 +564,7 @@ Scenario: Distribution Order creation - Validation of Error Label
 #	And user verify the "856" file in fedexnet
 #	Then user log out from Fedenxet application	
 	
-@DailyRegression_QSC @ScenarioOB12New @OBRegScenarios_QSC
+@DailyRegression_QSC @ScenarioOB12 @OBRegScenarios_QSC
 Scenario: Distribution Order creation - Multi Line Parcel PO FDE
 	Given I have excel data 
 		| QSC_DailyRegressionOB12 |
