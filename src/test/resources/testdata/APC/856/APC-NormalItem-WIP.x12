@@ -9,7 +9,7 @@ N1^RC^MEM1
 HL^2^1^O^1
 PRF^TRNR10272
 HL^3^2^I^0
-LIN^XXXItemQty^SK^XXXItemId^^^^^^^^^^^CH^US
+LIN^XXXItemQty^SK^XXXItemId^C3^NA^^^^^^^^^CH^US
 SN1^^XXXItemUOM^XXXUOM
 PID^F^^^^i-STAT 1 Analyzer, Immuno Ready
 REF^CO^W00125

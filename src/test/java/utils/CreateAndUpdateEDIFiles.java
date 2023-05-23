@@ -65,6 +65,7 @@ public class CreateAndUpdateEDIFiles {
 
 	//public String APCMultilineLineInboundFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-LotItem-Multiline-WIP.x12";
 	public String MultiLineLotItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-LotItem-Multiline-WIP.x12";
+	public String MultiLineNormalItemOBFilePathProdStatus = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-MultilineProdStatusFile.x12";
 	public String MultiLineNormalItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-Multiline.x12";
 	public String MultiLineSerialItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-SerialItem-Multiline.x12";
 
@@ -132,7 +133,13 @@ public class CreateAndUpdateEDIFiles {
 				Steps.logger.info("Contents Copy from : " + MultiLineSerialItemOBFilePath);
 				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
 				user_copy_edi_file_content_from_source_to_target(MultiLineSerialItemOBFilePath, APCEDIOutboundFilePath);
-			}else if (fileType.equals("APC SingleLine DO - TempStrip")) {
+			}
+			else if (fileType.equals("APC MultiLine DO - NormalItemsProdStaus")) {
+				Steps.logger.info("Contents Copy from : " + MultiLineNormalItemOBFilePathProdStatus);
+				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(MultiLineNormalItemOBFilePathProdStatus, APCEDIOutboundFilePath);
+			}
+			else if (fileType.equals("APC SingleLine DO - TempStrip")) {
 				Steps.logger.info("Contents Copy from : " + SingleLineNormalItemOBFilePathwithTempStrip);
 				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
 				user_copy_edi_file_content_from_source_to_target(SingleLineNormalItemOBFilePathwithTempStrip,

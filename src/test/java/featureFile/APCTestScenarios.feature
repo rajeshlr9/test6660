@@ -344,7 +344,7 @@ Scenario: Multiline Parcel Do Order for Normal Items having Same Items Id
 	Given I have excel data
 	| APC_OBScenario07 |
 	Given Open the chrome browser by selenium
-	Given user update EDI file "APC MultiLine DO - NormalItems" for dropping into fedexnet application
+	Given user update EDI file "APC MultiLine DO - NormalItemsProdStaus" for dropping into fedexnet application
 	And user logs into the FedexNet application
 	And user upload "850" XML file in fedexnet
 	Then user log out from Fedenxet application
