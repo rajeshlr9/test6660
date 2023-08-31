@@ -50,6 +50,7 @@ import globalFunc.Screenshots;
 import globalFunc.GetScenarioStepSnapshots;
 import pages.HomePage;
 import pages.ManhattanLoginPage;
+import reusable.FedexnetPage;
 import utils.Config;
 
 public class Steps {
@@ -150,6 +151,15 @@ public class Steps {
 					Screenshots.addingScreenshottoExentReport();
 					HomePage homePage1= new HomePage();
 					homePage1.user_logout_from_application1();
+					FedexnetPage FedexnetPage = null;
+					try {
+						FedexnetPage = new FedexnetPage();
+						FedexnetPage.logoutApplication();
+					} catch (Throwable e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
 				} catch (Exception e) { // TODO Auto-generated
 					e.printStackTrace();
 					System.out.println("raka3");
@@ -314,6 +324,5 @@ public class Steps {
 		LeanFTDriver.close();
 		LeanFTDriver = null;
 	}
-	
 	
 }

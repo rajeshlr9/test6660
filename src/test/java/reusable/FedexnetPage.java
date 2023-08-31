@@ -20,6 +20,7 @@ import com.cucumber.listener.Reporter;
 import StepDefinition.Steps;
 import entity.Items;
 import globalFunc.Screenshots;
+import pages.ManhattanLoginPage;
 import utils.Config;
 import utils.Driver;
 import utils.SeleniumTestHelper;
@@ -195,8 +196,9 @@ public class FedexnetPage  extends Steps {
 	
 	public void verify861And856Files(String dropEnv, String filetype, String filepath)throws Exception {
 		try {
+			String account = ManhattanLoginPage.account;
 			driver.switchTo().frame("LinkFrame");
-			Thread.sleep(1000);
+			Thread.sleep(10000);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, documentQueueLink, 50);
 			documentQueueLink.click();
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, filterLink, 50);
@@ -212,7 +214,17 @@ public class FedexnetPage  extends Steps {
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, searchBtnForSender, 50);
 			searchBtnForSender.click();
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, receiverTPIDInput, 50);
-			receiverTPIDInput.sendKeys("QSC");
+			if (account.equalsIgnoreCase("QSC")) {
+				receiverTPIDInput.sendKeys("QSC");
+			} else if (account.equalsIgnoreCase("NVI")) {
+				receiverTPIDInput.sendKeys("NVI");
+			} else if (account.equalsIgnoreCase("APC")) {
+				if(ManhattanLoginPage.environment.toString().equalsIgnoreCase("L4")) {
+				receiverTPIDInput.sendKeys("ABBOTTPOC");
+				}else {
+					receiverTPIDInput.sendKeys("ABBOTTPOCT");
+				}
+			}
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, searchBtnForReceiver, 50);
 			searchBtnForReceiver.click();
 
@@ -224,8 +236,9 @@ public class FedexnetPage  extends Steps {
 
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, searchBtnForAppType, 50);
 			searchBtnForAppType.click();
-			Steps.logger.info("Clicked on Search button after providing input as 861");
-
+			Steps.logger.info("Clicked on Search button after providing input");
+			Reporter.addStepLog("Clicked on Search button after providing input");
+			
 			driver.switchTo().defaultContent();
 			driver.switchTo().parentFrame();
 			driver.switchTo().frame("ApplicationFrame");
@@ -259,7 +272,7 @@ public class FedexnetPage  extends Steps {
 			signInBtn.click();
 			Steps.logger.info("Clicked on SignIn Button");
 			Reporter.addStepLog("Entered Credentails and Clicked on SignIn Button...");
-			Thread.sleep(240000);
+			Thread.sleep(6000);
 		}
 	}
 	

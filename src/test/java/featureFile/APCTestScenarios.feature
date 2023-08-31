@@ -18,7 +18,11 @@ Scenario: Receiving SingleLine Lot Items for Cooler type item.
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
-	And user log out from application   
+	And user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "861" file in fedexnet
+	Then user log out from Fedenxet application
+	
 	
 @InBoundScenario_APC_2 @IBRegScenarios_APC @DailyRegression_APC
 Scenario: Receiving SingleLine Normal Items for Ambient type item.
@@ -39,6 +43,9 @@ Scenario: Receiving SingleLine Normal Items for Ambient type item.
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application 
+	And user logs into the FedexNet application for verify files
+	And user verify the "861" file in fedexnet
+	Then user log out from Fedenxet application
 	
 @InBoundScenario_APC_3 @IBRegScenarios_APC @DailyRegression_APC
 Scenario: Receiving for SingleLine Serial Items for Ambient type item.
@@ -59,6 +66,9 @@ Scenario: Receiving for SingleLine Serial Items for Ambient type item.
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application 
+	And user logs into the FedexNet application for verify files
+	And user verify the "861" file in fedexnet
+	Then user log out from Fedenxet application
 	
 @InBoundScenario_APC_4 @IBRegScenarios_APC @DailyRegression_APC
 Scenario: Receiving and Putaway for SingleLine Normal Items for Hazmat type item. 
@@ -79,6 +89,9 @@ Scenario: Receiving and Putaway for SingleLine Normal Items for Hazmat type item
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "861" file in fedexnet
+	Then user log out from Fedenxet application
 	
 @InBoundScenario_APC_5 @IBRegScenarios_APC @DailyRegression_APC
 Scenario:  Receiving and Putaway for SingleLine Lot Items for Freezer type item. 
@@ -98,6 +111,9 @@ Scenario:  Receiving and Putaway for SingleLine Lot Items for Freezer type item.
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "861" file in fedexnet
+	Then user log out from Fedenxet application
 		
 @InBoundScenario_APC_6 @IBRegScenarios_APC @DailyRegression_APC
 Scenario: Receiving and Putaway for SingleLine Lot Items for Abaxis type item. 
@@ -118,6 +134,9 @@ Scenario: Receiving and Putaway for SingleLine Lot Items for Abaxis type item.
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "861" file in fedexnet
+	Then user log out from Fedenxet application
 	  
 @InBoundScenario_APC_7 @IBRegScenarios_APC @DailyRegression_APC
 Scenario:  Receiving Multiline Lot Items of Cooler type having both items and quantity differ.  
@@ -138,6 +157,9 @@ Scenario:  Receiving Multiline Lot Items of Cooler type having both items and qu
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "861" file in fedexnet
+	Then user log out from Fedenxet application
 	
 @InBoundScenario_APC_8 @IBRegScenarios_APC @DailyRegression_APC
 Scenario:  Receiving Multiline Normal Items of Ambient type having both items and quantity differ. 
@@ -158,6 +180,9 @@ Scenario:  Receiving Multiline Normal Items of Ambient type having both items an
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "861" file in fedexnet
+	Then user log out from Fedenxet application
 	
 @InBoundScenario_APC_9 @IBRegScenarios_APC @DailyRegression_APC
 Scenario:  Receiving Multiline Serial Items of Ambient having both items differ but quantity same.
@@ -178,6 +203,9 @@ Scenario:  Receiving Multiline Serial Items of Ambient having both items differ 
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application	
+	And user logs into the FedexNet application for verify files
+	And user verify the "861" file in fedexnet
+	Then user log out from Fedenxet application
 	
 @InBoundScenario_APC_10 @IBRegScenarios_APC @DailyRegression_APC
 Scenario:  Receiving Multiline Lot Items with Same Items and Same Quantity for Abaxis Item  
@@ -198,6 +226,9 @@ Scenario:  Receiving Multiline Lot Items with Same Items and Same Quantity for A
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "861" file in fedexnet
+	Then user log out from Fedenxet application
 	
 @InBoundScenario_APC_11 @IBRegScenarios_APC @DailyRegression_APC
 Scenario: Rceiving Multiline Normal Items with Same Item and Same Quantity for Hazmat Item.  
@@ -218,6 +249,9 @@ Scenario: Rceiving Multiline Normal Items with Same Item and Same Quantity for H
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "861" file in fedexnet
+	Then user log out from Fedenxet application
 
 @InBoundScenario_APC_12	@IBRegScenarios_APC @DailyRegression_APC
 Scenario:  Create and Upload X12 file Using Kelli and Veirify ASN Staus in Manhattan. 
@@ -259,7 +293,10 @@ Scenario: SingleLine Parcel DO Order for Normal Item
 	#Then user search for DO and confirms it
 	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
 	Then user log out from application 
-	
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application
+		
 @OutBoundScenario_APC_2	@OBRegScenarios_APC  @DailyRegression_APC
 Scenario: SingleLine LTL DO Order for Normal Item
 	Given I have excel data
@@ -285,7 +322,10 @@ Scenario: SingleLine LTL DO Order for Normal Item
 	And user navigates to shippment planning workspace 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 	
 	And user log out from application
-	
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application
+		
 @OutBoundScenario_APC_3	@OBRegScenarios_APC  @DailyRegression_APC
 Scenario: SingleLine Parcel DO Order for Serial Item
 	Given I have excel data
@@ -311,6 +351,9 @@ Scenario: SingleLine Parcel DO Order for Serial Item
 	Then user search for DO and confirms it
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
 	Then user log out from application 
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application
 	
 @OutBoundScenario_APC_4	@OBRegScenarios_APC  @DailyRegression_APC
 Scenario: SingleLine LTL DO Order for Serial Item
@@ -338,6 +381,9 @@ Scenario: SingleLine LTL DO Order for Serial Item
 	And user navigates to shippment planning workspace 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 	
 	And user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application
 
 @OutBoundScenario_APC_5	@OBRegScenarios_APC @DailyRegression_APC
 Scenario: Multiline Parcel Do Order for Normal Items having Same Items Id
@@ -364,6 +410,9 @@ Scenario: Multiline Parcel Do Order for Normal Items having Same Items Id
 	Then user search for DO and confirms it
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
 	Then user log out from application 
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application
 	
 @OutBoundScenario_APC_6	@OBRegScenarios_APC_Ignore @DailyRegression_APC_Ignore
 Scenario: Multiline Parcel Order for Normal Items having differnt Items Id
@@ -390,6 +439,9 @@ Scenario: Multiline Parcel Order for Normal Items having differnt Items Id
 	#Then user search for DO and confirms it
 	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  	
 	Then user log out from application 
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application
 	
 @OutBoundScenario_APC_7	@OBRegScenarios_APC @DailyRegression_APC
 Scenario:  Multiline LTL Order with Normal Items having differnt Items Id
@@ -417,6 +469,9 @@ Scenario:  Multiline LTL Order with Normal Items having differnt Items Id
 	And user navigates to shippment planning workspace 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 	
 	And user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application
 	
 @OutBoundScenario_APC_8 @OBRegScenarios_APC @DailyRegression_APC
 Scenario:  Multiline Parcel Order with Serial Items having differnt Items Id
@@ -443,6 +498,9 @@ Scenario:  Multiline Parcel Order with Serial Items having differnt Items Id
 	#Then user search for DO and confirms it
 	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
 	Then user log out from application 
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application
 	
 @OutBoundScenario_APC_9 @OBRegScenarios_APC @DailyRegression_APC
 Scenario:  Multiline LTL Order with Serial Items having differnt Items Id
@@ -470,6 +528,10 @@ Scenario:  Multiline LTL Order with Serial Items having differnt Items Id
 	And user navigates to shippment planning workspace 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 	
 	And user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application
+	
 	
 @OutBoundScenario_APC_10 @OBRegScenarios_APC_Ignore @DailyRegression_APC_Ignore
 Scenario: SingleLine LTL Do Order for Lot Items
@@ -515,6 +577,10 @@ Scenario: SingleLine LTL Do Order for Lot Items
 	And user navigates to shippment planning workspace 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 	
 	And user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application
+	
 	
 @OutBoundScenario_APC_11 @OBRegScenarios_APC_Ignore @DailyRegression_APC_Ignore
 Scenario: SingleLine Parcel DO Order with Lot Items.
@@ -557,6 +623,9 @@ Scenario: SingleLine Parcel DO Order with Lot Items.
 	#Then user search for DO and confirms it
 	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 	Then user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application
 	
 
 #@OutBoundScenario_APC_14 @OBRegScenarios_APC  @DailyRegression_APC
@@ -610,6 +679,9 @@ Scenario: SingleLine Parcel DO Order for Normal Item Hazmath type
 	#Then user search for DO and confirms it
 	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
 	Then user log out from application 
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application
 	
 @OutBoundScenario_APC_13	@OBRegScenarios_APC1  @DailyRegression_APC
 Scenario: SingleLine Parcel DO Order for Normal Item for Pack instruction
@@ -636,7 +708,10 @@ Scenario: SingleLine Parcel DO Order for Normal Item for Pack instruction
 	#Then user search for DO and confirms it
 	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
 	Then user log out from application 
-	
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application
+		
 @OutBoundScenario_APC_14	@OBRegScenarios_APC1  @DailyRegression_APC
 Scenario: SingleLine Parcel DO Order for Normal Item for UPSN service
 	Given I have excel data
@@ -662,6 +737,9 @@ Scenario: SingleLine Parcel DO Order for Normal Item for UPSN service
 	#Then user search for DO and confirms it
 	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
 	Then user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application
 	
 @OutBoundScenario_APC_15	@OBRegScenarios_APC1  @DailyRegression_APC
 Scenario: SingleLine LTL DO Order for Normal Item for International order
@@ -690,6 +768,9 @@ Scenario: SingleLine LTL DO Order for Normal Item for International order
 	And user navigates to shippment planning workspace 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 	
 	And user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application
 	
 @OutBoundScenario_APC_16	@OBRegScenarios_APC1  @DailyRegression_APC
 Scenario: SingleLine Parcel DO Order for Normal item Hazmath type for UPSN service
@@ -716,6 +797,9 @@ Scenario: SingleLine Parcel DO Order for Normal item Hazmath type for UPSN servi
 	#Then user search for DO and confirms it
 	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
 	Then user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application
 	
 @OutBoundScenario_APC_17 @OBRegScenarios_APC1  @DailyRegression_APC
 Scenario: SingleLine LTL DO Order for Normal Item having Cooler item with temp strip
@@ -742,6 +826,9 @@ Scenario: SingleLine LTL DO Order for Normal Item having Cooler item with temp s
 	And user navigates to shippment planning workspace 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped" 	
 	And user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application
 	
 @OutBoundScenario_APC_18 @OBRegScenarios_APC1  @DailyRegression_APC
 Scenario: SingleLine Parcel DO Order for Normal Item for International order with item cost more than twenty five hundred
@@ -768,6 +855,9 @@ Scenario: SingleLine Parcel DO Order for Normal Item for International order wit
 	#Then user search for DO and confirms it
 	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
 	Then user log out from application
+	And user logs into the FedexNet application for verify files
+	And user verify the "856" file in fedexnet
+	Then user log out from Fedenxet application
 	
 
 

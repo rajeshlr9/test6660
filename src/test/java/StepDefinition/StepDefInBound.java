@@ -1222,14 +1222,15 @@ public class StepDefInBound {
 					FedexnetPage.verify861And856Files(tpid, "861", "");
 					String fileNameRetrieved = vfr.downloadTheFileFromFedexNet(tpid, "861");
 					Steps.logger.info(fileNameRetrieved);
-					FileUtilities.verifyOrderNumIn856File(fileNameRetrieved);
+					FileUtilities.verifyOrderNumIn861File(fileNameRetrieved);
 				} else if (env.equalsIgnoreCase("L4")) {
 					Screenshots.captureSnapshot(driver);
 					Steps.logger.info("Validation of 861 File");
 					FedexnetPage.verify861And856Files(tpid, "861QA", "");
 					String fileNameRetrieved = vfr.downloadTheFileFromFedexNet(tpid, "861QA");
 					Steps.logger.info(fileNameRetrieved);
-					FileUtilities.verifyOrderNumIn856File(fileNameRetrieved);
+					//FileUtilities.verifyOrderNumIn856File(fileNameRetrieved);
+					FileUtilities.verifyOrderNumIn861File(fileNameRetrieved);
 				}  else if (env.equalsIgnoreCase("L5")) {
 					Screenshots.captureSnapshot(driver);
 					Steps.logger.info("Validation of 861 File");

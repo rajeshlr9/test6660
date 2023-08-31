@@ -29,8 +29,9 @@ public class UnZipUtility {
      * @param zipFilePath
      * @param destDirectory
      * @throws IOException
+     * @throws InterruptedException 
      */
-    public void unzip(String zipFilePath, String destDirectory) throws IOException {
+    public void unzip(String zipFilePath, String destDirectory) throws IOException, InterruptedException {
         File destDir = new File(destDirectory);
         if (!destDir.exists()) {
             destDir.mkdir();
@@ -42,6 +43,7 @@ public class UnZipUtility {
         	}
         	destDir.delete();
         	if (!destDir.exists()) {
+        		Thread.sleep(1000);
         		destDir.mkdir();
             }
         	

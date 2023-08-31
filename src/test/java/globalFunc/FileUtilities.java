@@ -13,6 +13,7 @@ import org.testng.Assert;
 
 import StepDefinition.Steps;
 import entity.Items;
+import pages.ManhattanLoginPage;
 import utils.Config;
 
 public class FileUtilities {
@@ -122,39 +123,78 @@ public class FileUtilities {
  
 	public static void verifyOrderNumIn861File(String fileName) throws Exception{
 		try {
-			String zipFilePath = "C:\\Users\\ffd-sys-team\\Downloads\\" + fileName + ".zip";
-			String destDirectory = "C:\\Users\\ffd-sys-team\\Downloads\\TestExtract";
-			UnZipUtility unZipClass = new UnZipUtility();
-			unZipClass.unzip(zipFilePath, destDirectory);
-			List<String> stringfile = unZipClass
-					.readFile("C:\\Users\\ffd-sys-team\\Downloads\\TestExtract\\" + fileName + ".fnf");
-			System.out.println("XML File Contents"+stringfile);
-			String orderNum = Items.getAsnNumber();
-			String finalOrderNum[] = orderNum.split("-");
-			System.out.println(stringfile.contains("<OrdNbr>" + finalOrderNum[0] + "</OrdNbr>"));
-			System.out.println(stringfile.contains("<ConditionCD>07</ConditionCD>"));
-			Assert.assertTrue(stringfile.contains("<OrdNbr>" + finalOrderNum[0] + "</OrdNbr>"), "Order Number mismatch");
-			Assert.assertTrue(stringfile.contains("<ConditionCD>07</ConditionCD>"), "ConditionCD mismatch");
+			String account = ManhattanLoginPage.account;
+			if (account.equalsIgnoreCase("APC")) {
+				String zipFilePath = "C:\\Users\\ffd-sys-team\\Downloads\\" + fileName + ".zip";
+				String destDirectory = "C:\\Users\\ffd-sys-team\\Downloads\\TestExtract";
+				UnZipUtility unZipClass = new UnZipUtility();
+				Thread.sleep(10000);
 
+				unZipClass.unzip(zipFilePath, destDirectory);
+				Thread.sleep(10000);
+				List<String> stringfile = unZipClass
+						.readFile("C:\\Users\\ffd-sys-team\\Downloads\\TestExtract\\" + fileName + ".fnf");
+				System.out.println("XML File Contents" + stringfile);
+				String orderNum =  Items.getAsnNumber();
+				//String orderNum =  "APOC000000967-030556032-1";
+				String finalOrderNum = orderNum.substring(0, orderNum.length()-2);
+				System.out.println("ASN number ="+finalOrderNum);
+				
+				System.out.println(stringfile.size());
+				System.out.println(stringfile.toString().contains(finalOrderNum));
+				
+				Assert.assertTrue(stringfile.toString().contains(finalOrderNum),"Order Number mismatch");
+			} else {
+				String zipFilePath = "C:\\Users\\ffd-sys-team\\Downloads\\" + fileName + ".zip";
+				String destDirectory = "C:\\Users\\ffd-sys-team\\Downloads\\TestExtract";
+				UnZipUtility unZipClass = new UnZipUtility();
+				unZipClass.unzip(zipFilePath, destDirectory);
+				List<String> stringfile = unZipClass
+						.readFile("C:\\Users\\ffd-sys-team\\Downloads\\TestExtract\\" + fileName + ".fnf");
+				System.out.println("XML File Contents" + stringfile);
+				String orderNum = Items.getAsnNumber();
+				String finalOrderNum[] = orderNum.split("-");
+				System.out.println(stringfile.contains("<OrdNbr>" + finalOrderNum[0] + "</OrdNbr>"));
+				System.out.println(stringfile.contains("<ConditionCD>07</ConditionCD>"));
+				Assert.assertTrue(stringfile.contains("<OrdNbr>" + finalOrderNum[0] + "</OrdNbr>"),
+						"Order Number mismatch");
+				Assert.assertTrue(stringfile.contains("<ConditionCD>07</ConditionCD>"), "ConditionCD mismatch");
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
-	public static void verifyOrderNumIn856File(String fileName) throws Exception{
+	public static void verifyOrderNumIn856File(String fileName) throws Exception {
 		try {
-			String zipFilePath = "C:\\Users\\ffd-sys-team\\Downloads\\" + fileName + ".zip";
-			String destDirectory = "C:\\Users\\ffd-sys-team\\Downloads\\TestExtract";
-			UnZipUtility unZipClass = new UnZipUtility();
-			unZipClass.unzip(zipFilePath, destDirectory);
-			List<String> stringfile = unZipClass
-					.readFile("C:\\Users\\ffd-sys-team\\Downloads\\TestExtract\\" + fileName + ".fnf");
-			System.out.println(stringfile);
-			String orderNum = Items.getDONumber();
-			System.out.println("orderNumber:" + orderNum);
-			System.out.println(stringfile.contains("<ShipID>" + orderNum + "</ShipID>"));
-			Assert.assertTrue(stringfile.contains("<ShipID>" + orderNum + "</ShipID>"), "OrderNum or ShipID mismatch");
+			String account = ManhattanLoginPage.account;
+			if (account.equalsIgnoreCase("APC")) {
+				String zipFilePath = "C:\\Users\\ffd-sys-team\\Downloads\\" + fileName + ".zip";
+				String destDirectory = "C:\\Users\\ffd-sys-team\\Downloads\\TestExtract";
+				UnZipUtility unZipClass = new UnZipUtility();
+				unZipClass.unzip(zipFilePath, destDirectory);
+				List<String> stringfile = unZipClass
+						.readFile("C:\\Users\\ffd-sys-team\\Downloads\\TestExtract\\" + fileName + ".fnf");
+				System.out.println(stringfile);
+				String orderNum = Items.getDONumber();
 
+				System.out.println("orderNumber:" + orderNum);
+				System.out.println(stringfile.toString().contains(orderNum));
+				Assert.assertTrue(stringfile.toString().contains(orderNum), "OrderNum or ShipID mismatch");
+			} else {
+				String zipFilePath = "C:\\Users\\ffd-sys-team\\Downloads\\" + fileName + ".zip";
+				String destDirectory = "C:\\Users\\ffd-sys-team\\Downloads\\TestExtract";
+				UnZipUtility unZipClass = new UnZipUtility();
+				unZipClass.unzip(zipFilePath, destDirectory);
+				List<String> stringfile = unZipClass
+						.readFile("C:\\Users\\ffd-sys-team\\Downloads\\TestExtract\\" + fileName + ".fnf");
+				System.out.println(stringfile);
+				String orderNum = Items.getDONumber();
+				System.out.println("orderNumber:" + orderNum);
+				System.out.println(stringfile.contains("<ShipID>" + orderNum + "</ShipID>"));
+				Assert.assertTrue(stringfile.contains("<ShipID>" + orderNum + "</ShipID>"),
+						"OrderNum or ShipID mismatch");
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
