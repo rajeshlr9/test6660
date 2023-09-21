@@ -962,6 +962,15 @@ public class SeleniumTestHelper {
 		System.out.println(dateFormat.format(date));
 		return dateFormat.format(date);
 	}
+	
+	public static void actionMouseHoverAndClickOnSubMenu(WebElement element1,WebElement element2){
+		Actions actions = new Actions(driver);
+		actions.moveToElement(element1);
+		actions.perform();
+		Actions action1 = new Actions(driver);
+		action1.moveToElement(element2).perform();
+		action1.click().perform();
+	}
  
  
  

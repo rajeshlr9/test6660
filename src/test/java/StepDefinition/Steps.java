@@ -325,4 +325,21 @@ public class Steps {
 		LeanFTDriver = null;
 	}
 	
+	/**
+	 * This method useful for opening Chrome browser and set the proxy using selenium
+	 * @throws Throwable
+	 */
+	@And("User Open the chrome browser using selenium")
+	public void open_the_chrome_and_launch_the_application_using_Selenium_with_proxy_enable() throws Throwable {
+		try {
+			// Write code here that turns the phrase above into concrete actions
+			seleniumDriver = CreateBrowser.CreateBrowserInstance(true);
+			logger.info("Browser Instance created");
+		} catch (Throwable e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
 }

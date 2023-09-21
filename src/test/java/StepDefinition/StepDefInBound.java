@@ -27,6 +27,13 @@ import pages.ILPNPage;
 import pages.ItemInvenByLocationPage;
 import pages.ItemsPage;
 import pages.ManhattanLoginPage;
+import pages.O2SHomePage;
+import pages.O2SInventoryPage;
+import pages.O2SOrderSummaryPage;
+import pages.O2SPlacementPage;
+import pages.O2SReturnShipmentPage;
+import pages.O2SRoutePage;
+import pages.O2SSearchOrderDetails;
 import pages.PixTransactionPage;
 import pages.PostMessagePage;
 import pages.RFMenuPage;
@@ -34,6 +41,7 @@ import pages.ReserveLocationPage;
 import reusable.FedexnetPage;
 import reusable.KelliPages;
 import reusable.ModifyXML;
+import reusable.O2SLoginPage;
 import reusable.ValidateFilesAfterReceving;
 import utils.Config;
 import utils.CreateAndUpdateEDIFiles;
@@ -58,7 +66,15 @@ public class StepDefInBound {
 	ValidateFilesAfterReceving vfr = new ValidateFilesAfterReceving();
 	//Added for APC customer to update x12 file
 	CreateAndUpdateEDIFiles createUpdateEdiInput = new CreateAndUpdateEDIFiles();
-
+	O2SLoginPage o2sLoginPage = new O2SLoginPage();
+	O2SHomePage o2sHomePage = new O2SHomePage();
+	O2SInventoryPage o2sInventoryPage = new O2SInventoryPage();
+	O2SRoutePage o2sRoutePage = new O2SRoutePage();
+	O2SPlacementPage o2sPlacementPage = new O2SPlacementPage();
+	O2SOrderSummaryPage o2sOrderSummaryPage = new O2SOrderSummaryPage();
+	O2SReturnShipmentPage o2sReturnShipmentPage = new O2SReturnShipmentPage();
+	O2SSearchOrderDetails o2sSearchOrderDetails = new O2SSearchOrderDetails();
+	
 	String itemName = null;
 	String GtinNum = null;
 	String ItemBarCode = null;
@@ -1292,4 +1308,93 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
+	@Then("^user logs into the O2S application$")
+	public void user_logs_into_the_O2S_application() {
+		try {
+			String env = O2SLoginPage.environment;
+			System.out.println("Environment:"+env);
+
+			if (env.equalsIgnoreCase("L1")|| env.equalsIgnoreCase("@Env")) {
+				driver.get(Config.getProperty("O2SApp_L1_URL"));
+				Steps.logger.info("L1 Environment");
+			} else if (env.equalsIgnoreCase("L2") ) {
+				driver.get(Config.getProperty("O2SApp_L2_URL"));
+				Steps.logger.info("L2 Environment");
+			} else if (env.equalsIgnoreCase("L4")) {
+					driver.get(Config.getProperty("O2SApp_L4_URL"));
+					Steps.logger.info("L4 Environment Manhattan URL :"+Config.getProperty("ManhattanURL_L4"));
+			}else if (env.equalsIgnoreCase("L5")) {
+				driver.get(Config.getProperty("O2SApp_L5_URL"));
+				Steps.logger.info("L5 Environment");
+			}
+			o2sLoginPage.loginToO2SApp();
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	@Then("^user log out from O2S application$")
+	public void user_logout_from_O2S() {
+		try {
+			o2sHomePage.logoutFormO2SApp();
+	}catch(Exception e){
+		System.out.println(e);
+	}
+	}
+		
+	@Then("^user create an order in O2S application for \"([^\"]*)\"$")
+	public void user_create_an_order_in_O2S(String orderType) {
+		try {
+			o2sHomePage.createOrderFirstStep(orderType);
+			Steps.logger.info("Perform Step-1 while Create an Order");
+			Screenshots.captureSnapshot(driver);
+			o2sInventoryPage.addInventory();
+			Steps.logger.info("Add Inventory");
+			Screenshots.captureSnapshot(driver);
+			if (orderType.equalsIgnoreCase("retunItemAndReplace")) {
+				o2sReturnShipmentPage.clickOnContinueInReturnShipmentPage();
+				Steps.logger.info("Clicked Continue button in Return Shipment Page");
+			}
+			o2sRoutePage.selectRoute();
+			o2sPlacementPage.performPlacement();
+			Steps.logger.info("Select FedEx Route and Proceed");
+			Reporter.addStepLog("Completed create an order action");
+			Steps.logger.info("Completed create an Order action");
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	@Then("^user verify order created successfuly$")
+	public void user_verify_order_created_successfuly() throws Throwable {
+		try {
+			o2sOrderSummaryPage.checkOrderSummaryPage();
+			o2sOrderSummaryPage.getOrderNumberGenerated();
+			Steps.logger.info("Verify the order number generated");
+			//Screenshots.captureSnapshot(driver);
+			o2sOrderSummaryPage.clickOnCreateButton();
+			Reporter.addStepLog("Order number generated successfully");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
+	@Then("^user search order and verify status is booked$")
+	public void user_Search_Order_And_Verify_Status_is_Booked() throws Throwable {
+		try {
+			
+			o2sHomePage.moveToSearchOrderMenuandClickSearchOrder();
+			o2sSearchOrderDetails.enterOrderNumberToSearchDetails();
+			o2sSearchOrderDetails.verifyTheOrderStatusIsBookedOrNot();
+			Steps.logger.info("Verify the order number generated");
+			o2sSearchOrderDetails.clickOnCreateButton();
+			//Screenshots.captureSnapshot(driver);
+			Reporter.addStepLog("Order number generated successfully");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+
+
 }
