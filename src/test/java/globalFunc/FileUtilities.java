@@ -136,10 +136,28 @@ public class FileUtilities {
 						.readFile("C:\\Users\\ffd-sys-team\\Downloads\\TestExtract\\" + fileName + ".fnf");
 				System.out.println("XML File Contents" + stringfile);
 				String orderNum =  Items.getAsnNumber();
-				//String orderNum =  "APOC000000967-030556032-1";
+				//String orderNum =  "APOC000000694-211149022-1";
 				String finalOrderNum = orderNum.substring(0, orderNum.length()-2);
 				System.out.println("ASN number ="+finalOrderNum);
+				//WIP--For Adding Validation for Item ID and QTY
+				for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
+					System.out.println("Steps.ItemDataMap Size" + Steps.ItemDataMap.size());
+					Steps.logger.info("Steps.ItemDataMap Size" + Steps.ItemDataMap.size());
+					String itemName = Steps.ItemDataMap.get(i).get("Item");
+					String itemQTY = Steps.ItemDataMap.get(i).get("ShippedQty");
+					String itemUOM = Steps.ItemDataMap.get(i).get("UOM");
+					System.out.println("ItemName"+itemName);
+					System.out.println("ItemName"+itemQTY);
+					System.out.println("ItemName"+itemUOM);
+					System.out.println(stringfile.size());
+					System.out.println(stringfile.toString().contains(itemName));
+					System.out.println(stringfile.toString().contains(itemQTY));
+					System.out.println(stringfile.toString().contains(itemUOM));
+					System.out.println("------validated------");
+				}
 				
+				
+				//----WIP-----
 				System.out.println(stringfile.size());
 				System.out.println(stringfile.toString().contains(finalOrderNum));
 				
@@ -177,8 +195,27 @@ public class FileUtilities {
 						.readFile("C:\\Users\\ffd-sys-team\\Downloads\\TestExtract\\" + fileName + ".fnf");
 				System.out.println(stringfile);
 				String orderNum = Items.getDONumber();
+				//String orderNum="APAPC0625419";
+//				String finalOrderNum = orderNum.substring(0, orderNum.length()-2);
+//				System.out.println("DO number ="+finalOrderNum);
+				
+				for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
+					System.out.println("Steps.ItemDataMap Size" + Steps.ItemDataMap.size());
+					Steps.logger.info("Steps.ItemDataMap Size" + Steps.ItemDataMap.size());
+					String itemName = Steps.ItemDataMap.get(i).get("Item");
+					String itemQTY = Steps.ItemDataMap.get(i).get("ShippedQty");
+					String itemUOM = Steps.ItemDataMap.get(i).get("UOM");
+					System.out.println("ItemName"+itemName);
+					System.out.println("ItemName"+itemQTY);
+					System.out.println("ItemName"+itemUOM);
+					System.out.println(stringfile.size());
+					System.out.println(stringfile.toString().contains(itemName));
+					System.out.println(stringfile.toString().contains(itemQTY));
+					System.out.println(stringfile.toString().contains(itemUOM));
+					System.out.println("------validated------");
+				}
 
-				System.out.println("orderNumber:" + orderNum);
+				//System.out.println("orderNumber:" + orderNum);
 				System.out.println(stringfile.toString().contains(orderNum));
 				Assert.assertTrue(stringfile.toString().contains(orderNum), "OrderNum or ShipID mismatch");
 			} else {

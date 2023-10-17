@@ -133,6 +133,10 @@ public class AsnsPage {
 
 	@FindBy(xpath = "//input[@id='dataForm:editASNSealNumberTable:newRow_2:SeqNbr']")
 	public WebElement editHeaderAddSealSequenceNumTxtSecond;
+	
+	@FindBy(xpath = "//input[@id='dataForm:ASNLPNListView_id:ASNLPNList_commandbutton_SerialNumbers']")
+	public WebElement serailNumberButton;
+	
 			
 	public void getASNandPONumber(String asnId) throws Exception {
 		String account = Config.getProperty("Account");
@@ -159,7 +163,8 @@ public class AsnsPage {
 		
 		int count = 0;
 		while (count < 3) {
-			Thread.sleep(60000);
+			//Thread.sleep(60000);
+			Thread.sleep(15000);
 			System.out.println("Trying to click the Find Button and wait for ASN to get displayed..");
 			SeleniumTestHelper.waitForElementToBeClickable(driver,
 					driver.findElement(By.xpath("//span[contains(text(),'Find')]")), 10);
@@ -680,4 +685,82 @@ public class AsnsPage {
 				
 			}
 		}
+		
+		public void verifyILPNStatus(String iLPNStatus) throws InterruptedException {
+			System.out.println("Verify LPN Status");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, lpnsTab, 50);
+			lpnsTab.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNSFirstRecord, 50);
+			Thread.sleep(5000);
+			String shpQty = null;
+			String itemName = null;
+			for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
+				shpQty = Steps.ItemDataMap.get(i).get("ShippedQty");
+				itemName = Steps.ItemDataMap.get(i).get("Item");
+				Items.setItemWithShippedASNQty(itemName, Integer.parseInt(shpQty));
+			}
+			for (int i = 1; i <= Items.getItemWithShippedASNQty(itemName); i++) {
+
+				String lpn = driver.findElement(By.xpath("//table[@id='dataForm:ASNLPNListView_id:LPNListTable_body']//tr[" + i + "]/td[5]")).getText();
+				String lpnStatus = driver.findElement(By.xpath("//table[@id='dataForm:ASNLPNListView_id:LPNListTable_body']//tr[" + i + "]/td[9]")).getText();
+				System.out.println(lpn);
+				System.out.println(lpnStatus);
+				SeleniumTestHelper.assertEquals(lpnStatus, iLPNStatus);
+				driver.findElement(By.xpath("//table[@id='dataForm:ASNLPNListView_id:LPNListTable_body']//tr[" + i + "]/td[1]")).click();
+				SeleniumTestHelper.waitForElementToBeClickable(driver, serailNumberButton, 5);
+				SeleniumTestHelper.clickOnButton(serailNumberButton);
+				String s = driver.findElement(By.xpath("//span[@id='dataForm:listView:dataTable:0:srlNbr']")).getText();
+				System.out.println(s);
+				driver.findElement(By.xpath("//a[@id='backButton']")).click();
+				Thread.sleep(2000);
+			}
+			Thread.sleep(10000);
+		}
+		
+		public void verifyLotNumberInASnPage() throws Exception {
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, linesTab, 120);
+			linesTab.click();
+			List<WebElement> lines = driver.findElements(By.xpath("//span[contains(@id,'SKUId')]"));
+			List<WebElement> Shipqty = driver.findElements(By.xpath("//span[contains(@id,'shippedQtyuom')]"));
+			List<WebElement> batchNum = driver.findElements(By.xpath("//span[contains(@id,'Batch_Otext')]"));
+
+			
+			Thread.sleep(5000);
+			Screenshots.captureSnapshot(driver);
+			String itemInASNPage = null;
+			String barcodes = null;
+			String[] shippedQty = null;
+			String batchNo = null;
+			
+			//
+			System.out.println("Line size:" + lines.size());
+			System.out.println("Line qty size:" + Shipqty.size());
+			for (int i = 0; i < lines.size(); i++) {
+				System.out.println("Line" + i + ":" + lines.get(i).getText());
+			}
+			for (int i = 0; i < Shipqty.size(); i++) {
+				System.out.println("Line qty" + i + ":" + Shipqty.get(i).getText());
+			}
+
+			for (int i = 1; i < lines.size(); i++) {
+				itemInASNPage = lines.get(i).getText();
+				System.out.println("Line Item:" + itemInASNPage);
+				//modifying the code - work in progress for fixing an issue
+				SeleniumTestHelper.assertEquals(itemInASNPage, Items.getItemsForReceivingASN(i - 1));
+				System.out.println("Item : " + itemInASNPage + " successfully verified in ASN page");
+
+				shippedQty = Shipqty.get(i - 1).getText().split("\\s+");
+				System.out.println("shippedQty:" + shippedQty[0]);
+					SeleniumTestHelper.assertEquals(shippedQty[0],Steps.ItemDataMap.get(i-1).get("ShippedQty"));
+				System.out.println(
+						"ShippedQty : " + shippedQty[0] + " successfully verified in ASN page for item : " + itemInASNPage);
+				if (batchNum.size() != 0) {
+					batchNo = batchNum.get(i - 1).getText();
+				}
+				System.out.println("Batch Number" + batchNo);
+				
+			}
+			Thread.sleep(2000);
+		}
+
 }

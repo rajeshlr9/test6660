@@ -47,6 +47,8 @@ public class KelliPages {
 	public String KelliSingleLineASNfilePath = dir + "\\TestData\\Kelli\\Kelli ASN Load Single Line.xls";
 	public String KelliSingleLineASNfilePathForNVI = dir + "\\TestData\\Kelli\\Kelli ASN Load Single Line_NVI.xls";
 	public String KelliSingleLineASNfilePathForAPC = dir + "\\TestData\\Kelli\\Kelli ASN Load Single Line_APC.xls";
+	public String KelliSingleLineSerialAPC = dir + "\\TestData\\Kelli\\Kelli Single Line Serial_APC.xls";
+	public String KelliSingleLineLotAPC = dir + "\\TestData\\Kelli\\Kelli Single Line Lot_APC.xls";
 	public String KelliMultiLineASNfilePath = dir + "\\TestData\\Kelli\\Kelli ASN Load Multi Line.xls";
 	public String KelliItemloadfilePath = dir + "\\TestData\\Kelli\\Item Load.xls";
 	public String KelliLocationloadfilePath = dir + "\\TestData\\Kelli\\Location Load.xls";
@@ -301,8 +303,12 @@ public class KelliPages {
 				// kelliASNfilePath = KelliMultiLineASNfilePath;
 			}
 		} else if (accnt.equalsIgnoreCase("APC")){
-			if (fileType.contains("Single Line")) {
+			if (fileType.contains("Single Line Normal")) {
 				kelliASNfilePath = KelliSingleLineASNfilePathForAPC;
+			} else if (fileType.contains("Single Line Serial")) {
+				kelliASNfilePath = KelliSingleLineSerialAPC;
+			} else if (fileType.contains("Single Line Lot")) {
+				kelliASNfilePath = KelliSingleLineLotAPC;
 			} else if (fileType.contains("Multi Line")) {
 				// kelliASNfilePath = KelliMultiLineASNfilePath;
 			}
@@ -316,6 +322,8 @@ public class KelliPages {
 		int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
 		int cellNo1 = 0;
 		int cellNo2 = 0;
+		int cellNo3 = 0;
+		int cellNo4 = 0;
 		for (int i = 0; i < 1; i++) {
 			int cellcount = sheet.getRow(i).getLastCellNum();
 			for (int j = 0; j < cellcount; j++) {
@@ -325,6 +333,12 @@ public class KelliPages {
 				}
 				if (sheet.getRow(i).getCell(j).getStringCellValue().equalsIgnoreCase("PO_Nbr")) {
 					cellNo2 = j;
+				}
+				if (sheet.getRow(i).getCell(j).getStringCellValue().equalsIgnoreCase("Lot_Nbr")) {
+					cellNo3 = j;
+				}
+				if (sheet.getRow(i).getCell(j).getStringCellValue().equalsIgnoreCase("Serial_Nbr")) {
+					cellNo4 = j;
 				}
 			}
 		}
@@ -353,6 +367,30 @@ public class KelliPages {
 			sheet.getRow(i).getCell(cellNo2)
 					.setCellValue(updatedPONbrValue_subString + "_" + new Long(udatedTrackNo).longValue());
 			Steps.logger.info("Updated PO_Nbr::" + updatedPONbrValue_subString + "_" + new Long(udatedTrackNo).longValue());
+			
+			if (sheet.getRow(i).getCell(cellNo3) != null) {
+				String lotNumber = sheet.getRow(i).getCell(cellNo3).getStringCellValue();
+				System.out.println("Lot_Nbr value::" + lotNumber);
+				String updatedLotNumber_subString = lotNumber.substring(0, 2);
+				System.out.println("updated lot number" + updatedLotNumber_subString);
+				long udatedLotNo = new Long(date).longValue();
+				sheet.getRow(i).getCell(cellNo3)
+						.setCellValue(updatedLotNumber_subString + new Long(udatedLotNo).longValue());
+				Steps.logger
+						.info("Updated Lot Number::" + updatedLotNumber_subString + new Long(udatedLotNo).longValue());
+			}
+			
+			if (sheet.getRow(i).getCell(cellNo4) != null) {
+				String serialNumber = sheet.getRow(i).getCell(cellNo4).getStringCellValue();
+				System.out.println("Serial_Nbr value::" + serialNumber);
+				String updatedSerialNumber_subString = serialNumber.substring(0, 2);
+				System.out.println("updated serail number" + updatedSerialNumber_subString);
+				long udatedSerialNo = new Long(date).longValue();
+				sheet.getRow(i).getCell(cellNo4)
+						.setCellValue(updatedSerialNumber_subString + new Long(udatedSerialNo).longValue());
+				Steps.logger.info("Updated Serial Number::" + updatedSerialNumber_subString
+						+ new Long(udatedSerialNo).longValue());
+			}
 		}
 
 		inputStream.close(); // Close the InputStream
@@ -709,10 +747,18 @@ public class KelliPages {
 			}
 
 		} else if (accnt.equalsIgnoreCase("APC")){
-			if (fileType.contains("Single Line ASN")) {
+			if (fileType.contains("Single Line Normal")) {
 				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
 				choosefile.sendKeys(KelliSingleLineASNfilePathForAPC);
+			}else if (fileType.contains("Single Line Serial")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliSingleLineSerialAPC);
+			}else if (fileType.contains("Single Line Lot")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliSingleLineLotAPC);
 			} 
 		}
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, uploadfile, 100);

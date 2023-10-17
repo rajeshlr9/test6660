@@ -223,7 +223,7 @@ public class CreateBrowser {
 			seleniumDriver = new ChromeDriver(options);
 			seleniumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			System.out.println(options.getVersion());
-			// seleniumDriver.manage().deleteAllCookies();
+			seleniumDriver.manage().deleteAllCookies();
 			Steps.logger.info("Chrome browser is open");
 			break;
 

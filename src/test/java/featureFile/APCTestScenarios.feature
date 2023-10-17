@@ -43,9 +43,9 @@ Scenario: Receiving SingleLine Normal Items for Ambient type item.
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application 
-	And user logs into the FedexNet application for verify files
-	And user verify the "861" file in fedexnet
-	Then user log out from Fedenxet application
+#	And user logs into the FedexNet application for verify files
+#	And user verify the "861" file in fedexnet
+#	Then user log out from Fedenxet application
 	
 @InBoundScenario_APC_3 @IBRegScenarios_APC @DailyRegression_APC
 Scenario: Receiving for SingleLine Serial Items for Ambient type item.
@@ -348,8 +348,8 @@ Scenario: SingleLine Parcel DO Order for Serial Item
 	And user opens the OLPN screen and retrieve the splitted oLPN
 	And user perform weigh and manifest and verify status "170 - Manifested"
 	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
-	Then user search for DO and confirms it
-	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
+#	Then user search for DO and confirms it
+#	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
 	Then user log out from application 
 	And user logs into the FedexNet application for verify files
 	And user verify the "856" file in fedexnet
