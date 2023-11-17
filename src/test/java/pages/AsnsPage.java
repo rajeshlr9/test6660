@@ -299,6 +299,7 @@ public class AsnsPage {
 	}
 
 	public void GetItemDetails() throws Exception {
+		Thread.sleep(5000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, linesTab, 120);
 		linesTab.click();
 		List<WebElement> lines = driver.findElements(By.xpath("//span[contains(@id,'SKUId')]"));
@@ -712,8 +713,9 @@ public class AsnsPage {
 				String s = driver.findElement(By.xpath("//span[@id='dataForm:listView:dataTable:0:srlNbr']")).getText();
 				System.out.println(s);
 				driver.findElement(By.xpath("//a[@id='backButton']")).click();
-				Thread.sleep(2000);
+				Thread.sleep(5000);
 			}
+			System.out.println("LPN Verified Successfully");
 			Thread.sleep(10000);
 		}
 		

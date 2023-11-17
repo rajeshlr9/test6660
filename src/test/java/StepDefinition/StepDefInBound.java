@@ -544,20 +544,25 @@ public class StepDefInBound {
 	public void user_views_ASNscreen_and_get_itemdetails() throws Exception {
 		// asnsPage.searchForTheASN(Items.getAsnNumber());
 		try {
+			System.out.println("Verify Item details");
+			Thread.sleep(5000);
 			asnsPage.searchForTheASN(Items.getAsnNumber());
 			Steps.logger.info("Search for item details");
 			SeleniumTestHelper.waitForElementToBeClickable(driver, asnsPage.searchedASNChkbox, 50);
 			asnsPage.searchedASNChkbox.click();
-
+			Thread.sleep(2000);
 			asnsPage.viewASNBtn.click();
 			Steps.logger.info("Click on view ASN");
-			// Thread.sleep(5000);
+			Thread.sleep(5000);
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			Screenshots.captureSnapshot(driver);
 			asnsPage.GetItemDetails();
+			System.out.println("Verifed Item details");
 			asnsPage.verifyLotNumberInASnPage();
+			Thread.sleep(5000);
+			System.out.println("Trying to close the Advance Ship Notice Window");
 			homePage.userClosesOpenedwindow("Advance Ship Notice");
-			// Thread.sleep(3000);
+			Thread.sleep(5000);
 			SeleniumTestHelper.Close_OpenedWindow("ASNs", driver);
 			Steps.logger.info("Close ASN window");
 		} catch (Exception e) {
@@ -1400,21 +1405,29 @@ public class StepDefInBound {
 	public void user_opens_ASN_screen_and_navigate_to_LPNs_Tab_and_verify_its_status(String status) throws Exception {
 
 		// asnsPage.verifyAsnsStatus(Items.getAsnNumber(), status);
+		System.out.println("Steps to Verify LPN Generated");
 		try {
+			Thread.sleep(5000);
 			asnsPage.searchForTheASN(Items.getAsnNumber());
 			Steps.logger.info("Search for item details");
 			SeleniumTestHelper.waitForElementToBeClickable(driver, asnsPage.searchedASNChkbox, 50);
 			asnsPage.searchedASNChkbox.click();
-
+			System.out.println("Selected the checkbox for the ASN");
+			Thread.sleep(3000);
 			asnsPage.viewASNBtn.click();
+			System.out.println("Clicked on View ASN");
 			Steps.logger.info("Click on view ASN");
-			// Thread.sleep(5000);
+			Thread.sleep(5000);
+			System.out.println("Switch to the frame");
 			SeleniumTestHelper.switchToInnerFrame(driver);
-			Screenshots.captureSnapshot(driver);
+			//Screenshots.captureSnapshot(driver);
 			//asnsPage.verifyILPNStatusForAllItems(noOfItems, status);
+			Thread.sleep(2000);
 			asnsPage.verifyILPNStatus(status);
+			System.out.println("Verified the LPN Status");
+			Thread.sleep(5000);
 			homePage.userClosesOpenedwindow("Advance Ship Notice");
-			// Thread.sleep(3000);
+			Thread.sleep(3000);
 			SeleniumTestHelper.Close_OpenedWindow("ASNs", driver);
 			Steps.logger.info("Close ASN window");
 		} catch (Exception e) {
