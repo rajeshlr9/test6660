@@ -311,6 +311,8 @@ public class KelliPages {
 				kelliASNfilePath = KelliSingleLineLotAPC;
 			} else if (fileType.contains("Multi Line")) {
 				// kelliASNfilePath = KelliMultiLineASNfilePath;
+			} else if(fileType.contains("Single Line ASN")) {
+				kelliASNfilePath = KelliSingleLineASNfilePathForAPC;
 			}
 		}
 
@@ -759,6 +761,10 @@ public class KelliPages {
 				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
 				choosefile.sendKeys(KelliSingleLineLotAPC);
+			}else if (fileType.contains("Single Line ASN")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliSingleLineASNfilePathForAPC);
 			} 
 		}
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, uploadfile, 100);
