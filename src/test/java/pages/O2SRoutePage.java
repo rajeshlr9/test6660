@@ -50,32 +50,44 @@ public class O2SRoutePage {
 	 */
 	public void selectRoute() throws Exception {
 
-//		SeleniumTestHelper.waitForElementToBeDisplayed(driver, expressSaverOption, 180);
-//		if (SeleniumTestHelper.isElementDisplayed(firstOvernightOption)) {
-//			SeleniumTestHelper.waitForElementToBeDisplayed(driver, firstOvernightOption, 180);
-//			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(firstOvernightOption));
-//			SeleniumTestHelper.scrollToElement(driver, firstOvernightOption);
-//			firstOvernightOption.click();
-//			Steps.logger.info("Clicked on firstOvernightOption");
-//		} else if (SeleniumTestHelper.isElementDisplayed(expressSaverOption)) {
-//			System.out.println(SeleniumTestHelper.isElementDisplayed(expressSaverOption));
-//			SeleniumTestHelper.waitForElementToBeDisplayed(driver, expressSaverOption, 180);
-//			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(expressSaverOption));
-//			SeleniumTestHelper.scrollToElement(driver, expressSaverOption);
-//			expressSaverOption.click();
-//			Steps.logger.info("Clicked on express saver");
-//		}else 
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, fedExsameDayCourierOption, 180);
-
-		if (SeleniumTestHelper.isElementDisplayed(fedExsameDayCourierOption)) {
-			System.out.println(SeleniumTestHelper.isElementDisplayed(fedExsameDayCourierOption));
-			SeleniumTestHelper.waitForElementToBeDisplayed(driver, fedExsameDayCourierOption, 180);
-			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(fedExsameDayCourierOption));
-			SeleniumTestHelper.scrollToElement(driver, fedExsameDayCourierOption);
-			fedExsameDayCourierOption.click();
+		// SeleniumTestHelper.waitForElementToBeDisplayed(driver, expressSaverOption,
+		// 180);
+		
+		if (SeleniumTestHelper.isElementDisplayed(firstOvernightOption)) {
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, firstOvernightOption, 180);
+			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(firstOvernightOption));
+			SeleniumTestHelper.scrollToElement(driver, firstOvernightOption);
+			firstOvernightOption.click();
+			Steps.logger.info("Clicked on firstOvernightOption");
+		}else if (SeleniumTestHelper.isElementDisplayed(priorityOvernightOption)) {
+			System.out.println(SeleniumTestHelper.isElementDisplayed(priorityOvernightOption));
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, priorityOvernightOption, 180);
+			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(priorityOvernightOption));
+			SeleniumTestHelper.scrollToElement(driver, priorityOvernightOption);
+			priorityOvernightOption.click();
+			Steps.logger.info("Clicked on Priority overnight option");
+		}
+		else if (SeleniumTestHelper.isElementDisplayed(expressSaverOption)) {
+			System.out.println(SeleniumTestHelper.isElementDisplayed(expressSaverOption));
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, expressSaverOption, 180);
+			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(expressSaverOption));
+			SeleniumTestHelper.scrollToElement(driver, expressSaverOption);
+			expressSaverOption.click();
 			Steps.logger.info("Clicked on express saver");
 		}
-		Thread.sleep(10000);
+//			else 
+//		//SeleniumTestHelper.waitForElementToBeDisplayed(driver, fedExsameDayCourierOption, 180);
+//
+//		if (SeleniumTestHelper.isElementDisplayed(fedExsameDayCourierOption)) {
+//			System.out.println(SeleniumTestHelper.isElementDisplayed(fedExsameDayCourierOption));
+//			SeleniumTestHelper.waitForElementToBeDisplayed(driver, fedExsameDayCourierOption, 180);
+//			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(fedExsameDayCourierOption));
+//			SeleniumTestHelper.scrollToElement(driver, fedExsameDayCourierOption);
+//			fedExsameDayCourierOption.click();
+//			Steps.logger.info("Clicked on express saver");
+//		}
+		
+		Thread.sleep(5000);
 		Screenshots.captureSnapshot(driver);
 		Reporter.addStepLog("User selected the Route...");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, continueBtn, 180);

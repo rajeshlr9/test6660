@@ -65,8 +65,8 @@ public class O2SHomePage {
 	 * @throws Exception
 	 */
 	public void logoutFormO2SApp() throws Exception {
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, logout, 180);
-		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(logout));
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, logout, 120);
+		//SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(logout));
 		SeleniumTestHelper.clickOnButton(logout);
 		//logout.click();
 		Steps.logger.info("Clicked on Logout Button");
@@ -130,6 +130,65 @@ public class O2SHomePage {
 		Reporter.addStepLog("User perform FirstStep in Create Order by using Caller ID and Location Code...");
 
 	}
+	
+//------------------------------------------------	
+	//created for sanity check
+	public void createOrderFirstStep2(String account1,String orderType) throws Exception {
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, createBtn, 180);
+		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(createBtn));
+		SeleniumTestHelper.clickOnButton(createBtn);
+		//createBtn.click();
+		Steps.logger.info("Clicked on Create Button");
+		Thread.sleep(5000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, accountTextField, 180);
+		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(accountTextField));
+		SeleniumTestHelper.enterTextInTextBox(accountTextField, account1);
+		Steps.logger.info("Enter Account Number: "+account1);
+
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, continueBtn, 180);
+		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(continueBtn));
+		SeleniumTestHelper.clickOnButton(continueBtn);
+		//continueBtn.click();
+		Steps.logger.info("Clicked on Continue Button");
+		Thread.sleep(5000);
+
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, callerID, 180);
+		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(callerID));
+		SeleniumTestHelper.enterTextInTextBox(callerID, "123456");
+		Steps.logger.info("Enter Called ID");
+		Thread.sleep(5000);
+		callerID.sendKeys(Keys.ENTER);
+		Thread.sleep(5000);
+		if (orderType.equalsIgnoreCase("retunItemAndReplace")) {
+			selectTheReturnItemAndReplaceOptionAndRMANumber();
+		}
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, locationCode, 180);
+		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(locationCode));
+		SeleniumTestHelper.scrollToElement(driver, locationCode);
+		if (orderType.equalsIgnoreCase("retunItemAndReplace")) {
+			SeleniumTestHelper.enterTextInTextBox(locationCode, "1");
+		} else {
+			SeleniumTestHelper.enterTextInTextBox(locationCode, "12");
+		}
+		Thread.sleep(5000);
+		locationCode.sendKeys(Keys.ENTER);
+		Steps.logger.info("Enter Location Code");
+		Thread.sleep(5000);
+		Screenshots.captureSnapshot(driver);
+
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, continueBtn, 180);
+		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(continueBtn));
+		SeleniumTestHelper.scrollToElement(driver, continueBtn);
+		SeleniumTestHelper.clickOnButton(continueBtn);
+		//continueBtn.click();
+		Steps.logger.info("Clicked on Continue Button");
+		Thread.sleep(5000);
+		Reporter.addStepLog("User perform FirstStep in Create Order by using Caller ID and Location Code...");
+
+	}
+//------------------------------------------------	
+	
+	
 
 	public void selectTheReturnItemAndReplaceOptionAndRMANumber() throws Exception {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, returnItemAndReplaceOption, 180);

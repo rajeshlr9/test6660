@@ -178,6 +178,37 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
+	
+
+
+//only for sanity check
+	@And("user logs into Manhattan application for \"([^\"]*)\" customer")
+	public void user_logs_into_the_Manhattan_application2(String customer) {
+		try {
+			String env = ManhattanLoginPage.environment;
+			System.out.println("Environment:"+env);
+
+			if (env.equalsIgnoreCase("L1")|| env.equalsIgnoreCase("@Env")) {
+				driver.get(Config.getProperty("ManhattanURL_L1"));
+				Steps.logger.info("L1 Environment");
+			} else if (env.equalsIgnoreCase("L2") ) {
+				driver.get(Config.getProperty("ManhattanURL_L2"));
+				Steps.logger.info("L2 Environment");
+			} else if (env.equalsIgnoreCase("L4")) {
+					driver.get(Config.getProperty("ManhattanURL_L4"));
+					Steps.logger.info("L4 Environment Manhattan URL :"+Config.getProperty("ManhattanURL_L4"));
+			}else if (env.equalsIgnoreCase("L5")) {
+				driver.get(Config.getProperty("ManhattanURL_L5"));
+				Steps.logger.info("L5 Environment");
+			}
+			manhattanLoginPage.loginToManhattanApp2(customer);
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
 
 	//********************************************FedexNet******************************************
 		//FedexNet
@@ -1372,6 +1403,32 @@ public class StepDefInBound {
 			System.out.println(e);
 		}
 	}
+	
+	//created for sanity check
+	@Then("^user create an order for \"([^\"]*)\" customer in O2S application for \"([^\"]*)\"$")
+	public void user_create_an_order_for_a_customer_in_O2S(String customer,String orderType) {
+		try {
+			o2sHomePage.createOrderFirstStep2(customer,orderType);
+			Steps.logger.info("Perform Step-1 while Create an Order");
+			Screenshots.captureSnapshot(driver);
+			o2sInventoryPage.addInventory();
+			Steps.logger.info("Add Inventory");
+			Screenshots.captureSnapshot(driver);
+			if (orderType.equalsIgnoreCase("retunItemAndReplace")) {
+				o2sReturnShipmentPage.clickOnContinueInReturnShipmentPage();
+				Steps.logger.info("Clicked Continue button in Return Shipment Page");
+			}
+			o2sRoutePage.selectRoute();
+			o2sPlacementPage.performPlacement();
+			Steps.logger.info("Select FedEx Route and Proceed");
+			Reporter.addStepLog("Completed create an order action");
+			Steps.logger.info("Completed create an Order action");
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
 	@Then("^user verify order created successfuly$")
 	public void user_verify_order_created_successfuly() throws Throwable {
 		try {

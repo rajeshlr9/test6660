@@ -80,6 +80,7 @@ public class O2SSearchOrderDetails {
 		Steps.logger.info("Clicked on Create Button");
 		Thread.sleep(10000);
 	}
-
+	
+	
 
 }
