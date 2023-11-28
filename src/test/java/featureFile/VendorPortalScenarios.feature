@@ -95,3 +95,47 @@ Scenario: Multiline Serial Items Items for Ambient type item.
 	And user views ASN, get and verify item details  
 	Then user opens ASN screen and navigate to LPNs Tab and verify its status "In-Transit"
 	Then user log out from application 
+	
+@InBoundScenario_VP_APC_Test_07	@IBRegScenarios_VP_APC_Test_07
+Scenario: Create an order using O2S application. 
+	#Given I have excel data 
+	#	| O2S_IntegrationScenario01 |
+	Given I have excel data
+	| APC_IBScenario013 |
+	Given User Open the chrome browser using selenium 
+	#Given user update EDI file "APC SingleLine PO - NormalItems" for dropping into fedexnet application
+	#And user logs into the FedexNet application
+	#And user upload "856" XML file in fedexnet
+	#Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	#Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
+	#And user views ASN, get and verify item details
+	Then user log out from application 
+	And user logs into the O2S application 
+	And user navigate to VendorPortal Tab
+	#Then user log out from O2S application 
+		
+#	Then user create an order in O2S application for "singleLineItem" 
+#	Then user verify order created successfuly 
+#	Then user search order and verify status is booked 
+#	Then user log out from O2S application 
+
+@InBoundScenario_VP_APC_Test_08	@IBRegScenarios_VP_APC_Test_08
+Scenario: Create an order using O2S application. 
+	#Given I have excel data 
+	#	| O2S_IntegrationScenario01 |
+	Given I have excel data
+	| APC_KelliScenario003 |
+	And Open the chrome browser by selenium
+	And user logs into the kelli application 
+	When user updates data in "Single Line Serial Item in ASN" Kelli Upload Sheet
+	And user upload the "Single Line Serial Item in ASN" Load file in Kelli
+	#Then user view the logs and validates the success message for ASN Load
+	Then user logout from the kelli application
+	And user logs into the Manhattan application
+	And fetches the actual ASN number and PO Number uploaded from Kelli
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
+	And user views ASN, get and verify item details
+	And user logs into the O2S application 
+	And user navigate to VendorPortal Tab
+	#Then user log out from O2S application 

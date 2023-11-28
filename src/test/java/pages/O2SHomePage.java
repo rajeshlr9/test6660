@@ -58,6 +58,9 @@ public class O2SHomePage {
 	
 	@FindBy(xpath = "//*[@id='ulitem0z3']//div[@class='imsc']//div[@class='imsubc']//ul/li/a[contains(text(),'Search Order')]")
 	public WebElement searchOrderSubMenu;
+	
+	@FindBy(xpath="//*[@id='headertopnav']/span[@class='nav_link_inactive_services']/a[contains(text(),'WMS')]")
+	public WebElement wmsTab;
 
 	
 	/**
@@ -155,6 +158,17 @@ public class O2SHomePage {
 		SeleniumTestHelper.actionMouseHoverAndClickOnSubMenu(searchOrderMenu, searchOrderSubMenu);
 		Steps.logger.info("Clicked on Return Item and Replace option");
 		Thread.sleep(8000);
+	}
+	
+	public void navigateToWMSApp() throws InterruptedException {
+		//*[@id='headertopnav']/span[@class='nav_link_inactive_services']/a[contains(text(),'WMS')]
+		//div[@id='applications']//ul//li/a[contains(text(),'Vendor')]
+		//li[@id='receiveListItem']
+		Thread.sleep(8000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, wmsTab, 180);
+		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(wmsTab));
+		SeleniumTestHelper.clickOnButton(wmsTab);
+		Thread.sleep(15000);
 	}
 	
 	
