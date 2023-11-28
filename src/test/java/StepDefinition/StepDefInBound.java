@@ -38,6 +38,7 @@ import pages.PixTransactionPage;
 import pages.PostMessagePage;
 import pages.RFMenuPage;
 import pages.ReserveLocationPage;
+import pages.VendorPortalHomePage;
 import reusable.FedexnetPage;
 import reusable.KelliPages;
 import reusable.ModifyXML;
@@ -74,7 +75,8 @@ public class StepDefInBound {
 	O2SOrderSummaryPage o2sOrderSummaryPage = new O2SOrderSummaryPage();
 	O2SReturnShipmentPage o2sReturnShipmentPage = new O2SReturnShipmentPage();
 	O2SSearchOrderDetails o2sSearchOrderDetails = new O2SSearchOrderDetails();
-	
+	VendorPortalHomePage vendorPortalHomePage = new VendorPortalHomePage();
+
 	String itemName = null;
 	String GtinNum = null;
 	String ItemBarCode = null;
@@ -1491,6 +1493,20 @@ public class StepDefInBound {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
 			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
+	@Then("^user navigate to VendorPortal Tab$")
+	public void user_navigate_to_vendorportal_tab() {
+		try {
+			o2sHomePage.navigateToWMSApp();
+			vendorPortalHomePage.naviagateAndClickReceiveTab();
+			vendorPortalHomePage.enterMandatoryDetails();
+			Steps.logger.info("User navigate to Vendor Portal App");
+			Screenshots.captureSnapshot(driver);
+			
+		} catch (Exception e) {
+			System.out.println(e);
 		}
 	}
 
