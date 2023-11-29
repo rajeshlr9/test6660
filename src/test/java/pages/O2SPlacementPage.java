@@ -31,7 +31,10 @@ public class O2SPlacementPage {
 
 	@FindBy(xpath = "//input[@id='form1:submitPlacement']")
 	public WebElement continueBtn;
-
+	
+	@FindBy(xpath = "//input[contains(@id,'thrdPartyAccNum')]")
+	public WebElement thirdPartyAccountNum;
+	
 	public static String strDate12;
 	
 	/***
@@ -46,9 +49,13 @@ public class O2SPlacementPage {
 		strDate12 = sdfDate.format(date);
 		PODONumber = "2023" + strDate12;
 		Items.setDONumber(PODONumber);
+		
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, thirdPartyAccountNum, 180);
+		SeleniumTestHelper.enterTextInTextBox(thirdPartyAccountNum, "898384047");
+		
 		Steps.logger.info("DO Number: " + PODONumber);
 		Reporter.addStepLog("DO Number: " + PODONumber);
-
+				
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, poNumberInputField, 180);
 		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(poNumberInputField));
 		SeleniumTestHelper.scrollToElement(driver, poNumberInputField);

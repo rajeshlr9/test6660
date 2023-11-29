@@ -65,9 +65,18 @@ public class O2SSearchOrderDetails {
 		SeleniumTestHelper.assertNotNull(orderNumberInSearchResultTable.getText());
 		System.out.println("Order Number displayed = "+orderNumberInSearchResultTable.getText());
 		Steps.logger.info("The Order Number displayed in search page is : " + orderNumberInSearchResultTable.getText());
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, orderStatus, 180);
+		//SeleniumTestHelper.waitForElementToBeDisplayed(driver, orderStatus, 180);
+		int counter=0;
+		while(!SeleniumTestHelper.isElementDisplayed(orderStatus)){
+			Thread.sleep(10000);
+			SeleniumTestHelper.click(searchButton);
+			counter++;
+			if(counter==9) {
+				break;
+			}
+		}
+		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(orderStatus),"Booked status not displayed.Script Failed");
 		SeleniumTestHelper.assertEquals("Booked", orderStatus.getText());
-		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(orderStatus));
 		Reporter.addStepLog("Order created successfully and status is ..." + orderStatus.getText());
 		Screenshots.captureSnapshot(driver);
 		Thread.sleep(10000);

@@ -45,7 +45,6 @@ public class O2SRoutePage {
 
 	/***
 	 * This method selectRoute is use for selecting the route
-	 * 
 	 * @throws Exception
 	 */
 	public void selectRoute() throws Exception {
@@ -59,7 +58,8 @@ public class O2SRoutePage {
 			SeleniumTestHelper.scrollToElement(driver, firstOvernightOption);
 			firstOvernightOption.click();
 			Steps.logger.info("Clicked on firstOvernightOption");
-		}else if (SeleniumTestHelper.isElementDisplayed(priorityOvernightOption)) {
+		}
+		else if (SeleniumTestHelper.isElementDisplayed(priorityOvernightOption)) {
 			System.out.println(SeleniumTestHelper.isElementDisplayed(priorityOvernightOption));
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, priorityOvernightOption, 180);
 			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(priorityOvernightOption));
@@ -75,10 +75,7 @@ public class O2SRoutePage {
 			expressSaverOption.click();
 			Steps.logger.info("Clicked on express saver");
 		}
-//			else 
-//		//SeleniumTestHelper.waitForElementToBeDisplayed(driver, fedExsameDayCourierOption, 180);
-//
-//		if (SeleniumTestHelper.isElementDisplayed(fedExsameDayCourierOption)) {
+//		else if (SeleniumTestHelper.isElementDisplayed(fedExsameDayCourierOption)) {
 //			System.out.println(SeleniumTestHelper.isElementDisplayed(fedExsameDayCourierOption));
 //			SeleniumTestHelper.waitForElementToBeDisplayed(driver, fedExsameDayCourierOption, 180);
 //			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(fedExsameDayCourierOption));
@@ -86,7 +83,11 @@ public class O2SRoutePage {
 //			fedExsameDayCourierOption.click();
 //			Steps.logger.info("Clicked on express saver");
 //		}
-		
+		else {
+			System.out.println("No Expected Services are available at this time");
+			Steps.logger.info("No Expected Services are available at this time");
+			SeleniumTestHelper.assertTrue(false, "No Service Available,hence makes the script failed");
+		}
 		Thread.sleep(5000);
 		Screenshots.captureSnapshot(driver);
 		Reporter.addStepLog("User selected the Route...");
