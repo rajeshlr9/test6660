@@ -1,4 +1,4 @@
-Feature: This feature file contains the APC Regression Scenarios.
+Feature: This CIL Sanity Suite feature file contains sanity scenarios.
 
 @Sanity_CIL @Inbound_SingleLine_APC
 Scenario: Receiving SingleLine Normal Items for Ambient type item.
