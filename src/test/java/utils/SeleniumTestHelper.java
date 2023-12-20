@@ -50,6 +50,7 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -67,6 +68,7 @@ import org.xml.sax.SAXException;
 import com.aventstack.extentreports.gherkin.model.Scenario;
 
 import StepDefinition.Steps;
+import jdk.internal.org.jline.utils.Log;
 
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -971,8 +973,15 @@ public class SeleniumTestHelper {
 		action1.moveToElement(element2).perform();
 		action1.click().perform();
 	}
- 
- 
+	public static void scrollUp() {
+		try {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
+		jsExecutor.executeScript("window.scrollTo(document.body.scrollHeight,0)", "");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
  
 }
 

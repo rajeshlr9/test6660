@@ -228,6 +228,11 @@ public class CreateAndUpdateEDIFiles {
 				Items.setAsnNumber(ASNno);
 				Steps.logger.info("ASNNumber: " + Items.getAsnNumber());
 				Reporter.addStepLog("ASNNumber: " + Items.getAsnNumber());
+				
+				String ediSerialNumber =  "DC"+strDate6;
+				System.out.println("Serial Number fetch from Edi file"+ediSerialNumber);
+				Items.setEdiSerialNumber(ediSerialNumber);
+				Steps.logger.info("ASNNumber: " + Items.getEdiSerialNumber());
 
 				for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 					Steps.logger.info("Steps.ItemDataMap Size" + Steps.ItemDataMap.size());

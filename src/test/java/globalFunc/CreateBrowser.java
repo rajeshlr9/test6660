@@ -81,6 +81,9 @@ public class CreateBrowser {
 				System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("--start-maximized");
+				//this one below line is added for connection timeout issue if not work we will remove
+				options.addArguments("no-sandbox");
+
 				options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 				options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 				Map<String, Object> prefs = new HashMap<String, Object>();
@@ -205,6 +208,7 @@ public class CreateBrowser {
 			}
 
 			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--incognito");
 			options.addArguments("--start-maximized");
 			options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 			options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);

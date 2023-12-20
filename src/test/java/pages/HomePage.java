@@ -49,6 +49,9 @@ public class HomePage {
 	public WebElement userLoggedin;
 	@FindBy(xpath = "//span[text()='Sign out']")
 	public WebElement signoutBtn;
+	
+	@FindBy(xpath = "//div[@id='loading-mask']/div[contains(text(),'signed out')]")
+	public WebElement signoutMsg;
 
 	public void menuItemsIntegrationSelection(String Screenname)
 			throws Exception {
@@ -159,4 +162,23 @@ public class HomePage {
 		Screenshots.captureSnapshot(driver);
 		Steps.logger.info("Closed the open Window");
 	}
+	public void user_logout_from_the_application()
+			throws Exception {
+		driver.switchTo().defaultContent();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, userLoggedin, 50);
+		userLoggedin.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, signoutBtn, 50);
+		signoutBtn.click();
+		Steps.logger.info("Clicked on sign out button");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, signoutMsg, 120);
+		//Thread.sleep(12000);
+
+		
+//		String Title_signout = driver.getTitle();
+//		Screenshots.captureSnapshot(driver);
+//		SeleniumTestHelper.assertEquals(Title_signout, "Sign Out | Manhattan Associates Inc.");
+//		Reporter.addStepLog("Sign Out is successfull");
+
+	}
+
 }

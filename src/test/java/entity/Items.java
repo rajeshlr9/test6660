@@ -61,6 +61,9 @@ public class Items {
 	private static List<String> List_celtext1 = new ArrayList<>();
 	private static List<String> List_celtext2 = new ArrayList<>();
 	private static Map<String, String> taskVals = new HashMap<>();
+	private static String lotNumber;
+	private static String ediSerialNumber;
+	
 	public static String getItemName() {
 		return ItemName;
 	}
@@ -611,4 +614,21 @@ public class Items {
 	public static void setLocationBarCodewithunderscore(String locationBarCode) {
 		Items.locationBarCode = locationBarCode;
 	}
+	
+	public static String getLotNumber() {
+		return lotNumber;
+	}
+
+	public static void setLotNumber(String lotNumber) {
+		Items.lotNumber = lotNumber;
+	}
+	
+	public static String getEdiSerialNumber() {
+		return ediSerialNumber;
+	}
+
+	public static void setEdiSerialNumber(String ediSerialNumber) {
+		Items.ediSerialNumber = ediSerialNumber;
+	}
+
 }

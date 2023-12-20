@@ -1501,7 +1501,44 @@ public class StepDefInBound {
 		try {
 			o2sHomePage.navigateToWMSApp();
 			vendorPortalHomePage.naviagateAndClickReceiveTab();
+			//vendorPortalHomePage.enterMandatoryDetails();
+			Steps.logger.info("User navigate to Vendor Portal App");
+			Screenshots.captureSnapshot(driver);
+			
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	@Then("^user log out from the application$")
+	public void user_log_out_from_the_application() throws Exception {
+		try {
+			Thread.sleep(2000);
+			homePage.user_logout_from_the_application();
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	@Then("^user validate the ASN using \"([^\"]*)\" search field$")
+	public void user_validate_the_ASN_using_search_field(String searchField) {
+		try {
+			//o2sHomePage.navigateToWMSApp();
+			//vendorPortalHomePage.naviagateAndClickReceiveTab();
+			System.out.println("Trying to validate ASN and other details using Search option");
 			vendorPortalHomePage.enterMandatoryDetails();
+			if(searchField.equalsIgnoreCase("Receipt Number")) {
+			vendorPortalHomePage.searchUsingReceiptNumber();
+			vendorPortalHomePage.validateDataInReceiveTable();
+			}else if(searchField.equalsIgnoreCase("Lot Number")) {
+				vendorPortalHomePage.searchUsingLotNumber();
+				vendorPortalHomePage.validateDataInReceiveTable();
+				vendorPortalHomePage.validateLotNumberInReceiveTable();
+			}else if(searchField.equalsIgnoreCase("Serial Number")) {
+				vendorPortalHomePage.searchUsingSerialNumber();
+				vendorPortalHomePage.validateDataInReceiveTable();
+				vendorPortalHomePage.validateSerialNumberInReceiveTable();
+			}
 			Steps.logger.info("User navigate to Vendor Portal App");
 			Screenshots.captureSnapshot(driver);
 			

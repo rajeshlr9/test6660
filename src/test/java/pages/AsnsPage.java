@@ -265,7 +265,6 @@ public class AsnsPage {
 		//SeleniumTestHelper.waitForElementToBeDisplayed(driver, refreshBtn, 50);
 		String AsnStatus = asnStatus.getText();
 		int count = 0;
-		
 		  while (!AsnStatus.equals(status) && (count != 20)) { 
 			  applyBtn.click();
 		  Thread.sleep(1000); 
@@ -759,10 +758,57 @@ public class AsnsPage {
 				if (batchNum.size() != 0) {
 					batchNo = batchNum.get(i - 1).getText();
 				}
+				Items.setLotNumber(batchNo);
 				System.out.println("Batch Number" + batchNo);
-				
+				System.out.println("Get Lot Number"+Items.getLotNumber());
+
 			}
 			Thread.sleep(2000);
 		}
+//		public void getSerialNumberFromASNViewPage() throws Exception {
+//			SeleniumTestHelper.waitForElementToBeDisplayed(driver, linesTab, 120);
+//			linesTab.click();
+//			List<WebElement> lines = driver.findElements(By.xpath("//span[contains(@id,'SKUId')]"));
+//			List<WebElement> Shipqty = driver.findElements(By.xpath("//span[contains(@id,'shippedQtyuom')]"));
+//			
+//			Thread.sleep(5000);
+//			Screenshots.captureSnapshot(driver);
+//			String itemInASNPage = null;
+//			String barcodes = null;
+//			String[] shippedQty = null;
+//			String batchNo = null;
+//						
+//			System.out.println("Line size:" + lines.size());
+//			System.out.println("Line qty size:" + Shipqty.size());
+//			for (int i = 0; i < lines.size(); i++) {
+//				System.out.println("Line" + i + ":" + lines.get(i).getText());
+//			}
+//			for (int i = 0; i < Shipqty.size(); i++) {
+//				System.out.println("Line qty" + i + ":" + Shipqty.get(i).getText());
+//			}
+//			
+//			for (int i = 1; i < lines.size(); i++) {
+//				itemInASNPage = lines.get(i).getText();
+//				System.out.println("Line Item:" + itemInASNPage);
+//				//modifying the code - work in progress for fixing an issue
+//				SeleniumTestHelper.assertEquals(itemInASNPage, Items.getItemsForReceivingASN(i - 1));
+//				System.out.println("Item : " + itemInASNPage + " successfully verified in ASN page");
+//
+//				shippedQty = Shipqty.get(i - 1).getText().split("\\s+");
+//				System.out.println("shippedQty:" + shippedQty[0]);
+//					SeleniumTestHelper.assertEquals(shippedQty[0],Steps.ItemDataMap.get(i-1).get("ShippedQty"));
+//				System.out.println(
+//						"ShippedQty : " + shippedQty[0] + " successfully verified in ASN page for item : " + itemInASNPage);
+//				if (batchNum.size() != 0) {
+//					batchNo = batchNum.get(i - 1).getText();
+//				}
+//				Items.setLotNumber(batchNo);
+//				System.out.println("Batch Number" + batchNo);
+//				System.out.println("Get Lot Number"+Items.getLotNumber());
+//
+//			}
+//			Thread.sleep(2000);
+//
+//		}
 
 }

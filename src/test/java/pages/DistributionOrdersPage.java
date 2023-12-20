@@ -1032,8 +1032,10 @@ public class DistributionOrdersPage {
 
 		SeleniumTestHelper.waitForElementToBeClickable(driver, DOlinesTab, 50);
 		Screenshots.captureSnapshot(driver);
-		DOlinesTab.click();
+		//DOlinesTab.click();
+		SeleniumTestHelper.click(DOlinesTab);
 		Thread.sleep(5000);
+		SeleniumTestHelper.waitForElementToBeClickable(driver,DOlinesTab, 10);
 		List<WebElement> itemslist = driver.findElements(By.xpath("//span[contains(@id,'ItemID_Link_NameText')]"));
 		List<WebElement> OriginalOrderedqty = driver
 				.findElements(By.xpath("//span[contains(@id,'DODetailOrderLinesList_OrigOrderQtyLink_NameText')]"));

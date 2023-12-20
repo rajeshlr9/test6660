@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import com.cucumber.listener.Reporter;
 
@@ -75,7 +76,7 @@ public class O2SSearchOrderDetails {
 				break;
 			}
 		}
-		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(orderStatus),"Booked status not displayed.Script Failed");
+		Assert.assertEquals(SeleniumTestHelper.isElementDisplayed(orderStatus),true,"Item status not present");
 		SeleniumTestHelper.assertEquals("Booked", orderStatus.getText());
 		Reporter.addStepLog("Order created successfully and status is ..." + orderStatus.getText());
 		Screenshots.captureSnapshot(driver);

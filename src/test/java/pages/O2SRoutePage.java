@@ -39,6 +39,9 @@ public class O2SRoutePage {
 	@FindBy(xpath = "//input[@type='radio' and @name='form1:routeOptions:0:scheduleOptions:0:selSchdOpt']//following::span[contains(text(),'FedEx ')][1]")
 	public WebElement fedExsameDayCourierOption;
 	
+	@FindBy(xpath = "//input[@type='radio' and @value='opt0']//following::span[contains(text(),'FedEx Ground')]")
+	public WebElement fedExGroundOption;
+	
 
 	@FindBy(xpath = "//input[@id='form1:submit']")
 	public WebElement continueBtn;
@@ -74,7 +77,22 @@ public class O2SRoutePage {
 			SeleniumTestHelper.scrollToElement(driver, expressSaverOption);
 			expressSaverOption.click();
 			Steps.logger.info("Clicked on express saver");
+		}else if (SeleniumTestHelper.isElementDisplayed(fedExGroundOption)) {
+			System.out.println(SeleniumTestHelper.isElementDisplayed(fedExGroundOption));
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, fedExGroundOption, 180);
+			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(fedExGroundOption));
+			SeleniumTestHelper.scrollToElement(driver, fedExGroundOption);
+			fedExGroundOption.click();
+			Steps.logger.info("Clicked on FedEx Ground");
+		}else if (SeleniumTestHelper.isElementDisplayed(twoDayOption)) {
+			System.out.println(SeleniumTestHelper.isElementDisplayed(twoDayOption));
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, twoDayOption, 180);
+			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(twoDayOption));
+			SeleniumTestHelper.scrollToElement(driver, twoDayOption);
+			twoDayOption.click();
+			Steps.logger.info("Clicked on Two Day");
 		}
+		
 //		else if (SeleniumTestHelper.isElementDisplayed(fedExsameDayCourierOption)) {
 //			System.out.println(SeleniumTestHelper.isElementDisplayed(fedExsameDayCourierOption));
 //			SeleniumTestHelper.waitForElementToBeDisplayed(driver, fedExsameDayCourierOption, 180);

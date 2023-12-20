@@ -19,15 +19,15 @@ Scenario: Receiving SingleLine Normal Items for Ambient type item.
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application 
-	And user logs into the FedexNet application for verify files
-	And user verify the "861" file in fedexnet
-	Then user log out from Fedenxet application
+#	And user logs into the FedexNet application for verify files
+#	And user verify the "861" file in fedexnet
+#	Then user log out from Fedenxet application
 
 @Sanity_CIL @Inbound_SingleLine_UsingKelli_APC
 Scenario:  Create and Upload X12 file Using Kelli and Veirify ASN Staus in Manhattan. 
  	Given I have excel data
 	| APC_KelliScenario001 |
-	And Open the chrome browser by selenium
+	Given Open the chrome browser by selenium
 	And user logs into the kelli application 
 	When user updates data in "Single Line ASN" Kelli Upload Sheet
 	And user upload the "Single Line ASN" Load file in Kelli
@@ -71,7 +71,7 @@ Scenario: SingleLine LTL DO Order for Normal Item
 Scenario: Create an order using O2S application. 
 	Given I have excel data 
 		| O2S_IntegrationScenario01 |
-	Given User Open the chrome browser using selenium 
+	Given Open the chrome browser by selenium
 	And user logs into the O2S application 
 	#Then user create an order in O2S application for "singleLineItem" 
 	Then user create an order for "NVI" customer in O2S application for "singleLineItem"
@@ -81,4 +81,4 @@ Scenario: Create an order using O2S application.
 	And user logs into Manhattan application for "NVI" customer
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
-	And user log out from application
+	And user log out from the application

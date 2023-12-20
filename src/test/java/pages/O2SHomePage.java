@@ -29,7 +29,8 @@ public class O2SHomePage {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath = "//table/tbody/tr/td/a[contains(text(),'Logout')]")
+	//@FindBy(xpath = "//table/tbody/tr/td/a[contains(text(),'Logout')]")
+	@FindBy(xpath = "//*[contains(@id,'logoutLink')]")
 	public WebElement logout;
 
 	@FindBy(xpath = "//*[@id='ulaitem0z1']")
@@ -68,7 +69,10 @@ public class O2SHomePage {
 	 * @throws Exception
 	 */
 	public void logoutFormO2SApp() throws Exception {
+		System.out.println("Click on Logout");
+		SeleniumTestHelper.scrollUp();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, logout, 120);
+		SeleniumTestHelper.scrollToElement(driver, logout);
 		//SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(logout));
 		SeleniumTestHelper.clickOnButton(logout);
 		//logout.click();
