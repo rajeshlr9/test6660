@@ -85,12 +85,6 @@ public class VendorPortalHomePage {
 	
 	@FindBy(xpath = "//input[@id='SERIALNO_0_0']")
 	public WebElement serialNumInSearchResult;
-	
-	
-	
-	//input[@id='LOTNO_0_0']
-	
-	//table[@id='receiveTable']/tbody/tr[contains(@class,'fsc-rcv-tbl-grp-header')]
 		
 	public void naviagateAndClickReceiveTab() throws InterruptedException {
 		Thread.sleep(5000);
@@ -125,22 +119,6 @@ public class VendorPortalHomePage {
 		SeleniumTestHelper.scrollToElement(driver, selectEnterPrise);
 		SeleniumTestHelper.selectFromDropDown(selectEnterPrise, "APC", DropDownMode.VALUE);
 		Thread.sleep(2000);
-		
-		
-		
-		
-		
-		
-		
-//		SeleniumTestHelper.waitForElementToBeDisplayed(driver, receiptNumber, 180);
-//		SeleniumTestHelper.scrollToElement(driver, receiptNumber);
-//		SeleniumTestHelper.enterText(receiptNumber, Items.getAsnNumber());
-//		Thread.sleep(2000);
-//		SeleniumTestHelper.waitForElementToBeDisplayed(driver, loadShipmentButton, 180);
-//		SeleniumTestHelper.scrollToElement(driver, loadShipmentButton);
-//		SeleniumTestHelper.clickOnButton(loadShipmentButton);
-//		Thread.sleep(2000);
-
 	}
 	
 	public void searchUsingReceiptNumber() throws InterruptedException {
@@ -149,23 +127,6 @@ public class VendorPortalHomePage {
 		SeleniumTestHelper.scrollToElement(driver, receiptNumber);
 		SeleniumTestHelper.enterText(receiptNumber, Items.getAsnNumber());
 		clickOnLoadShipment();
-//		SeleniumTestHelper.waitForElementToBeDisplayed(driver, loadShipmentButton, 180);
-//		SeleniumTestHelper.scrollToElement(driver, loadShipmentButton);
-//		SeleniumTestHelper.clickOnButton(loadShipmentButton);
-//		Thread.sleep(5000);
-//		SeleniumTestHelper.waitForElementToBeDisplayed(driver, expASNNumInSearchResult, 180);
-//		SeleniumTestHelper.scrollToElement(driver, expASNNumInSearchResult);
-//		System.out.println(expASNNumInSearchResult.getText());
-//		System.out.println(Steps.ItemDataMap.get(0).get("Item"));
-//		System.out.println(Steps.ItemDataMap.get(0).get("UOM"));
-//		System.out.println(Steps.ItemDataMap.get(0).get("ShippedQty"));
-//		System.out.println(expItemQtyInSearchResult.getAttribute("value"));
-//		Assert.assertEquals(Items.getAsnNumber().contains(expASNNumInSearchResult.getText()), true, "Actual and Expected ASN Number didn't matched");
-//		Assert.assertEquals(statusInSearchResult.getText(), "Shipped", "Actual and Expected Status didn't matched");
-//		Assert.assertEquals(expItemIdInSearchResult.getText(), Steps.ItemDataMap.get(0).get("Item"), "Actual and Expected item didn't matched");
-//		Assert.assertEquals(expUOMInSearchResult.getText(), Steps.ItemDataMap.get(0).get("UOM"), "Actual and Expected UOM didn't matched");
-//		Assert.assertEquals(expItemQtyInSearchResult.getAttribute("value"), Steps.ItemDataMap.get(0).get("ShippedQty"), "Actual and Expected Item Qty didn't matched");
-
 	}
 	public void searchUsingLotNumber() throws InterruptedException {
 		Thread.sleep(2000);
@@ -240,22 +201,5 @@ public class VendorPortalHomePage {
 		SeleniumTestHelper.clickOnButton(loadShipmentButton);
 		Thread.sleep(5000);
 	}
-	//div[@id='warehouseDetailTable_filter']//input[@type='search'] ->Node Filter
-	//select[@id='reasonCodeSelect']
-	//option value=Training
-	//div[@id='Name']//input
-	//select[@id='enterprise'] -SelectEnterPrise
-	//option -> APC
-	//input[@name='receiptNbr']
-	//input[@name='shipmentNbr']
-	//input[@name='lotNbr']
-	//input[@name='serialNbr']
-	//input[@name='itemNbr']
-	//input[@name='orderNbr']
-	//input[@name='bolNbr']
-	//button[@id='searchButton'] ->Load Shipment button
-	//button[@id='clearButton'] ->Clear button
-
-	
-	
+		
 }

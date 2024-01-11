@@ -433,7 +433,7 @@ driver.switchTo().frame(0);
 	
 	//search by location id and item id for only 1 ilpn and 1 item
 	public void validateiLPNinReserveLoc() throws Exception {
-		
+		Thread.sleep(1000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, expandBtn, 20);
 		expandBtn.click();
 		Screenshots.captureSnapshot(driver);
@@ -550,6 +550,7 @@ driver.switchTo().frame(0);
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, locationBarcodetxtBox, 20);
 			locationBarcodetxtBox.sendKeys(Items.getupdtLoc());
+			//locationBarcodetxtBox.sendKeys("RPL6129J01S7");
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, ApplyBtn, 20);
 			ApplyBtn.click();

@@ -154,7 +154,7 @@ public class AsnsPage {
 			driver.findElement(By.xpath("(//input[contains(@class,'x-form-field x-form-text x-form-text-default')])[12]")).sendKeys("QSC");
 		} else if (account.equalsIgnoreCase("NVI")) {
 			driver.findElement(By.xpath("(//input[contains(@class,'x-form-field x-form-text x-form-text-default')])[12]")).sendKeys("NVI");
-		} else {
+		} else if (account.equalsIgnoreCase("APC")) {
 			//driver.findElement(By.xpath("(//input[contains(@class,'x-form-field x-form-text x-form-text-default')])[14]")).sendKeys("APC");
 		driver.findElement(By.xpath("//div[contains(text(),'Find ASN')]/following::input[1]")).sendKeys("APC");
 		}
@@ -164,7 +164,7 @@ public class AsnsPage {
 		int count = 0;
 		while (count < 3) {
 			//Thread.sleep(60000);
-			Thread.sleep(15000);
+			Thread.sleep(10000);
 			System.out.println("Trying to click the Find Button and wait for ASN to get displayed..");
 			SeleniumTestHelper.waitForElementToBeClickable(driver,
 					driver.findElement(By.xpath("//span[contains(text(),'Find')]")), 10);

@@ -23,7 +23,6 @@ Scenario: Receiving SingleLine Lot Items for Cooler type item.
 	And user verify the "861" file in fedexnet
 	Then user log out from Fedenxet application
 	
-	
 @InBoundScenario_APC_2 @IBRegScenarios_APC @DailyRegression_APC
 Scenario: Receiving SingleLine Normal Items for Ambient type item.
 	Given I have excel data

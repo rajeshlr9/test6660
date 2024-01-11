@@ -718,11 +718,44 @@ public class StepDefInBound {
 			Steps.logger.info("Open RF menu");
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
-			if (account.equalsIgnoreCase("APC")) {
+			switch(account) {
+			case "APC":
 				rfMenu.ASNReceivingProcessForAPC(receivingMethod);
-			} else {
+				break;
+			case "THH":
+				rfMenu.ASNReceivingProcessForAPC(receivingMethod);
+				break;
+			case "THM":
+				rfMenu.ASNReceivingProcessForAPC(receivingMethod);
+				break;
+			case "TRN":
+				rfMenu.ASNReceivingProcessForAPC(receivingMethod);
+				break;
+			case "FUJ":
+				rfMenu.ASNReceivingProcessForAPC(receivingMethod);
+				break;
+			case "ILW":
+				rfMenu.ASNReceivingProcessForAPC(receivingMethod);
+				break;
+			case "QSC":
 				rfMenu.ASNReceivingProcess(receivingMethod);
+				break;
+			case "NVI":
+				rfMenu.ASNReceivingProcess(receivingMethod);
+				break;
+			default:
+				System.out.println("Account Name Needed.");
 			}
+//			SeleniumTestHelper.switchToInnerFrame(driver);
+//			if (account.equalsIgnoreCase("APC")) {
+//				rfMenu.ASNReceivingProcessForAPC(receivingMethod);
+//			}if (account.equalsIgnoreCase("THH")) {
+//				rfMenu.ASNReceivingProcessForAPC(receivingMethod);
+//			} if (account.equalsIgnoreCase("FUJ")) {
+//				rfMenu.ASNReceivingProcessForAPC(receivingMethod);
+//			}else {
+//				rfMenu.ASNReceivingProcess(receivingMethod);
+//			}
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
@@ -754,10 +787,41 @@ public class StepDefInBound {
 			Steps.logger.info("Open RF menu");
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
-			if (account.equalsIgnoreCase("APC")) {
+//			if (account.equalsIgnoreCase("APC")) {
+//				rfMenu.putawayProcessForAPC(putawayMethod);
+//			} else if (account.equalsIgnoreCase("THH")){
+//				rfMenu.doPutawayProcess(putawayMethod);
+//			}else {
+//				rfMenu.putawayProcess(putawayMethod);
+//			}
+			
+			switch(account) {
+			case "APC":
 				rfMenu.putawayProcessForAPC(putawayMethod);
-			} else {
+				break;
+			case "THH":
+				rfMenu.doPutawayProcess(putawayMethod);
+				break;
+			case "THM":
+				rfMenu.doPutawayProcess(putawayMethod);
+				break;
+			case "FUJ":
+				rfMenu.doPutawayProcess(putawayMethod);
+				break;
+			case "TRN":
+				rfMenu.doPutawayProcess(putawayMethod);
+				break;
+			case "ILW":
+				rfMenu.doPutawayProcess(putawayMethod);
+				break;
+			case "QSC":
 				rfMenu.putawayProcess(putawayMethod);
+				break;
+			case "NVI":
+				rfMenu.putawayProcess(putawayMethod);
+				break;
+			default:
+				System.out.println("Account Name Needed.");
 			}
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
@@ -797,10 +861,34 @@ public class StepDefInBound {
 			Steps.logger.info("Open Reserve Locations");
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
-			if(account.equalsIgnoreCase("APC")) {
+			
+			switch(account) {
+			case "APC":
 				resLocPage.validateiLPNinReserveLocForAPC();
-			}else {
+				break;
+			case "THH":
+				resLocPage.validateiLPNinReserveLocForAPC();
+				break;
+			case "THM":
+				resLocPage.validateiLPNinReserveLocForAPC();
+				break;
+			case "TRN":
+				resLocPage.validateiLPNinReserveLocForAPC();
+				break;
+			case "FUJ":
+				resLocPage.validateiLPNinReserveLocForAPC();
+				break;
+			case "ILW":
+				resLocPage.validateiLPNinReserveLocForAPC();
+				break;
+			case "QSC":
 				resLocPage.validateiLPNinReserveLoc();
+				break;
+			case "NVI":
+				resLocPage.validateiLPNinReserveLoc();
+				break;
+			default:
+				System.out.println("Account Name Needed.");
 			}
 			System.out.println("reserveLocationqty:"+resLocPage.reserveLocationqty);
 			homePage.user_closes_openedwindow("Reserve Locations - iLPNs");
@@ -1364,6 +1452,8 @@ public class StepDefInBound {
 					Steps.logger.info("L4 Environment Manhattan URL :"+Config.getProperty("ManhattanURL_L4"));
 			}else if (env.equalsIgnoreCase("L5")) {
 				driver.get(Config.getProperty("O2SApp_L5_URL"));
+				System.out.println(driver.getCurrentUrl());
+				driver.navigate().to(Config.getProperty("O2SApp_L5_URL"));
 				Steps.logger.info("L5 Environment");
 			}
 			o2sLoginPage.loginToO2SApp();

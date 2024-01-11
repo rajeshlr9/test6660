@@ -208,8 +208,15 @@ public class CreateBrowser {
 			}
 
 			ChromeOptions options = new ChromeOptions();
+			options.addArguments("disable -extensions");
+			options.addArguments("--disable-popup-blocking");
+			
 			options.addArguments("--incognito");
 			options.addArguments("--start-maximized");
+			
+			options.addArguments("disable-infobars");
+			
+			
 			options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 			options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 			Map<String, Object> prefs = new HashMap<String, Object>();
@@ -219,7 +226,7 @@ public class CreateBrowser {
 			prefs.put("profile.default_content_setting_values.notifications", 2);
 			prefs.put("credentials_enable_service", false);
 			options.setExperimentalOption("prefs", prefs);
-			options.addArguments("disable-infobars");
+			//options.addArguments("disable-infobars");
 			// Below 1 line of code has been added for proxy settings
 			if(setProxy) {
 			options.setCapability("proxy", proxy);

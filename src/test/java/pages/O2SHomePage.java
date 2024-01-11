@@ -72,7 +72,11 @@ public class O2SHomePage {
 		System.out.println("Click on Logout");
 		SeleniumTestHelper.scrollUp();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, logout, 120);
+		try {
 		SeleniumTestHelper.scrollToElement(driver, logout);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		//SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(logout));
 		SeleniumTestHelper.clickOnButton(logout);
 		//logout.click();
