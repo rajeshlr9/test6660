@@ -6962,9 +6962,12 @@ public class RFMenuPage {
 						acceptAndProceedBtn.click();
 					}
 					if (SeleniumTestHelper.isElementDisplayed(lotNumberField)) {
+						System.out.println(lotNumberField.getAttribute("value"));
+						if(lotNumberField.getAttribute("value").equals("")) {
 						globalFunc.DateTime.TimeDateFunc();
 						String lotNumber = globalFunc.DateTime.strDate2;
 						SeleniumTestHelper.enterText(lotNumberField, "LT"+lotNumber);
+						}
 					}
 					//Above 3 lines code is for temporary fix and later remove
 					if (SeleniumTestHelper.isElementDisplayed(InvType)) {
