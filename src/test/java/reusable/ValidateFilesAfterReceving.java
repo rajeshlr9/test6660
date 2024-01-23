@@ -67,14 +67,15 @@ public class ValidateFilesAfterReceving extends Steps{
 			Steps.logger.info("Again swtich to frame to interact with the component");
 			driver.switchTo().parentFrame();
 			driver.switchTo().frame("bottomFrame");
-			Thread.sleep(5000);
+			SeleniumTestHelper.WaitForPageLoad(3000);
+			//Thread.sleep(5000);
 			Steps.logger.info(
 					"Verified the ViewDoc Button getting displayed..." + SeleniumTestHelper.isElementDisplayed(viewDocBtn));
 
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, viewDocBtn, 50);
 			viewDocBtn.click();
 
-			Thread.sleep(120000);
+			Thread.sleep(60000);
 			Steps.logger.info("Clicked on ViewDoc Button");
 			Reporter.addStepLog("Download the file in FedExNet");
 		} catch (Exception e) {

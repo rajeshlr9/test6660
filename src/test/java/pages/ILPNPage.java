@@ -222,17 +222,21 @@ public class ILPNPage {
 		inputLPNSearchTextBox.clear();
 		inputLPNSearchTextBox.sendKeys(iLPN);
 		Screenshots.captureSnapshot(driver);
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
+		SeleniumTestHelper.WaitForPageLoad();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, applySearchBtn, 50);
 		applySearchBtn.click();
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
+		SeleniumTestHelper.WaitForPageLoad();
 		SeleniumTestHelper.waitForElementToBeClickable(driver, firstCheckBx, 60);
 		Screenshots.captureSnapshot(driver);
 		driver.findElement(By.xpath("//span[text()='" + iLPN + "']/../..//input[@type='checkbox']")).click();
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
+		SeleniumTestHelper.WaitForPageLoad();
         SeleniumTestHelper.waitForElementToBeClickable(driver, cancelSelectedLPN, 60);
         viewLPNBtn.click();
-        Thread.sleep(3000);
+        //Thread.sleep(3000);
+        SeleniumTestHelper.WaitForPageLoad();
         SeleniumTestHelper.waitForElementToBeClickable(driver, headerLPNTab, 120);
         Screenshots.captureSnapshot(driver);
 	}
@@ -347,7 +351,8 @@ public class ILPNPage {
 		} else {
 			lockCode = new String[] { lockcodes };
 		}
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
+		SeleniumTestHelper.WaitForPageLoad();
 		homePage.MenuItems_Distribution_Selection("iLPNs");
 		Screenshots.captureSnapshot(driver);
 		Steps.logger.info("Open iLPN screen");
@@ -378,7 +383,8 @@ public class ILPNPage {
 			 
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, backButton, 20);
 			backButton.click();
-			Thread.sleep(3000);
+			//Thread.sleep(3000);
+			SeleniumTestHelper.WaitForPageLoad();
 		}
 		/*
 		 * if (i == j) {

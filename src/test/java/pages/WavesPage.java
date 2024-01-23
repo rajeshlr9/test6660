@@ -112,7 +112,8 @@ public class WavesPage {
 		waveNumberSearchTxt.sendKeys(Items.getWaveNumber());
 		Screenshots.captureSnapshot(driver);
 		waveNumberApplySearchBtn.click();
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
+		SeleniumTestHelper.WaitForPageLoad();
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver,
 				driver.findElement(By.xpath("//span[text()='" + Items.getWaveNumber() + "']")), 50);
@@ -125,7 +126,8 @@ public class WavesPage {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWaveviewBtn, 50);
 		shipWaveviewBtn.click();
 
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
+		SeleniumTestHelper.WaitForPageLoad();
 		Screenshots.captureSnapshot(driver);
 		if (OrdersdeselectedValue.getText().equals("0")) {
 			String noofLines = String.valueOf(Steps.ItemDataMap.size());
@@ -143,13 +145,15 @@ public class WavesPage {
 			//SeleniumTestHelper.assertEquals(unitsAllocatedValue.getText(), totalShippedQty,"Verification of units allocation ");
 			Steps.logger.info("Total units allocated: "+unitsAllocatedValue.getText());
 			Reporter.addStepLog("Total units allocated: "+unitsAllocatedValue.getText());
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
+			SeleniumTestHelper.WaitForPageLoad();
 			Steps.logger.info("Inventory got allocated successfuuly");
 			Reporter.addStepLog("Inventory got allocated successfuuly");
 		} else if (OrdersdeselectedValue.getText().equals("1")) {
 			SeleniumTestHelper.waitForElementToBeClickable(driver, ShortageTab, 10);
 			ShortageTab.click();
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
+			SeleniumTestHelper.WaitForPageLoad();
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, shortageReasonCd, 10);
 			String reasonCode = shortageReasonCd.getText();

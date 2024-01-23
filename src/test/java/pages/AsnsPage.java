@@ -244,15 +244,18 @@ public class AsnsPage {
 		 * action.moveToElement(asnIdInput).build().perform(); asnIdInput.click();
 		 * asnIdInput.sendKeys(asnId);
 		 */
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
+		SeleniumTestHelper.WaitForPageLoad();
 		SeleniumTestHelper.waitForElementToBeClickable(driver, applyBtn, 50);
 		 
 		applyBtn.click();
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
+		SeleniumTestHelper.WaitForPageLoad();
 		int temp=0;
 		 while (!SeleniumTestHelper.isElementDisplayed(asnStatus) && (temp != 20)) {
 			 applyBtn.click();
-			 Thread.sleep(5000);
+			 //Thread.sleep(5000);
+			 SeleniumTestHelper.WaitForPageLoad();
 			 temp++;
 		 }
 		//driver.findElement(By.xpath("(//span[text()='Apply'])[2]")).click();
@@ -267,15 +270,18 @@ public class AsnsPage {
 		int count = 0;
 		  while (!AsnStatus.equals(status) && (count != 20)) { 
 			  applyBtn.click();
-		  Thread.sleep(1000); 
+		  //Thread.sleep(1000); 
+			  SeleniumTestHelper.WaitForPageLoad();
 		  AsnStatus = asnStatus.getText();
-		  Thread.sleep(5000);
+		  //Thread.sleep(5000);
+		  SeleniumTestHelper.WaitForPageLoad();
 		  count++; 
 		  }
 		 
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, collapseLeft, 70);
 		collapseLeft.click();
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
+		SeleniumTestHelper.WaitForPageLoad();
 		
 			SeleniumTestHelper.assertEquals(AsnStatus, status);
 			
@@ -298,12 +304,14 @@ public class AsnsPage {
 	}
 
 	public void GetItemDetails() throws Exception {
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
+		SeleniumTestHelper.WaitForPageLoad();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, linesTab, 120);
 		linesTab.click();
 		List<WebElement> lines = driver.findElements(By.xpath("//span[contains(@id,'SKUId')]"));
 		List<WebElement> Shipqty = driver.findElements(By.xpath("//span[contains(@id,'shippedQtyuom')]"));
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
+		SeleniumTestHelper.WaitForPageLoad();
 		Screenshots.captureSnapshot(driver);
 		String itemInASNPage = null;
 		String barcodes = null;
@@ -352,7 +360,8 @@ public class AsnsPage {
 			 */
 
 		}
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
+		SeleniumTestHelper.WaitForPageLoad();
 	}
 
 	public void searchForTheASN(String asnID) throws Exception {
@@ -366,7 +375,8 @@ public class AsnsPage {
 		asnIdInput.click();
 		asnIdInput.sendKeys(asnID);
 		//SeleniumTestHelper.waitForElementToBeDisplayed(driver, applyBtn, 50);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
+		SeleniumTestHelper.WaitForPageLoad();
 		applyBtn.click();
 		Screenshots.captureSnapshot(driver);
 	}
@@ -726,7 +736,8 @@ public class AsnsPage {
 			List<WebElement> batchNum = driver.findElements(By.xpath("//span[contains(@id,'Batch_Otext')]"));
 
 			
-			Thread.sleep(5000);
+			//Thread.sleep(5000);
+			SeleniumTestHelper.WaitForPageLoad();
 			Screenshots.captureSnapshot(driver);
 			String itemInASNPage = null;
 			String barcodes = null;
@@ -763,7 +774,8 @@ public class AsnsPage {
 				System.out.println("Get Lot Number"+Items.getLotNumber());
 
 			}
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
+			SeleniumTestHelper.WaitForPageLoad();
 		}
 //		public void getSerialNumberFromASNViewPage() throws Exception {
 //			SeleniumTestHelper.waitForElementToBeDisplayed(driver, linesTab, 120);

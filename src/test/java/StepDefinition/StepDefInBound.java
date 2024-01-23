@@ -578,24 +578,29 @@ public class StepDefInBound {
 		// asnsPage.searchForTheASN(Items.getAsnNumber());
 		try {
 			System.out.println("Verify Item details");
-			Thread.sleep(5000);
+			//Thread.sleep(5000);
+			SeleniumTestHelper.WaitForPageLoad();
 			asnsPage.searchForTheASN(Items.getAsnNumber());
 			Steps.logger.info("Search for item details");
 			SeleniumTestHelper.waitForElementToBeClickable(driver, asnsPage.searchedASNChkbox, 50);
 			asnsPage.searchedASNChkbox.click();
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
+			SeleniumTestHelper.WaitForPageLoad();
 			asnsPage.viewASNBtn.click();
 			Steps.logger.info("Click on view ASN");
-			Thread.sleep(5000);
+			//Thread.sleep(5000);
+			SeleniumTestHelper.WaitForPageLoad();
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			Screenshots.captureSnapshot(driver);
 			asnsPage.GetItemDetails();
 			System.out.println("Verifed Item details");
 			asnsPage.verifyLotNumberInASnPage();
-			Thread.sleep(5000);
+			//Thread.sleep(5000);
+			SeleniumTestHelper.WaitForPageLoad();
 			System.out.println("Trying to close the Advance Ship Notice Window");
 			homePage.userClosesOpenedwindow("Advance Ship Notice");
-			Thread.sleep(5000);
+			//Thread.sleep(5000);
+			SeleniumTestHelper.WaitForPageLoad();
 			SeleniumTestHelper.Close_OpenedWindow("ASNs", driver);
 			Steps.logger.info("Close ASN window");
 		} catch (Exception e) {
@@ -685,7 +690,8 @@ public class StepDefInBound {
 	@Then("^user log out from application$")
 	public void user_log_out_from_application() throws Exception {
 		try {
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
+			SeleniumTestHelper.WaitForPageLoad(2000);
 			homePage.user_logout_from_application();
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
@@ -1602,7 +1608,8 @@ public class StepDefInBound {
 	@Then("^user log out from the application$")
 	public void user_log_out_from_the_application() throws Exception {
 		try {
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
+			SeleniumTestHelper.WaitForPageLoad(2000);
 			homePage.user_logout_from_the_application();
 		} catch (Exception e) {
 			Steps.testRes = "Failed";

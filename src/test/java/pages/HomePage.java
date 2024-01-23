@@ -70,11 +70,13 @@ public class HomePage {
 	}
 
 	public void userClosesOpenedwindow(String Screenname) throws Exception {
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
+		SeleniumTestHelper.WaitForPageLoad();
 		driver.switchTo().defaultContent();
 		SeleniumTestHelper.WaitForElement(openWindows, 30);
 		openWindows.click();
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
+		SeleniumTestHelper.WaitForPageLoad();
 		SeleniumTestHelper.Close_OpenedWindow(Screenname, driver);
 	}
 
@@ -87,7 +89,8 @@ public class HomePage {
 		driver.findElement(
 				By.xpath("//ul[@data-ref='listEl']/li/div[text()=' (Configuration)']/b[text()='" + Screenname + "']"))
 				.click();
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
+		SeleniumTestHelper.WaitForPageLoad();
 	}
 
 	public void MenuItems_Distribution_Selection(String Screenname) throws Exception {
@@ -99,7 +102,8 @@ public class HomePage {
 		driver.findElement(
 				By.xpath("//ul[@data-ref='listEl']/li/div[text()=' (Distribution)']/b[text()='" + Screenname + "']"))
 				.click();
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
+		SeleniumTestHelper.WaitForPageLoad();
 		/*
 		 * if(!(driver.findElements(By.tagName("iframe")).size()==0)) {
 		 * driver.switchTo().frame(0); }
@@ -158,7 +162,8 @@ public class HomePage {
 		driver.switchTo().defaultContent();
 		SeleniumTestHelper.WaitForElement(openWindows, 50);
 		openWindows.click();
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
+		SeleniumTestHelper.WaitForPageLoad();
 		Screenshots.captureSnapshot(driver);
 		Steps.logger.info("Closed the open Window");
 	}

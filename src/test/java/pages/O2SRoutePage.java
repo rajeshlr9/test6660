@@ -46,6 +46,9 @@ public class O2SRoutePage {
 	@FindBy(xpath = "//input[@id='form1:submit']")
 	public WebElement continueBtn;
 
+	@FindBy(xpath = "//input[@id='form1:filter']")
+	public WebElement applyFilterBtn;
+	
 	/***
 	 * This method selectRoute is use for selecting the route
 	 * @throws Exception
@@ -54,6 +57,14 @@ public class O2SRoutePage {
 
 		// SeleniumTestHelper.waitForElementToBeDisplayed(driver, expressSaverOption,
 		// 180);
+		
+		int temp = 0;
+		while ((temp != 3)) {
+			applyFilterBtn.click();
+			//Thread.sleep(3000);
+			SeleniumTestHelper.WaitForPageLoad();
+			temp++;
+		}
 		
 		if (SeleniumTestHelper.isElementDisplayed(firstOvernightOption)) {
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, firstOvernightOption, 180);

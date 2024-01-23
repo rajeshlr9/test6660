@@ -65,7 +65,8 @@ public class O2SPlacementPage {
 
 		// SeleniumTestHelper.enterTextInTextBox(poNumberInputField, "1008202306");
 		Steps.logger.info("Enter PO Number");
-		Thread.sleep(10000);
+		//Thread.sleep(10000);
+		SeleniumTestHelper.WaitForPageLoad(3000);
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, continueBtn, 180);
 		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(continueBtn));
@@ -73,7 +74,8 @@ public class O2SPlacementPage {
 		SeleniumTestHelper.clickOnButton(continueBtn);
 		//continueBtn.click();
 		Steps.logger.info("Clicked on Continue button");
-		Thread.sleep(10000);
+		//Thread.sleep(10000);
+		SeleniumTestHelper.WaitForPageLoad(3000);
 	}
 
 }

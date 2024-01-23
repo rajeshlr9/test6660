@@ -982,7 +982,62 @@ public class SeleniumTestHelper {
 		}
 	}
 
- 
-}
+	public static boolean WaitForPageLoad() {
+		boolean jQuery = false;
+		boolean jsLoad = false;
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			System.out.println("Pagestill loading");
+
+			jQuery = ((Long) ((JavascriptExecutor) driver).executeScript("return jQuery.active") == 0);
+		} catch (Exception e) {
+			jQuery = true;
+		}
+
+		try {
+			System.out.println("Page is still loading");
+
+			jsLoad = "complete"
+					.equals(((JavascriptExecutor) driver).executeScript("return document.readyState").toString());
+		} catch (Exception e) {
+			jsLoad = true;
+		}
+		return jQuery && jsLoad;
+
+	}
+
+	public static boolean WaitForPageLoad(long milliSecond) {
+		boolean jQuery = false;
+		boolean jsLoad = false;
+
+		try {
+			Thread.sleep(milliSecond);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
+
+		try {
+			System.out.println("Pagestill loading");
+
+			jQuery = ((Long) ((JavascriptExecutor) driver).executeScript("return jQuery.active") == 0);
+		} catch (Exception e) {
+			jQuery = true;
+		}
+
+		try {
+			System.out.println("Page is still loading");
+
+			jsLoad = "complete"
+					.equals(((JavascriptExecutor) driver).executeScript("return document.readyState").toString());
+		} catch (Exception e) {
+			jsLoad = true;
+		}
+		return jQuery && jsLoad;
+	}
+ }
 
 	

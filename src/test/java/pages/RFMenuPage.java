@@ -1112,7 +1112,8 @@ public class RFMenuPage {
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
 			Mainmenu.click();
 			Steps.logger.info("Clicked on Main Menu");
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
+			SeleniumTestHelper.WaitForPageLoad();
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfShipping, 50);
 			rfShipping.click();
 
@@ -1134,7 +1135,8 @@ public class RFMenuPage {
 					Screenshots.captureSnapshot(driver);
 					rfman_oLPN.sendKeys(Items.getoLPN(i));
 					// rfman_oLPN.sendKeys("00001951920000023309");
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					// rfman_oLPN.sendKeys(Keys.ENTER);
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, sublocn3, 50);
 					System.out.println("Sys tech1");
@@ -1151,8 +1153,8 @@ public class RFMenuPage {
 					// click only to get rid of open windows tab
 					sublocn3.click();
 					sublocn3.sendKeys(LocCode);
-					Thread.sleep(1000);
-
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					sublocn3.sendKeys(Keys.ENTER);
 
 				}
@@ -1177,7 +1179,8 @@ public class RFMenuPage {
 					Screenshots.captureSnapshot(driver);
 					rfman_oLPN.sendKeys(DistributionOrders.oLPNList.get(0));
 					// rfman_oLPN.sendKeys("00001951920000023309");
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					if(SeleniumTestHelper.isElementDisplayed(rfman_oLPN)) {
 						rfman_oLPN.sendKeys(Keys.ENTER);
 					}
@@ -1197,11 +1200,12 @@ public class RFMenuPage {
 					// click only to get rid of open windows tab
 					sublocn3.click();
 					sublocn3.sendKeys(LocCode);
-					Thread.sleep(1000);
-
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					sublocn3.sendKeys(Keys.ENTER);
 					
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					System.out.println("Click on Exit button");
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, ExitBtn, 50);
 					ExitBtn.click();
@@ -6876,16 +6880,19 @@ public class RFMenuPage {
 			// iLPNz = null;
 			Steps.logger.info("Start Receiving Process");
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
-			Thread.sleep(3000);
+			//Thread.sleep(3000);
+			SeleniumTestHelper.WaitForPageLoad();
 			RFmenu_info.click();
 			Steps.logger.info("Clicked on RF Menu");
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 50);
 			Mainmenu.click();
 			Steps.logger.info("Clicked on Main Menu");
-			Thread.sleep(3000);
+			//Thread.sleep(3000);
+			SeleniumTestHelper.WaitForPageLoad();
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuReceiving, 50);
 			rfMenuReceiving.click();
-			Thread.sleep(3000);
+			//Thread.sleep(3000);
+			SeleniumTestHelper.WaitForPageLoad();
 			Steps.logger.info("Clicked on Receiving");
 			Screenshots.captureSnapshot(driver);
 			switch (receivingMethod) {
@@ -6897,11 +6904,13 @@ public class RFMenuPage {
 				}
 				SeleniumTestHelper.assertTrue(MM1Rec.isDisplayed());
 				Screenshots.captureSnapshot(driver);
-				Thread.sleep(3000);
+				//Thread.sleep(3000);
+				SeleniumTestHelper.WaitForPageLoad();
 				SeleniumTestHelper.waitForElementToBeClickable(driver, MM1Rec, 30);
 				MM1Rec.click();
 				Steps.logger.info("Click on " + receivingMethod + " method");
-				Thread.sleep(5000);
+				//Thread.sleep(5000);
+				SeleniumTestHelper.WaitForPageLoad();
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, inputASN, 30);
 				Screenshots.captureSnapshot(driver);
 				inputASN.sendKeys(Items.getAsnNumber());
@@ -6993,7 +7002,8 @@ public class RFMenuPage {
 					//Above 3 lines code is for temporary fix and later remove
 															
 					Steps.logger.info(DateTime.strDate71);
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					if (SeleniumTestHelper.isElementDisplayed(expMM)) {
 						SeleniumTestHelper.waitForElementToBeDisplayed(driver, expMM, 10);
 						expMM.sendKeys(DateTime.strDate71.split("/")[0]);
@@ -7001,7 +7011,8 @@ public class RFMenuPage {
 						expDD.sendKeys(DateTime.strDate71.split("/")[1]);
 						SeleniumTestHelper.waitForElementToBeDisplayed(driver, expYYYY, 10);
 						expYYYY.sendKeys(DateTime.strDate71.split("/")[2]);
-						Thread.sleep(1000);
+						//Thread.sleep(1000);
+						SeleniumTestHelper.WaitForPageLoad();
 
 					}
 					Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")));
@@ -7017,7 +7028,8 @@ public class RFMenuPage {
 						expDD.sendKeys(DateTime.strDate71.split("/")[1]);
 						SeleniumTestHelper.waitForElementToBeDisplayed(driver, expYYYY, 10);
 						expYYYY.sendKeys(DateTime.strDate71.split("/")[2]);
-						Thread.sleep(1000);
+						//Thread.sleep(1000);
+						SeleniumTestHelper.WaitForPageLoad();
 					}
 					// wip-end point
 					while (SeleniumTestHelper.isElementDisplayed(serialNumbersInput)) {
@@ -7032,33 +7044,39 @@ public class RFMenuPage {
 						Items.setAsnserialNumberList(serial);
 						serialNumberInputParcel.sendKeys(serial);
 						Screenshots.captureSnapshot(driver);
-						Thread.sleep(1000);
+						//Thread.sleep(1000);
+						SeleniumTestHelper.WaitForPageLoad();
 						// Steps.logger.info("wait1");
 						serialNumberInputParcel.sendKeys(Keys.ENTER);
 						Steps.logger.info("wait2");
 						Screenshots.captureSnapshot(driver);
 						SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
 						Steps.logger.info("wait3");
-						Thread.sleep(4000);
+						//Thread.sleep(4000);
+						SeleniumTestHelper.WaitForPageLoad();
 						if (errorOrWarningMsg.getText().contains("create a new one?") || errorOrWarningMsg.getText().contains("Serial Nbr does not exist. Create?")) {
 							Steps.logger.info("await4");
-							Thread.sleep(4000);
+							//Thread.sleep(4000);
+							SeleniumTestHelper.WaitForPageLoad();
 							Screenshots.captureSnapshot(driver);
 							// acceptAndProceedBtn.click();
 							// if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
 							RFmenu_info.click();
-							Thread.sleep(1000);
+							//Thread.sleep(1000);
+							SeleniumTestHelper.WaitForPageLoad();
 							RFmenu_info.click();
 							acceptAndProceedBtn.click();
 							// }
 							// JavascriptExecutor executor = (JavascriptExecutor)driver;
 							// executor.executeScript("arguments[0].click();", acceptAndProceedBtn);
 							Steps.logger.info("await5");
-							Thread.sleep(2000);
+							//Thread.sleep(2000);
+							SeleniumTestHelper.WaitForPageLoad();
 						}
 
 						else if (errorOrWarningMsg.getText().contains("Error")) {
-							Thread.sleep(1000);
+							//Thread.sleep(1000);
+							SeleniumTestHelper.WaitForPageLoad();
 							Screenshots.captureSnapshot(driver);
 							Steps.testRes = "Failed";
 							Assert.assertTrue(false);
@@ -7069,9 +7087,11 @@ public class RFMenuPage {
 					// }
 					if (SeleniumTestHelper.isElementDisplayed(InfoAcceptKey)) {
 						Steps.logger.info("Clicking on Info accept key");
-						Thread.sleep(3000);
+						//Thread.sleep(3000);
+						SeleniumTestHelper.WaitForPageLoad();
 						RFmenu_info.click();
-						Thread.sleep(1000);
+						//Thread.sleep(1000);
+						SeleniumTestHelper.WaitForPageLoad();
 						RFmenu_info.click();
 						InfoAcceptKey.click();
 						Steps.logger.info("Clicked on Info accept key");
@@ -7110,7 +7130,8 @@ public class RFMenuPage {
 						Screenshots.captureSnapshot(driver);
 						yyyy.sendKeys(futureDateAsArray[2]);
 					}
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					Screenshots.captureSnapshot(driver);
 					if (SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
 						acceptAndProceedBtn.click();
@@ -7173,14 +7194,16 @@ public class RFMenuPage {
 //							cooTxtBox.sendKeys("US");
 //						}
 						InvType.sendKeys(Keys.ENTER);
-						Thread.sleep(2000);
+						//Thread.sleep(2000);
+						SeleniumTestHelper.WaitForPageLoad();
 						Screenshots.captureSnapshot(driver);
 						Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty2")));
 						Screenshots.captureSnapshot(driver);
 						Item_qty.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
 						Steps.logger.info("Enter Qty: " + String.valueOf(Steps.ItemDataMap.get(i).get("RecQty2")));
-						Thread.sleep(1000);
+						//Thread.sleep(1000);
+						SeleniumTestHelper.WaitForPageLoad();
 
 						if (SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
 							SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
@@ -7199,7 +7222,8 @@ public class RFMenuPage {
 								Screenshots.captureSnapshot(driver);
 							}
 						}
-						Thread.sleep(1000);
+						//Thread.sleep(1000);
+						SeleniumTestHelper.WaitForPageLoad();
 						String fututeDate1 = String.valueOf(Steps.ItemDataMap.get(i).get("ShipByDate"));
 						Steps.logger.info(fututeDate1);
 						Steps.logger.info("Enter fututeDate: " + fututeDate1);
@@ -7212,7 +7236,8 @@ public class RFMenuPage {
 							Screenshots.captureSnapshot(driver);
 							yyyy.sendKeys(futureDateAsArray1[2]);
 						}
-						Thread.sleep(1000);
+						//Thread.sleep(1000);
+						SeleniumTestHelper.WaitForPageLoad();
 						Screenshots.captureSnapshot(driver);
 						if (SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
 							acceptAndProceedBtn.click();
@@ -7224,7 +7249,8 @@ public class RFMenuPage {
 						Reporter.addStepLog(
 								String.valueOf(Steps.ItemDataMap.get(i).get("RecQty2")) + " qty is received in LPN "
 										+ LPNnum1[1].trim() + " for Item- " + Items.getItemsForReceivingASN(i));
-						Thread.sleep(3000);
+						//Thread.sleep(3000);
+						SeleniumTestHelper.WaitForPageLoad();
 					}
 				}
 				Steps.logger.info("Completed Receiving");
@@ -7258,12 +7284,15 @@ public class RFMenuPage {
 					Screenshots.captureSnapshot(driver);
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, taskGrpInput, 5);
 					taskGrpInput.clear();
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					taskGrpInput.sendKeys("FRZ");
 
-					Thread.sleep(2000);
+					//Thread.sleep(2000);
+					SeleniumTestHelper.WaitForPageLoad();
 					EnterBtn.click();
-					Thread.sleep(3000);
+					//Thread.sleep(3000);
+					SeleniumTestHelper.WaitForPageLoad();
 					Steps.logger.info("Task group changed uccessfully");
 					Reporter.addStepLog("Task group changed successfully");
 
@@ -7273,7 +7302,8 @@ public class RFMenuPage {
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
 					Mainmenu.click();
 					Steps.logger.info("Clicked on Main Menu");
-					Thread.sleep(2000);
+					//Thread.sleep(2000);
+					SeleniumTestHelper.WaitForPageLoad();
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuReceiving, 50);
 					rfMenuReceiving.click();
 					Steps.logger.info("Clicked on Receiving");
@@ -7328,7 +7358,8 @@ public class RFMenuPage {
 					Screenshots.captureSnapshot(driver);
 
 					Steps.logger.info(DateTime.strDate71);
-					Thread.sleep(3000);
+					//Thread.sleep(3000);
+					SeleniumTestHelper.WaitForPageLoad();
 					if (SeleniumTestHelper.isElementDisplayed(expMM)) {
 						SeleniumTestHelper.waitForElementToBeDisplayed(driver, expMM, 10);
 						expMM.sendKeys(DateTime.strDate71.split("/")[0]);
@@ -7336,8 +7367,8 @@ public class RFMenuPage {
 						expDD.sendKeys(DateTime.strDate71.split("/")[1]);
 						SeleniumTestHelper.waitForElementToBeDisplayed(driver, expYYYY, 10);
 						expYYYY.sendKeys(DateTime.strDate71.split("/")[2]);
-						Thread.sleep(5000);
-
+						//Thread.sleep(5000);
+						SeleniumTestHelper.WaitForPageLoad();
 					}
 
 					// Thread.sleep(3000);
@@ -7354,7 +7385,8 @@ public class RFMenuPage {
 						expDD.sendKeys(DateTime.strDate71.split("/")[1]);
 						SeleniumTestHelper.waitForElementToBeDisplayed(driver, expYYYY, 10);
 						expYYYY.sendKeys(DateTime.strDate71.split("/")[2]);
-						Thread.sleep(5000);
+						//Thread.sleep(5000);
+						SeleniumTestHelper.WaitForPageLoad();
 					}
 					// wip-end point
 					while (SeleniumTestHelper.isElementDisplayed(serialNumbersInput)) {
@@ -7369,33 +7401,39 @@ public class RFMenuPage {
 						Items.setAsnserialNumberList(serial);
 						serialNumberInputParcel.sendKeys(serial);
 						Screenshots.captureSnapshot(driver);
-						Thread.sleep(1000);
+						//Thread.sleep(1000);
+						SeleniumTestHelper.WaitForPageLoad();
 						// Steps.logger.info("wait1");
 						serialNumberInputParcel.sendKeys(Keys.ENTER);
 						Steps.logger.info("wait2");
 						Screenshots.captureSnapshot(driver);
 						SeleniumTestHelper.waitForElementToBeDisplayed(driver, errorOrWarningMsg, 50);
 						Steps.logger.info("wait3");
-						Thread.sleep(4000);
+						//Thread.sleep(4000);
+						SeleniumTestHelper.WaitForPageLoad();
 						if (errorOrWarningMsg.getText().contains("create a new one?")) {
 							Steps.logger.info("await4");
-							Thread.sleep(4000);
+							//Thread.sleep(4000);
+							SeleniumTestHelper.WaitForPageLoad();
 							Screenshots.captureSnapshot(driver);
 							// acceptAndProceedBtn.click();
 							// if(SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
 							RFmenu_info.click();
-							Thread.sleep(1000);
+							//Thread.sleep(1000);
+							SeleniumTestHelper.WaitForPageLoad();
 							RFmenu_info.click();
 							acceptAndProceedBtn.click();
 							// }
 							// JavascriptExecutor executor = (JavascriptExecutor)driver;
 							// executor.executeScript("arguments[0].click();", acceptAndProceedBtn);
 							Steps.logger.info("await5");
-							Thread.sleep(2000);
+							//Thread.sleep(2000);
+							SeleniumTestHelper.WaitForPageLoad();
 						}
 
 						else if (errorOrWarningMsg.getText().contains("Error")) {
-							Thread.sleep(1000);
+							//Thread.sleep(1000);
+							SeleniumTestHelper.WaitForPageLoad();
 							Screenshots.captureSnapshot(driver);
 							Steps.testRes = "Failed";
 							Assert.assertTrue(false);
@@ -7406,9 +7444,11 @@ public class RFMenuPage {
 					// }
 					if (SeleniumTestHelper.isElementDisplayed(InfoAcceptKey)) {
 						Steps.logger.info("Clicking on Info accept key");
-						Thread.sleep(10000);
+						//Thread.sleep(10000);
+						SeleniumTestHelper.WaitForPageLoad();
 						RFmenu_info.click();
-						Thread.sleep(1000);
+						//Thread.sleep(1000);
+						SeleniumTestHelper.WaitForPageLoad();
 						RFmenu_info.click();
 						InfoAcceptKey.click();
 						Steps.logger.info("Clicked on Info accept key");
@@ -7471,12 +7511,14 @@ public class RFMenuPage {
 						}
 					}
 
-					Thread.sleep(3000);
+					//Thread.sleep(3000);
+					SeleniumTestHelper.WaitForPageLoad();
 					Screenshots.captureSnapshot(driver);
 					if (SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
 						acceptAndProceedBtn.click();
 					}
-					Thread.sleep(2000);
+					//Thread.sleep(2000);
+					SeleniumTestHelper.WaitForPageLoad();
 					List<WebElement> sugLOC = driver.findElements(By.id("capSubLocationViewSuggested"));
 					System.out.println("try2");
 					List<WebElement> RLOC = driver.findElements(By.id("dataForm:ifNotSuggestedMode"));
@@ -7507,7 +7549,8 @@ public class RFMenuPage {
 						putawayLoctxtBox.click();
 						putawayLoctxtBox.sendKeys(LocBarCode);
 						Screenshots.captureSnapshot(driver);
-						Thread.sleep(1000);
+						//Thread.sleep(1000);
+						SeleniumTestHelper.WaitForPageLoad();
 						putawayLoctxtBox.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
 						if (SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
@@ -7580,14 +7623,16 @@ public class RFMenuPage {
 						// RlocinputtxtBox.sendKeys(updtLoc);
 						Screenshots.captureSnapshot(driver);
 
-						Thread.sleep(1000);
+						//Thread.sleep(1000);
+						SeleniumTestHelper.WaitForPageLoad();
 						RlocinputtxtBox.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
 						if (SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
 							System.out.println("accotaprocees");
 							globalFunc.Screenshots.seleniumSnapshot(driver);
 							acceptAndProceedBtn.click();
-							Thread.sleep(10000);
+							//Thread.sleep(10000);
+							SeleniumTestHelper.WaitForPageLoad();
 
 						}
 						// Steps.logger.info("Putaway Completed. iLPN "+ iLPNz.get(i)+ " moved to
@@ -7618,7 +7663,8 @@ public class RFMenuPage {
 						// RlocinputtxtBox.sendKeys(updtLoc);
 						Screenshots.captureSnapshot(driver);
 
-						Thread.sleep(1000);
+						//Thread.sleep(1000);
+						SeleniumTestHelper.WaitForPageLoad();
 						//subLocationUserDirected.sendKeys(Keys.ENTER);
 						subLocationUserDirected2.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
@@ -7626,7 +7672,8 @@ public class RFMenuPage {
 							System.out.println("accotaprocees");
 							globalFunc.Screenshots.seleniumSnapshot(driver);
 							acceptAndProceedBtn.click();
-							Thread.sleep(10000);
+							//Thread.sleep(10000);
+							SeleniumTestHelper.WaitForPageLoad();
 
 						}
 						
@@ -7650,7 +7697,8 @@ public class RFMenuPage {
 					System.out.println("Click on Exit button");
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, ExitBtn, 50);
 					ExitBtn.click();
-					Thread.sleep(5000);
+					//Thread.sleep(5000);
+					SeleniumTestHelper.WaitForPageLoad();
 
 				}
 
@@ -7662,7 +7710,8 @@ public class RFMenuPage {
 			}
 			Steps.logger.info("Receiving process completed with : " + receivingMethod + " menu");
 			homepage.userClosesOpenedwindow("RF Menu");
-			Thread.sleep(3000);
+			//Thread.sleep(3000);
+			SeleniumTestHelper.WaitForPageLoad();
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			Steps.logger.info("test red" + Steps.testRes);
@@ -7676,23 +7725,27 @@ public class RFMenuPage {
 	public void putawayProcessForAPC(String putawayMethod) throws Exception {
 		try {
 			Steps.logger.info("Start Putaway Process");
-			Thread.sleep(3000);
+			//Thread.sleep(3000);
+			SeleniumTestHelper.WaitForPageLoad();
 			switch (putawayMethod) {
 			case "MM1 Ptwy iLPN":
 				for (int i = 0; i < Items.getLpnsLength(); i++) {
 					// Click on RF Menu Info Icon
 					SeleniumTestHelper.switchToInnerFrame(driver);
 					Steps.logger.info("Start Putaway Process");
-					Thread.sleep(3000);
+					//Thread.sleep(3000);
+					SeleniumTestHelper.WaitForPageLoad();
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
 					RFmenu_info.click();
-					Thread.sleep(3000);
+					//Thread.sleep(3000);
+					SeleniumTestHelper.WaitForPageLoad();
 					Screenshots.captureSnapshot(driver);
 					Steps.logger.info("Clicked on RF Menu Info");
 					// Click on Change Task Group and enter Task Group
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, ChgTaskGrpBtn, 15);
 					ChgTaskGrpBtn.click();
-					Thread.sleep(3000);
+					SeleniumTestHelper.WaitForPageLoad();
+					//Thread.sleep(3000);
 					Screenshots.captureSnapshot(driver);
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, taskGrpInput, 15);
 					taskGrpInput.clear();
@@ -7708,7 +7761,8 @@ public class RFMenuPage {
 					} else {
 						taskGrpInput.sendKeys("DNG");
 					}
-					Thread.sleep(2000);
+					//Thread.sleep(2000);
+					SeleniumTestHelper.WaitForPageLoad();
 					EnterBtn.click();
 					Thread.sleep(5000);
 					Steps.logger.info("Task group changed uccessfully");
@@ -7717,19 +7771,23 @@ public class RFMenuPage {
 					SeleniumTestHelper.switchToInnerFrame(driver);
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
 					RFmenu_info.click();
-					Thread.sleep(3000);
+					//Thread.sleep(3000);
+					SeleniumTestHelper.WaitForPageLoad();
 					Screenshots.captureSnapshot(driver);
 					Steps.logger.info("Clicked on RF Menu Info");
 					// Click on RF Main Menu
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
 					Mainmenu.click();
-					Thread.sleep(3000);
+					//Thread.sleep(3000);
+					SeleniumTestHelper.WaitForPageLoad();
 					Screenshots.captureSnapshot(driver);
 					Steps.logger.info("Clicked on Main Menu");
-					Thread.sleep(3000);
+					//Thread.sleep(3000);
+					SeleniumTestHelper.WaitForPageLoad();
 					Screenshots.captureSnapshot(driver);
 					// Click on Putaway Button
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuPutaway, 50);
 					rfMenuPutaway.click();
 					Screenshots.captureSnapshot(driver);
@@ -7738,7 +7796,8 @@ public class RFMenuPage {
 					while (!(SeleniumTestHelper.isElementDisplayed(MM1PutawayiLPN))) {
 						pageDown.click();
 					}
-					Thread.sleep(3000);
+					//Thread.sleep(3000);
+					SeleniumTestHelper.WaitForPageLoad();
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, MM1PutawayiLPN, 50);
 					MM1PutawayiLPN.click();
 					Screenshots.captureSnapshot(driver);
@@ -7805,7 +7864,8 @@ public class RFMenuPage {
 								subLocationUserDirected.sendKeys(LocBarCode1);
 								Screenshots.captureSnapshot(driver);
 								subLocationUserDirected.sendKeys(Keys.ENTER);
-								Thread.sleep(1000);
+								//Thread.sleep(1000);
+								SeleniumTestHelper.WaitForPageLoad();
 								// Click on RF Menu Info Icon
 								SeleniumTestHelper.switchToInnerFrame(driver);
 								SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
@@ -7839,7 +7899,8 @@ public class RFMenuPage {
 								subLocationUserDirected.sendKeys(LocBarCode1);
 								Screenshots.captureSnapshot(driver);
 								subLocationUserDirected.sendKeys(Keys.ENTER);
-								Thread.sleep(1000);
+								//Thread.sleep(1000);
+								SeleniumTestHelper.WaitForPageLoad();
 								// Click on RF Menu Info Icon
 								SeleniumTestHelper.switchToInnerFrame(driver);
 								SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
@@ -7866,7 +7927,8 @@ public class RFMenuPage {
 							confirmlocation_Input.sendKeys(LocBarCode1);
 							Screenshots.captureSnapshot(driver);
 							confirmlocation_Input.sendKeys(Keys.ENTER);
-							Thread.sleep(1000);
+							//Thread.sleep(1000);
+							SeleniumTestHelper.WaitForPageLoad();
 							// Click on RF Menu Info Icon
 							SeleniumTestHelper.switchToInnerFrame(driver);
 							SeleniumTestHelper.waitForElementToBeDisplayed(driver, RFmenu_info, 50);
@@ -7896,7 +7958,9 @@ public class RFMenuPage {
 						Screenshots.captureSnapshot(driver);
 						SeleniumTestHelper.waitForElementToBeDisplayed(driver, taskGrpInput, 5);
 						taskGrpInput.clear();
-						Thread.sleep(1000);
+						//Thread.sleep(1000);
+						SeleniumTestHelper.WaitForPageLoad();
+						SeleniumTestHelper.WaitForPageLoad();
 						if (Steps.scenarioData.get("PutawayType").contains("Abaxis")) {
 							taskGrpInput.sendKeys("PCA");
 						} else if (Steps.scenarioData.get("PutawayType").contains("Cooler")) {
@@ -7905,9 +7969,11 @@ public class RFMenuPage {
 							taskGrpInput.sendKeys("PTA");
 						}
 						// taskGrpInput.sendKeys("PCA");
-						Thread.sleep(2000);
+						//Thread.sleep(2000);
+						SeleniumTestHelper.WaitForPageLoad();
 						EnterBtn.click();
-						Thread.sleep(3000);
+						//Thread.sleep(3000);
+						SeleniumTestHelper.WaitForPageLoad();
 						Steps.logger.info("Task group changed uccessfully");
 						Reporter.addStepLog("Task group changed successfully");
 						SeleniumTestHelper.switchToInnerFrame(driver);
@@ -7921,7 +7987,8 @@ public class RFMenuPage {
 						Steps.logger.info("Clicked on Main Menu");
 						Thread.sleep(5000);
 						Screenshots.captureSnapshot(driver);
-						Thread.sleep(1000);
+						//Thread.sleep(1000);
+						SeleniumTestHelper.WaitForPageLoad();
 						SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfMenuPutaway, 50);
 						rfMenuPutaway.click();
 						Screenshots.captureSnapshot(driver);
@@ -7950,7 +8017,8 @@ public class RFMenuPage {
 						}
 					}
 					//
-					Thread.sleep(2000);
+					//Thread.sleep(2000);
+					SeleniumTestHelper.WaitForPageLoad();
 					List<WebElement> sugLOC = driver.findElements(By.id("capSubLocationViewSuggested"));
 					System.out.println("try2");
 					List<WebElement> RLOC = driver.findElements(By.id("dataForm:ifNotSuggestedMode"));
@@ -7981,7 +8049,8 @@ public class RFMenuPage {
 						putawayLoctxtBox.click();
 						putawayLoctxtBox.sendKeys(LocBarCode);
 						Screenshots.captureSnapshot(driver);
-						Thread.sleep(1000);
+						//Thread.sleep(1000);
+						SeleniumTestHelper.WaitForPageLoad();
 						putawayLoctxtBox.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
 						System.out.println("Completed both task group for LPN..");
@@ -8055,7 +8124,8 @@ public class RFMenuPage {
 						// RlocinputtxtBox.sendKeys(updtLoc);
 						Screenshots.captureSnapshot(driver);
 
-						Thread.sleep(1000);
+						//Thread.sleep(1000);
+						SeleniumTestHelper.WaitForPageLoad();
 						RlocinputtxtBox.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
 						if (SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
@@ -8093,7 +8163,8 @@ public class RFMenuPage {
 						// RlocinputtxtBox.sendKeys(updtLoc);
 						Screenshots.captureSnapshot(driver);
 
-						Thread.sleep(1000);
+						//Thread.sleep(1000);
+						SeleniumTestHelper.WaitForPageLoad();
 						subLocationUserDirected.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
 						if (SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
@@ -8157,11 +8228,13 @@ public class RFMenuPage {
 		Mainmenu.click();
 		Screenshots.captureSnapshot(driver);
 		Steps.logger.info("Clicked on Main Menu");
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
+		SeleniumTestHelper.WaitForPageLoad();
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, PickPack, 50);
 		PickPack.click();
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
+		SeleniumTestHelper.WaitForPageLoad();
 		Screenshots.captureSnapshot(driver);
 		String qty = "";
 		switch (pickOption) {
@@ -8200,7 +8273,8 @@ public class RFMenuPage {
 					oLPNInputBox1.sendKeys(iLPN);
 					oLPNInputBox1.sendKeys(Keys.ENTER);
 					Items.setnewiLPNPack(iLPN);
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					Screenshots.captureSnapshot(driver);
 					scannedILPN = iLPN;
 					// if (!Items.gettaskTypeList(i).contains("Partial")) {
@@ -8226,9 +8300,11 @@ public class RFMenuPage {
 					Screenshots.captureSnapshot(driver);
 					SeleniumTestHelper.assertTrue(qtyInputBx.isDisplayed());
 					qtyInputBx.sendKeys(Keys.ENTER);
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					Screenshots.captureSnapshot(driver);
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					System.out.println(i + " done add qty");
 				}else if (SeleniumTestHelper.isElementDisplayed(suggestQty2)) {
 					String text = suggestQty2.getText();
@@ -8244,9 +8320,11 @@ public class RFMenuPage {
 					Screenshots.captureSnapshot(driver);
 					SeleniumTestHelper.assertTrue(qtyInputBx.isDisplayed());
 					qtyInputBx.sendKeys(Keys.ENTER);
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					Screenshots.captureSnapshot(driver);
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					System.out.println(i + " done add qty");
 				}
 				//
@@ -8272,7 +8350,8 @@ public class RFMenuPage {
 					serialNumberInputParcel.click();
 					serialNumberInputParcel.sendKeys(serial);
 					Screenshots.captureSnapshot(driver);
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					// System.out.println("wait1");
 					serialNumberInputParcel.sendKeys(Keys.ENTER);
 					System.out.println("wait2");
@@ -8299,7 +8378,8 @@ public class RFMenuPage {
 					oLPNInputBox1.sendKeys(iLPN);
 					oLPNInputBox1.sendKeys(Keys.ENTER);
 					//Items.setnewiLPNPack(iLPN);
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					Screenshots.captureSnapshot(driver);
 					scannedILPN = iLPN;
 					
@@ -8327,9 +8407,11 @@ public class RFMenuPage {
 					Screenshots.captureSnapshot(driver);
 					SeleniumTestHelper.assertTrue(qtyInputBx.isDisplayed());
 					qtyInputBx.sendKeys(Keys.ENTER);
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					Screenshots.captureSnapshot(driver);
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					System.out.println(i + " done add qty");
 				}else if (SeleniumTestHelper.isElementDisplayed(suggestQty2)) {
 					String text = suggestQty2.getText();
@@ -8345,9 +8427,11 @@ public class RFMenuPage {
 					Screenshots.captureSnapshot(driver);
 					SeleniumTestHelper.assertTrue(qtyInputBx.isDisplayed());
 					qtyInputBx.sendKeys(Keys.ENTER);
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					Screenshots.captureSnapshot(driver);
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					System.out.println(i + " done add qty");
 				}
 				
@@ -8373,7 +8457,8 @@ public class RFMenuPage {
 					serialNumberInputParcel.click();
 					serialNumberInputParcel.sendKeys(serial);
 					Screenshots.captureSnapshot(driver);
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					// System.out.println("wait1");
 					serialNumberInputParcel.sendKeys(Keys.ENTER);
 					System.out.println("wait2");
@@ -8389,7 +8474,8 @@ public class RFMenuPage {
 					System.out.println("accotaprocees");
 					globalFunc.Screenshots.seleniumSnapshot(driver);
 					acceptAndProceedBtn.click();
-					Thread.sleep(10000);
+					//Thread.sleep(10000);
+					SeleniumTestHelper.WaitForPageLoad();
 
 				}
 			}
@@ -8429,7 +8515,8 @@ public class RFMenuPage {
 					oLPNInputBox1.sendKeys(iLPN);
 					oLPNInputBox1.sendKeys(Keys.ENTER);
 					//Items.setnewiLPNPack(iLPN);
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					Screenshots.captureSnapshot(driver);
 					scannedILPN = iLPN;
 					
@@ -8645,7 +8732,8 @@ public class RFMenuPage {
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, Mainmenu, 20);
 			Mainmenu.click();
 			Steps.logger.info("Clicked on Main Menu");
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
+			SeleniumTestHelper.WaitForPageLoad();
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, rfShipping, 50);
 			rfShipping.click();
 
@@ -8687,16 +8775,19 @@ public class RFMenuPage {
 					Screenshots.captureSnapshot(driver);
 					SeleniumTestHelper.assertTrue(selectSequenceInput.isDisplayed());
 					selectSequenceInput.sendKeys(Keys.ENTER);
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					Screenshots.captureSnapshot(driver);
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					System.out.println(i + " done add qty");
 				}
 				if (SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
 					System.out.println("accotaprocees");
 					globalFunc.Screenshots.seleniumSnapshot(driver);
 					acceptAndProceedBtn.click();
-					Thread.sleep(10000);
+					//Thread.sleep(10000);
+					SeleniumTestHelper.WaitForPageLoad();
 
 				}
 			}

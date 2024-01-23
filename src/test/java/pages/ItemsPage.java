@@ -361,8 +361,8 @@ String slotMiscellaneous1= SlotMiscellaneous1.split("/")[i-1];
 	public void user_opens_ItemsUI_and_get_putaway_AttributesValues(String ItemName) throws Exception {
 		try {
 		System.out.println("Inside user_opens_ItemsUI_and_get_putaway_AttributesValues");
-		Thread.sleep(5000);
-		
+		//Thread.sleep(5000);
+		SeleniumTestHelper.WaitForPageLoad();
 		homePage.MenuItems_Configuration_Selection("Items");
 
 		SeleniumTestHelper.switchToInnerFrame(driver);

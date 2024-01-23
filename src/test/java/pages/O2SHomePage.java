@@ -13,6 +13,7 @@ import com.cucumber.listener.Reporter;
 
 import StepDefinition.Steps;
 import globalFunc.Screenshots;
+import junit.framework.Assert;
 import utils.Config;
 import utils.SeleniumTestHelper;
 
@@ -29,9 +30,11 @@ public class O2SHomePage {
 		PageFactory.initElements(driver, this);
 	}
 
-	//@FindBy(xpath = "//table/tbody/tr/td/a[contains(text(),'Logout')]")
-	@FindBy(xpath = "//*[contains(@id,'logoutLink')]")
+	@FindBy(xpath = "//table/tbody/tr/td/a[contains(text(),'Logout')]")
 	public WebElement logout;
+	
+	@FindBy(xpath = "//*[contains(@id,'logoutLink')]")
+	public WebElement logoutLink;
 
 	@FindBy(xpath = "//*[@id='ulaitem0z1']")
 	public WebElement createBtn;
@@ -70,18 +73,30 @@ public class O2SHomePage {
 	 */
 	public void logoutFormO2SApp() throws Exception {
 		System.out.println("Click on Logout");
+		try {
 		SeleniumTestHelper.scrollUp();
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, logout, 120);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		//SeleniumTestHelper.waitForElementToBeDisplayed(driver, logout, 60);
 		try {
 		SeleniumTestHelper.scrollToElement(driver, logout);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		//SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(logout));
-		SeleniumTestHelper.clickOnButton(logout);
+		if(SeleniumTestHelper.isElementDisplayed(logout)) {
+			SeleniumTestHelper.clickOnButton(logout);
+		}else if(SeleniumTestHelper.isElementDisplayed(logout)){
+			SeleniumTestHelper.clickOnButton(logoutLink);
+		}else {
+			//SeleniumTestHelper.clickOnButton(logout);
+			SeleniumTestHelper.assertEquals(SeleniumTestHelper.isElementDisplayed(logout),true,"Logout Element xpath didn't match");
+		}
 		//logout.click();
 		Steps.logger.info("Clicked on Logout Button");
-		Thread.sleep(10000);
+		//Thread.sleep(10000);
+		SeleniumTestHelper.WaitForPageLoad();
 	}
 	
 	/**

@@ -187,23 +187,29 @@ driver.switchTo().frame(0);
  		//String emptyLocation = null;
 		try {
 		homePage.MenuItems_Configuration_Selection("Reserve Locations");	
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
+		SeleniumTestHelper.WaitForPageLoad();
 		//SeleniumTestHelper.switchToInnerFrame(driver);
 		driver.switchTo().defaultContent();
 		driver.switchTo().frame(1);
 		displayLocBox.sendKeys(loc);
-		  Thread.sleep(1000);
+		 // Thread.sleep(1000);
+		SeleniumTestHelper.WaitForPageLoad();
  		ApplyBtn.click();
- 		Thread.sleep(1000);
+ 		//Thread.sleep(1000);
+ 		SeleniumTestHelper.WaitForPageLoad();
  		SeleniumTestHelper.waitForElementToBeDisplayed(driver, firstRsrvLoc, 30);
 	    firstRsrvLoc.click();
-	    Thread.sleep(1000);
+	    //Thread.sleep(1000);
+	    SeleniumTestHelper.WaitForPageLoad();
 	    SeleniumTestHelper.waitForElementToBeDisplayed(driver, ViewButton, 30);
 	    ViewButton.click();
-	    Thread.sleep(1000);
+	    //Thread.sleep(1000);
+	    SeleniumTestHelper.WaitForPageLoad();
 	    SeleniumTestHelper.waitForElementToBeDisplayed(driver, LocBarcode, 30);
 	    locBarCode = LocBarcode.getAttribute("value");
-	    Thread.sleep(1000);
+	    //Thread.sleep(1000);
+	    SeleniumTestHelper.WaitForPageLoad();
 	   
 	    
 		
@@ -212,7 +218,8 @@ driver.switchTo().frame(0);
 			e.printStackTrace();
 		}
 		homePage.userClosesOpenedwindow("Reserve Locations - Reserve Location");
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
+		SeleniumTestHelper.WaitForPageLoad();
 		return locBarCode;
 		    
 	}
@@ -554,7 +561,8 @@ driver.switchTo().frame(0);
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, ApplyBtn, 20);
 			ApplyBtn.click();
-			Thread.sleep(3000);
+			//Thread.sleep(3000);
+			SeleniumTestHelper.WaitForPageLoad();
 			Screenshots.captureSnapshot(driver);
 			String getPutawayZone = driver.findElement(By.xpath("//span[@id='dataForm:listView:dataTable:0:custId16']"))
 					.getText();
@@ -574,19 +582,22 @@ driver.switchTo().frame(0);
 				Assert.assertTrue(false, "Invalid Putaway zone");
 			}
 
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
+			SeleniumTestHelper.WaitForPageLoad();
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, firstRsrvLoc, 20);
 			firstRsrvLoc.click();
 			Screenshots.captureSnapshot(driver);
 			LPNsBtn.click();
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPntxtBoxResLoc, 20);
 			Screenshots.captureSnapshot(driver);
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
+			SeleniumTestHelper.WaitForPageLoad();
 			// iLPntxtBoxResLoc.sendKeys(RFMenuPage.iLPNz.get(0));
 			iLPntxtBoxResLoc.sendKeys(Items.getLpns(0));
 			Thread.sleep(10000);
 			iLPnResLocApplyBtn.click();
-			Thread.sleep(3000);
+			//Thread.sleep(3000);
+			SeleniumTestHelper.WaitForPageLoad();
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNvalue, 20);
 		} catch (Exception e) {

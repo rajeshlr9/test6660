@@ -80,7 +80,8 @@ public class O2SSearchOrderDetails {
 		SeleniumTestHelper.assertEquals("Booked", orderStatus.getText());
 		Reporter.addStepLog("Order created successfully and status is ..." + orderStatus.getText());
 		Screenshots.captureSnapshot(driver);
-		Thread.sleep(10000);
+		//Thread.sleep(10000);
+		SeleniumTestHelper.WaitForPageLoad(3000);
 
 	}
 	public void clickOnCreateButton() throws Exception{
@@ -88,7 +89,8 @@ public class O2SSearchOrderDetails {
 		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(createBtn));
 		SeleniumTestHelper.clickOnButton(createBtn);
 		Steps.logger.info("Clicked on Create Button");
-		Thread.sleep(10000);
+		//Thread.sleep(10000);
+		SeleniumTestHelper.WaitForPageLoad(3000);
 	}
 	
 	

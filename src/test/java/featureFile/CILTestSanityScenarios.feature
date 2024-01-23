@@ -67,7 +67,7 @@ Scenario: SingleLine LTL DO Order for Normal Item
 	And user verify the "856" file in fedexnet
 	Then user log out from Fedenxet application
 	
-@Sanity_CIL1 @O2S_SingleLine_NVI
+@Sanity_CIL @O2S_SingleLine_NVI
 Scenario: Create an order using O2S application. 
 	Given I have excel data 
 		| O2S_IntegrationScenario01 |
@@ -81,4 +81,5 @@ Scenario: Create an order using O2S application.
 	And user logs into Manhattan application for "NVI" customer
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
-	And user log out from the application
+	#And user log out from the application
+	And user log out from application 

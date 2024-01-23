@@ -240,8 +240,8 @@ public class ManhattanLoginPage extends Steps {
 				signInBtn.click();
 				Steps.logger.info("Clicked on Sign in Button");
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, facilitySelection, 180);
-				Thread.sleep(1000);
-				
+				//Thread.sleep(1000);
+				SeleniumTestHelper.WaitForPageLoad();
 				String Facility = Steps.scenarioData.get("Facility");
 				String BusinnesUnit = customer;
 				Steps.logger.info("Facility is : "+Facility);
@@ -271,7 +271,8 @@ public class ManhattanLoginPage extends Steps {
 							break;
 						}
 					}
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
+					SeleniumTestHelper.WaitForPageLoad();
 					SeleniumTestHelper.waitForElementToBeClickable(driver, facilityDisp, 10);
 					facilityDisp.click();
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, userLoggedin, 10);

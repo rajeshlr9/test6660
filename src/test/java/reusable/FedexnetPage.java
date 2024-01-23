@@ -198,16 +198,19 @@ public class FedexnetPage  extends Steps {
 		try {
 			String account = ManhattanLoginPage.account;
 			driver.switchTo().frame("LinkFrame");
-			Thread.sleep(10000);
+			//Thread.sleep(10000);
+			SeleniumTestHelper.WaitForPageLoad(3000);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, documentQueueLink, 50);
 			documentQueueLink.click();
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, filterLink, 50);
 			filterLink.click();
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
+			SeleniumTestHelper.WaitForPageLoad();
 			driver.switchTo().parentFrame();
 			driver.switchTo().frame("ApplicationFrame");
 			driver.switchTo().frame("mainFrame");
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
+			SeleniumTestHelper.WaitForPageLoad();
 			Steps.logger.info("selected the link and swith to frame");
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, senderTPIDInput, 50);
 			senderTPIDInput.sendKeys(dropEnv);
@@ -248,7 +251,8 @@ public class FedexnetPage  extends Steps {
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, okBtn, 50);
 			okBtn.click();
 			driver.switchTo().defaultContent();
-			Thread.sleep(5000);
+			//Thread.sleep(5000);
+			SeleniumTestHelper.WaitForPageLoad(3000);
 			Steps.logger.info("clicked on Ok button successfully");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -272,7 +276,8 @@ public class FedexnetPage  extends Steps {
 			signInBtn.click();
 			Steps.logger.info("Clicked on SignIn Button");
 			Reporter.addStepLog("Entered Credentails and Clicked on SignIn Button...");
-			Thread.sleep(6000);
+			//Thread.sleep(6000);
+			SeleniumTestHelper.WaitForPageLoad(3000);
 		}
 	}
 	

@@ -86,8 +86,8 @@ public class WeighAndManifestoLPNPage {
 			if (driver.findElement(By.xpath("//table[@class='pophead']//div[@class='pop_close']")).isDisplayed()) {
 				break;
 			}
-			Thread.sleep(2000);
-
+			//Thread.sleep(2000);
+			SeleniumTestHelper.WaitForPageLoad();
 			String actWeight = EstimatedWeight.getText();
 			ActualWeightInput.clear();
 			ActualWeightInput.sendKeys(actWeight);
@@ -103,11 +103,13 @@ public class WeighAndManifestoLPNPage {
 			if(Steps.scenarioData.get("Wave Type").equals("LTL")) {
 				
 				SeleniumTestHelper.waitForElementToBeClickable(driver, weighBtn, 50);
-				Thread.sleep(2000);
+				//Thread.sleep(2000);
+				SeleniumTestHelper.WaitForPageLoad();
 				weighBtn.click();
 			}else {
 				SeleniumTestHelper.waitForElementToBeClickable(driver, manifestBtn, 50);
-				Thread.sleep(2000);
+				//Thread.sleep(2000);
+				SeleniumTestHelper.WaitForPageLoad();
 				manifestBtn.click();
 			}
 			
@@ -115,18 +117,21 @@ public class WeighAndManifestoLPNPage {
 //			Thread.sleep(2000);
 //			manifestBtn.click();
 			
-			Thread.sleep(30000);
+			//Thread.sleep(30000);
+			SeleniumTestHelper.WaitForPageLoad();
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver,scanNextoLPN, 120);
 
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, oLPNStatus, 50);
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
+			SeleniumTestHelper.WaitForPageLoad();
 			System.out.println(manifestedStatus.getText());
 			SeleniumTestHelper.assertEquals(manifestedStatus.getText(), olpnStatus);
 			SeleniumTestHelper.assertEquals(manifestedStatus.isDisplayed(), true);
 
 		}
 		exitBtn.click();
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
+		SeleniumTestHelper.WaitForPageLoad();
 		Steps.logger.info("Weigh and Manifest of oLPN done successfully");
 		homepage.user_closes_openedwindow("Weigh and Manifest oLPN - Weigh and...");
 		

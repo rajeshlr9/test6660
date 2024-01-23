@@ -384,7 +384,8 @@ public class DistributionOrdersPage {
 	
 	
 	public void getDoStatus(String expectedDOstatus) throws Exception {
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
+		SeleniumTestHelper.WaitForPageLoad();
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
@@ -401,10 +402,12 @@ public class DistributionOrdersPage {
 		apply_Btn.click();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
 		Screenshots.captureSnapshot(driver);
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
+		SeleniumTestHelper.WaitForPageLoad();
 		String actualDOstatus = driver.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[text()='"
 				+ Items.getDONumber() + "']//following::td[1]")).getText();
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
+		SeleniumTestHelper.WaitForPageLoad();
 		if(actualDOstatus.contains("Manifested")) {
 		SeleniumTestHelper.assertEquals(actualDOstatus, expectedDOstatus);
 		}else if(actualDOstatus.contains("Shipped")){
@@ -414,7 +417,8 @@ public class DistributionOrdersPage {
 		}
 		Reporter.addStepLog("DO Order status:" + actualDOstatus);
 		Steps.logger.info("DO Order status:" + actualDOstatus);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
+		SeleniumTestHelper.WaitForPageLoad();
 		homepage.user_closes_openedwindow("Distribution Orders");
 
 	}
@@ -938,9 +942,11 @@ public class DistributionOrdersPage {
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, DOStatus, 50);
 		System.out.println("Failed2");
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
+		SeleniumTestHelper.WaitForPageLoad();
 		SeleniumTestHelper.assertEquals(DOStatus.getText(), "110 - Released");
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
+		SeleniumTestHelper.WaitForPageLoad();
 		System.out.println("Failed3");
 		SeleniumTestHelper.waitForElementToBeClickable(driver, moreBtn, 50);
 		System.out.println("Failed4");
@@ -948,14 +954,16 @@ public class DistributionOrdersPage {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, waveOption, 50);
 		Screenshots.captureSnapshot(driver);
 		waveOption.click();
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
+		SeleniumTestHelper.WaitForPageLoad();
 		Screenshots.captureSnapshot(driver);
 		homepage.user_closes_openedwindow("Distribution Orders");
 		homepage.openWindows.click();
 
 		List<WebElement> myframes = driver.findElements(By.tagName("Iframe"));
 		System.out.println("my framecount is   " + myframes.size());
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
+		SeleniumTestHelper.WaitForPageLoad();
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		driver.findElement(By.xpath("//input[@alt='Find Description']")).sendKeys(waveTemplateDesc);
 		Screenshots.captureSnapshot(driver);
@@ -970,7 +978,8 @@ public class DistributionOrdersPage {
 		runWaveBtn.click();
 		SeleniumTestHelper.waitForElementToBeClickable(driver, submitWaveBtn, 100);
 		Screenshots.captureSnapshot(driver);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
+		SeleniumTestHelper.WaitForPageLoad();
 		submitWaveBtn.click();
 		Screenshots.captureSnapshot(driver);
 		if (SeleniumTestHelper.isElementDisplayed(waveNumber)) {
@@ -981,11 +990,13 @@ public class DistributionOrdersPage {
 //			Steps.logger.info("Wave no:" + Items.getWaveNumber());
 //			Reporter.addStepLog("Wave no:" + Items.getWaveNumber());
 			//Items.setWaveNumber(waveNumberValue);
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
+			SeleniumTestHelper.WaitForPageLoad();
 			SeleniumTestHelper.WaitForElement(waveNumber, 10);
 			SeleniumTestHelper.waitForElementToBeClickable(driver, waveNumber, 200);
 			waveNumber.click();
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
+			SeleniumTestHelper.WaitForPageLoad();
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			String actualStatus = driver.findElement(By.xpath(shiwaveStatusxpath(waveTemplateDesc))).getText().trim();
@@ -993,7 +1004,8 @@ public class DistributionOrdersPage {
 			while (!actualStatus.equals("90 - Ship wave completed") && (count != 20)) {
 				refreshBtn.click();
 				//stale element
-				Thread.sleep(2000);
+				//Thread.sleep(2000);
+				SeleniumTestHelper.WaitForPageLoad();
 				actualStatus = driver.findElement(By.xpath(shiwaveStatusxpath(waveTemplateDesc))).getText().trim();
 				Thread.sleep(10000);
 				count++;
@@ -1002,7 +1014,8 @@ public class DistributionOrdersPage {
 			Reporter.addStepLog("Wave status:" + actualStatus);
 
 		}
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
+		SeleniumTestHelper.WaitForPageLoad();
 		Screenshots.captureSnapshot(driver);
 
 		homepage.user_closes_openedwindow("ShipWaveTemplate - Waves");
@@ -1082,7 +1095,8 @@ public class DistributionOrdersPage {
 		}
 		Thread.sleep(5000);
 		homepage.user_closes_openedwindow("Distribution Orders");
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
+		SeleniumTestHelper.WaitForPageLoad();
 		SeleniumTestHelper.Close_OpenedWindow("DO Detail - Distribution Order", driver);
 	}
 
@@ -2313,7 +2327,8 @@ public class DistributionOrdersPage {
 		int temp = 0;
 		while (!SeleniumTestHelper.isElementDisplayed(distributionOrder_chkbox) && (temp != 10)) {
 			apply_Btn.click();
-			Thread.sleep(3000);
+			//Thread.sleep(3000);
+			SeleniumTestHelper.WaitForPageLoad();
 			temp++;
 		}
 
@@ -2337,8 +2352,8 @@ public class DistributionOrdersPage {
 		SeleniumTestHelper.assertEquals(actualDOstatus, status);
 		Reporter.addStepLog("DO Order status:" + actualDOstatus);
 		Steps.logger.info("DO Order status:" + actualDOstatus);
-		Thread.sleep(2000);
-
+		//Thread.sleep(2000);
+		SeleniumTestHelper.WaitForPageLoad();
 		homepage.user_closes_openedwindow("Distribution Orders");
 
 	}
