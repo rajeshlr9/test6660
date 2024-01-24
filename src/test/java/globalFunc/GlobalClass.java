@@ -32,10 +32,9 @@ public class GlobalClass {
 
 		for (int iRow = 0; iRow < RowCount; iRow++) {
 			XSSFRow row = MySheet.getRow(iRow);
-			String s1=row.getCell(0).getStringCellValue();
-			System.out.println("Scenario Id :"+s1);
+			//String s1=row.getCell(0).getStringCellValue();
+			//System.out.println("Scenario Id :"+s1);
 			if (MyRowFlag.equals(row.getCell(0).getStringCellValue())) {
-				System.out.println();
 				int ColumnCount = MySheet.getRow(iRow).getLastCellNum();
 				for (int iColumn = 1; iColumn < ColumnCount; iColumn++) {
 					XSSFRow row2 = MySheet.getRow(0);

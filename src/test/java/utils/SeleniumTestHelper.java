@@ -1,27 +1,20 @@
 package utils;
 
-import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.math.BigInteger;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,14 +24,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerFactory;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.poi.util.Units;
-import org.apache.poi.xwpf.model.XWPFHeaderFooterPolicy;
-import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFFooter;
-import org.apache.poi.xwpf.usermodel.XWPFHeader;
-import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
@@ -49,14 +34,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTSectPr;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTabStop;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.STTabJc;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.w3c.dom.Document;
@@ -65,34 +45,19 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import com.aventstack.extentreports.gherkin.model.Scenario;
-
 import StepDefinition.Steps;
-import jdk.internal.org.jline.utils.Log;
-
 import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 
-
-
-
 public class SeleniumTestHelper {
-	
-	
-	
-	
-	public static String TagNameWithTCname=null;
-	
+
+	public static String TagNameWithTCname = null;
 
 	static WebDriver driver = Steps.seleniumDriver;
-	
-	
-	
-	
+
 	public static void clickOnButton(WebElement element) {
 		try {
 			if (element.isDisplayed()) {
@@ -140,8 +105,7 @@ public class SeleniumTestHelper {
 		VISIBLE_TEXT, INDEX, VALUE
 	}
 
-	public static void selectFromDropDown(WebElement element, String value,
-			DropDownMode mode) {
+	public static void selectFromDropDown(WebElement element, String value, DropDownMode mode) {
 		try {
 			Select select = new Select(element);
 
@@ -176,8 +140,7 @@ public class SeleniumTestHelper {
 
 	private static int retryCount = 0;
 
-	public static void selectFromDropDown(WebElement element, String value,
-			String mode) {
+	public static void selectFromDropDown(WebElement element, String value, String mode) {
 		try {
 			Select select = new Select(element);
 			if (mode.equalsIgnoreCase("value")) {
@@ -191,8 +154,7 @@ public class SeleniumTestHelper {
 			}
 
 			if (mode.equals(""))
-				Reporter.log(element.getAttribute("value")
-						+ " is entered successfully", true);
+				Reporter.log(element.getAttribute("value") + " is entered successfully", true);
 			retryCount = 0;
 
 		} catch (Exception exe) {
@@ -211,12 +173,7 @@ public class SeleniumTestHelper {
 		}
 	}
 
-
-
-
-
-
-	public static List<String> getAllOptionsInAdvancedDropdown(WebElement dropDown){
+	public static List<String> getAllOptionsInAdvancedDropdown(WebElement dropDown) {
 
 		WebDriver driver = Driver.getInstance();
 		WebDriverWait wd = new WebDriverWait(Driver.getInstance(), 20);
@@ -224,7 +181,7 @@ public class SeleniumTestHelper {
 		dropDown.click();
 		List<WebElement> elements = driver.findElements(By.xpath("//li[contains(@class,'select2-results__option')]"));
 		List<String> allOptions = new ArrayList<String>();
-		for(WebElement element: elements){
+		for (WebElement element : elements) {
 			allOptions.add(element.getText());
 		}
 		dropDown.click();
@@ -265,8 +222,7 @@ public class SeleniumTestHelper {
 
 				long end = System.currentTimeMillis();
 				if ((end - start) / 1000 > seconds) {
-					throw new NoSuchElementException(
-							"Timeout exceeded and element couldn't be found");
+					throw new NoSuchElementException("Timeout exceeded and element couldn't be found");
 				}
 			}
 		}
@@ -289,8 +245,7 @@ public class SeleniumTestHelper {
 			}
 
 			if (e.getMessage().startsWith("unknown error: Element")) {
-				((JavascriptExecutor) (Driver.getInstance())).executeScript(
-						"arguments[0].click()", element);
+				((JavascriptExecutor) (Driver.getInstance())).executeScript("arguments[0].click()", element);
 				return;
 			}
 
@@ -298,20 +253,17 @@ public class SeleniumTestHelper {
 		}
 	}
 
-	public static void waitForElementToBeDisplayed(WebDriver driver,
-			WebElement element, int timeOutInSeconds) {
+	public static void waitForElementToBeDisplayed(WebDriver driver, WebElement element, int timeOutInSeconds) {
 		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
 		wait.until(ExpectedConditions.visibilityOf(element));
 	}
 
-	public static void waitForElementToBeClickable(WebDriver driver,
-			WebElement element, int timeOutInSeconds) {
+	public static void waitForElementToBeClickable(WebDriver driver, WebElement element, int timeOutInSeconds) {
 		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 	}
 
-	public static void waitForElementToBePresent(WebDriver driver, By element,
-			int timeOutInSeconds) {
+	public static void waitForElementToBePresent(WebDriver driver, By element, int timeOutInSeconds) {
 		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
 		wait.until(ExpectedConditions.presenceOfElementLocated(element));
 	}
@@ -354,15 +306,13 @@ public class SeleniumTestHelper {
 
 	}
 
-
-
 	public static By getElementByInDefaultElementLocator(WebElement ele) {
 		By by = null;
 		String eleStr = ele.toString();
 		System.out.println(eleStr);
 		String byString = ele.toString().split("By.", 2)[1];
 		String[] byDetail = byString.split(": ", 2);
-		String locator = byDetail[1].substring(0,byDetail[1].length()-1);
+		String locator = byDetail[1].substring(0, byDetail[1].length() - 1);
 		switch (byDetail[0].trim().toLowerCase()) {
 		case "id":
 			by = By.id(locator);
@@ -394,31 +344,28 @@ public class SeleniumTestHelper {
 			by = By.cssSelector(locator);
 			break;
 		default:
-			System.out.println("None of the locator type matched. Locator type found is "+byDetail[0]+" and locator found is "+locator);
+			System.out.println("None of the locator type matched. Locator type found is " + byDetail[0]
+					+ " and locator found is " + locator);
 		}
 
 		return by;
 	}
 
-	/*public static boolean verifyElement(WebElement element) {
-		String eleStr = element.toString();
-		if(eleStr.contains("By")){
-			By locator = getElementByInDefaultElementLocator(element);
-			return verifyElement(locator);
-		}else{
-			WebDriverDispatcher wpatch = (WebDriverDispatcher)element;
-			return wpatch.
-		}
-
-	}
-	public static boolean verifyElement(WebElement element, int maxWaitTime) {
-		By locator = getElementByInDefaultElementLocator(element);
-		return verifyElement(locator, maxWaitTime);
-	}*/
+	/*
+	 * public static boolean verifyElement(WebElement element) { String eleStr =
+	 * element.toString(); if(eleStr.contains("By")){ By locator =
+	 * getElementByInDefaultElementLocator(element); return verifyElement(locator);
+	 * }else{ WebDriverDispatcher wpatch = (WebDriverDispatcher)element; return
+	 * wpatch. }
+	 * 
+	 * } public static boolean verifyElement(WebElement element, int maxWaitTime) {
+	 * By locator = getElementByInDefaultElementLocator(element); return
+	 * verifyElement(locator, maxWaitTime); }
+	 */
 
 	public static boolean verifyElement(By locator) {
 		boolean isFound = true;
-		WebDriverDispatcher wpatch = (WebDriverDispatcher)Driver.getInstance();
+		WebDriverDispatcher wpatch = (WebDriverDispatcher) Driver.getInstance();
 		try {
 			isFound = wpatch.verifyElement(locator, 20);
 		} catch (Exception e) {
@@ -429,7 +376,7 @@ public class SeleniumTestHelper {
 
 	public static boolean verifyElement(By locator, int maxWaitTime) {
 		boolean isFound = true;
-		WebDriverDispatcher wpatch = (WebDriverDispatcher)Driver.getInstance();
+		WebDriverDispatcher wpatch = (WebDriverDispatcher) Driver.getInstance();
 		try {
 			isFound = wpatch.verifyElement(locator, maxWaitTime);
 		} catch (Exception e) {
@@ -438,30 +385,29 @@ public class SeleniumTestHelper {
 		return isFound;
 	}
 
-
 	public static WebElement locateRow(String description) {
 		return Driver.getInstance().findElement(By.partialLinkText(description));
 	}
 
-	public static WebElement dropDownPartialItem(String partialItemName){
-		return Driver.getInstance().findElement(By.xpath("//li[contains(@class,'select2-results__option') and contains(text(),'"+partialItemName+"')]"));
+	public static WebElement dropDownPartialItem(String partialItemName) {
+		return Driver.getInstance().findElement(By.xpath(
+				"//li[contains(@class,'select2-results__option') and contains(text(),'" + partialItemName + "')]"));
 	}
 
-	public static WebElement dropDownItem(String itemName){
-		return Driver.getInstance().findElement(By.xpath("//li[contains(@class,'select2-results__option') and text()='"+itemName+"']"));
+	public static WebElement dropDownItem(String itemName) {
+		return Driver.getInstance().findElement(
+				By.xpath("//li[contains(@class,'select2-results__option') and text()='" + itemName + "']"));
 	}
 
 	public static void uploadFile(String filePath) throws IOException {
-		/*try {
-			String script = Config.getProperty("applicationFolder")
-					+ "/automation-test/src/test/resources/script.exe";
-			Runtime.getRuntime().exec(new String[] { script, filePath });
-		} catch (IOException e) {
-			throw new RuntimeException("File not found");
-		}*/
+		/*
+		 * try { String script = Config.getProperty("applicationFolder") +
+		 * "/automation-test/src/test/resources/script.exe";
+		 * Runtime.getRuntime().exec(new String[] { script, filePath }); } catch
+		 * (IOException e) { throw new RuntimeException("File not found"); }
+		 */
 
-		String script = Config.getProperty("applicationFolder")
-				+ "/src/test/resources/script.exe";
+		String script = Config.getProperty("applicationFolder") + "/src/test/resources/script.exe";
 		Runtime.getRuntime().exec(new String[] { script, filePath });
 
 	}
@@ -477,8 +423,7 @@ public class SeleniumTestHelper {
 		return driver;
 	}
 
-	public static WebDriver switchToOtherWindowAndCloseCurrentWindow(
-			WebDriver driver) {
+	public static WebDriver switchToOtherWindowAndCloseCurrentWindow(WebDriver driver) {
 		String currentHandle = driver.getWindowHandle();
 		Set<String> handles = driver.getWindowHandles();
 		for (String handle : handles) {
@@ -490,8 +435,7 @@ public class SeleniumTestHelper {
 		return driver;
 	}
 
-	public static WebDriver switchToOtherWindowAndCloseItAndComeBack(
-			WebDriver driver) {
+	public static WebDriver switchToOtherWindowAndCloseItAndComeBack(WebDriver driver) {
 		String currentHandle = driver.getWindowHandle();
 		Set<String> handles = driver.getWindowHandles();
 		for (String handle : handles) {
@@ -515,8 +459,7 @@ public class SeleniumTestHelper {
 
 	}
 
-	public static void waitForElementToAppear(By element, long minWaitTime,
-			long maxWaitTime) {
+	public static void waitForElementToAppear(By element, long minWaitTime, long maxWaitTime) {
 		boolean isElementFound = false;
 		try {
 			Thread.sleep(minWaitTime);
@@ -544,96 +487,95 @@ public class SeleniumTestHelper {
 		}
 	}
 
-	public static void assertEquals(Object actual, Object expected, String message){
+	public static void assertEquals(Object actual, Object expected, String message) {
 
-		
-		if(null != message){
-			System.out.println(message + "Actual is: "+ actual + " Expected is: "+expected);
+		if (null != message) {
+			System.out.println(message + "Actual is: " + actual + " Expected is: " + expected);
 			Assert.assertEquals(actual, expected, message);
-			
 
-		}else{
+		} else {
 			Assert.assertEquals(actual, expected);
 		}
-		if(!(actual.equals(true)||expected.equals(true)|| actual.equals(false)||expected.equals(false))) {
-		com.cucumber.listener.Reporter.addStepLog( "Expected is "+expected.toString()+" and Actual is "+actual);
+		if (!(actual.equals(true) || expected.equals(true) || actual.equals(false) || expected.equals(false))) {
+			com.cucumber.listener.Reporter
+					.addStepLog("Expected is " + expected.toString() + " and Actual is " + actual);
 		}
 	}
-	public static void assertNotEquals(Object actual, Object expected, String message){
-		
-		com.cucumber.listener.Reporter.addStepLog("Expected is "+expected.toString()+" and Actual is "+actual);
 
-		if(null != message){
-			System.out.println(message + "actual is: "+ actual + "expected is: "+expected);
+	public static void assertNotEquals(Object actual, Object expected, String message) {
+
+		com.cucumber.listener.Reporter.addStepLog("Expected is " + expected.toString() + " and Actual is " + actual);
+
+		if (null != message) {
+			System.out.println(message + "actual is: " + actual + "expected is: " + expected);
 			Assert.assertNotEquals(actual, expected, message);
 
-		}else{
+		} else {
 			Assert.assertNotEquals(actual, expected);
 		}
 	}
 
-	public static void assertEquals(Object actual, Object expected){
+	public static void assertEquals(Object actual, Object expected) {
 		try {
 			assertEquals(actual, expected, null);
-		} 
-			catch (AssertionError e) {
-				e.printStackTrace();
-				Steps.testRes = "Failed";
-				SeleniumTestHelper.fail(actual, expected, e.getMessage());
+		} catch (AssertionError e) {
+			e.printStackTrace();
+			Steps.testRes = "Failed";
+			SeleniumTestHelper.fail(actual, expected, e.getMessage());
 		}
 	}
 
-	public static void assertNotEquals(Object actual, Object expected){
+	public static void assertNotEquals(Object actual, Object expected) {
 		assertNotEquals(actual, expected, null);
 	}
 
-	public static void assertTrue(boolean bool, String message){
+	public static void assertTrue(boolean bool, String message) {
 		assertEquals(bool, true, message);
-	}	
+	}
 
-	public static void assertTrue(boolean bool){
+	public static void assertTrue(boolean bool) {
 		assertTrue(bool, null);
 	}
 
-	public static void assertFalse(boolean bool, String message){
+	public static void assertFalse(boolean bool, String message) {
 		assertEquals(bool, false, message);
-	}	
+	}
 
-	public static void assertFalse(boolean bool){
+	public static void assertFalse(boolean bool) {
 		assertFalse(bool, null);
 	}
 
-	public static void fail(Object actual, Object expected, String message){
-		com.cucumber.listener.Reporter.addStepLog("Expected is "+expected.toString()+" and Actual is "+actual);
+	public static void fail(Object actual, Object expected, String message) {
+		com.cucumber.listener.Reporter.addStepLog("Expected is " + expected.toString() + " and Actual is " + actual);
 		Assert.assertTrue(false, message);
 	}
-	
-	public static void fail(Object actual, Object expected){
-		com.cucumber.listener.Reporter.addStepLog("Expected is "+expected.toString()+" and Actual is "+actual);
+
+	public static void fail(Object actual, Object expected) {
+		com.cucumber.listener.Reporter.addStepLog("Expected is " + expected.toString() + " and Actual is " + actual);
 		Assert.assertTrue(false);
 	}
-	
-	public static void fail(String message){
+
+	public static void fail(String message) {
 		assertEquals(true, false, message);
 	}
 
-
-	public static void assertNotNull(Object obj){
+	public static void assertNotNull(Object obj) {
 		assertNotNull(obj, null);
 	}
 
-	public static void assertNotNull(Object obj, String message){
+	public static void assertNotNull(Object obj, String message) {
 		boolean truthness = true;
-		if(null == obj){
+		if (null == obj) {
 			truthness = false;
 		}
 		assertEquals(truthness, true, message);
 	}
 
-	public static void fail(){
+	public static void fail() {
 		fail(null);
 	}
-	public static String getFailedScreenshot(){
+
+	public static String getFailedScreenshot() {
 		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
 		WebDriver driver = Driver.getInstance();
 		TakesScreenshot ts = (TakesScreenshot) driver;
@@ -647,13 +589,14 @@ public class SeleniumTestHelper {
 		}
 		return destination;
 	}
-	
-	public static int generateRandomInt(int min, int max){
+
+	public static int generateRandomInt(int min, int max) {
 		Random foo = new Random();
 		return foo.nextInt((max + 1) - min) + min;
 	}
-	public static void jsClick(WebElement element){
-		JavascriptExecutor js = (JavascriptExecutor)Driver.getInstance();
+
+	public static void jsClick(WebElement element) {
+		JavascriptExecutor js = (JavascriptExecutor) Driver.getInstance();
 		js.executeScript("arguments[0].click();", element);
 	}
 
@@ -662,27 +605,29 @@ public class SeleniumTestHelper {
 	 * @author nurmamet.hemrayev
 	 * @param element
 	 */
-	public static void actionsClick(WebElement element){
+	public static void actionsClick(WebElement element) {
 		Actions actions = new Actions(Driver.getInstance());
 		actions.moveToElement(element).perform();
 		actions.click().perform();
 	}
+
 	/**
 	 * This method is used for selecting date from calendar modal dialog
+	 * 
 	 * @author nurmamet.hemrayev
-	 * @param days - required days from current date
+	 * @param days   - required days from current date
 	 * @param months - required months from current date
-	 * @param years - required years from current date
+	 * @param years  - required years from current date
 	 */
-	public static void setCalendarFromCurrentDate(int days, int months, int years){
+	public static void setCalendarFromCurrentDate(int days, int months, int years) {
 		Calendar cal = Calendar.getInstance();
-		if(0 != days){
+		if (0 != days) {
 			cal.add(Calendar.DATE, days);
 		}
-		if(0 != months){
+		if (0 != months) {
 			cal.add(Calendar.MONTH, months);
 		}
-		if(0 != years){
+		if (0 != years) {
 			cal.add(Calendar.YEAR, years);
 		}
 
@@ -704,46 +649,46 @@ public class SeleniumTestHelper {
 		String dispMonth = dispYearMonth.split(" ")[0];
 		String dispYear = dispYearMonth.split(" ")[1];
 		By nextBtnBy = By.xpath("//th[@class='next'][not(./ancestor::*[contains(@style,'display: none')])]");
-		if(!dispYear.equals(reqYear)){
+		if (!dispYear.equals(reqYear)) {
 			driver.findElement(dispYearMonthBy).click();
 			driver.findElement(currentYearBy).click();
 			String currentyearRange = driver.findElement(yearRangeBy).getText();
 			int startYear = Integer.parseInt(currentyearRange.split("-")[0]);
 			int endYear = Integer.parseInt(currentyearRange.split("-")[1]);
 			int reqYearInt = Integer.parseInt(reqYear);
-			while(!(reqYearInt>=startYear && reqYearInt<=endYear)){
+			while (!(reqYearInt >= startYear && reqYearInt <= endYear)) {
 				driver.findElement(nextBtnBy).click();
 				currentyearRange = driver.findElement(yearRangeBy).getText();
 				startYear = Integer.parseInt(currentyearRange.split("-")[0]);
 				endYear = Integer.parseInt(currentyearRange.split("-")[1]);
 			}
-			driver.findElement(By.xpath("//span[contains(@class,'year') and text()='"+reqYear+"']")).click();;
-			driver.findElement(By.xpath("//span[contains(@class,'month') and text()='"+shortMonth+"']")).click();
+			driver.findElement(By.xpath("//span[contains(@class,'year') and text()='" + reqYear + "']")).click();
+			;
+			driver.findElement(By.xpath("//span[contains(@class,'month') and text()='" + shortMonth + "']")).click();
 		}
 		dispYearMonth = driver.findElement(dispYearMonthBy).getText();
 		dispMonth = dispYearMonth.split(" ")[0];
 
-		if(!(dispMonth.equals(reqMonth))){
+		if (!(dispMonth.equals(reqMonth))) {
 			driver.findElement(dispYearMonthBy).click();
-			driver.findElement(By.xpath("//span[contains(@class,'month') and text()='"+shortMonth+"']")).click();
+			driver.findElement(By.xpath("//span[contains(@class,'month') and text()='" + shortMonth + "']")).click();
 		}
 
 		driver.findElement(
-				By.xpath("//div[@class='datepicker-days']//tbody//td[@class='day' and text()='"
-						+ reqDay + "']")).click();
+				By.xpath("//div[@class='datepicker-days']//tbody//td[@class='day' and text()='" + reqDay + "']"))
+				.click();
 	}
 
+	public static String getAbsolutePath(String fileName) {
 
-	public static String getAbsolutePath(String fileName){
-
-		String relativePath = Config.getProperty("attachmentsPath")+Config.getProperty(fileName);
+		String relativePath = Config.getProperty("attachmentsPath") + Config.getProperty(fileName);
 		Path path = Paths.get(relativePath);
 		Path absolutePath = path.toAbsolutePath();
 
 		return absolutePath.toString();
 	}
 
-	public static File getLastDownloadedFile(){
+	public static File getLastDownloadedFile() {
 		try {
 			Thread.sleep(7000);
 		} catch (InterruptedException e) {
@@ -753,12 +698,12 @@ public class SeleniumTestHelper {
 		String requiredFileName = "";
 		long lastModified = 0;
 		String downloadDir = Config.getDownloadLocation();
-		do{
+		do {
 			File f = new File(downloadDir);
-			if(f.isDirectory())
-				for(File currFile: f.listFiles()){
-					if(!currFile.isDirectory()){
-						if(lastModified<currFile.lastModified()){
+			if (f.isDirectory())
+				for (File currFile : f.listFiles()) {
+					if (!currFile.isDirectory()) {
+						if (lastModified < currFile.lastModified()) {
 							requiredFile = currFile;
 							lastModified = currFile.lastModified();
 						}
@@ -770,48 +715,48 @@ public class SeleniumTestHelper {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			//lastModified = 0;
-		}while(requiredFileName.contains(".crdownload")|| requiredFileName.contains(".download"));
-		return requiredFile;
-	}
-	public static File getLastDownloadedFile(String matchingFileName){
-		try {
-			Thread.sleep(7000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		File requiredFile = null;
-		String requiredFileName = "";
-		long lastModified = 0;
-		String downloadDir = Config.getDownloadLocation();
-		do{
-			File f = new File(downloadDir);
-			if(f.isDirectory())
-				for(File currFile: f.listFiles()){
-					if(!currFile.isDirectory()){
-						if(currFile.getName().contains(matchingFileName) && lastModified<currFile.lastModified()){
-							requiredFile = currFile;
-							lastModified = currFile.lastModified();
-						}
-					}
-				}
-			requiredFileName = requiredFile.getName();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			//lastModified = 0;
-		}while(requiredFileName.contains(".crdownload")|| requiredFileName.contains(".download"));
+			// lastModified = 0;
+		} while (requiredFileName.contains(".crdownload") || requiredFileName.contains(".download"));
 		return requiredFile;
 	}
 
-	public static void waitForTextToBePresentInElement(WebDriver driver,
-			WebElement element, int timeOutInSeconds,String text) {
+	public static File getLastDownloadedFile(String matchingFileName) {
+		try {
+			Thread.sleep(7000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		File requiredFile = null;
+		String requiredFileName = "";
+		long lastModified = 0;
+		String downloadDir = Config.getDownloadLocation();
+		do {
+			File f = new File(downloadDir);
+			if (f.isDirectory())
+				for (File currFile : f.listFiles()) {
+					if (!currFile.isDirectory()) {
+						if (currFile.getName().contains(matchingFileName) && lastModified < currFile.lastModified()) {
+							requiredFile = currFile;
+							lastModified = currFile.lastModified();
+						}
+					}
+				}
+			requiredFileName = requiredFile.getName();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			// lastModified = 0;
+		} while (requiredFileName.contains(".crdownload") || requiredFileName.contains(".download"));
+		return requiredFile;
+	}
+
+	public static void waitForTextToBePresentInElement(WebDriver driver, WebElement element, int timeOutInSeconds,
+			String text) {
 		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
 		wait.until(ExpectedConditions.textToBePresentInElement(element, text));
 	}
-
 
 	public static void switchingTochildtWindowAndCloseIt(WebDriver driver) {
 
@@ -824,29 +769,29 @@ public class SeleniumTestHelper {
 
 	}
 
-	public static void uploadfile(String filename) throws IOException
-	{
-		String script = System.getProperty("user.dir")+"\\"
-				+ "upload.exe";
-		//	Runtime.getRuntime().exec(script+" "+System.getProperty("user.dir")+"\\"+filename);
-		Runtime.getRuntime().exec(script+" "+filename);
-		System.out.println(System.getProperty("user.dir")+"\\"+filename);
+	public static void uploadfile(String filename) throws IOException {
+		String script = System.getProperty("user.dir") + "\\" + "upload.exe";
+		// Runtime.getRuntime().exec(script+"
+		// "+System.getProperty("user.dir")+"\\"+filename);
+		Runtime.getRuntime().exec(script + " " + filename);
+		System.out.println(System.getProperty("user.dir") + "\\" + filename);
 	}
-	public static String convertxmltostring(String filename) throws IOException
-	{
-		//filename is filepath string
+
+	public static String convertxmltostring(String filename) throws IOException {
+		// filename is filepath string
 		BufferedReader br = new BufferedReader(new FileReader(new File(filename)));
 		String line;
 		StringBuilder sb = new StringBuilder();
 
-		while((line=br.readLine())!= null){
+		while ((line = br.readLine()) != null) {
 			sb.append(line.trim());
 		}
 
 		return sb.substring(3);
 	}
-	public static String XMLfile_update_singleinstance(String ASNID,String Parenttag,String Childtag,String filename) throws SAXException, IOException, ParserConfigurationException
-	{
+
+	public static String XMLfile_update_singleinstance(String ASNID, String Parenttag, String Childtag, String filename)
+			throws SAXException, IOException, ParserConfigurationException {
 		String filePath = "D:\\Request.xml";
 		File xmlFile = new File(filePath);
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -855,11 +800,10 @@ public class SeleniumTestHelper {
 			dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(xmlFile);
 			doc.getDocumentElement().normalize();
-			updateElementValue_generic(doc,Parenttag,Childtag,ASNID);
+			updateElementValue_generic(doc, Parenttag, Childtag, ASNID);
 			doc.getDocumentElement().normalize();
 
-
-			//write the updated document to file or console
+			// write the updated document to file or console
 			doc.getDocumentElement().normalize();
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
@@ -869,52 +813,50 @@ public class SeleniumTestHelper {
 			transformer.transform(source, result);
 			System.out.println("XML file updated successfully");
 
-
-		}
-		catch (SAXException | ParserConfigurationException | IOException | TransformerException e1)
-		{
+		} catch (SAXException | ParserConfigurationException | IOException | TransformerException e1) {
 			e1.printStackTrace();
 		}
 		return ASNID;
 	}
-	private static void updateElementValue_generic(Document doc,String Parentnode,String Childnode,String childvalue)
-	{
+
+	private static void updateElementValue_generic(Document doc, String Parentnode, String Childnode,
+			String childvalue) {
 		NodeList Parentnodes = doc.getElementsByTagName(Parentnode);
 		Element child = null;
-		//loop for each Parentnodes
-		for(int i=0; i<Parentnodes.getLength();i++){
+		// loop for each Parentnodes
+		for (int i = 0; i < Parentnodes.getLength(); i++) {
 			child = (Element) Parentnodes.item(i);
 			Node name = child.getElementsByTagName(Childnode).item(0).getFirstChild();
 			name.setNodeValue(childvalue);
 		}
 	}
-	public static void Close_OpenedWindow(String Screenname,WebDriver driver) throws InterruptedException
-	{
-		String Screenclose="(//label[text()='"+Screenname+"']//following::span[text()='Close'])[1]";
-		//String Screenclose="(//label[contains(text() , '"+Screenname+"')]//following::span[text()='Close'])[1]";
+
+	public static void Close_OpenedWindow(String Screenname, WebDriver driver) throws InterruptedException {
+		String Screenclose = "(//label[text()='" + Screenname + "']//following::span[text()='Close'])[1]";
+		// String Screenclose="(//label[contains(text() ,
+		// '"+Screenname+"')]//following::span[text()='Close'])[1]";
 		driver.findElement(By.xpath(Screenclose)).click();
 
 	}
-	
-	public static void doubleclickonelement(WebDriver driver,WebElement ele)
-	{
-		Actions action=new Actions(driver);
+
+	public static void doubleclickonelement(WebDriver driver, WebElement ele) {
+		Actions action = new Actions(driver);
 		action.moveToElement(ele).doubleClick(ele).build().perform();
 	}
-	public static String Getvalueinbetweentags(String tagname,String Response)
-	{
-		final Pattern TAG_REGEX = Pattern.compile("<"+tagname+">(.+?)</"+tagname+">", Pattern.DOTALL);
+
+	public static String Getvalueinbetweentags(String tagname, String Response) {
+		final Pattern TAG_REGEX = Pattern.compile("<" + tagname + ">(.+?)</" + tagname + ">", Pattern.DOTALL);
 		final Matcher matcher = TAG_REGEX.matcher(Response);
 		matcher.find();
 		System.out.println(matcher.group(1));
-		if(matcher.group(1).equalsIgnoreCase("Confirmation"))
-		{
+		if (matcher.group(1).equalsIgnoreCase("Confirmation")) {
 			System.out.println("Response success");
 		}
 		return matcher.group(1);
 
 	}
-	public static void switchToInnerFrame(WebDriver driver){
+
+	public static void switchToInnerFrame(WebDriver driver) {
 		try {
 			Thread.sleep(4000);
 		} catch (InterruptedException e) {
@@ -929,6 +871,7 @@ public class SeleniumTestHelper {
 		}
 
 	}
+
 	public static String user_generate_estimated_delivery_date(int futureDate) {
 		String estimatedDeliveryDate = null;
 		Calendar calender = Calendar.getInstance();
@@ -938,16 +881,14 @@ public class SeleniumTestHelper {
 		estimatedDeliveryDate = formatter.format(futuredate);
 		return estimatedDeliveryDate;
 	}
-	
-	
 
-/**
- * @author Vinay Kona
- * If Selenium regular dropdown doesn't work, We need to use this Method
- */
- public static void dropdownByFindElements(List<WebElement> element, String dropDownValue) {
+	/**
+	 * @author Vinay Kona If Selenium regular dropdown doesn't work, We need to use
+	 *         this Method
+	 */
+	public static void dropdownByFindElements(List<WebElement> element, String dropDownValue) {
 		List<WebElement> dropDownList = element;
-		 
+
 		for (WebElement DropSource : dropDownList) {
 			if (DropSource.getText().equalsIgnoreCase(dropDownValue)) {
 				DropSource.click();
@@ -957,15 +898,15 @@ public class SeleniumTestHelper {
 		dropDownList.clear();
 
 	}
- 
+
 	public static String myCurrentDate() {
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
 		Date date = new Date();
 		System.out.println(dateFormat.format(date));
 		return dateFormat.format(date);
 	}
-	
-	public static void actionMouseHoverAndClickOnSubMenu(WebElement element1,WebElement element2){
+
+	public static void actionMouseHoverAndClickOnSubMenu(WebElement element1, WebElement element2) {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(element1);
 		actions.perform();
@@ -973,11 +914,12 @@ public class SeleniumTestHelper {
 		action1.moveToElement(element2).perform();
 		action1.click().perform();
 	}
+
 	public static void scrollUp() {
 		try {
-		JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
-		jsExecutor.executeScript("window.scrollTo(document.body.scrollHeight,0)", "");
-		}catch(Exception e) {
+			JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+			jsExecutor.executeScript("window.scrollTo(document.body.scrollHeight,0)", "");
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -991,16 +933,12 @@ public class SeleniumTestHelper {
 			e1.printStackTrace();
 		}
 		try {
-			System.out.println("Pagestill loading");
-
 			jQuery = ((Long) ((JavascriptExecutor) driver).executeScript("return jQuery.active") == 0);
 		} catch (Exception e) {
 			jQuery = true;
 		}
 
 		try {
-			System.out.println("Page is still loading");
-
 			jsLoad = "complete"
 					.equals(((JavascriptExecutor) driver).executeScript("return document.readyState").toString());
 		} catch (Exception e) {
@@ -1021,16 +959,12 @@ public class SeleniumTestHelper {
 		}
 
 		try {
-			System.out.println("Pagestill loading");
-
 			jQuery = ((Long) ((JavascriptExecutor) driver).executeScript("return jQuery.active") == 0);
 		} catch (Exception e) {
 			jQuery = true;
 		}
 
 		try {
-			System.out.println("Page is still loading");
-
 			jsLoad = "complete"
 					.equals(((JavascriptExecutor) driver).executeScript("return document.readyState").toString());
 		} catch (Exception e) {
@@ -1038,6 +972,4 @@ public class SeleniumTestHelper {
 		}
 		return jQuery && jsLoad;
 	}
- }
-
-	
+}
