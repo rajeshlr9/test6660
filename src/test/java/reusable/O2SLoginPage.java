@@ -25,13 +25,13 @@ public class O2SLoginPage extends Steps {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath = "//input[@name='username']")
+	@FindBy(xpath = "//input[@name='identifier']")
 	public WebElement username;
 
-	@FindBy(xpath = "//input[@name='password']")
+	@FindBy(xpath = "//input[@name='credentials.passcode']")
 	public WebElement password;
 
-	@FindBy(xpath = "//input[@id='okta-signin-submit']")
+	@FindBy(xpath = "//input[@type='submit']")
 	public WebElement signInBtn;
 
 	@FindBy(xpath = "//h1[contains(text(),'FedEx Critical Inventory Logistics')]")
@@ -51,13 +51,19 @@ public class O2SLoginPage extends Steps {
 				Steps.logger.info("L2UserName: " + Config.getProperty("O2SApp_L2_Username_Admin"));
 				password.sendKeys(Config.getProperty("O2SApp_L2_Password_Admin"));
 				Steps.logger.info("L2Password: " + Config.getProperty("O2SApp_L2_Password_Admin"));
+			}else if (env.equalsIgnoreCase("L4")) {
+				username.sendKeys(Config.getProperty("O2SApp_L4_Username_Admin"));
+				Steps.logger.info("L4UserName: " + Config.getProperty("O2SApp_L4_Username_Admin"));
+				password.sendKeys(Config.getProperty("O2SApp_L2_Password_Admin"));
+				Steps.logger.info("L4Password: " + Config.getProperty("O2SApp_L4_Password_Admin"));
 			}
-
+			//2023062350
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(signInBtn));
 			signInBtn.click();
 			Steps.logger.info("Clicked on Sign in Button");
-			Thread.sleep(10000);
+			//Thread.sleep(10000);
+			SeleniumTestHelper.WaitForPageLoad(5000);
 			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(headerMsg));
 			Screenshots.captureSnapshot(driver);
 			Reporter.addStepLog("User Successfully logon to O2S Application...");
