@@ -73,7 +73,6 @@ Scenario: Create an order using O2S application.
 		| O2S_IntegrationScenario01 |
 	Given User Open the chrome browser using selenium
 	And user logs into the O2S application 
-	#Then user create an order in O2S application for "singleLineItem" 
 	Then user create an order for "NVI" customer in O2S application for "singleLineItem"
 	Then user verify order created successfuly 
 	Then user search order and verify status is booked 
