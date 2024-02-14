@@ -65,7 +65,10 @@ public class O2SHomePage {
 	
 	@FindBy(xpath="//*[@id='headertopnav']/span[@class='nav_link_inactive_services']/a[contains(text(),'WMS')]")
 	public WebElement wmsTab;
-
+	
+	@FindBy(xpath = "//*[@id='LoadingDisplayBox']")
+	public WebElement loadingDisplayBox;
+	
 	
 	/**
 	 * This method logoutFormO2SApp use for logout from the O2S application 
@@ -109,7 +112,8 @@ public class O2SHomePage {
 		SeleniumTestHelper.clickOnButton(createBtn);
 		//createBtn.click();
 		Steps.logger.info("Clicked on Create Button");
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
+		SeleniumTestHelper.WaitForPageLoad(3000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, accountTextField, 180);
 		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(accountTextField));
 		SeleniumTestHelper.enterTextInTextBox(accountTextField, account);
@@ -120,15 +124,17 @@ public class O2SHomePage {
 		SeleniumTestHelper.clickOnButton(continueBtn);
 		//continueBtn.click();
 		Steps.logger.info("Clicked on Continue Button");
-		Thread.sleep(5000);
-
+		//Thread.sleep(5000);
+		SeleniumTestHelper.WaitForPageLoad(3000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, callerID, 180);
 		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(callerID));
 		SeleniumTestHelper.enterTextInTextBox(callerID, "123456");
 		Steps.logger.info("Enter Called ID");
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
+		SeleniumTestHelper.WaitForPageLoad(3000);
 		callerID.sendKeys(Keys.ENTER);
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
+		SeleniumTestHelper.WaitForPageLoad(3000);
 		if (orderType.equalsIgnoreCase("retunItemAndReplace")) {
 			selectTheReturnItemAndReplaceOptionAndRMANumber();
 		}
@@ -140,10 +146,12 @@ public class O2SHomePage {
 		} else {
 			SeleniumTestHelper.enterTextInTextBox(locationCode, "12");
 		}
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
+		SeleniumTestHelper.WaitForPageLoad(3000);
 		locationCode.sendKeys(Keys.ENTER);
 		Steps.logger.info("Enter Location Code");
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
+		SeleniumTestHelper.WaitForPageLoad(3000);
 		Screenshots.captureSnapshot(driver);
 
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, continueBtn, 180);
@@ -152,7 +160,12 @@ public class O2SHomePage {
 		SeleniumTestHelper.clickOnButton(continueBtn);
 		//continueBtn.click();
 		Steps.logger.info("Clicked on Continue Button");
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
+		SeleniumTestHelper.WaitForPageLoad(3000);
+		while(SeleniumTestHelper.isElementDisplayed(loadingDisplayBox)) {
+			System.out.println("Wait till the loading Display Box getting display");
+			SeleniumTestHelper.WaitForPageLoad();
+		}
 		Reporter.addStepLog("User perform FirstStep in Create Order by using Caller ID and Location Code...");
 
 	}

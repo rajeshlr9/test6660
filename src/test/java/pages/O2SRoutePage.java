@@ -49,6 +49,13 @@ public class O2SRoutePage {
 	@FindBy(xpath = "//input[@id='form1:filter']")
 	public WebElement applyFilterBtn;
 	
+	@FindBy(xpath = "//*[@id='LoadingDisplayBox']")
+	public WebElement loadingDisplayBox;
+	
+	@FindBy(xpath = "//span[contains(text(),'There are no Route Options available for the selected warehouse ')]")
+	public WebElement errorMessageForNoRoute;
+	
+	
 	/***
 	 * This method selectRoute is use for selecting the route
 	 * @throws Exception
@@ -60,9 +67,11 @@ public class O2SRoutePage {
 		
 		int temp = 0;
 		while ((temp != 3)) {
+			if(SeleniumTestHelper.isElementDisplayed(errorMessageForNoRoute)) {
 			applyFilterBtn.click();
 			//Thread.sleep(3000);
 			SeleniumTestHelper.WaitForPageLoad();
+			}
 			temp++;
 		}
 		
@@ -126,7 +135,12 @@ public class O2SRoutePage {
 		SeleniumTestHelper.clickOnButton(continueBtn);
 		//continueBtn.click();
 		Steps.logger.info("Clicked on Continue button");
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
+		SeleniumTestHelper.WaitForPageLoad(3000);
+		while(SeleniumTestHelper.isElementDisplayed(loadingDisplayBox)) {
+			System.out.println("Wait till the loading Display Box getting display");
+			SeleniumTestHelper.WaitForPageLoad();
+		}
 	}
 
 }

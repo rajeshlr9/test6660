@@ -49,10 +49,10 @@ public class O2SPlacementPage {
 		strDate12 = sdfDate.format(date);
 		PODONumber = "2023" + strDate12;
 		Items.setDONumber(PODONumber);
-		
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, thirdPartyAccountNum, 180);
-		SeleniumTestHelper.enterTextInTextBox(thirdPartyAccountNum, "898384047");
-		
+		if (SeleniumTestHelper.isElementDisplayed(thirdPartyAccountNum)) {
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, thirdPartyAccountNum, 180);
+			SeleniumTestHelper.enterTextInTextBox(thirdPartyAccountNum, "898384047");
+		}
 		Steps.logger.info("DO Number: " + PODONumber);
 		Reporter.addStepLog("DO Number: " + PODONumber);
 				

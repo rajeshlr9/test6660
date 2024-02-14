@@ -39,6 +39,9 @@ public class O2SInventoryPage {
 	@FindBy(xpath = "//table[@id='inputInboundForm:whItems']//tr//td[7]/span")
 	public WebElement inventoryAvailable;
 	
+	@FindBy(xpath = "//*[@id='LoadingDisplayBox']")
+	public WebElement loadingDisplayBox;
+	
 	/**
 	 * This method use for add items in add inventory step
 	 * @throws Exception
@@ -61,8 +64,8 @@ public class O2SInventoryPage {
 
 		// SeleniumTestHelper.enterTextInTextBox(itemId, "619-00-014");
 		Steps.logger.info("Enter item id");
-		Thread.sleep(10000);
-
+		//Thread.sleep(10000);
+		SeleniumTestHelper.WaitForPageLoad(5000);
 		System.out.println("Item Qty or Number = " + shpQty);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, itemQty, 180);
 		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(itemQty));
@@ -70,15 +73,15 @@ public class O2SInventoryPage {
 		SeleniumTestHelper.enterTextInTextBox(itemQty, shpQty);
 		// SeleniumTestHelper.enterTextInTextBox(itemQty, "1");
 		Steps.logger.info("Enter item Qty");
-		Thread.sleep(5000);
-
+		//Thread.sleep(5000);
+		SeleniumTestHelper.WaitForPageLoad(3000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, addItem, 180);
 		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(addItem));
 		SeleniumTestHelper.clickOnButton(addItem);
 		//addItem.click();
 		Steps.logger.info("Clicked on Add Item");
-	
-		Thread.sleep(5000);
+		SeleniumTestHelper.WaitForPageLoad(3000);
+		//Thread.sleep(5000);
 		}
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, searchAvailability, 180);
 		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(searchAvailability));
@@ -86,8 +89,8 @@ public class O2SInventoryPage {
 		SeleniumTestHelper.clickOnButton(searchAvailability);
 		//searchAvailability.click();
 		Steps.logger.info("Clicked on Search Availability");
-		Thread.sleep(5000);
-
+		//Thread.sleep(5000);
+		SeleniumTestHelper.WaitForPageLoad(3000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, inventoryAvailable, 180);
 		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(inventoryAvailable));
 		SeleniumTestHelper.scrollToElement(driver, inventoryAvailable);
@@ -100,7 +103,12 @@ public class O2SInventoryPage {
 		SeleniumTestHelper.clickOnButton(continueBtn);
 		//continueBtn.click();
 		Steps.logger.info("Clicked on Continue button");
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
+		SeleniumTestHelper.WaitForPageLoad(3000);
+		while(SeleniumTestHelper.isElementDisplayed(loadingDisplayBox)) {
+			System.out.println("Wait till the loading Display Box getting display");
+			SeleniumTestHelper.WaitForPageLoad();
+		}
 		Reporter.addStepLog("User added item details in add inventory step");
 	}
 
