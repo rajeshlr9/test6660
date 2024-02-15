@@ -71,6 +71,8 @@ public class O2SRoutePage {
 			applyFilterBtn.click();
 			//Thread.sleep(3000);
 			SeleniumTestHelper.WaitForPageLoad();
+			}else {
+				break;
 			}
 			temp++;
 		}
@@ -113,14 +115,14 @@ public class O2SRoutePage {
 			Steps.logger.info("Clicked on Two Day");
 		}
 		
-//		else if (SeleniumTestHelper.isElementDisplayed(fedExsameDayCourierOption)) {
-//			System.out.println(SeleniumTestHelper.isElementDisplayed(fedExsameDayCourierOption));
-//			SeleniumTestHelper.waitForElementToBeDisplayed(driver, fedExsameDayCourierOption, 180);
-//			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(fedExsameDayCourierOption));
-//			SeleniumTestHelper.scrollToElement(driver, fedExsameDayCourierOption);
-//			fedExsameDayCourierOption.click();
-//			Steps.logger.info("Clicked on express saver");
-//		}
+		else if (SeleniumTestHelper.isElementDisplayed(fedExsameDayCourierOption)) {
+			System.out.println(SeleniumTestHelper.isElementDisplayed(fedExsameDayCourierOption));
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, fedExsameDayCourierOption, 180);
+			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(fedExsameDayCourierOption));
+			SeleniumTestHelper.scrollToElement(driver, fedExsameDayCourierOption);
+			fedExsameDayCourierOption.click();
+			Steps.logger.info("Clicked on FedEx SameDay Courier Option");
+		}
 		else {
 			System.out.println("No Expected Services are available at this time");
 			Steps.logger.info("No Expected Services are available at this time");

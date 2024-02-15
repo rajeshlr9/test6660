@@ -187,4 +187,32 @@ Scenario: Create an order using O2S application.
 	#Then user search for DO and confirms it
 	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
 	Then user log out from application
+	
+@TRNOutBound 
+Scenario: Create an order using O2S application. 
+	Given I have excel data 
+		| TRN_OBScenario1 |
+	Given User Open the chrome browser using selenium 
+	And user logs into the O2S application 
+	Then user create an order in O2S application for "singleLineItem"
+	#Then user create an order in O2S application for "multiLineItem" 
+	Then user verify order created successfuly 
+	Then user search order and verify status is booked 
+	Then user log out from O2S application 
+	And user logs into the Manhattan application 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	Then user verifies the item details in Distribuion Order page 
+	Then user verifies the shipVia populated in Distribuion Order page 
+	And user runs the "TRN PCL Wave"
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And fetch the OLPN number
+	And user open RF Menu and complete the pick tasks created
+	And user open RF Menu and complete the pack tasks created
+	And user opens the OLPN screen and retrieve the splitted oLPN
+	And user perform weigh and manifest and verify status "170 - Manifested"
+	And user opens DO screen and searches for the DistributionOrder and verify its status "170 - Manifested"
+	#Then user search for DO and confirms it
+	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
+	Then user log out from application
 

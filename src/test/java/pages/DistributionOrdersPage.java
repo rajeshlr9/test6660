@@ -269,8 +269,8 @@ public class DistributionOrdersPage {
 	@FindBy(xpath= "//div[contains(text(),'DO Detail - Distribution Order')]//following::img[@class='x-tool-img x-tool-refresh']")
 	public WebElement refreshBtnInDoDetailPage;
 	
-	
-	
+	@FindBy(xpath = "//*[contains(@id,'loadmask')]")
+	public WebElement loadMask;
 
 	public String getDolinesStatus(String donumber) {
 
@@ -1034,8 +1034,18 @@ public class DistributionOrdersPage {
 		Screenshots.captureSnapshot(driver);
 		distributionOrderID.click();
 		distributionOrderID.sendKeys(Items.getDONumber()); // DistributionOrders.getDOnumber()
+		SeleniumTestHelper.WaitForPageLoad(5000);
 		Screenshots.captureSnapshot(driver);
 		apply_Btn.click();
+		int temp = 0;
+		while ((temp != 3)) {
+			if(SeleniumTestHelper.isElementDisplayed(loadMask)) {
+			SeleniumTestHelper.WaitForPageLoad(5000);
+			}else {
+				break;
+			}
+			temp++;
+		}
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
 		Screenshots.captureSnapshot(driver);
 		distributionOrder_chkbox.click();
@@ -2365,15 +2375,29 @@ public class DistributionOrdersPage {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
 		Screenshots.captureSnapshot(driver);
 		distributionOrderID.click();
-		distributionOrderID.sendKeys(Items.getDONumber()); // DistributionOrders.getDOnumber()
+		distributionOrderID.sendKeys(Items.getDONumber()); 
+		//DistributionOrders.getDOnumber()
+		SeleniumTestHelper.WaitForPageLoad(5000);
 		Screenshots.captureSnapshot(driver);
 		apply_Btn.click();
+		
+		int temp = 0;
+		while ((temp != 3)) {
+			if(SeleniumTestHelper.isElementDisplayed(loadMask)) {
+			SeleniumTestHelper.WaitForPageLoad(5000);
+			}else {
+				break;
+			}
+			temp++;
+		}
+		
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
 		Screenshots.captureSnapshot(driver);
 		distributionOrder_chkbox.click();
 		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
 		viewBtn.click();
-		Thread.sleep(10000);
+		//Thread.sleep(10000);
+		SeleniumTestHelper.WaitForPageLoad(5000);
 		
 //		SeleniumTestHelper.switchToInnerFrame(driver);
 		

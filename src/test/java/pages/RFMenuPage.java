@@ -8817,18 +8817,19 @@ public class RFMenuPage {
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, serialNumberInputParcel, 50);
 					
 					System.out.println("Sys tech2");
-					driver.switchTo().parentFrame();
-					System.out.println("Sys tech22");
-					String serial = iLPNPage.searchForTheILPNAndFetchSerialNumber(scannedILPN);
-					SeleniumTestHelper.switchToInnerFrame(driver);
-					
 					//driver.switchTo().parentFrame();
-					//homepage.MenuItems_Distribution_Selection("iLPNs");
-					//driver.switchTo().defaultContent();
+					//System.out.println("Sys tech22");
+					//String serial = iLPNPage.searchForTheILPNAndFetchSerialNumber(scannedILPN);
+					//For ILW - The item used has Serial Number Required only for OutBound
+					//hence commented above 1 lines of code
 					//SeleniumTestHelper.switchToInnerFrame(driver);
-					//System.out.println(scannedILPN);
-					//iLPNPage.searchForTheILPNAndFetchSerialNumber(scannedILPN);
-					//String serial = ILPNPage.getSerialNumber();
+					
+					// added for serial number while working ILW
+					globalFunc.DateTime.TimeDateFunc();
+					String newSerial = globalFunc.DateTime.strDate12;
+					String serial = "21" + newSerial;
+					Items.setAsnserialNumberList(serial);
+					//
 					serialNumberInputParcel.click();
 					serialNumberInputParcel.sendKeys(serial);
 					Screenshots.captureSnapshot(driver);
@@ -8917,10 +8918,17 @@ public class RFMenuPage {
 					SeleniumTestHelper.waitForElementToBeDisplayed(driver, serialNumberInputParcel, 50);
 					
 					System.out.println("Sys tech2");
-					driver.switchTo().parentFrame();
-					System.out.println("Sys tech22");
-					String serial = iLPNPage.searchForTheILPNAndFetchSerialNumber(scannedILPN);
-					SeleniumTestHelper.switchToInnerFrame(driver);
+//					driver.switchTo().parentFrame();
+//					System.out.println("Sys tech22");
+//					String serial = iLPNPage.searchForTheILPNAndFetchSerialNumber(scannedILPN);
+//					SeleniumTestHelper.switchToInnerFrame(driver);
+					
+					// added for serial number while working ILW
+					globalFunc.DateTime.TimeDateFunc();
+					String newSerial = globalFunc.DateTime.strDate12;
+					String serial = "21" + newSerial;
+					Items.setAsnserialNumberList(serial);
+					//
 					
 					//driver.switchTo().parentFrame();
 					//homepage.MenuItems_Distribution_Selection("iLPNs");
