@@ -184,12 +184,15 @@ public class FedexnetPage  extends Steps {
 		driver.switchTo().parentFrame();
 		driver.switchTo().parentFrame();
 		//driver.switchTo().frame("ApplicationFrame");
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
+		SeleniumTestHelper.WaitForPageLoad();
 		driver.switchTo().frame("LinkFrame");
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
+		SeleniumTestHelper.WaitForPageLoad();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, Logout, 10);
 		Logout.click();
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
+		SeleniumTestHelper.WaitForPageLoad(3000);
 		Steps.logger.info("User logged out from Fedexnet");
 		
 	}

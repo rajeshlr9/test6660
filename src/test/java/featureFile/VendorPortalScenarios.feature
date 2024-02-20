@@ -1,6 +1,6 @@
 Feature: Vendor Portal Scenarios
 
-@InBoundScenario_VP_APC_Test_01	@IBRegScenarios_VP_APC_Test_01 @IBRegScenarios_VP_APC_Reg
+@InBoundScenario_VP_APC_Test_01	@IBRegScenarios_VP_APC @DailyRegression_VP_APC 
 Scenario:  Create and Upload X12 file Using Kelli and Veirify ASN and LPN Staus in Manhattan. 
  	Given I have excel data
 	| APC_KelliScenario002 |
@@ -16,7 +16,7 @@ Scenario:  Create and Upload X12 file Using Kelli and Veirify ASN and LPN Staus 
 	Then user opens ASN screen and navigate to LPNs Tab and verify its status "In-Transit"
 	Then user log out from application 
 		
-@InBoundScenario_VP_APC_Test_02	@IBRegScenarios_VP_APC_Test_02
+@InBoundScenario_VP_APC_Test_02	@IBRegScenarios_VP_APC @DailyRegression_VP_APC
 Scenario:  Create and Upload X12 file Using Kelli with serial Item and Veirify ASN and LPN Staus in Manhattan. 
  	Given I have excel data
 	| APC_KelliScenario003 |
@@ -32,7 +32,7 @@ Scenario:  Create and Upload X12 file Using Kelli with serial Item and Veirify A
 	Then user opens ASN screen and navigate to LPNs Tab and verify its status "In-Transit"
 	Then user log out from application 
 	
-@InBoundScenario_VP_APC_Test_03	@IBRegScenarios_VP_APC_Test_03
+@InBoundScenario_VP_APC_Test_03	@IBRegScenarios_VP_APC @DailyRegression_VP_APC
 Scenario:  Create and Upload X12 file Using Kelli with Lot Item and Veirify ASN and LPN Staus in Manhattan. 
  	Given I have excel data
 	| APC_KelliScenario004 |
@@ -49,7 +49,7 @@ Scenario:  Create and Upload X12 file Using Kelli with Lot Item and Veirify ASN 
 	Then user opens ASN screen and navigate to LPNs Tab and verify its status "In-Transit"
 	Then user log out from application 
 		
-@InBoundScenario_VP_APC_Test_04	@IBRegScenarios_VP_APC_Test_04
+@InBoundScenario_VP_APC_Test_04	@IBRegScenarios_VP_APC @DailyRegression_VP_APC
 Scenario:  SingleLine Normal Items 
  	Given I have excel data
 	| APC_IBScenario013 |
@@ -64,7 +64,7 @@ Scenario:  SingleLine Normal Items
 	Then user opens ASN screen and navigate to LPNs Tab and verify its status "In-Transit"
 	Then user log out from application 
 	
-@InBoundScenario_VP_APC_Test_05	@IBRegScenarios_VP_APC_Test_05
+@InBoundScenario_VP_APC_Test_05	@IBRegScenarios_VP_APC @DailyRegression_VP_APC
 Scenario: SingleLine Lot Items for Abaxis type item. 
 	Given I have excel data
 	| APC_IBScenario006 |
@@ -79,7 +79,7 @@ Scenario: SingleLine Lot Items for Abaxis type item.
 	Then user opens ASN screen and navigate to LPNs Tab and verify its status "In-Transit"
 	Then user log out from application 
 	
-@InBoundScenario_VP_APC_Test_06	@IBRegScenarios_VP_APC_Test_06
+@InBoundScenario_VP_APC_Test_06	@IBRegScenarios_VP_APC @DailyRegression_VP_APC
 Scenario: Multiline Serial Items Items for Ambient type item.
 	Given I have excel data
 	| APC_IBScenario014 |
@@ -94,7 +94,7 @@ Scenario: Multiline Serial Items Items for Ambient type item.
 	Then user opens ASN screen and navigate to LPNs Tab and verify its status "In-Transit"
 	Then user log out from application 
 	
-@InBoundScenario_VP_APC_Test_07	@IBRegScenarios_VP_APC_Test_07
+@InBoundScenario_VP_APC_Test_07	@IBRegScenarios_VP_APC @DailyRegression_VP_APC
 Scenario: Single Line Normal Items and Verify the ASN details in Manhattan and Vendor Portal 
 	#Given I have excel data 
 	#	| O2S_IntegrationScenario01 |
@@ -114,7 +114,7 @@ Scenario: Single Line Normal Items and Verify the ASN details in Manhattan and V
 	And user validate the ASN using "Receipt Number" search field
 	Then user log out from O2S application
 	
-@InBoundScenario_VP_APC_Test_08	@IBRegScenarios_VP_APC_Test_08
+@InBoundScenario_VP_APC_Test_08	@IBRegScenarios_VP_APC @DailyRegression_VP_APC
 Scenario: SingleLine Lot Items for and Verify the ASN details in Manhattan and Vendor Portal 
 	Given I have excel data
 	| APC_IBScenario001 |
@@ -132,7 +132,7 @@ Scenario: SingleLine Lot Items for and Verify the ASN details in Manhattan and V
 	And user validate the ASN using "Lot Number" search field
 	Then user log out from O2S application
 	
-@InBoundScenario_VP_APC_Test_09	@IBRegScenarios_VP_APC_Test_09
+@InBoundScenario_VP_APC_Test_09	@IBRegScenarios_VP_APC @DailyRegression_VP_APC
 Scenario: Multiline Serial Items Items for Ambient type item and Verify the ASN details in Manhattan and Vendor Portal 
 	Given I have excel data
 	| APC_IBScenario003 |
@@ -150,7 +150,7 @@ Scenario: Multiline Serial Items Items for Ambient type item and Verify the ASN 
 	And user validate the ASN using "Serial Number" search field
 	Then user log out from O2S application
 
-@InBoundScenario_VP_APC_Test_10	@IBRegScenarios_VP_APC_Test_10
+@InBoundScenario_VP_APC_Test_10	@IBRegScenarios_VP_APC @DailyRegression_VP_APC
 Scenario: Multiline Serial Items Items for Ambient type item and Verify the ASN details in Manhattan and Vendor Portal 
 	Given I have excel data
 	| APC_IBScenario014 |

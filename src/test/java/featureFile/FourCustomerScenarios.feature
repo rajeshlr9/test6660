@@ -1,6 +1,6 @@
 Feature: Four Customer scenarios
 
-@THH001 @THH_KelliASNLoad @DailyRegression_THH
+@THH001 @THH_KelliASNLoad @DailyRegression_THH @IBRegScenarios_THH
 Scenario: Uploading the Single ASNLoad file for THH using Kelli and validating order created in Manhattan Successfully
  	Given I have excel data
 	| THH_KelliScenario002 |
@@ -23,7 +23,7 @@ Scenario: Uploading the Single ASNLoad file for THH using Kelli and validating o
 	And user open reserve locations and naviagtes to validate iLPN 
 	Then user log out from application 
 	
-@TRN001 @TRN_KelliASNLoad @DailyRegression_TRN
+@TRN001 @TRN_KelliASNLoad @DailyRegression_TRN @IBRegScenarios_TRN
 Scenario: Uploading the Single ASNLoad file for FUJ Using Kelli and validating order created in Manhattan Successfully
  	Given I have excel data
 	| TRN_KelliScenario001 |
@@ -44,7 +44,7 @@ Scenario: Uploading the Single ASNLoad file for FUJ Using Kelli and validating o
 	And user open reserve locations and naviagtes to validate iLPN 
 	Then user log out from application 	
 	
-@ILW001 @ILW_KelliASNLoad @DailyRegression_ILW
+@ILW001 @ILW_KelliASNLoad @DailyRegression_ILW @IBRegScenarios_ILW
 Scenario: Uploading the Single ASNLoad file for FUJ Using Kelli and validating order created in Manhattan Successfully
  	Given I have excel data
 	| ILW_KelliScenario001 |
@@ -65,7 +65,7 @@ Scenario: Uploading the Single ASNLoad file for FUJ Using Kelli and validating o
 	And user open reserve locations and naviagtes to validate iLPN 
 	Then user log out from application 
 	
-@THM001 @THM_KelliASNLoad @DailyRegression_THM
+@THM001 @THM_KelliASNLoad @DailyRegression_THM @IBRegScenarios_THM
 Scenario: Uploading the Single ASNLoad file for FUJ Using Kelli and validating order created in Manhattan Successfully
  	Given I have excel data
 	| THM_KelliScenario001 |
@@ -107,7 +107,7 @@ Scenario: Uploading the Single ASNLoad file for FUJ Using Kelli and validating o
 #	Then user search for the LPN in iLPN screen, and validate the lock code
 #	Then user log out from application 
 
-@THMOutBound 
+@THMOutBound @DailyRegression_THM @OBRegScenarios_THM
 Scenario: Create an order using O2S application. 
 	Given I have excel data 
 		| ILW_OBScenario1 |
@@ -134,7 +134,7 @@ Scenario: Create an order using O2S application.
 	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
 	Then user log out from application
 
-@THHOutBound 
+@THHOutBound @DailyRegression_THH @OBRegScenarios_THH
 Scenario: Create an order using O2S application. 
 	Given I have excel data 
 		| THH_OBScenario1 |
@@ -161,7 +161,7 @@ Scenario: Create an order using O2S application.
 	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
 	Then user log out from application
 	
-@ILWOutBound 
+@ILWOutBound @DailyRegression_ILW @IBRegScenarios_ILW
 Scenario: Create an order using O2S application. 
 	Given I have excel data 
 		| ILW_OBScenario1 |
@@ -188,7 +188,7 @@ Scenario: Create an order using O2S application.
 	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
 	Then user log out from application
 	
-@TRNOutBound 
+@TRNOutBound @DailyRegression_TRN @OBRegScenarios_TRN
 Scenario: Create an order using O2S application. 
 	Given I have excel data 
 		| TRN_OBScenario1 |
