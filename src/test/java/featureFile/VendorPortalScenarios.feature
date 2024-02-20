@@ -96,8 +96,6 @@ Scenario: Multiline Serial Items Items for Ambient type item.
 	
 @InBoundScenario_VP_APC_Test_07	@IBRegScenarios_VP_APC @DailyRegression_VP_APC
 Scenario: Single Line Normal Items and Verify the ASN details in Manhattan and Vendor Portal 
-	#Given I have excel data 
-	#	| O2S_IntegrationScenario01 |
 	Given I have excel data
 	| APC_IBScenario013 |
 	Given User Open the chrome browser using selenium 
