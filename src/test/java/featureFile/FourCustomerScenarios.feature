@@ -161,7 +161,7 @@ Scenario: Create an order using O2S application.
 	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
 	Then user log out from application
 	
-@ILWOutBound @DailyRegression_ILW @IBRegScenarios_ILW
+@ILWOutBound @DailyRegression_ILW @OBRegScenarios_ILW
 Scenario: Create an order using O2S application. 
 	Given I have excel data 
 		| ILW_OBScenario1 |
