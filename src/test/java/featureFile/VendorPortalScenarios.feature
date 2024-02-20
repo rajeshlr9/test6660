@@ -1,4 +1,4 @@
-Feature: Vendor Portal Scenarios
+Feature: This feature file contains Vendor Portal Scenarios 
 
 @InBoundScenario_VP_APC_Test_01	@IBRegScenarios_VP_APC @DailyRegression_VP_APC 
 Scenario:  Create and Upload X12 file Using Kelli and Veirify ASN and LPN Staus in Manhattan. 
