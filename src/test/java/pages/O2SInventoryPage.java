@@ -42,6 +42,9 @@ public class O2SInventoryPage {
 	@FindBy(xpath = "//*[@id='LoadingDisplayBox']")
 	public WebElement loadingDisplayBox;
 	
+	@FindBy(xpath = "//span[@id='inputForm:findInventoryOutboundRequestedItems:reqItems:0:notes:0:noteError']")
+	public WebElement itemNotFoundError;
+		
 	/**
 	 * This method use for add items in add inventory step
 	 * @throws Exception
@@ -91,6 +94,9 @@ public class O2SInventoryPage {
 		Steps.logger.info("Clicked on Search Availability");
 		//Thread.sleep(5000);
 		SeleniumTestHelper.WaitForPageLoad(3000);
+		if(SeleniumTestHelper.isElementDisplayed(itemNotFoundError)) {
+			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(inventoryAvailable), "Inventory not available - Showing Item Not found Error");
+		}
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, inventoryAvailable, 180);
 		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(inventoryAvailable));
 		SeleniumTestHelper.scrollToElement(driver, inventoryAvailable);

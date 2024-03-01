@@ -1474,7 +1474,9 @@ public class StepDefInBound {
 		try {
 			o2sHomePage.logoutFormO2SApp();
 	}catch(Exception e){
-		System.out.println(e);
+		Steps.testRes = "Failed";
+		e.printStackTrace();
+		Assert.assertTrue(false, e.getMessage());
 	}
 	}
 		
@@ -1498,7 +1500,9 @@ public class StepDefInBound {
 			Steps.logger.info("Completed create an Order action");
 
 		} catch (Exception e) {
-			System.out.println(e);
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 	
@@ -1523,7 +1527,9 @@ public class StepDefInBound {
 			Steps.logger.info("Completed create an Order action");
 
 		} catch (Exception e) {
-			System.out.println(e);
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 	
@@ -1537,7 +1543,9 @@ public class StepDefInBound {
 			o2sOrderSummaryPage.clickOnCreateButton();
 			Reporter.addStepLog("Order number generated successfully");
 		} catch (Exception e) {
-			System.out.println(e);
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 	
@@ -1553,7 +1561,9 @@ public class StepDefInBound {
 			//Screenshots.captureSnapshot(driver);
 			Reporter.addStepLog("Order number generated successfully");
 		} catch (Exception e) {
-			System.out.println(e);
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 	@Then("^user opens ASN screen and navigate to LPNs Tab and verify its status \"([^\"]*)\"$")
@@ -1602,7 +1612,9 @@ public class StepDefInBound {
 			Screenshots.captureSnapshot(driver);
 			
 		} catch (Exception e) {
-			System.out.println(e);
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 	@Then("^user log out from the application$")
@@ -1620,27 +1632,29 @@ public class StepDefInBound {
 	@Then("^user validate the ASN using \"([^\"]*)\" search field$")
 	public void user_validate_the_ASN_using_search_field(String searchField) {
 		try {
-			//o2sHomePage.navigateToWMSApp();
-			//vendorPortalHomePage.naviagateAndClickReceiveTab();
+			// o2sHomePage.navigateToWMSApp();
+			// vendorPortalHomePage.naviagateAndClickReceiveTab();
 			System.out.println("Trying to validate ASN and other details using Search option");
 			vendorPortalHomePage.enterMandatoryDetails();
-			if(searchField.equalsIgnoreCase("Receipt Number")) {
-			vendorPortalHomePage.searchUsingReceiptNumber();
-			vendorPortalHomePage.validateDataInReceiveTable();
-			}else if(searchField.equalsIgnoreCase("Lot Number")) {
+			if (searchField.equalsIgnoreCase("Receipt Number")) {
+				vendorPortalHomePage.searchUsingReceiptNumber();
+				vendorPortalHomePage.validateDataInReceiveTable();
+			} else if (searchField.equalsIgnoreCase("Lot Number")) {
 				vendorPortalHomePage.searchUsingLotNumber();
 				vendorPortalHomePage.validateDataInReceiveTable();
 				vendorPortalHomePage.validateLotNumberInReceiveTable();
-			}else if(searchField.equalsIgnoreCase("Serial Number")) {
+			} else if (searchField.equalsIgnoreCase("Serial Number")) {
 				vendorPortalHomePage.searchUsingSerialNumber();
 				vendorPortalHomePage.validateDataInReceiveTable();
 				vendorPortalHomePage.validateSerialNumberInReceiveTable();
 			}
 			Steps.logger.info("User navigate to Vendor Portal App");
 			Screenshots.captureSnapshot(driver);
-			
+
 		} catch (Exception e) {
-			System.out.println(e);
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
 		}
 	}
 

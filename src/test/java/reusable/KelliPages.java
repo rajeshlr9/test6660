@@ -60,7 +60,10 @@ public class KelliPages {
 	public String KelliMultiLineASNfilePathForTRN = dir + "\\TestData\\Kelli\\TRN ASNLoad.xls";
 	public String KelliASNfilePathForTRN = dir + "\\TestData\\Kelli\\TRN ASNLoad.xls";
 	public String KelliASNfilePathForILW = dir + "\\TestData\\Kelli\\ILW ASNLoad.xls";
-
+	public String KelliSingleLineNormalForATM = dir + "\\TestData\\Kelli\\ATM ASN Load Single Line.xls";
+	public String KelliSingleLineLotForATM = dir + "\\TestData\\Kelli\\ATM ASN Load Single Line Lot.xls";
+	public String KelliSingleLineSerialForATM = dir + "\\TestData\\Kelli\\ATMASNLoadSingleLineSerial.xls";
+	public String KelliMultiLineNormalForATM = dir + "\\TestData\\Kelli\\ATMASNLoadMultiLineNormal.xls";
 
 	DataFormatter dataFormatter = new DataFormatter();
 	
@@ -336,6 +339,16 @@ public class KelliPages {
 			}
 		}else if (accnt.equalsIgnoreCase("ILW")) {
 			kelliASNfilePath = KelliASNfilePathForILW;
+		} else if (accnt.equalsIgnoreCase("ATM")) {
+			if (fileType.contains("Single Line Normal")) {
+				kelliASNfilePath = KelliSingleLineNormalForATM;
+			}else if (fileType.contains("Single Line Lot")) {
+				kelliASNfilePath = KelliSingleLineLotForATM;
+			} else if (fileType.contains("Single Line Serial")) {
+				kelliASNfilePath = KelliSingleLineSerialForATM;
+			} else if (fileType.contains("Multi Line Normal")) {
+				kelliASNfilePath = KelliMultiLineNormalForATM;
+			}
 		}
 
 		File file = new File(kelliASNfilePath);
@@ -414,6 +427,13 @@ public class KelliPages {
 						.setCellValue(updatedSerialNumber_subString + new Long(udatedSerialNo).longValue());
 				Steps.logger.info("Updated Serial Number::" + updatedSerialNumber_subString
 						+ new Long(udatedSerialNo).longValue());
+				
+				serialNumber =  updatedSerialNumber_subString
+						+ new Long(udatedSerialNo).longValue();
+				System.out.println("Serial Number fetch from Edi file"+serialNumber);
+				Items.setEdiSerialNumber(serialNumber);
+				Steps.logger.info("ASNNumber: " + Items.getEdiSerialNumber());
+				
 			}
 		}
 
@@ -823,6 +843,25 @@ public class KelliPages {
 				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
 				choosefile.sendKeys(KelliASNfilePathForILW);
+			}
+		}else if(accnt.equalsIgnoreCase("ATM")) {
+			if (fileType.contains("Single Line Normal")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliSingleLineNormalForATM);
+			}else if (fileType.contains("Single Line Lot")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliSingleLineLotForATM);
+			}else if (fileType.contains("Single Line Serial")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliSingleLineSerialForATM);
+			}//KelliMultiLineNormalForATM
+			else if (fileType.contains("Multi Line Normal")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliMultiLineNormalForATM);
 			}
 		}
 		

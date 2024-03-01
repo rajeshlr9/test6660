@@ -9522,6 +9522,13 @@ public class RFMenuPage {
 						Thread.sleep(1000);
 						RlocinputtxtBox.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
+						
+						if (SeleniumTestHelper.isElementDisplayed(errorOrWarningMsg)) {
+							if(errorOrWarningMsg.getText().contains("Invalid Barcode - Locn ID / EAN prefix")) {
+								System.out.println("Error :- " + errorOrWarningMsg.getText());
+								SeleniumTestHelper.assertTrue(false, "Invalid Barcode - Locn ID / EAN prefix Error Display. So Putaway Not Success.");
+							}
+						}
 						if (SeleniumTestHelper.isElementDisplayed(acceptAndProceedBtn)) {
 							System.out.println("accotaprocees");
 							globalFunc.Screenshots.seleniumSnapshot(driver);

@@ -83,14 +83,16 @@ public class O2SHomePage {
 		}
 		//SeleniumTestHelper.waitForElementToBeDisplayed(driver, logout, 60);
 		try {
-		SeleniumTestHelper.scrollToElement(driver, logout);
-		}catch(Exception e) {
+			if (SeleniumTestHelper.isElementDisplayed(logout)) {
+				SeleniumTestHelper.scrollToElement(driver, logout);
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		//SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(logout));
 		if(SeleniumTestHelper.isElementDisplayed(logout)) {
 			SeleniumTestHelper.clickOnButton(logout);
-		}else if(SeleniumTestHelper.isElementDisplayed(logout)){
+		}else if(SeleniumTestHelper.isElementDisplayed(logoutLink)){
 			SeleniumTestHelper.clickOnButton(logoutLink);
 		}else {
 			//SeleniumTestHelper.clickOnButton(logout);
