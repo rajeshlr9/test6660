@@ -57,7 +57,7 @@ public class KelliPages {
 	public String KelliASNfilePathForTHH = dir + "\\TestData\\Kelli\\THH ASNLoad.xls";
 	public String KelliASNfilePathForFUJ = dir + "\\TestData\\Kelli\\FUJ ASNLoad.xls";
 	public String KelliASNfilePathForTHM = dir + "\\TestData\\Kelli\\THM ASNLoad.xls";
-	public String KelliMultiLineASNfilePathForTRN = dir + "\\TestData\\Kelli\\TRN ASNLoad.xls";
+	public String KelliMultiLineASNfilePathForTRN = dir + "\\TestData\\Kelli\\TRN ASNLoad Multiline.xls";
 	public String KelliASNfilePathForTRN = dir + "\\TestData\\Kelli\\TRN ASNLoad.xls";
 	public String KelliASNfilePathForILW = dir + "\\TestData\\Kelli\\ILW ASNLoad.xls";
 	public String KelliSingleLineNormalForATM = dir + "\\TestData\\Kelli\\ATM ASN Load Single Line.xls";

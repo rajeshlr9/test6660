@@ -15,7 +15,7 @@ Feature: This feature file contains Vendor Portal Scenarios
 #	And user views ASN, get and verify item details  
 #	Then user opens ASN screen and navigate to LPNs Tab and verify its status "In-Transit"
 #	Then user log out from application 		
-#				
+##				
 #@InBoundScenario_VP_APC_Test_02	@IBRegScenarios_VP_APC @DailyRegression_VP_APC
 #Scenario:  Create and Upload X12 file Using Kelli with serial Item and Veirify ASN and LPN Staus in Manhattan. 
 # 	Given I have excel data
