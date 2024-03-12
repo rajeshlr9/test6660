@@ -127,6 +127,7 @@ Scenario: Uploading the Single ASNLoad file for FUJ Using Kelli and validating o
 #	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 #	Then user search for the LPN in iLPN screen, and validate the lock code
 #	Then user log out from application 
+#
 
 @THMOutBound @DailyRegression_THM @OBRegScenarios_THM
 Scenario: Create an order using O2S application. 
