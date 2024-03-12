@@ -44,7 +44,7 @@ Scenario: Uploading the Single ASNLoad file for FUJ Using Kelli and validating o
 	And user open reserve locations and naviagtes to validate iLPN 
 	Then user log out from application 	
 	
-@TRN002 @TRN_KelliASNLoad @DailyRegression_TRN @IBRegScenarios_TRN
+@TRN002 @TRN_KelliASNLoad @DailyRegression_TRN @IBRegScenarios_TRN_1
 Scenario: Uploading the Single ASNLoad file for FUJ Using Kelli and validating order created in Manhattan Successfully
  	Given I have excel data
 	| TRN_KelliScenario002 |

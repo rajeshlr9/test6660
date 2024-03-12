@@ -558,7 +558,8 @@ driver.switchTo().frame(0);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, locationBarcodetxtBox, 20);
 			locationBarcodetxtBox.sendKeys(Items.getupdtLoc());
 			//locationBarcodetxtBox.sendKeys("RPL6129J01S7");
-			
+			Reporter.addStepLog("Updated Location entered-> " + Items.getupdtLoc());
+
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, ApplyBtn, 20);
 			ApplyBtn.click();

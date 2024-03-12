@@ -862,6 +862,7 @@ public class StepDefInBound {
 	@And("^user open reserve locations and naviagtes to validate iLPN$")
 	public void  user_open_reserve_locations_and_naviagtes_to_validate_iLPN() throws Exception {
 		try {
+			System.out.println("Validate iLPN in Reserve Location page");
 			String account = Config.getProperty("Account");
 			homePage.MenuItems_Configuration_Selection("Reserve Locations");
 			Steps.logger.info("Open Reserve Locations");

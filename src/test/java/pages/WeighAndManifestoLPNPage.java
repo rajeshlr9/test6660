@@ -125,14 +125,17 @@ public class WeighAndManifestoLPNPage {
 			//Thread.sleep(2000);
 			SeleniumTestHelper.WaitForPageLoad();
 			System.out.println(manifestedStatus.getText());
+			System.out.println("Manifested status"+manifestedStatus.getText());
 			SeleniumTestHelper.assertEquals(manifestedStatus.getText(), olpnStatus);
 			SeleniumTestHelper.assertEquals(manifestedStatus.isDisplayed(), true);
-
+			//FedEx Express Priority - Intl-E269 - E269
+			//FedEx Express Priority - Intl-E269
 		}
 		exitBtn.click();
 		//Thread.sleep(5000);
 		SeleniumTestHelper.WaitForPageLoad();
 		Steps.logger.info("Weigh and Manifest of oLPN done successfully");
+		System.out.println("Weigh and Manifest of oLPN done successfully");
 		homepage.user_closes_openedwindow("Weigh and Manifest oLPN - Weigh and...");
 		
 	}

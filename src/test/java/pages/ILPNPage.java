@@ -359,7 +359,7 @@ public class ILPNPage {
 		SeleniumTestHelper.switchToInnerFrame(driver);
 		//for (i = 0, j = 0; i < RFMenuPage.iLPNz.size(); i++) {
 		for (i = 0, j = 0; i < Items.getLpnsLength(); i++) {
-			//lpn = RFMenuPage.iLPNz.get(i);//
+			//lpn = RFMenuPage.iLPNz.get(i);
 			lpn = Items.getLpns(i);
 			searchForTheILPNAndViewIt(lpn);
 			System.out.println("lpn "+lpn);
