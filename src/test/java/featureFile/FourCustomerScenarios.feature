@@ -23,7 +23,7 @@ Scenario: Uploading the Single ASNLoad file for THH using Kelli and validating o
 	And user open reserve locations and naviagtes to validate iLPN 
 	Then user log out from application 
 	
-@TRN001 @TRN_KelliASNLoad @DailyRegression_TRN @IBRegScenarios_TRN
+@TRN001 @TRN_KelliASNLoad @DailyRegression_TRN @IBRegScenarios_TRN_1
 Scenario: Uploading the Single ASNLoad file for FUJ Using Kelli and validating order created in Manhattan Successfully
  	Given I have excel data
 	| TRN_KelliScenario001 |
@@ -44,7 +44,7 @@ Scenario: Uploading the Single ASNLoad file for FUJ Using Kelli and validating o
 	And user open reserve locations and naviagtes to validate iLPN 
 	Then user log out from application 	
 	
-@TRN002 @TRN_KelliASNLoad @DailyRegression_TRN @IBRegScenarios_TRN_1
+@TRN002 @TRN_KelliASNLoad @DailyRegression_TRN @IBRegScenarios_TRN
 Scenario: Uploading the Single ASNLoad file for FUJ Using Kelli and validating order created in Manhattan Successfully
  	Given I have excel data
 	| TRN_KelliScenario002 |
@@ -127,7 +127,6 @@ Scenario: Uploading the Single ASNLoad file for FUJ Using Kelli and validating o
 #	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 #	Then user search for the LPN in iLPN screen, and validate the lock code
 #	Then user log out from application 
-#
 
 @THMOutBound @DailyRegression_THM @OBRegScenarios_THM
 Scenario: Create an order using O2S application. 
