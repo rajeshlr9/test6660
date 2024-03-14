@@ -107,7 +107,7 @@ Scenario: Uploading the Single ASNLoad file for THM Using Kelli and validating o
 	And user open reserve locations and naviagtes to validate iLPN 
 	Then user log out from application
 
-@THM002 @THM_MultilineASNLoadUsingKelli @DailyRegression_THM @IBRegScenarios_THM
+@THM002 @THM_MultilineASNLoadUsingKelli @DailyRegression_THM @IBRegScenarios_THM_1
 Scenario: Multiline ASNLoad having Normal and serial Tracked items using Kelli for THM. Validate Receiving and Putaway.
  	Given I have excel data
 	| THM_KelliScenario002 |
