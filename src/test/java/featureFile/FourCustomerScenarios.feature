@@ -1,4 +1,4 @@
-Feature: Four Customer scenarios
+Feature: Four Customer scenarios Testing
 
 @THH001 @SingleLine_THH @DailyRegression_THH @IBRegScenarios_THH
 Scenario: ASN Load using Kelli for SingleLine Serial Tracked Item.Complete Putaway.
