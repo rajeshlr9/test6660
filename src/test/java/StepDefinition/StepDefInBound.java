@@ -509,6 +509,17 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
+	@And("^verify ASN not created and reached to Manhattan$")
+	public void verify_ASN_Not_ReachedTo_Manhattan() {
+		try {
+			asnsPage.verifyASNNotReachedToManhattan(KelliPages.partialASNValue);
+			Reporter.addStepLog("ASN not created and reached to Manhattan");
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
 
 	@Then("^user opens ASN screen and searches for the ASN to be not available in Manhattan$")
 	public void user_opens_ASN_screen_and_searches_for_the_ASN_to_be_not_available_in_Manhattan() throws Exception {

@@ -1,7 +1,7 @@
 Feature: Four Customer scenarios
 
-@THH001 @THH_KelliASNLoad @DailyRegression_THH @IBRegScenarios_THH
-Scenario: Uploading the Single ASNLoad file for THH using Kelli and validating order created in Manhattan Successfully
+@THH001 @SingleLine_THH @DailyRegression_THH @IBRegScenarios_THH
+Scenario: ASN Load using Kelli for SingleLine Serial Tracked Item.Complete Putaway.
  	Given I have excel data
 	| THH_KelliScenario002 |
 	And Open the chrome browser by selenium
@@ -23,7 +23,43 @@ Scenario: Uploading the Single ASNLoad file for THH using Kelli and validating o
 	And user open reserve locations and naviagtes to validate iLPN 
 	Then user log out from application 
 	
-@TRN001 @TRN_KelliASNLoad @DailyRegression_TRN @IBRegScenarios_TRN_1
+@THH002 @MultiLineLotSerialTrackedASN_THH @IBRegScenarios_THH @Regression_THH
+Scenario: Multiline ASNLoad having Serial Tracked and Lot Revision Serial Tracked items using Kelli for THM. 
+ 	Given I have excel data
+	| THH_KelliScenario003 |
+	And Open the chrome browser by selenium
+	And user logs into the kelli application 
+	When user updates data in "Multi Line ASN" Kelli Upload Sheet
+	And user upload the "Multi Line ASN" Load file in Kelli
+	Then user logout from the kelli application
+	And user logs into the Manhattan application
+	And fetches the actual ASN number and PO Number uploaded from Kelli
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
+	And user views ASN, get and verify item details 
+	#And user opens RF menu and completes Receiving using "MM3 Recv-CASE" menu
+	#Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
+	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	And user opens Items screen and find putaway type 
+	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
+	Then user search for the LPN in iLPN screen, and validate the lock code
+	And user open reserve locations and naviagtes to validate iLPN 
+	Then user log out from application 	
+	
+@THH003 @InvalidItemASN_THH @IBRegScenarios_THH @Regression_THH
+Scenario: Receiving Case : Single Line, Single iLPN with invalid item
+Create ASN using Kelli for Singleline ASN Load having Invalid Item. Validate ASN should not available in Manhattan.
+	Given I have excel data
+	| THH_KelliScenario004 |
+	And Open the chrome browser by selenium
+	And user logs into the kelli application 
+	When user updates data in "Single Line ASN - InvalidItem" Kelli Upload Sheet
+	And user upload the "Single Line ASN - InvalidItem" Load file in Kelli
+	Then user logout from the kelli application
+	And user logs into the Manhattan application
+	And verify ASN not created and reached to Manhattan
+	
+@TRN001 @TRN_KelliASNLoad @DailyRegression_TRN @IBRegScenarios_TRN
 Scenario: Uploading the Single ASNLoad file for TRN Using Kelli and validating order created in Manhattan Successfully
  	Given I have excel data
 	| TRN_KelliScenario001 |
@@ -65,6 +101,19 @@ Scenario: Uploading the Single ASNLoad file for TRN Using Kelli and validating o
 	And user open reserve locations and naviagtes to validate iLPN 
 	Then user log out from application 	
 	
+@TRN003 @InvalidItemASN_TRN @IBRegScenarios_TRN @Regression_TRN
+Scenario: Receiving Case : Single Line, Single iLPN with invalid item
+Create ASN using Kelli for Singleline ASN Load having Invalid Item. Validate ASN should not available in Manhattan.
+	Given I have excel data
+	| TRN_KelliScenario003 |
+	And Open the chrome browser by selenium
+	And user logs into the kelli application 
+	When user updates data in "Single Line ASN - InvalidItem" Kelli Upload Sheet
+	And user upload the "Single Line ASN - InvalidItem" Load file in Kelli
+	Then user logout from the kelli application
+	And user logs into the Manhattan application
+	And verify ASN not created and reached to Manhattan
+		
 @ILW001 @ILW_KelliASNLoad @DailyRegression_ILW @IBRegScenarios_ILW
 Scenario: Uploading the Single ASNLoad file for ILW Using Kelli and validating order created in Manhattan Successfully
  	Given I have excel data
@@ -85,6 +134,40 @@ Scenario: Uploading the Single ASNLoad file for ILW Using Kelli and validating o
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
 	Then user log out from application 
+	
+@ILW002 @ILW_KelliASNLoad @DailyRegression_ILW @IBRegScenarios_ILW
+Scenario: Uploading the Single ASNLoad file for ILW Using Kelli and validating order created in Manhattan Successfully
+ 	Given I have excel data
+	| ILW_KelliScenario002 |
+	And Open the chrome browser by selenium
+	And user logs into the kelli application 
+	When user updates data in "Multi Line ASN" Kelli Upload Sheet
+	And user upload the "Multi Line ASN" Load file in Kelli
+	Then user logout from the kelli application
+	And user logs into the Manhattan application
+	And fetches the actual ASN number and PO Number uploaded from Kelli
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
+	And user views ASN, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	And user opens Items screen and find putaway type 
+	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
+	Then user search for the LPN in iLPN screen, and validate the lock code
+	And user open reserve locations and naviagtes to validate iLPN 
+	Then user log out from application 
+
+@ILW003 @InvalidItemASN_ILW @IBRegScenarios_ILW @Regression_ILW
+Scenario: Receiving Case : Single Line, Single iLPN with invalid item
+Create ASN using Kelli for Singleline ASN Load having Invalid Item. Validate ASN should not available in Manhattan.
+	Given I have excel data
+	| ILW_KelliScenario003 |
+	And Open the chrome browser by selenium
+	And user logs into the kelli application 
+	When user updates data in "Single Line ASN - InvalidItem" Kelli Upload Sheet
+	And user upload the "Single Line ASN - InvalidItem" Load file in Kelli
+	Then user logout from the kelli application
+	And user logs into the Manhattan application
+	And verify ASN not created and reached to Manhattan
 	
 @THM001 @THM_KelliASNLoad @DailyRegression_THM @IBRegScenarios_THM
 Scenario: Uploading the Single ASNLoad file for THM Using Kelli and validating order created in Manhattan Successfully
@@ -107,8 +190,8 @@ Scenario: Uploading the Single ASNLoad file for THM Using Kelli and validating o
 	And user open reserve locations and naviagtes to validate iLPN 
 	Then user log out from application
 
-@THM002 @THM_MultilineASNLoadUsingKelli @DailyRegression_THM @IBRegScenarios_THM_1
-Scenario: Multiline ASNLoad having Normal and serial Tracked items using Kelli for THM. Validate Receiving and Putaway.
+@THM002 @THM_MultilineASNLoadUsingKelli @DailyRegression_THM @IBRegScenarios_THM
+Scenario: Multiline ASNLoad having Normal and serial Tracked items using Kelli for THM.
  	Given I have excel data
 	| THM_KelliScenario002 |
 	And Open the chrome browser by selenium
@@ -127,6 +210,21 @@ Scenario: Multiline ASNLoad having Normal and serial Tracked items using Kelli f
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
 	Then user log out from application
+	
+@THM003 @InvalidItemASN_THH @IBRegScenarios_THM @Regression_THM
+Scenario: Receiving Case : Single Line, Single iLPN with invalid item
+Create ASN using Kelli for Singleline ASN Load having Invalid Item. Validate ASN should not available in Manhattan.
+	Given I have excel data
+	| THM_KelliScenario003 |
+	And Open the chrome browser by selenium
+	And user logs into the kelli application 
+	When user updates data in "Single Line ASN - InvalidItem" Kelli Upload Sheet
+	And user upload the "Single Line ASN - InvalidItem" Load file in Kelli
+	Then user logout from the kelli application
+	And user logs into the Manhattan application
+	And verify ASN not created and reached to Manhattan
+	#Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
+	#Then user opens ASN screen and searches for the ASN to be not available in Manhattan 
 
 @THMOutBound @DailyRegression_THM @OBRegScenarios_THM
 Scenario: Create an order using O2S application for THM customer 
