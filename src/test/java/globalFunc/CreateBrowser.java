@@ -78,7 +78,8 @@ public class CreateBrowser {
 				
 			case "OCI_Windows-Chrome":
 				
-				System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
+				//System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
+				WebDriverManager.chromedriver().setup();
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("--start-maximized");
 				//this one below line is added for connection timeout issue if not work we will remove
