@@ -364,9 +364,14 @@ public class StepDefInBound {
 	@When("^user update \"([^\"]*)\" for dropping into fedexnet application$")
 	public void user_update_EDI_XML_file_for(String xmlType)	throws Exception {
 		try {
+			String account = Config.getProperty("Account");
 			Steps.logger.info("XML updation started");
 			xmlInput.user_create_EDI_file(xmlType);
-			xmlInput.user_modify_EDI_file(xmlType);
+			if(account.equalsIgnoreCase("TRN")) {
+				xmlInput.user_modify_EDIXml_file_(xmlType);
+			}else {
+				xmlInput.user_modify_EDI_file(xmlType);
+			}
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			System.out.println(e);

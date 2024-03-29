@@ -198,7 +198,8 @@ public class CreateBrowser {
 
 		case "OCI_Windows-Chrome":
 
-			System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
+			//System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
+			WebDriverManager.chromedriver().setup();
 			// Below 4 lines of code has been added for proxy settings
 			Proxy proxy = null;
 			if(setProxy) {
