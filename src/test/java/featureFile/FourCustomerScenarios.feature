@@ -121,8 +121,8 @@ Create ASN using Kelli for Singleline ASN Load having Invalid Item. Validate ASN
 	#Then user opens ASN screen and searches for the ASN to be not available in Manhattan 
 
 @TRN001 @SingleLine_TRN @Regression_TRN @IBRegScenarios_TRN
-Scenario: Receiving Case : SingleLine ASNLoad file for TRN Using Kelli for Item with Seriazlized Tracked.Complete Putaway.
-Creating ASN through Kelli, checking status of the shipment for Single Line Serial Tracked Item. Complete Putaway.
+Scenario: Receiving Case : MultiLine ASNLoad file for TRN Using  Kelli for Normal Items with different UOM.Complete Putaway.
+Creating ASN through Kelli, checking status of the shipment for Multi Line Normal Item. Complete Putaway.
  	Given I have excel data
 	| TRN_KelliScenario001 |
 	And Open the chrome browser by selenium
@@ -143,8 +143,9 @@ Creating ASN through Kelli, checking status of the shipment for Single Line Seri
 	Then user log out from application 	
 	
 @TRN002 @MultiLine_TRN @Regression_TRN @IBRegScenarios_TRN
-Scenario: Receiving Case :  MultiLine ASNLoad file for TRN Using Kelli for Normal Items with different UOM. Complete Putaway.
-Creating ASN through Kelli, checking status of the shipment for Multi Line Normal Item. Complete Putaway.
+Scenario: Receiving Case :  MultiLine ASNLoad file for TRN Using Kelli for Item with Serial Tracked. Complete Putaway.
+Creating ASN through Kelli, checking status of the shipment for Single Line Serial Tracked Item. Complete Putaway.
+
  	Given I have excel data
 	| TRN_KelliScenario002 |
 	And Open the chrome browser by selenium

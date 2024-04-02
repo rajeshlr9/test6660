@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FGSCSSTDShipNotify>
+    <FGSCSHdr>
+        <CrtDtTm>20240325140001</CrtDtTm>
+        <MsgID>24032501</MsgID>
+        <MsgType>856</MsgType>
+        <SndTPQualCD>ZZ</SndTPQualCD>
+        <SndTP>THALESHSI</SndTP>
+        <RcvTPQualCD>ZZ</RcvTPQualCD>
+        <RcvTP>FSCS</RcvTP>
+    </FGSCSHdr>
+    <ShipNotifHdrLp>
+        <ShipID>24032501</ShipID>
+        <AdrLp>
+            <AdrType>RC</AdrType>
+            <AdrIDQual>54</AdrIDQual>
+            <AdrID>MEM1</AdrID>
+        </AdrLp>
+        <RefLp>
+            <RefIDQual>BM</RefIDQual>
+            <RefID>785978591877</RefID>
+        </RefLp>
+        <ShipOrdLp>
+            <OrdNbr>24032501</OrdNbr>
+            <ShipLineItemLp>
+                <ItemID>1374-200-002</ItemID>
+                <ItemShipQty>1</ItemShipQty>
+                <ShipLineItemAttrLp>
+                    <SerialNo>240325011</SerialNo>
+                </ShipLineItemAttrLp>
+            </ShipLineItemLp>
+        </ShipOrdLp>
+    </ShipNotifHdrLp>
+</FGSCSSTDShipNotify>
