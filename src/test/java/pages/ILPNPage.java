@@ -664,15 +664,9 @@ public void adjustiLPNQuantityWith(String adjust, int noOfItem) throws Exception
 	
 		public String searchForTheILPNAndFetchSerialNumber(String iLPN) throws Exception {
 							
-				//homePage.MenuItems_Configuration_Selection("iLPNs");
 				homePage.MenuItems_Distribution_Selection("iLPNs");
-				//Thread.sleep(5000);
-				//SeleniumTestHelper.switchToInnerFrame(driver);
-				driver.switchTo().defaultContent();
-				driver.switchTo().frame(1);
-				
+				SeleniumTestHelper.switchToInnerFrame(driver);
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, inputLPNSearchTextBox, 50);
-				//driver.findElement(By.xpath("//input[@id='dataForm:LPNListInOutboundMain_lv:LPNList_Inbound_filterId1:field10value1']")).clear();
 				inputLPNSearchTextBox.clear();
 				inputLPNSearchTextBox.sendKeys(iLPN);
 				Screenshots.captureSnapshot(driver);

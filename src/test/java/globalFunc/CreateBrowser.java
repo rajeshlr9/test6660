@@ -78,7 +78,8 @@ public class CreateBrowser {
 				
 			case "OCI_Windows-Chrome":
 				
-				System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
+				WebDriverManager.chromedriver().setup();
+				//System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("--start-maximized");
 				//this one below line is added for connection timeout issue if not work we will remove
@@ -103,9 +104,10 @@ public class CreateBrowser {
 				break;
 				
 			case "@Platform":
+				ChromeOptions options2 = new ChromeOptions();
 				WebDriverManager.chromedriver().setup();
 				//System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
-				ChromeOptions options2 = new ChromeOptions();
+				
 				options2.addArguments("--start-maximized");
 				Map<String, Object> prefs2 = new HashMap<String, Object>();
 				prefs2.put("plugins.plugins_disabled", new String[] { "Chrome PDF Viewer"});
@@ -121,6 +123,7 @@ public class CreateBrowser {
 
 				seleniumDriver = new ChromeDriver(options2);
 				seleniumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				System.out.println(options2.getVersion());
 				//seleniumDriver.manage().deleteAllCookies();
 				Steps.logger.info("Chrome browser is open");
 				break;
@@ -196,8 +199,8 @@ public class CreateBrowser {
 			break;
 
 		case "OCI_Windows-Chrome":
-
-			System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
+			WebDriverManager.chromedriver().setup();
+			//System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
 			// Below 4 lines of code has been added for proxy settings
 			Proxy proxy = null;
 			if(setProxy) {

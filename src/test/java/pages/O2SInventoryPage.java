@@ -36,7 +36,8 @@ public class O2SInventoryPage {
 	@FindBy(xpath = "//input[@id='inputInboundForm:submitBtn']")
 	public WebElement continueBtn;
 
-	@FindBy(xpath = "//table[@id='inputInboundForm:whItems']//tr//td[7]/span")
+	//@FindBy(xpath = "//table[@id='inputInboundForm:whItems']//tr//td[7]/span")
+	@FindBy(xpath = "//table[@id='inputInboundForm:whItems']//tr//td[7]")
 	public WebElement inventoryAvailable;
 	
 	@FindBy(xpath = "//*[@id='LoadingDisplayBox']")
@@ -45,6 +46,10 @@ public class O2SInventoryPage {
 	@FindBy(xpath = "//span[@id='inputForm:findInventoryOutboundRequestedItems:reqItems:0:notes:0:noteError']")
 	public WebElement itemNotFoundError;
 		
+	
+	@FindBy(xpath = "//*[@id='inputForm:selectUom']")
+	public WebElement UOM;
+	
 	/**
 	 * This method use for add items in add inventory step
 	 * @throws Exception
@@ -77,6 +82,8 @@ public class O2SInventoryPage {
 		// SeleniumTestHelper.enterTextInTextBox(itemQty, "1");
 		Steps.logger.info("Enter item Qty");
 		//Thread.sleep(5000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, UOM, 180);
+		SeleniumTestHelper.selectFromDropDown(UOM, Steps.ItemDataMap.get(i).get("UOM"), "value");
 		SeleniumTestHelper.WaitForPageLoad(3000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, addItem, 180);
 		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(addItem));

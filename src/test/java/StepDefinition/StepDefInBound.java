@@ -1658,4 +1658,19 @@ public class StepDefInBound {
 		}
 	}
 
+	@Then("^user Search Order And verify status of order is \"([^\"]*)\" and Item status is \"([^\"]*)\"$")
+	public void user_Search_Order_And_Verify_Status_of_order(String orderStatus, String ItemStatus) throws Throwable {
+		try {
+			
+			o2sHomePage.moveToSearchOrderMenuandClickSearchOrder();
+			o2sSearchOrderDetails.enterOrderNumberToSearchDetails2();
+			o2sSearchOrderDetails.verifyTheOrderStatusandItemStatus(orderStatus,ItemStatus);
+			Steps.logger.info("Verify the order number generated");
+
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
 }

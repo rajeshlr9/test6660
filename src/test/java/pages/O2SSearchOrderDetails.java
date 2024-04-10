@@ -42,6 +42,11 @@ public class O2SSearchOrderDetails {
 	@FindBy(xpath = "//*[@id='ulaitem0z1']")
 	public WebElement createBtn;
 	
+	@FindBy(xpath = "//span[@id='orderSearchform:resultTable:0:erpstatusVal']")
+	public WebElement ItemStatus;
+	
+	@FindBy(xpath = "//span[@id='orderSearchform:resultTable:0:cancelledVal']")
+	public WebElement o2sOrderStatus;
 	/**
 	 * This method checkOrderSummaryPage ensure Order has been created successfully
 	 * @throws Exception
@@ -50,6 +55,15 @@ public class O2SSearchOrderDetails {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, orderNumberTextField, 180);
 		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(orderNumberTextField));
 		SeleniumTestHelper.enterTextInTextBox(orderNumberTextField, Items.getDONumber());
+		Steps.logger.info("Order number enetered successfully...");
+		SeleniumTestHelper.click(searchButton);
+		Reporter.addStepLog("User entered the order number in search page and clicked on search");
+		Thread.sleep(5000);
+	}
+	public void enterOrderNumberToSearchDetails2() throws Exception {
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, orderNumberTextField, 180);
+		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(orderNumberTextField));
+		SeleniumTestHelper.enterTextInTextBox(orderNumberTextField, Items.getO2SOrderID());
 		Steps.logger.info("Order number enetered successfully...");
 		SeleniumTestHelper.click(searchButton);
 		Reporter.addStepLog("User entered the order number in search page and clicked on search");
@@ -91,6 +105,35 @@ public class O2SSearchOrderDetails {
 		Steps.logger.info("Clicked on Create Button");
 		//Thread.sleep(10000);
 		SeleniumTestHelper.WaitForPageLoad(3000);
+	}
+	
+	public void verifyTheOrderStatusandItemStatus(String OrderStatus1,String ItemStatus1) throws Exception {
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, orderNumberInSearchResultTable, 180);
+		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(orderNumberInSearchResultTable));
+		Thread.sleep(5000);
+		SeleniumTestHelper.assertNotNull(orderNumberInSearchResultTable.getText());
+		System.out.println("Order Number displayed = "+orderNumberInSearchResultTable.getText());
+		Steps.logger.info("The Order Number displayed in search page is : " + orderNumberInSearchResultTable.getText());
+		//SeleniumTestHelper.waitForElementToBeDisplayed(driver, orderStatus, 180);
+		int counter=0;
+		while(!SeleniumTestHelper.isElementDisplayed(orderStatus)){
+			Thread.sleep(10000);
+			SeleniumTestHelper.click(searchButton);
+			counter++;
+			if(counter==9) {
+				break;
+			}
+		}
+		
+		SeleniumTestHelper.assertEquals(o2sOrderStatus.getText(),OrderStatus1);
+		Reporter.addStepLog("Order status is ..." + o2sOrderStatus.getText());
+		
+		SeleniumTestHelper.assertEquals(ItemStatus.getText(),ItemStatus1);
+		Reporter.addStepLog("Item status is ..." + ItemStatus.getText());
+		//Screenshots.captureSnapshot(driver);
+		//Thread.sleep(10000);
+		//SeleniumTestHelper.WaitForPageLoad(3000);
+
 	}
 	
 	

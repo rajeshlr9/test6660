@@ -30,6 +30,9 @@ public class DistributionOrdersPage {
 	String pulllocationvalue;
 	WavesPage wavespage = new WavesPage();
 	HomePage homepage = new HomePage();
+	//raks 100424
+	ILPNPage ilpnPage = new ILPNPage();
+	
 	List<String> List_Shippedqty = new ArrayList<String>();
 	List<String> List_ShippedqtyUOM = new ArrayList<String>();
 	List<String> List_ItemName = new ArrayList<String>();
@@ -68,7 +71,7 @@ public class DistributionOrdersPage {
 	public WebElement distributionOrderIDtxt;
 	@FindBy(xpath = "//input[@id='rmButton_1SubmitWave1_100215000']")
 	public WebElement submitWaveBtn;
-	@FindBy(xpath = "//span[.='Edit Header']")
+	@FindBy(xpath = "//input[@id='dataForm:ViewLPNMain_EditHeaderbutton']")
 	public WebElement editHeaderBtn;
 	@FindBy(xpath = "//select[@id='dataForm:DOEdit_HeaderTab_Drop_Shipvia']")
 	public WebElement shipViaDdl;
@@ -339,8 +342,28 @@ public class DistributionOrdersPage {
 	@FindBy(xpath = "(//label[text()='Optional Fields']//following::input[@role='combobox' and @data-ref='inputEl'])[2]") 
 	public WebElement optionalField;
 	
+	//raks 100424
 	@FindBy(xpath = "(//label[text()='Optional Fields']//following::input[@role='textbox' and @data-ref='inputEl'])[1]") 
 	public WebElement optionalFieldInputText;
+	
+	@FindBy(xpath = "//span[@id='dataForm:DODetailsLpnList_lv:LPNListTable:0:LPNListTPM_Link_NameText_param_out']")
+	public WebElement olpnVal;	
+	
+	@FindBy(xpath = "//a[@id='LPN_Header_Tab_lnk']")
+	public WebElement headerTab;
+	
+	@FindBy(xpath = "//div[@id='CONT_dataForm:LPN_Header_Tab']//following::span[@id='dataForm:ViewLPNHeader_ReferenceLPNNbr_outputText66']")
+	public WebElement refiLPN;
+	
+	@FindBy(xpath = "//span[text()='DGREQUIRED:']/following::span[2]")
+	public WebElement dGRequiredStatus;
+	
+	@FindBy(xpath = "//input[@id='dataForm:EditLPNHeaderOutbound_TrackingNbr_inputText']")
+	public WebElement trackingNbr;
+	
+	@FindBy(xpath = "//div[@id='soheaderbuttons_edh']")
+	public WebElement saveBtnHdrPage;
+	//---
 	
 	public void getDO() throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
@@ -400,6 +423,8 @@ public class DistributionOrdersPage {
 		distributionOrderID.sendKeys(Items.getDONumber());
 		Screenshots.captureSnapshot(driver);
 		apply_Btn.click();
+		//raks 100424
+		SeleniumTestHelper.WaitForPageLoad(15000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
 		Screenshots.captureSnapshot(driver);
 		//Thread.sleep(3000);
@@ -1038,7 +1063,7 @@ public class DistributionOrdersPage {
 		Screenshots.captureSnapshot(driver);
 		apply_Btn.click();
 		int temp = 0;
-		while ((temp != 3)) {
+		while ((temp != 10)) {
 			if(SeleniumTestHelper.isElementDisplayed(loadMask)) {
 			SeleniumTestHelper.WaitForPageLoad(5000);
 			}else {
@@ -1743,6 +1768,11 @@ public class DistributionOrdersPage {
 		String account = ManhattanLoginPage.account;
 		if (account.equalsIgnoreCase("QSC") || account.equalsIgnoreCase("@Account")) {
 			rsnCode.sendKeys("CP – Cancel Request – Processed Order");
+		}
+		//raks 100424
+		else if(account.equalsIgnoreCase("THH") || account.equalsIgnoreCase("THM")|| account.equalsIgnoreCase("TRN")|| account.equalsIgnoreCase("ILW")) {
+			rsnCode.sendKeys("CR – Cancel Request – Processed Order");
+		//-------
 		} else {
 			rsnCode.sendKeys("UD - OEM Damage");
 		}
@@ -2380,11 +2410,11 @@ public class DistributionOrdersPage {
 		SeleniumTestHelper.WaitForPageLoad(5000);
 		Screenshots.captureSnapshot(driver);
 		apply_Btn.click();
-		
+		SeleniumTestHelper.WaitForPageLoad(20000);
 		int temp = 0;
 		while ((temp != 3)) {
 			if(SeleniumTestHelper.isElementDisplayed(loadMask)) {
-			SeleniumTestHelper.WaitForPageLoad(5000);
+			SeleniumTestHelper.WaitForPageLoad(15000);
 			}else {
 				break;
 			}
@@ -2458,4 +2488,116 @@ public class DistributionOrdersPage {
 		SeleniumTestHelper.Close_OpenedWindow("DO Detail - Distribution Order", driver);
 	}
 
+	//raks 100424
+	public void fetchReferenceiLPNnumber() throws Exception {
+		System.out.println("Fetch ILPN -");
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		System.out.println("DISTRIBUTION");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		primaryField.sendKeys("Distribution Order");
+		System.out.println("sendkeys");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		System.out.println("click");
+
+		distributionOrderID.sendKeys(Items.getDONumber()); // DistributionOrders.getDOnumber()
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
+		viewBtn.click();
+		homepage.user_closes_openedwindow("Distribution Orders");
+		homepage.openWindows.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, lPNSTab, 50);
+		lPNSTab.click();
+		
+		Thread.sleep(5000);
+		//click the oLPN
+		SeleniumTestHelper.click(olpnVal);
+		
+		SeleniumTestHelper.WaitForPageLoad(3000);
+		SeleniumTestHelper.click(headerTab);
+		
+		String refIlpn = refiLPN.getText();
+		System.out.println("refIlpn: "+refIlpn);
+		homepage.user_closes_openedwindow("DO Detail - oLPN Details");
+		
+		String FirstSerialNum = ilpnPage.searchForTheILPNAndFetchSerialNumber(refIlpn);
+		System.out.println("FirstSerialNum: "+FirstSerialNum);
+		Items.setRefSerialNum(FirstSerialNum);
+	}
+	
+	public void getdGRequiredSstatus(String status) throws Exception {
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		distributionOrderID.sendKeys(Items.getDONumber()); // DistributionOrders.getDOnumber()
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
+		viewBtn.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.WaitForPageLoad(3000);
+		SeleniumTestHelper.assertEquals(dGRequiredStatus.getText(), status);
+		System.out.println("DGRequiredStatus is Yes");
+		Reporter.addStepLog("DGRequiredStatus is Yes");	
+		Thread.sleep(5000);
+		homepage.user_closes_openedwindow("Distribution Orders");
+		//Thread.sleep(3000);
+		SeleniumTestHelper.WaitForPageLoad();
+		SeleniumTestHelper.Close_OpenedWindow("DO Detail - Distribution Order", driver);
+		
+	}
+	
+	public void updatetrackingNumberInHeader() throws Exception {
+		System.out.println("Update header Tracking Number : ");
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		System.out.println("DISTRIBUTION");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		primaryField.sendKeys("Distribution Order");
+		System.out.println("sendkeys");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		distributionOrderID.click();
+		System.out.println("click");
+
+		distributionOrderID.sendKeys(Items.getDONumber());
+		
+		// DistributionOrders.getDOnumber()
+		apply_Btn.click();
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
+		viewBtn.click();
+		homepage.user_closes_openedwindow("Distribution Orders");
+		homepage.openWindows.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, lPNSTab, 50);
+		lPNSTab.click();
+		
+		Thread.sleep(5000);
+		//click the oLPN
+		SeleniumTestHelper.click(olpnVal);
+		
+		SeleniumTestHelper.WaitForPageLoad(3000);
+		SeleniumTestHelper.click(headerTab);
+		SeleniumTestHelper.WaitForPageLoad(3000);
+		SeleniumTestHelper.click(editHeaderBtn);
+		SeleniumTestHelper.WaitForPageLoad(3000);
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, trackingNbr, 50);
+		globalFunc.DateTime.TimeDateFunc();
+		String newSerial = globalFunc.DateTime.strDate6;
+		trackingNbr.sendKeys(newSerial);
+		SeleniumTestHelper.WaitForPageLoad(3000);
+		saveBtnHdrPage.click();
+		SeleniumTestHelper.WaitForPageLoad(3000);
+		homepage.user_closes_openedwindow("DO Detail - oLPN Details");
+		
+		
+	//----------	
+	}
 }

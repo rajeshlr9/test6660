@@ -878,6 +878,12 @@ public class RFMenuPage {
 	@FindBy(xpath = "//div[@id='dataForm:id_101']/div[contains(text(),'BX')]")
 	public WebElement suggestQty2;
 	
+	@FindBy(xpath = "//div[@id='dataForm:id_101']/div[contains(text(),'CA')]")
+	public WebElement suggestQty3;
+	
+	@FindBy(xpath = "//div[@id='dataForm:id_101']/div[contains(text(),'RL')]")
+	public WebElement suggestQty4;
+	
 	@FindBy(xpath = "//span[contains(text(),'LPN or Order :')]/following::input[@id='testt']")
 	public static WebElement lpnOrOrderInput;
 	
@@ -927,8 +933,8 @@ public class RFMenuPage {
 	@FindBy(xpath = "//a[text()='MM1 Anchor oLPN']")
 	public WebElement MM1AnchoroLPN;
 	
-	@FindBy(xpath = "//a[text()='MM1 Gen Pick']")
-	public WebElement MM1GenPick;
+	@FindBy(xpath = "//a[text()='MM1 Gen Pack']")
+	public WebElement MM1GenPack;
 	
 	@FindBy(xpath = "//a[text()='MM1 Locate Carton']")
 	public WebElement MM1LocateCarton;
@@ -8723,14 +8729,14 @@ public class RFMenuPage {
 			}
 			homepage.userClosesOpenedwindow("RF Menu");
 			break;
-		case "MM1 Gen Pick":
+		case "MM1 Gen Pack":
 			for (int i = 0; i < Items.getoLPNListSize(); i++) {
 				String scannedILPN = null;
-				while (!(SeleniumTestHelper.isElementDisplayed(MM1GenPick))) {
+				while (!(SeleniumTestHelper.isElementDisplayed(MM1GenPack))) {
 					pageDown.click();
 				}
-				SeleniumTestHelper.waitForElementToBeDisplayed(driver, MM1GenPick, 50);
-				MM1GenPick.click();
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, MM1GenPack, 50);
+				MM1GenPack.click();
 				Screenshots.captureSnapshot(driver);
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, palletizeILpnInput, 50);
 				// altiLPNBoxafterputaway.sendKeys(iLPNz.get(i));
@@ -8808,6 +8814,42 @@ public class RFMenuPage {
 					Screenshots.captureSnapshot(driver);
 					Thread.sleep(1000);
 					System.out.println(i + " done add qty");
+				}else if (SeleniumTestHelper.isElementDisplayed(suggestQty3)) {
+					String text = suggestQty3.getText();
+					System.out.println("Suggested Qty"+text);
+					String split[] = text.split("Qty: ");
+					String split2[] = split[1].split(" ");
+					System.out.println("Suggested Qty-"+text);
+
+					qty = split2[0].trim();
+					System.out.println("Suggested Qty: " + qty);
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, qtyInputBx, 5);
+					qtyInputBx.sendKeys(qty);
+					Screenshots.captureSnapshot(driver);
+					SeleniumTestHelper.assertTrue(qtyInputBx.isDisplayed());
+					qtyInputBx.sendKeys(Keys.ENTER);
+					Thread.sleep(1000);
+					Screenshots.captureSnapshot(driver);
+					Thread.sleep(1000);
+					System.out.println(i + " done add qty");
+				}else if (SeleniumTestHelper.isElementDisplayed(suggestQty4)) {
+					String text = suggestQty4.getText();
+					System.out.println("Suggested Qty"+text);
+					String split[] = text.split("Qty: ");
+					String split2[] = split[1].split(" ");
+					System.out.println("Suggested Qty-"+text);
+
+					qty = split2[0].trim();
+					System.out.println("Suggested Qty: " + qty);
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, qtyInputBx, 5);
+					qtyInputBx.sendKeys(qty);
+					Screenshots.captureSnapshot(driver);
+					SeleniumTestHelper.assertTrue(qtyInputBx.isDisplayed());
+					qtyInputBx.sendKeys(Keys.ENTER);
+					Thread.sleep(1000);
+					Screenshots.captureSnapshot(driver);
+					Thread.sleep(1000);
+					System.out.println(i + " done add qty");
 				}
 				
 				while (SeleniumTestHelper.isElementDisplayed(serialNumberInputParcel)) {
@@ -8825,15 +8867,24 @@ public class RFMenuPage {
 					//SeleniumTestHelper.switchToInnerFrame(driver);
 					
 					// added for serial number while working ILW
-					globalFunc.DateTime.TimeDateFunc();
-					String newSerial = globalFunc.DateTime.strDate12;
-					String serial = "21" + newSerial;
-					Items.setAsnserialNumberList(serial);
-					//
-					serialNumberInputParcel.click();
-					serialNumberInputParcel.sendKeys(serial);
-					Screenshots.captureSnapshot(driver);
-					Thread.sleep(1000);
+					if(Steps.scenarioData.get("Serial Tracked").equals("Y")) {
+						serialNumberInputParcel.click();
+						serialNumberInputParcel.sendKeys(Items.getRefSerialNum());
+						System.out.println("Items.getRefSerialNum(): "+Items.getRefSerialNum());
+						Screenshots.captureSnapshot(driver);
+						Thread.sleep(1000);
+					}else {
+						globalFunc.DateTime.TimeDateFunc();
+						String newSerial = globalFunc.DateTime.strDate12;
+						String serial = "21" + newSerial;
+						Items.setAsnserialNumberList(serial);
+						//
+						serialNumberInputParcel.click();
+						serialNumberInputParcel.sendKeys(serial);
+						Screenshots.captureSnapshot(driver);
+						Thread.sleep(1000);
+					}
+					
 					// System.out.println("wait1");
 					serialNumberInputParcel.sendKeys(Keys.ENTER);
 					System.out.println("wait2");
@@ -8893,6 +8944,42 @@ public class RFMenuPage {
 					System.out.println(i + " done add qty");
 				}else if (SeleniumTestHelper.isElementDisplayed(suggestQty2)) {
 					String text = suggestQty2.getText();
+					System.out.println("Suggested Qty"+text);
+					String split[] = text.split("Qty: ");
+					String split2[] = split[1].split(" ");
+					System.out.println("Suggested Qty-"+text);
+
+					qty = split2[0].trim();
+					System.out.println("Suggested Qty: " + qty);
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, qtyInputBx, 5);
+					qtyInputBx.sendKeys(qty);
+					Screenshots.captureSnapshot(driver);
+					SeleniumTestHelper.assertTrue(qtyInputBx.isDisplayed());
+					qtyInputBx.sendKeys(Keys.ENTER);
+					Thread.sleep(1000);
+					Screenshots.captureSnapshot(driver);
+					Thread.sleep(1000);
+					System.out.println(i + " done add qty");
+				}else if (SeleniumTestHelper.isElementDisplayed(suggestQty3)) {
+					String text = suggestQty3.getText();
+					System.out.println("Suggested Qty"+text);
+					String split[] = text.split("Qty: ");
+					String split2[] = split[1].split(" ");
+					System.out.println("Suggested Qty-"+text);
+
+					qty = split2[0].trim();
+					System.out.println("Suggested Qty: " + qty);
+					SeleniumTestHelper.waitForElementToBeDisplayed(driver, qtyInputBx, 5);
+					qtyInputBx.sendKeys(qty);
+					Screenshots.captureSnapshot(driver);
+					SeleniumTestHelper.assertTrue(qtyInputBx.isDisplayed());
+					qtyInputBx.sendKeys(Keys.ENTER);
+					Thread.sleep(1000);
+					Screenshots.captureSnapshot(driver);
+					Thread.sleep(1000);
+					System.out.println(i + " done add qty");
+				}else if (SeleniumTestHelper.isElementDisplayed(suggestQty4)) {
+					String text = suggestQty4.getText();
 					System.out.println("Suggested Qty"+text);
 					String split[] = text.split("Qty: ");
 					String split2[] = split[1].split(" ");

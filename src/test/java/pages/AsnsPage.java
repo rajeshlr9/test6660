@@ -162,7 +162,7 @@ public class AsnsPage {
 		driver.findElement(By.xpath("//div[contains(text(),'Find ASN')]/following::input[2]")).sendKeys(asnId);
 		
 		int count = 0;
-		while (count < 3) {
+		while (count < 5) {
 			//Thread.sleep(60000);
 			Thread.sleep(10000);
 			System.out.println("Trying to click the Find Button and wait for ASN to get displayed..");

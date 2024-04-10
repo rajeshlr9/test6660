@@ -63,6 +63,10 @@ public class Items {
 	private static Map<String, String> taskVals = new HashMap<>();
 	private static String lotNumber;
 	private static String ediSerialNumber;
+	//raks 100424
+	public static String iLPNRef;
+	private static String RefSerialNum;
+	private static String O2SOrderID;
 	
 	public static String getItemName() {
 		return ItemName;
@@ -411,7 +415,7 @@ public class Items {
 	public static void setDONumber(String DONumber) {
 		Items.DONumber = DONumber;
 	}
-
+	
 	public static String getWaveNumber() {
 		return Items.waveNumber;
 	}
@@ -595,8 +599,10 @@ public class Items {
 		taskTypeValues.clear();
 		newlpnID.clear();
 		AsnserialNumberList.clear();
-
-
+		//raks 100424
+		iLPNRef= null;
+		RefSerialNum = null;
+		O2SOrderID = null;
 	}
 
 	public static String getPdfCOntent() {
@@ -630,5 +636,30 @@ public class Items {
 	public static void setEdiSerialNumber(String ediSerialNumber) {
 		Items.ediSerialNumber = ediSerialNumber;
 	}
+	
+	//raks 100424
+	public static String getiLPN() {
+		return iLPNRef;
+	}
 
+	public static void setiLPNRef(String iLPNRef1) {
+		Items.iLPNRef = iLPNRef1;
+	}
+
+	public static String getRefSerialNum() {
+		return RefSerialNum;
+	}
+
+	public static void setRefSerialNum(String RefSerialNum) {
+		Items.RefSerialNum = RefSerialNum;
+	}
+	
+	public static String getO2SOrderID() {
+		return O2SOrderID;
+	}
+
+	public static void setO2SOrderID(String O2SOrderID) {
+		Items.O2SOrderID = O2SOrderID;
+	}
 }
+

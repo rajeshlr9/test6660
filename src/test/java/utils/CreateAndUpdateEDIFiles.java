@@ -62,7 +62,8 @@ public class CreateAndUpdateEDIFiles {
 	public String SingleLineNormalItemOBFilePathwithInternationalOrder = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-SingleLine-InternationalOrder.x12";
 	public String SingleLineNormalItemOBFilePathwithTempStrip = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-SingleLine-TempStrip.x12";
 	public String SingleLineNormalItemOBFilePathWithLargeCost = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-SingleLine-LargeCost.x12";
-
+	
+	public String TRNSingleLineItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"TRN" + "/850/"+"TRN"+"-SerialTrackedItem-SingleLine.x12";
 	//public String APCMultilineLineInboundFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-LotItem-Multiline-WIP.x12";
 	public String MultiLineLotItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-LotItem-Multiline-WIP.x12";
 	public String MultiLineNormalItemOBFilePathProdStatus = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-MultilineProdStatusFile.x12";
@@ -72,6 +73,8 @@ public class CreateAndUpdateEDIFiles {
 	public String APCEDIInboundFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"-856_InputFile.x12";
 	public String APCEDIOutboundFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-850_InputFile.x12";
 
+	public String TRNEDIOutboundFilePath = dirPath + "/src/test/resources/testdata/"+"TRN" + "/850/"+"TRN"+"-850_InputFile.x12";
+	
 	public void user_create_EDI_file(String fileType)
 			throws FileNotFoundException, XPathExpressionException, IOException, SAXException,
 			ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
@@ -169,6 +172,14 @@ public class CreateAndUpdateEDIFiles {
 				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
 				user_copy_edi_file_content_from_source_to_target(SingleLineNormalItemOBFilePathWithLargeCost,
 						APCEDIOutboundFilePath);
+			}
+			
+			//TRN
+			else if (fileType.equals("TRN SingleLine DO - NormalItems")) {
+				Steps.logger.info("Contents Copy from : " + TRNSingleLineItemOBFilePath);
+				Steps.logger.info("Contents Copy to : " + TRNEDIOutboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(TRNSingleLineItemOBFilePath,
+						TRNEDIOutboundFilePath);
 			}
 		} 
 		}

@@ -411,7 +411,7 @@ public class StepDefOutBound {
 				}
 			}else if (acnt.equalsIgnoreCase("THM") || acnt.equalsIgnoreCase("THH") || acnt.equalsIgnoreCase("ILW") || acnt.equalsIgnoreCase("TRN")){
 				
-					rfMenu.completePickProcess("MM1 Gen Pick");
+					rfMenu.completePickProcess("MM1 Gen Pack");
 				
 			}
 			else {
@@ -576,6 +576,16 @@ public class StepDefOutBound {
 		}
 	}
 	
+	@Then("^fetch the ILPN number$")
+	public void fetch_ilpnReferenceVal()throws Exception {
+		try {
+			doPage.fetchReferenceiLPNnumber();
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
 	@Then("^fetch the OLPN number with only 30 weighed status$")
 	public void fetch_olpn_with_30Wegihed()throws Exception {
 		try {
@@ -781,5 +791,14 @@ System.out.println(e);
 		}
 	}
 	
+	@Then("^user verify the DGRequired Status as \"([^\"]*)\"$")
+	public void user_verify_the_DGRequired_Status(String status) throws Exception {
+		doPage.getdGRequiredSstatus(status);
+	}
+	
+	@Then("^user update the tracking number for DG item and save it in header$")
+	public void user_update_the_tracking_number_for_DG_item_and_save_it_in_header()throws Exception{
+		doPage.updatetrackingNumberInHeader();
+	}
 	
 }

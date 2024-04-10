@@ -57,6 +57,7 @@ public class O2SOrderSummaryPage {
 		SeleniumTestHelper.assertNotNull(orderNumber.getText());
 		System.out.println("Order Number  Generated Successfully = "+orderNumber.getText());
 		Items.setDONumber(orderNumber.getText());
+		Items.setO2SOrderID(orderNumber.getText());
 		Steps.logger.info("The Order Number Generated Succssfully : " + orderNumber.getText());
 		Reporter.addStepLog("Order created successfully..." + orderNumber.getText());
 		Thread.sleep(2000);

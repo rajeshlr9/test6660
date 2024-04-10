@@ -69,7 +69,11 @@ public class O2SHomePage {
 	@FindBy(xpath = "//*[@id='LoadingDisplayBox']")
 	public WebElement loadingDisplayBox;
 	
+	@FindBy(xpath = "//*[@id='identifyCustomerForm:firstNm']")
+	public WebElement custFirstName;
 	
+	@FindBy(xpath = "//*[@id='identifyCustomerForm:phone1']")
+	public WebElement custPhoneNum;
 	/**
 	 * This method logoutFormO2SApp use for logout from the O2S application 
 	 * @throws Exception
@@ -104,6 +108,7 @@ public class O2SHomePage {
 		SeleniumTestHelper.WaitForPageLoad();
 	}
 	
+	//4 Customer update
 	/**
 	 * This method createOrderFirstStep use for Create an Order using Caller ID and Location Code as first step
 	 * @throws Exception
@@ -143,14 +148,54 @@ public class O2SHomePage {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, locationCode, 180);
 		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(locationCode));
 		SeleniumTestHelper.scrollToElement(driver, locationCode);
+		System.out.println("O2S Loc ID: "+String.valueOf(Steps.scenarioData.get("O2S Loc ID")));
 		if (orderType.equalsIgnoreCase("retunItemAndReplace")) {
 			SeleniumTestHelper.enterTextInTextBox(locationCode, "1");
-		} else {
+		}else if(String.valueOf(Steps.scenarioData.get("O2S Loc ID")).equals("CANADA")){
+			
+			SeleniumTestHelper.enterTextInTextBox(locationCode, "CANADA");
+			SeleniumTestHelper.WaitForPageLoad(3000);
+			locationCode.sendKeys(Keys.ENTER);
+			SeleniumTestHelper.WaitForPageLoad(3000);
+			SeleniumTestHelper.enterTextInTextBox(custFirstName, String.valueOf(Steps.scenarioData.get("O2S F Name")));
+			SeleniumTestHelper.WaitForPageLoad(3000);
+			//custFirstName.sendKeys(Keys.ENTER);
+			//SeleniumTestHelper.WaitForPageLoad(3000);
+			SeleniumTestHelper.enterTextInTextBox(custPhoneNum, String.valueOf(Steps.scenarioData.get("O2S Contact")));
+			SeleniumTestHelper.WaitForPageLoad(3000);
+			//custPhoneNum.sendKeys(Keys.ENTER);
+			//SeleniumTestHelper.WaitForPageLoad(3000);
+		}
+		else if(String.valueOf(Steps.scenarioData.get("O2S Loc ID")).equals("MEM1")){
+			
+			SeleniumTestHelper.enterTextInTextBox(locationCode, "MEM1");
+			SeleniumTestHelper.WaitForPageLoad(3000);
+			locationCode.sendKeys(Keys.ENTER);
+			SeleniumTestHelper.WaitForPageLoad(3000);
+			SeleniumTestHelper.enterTextInTextBox(custFirstName, String.valueOf(Steps.scenarioData.get("O2S F Name")));
+			SeleniumTestHelper.WaitForPageLoad(3000);
+		//	custFirstName.sendKeys(Keys.ENTER);
+		//	SeleniumTestHelper.WaitForPageLoad(3000);
+			SeleniumTestHelper.enterTextInTextBox(custPhoneNum, String.valueOf(Steps.scenarioData.get("O2S Contact")));
+			SeleniumTestHelper.WaitForPageLoad(3000);
+		//	custPhoneNum.sendKeys(Keys.ENTER);
+		//	SeleniumTestHelper.WaitForPageLoad(3000);
+			
+		}
+		else if(String.valueOf(Steps.scenarioData.get("O2S Loc ID")).equals("5")) {
+			SeleniumTestHelper.enterTextInTextBox(locationCode, "5");
+			SeleniumTestHelper.WaitForPageLoad(3000);
+			locationCode.sendKeys(Keys.ENTER);
+			SeleniumTestHelper.WaitForPageLoad(3000);
+		}
+		else if(String.valueOf(Steps.scenarioData.get("O2S Loc ID")).equals("12")) {
 			SeleniumTestHelper.enterTextInTextBox(locationCode, "12");
+			SeleniumTestHelper.WaitForPageLoad(3000);
+			locationCode.sendKeys(Keys.ENTER);
+			SeleniumTestHelper.WaitForPageLoad(3000);
 		}
 		//Thread.sleep(5000);
-		SeleniumTestHelper.WaitForPageLoad(3000);
-		locationCode.sendKeys(Keys.ENTER);
+		
 		Steps.logger.info("Enter Location Code");
 		//Thread.sleep(5000);
 		SeleniumTestHelper.WaitForPageLoad(3000);
