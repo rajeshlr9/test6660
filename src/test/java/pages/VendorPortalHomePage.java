@@ -200,6 +200,7 @@ public class VendorPortalHomePage {
 	}
 	
 	public void clickOnLoadShipment() throws InterruptedException {
+		
 		Thread.sleep(2000);
 		System.out.println("Click on Load Shipment");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, loadShipmentButton, 180);

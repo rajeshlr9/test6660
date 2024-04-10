@@ -78,8 +78,9 @@ public class CreateBrowser {
 				
 			case "OCI_Windows-Chrome":
 				
-				WebDriverManager.chromedriver().setup();
+
 				//System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
+				WebDriverManager.chromedriver().setup();
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("--start-maximized");
 				//this one below line is added for connection timeout issue if not work we will remove
@@ -199,8 +200,9 @@ public class CreateBrowser {
 			break;
 
 		case "OCI_Windows-Chrome":
-			WebDriverManager.chromedriver().setup();
+
 			//System.setProperty("webdriver.chrome.driver", Steps.dir + "\\drivers\\chromedriver.exe");
+			WebDriverManager.chromedriver().setup();
 			// Below 4 lines of code has been added for proxy settings
 			Proxy proxy = null;
 			if(setProxy) {

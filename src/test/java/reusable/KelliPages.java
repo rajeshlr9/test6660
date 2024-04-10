@@ -57,14 +57,23 @@ public class KelliPages {
 	public String KelliASNfilePathForTHH = dir + "\\TestData\\Kelli\\THH ASNLoad.xls";
 	public String KelliASNfilePathForFUJ = dir + "\\TestData\\Kelli\\FUJ ASNLoad.xls";
 	public String KelliASNfilePathForTHM = dir + "\\TestData\\Kelli\\THM ASNLoad.xls";
-	public String KelliMultiLineASNfilePathForTRN = dir + "\\TestData\\Kelli\\TRN ASNLoad.xls";
+	public String KelliMultiLineASNfilePathForTRN = dir + "\\TestData\\Kelli\\TRN ASNLoad Multiline.xls";
 	public String KelliASNfilePathForTRN = dir + "\\TestData\\Kelli\\TRN ASNLoad.xls";
 	public String KelliASNfilePathForILW = dir + "\\TestData\\Kelli\\ILW ASNLoad.xls";
 	public String KelliSingleLineNormalForATM = dir + "\\TestData\\Kelli\\ATM ASN Load Single Line.xls";
 	public String KelliSingleLineLotForATM = dir + "\\TestData\\Kelli\\ATM ASN Load Single Line Lot.xls";
 	public String KelliSingleLineSerialForATM = dir + "\\TestData\\Kelli\\ATMASNLoadSingleLineSerial.xls";
 	public String KelliMultiLineNormalForATM = dir + "\\TestData\\Kelli\\ATMASNLoadMultiLineNormal.xls";
+	public String KelliMultiLineASNfilePathForTHM = dir + "\\TestData\\Kelli\\THM ASNLoad Multiline.xls";
+	public String KelliASNfilePathForTHMInvalidItem = dir + "\\TestData\\Kelli\\THM ASNLoad InvalidItem.xls";
+	public String KelliMultiLineASNfilePathForTHH = dir + "\\TestData\\Kelli\\THH ASNLoad Multiline.xls";
+	public String KelliASNfilePathForTHHInvalidItem = dir + "\\TestData\\Kelli\\THH ASNLoad InvalidItem.xls";
+	public String KelliASNfilePathForTRNInvalidItem = dir + "\\TestData\\Kelli\\TRN ASNLoad InvalidItem.xls";
+	public String KelliMultiLineASNfilePathForILW = dir + "\\TestData\\Kelli\\ILW ASNLoad Multiline.xls";
+	public String KelliASNfilePathForILWInvalidItem = dir + "\\TestData\\Kelli\\ILW ASNLoad InvalidItem.xls";
+	public String KelliASNfilePathForILWSerialTracked = dir + "\\TestData\\Kelli\\ILW ASNLoad SerialTracked.xls";
 
+	
 	DataFormatter dataFormatter = new DataFormatter();
 	
 	public static List<String> itemList = new ArrayList<>();
@@ -326,19 +335,41 @@ public class KelliPages {
 				kelliASNfilePath = KelliSingleLineASNfilePathForAPC;
 			}
 		} else if (accnt.equalsIgnoreCase("THH")) {
-			kelliASNfilePath = KelliASNfilePathForTHH;
+			if (fileType.contains("Single Line")) {
+				kelliASNfilePath = KelliASNfilePathForTHH;
+			} else if (fileType.contains("Multi Line")) {
+				kelliASNfilePath = KelliMultiLineASNfilePathForTHH;
+			}else if(fileType.contains("InvalidItem")) {
+				kelliASNfilePath = KelliASNfilePathForTHHInvalidItem;
+			}
 		} else if (accnt.equalsIgnoreCase("FUJ")) {
 			kelliASNfilePath = KelliASNfilePathForFUJ;
 		}else if (accnt.equalsIgnoreCase("THM")) {
-			kelliASNfilePath = KelliASNfilePathForTHM;
+			if (fileType.contains("Single Line")) {
+				kelliASNfilePath = KelliASNfilePathForTHM;
+			} else if (fileType.contains("Multi Line")) {
+				kelliASNfilePath = KelliMultiLineASNfilePathForTHM;
+			}else if(fileType.contains("InvalidItem")) {
+				kelliASNfilePath = KelliASNfilePathForTHMInvalidItem;
+			}
 		}else if (accnt.equalsIgnoreCase("TRN")) {
 			if (fileType.contains("Single Line")) {
 				kelliASNfilePath = KelliASNfilePathForTRN;
 			} else if (fileType.contains("Multi Line")) {
 				kelliASNfilePath = KelliMultiLineASNfilePathForTRN;
+			}else if(fileType.contains("InvalidItem")) {
+				kelliASNfilePath = KelliASNfilePathForTRNInvalidItem;
 			}
 		}else if (accnt.equalsIgnoreCase("ILW")) {
-			kelliASNfilePath = KelliASNfilePathForILW;
+			if (fileType.contains("Single Line")) {
+				kelliASNfilePath = KelliASNfilePathForILW;
+			} else if (fileType.contains("Multi Line")) {
+				kelliASNfilePath = KelliMultiLineASNfilePathForILW;
+			}else if(fileType.contains("InvalidItem")) {
+				kelliASNfilePath = KelliASNfilePathForILWInvalidItem;
+			}else if(fileType.contains("Serial Tracked")) {
+				kelliASNfilePath = KelliASNfilePathForILWSerialTracked;
+			}
 		} else if (accnt.equalsIgnoreCase("ATM")) {
 			if (fileType.contains("Single Line Normal")) {
 				kelliASNfilePath = KelliSingleLineNormalForATM;
@@ -815,7 +846,15 @@ public class KelliPages {
 				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
 				choosefile.sendKeys(KelliASNfilePathForTHH);
-			}
+			} else if (fileType.contains("Multi Line")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliMultiLineASNfilePathForTHH);
+			}if (fileType.contains("InvalidItem")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliASNfilePathForTHHInvalidItem);
+			} 
 		}else if(accnt.equalsIgnoreCase("FUJ")) {
 			if (fileType.contains("Single Line ASN")) {
 				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
@@ -827,7 +866,15 @@ public class KelliPages {
 				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
 				choosefile.sendKeys(KelliASNfilePathForTHM);
-			}
+			}else if (fileType.contains("Multi Line ASN")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliMultiLineASNfilePathForTHM);
+			}if (fileType.contains("InvalidItem")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliASNfilePathForTHMInvalidItem);
+			} 
 		}else if(accnt.equalsIgnoreCase("TRN")) {
 			if (fileType.contains("Single Line ASN")) {
 				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
@@ -837,12 +884,28 @@ public class KelliPages {
 				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
 				choosefile.sendKeys(KelliMultiLineASNfilePathForTRN);
+			} if (fileType.contains("InvalidItem")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliASNfilePathForTRNInvalidItem);
 			} 
 		}else if(accnt.equalsIgnoreCase("ILW")) {
 			if (fileType.contains("Single Line ASN")) {
 				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
 				choosefile.sendKeys(KelliASNfilePathForILW);
+			}else if (fileType.contains("Multi Line ASN")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliMultiLineASNfilePathForILW);
+			} if (fileType.contains("InvalidItem")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliASNfilePathForILWInvalidItem);
+			} else if(fileType.contains("Serial Tracked")) {
+				SeleniumTestHelper.selectFromDropDown(messagetype, "ASNLoad(WMS)", "visibletext");
+				SeleniumTestHelper.waitForElementToBeDisplayed(driver, choosefile, 100);
+				choosefile.sendKeys(KelliASNfilePathForILWSerialTracked);
 			}
 		}else if(accnt.equalsIgnoreCase("ATM")) {
 			if (fileType.contains("Single Line Normal")) {

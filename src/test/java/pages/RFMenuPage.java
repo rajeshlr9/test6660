@@ -1340,9 +1340,10 @@ public class RFMenuPage {
 //					if(SeleniumTestHelper.isElementDisplayed(cooTxtBox)) {
 //						cooTxtBox.sendKeys("US");
 //					}
-
+					if(SeleniumTestHelper.isElementDisplayed(InvType)) {
 					InvType.sendKeys(Keys.ENTER);
 					Screenshots.captureSnapshot(driver);
+					}
 					// Thread.sleep(3000);
 					Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")));
 					Screenshots.captureSnapshot(driver);
@@ -1445,9 +1446,11 @@ public class RFMenuPage {
 //						if(SeleniumTestHelper.isElementDisplayed(cooTxtBox)) {
 //							cooTxtBox.sendKeys("US");
 //						}
+						if(SeleniumTestHelper.isElementDisplayed(InvType)) {
 						InvType.sendKeys(Keys.ENTER);
 						Thread.sleep(2000);
 						Screenshots.captureSnapshot(driver);
+						}
 						Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty2")));
 						Screenshots.captureSnapshot(driver);
 						Item_qty.sendKeys(Keys.ENTER);
@@ -1582,10 +1585,11 @@ public class RFMenuPage {
 //					if(SeleniumTestHelper.isElementDisplayed(cooTxtBox)) {
 //						cooTxtBox.sendKeys("US");
 //					}
-
+					if(SeleniumTestHelper.isElementDisplayed(InvType)) {
 					InvType.sendKeys(Keys.ENTER);
 					Screenshots.captureSnapshot(driver);
 					// Thread.sleep(3000);
+					}
 					Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")));
 					Screenshots.captureSnapshot(driver);
 					Item_qty.sendKeys(Keys.ENTER);
@@ -1686,9 +1690,11 @@ public class RFMenuPage {
 //						if(SeleniumTestHelper.isElementDisplayed(cooTxtBox)) {
 //							cooTxtBox.sendKeys("US");
 //						}
+						if(SeleniumTestHelper.isElementDisplayed(InvType)) {
 						InvType.sendKeys(Keys.ENTER);
 						Thread.sleep(2000);
 						Screenshots.captureSnapshot(driver);
+						}
 						Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty2")));
 						Screenshots.captureSnapshot(driver);
 						Item_qty.sendKeys(Keys.ENTER);
@@ -1823,9 +1829,11 @@ public class RFMenuPage {
 //					if(SeleniumTestHelper.isElementDisplayed(cooTxtBox)) {
 //						cooTxtBox.sendKeys("US");
 //					}
+					if(SeleniumTestHelper.isElementDisplayed(InvType)) {
 					InvType.sendKeys(Keys.ENTER);
 					Screenshots.captureSnapshot(driver);
 					Thread.sleep(1000);
+					}
 					Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")));
 					Screenshots.captureSnapshot(driver);
 					Item_qty.sendKeys(Keys.ENTER);
@@ -1962,9 +1970,11 @@ public class RFMenuPage {
 //						if(SeleniumTestHelper.isElementDisplayed(cooTxtBox)) {
 //							cooTxtBox.sendKeys("US");
 //						}
+						if(SeleniumTestHelper.isElementDisplayed(InvType)) {
 						InvType.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
 						// Thread.sleep(2000);
+						}
 						Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")));
 						Screenshots.captureSnapshot(driver);
 						Item_qty.sendKeys(Keys.ENTER);
@@ -2191,8 +2201,10 @@ public class RFMenuPage {
 //						if(SeleniumTestHelper.isElementDisplayed(cooTxtBox)) {
 //							cooTxtBox.sendKeys("US");
 //						}
+						if(SeleniumTestHelper.isElementDisplayed(InvType)) {
 						InvType.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
+						}
 						Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")));
 						Screenshots.captureSnapshot(driver);
 						Item_qty.sendKeys(Keys.ENTER);
@@ -2295,9 +2307,11 @@ public class RFMenuPage {
 //							if(SeleniumTestHelper.isElementDisplayed(cooTxtBox)) {
 //								cooTxtBox.sendKeys("US");
 //							}
+							if(SeleniumTestHelper.isElementDisplayed(InvType)) {
 							InvType.sendKeys(Keys.ENTER);
 							Thread.sleep(2000);
 							Screenshots.captureSnapshot(driver);
+							}
 							Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty2")));
 							Screenshots.captureSnapshot(driver);
 							Item_qty.sendKeys(Keys.ENTER);
@@ -2456,9 +2470,11 @@ public class RFMenuPage {
 //						if(SeleniumTestHelper.isElementDisplayed(cooTxtBox)) {
 //							cooTxtBox.sendKeys("US");
 //						}
+						if(SeleniumTestHelper.isElementDisplayed(InvType)) {
 						InvType.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
 						Thread.sleep(2000);
+						}
 						Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")));
 						Screenshots.captureSnapshot(driver);
 						Item_qty.sendKeys(Keys.ENTER);
@@ -2548,9 +2564,11 @@ public class RFMenuPage {
 //							if(SeleniumTestHelper.isElementDisplayed(cooTxtBox)) {
 //								cooTxtBox.sendKeys("US");
 //							}
+							if(SeleniumTestHelper.isElementDisplayed(InvType)) {
 							InvType.sendKeys(Keys.ENTER);
 							Thread.sleep(2000);
 							Screenshots.captureSnapshot(driver);
+							}
 							Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty2")));
 							Screenshots.captureSnapshot(driver);
 							Item_qty.sendKeys(Keys.ENTER);
@@ -2842,7 +2860,9 @@ public class RFMenuPage {
 						ItemName.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
 						Steps.logger.info("Enter Item Id: " + Items.getItemsForReceivingASN(0));
+						if(SeleniumTestHelper.isElementDisplayed(InvType)) {
 						InvType.sendKeys(Keys.ENTER);
+						}
 						Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty2")));
 						Screenshots.captureSnapshot(driver);
 						Item_qty.sendKeys(Keys.ENTER);
@@ -2966,8 +2986,10 @@ public class RFMenuPage {
 //					if(SeleniumTestHelper.isElementDisplayed(cooTxtBox)) {
 //						cooTxtBox.sendKeys("US");
 //					}
+					if(SeleniumTestHelper.isElementDisplayed(InvType)) {
 					InvType.sendKeys(Keys.ENTER);
 					Screenshots.captureSnapshot(driver);
+					}
 					Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")));
 					Screenshots.captureSnapshot(driver);
 					Item_qty.sendKeys(Keys.ENTER);
@@ -3076,8 +3098,10 @@ public class RFMenuPage {
 //						if(SeleniumTestHelper.isElementDisplayed(cooTxtBox)) {
 //							cooTxtBox.sendKeys("US");
 //						}
+						if(SeleniumTestHelper.isElementDisplayed(InvType)) {
 						InvType.sendKeys(Keys.ENTER);
 						Screenshots.captureSnapshot(driver);
+						}
 						Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty2")));
 						Screenshots.captureSnapshot(driver);
 						Item_qty.sendKeys(Keys.ENTER);
@@ -3917,13 +3941,16 @@ public class RFMenuPage {
 						// driver.findElements(By.id("capSubLocationViewSuggested"));
 						// SeleniumTestHelper.waitForElementToBeDisplayed(driver, suggestedLoc, 50);
 						String sugLoc = suggestedLoc.getText();
-						System.out.println(suggestedLoc.getText());
+						System.out.println("Suggested Location Text ->"+suggestedLoc.getText());
 						String[] sysSuggestedLocSplit = sugLoc.split("\n");
 						String loco = sysSuggestedLocSplit[1].trim();
-						System.out.println(loco);
+						System.out.println("Suggested Location ->"+loco);
 
 						driver.switchTo().parentFrame();
 						String LocBarCode = reserveLocationPage.getReservelocation(loco);
+						System.out.println("Location Barcode"+LocBarCode);
+						Items.setupdtLoc(LocBarCode);
+						System.out.println("Location Barcode ->"+Items.getupdtLoc());
 						SeleniumTestHelper.switchToInnerFrame(driver);
 						System.out.println("Sys tech3");
 

@@ -456,8 +456,8 @@ driver.switchTo().frame(0);
 		//validate if the putaway zone conatins FL1,FL2 or FL3
 		String getPutawayZone = driver.findElement(By.xpath("//span[@id='dataForm:listView:dataTable:0:custId16']")).getText();
 		Reporter.addStepLog("Putaway zone in reserve location is: " + getPutawayZone);
-		if(Steps.scenarioData.get("PutawayType").equals("Normal")) {
-			if(getPutawayZone.startsWith("DST")||getPutawayZone.startsWith("P5A")||getPutawayZone.startsWith("PL3")||getPutawayZone.startsWith("FL2")) {
+		if(Steps.scenarioData.get("PutawayType").equals("Normal")) {//QIN-QSC Inspection
+			if(getPutawayZone.startsWith("DST")||getPutawayZone.startsWith("P5A")||getPutawayZone.startsWith("PL3")||getPutawayZone.startsWith("FL2")||getPutawayZone.startsWith("QIN")) {
 				Reporter.addStepLog("Putaway zone in reserve location is for Normal item");
 				Assert.assertTrue(true, "putaway zone starts with "+getPutawayZone.subSequence(0, 2));
 				
@@ -558,6 +558,8 @@ driver.switchTo().frame(0);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, locationBarcodetxtBox, 20);
 			locationBarcodetxtBox.sendKeys(Items.getupdtLoc());
 			//locationBarcodetxtBox.sendKeys("RPL6129J01S7");
+			Reporter.addStepLog("Updated Location entered-> " + Items.getupdtLoc());
+
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, ApplyBtn, 20);
 			ApplyBtn.click();

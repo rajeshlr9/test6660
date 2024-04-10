@@ -185,7 +185,7 @@ public class FedexnetPage  extends Steps {
 		driver.switchTo().parentFrame();
 		//driver.switchTo().frame("ApplicationFrame");
 		//Thread.sleep(1000);
-		SeleniumTestHelper.WaitForPageLoad();
+		SeleniumTestHelper.WaitForPageLoad(10000);
 		driver.switchTo().frame("LinkFrame");
 		//Thread.sleep(1000);
 		SeleniumTestHelper.WaitForPageLoad();

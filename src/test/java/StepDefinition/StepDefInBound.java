@@ -364,9 +364,14 @@ public class StepDefInBound {
 	@When("^user update \"([^\"]*)\" for dropping into fedexnet application$")
 	public void user_update_EDI_XML_file_for(String xmlType)	throws Exception {
 		try {
+			String account = Config.getProperty("Account");
 			Steps.logger.info("XML updation started");
 			xmlInput.user_create_EDI_file(xmlType);
-			xmlInput.user_modify_EDI_file(xmlType);
+			if(account.equalsIgnoreCase("TRN")) {
+				xmlInput.user_modify_EDIXml_file_(xmlType);
+			}else {
+				xmlInput.user_modify_EDI_file(xmlType);
+			}
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			System.out.println(e);
@@ -503,6 +508,17 @@ public class StepDefInBound {
 			Reporter.addStepLog("ASN_No:"+Items.getAsnNumber());
 			Steps.logger.info("PO_No:"+Items.getPONumber());
 			Reporter.addStepLog("PO_No:"+Items.getPONumber());
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	@And("^verify ASN not created and reached to Manhattan$")
+	public void verify_ASN_Not_ReachedTo_Manhattan() {
+		try {
+			asnsPage.verifyASNNotReachedToManhattan(KelliPages.partialASNValue);
+			Reporter.addStepLog("ASN not created and reached to Manhattan");
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
@@ -862,6 +878,7 @@ public class StepDefInBound {
 	@And("^user open reserve locations and naviagtes to validate iLPN$")
 	public void  user_open_reserve_locations_and_naviagtes_to_validate_iLPN() throws Exception {
 		try {
+			System.out.println("Validate iLPN in Reserve Location page");
 			String account = Config.getProperty("Account");
 			homePage.MenuItems_Configuration_Selection("Reserve Locations");
 			Steps.logger.info("Open Reserve Locations");

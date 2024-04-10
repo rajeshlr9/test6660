@@ -137,6 +137,9 @@ public class AsnsPage {
 	@FindBy(xpath = "//input[@id='dataForm:ASNLPNListView_id:ASNLPNList_commandbutton_SerialNumbers']")
 	public WebElement serailNumberButton;
 	
+	@FindBy(xpath = "(//div[contains(@class,'x-grid-cell-inner')])[1]")
+	public WebElement asnElement;
+	
 			
 	public void getASNandPONumber(String asnId) throws Exception {
 		String account = Config.getProperty("Account");
@@ -822,5 +825,57 @@ public class AsnsPage {
 //			Thread.sleep(2000);
 //
 //		}
+		public void verifyASNNotReachedToManhattan(String asnId) throws Exception {
+			String account = Config.getProperty("Account");
+			homepage.MenuItems_Distribution_Selection("ASNs");
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 120);
+			primaryField.sendKeys("ASN");
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, asnIdInput, 50);
+			driver.findElement(By.xpath(
+					"//DIV[3]/DIV[1]/DIV[@role=\"presentation\"][1]/DIV[@role=\"presentation\"][1]/DIV[@role=\"presentation\"][1]/DIV[1]/DIV[1]/DIV[1]/DIV[1]/INPUT[@role=\"combobox\"][1]"))
+					.click();
+			driver.findElement(By.xpath("(//div[starts-with(@id,'mpslookupfield')])[5]")).click();
+			Thread.sleep(2000);
+			if (account.equalsIgnoreCase("QSC")) {
+				driver.findElement(By.xpath("(//input[contains(@class,'x-form-field x-form-text x-form-text-default')])[12]")).sendKeys("QSC");
+			} else if (account.equalsIgnoreCase("NVI")) {
+				driver.findElement(By.xpath("(//input[contains(@class,'x-form-field x-form-text x-form-text-default')])[12]")).sendKeys("NVI");
+			} else if (account.equalsIgnoreCase("APC")) {
+				//driver.findElement(By.xpath("(//input[contains(@class,'x-form-field x-form-text x-form-text-default')])[14]")).sendKeys("APC");
+			driver.findElement(By.xpath("//div[contains(text(),'Find ASN')]/following::input[1]")).sendKeys("APC");
+			}
+			Thread.sleep(1000);
+			driver.findElement(By.xpath("//div[contains(text(),'Find ASN')]/following::input[2]")).sendKeys(asnId);
+			
+			int count = 0;
+			while (count < 3) {
+				//Thread.sleep(60000);
+				Thread.sleep(10000);
+				System.out.println("Trying to click the Find Button and wait for ASN to get displayed..");
+				SeleniumTestHelper.waitForElementToBeClickable(driver,
+						driver.findElement(By.xpath("//span[contains(text(),'Find')]")), 10);
+				SeleniumTestHelper.clickOnButton(driver.findElement(By.xpath("//span[contains(text(),'Find')]")));
+				count++;
+			}
+			
+			Thread.sleep(1000);
+			System.out.println(SeleniumTestHelper.isElementDisplayed(asnElement));
+
+			if(SeleniumTestHelper.isElementDisplayed(asnElement)){
+				System.out.println("ASN Element displayed");
+				driver.findElement(By.xpath("//span[contains(text(),'Done')]")).click();
+				homepage.userClosesOpenedwindow("ASNs");
+
+				SeleniumTestHelper.assertTrue(false, "ASN Shouldn't be created and reached to Manhattan");
+			}else {
+				System.out.println("ASN Element Not displayed as expected");
+				driver.findElement(By.xpath("//span[contains(text(),'Done')]")).click();
+				homepage.userClosesOpenedwindow("ASNs");
+
+				SeleniumTestHelper.assertTrue(true);
+			}
+			//homepage.userClosesOpenedwindow("ASNs");
+		}
 
 }
