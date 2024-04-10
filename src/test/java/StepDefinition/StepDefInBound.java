@@ -369,6 +369,8 @@ public class StepDefInBound {
 			xmlInput.user_create_EDI_file(xmlType);
 			if(account.equalsIgnoreCase("TRN")) {
 				xmlInput.user_modify_EDIXml_file_(xmlType);
+			}else if(account.equalsIgnoreCase("THH")) {
+				xmlInput.user_modify_EDIXml_file_(xmlType);
 			}else {
 				xmlInput.user_modify_EDI_file(xmlType);
 			}

@@ -833,76 +833,76 @@ public class Xpathxml {
 			}
 			
 		}
-//		else if(xmlType.contains("DO")) {
-//			path=inputEDIOutboundFilePath;
-//			Items.setDONumber(PODONumber);
-//			Steps.logger.info("DO Number: "+PODONumber);
-//			Reporter.addStepLog("DO Number: "+PODONumber);
-//			
-//			String itemName = null;
-//			String shpQty = null;
-//			String uom = null;
-//			String TrnsprtSvcLvl = null;
-//			String TrnsprtSCAC = null;
-//			String SplIns = null;
-//			String SICode = null;
-//			
-//			
-//			
-//			for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
-//				
-//				itemName = Steps.ItemDataMap.get(i).get("Item");
-//				ModifyXmlfile(DOItem(i+1), itemName, path);
-//				System.out.println("Item : " + itemName + " has been updated successfully");
-//				Steps.logger.info("Item : " + itemName + " has been updated successfully");
-//				
-//				shpQty = Steps.ItemDataMap.get(i).get("ShippedQty");
-//				ModifyXmlfile(DOQty(i+1), shpQty, path);
-//				System.out.println("Shipped Qty : " + shpQty + " has been updated successfully");
-//				Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
-//				
-//				uom = Steps.ItemDataMap.get(i).get("UOM");
-//				ModifyXmlfile(DOItemUOM(i+1), uom, path);
-//				System.out.println("QtyUOM : " + uom + " has been updated successfully");
-//				Steps.logger.info("QtyUOM : " + uom + " has been updated successfully");
-//				
-//				//Rakesh
-//				TrnsprtSvcLvl = Steps.scenarioData.get("TrnsprtSvcLvl");
-//				ModifyXmlfile(DOTrnsprtSvcLvl(i+1), TrnsprtSvcLvl, path);
-//				System.out.println("TrnsprtSvcLvl : " + TrnsprtSvcLvl + " has been updated successfully");
-//				Steps.logger.info("TrnsprtSvcLvl : " + TrnsprtSvcLvl + " has been updated successfully");
-//				
-//				TrnsprtSCAC = Steps.scenarioData.get("TrnsprtSCAC");
-//				ModifyXmlfile(DOTrnsprtSCAC(i+1), TrnsprtSCAC, path);
-//				System.out.println("TrnsprtSCAC : " + TrnsprtSCAC + " has been updated successfully");
-//				Steps.logger.info("TrnsprtSCAC : " + TrnsprtSCAC + " has been updated successfully");
-//				
-//				SICode = Steps.scenarioData.get("SICode");
-//				if(!(SICode.equals("")||SICode.equals(null))) {
-//				ModifyXmlfile(DOSpecInstrCD(i+1), SICode, path);
-//				System.out.println("SICode : " + SICode + " has been updated successfully");
-//				Steps.logger.info("SICode : " + SICode + " has been updated successfully");
-//				}
-//				
-//				SplIns = Steps.scenarioData.get("SplIns");
-//				if(!(SplIns.equals("")||SplIns.equals(null))) {
-//				ModifyXmlfile(DOSpecInstr(i+1), SplIns, path);
-//				System.out.println("SplIns : " + SplIns + " has been updated successfully");
-//				Steps.logger.info("SplIns : " + SplIns + " has been updated successfully");
-//				}
-//				
-//				
-//				
-//				Items.setProductsForDistOrder(itemName);
-//				Items.setItemWithShippedQtyDO(itemName, Integer.parseInt(shpQty));
-//				Items.setItemWithQtyUOMDO(itemName, uom);
-//				Items.setItemOrderTrnsprtSvcLvlDO(TrnsprtSvcLvl);
-//				Items.setItemOrderTrnsprtSCACDO(TrnsprtSCAC);
-//				
-//				Reporter.addStepLog("Item Id- " + Steps.ItemDataMap.get(i).get("Item") + ", Shipped Qty- "
-//						+ Steps.ItemDataMap.get(i).get("ShippedQty"));		
-//		}
-//		}
+		else if(xmlType.contains("DO")) {
+			path=inputEDIOutboundFilePath;
+			Items.setDONumber(PODONumber);
+			Steps.logger.info("DO Number: "+PODONumber);
+			Reporter.addStepLog("DO Number: "+PODONumber);
+			
+			String itemName = null;
+			String shpQty = null;
+			String uom = null;
+			String TrnsprtSvcLvl = null;
+			String TrnsprtSCAC = null;
+			String SplIns = null;
+			String SICode = null;
+			
+			
+			
+			for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
+				
+				itemName = Steps.ItemDataMap.get(i).get("Item");
+				ModifyXmlfile(DOItem(i+1), itemName, path);
+				System.out.println("Item : " + itemName + " has been updated successfully");
+				Steps.logger.info("Item : " + itemName + " has been updated successfully");
+				
+				shpQty = Steps.ItemDataMap.get(i).get("ShippedQty");
+				ModifyXmlfile(DOQty(i+1), shpQty, path);
+				System.out.println("Shipped Qty : " + shpQty + " has been updated successfully");
+				Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
+				
+				uom = Steps.ItemDataMap.get(i).get("UOM");
+				ModifyXmlfile(DOItemUOM(i+1), uom, path);
+				System.out.println("QtyUOM : " + uom + " has been updated successfully");
+				Steps.logger.info("QtyUOM : " + uom + " has been updated successfully");
+				
+				//Rakesh
+				TrnsprtSvcLvl = Steps.scenarioData.get("TrnsprtSvcLvl");
+				ModifyXmlfile(DOTrnsprtSvcLvl(i+1), TrnsprtSvcLvl, path);
+				System.out.println("TrnsprtSvcLvl : " + TrnsprtSvcLvl + " has been updated successfully");
+				Steps.logger.info("TrnsprtSvcLvl : " + TrnsprtSvcLvl + " has been updated successfully");
+				
+				TrnsprtSCAC = Steps.scenarioData.get("TrnsprtSCAC");
+				ModifyXmlfile(DOTrnsprtSCAC(i+1), TrnsprtSCAC, path);
+				System.out.println("TrnsprtSCAC : " + TrnsprtSCAC + " has been updated successfully");
+				Steps.logger.info("TrnsprtSCAC : " + TrnsprtSCAC + " has been updated successfully");
+				
+				SICode = Steps.scenarioData.get("SICode");
+				if(!(SICode.equals("")||SICode.equals(null))) {
+				ModifyXmlfile(DOSpecInstrCD(i+1), SICode, path);
+				System.out.println("SICode : " + SICode + " has been updated successfully");
+				Steps.logger.info("SICode : " + SICode + " has been updated successfully");
+				}
+				
+				SplIns = Steps.scenarioData.get("SplIns");
+				if(!(SplIns.equals("")||SplIns.equals(null))) {
+				ModifyXmlfile(DOSpecInstr(i+1), SplIns, path);
+				System.out.println("SplIns : " + SplIns + " has been updated successfully");
+				Steps.logger.info("SplIns : " + SplIns + " has been updated successfully");
+				}
+				
+				
+				
+				Items.setProductsForDistOrder(itemName);
+				Items.setItemWithShippedQtyDO(itemName, Integer.parseInt(shpQty));
+				Items.setItemWithQtyUOMDO(itemName, uom);
+				Items.setItemOrderTrnsprtSvcLvlDO(TrnsprtSvcLvl);
+				Items.setItemOrderTrnsprtSCACDO(TrnsprtSCAC);
+				
+				Reporter.addStepLog("Item Id- " + Steps.ItemDataMap.get(i).get("Item") + ", Shipped Qty- "
+						+ Steps.ItemDataMap.get(i).get("ShippedQty"));		
+		}
+		}
 		
 		
 		File fileToBeModified = new File(path);

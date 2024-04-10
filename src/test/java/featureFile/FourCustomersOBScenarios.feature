@@ -503,4 +503,28 @@ Scenario: Create an order using O2S application.
 	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
 	#Then user log out from application
 	
+@TRN006 @SingleLineItemDO_TRN @Regression_TRN @OBRegScenarios_TRN
+Scenario: Create an order using O2S application for TRN customer 
+	Given I have excel data 
+		| TRN_OBScenario6 |
+	And Open the chrome browser by selenium
+	When user update "TRN_Single_Line_DO" for dropping into fedexnet application	
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	Then user log out from application
 	
+@THH006 
+Scenario: Create an order using O2S application for TRN customer 
+	Given I have excel data 
+		| THH_OBScenario5 |
+	And Open the chrome browser by selenium
+	When user update "THH_Single_Line_DO" for dropping into fedexnet application	
+	And user logs into the FedexNet application
+	And user upload "850" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	Then user log out from application
