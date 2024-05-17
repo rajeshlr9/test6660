@@ -262,8 +262,8 @@ public class StepDefInBound {
 					dropEnv="FSCSUA";
 			}
 			if(fileType.equals("856")||fileType.equals("943")) {
-				if (account.equalsIgnoreCase("APC")) {
-					FedexnetPage.dropOrder(dropEnv, fileType, createUpdateEdiInput.APCEDIInboundFilePath);
+				if (account.equalsIgnoreCase("APC") || account.equalsIgnoreCase("ATM")) {
+					FedexnetPage.dropOrder(dropEnv, fileType, createUpdateEdiInput.ATMEDIInboundFilePath);
 				} else {
 					FedexnetPage.dropOrder(dropEnv, fileType, xmlInput.inputEDIInboundFilePath);
 				}

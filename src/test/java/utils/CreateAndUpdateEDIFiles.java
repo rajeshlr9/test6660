@@ -25,6 +25,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.xml.sax.SAXException;
 
+import com.aventstack.extentreports.gherkin.model.Scenario;
 import com.cucumber.listener.Reporter;
 
 import StepDefinition.Steps;
@@ -47,7 +48,7 @@ public class CreateAndUpdateEDIFiles {
 	//public static String asnNumber;
 	//public static String doNumber;
 	public String SingleLineLotItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"-LotItem-WIP.x12";
-	public String SingleLineNormalItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"-NormalItem-WIP.x12";
+	public String SingleLineNormalItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"APC"+"/856/"+"APC"+"-NormalItem-WIP.x12";
 	public String SingleLineSerialItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"-SerialItem-WIP.x12";
 
 	public String MultiLineLotItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"-LotItem-Multiline-WIP.x12";
@@ -70,11 +71,17 @@ public class CreateAndUpdateEDIFiles {
 	public String MultiLineNormalItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-NormalItem-Multiline.x12";
 	public String MultiLineSerialItemOBFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-SerialItem-Multiline.x12";
 
-	public String APCEDIInboundFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"-856_InputFile.x12";
+	public String APCEDIInboundFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/856/"+"APC"+"_856_InputFile.x12";
 	public String APCEDIOutboundFilePath = dirPath + "/src/test/resources/testdata/"+"APC" + "/850/"+"APC"+"-850_InputFile.x12";
 
 	public String TRNEDIOutboundFilePath = dirPath + "/src/test/resources/testdata/"+"TRN" + "/850/"+"TRN"+"-850_InputFile.x12";
 	
+	public String ATMSingleLineLotItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"ATM" + "/856/"+"ATM"+"-LotItem-WIP.x12";
+	public String ATMSingleLineSerialItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"ATM" + "/856/"+"ATM"+"-SerialItem-WIP.x12";
+	public String ATMSingleLineNormalItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"ATM" + "/856/"+"ATM"+"-NormalItem-WIP.x12";
+
+	public String ATMEDIInboundFilePath = dirPath + "/src/test/resources/testdata/"+"ATM" + "/856/"+"ATM"+"_856_InputFile.x12";
+
 	public void user_create_EDI_file(String fileType)
 			throws FileNotFoundException, XPathExpressionException, IOException, SAXException,
 			ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
@@ -103,6 +110,18 @@ public class CreateAndUpdateEDIFiles {
 				Steps.logger.info("Contents Copy from : " + MultiLineSerialItemIBFilePath);
 				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
 				user_copy_edi_file_content_from_source_to_target(MultiLineSerialItemIBFilePath, APCEDIInboundFilePath);
+			}else if(fileType.equals("ATM SingleLine PO - LotItems")) {
+				Steps.logger.info("Contents Copy from : " + ATMSingleLineLotItemIBFilePath);
+				Steps.logger.info("Contents Copy to : " + ATMEDIInboundFilePath);//ATM SingleLine PO - SerialItems
+				user_copy_edi_file_content_from_source_to_target(ATMSingleLineLotItemIBFilePath, ATMEDIInboundFilePath);
+			}else if(fileType.equals("ATM SingleLine PO - SerialItems")) {
+				Steps.logger.info("Contents Copy from : " + ATMSingleLineSerialItemIBFilePath);
+				Steps.logger.info("Contents Copy to : " + ATMEDIInboundFilePath);//ATM SingleLine PO - SerialItems
+				user_copy_edi_file_content_from_source_to_target(ATMSingleLineSerialItemIBFilePath, ATMEDIInboundFilePath);
+			}else if(fileType.equals("ATM SingleLine PO - NormalItems")) {
+				Steps.logger.info("Contents Copy from : " + ATMSingleLineNormalItemIBFilePath);
+				Steps.logger.info("Contents Copy to : " + ATMEDIInboundFilePath);//ATM SingleLine PO - SerialItems
+				user_copy_edi_file_content_from_source_to_target(ATMSingleLineNormalItemIBFilePath, ATMEDIInboundFilePath);
 			}
 		} else if (fileType.contains("DO")) {
 //			if (fileType.equals("APC SingleLine DO - LotItems")) {
@@ -203,7 +222,7 @@ public class CreateAndUpdateEDIFiles {
 		SimpleDateFormat sdf = new SimpleDateFormat("HHmmss");
 		strDate6 = sdf.format(date);
 		Steps.logger.info("Date in HHmmss format" + strDate6);
-		
+
 		SimpleDateFormat sdff = new SimpleDateFormat("MMddHH");
 		strDate14 = sdff.format(date);
 		Steps.logger.info("Date in MMddHH format" + strDate14);
@@ -215,10 +234,17 @@ public class CreateAndUpdateEDIFiles {
 		int randomNum = random.nextInt(1000);
 		String path = null;
 		if (fileType.contains("PO")) {
+			if (Steps.scenarioData.get("Account").equals("ATM")) {
+				path = ATMEDIInboundFilePath;
+				PODONumber = "ATM" + randomNum + "24" + strDate11 +"BLY";
 
-			path = APCEDIInboundFilePath;
+			} else if (Steps.scenarioData.get("Account").equals("APC")) {
+				path = APCEDIInboundFilePath;
+				PODONumber = "APOC000000" + randomNum + "-" + strDate11;
 
-			PODONumber = "APOC000000" + randomNum + "-" + strDate11;
+			} else {
+				System.out.println("Account Name didn't match.Please check the Account Name");
+			}
 			Items.setPONumber(PODONumber);
 
 			Steps.logger.info("PONumber: " + Items.getPONumber());
@@ -227,43 +253,71 @@ public class CreateAndUpdateEDIFiles {
 			String itemName = null;
 			String shpQty = null;
 			String uom = null;
-			
-			if (fileType.contains("APC SingleLine PO")) {
-				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
-				modifyEDIFile(APCEDIInboundFilePath, "yyMMdd", strDate5);
-				modifyEDIFile(APCEDIInboundFilePath, "APOC000000001-ddHHmmsss", PODONumber);
-				modifyEDIFile(APCEDIInboundFilePath, "HHmmss", strDate6);
-				modifyEDIFile(APCEDIInboundFilePath, "MMddHH", strDate14);
+			System.out.println(Steps.scenarioData.get("Account") + " SingleLine PO");
+			if (fileType.contains(Steps.scenarioData.get("Account") + " SingleLine PO")) {
+				if (Steps.scenarioData.get("Account").equals("ATM")) {
+					modifyEDIFile(ATMEDIInboundFilePath, "yyMMdd", strDate5);
+
+					modifyEDIFile(ATMEDIInboundFilePath, "ATMddHHmmsssBLY", PODONumber);
+					modifyEDIFile(ATMEDIInboundFilePath, "HHmmss", strDate6);
+					modifyEDIFile(ATMEDIInboundFilePath, "MMddHH", strDate14);
+				} else if (Steps.scenarioData.get("Account").equals("APC")) {
+					modifyEDIFile(APCEDIInboundFilePath, "yyMMdd", strDate5);
+
+					modifyEDIFile(APCEDIInboundFilePath, "APOC000000001-ddHHmmsss", PODONumber);
+					modifyEDIFile(APCEDIInboundFilePath, "HHmmss", strDate6);
+					modifyEDIFile(APCEDIInboundFilePath, "MMddHH", strDate14);
+				} else {
+					System.out.println("No Account match...");
+				}
+
 				Steps.logger.info("PO Number is :" + PODONumber);
 				String ASNno = PODONumber + "-1";
 				Items.setAsnNumber(ASNno);
 				Steps.logger.info("ASNNumber: " + Items.getAsnNumber());
 				Reporter.addStepLog("ASNNumber: " + Items.getAsnNumber());
-				
-				String ediSerialNumber =  "DC"+strDate6;
-				System.out.println("Serial Number fetch from Edi file"+ediSerialNumber);
+
+				String ediSerialNumber = "DC" + strDate6;
+				System.out.println("Serial Number fetch from Edi file" + ediSerialNumber);
 				Items.setEdiSerialNumber(ediSerialNumber);
 				Steps.logger.info("ASNNumber: " + Items.getEdiSerialNumber());
 
 				for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 					Steps.logger.info("Steps.ItemDataMap Size" + Steps.ItemDataMap.size());
 					itemName = Steps.ItemDataMap.get(i).get("Item");
+					if (Steps.scenarioData.get("Account").equals("ATM")) {
+						modifyEDIFile(ATMEDIInboundFilePath, "XXXItemId", itemName);
+						Steps.logger.info("Item : " + itemName + " has been updated successfully");
+						Steps.logger.info("Item : " + itemName + " has been updated successfully");
 
-					modifyEDIFile(APCEDIInboundFilePath, "XXXItemId", itemName);
-					Steps.logger.info("Item : " + itemName + " has been updated successfully");
-					Steps.logger.info("Item : " + itemName + " has been updated successfully");
+						shpQty = Steps.ItemDataMap.get(i).get("ShippedQty");
+						modifyEDIFile(ATMEDIInboundFilePath, "XXXItemQty", shpQty);
+						Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
+						Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
 
-					shpQty = Steps.ItemDataMap.get(i).get("ShippedQty");
-					modifyEDIFile(APCEDIInboundFilePath, "XXXItemQty", shpQty);
-					Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
-					Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
+						uom = Steps.ItemDataMap.get(i).get("UOM");
+						modifyEDIFile(ATMEDIInboundFilePath, "XXXUOM", uom);
+						modifyEDIFile(ATMEDIInboundFilePath, "XXXItemUOM", shpQty);
+						Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
+						Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
+					} else if (Steps.scenarioData.get("Account").equals("APC")) {
+						Steps.logger.info("Steps.ItemDataMap Size" + Steps.ItemDataMap.size());
+						itemName = Steps.ItemDataMap.get(i).get("Item");
+						modifyEDIFile(APCEDIInboundFilePath, "XXXItemId", itemName);
+						Steps.logger.info("Item : " + itemName + " has been updated successfully");
+						Steps.logger.info("Item : " + itemName + " has been updated successfully");
 
-					uom = Steps.ItemDataMap.get(i).get("UOM");
-					modifyEDIFile(APCEDIInboundFilePath, "XXXUOM", uom);
-					modifyEDIFile(APCEDIInboundFilePath, "XXXItemUOM", shpQty);
-					Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
-					Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
+						shpQty = Steps.ItemDataMap.get(i).get("ShippedQty");
+						modifyEDIFile(APCEDIInboundFilePath, "XXXItemQty", shpQty);
+						Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
+						Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
 
+						uom = Steps.ItemDataMap.get(i).get("UOM");
+						modifyEDIFile(APCEDIInboundFilePath, "XXXUOM", uom);
+						modifyEDIFile(APCEDIInboundFilePath, "XXXItemUOM", shpQty);
+						Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
+						Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
+					}
 					Items.setItemsForReceivingASN(itemName);
 					Items.setItemWithShippedASNQty(itemName, Integer.parseInt(shpQty));
 					Reporter.addStepLog("Item Id- " + Steps.ItemDataMap.get(i).get("Item") + ", Shipped Qty- "
@@ -317,9 +371,9 @@ public class CreateAndUpdateEDIFiles {
 			}
 
 		} else if (fileType.contains("DO")) {
-			
+
 			path = APCEDIOutboundFilePath;
-			
+
 			SimpleDateFormat formatter12 = new SimpleDateFormat("HHmmsss");
 			strDate12 = formatter12.format(date);
 			PODONumber = "APC" + strDate12;
@@ -331,10 +385,9 @@ public class CreateAndUpdateEDIFiles {
 			String uom = null;
 			String TrnsprtSvcLvl = null;
 			String TrnsprtSCAC = null;
-			
 
 			if (fileType.contains("APC SingleLine DO")) {
-				//Steps.logger.info("Contents Copy from : " + APCOBSingleLineFilePath);
+				// Steps.logger.info("Contents Copy from : " + APCOBSingleLineFilePath);
 				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
 				modifyEDIFile(APCEDIOutboundFilePath, "yyMMdd", strDate5);
 				modifyEDIFile(APCEDIOutboundFilePath, "APCHHmmsss", PODONumber);
@@ -342,7 +395,7 @@ public class CreateAndUpdateEDIFiles {
 				modifyEDIFile(APCEDIOutboundFilePath, "MMddHH", strDate14);
 				Steps.logger.info("Do Number is" + PODONumber);
 				Reporter.addStepLog("Do Number is" + PODONumber);
-				
+
 				for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 					Steps.logger.info("Steps.ItemDataMap Size" + Steps.ItemDataMap.size());
 					itemName = Steps.ItemDataMap.get(i).get("Item");
@@ -358,7 +411,7 @@ public class CreateAndUpdateEDIFiles {
 
 					uom = Steps.ItemDataMap.get(i).get("UOM");
 					modifyEDIFile(APCEDIOutboundFilePath, "XXXUOM", uom);
-					//modifyEDIFile(APCEDIOutboundFilePath, "XXXItemUOM" + i, shpQty);
+					// modifyEDIFile(APCEDIOutboundFilePath, "XXXItemUOM" + i, shpQty);
 					Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
 					Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
 
@@ -368,17 +421,17 @@ public class CreateAndUpdateEDIFiles {
 					} else {
 						modifyEDIFile(APCEDIOutboundFilePath, "XXXProxyItemId", itemName);
 					}
-					
+
 					TrnsprtSvcLvl = Steps.scenarioData.get("TrnsprtSvcLvl");
 					modifyEDIFile(APCEDIOutboundFilePath, "XXXTransServLevel", TrnsprtSvcLvl);
 					System.out.println("TrnsprtSvcLvl : " + TrnsprtSvcLvl + " has been updated successfully");
 					Steps.logger.info("TrnsprtSvcLvl : " + TrnsprtSvcLvl + " has been updated successfully");
-					
+
 					TrnsprtSCAC = Steps.scenarioData.get("TrnsprtSCAC");
 					modifyEDIFile(APCEDIOutboundFilePath, "XXXTransCarrier", TrnsprtSCAC);
 					System.out.println("TrnsprtSCAC : " + TrnsprtSCAC + " has been updated successfully");
 					Steps.logger.info("TrnsprtSCAC : " + TrnsprtSCAC + " has been updated successfully");
-					
+
 					Items.setItemsForReceivingASN(itemName);
 					Items.setItemWithShippedASNQty(itemName, Integer.parseInt(shpQty));
 					Reporter.addStepLog("Item Id- " + Steps.ItemDataMap.get(i).get("Item") + ", Shipped Qty- "
@@ -388,8 +441,8 @@ public class CreateAndUpdateEDIFiles {
 					Steps.logger.info("Qty" + Steps.ItemDataMap.get(i).get("ShippedQty"));
 				}
 
-			}else if (fileType.contains("APC MultiLine DO")) {
-				//Steps.logger.info("Contents Copy from : " + APCOBSingleLineFilePath);
+			} else if (fileType.contains("APC MultiLine DO")) {
+				// Steps.logger.info("Contents Copy from : " + APCOBSingleLineFilePath);
 				Steps.logger.info("Contents Copy to : " + APCEDIOutboundFilePath);
 				modifyEDIFile(APCEDIOutboundFilePath, "yyMMdd", strDate5);
 				modifyEDIFile(APCEDIOutboundFilePath, "APCHHmmsss", PODONumber);
@@ -397,40 +450,40 @@ public class CreateAndUpdateEDIFiles {
 				modifyEDIFile(APCEDIOutboundFilePath, "MMddHH", strDate14);
 				Steps.logger.info("Do Number is" + PODONumber);
 				Reporter.addStepLog("Do Number is" + PODONumber);
-				
+
 				for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 					Steps.logger.info("Steps.ItemDataMap Size" + Steps.ItemDataMap.size());
 					itemName = Steps.ItemDataMap.get(i).get("Item");
 
-					modifyEDIFile(APCEDIOutboundFilePath, "XXXItemId"+i, itemName);
+					modifyEDIFile(APCEDIOutboundFilePath, "XXXItemId" + i, itemName);
 					Steps.logger.info("Item : " + itemName + " has been updated successfully");
 
 					shpQty = Steps.ItemDataMap.get(i).get("ShippedQty");
-					modifyEDIFile(APCEDIOutboundFilePath, "XXXItemQty"+i, shpQty);
+					modifyEDIFile(APCEDIOutboundFilePath, "XXXItemQty" + i, shpQty);
 					Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
 
 					uom = Steps.ItemDataMap.get(i).get("UOM");
-					modifyEDIFile(APCEDIOutboundFilePath, "XXXUOM"+i, uom);
-					//modifyEDIFile(APCEDIOutboundFilePath, "XXXItemUOM" + i, shpQty);
+					modifyEDIFile(APCEDIOutboundFilePath, "XXXUOM" + i, uom);
+					// modifyEDIFile(APCEDIOutboundFilePath, "XXXItemUOM" + i, shpQty);
 					Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
 
 					if (itemName.contains("-")) {
 						itemName = itemName.replace("-", "");
-						modifyEDIFile(APCEDIOutboundFilePath, "XXXProxyItemId"+i, itemName);
+						modifyEDIFile(APCEDIOutboundFilePath, "XXXProxyItemId" + i, itemName);
 					} else {
-						modifyEDIFile(APCEDIOutboundFilePath, "XXXProxyItemId"+i, itemName);
+						modifyEDIFile(APCEDIOutboundFilePath, "XXXProxyItemId" + i, itemName);
 					}
-					
+
 					TrnsprtSvcLvl = Steps.scenarioData.get("TrnsprtSvcLvl");
 					modifyEDIFile(APCEDIOutboundFilePath, "XXXTransServLevel", TrnsprtSvcLvl);
 					System.out.println("TrnsprtSvcLvl : " + TrnsprtSvcLvl + " has been updated successfully");
 					Steps.logger.info("TrnsprtSvcLvl : " + TrnsprtSvcLvl + " has been updated successfully");
-					
+
 					TrnsprtSCAC = Steps.scenarioData.get("TrnsprtSCAC");
 					modifyEDIFile(APCEDIOutboundFilePath, "XXXTransCarrier", TrnsprtSCAC);
 					System.out.println("TrnsprtSCAC : " + TrnsprtSCAC + " has been updated successfully");
 					Steps.logger.info("TrnsprtSCAC : " + TrnsprtSCAC + " has been updated successfully");
-					
+
 					Items.setItemsForReceivingASN(itemName);
 					Items.setItemWithShippedASNQty(itemName, Integer.parseInt(shpQty));
 					Reporter.addStepLog("Item Id- " + Steps.ItemDataMap.get(i).get("Item") + ", Shipped Qty- "
@@ -438,9 +491,9 @@ public class CreateAndUpdateEDIFiles {
 
 					Steps.logger.info("Item" + Items.getItemsForReceivingASN(i));
 					Steps.logger.info("Qty" + Steps.ItemDataMap.get(i).get("ShippedQty"));
-				} 
-				
-		}
+				}
+
+			}
 		}
 
 	}

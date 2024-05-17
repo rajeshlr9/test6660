@@ -289,3 +289,58 @@ Scenario: Multiline Serial Items Items for Ambient type item and Verify the ASN 
 	And user navigate to VendorPortal Tab
 	And user validate the ASN using "Receipt Number" search field
 	Then user log out from O2S application
+
+@InBoundScenario_ATM_08	@IBRegScenarios_ATM @Regression_ATM @ATM_SingleLinePO_LotItem
+Scenario: ASN Creation with Lot Items  using EDI file and validate ASN in Manhattan and O2S 
+	Given I have excel data 
+		| ATM_IBScenario001 |
+	Given User Open the chrome browser using selenium 
+	Given user update EDI file "ATM SingleLine PO - LotItems" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
+	And user views ASN, get and verify item details  
+	Then user log out from application
+#	And user logs into the O2S application 
+#	And user navigate to VendorPortal Tab
+#	And user validate the ASN using "Lot Number" search field
+#	Then user log out from O2S application
+	
+@InBoundScenario_ATM_09	@IBRegScenarios_ATM @Regression_ATM @ATM_SingleLinePO_SerialItem
+Scenario: Create an order using O2S application for TRN customer 
+	Given I have excel data 
+		| ATM_IBScenario002 |
+	Given User Open the chrome browser using selenium 
+	Given user update EDI file "ATM SingleLine PO - SerialItems" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
+	And user views ASN, get and verify item details  
+	Then user log out from application
+#	And user logs into the O2S application 
+#	And user navigate to VendorPortal Tab
+#	And user validate the ASN using "Serial Number" search field
+#	Then user log out from O2S application
+
+@InBoundScenario_ATM_10	@IBRegScenarios_ATM @Regression_ATM @ATM_SingleLinePO_NormalItem
+Scenario: Create an order using O2S application for TRN customer 
+	Given I have excel data 
+		| ATM_IBScenario003|
+	Given User Open the chrome browser using selenium 
+	Given user update EDI file "ATM SingleLine PO - NormalItems" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
+	And user views ASN, get and verify item details  
+	Then user log out from application
+#	And user logs into the O2S application 
+#	And user navigate to VendorPortal Tab
+#	And user validate the ASN using "Serial Number" search field
+#	Then user log out from O2S application
+	
