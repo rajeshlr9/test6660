@@ -291,7 +291,7 @@ Scenario: Multiline Serial Items Items for Ambient type item and Verify the ASN 
 	Then user log out from O2S application
 
 @InBoundScenario_ATM_08	@IBRegScenarios_ATM @Regression_ATM @ATM_SingleLinePO_LotItem
-Scenario: ASN Creation with Lot Items  using EDI file and validate ASN in Manhattan and O2S 
+Scenario: ASN Creation with Lot Items  using EDI file and validate ASN in Manhattan
 	Given I have excel data 
 		| ATM_IBScenario001 |
 	Given User Open the chrome browser using selenium 
@@ -309,7 +309,7 @@ Scenario: ASN Creation with Lot Items  using EDI file and validate ASN in Manhat
 #	Then user log out from O2S application
 	
 @InBoundScenario_ATM_09	@IBRegScenarios_ATM @Regression_ATM @ATM_SingleLinePO_SerialItem
-Scenario: Create an order using O2S application for TRN customer 
+Scenario: ASN Creation with Serial Items  using EDI file and validate ASN in Manhattan
 	Given I have excel data 
 		| ATM_IBScenario002 |
 	Given User Open the chrome browser using selenium 
@@ -327,7 +327,7 @@ Scenario: Create an order using O2S application for TRN customer
 #	Then user log out from O2S application
 
 @InBoundScenario_ATM_10	@IBRegScenarios_ATM @Regression_ATM @ATM_SingleLinePO_NormalItem
-Scenario: Create an order using O2S application for TRN customer 
+Scenario: ASN Creation with Normal Items  using EDI file and validate ASN in Manhattan
 	Given I have excel data 
 		| ATM_IBScenario003|
 	Given User Open the chrome browser using selenium 
