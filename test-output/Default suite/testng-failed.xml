@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="TestRunner.Runner2">
+      <class name="TestRunner.Runner">
         <methods>
-          <include name="createExtentReport"/>
-          <include name="setUpClass"/>
           <include name="feature" invocation-numbers="0"/>
+          <include name="setUpClass"/>
           <include name="writeExtentReport"/>
           <include name="tearDownClass"/>
+          <include name="createExtentReport"/>
         </methods>
-      </class> <!-- TestRunner.Runner2 -->
+      </class> <!-- TestRunner.Runner -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

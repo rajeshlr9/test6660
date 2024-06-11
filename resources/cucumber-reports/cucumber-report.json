@@ -3,34 +3,44 @@
     "line": 1,
     "elements": [
       {
+        "comments": [
+          {
+            "line": 120,
+            "value": "#Then user opens ASN screen and searches for the ASN and verify its status \"20 - InTransit\""
+          },
+          {
+            "line": 121,
+            "value": "#Then user opens ASN screen and searches for the ASN to be not available in Manhattan"
+          }
+        ],
         "before": [
           {
             "result": {
-              "duration": 95866700,
-              "status": "passed"
-            },
-            "match": {
-              "location": "Steps.beforeClass(Scenario)"
-            }
-          },
-          {
-            "result": {
-              "duration": 1050000,
+              "duration": 740800,
               "status": "passed"
             },
             "match": {
               "location": "CommonStepDefination.intiate(Scenario)"
             }
+          },
+          {
+            "result": {
+              "duration": 3899400,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Steps.beforeClass(Scenario)"
+            }
           }
         ],
-        "line": 30,
-        "name": "Distribution Order creation - Single Line  SI LTL FDFE LTLE",
-        "description": "",
-        "id": "qsc-outbound-scenarios;distribution-order-creation---single-line--si-ltl-fdfe-ltle",
+        "line": 124,
+        "name": "Receiving Case : MultiLine ASNLoad file for TRN Using  Kelli for Normal Items with different UOM.Complete Putaway.",
+        "description": "Creating ASN through Kelli, checking status of the shipment for Multi Line Normal Item. Complete Putaway.",
+        "id": "four-customer-scenarios;receiving-case-:-multiline-asnload-file-for-trn-using--kelli-for-normal-items-with-different-uom.complete-putaway.",
         "after": [
           {
             "result": {
-              "duration": 1925631900,
+              "duration": 1241030900,
               "status": "passed"
             },
             "match": {
@@ -43,10 +53,10 @@
         "steps": [
           {
             "result": {
-              "duration": 3176525700,
+              "duration": 1908887200,
               "status": "passed"
             },
-            "line": 31,
+            "line": 126,
             "name": "I have excel data",
             "match": {
               "location": "Steps.readExcelData(DataTable)"
@@ -54,19 +64,19 @@
             "rows": [
               {
                 "cells": [
-                  "QSC_DailyRegressionOB10"
+                  "TRN_KelliScenario001"
                 ],
-                "line": 32
+                "line": 127
               }
             ],
             "keyword": "Given "
           },
           {
             "result": {
-              "duration": 4550824300,
+              "duration": 2251248700,
               "status": "passed"
             },
-            "line": 33,
+            "line": 128,
             "name": "Open the chrome browser by selenium",
             "match": {
               "location": "Steps.open_the_chrome_and_launch_the_application_using_Selenium()"
@@ -75,70 +85,70 @@
           },
           {
             "result": {
-              "duration": 880743900,
+              "duration": 4295570700,
               "status": "passed"
             },
-            "line": 34,
-            "name": "user update \"Single Line DO\" for dropping into fedexnet application",
+            "line": 129,
+            "name": "user logs into the kelli application",
+            "match": {
+              "location": "StepDefKelli.login_to_kelli_application()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 178085000,
+              "status": "passed"
+            },
+            "line": 130,
+            "name": "user updates data in \"Multi Line ASN\" Kelli Upload Sheet",
             "match": {
               "arguments": [
                 {
-                  "val": "Single Line DO",
-                  "offset": 13
+                  "val": "Multi Line ASN",
+                  "offset": 22
                 }
               ],
-              "location": "StepDefInBound.user_update_EDI_XML_file_for(String)"
+              "location": "StepDefKelli.ASNSheet_Update_data(String)"
             },
             "keyword": "When "
           },
           {
             "result": {
-              "duration": 4568240200,
+              "duration": 5111704700,
               "status": "passed"
             },
-            "line": 35,
-            "name": "user logs into the FedexNet application",
-            "match": {
-              "location": "StepDefInBound.user_logs_into_the_FedexNet_application()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 11917977700,
-              "status": "passed"
-            },
-            "line": 36,
-            "name": "user upload \"850\" XML file in fedexnet",
+            "line": 131,
+            "name": "user upload the \"Multi Line ASN\" Load file in Kelli",
             "match": {
               "arguments": [
                 {
-                  "val": "850",
-                  "offset": 13
+                  "val": "Multi Line ASN",
+                  "offset": 17
                 }
               ],
-              "location": "StepDefInBound.user_upload_the_xml_in_fedexnet(String)"
+              "location": "StepDefKelli.upload_Kelli_file(String)"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 5206807900,
+              "duration": 3089162100,
               "status": "passed"
             },
-            "line": 37,
-            "name": "user log out from Fedenxet application",
+            "line": 132,
+            "name": "user logout from the kelli application",
             "match": {
-              "location": "StepDefInBound.user_logout_from_fedexnet()"
+              "location": "StepDefKelli.kellilogout()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 6003041900,
+              "duration": 11372042100,
               "status": "passed"
             },
-            "line": 38,
+            "line": 133,
             "name": "user logs into the Manhattan application",
             "match": {
               "location": "StepDefInBound.user_logs_into_the_Manhattan_application()"
@@ -147,235 +157,173 @@
           },
           {
             "result": {
-              "duration": 9324373300,
+              "duration": 66664038300,
               "status": "passed"
             },
-            "line": 39,
-            "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"110 - Released\"",
+            "line": 134,
+            "name": "fetches the actual ASN number and PO Number uploaded from Kelli",
             "match": {
-              "arguments": [
-                {
-                  "val": "110 - Released",
-                  "offset": 83
-                }
-              ],
-              "location": "StepDefOutBound.user_opens_DOscreen_andsearches_for_DOstatus(String)"
+              "location": "StepDefInBound.fetch_ASN_And_PO_Number()"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 28360683000,
+              "duration": 19336798700,
               "status": "passed"
             },
-            "line": 40,
-            "name": "user verifies the item details in Distribuion Order page",
+            "line": 135,
+            "name": "user opens ASN screen and searches for the ASN and verify its status \"20 - InTransit\"",
             "match": {
-              "location": "StepDefOutBound.user_verifies_the_item_details_in_Distribuion_Order_page()"
+              "arguments": [
+                {
+                  "val": "20 - InTransit",
+                  "offset": 70
+                }
+              ],
+              "location": "StepDefInBound.user_opens_ASN_screen_and_searches_for_the_ASN_and_verify_its_status(String)"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 62974197400,
+              "duration": 23864103200,
               "status": "passed"
             },
-            "line": 41,
-            "name": "user runs the \"LTL Pick Wave\"",
+            "line": 136,
+            "name": "user views ASN, get and verify item details",
             "match": {
-              "arguments": [
-                {
-                  "val": "LTL Pick Wave",
-                  "offset": 15
-                }
-              ],
-              "location": "StepDefOutBound.user_run_the_shipwave_template(String)"
+              "location": "StepDefInBound.user_views_ASNscreen_and_get_itemdetails()"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 20441624200,
+              "duration": 420730913900,
               "status": "passed"
             },
-            "line": 42,
-            "name": "user views wave and verify the allocation of inventory",
+            "line": 137,
+            "name": "user opens RF menu and completes Receiving using \"MM1 Recv-iLPN\" menu",
             "match": {
-              "location": "StepDefOutBound.user_user_views_wave_and_verify_the_allocation_of_inventory()"
+              "arguments": [
+                {
+                  "val": "MM1 Recv-iLPN",
+                  "offset": 50
+                }
+              ],
+              "location": "StepDefInBound.user_opens_RF_menu_and_completes_Receiving_using_menu(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 19251621000,
+              "status": "passed"
+            },
+            "line": 138,
+            "name": "user opens ASN screen and searches for the ASN and verify its status \"40 - Receiving Verified\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "40 - Receiving Verified",
+                  "offset": 70
+                }
+              ],
+              "location": "StepDefInBound.user_opens_ASN_screen_and_searches_for_the_ASN_and_verify_its_status(String)"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 9196948200,
+              "duration": 38428969600,
               "status": "passed"
             },
-            "line": 43,
-            "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"130 - DC Allocated\"",
+            "line": 139,
+            "name": "user opens Items screen and find putaway type",
+            "match": {
+              "location": "StepDefInBound.find_putaway_type()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 384549200600,
+              "status": "passed"
+            },
+            "line": 140,
+            "name": "user opens RF menu and completes Putaway using \"MM1 Ptwy iLPN\" menu",
             "match": {
               "arguments": [
                 {
-                  "val": "130 - DC Allocated",
-                  "offset": 83
+                  "val": "MM1 Ptwy iLPN",
+                  "offset": 48
                 }
               ],
-              "location": "StepDefOutBound.user_opens_DOscreen_andsearches_for_DOstatus(String)"
+              "location": "StepDefInBound.user_opens_RF_menu_and_completes_Putaway(String)"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 18926293000,
+              "duration": 41254809500,
               "status": "passed"
             },
-            "line": 44,
-            "name": "user open Task screen \u0026 verifies task is created for DO in the wave process",
+            "line": 141,
+            "name": "user search for the LPN in iLPN screen, and validate the lock code",
             "match": {
-              "location": "StepDefOutBound.user_user_views_TaskScreen_and_verify_task_generated()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 84034852000,
-              "status": "passed"
-            },
-            "line": 45,
-            "name": "user open RF Menu and complete the pick tasks created",
-            "match": {
-              "location": "StepDefOutBound.user_user_opeb_RFMenu_and_complete_pick_tasks()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 62409979500,
-              "status": "passed"
-            },
-            "line": 46,
-            "name": "user open RF Menu and complete the pack tasks created",
-            "match": {
-              "location": "StepDefOutBound.user_user_opeb_RFMenu_and_complete_pack_tasks()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 9874916000,
-              "status": "passed"
-            },
-            "line": 47,
-            "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"160 - Weighed\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "160 - Weighed",
-                  "offset": 83
-                }
-              ],
-              "location": "StepDefOutBound.user_opens_DOscreen_andsearches_for_DOstatus(String)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 20006837100,
-              "status": "passed"
-            },
-            "line": 48,
-            "name": "fetch the OLPN number",
-            "match": {
-              "location": "StepDefOutBound.fetch_olpn()"
+              "location": "StepDefInBound.user_search_for_the_LPN_in_iLPN_screen_and_validate_the_lock_code()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 53166608500,
+              "duration": 26031891900,
               "status": "passed"
             },
-            "line": 49,
-            "name": "user opens RF menu and completes Shipping using \"MM3 Anchor oLPN\" menu",
+            "line": 142,
+            "name": "user open reserve locations and naviagtes to validate iLPN",
             "match": {
-              "arguments": [
-                {
-                  "val": "MM3 Anchor oLPN",
-                  "offset": 49
-                }
-              ],
-              "location": "StepDefOutBound.user_opens_RF_menu_and_completes_Receiving_using_menu(String)"
+              "location": "StepDefInBound.user_open_reserve_locations_and_naviagtes_to_validate_iLPN()"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 10644015000,
+              "duration": 47801086400,
               "status": "passed"
             },
-            "line": 50,
-            "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"165 - Staged\"",
+            "line": 143,
+            "name": "user log out from application",
             "match": {
-              "arguments": [
-                {
-                  "val": "165 - Staged",
-                  "offset": 83
-                }
-              ],
-              "location": "StepDefOutBound.user_opens_DOscreen_andsearches_for_DOstatus(String)"
+              "location": "StepDefInBound.user_log_out_from_application()"
             },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 128169147600,
-              "status": "passed"
-            },
-            "line": 51,
-            "name": "user navigates to shippment planning workspace",
-            "match": {
-              "location": "StepDefOutBound.ShipmentPlanning()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 9361987100,
-              "status": "passed"
-            },
-            "line": 52,
-            "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"190 - Shipped\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "190 - Shipped",
-                  "offset": 83
-                }
-              ],
-              "location": "StepDefOutBound.user_opens_DOscreen_andsearches_for_DOstatus(String)"
-            },
-            "keyword": "And "
+            "keyword": "Then "
           }
         ],
         "tags": [
           {
-            "line": 29,
-            "name": "@DailyRegression_QSC"
+            "line": 123,
+            "name": "@TRN001"
           },
           {
-            "line": 29,
-            "name": "@ScenarioOB10"
+            "line": 123,
+            "name": "@MultiLine_TRN"
           },
           {
-            "line": 29,
-            "name": "@Outbound"
+            "line": 123,
+            "name": "@Regression_TRN"
+          },
+          {
+            "line": 123,
+            "name": "@IBRegScenarios_TRN"
           }
         ]
       }
     ],
-    "name": "QSC Outbound Scenarios",
+    "name": "Four Customer scenarios",
     "description": "",
-    "id": "qsc-outbound-scenarios",
+    "id": "four-customer-scenarios",
     "keyword": "Feature",
-    "uri": "QSCRegressionScenarios.feature"
+    "uri": "FourCustomerScenarios.feature"
   }
 ]
