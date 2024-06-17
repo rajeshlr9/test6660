@@ -41,7 +41,7 @@ import pages.ReserveLocationPage;
 import pages.VendorPortalHomePage;
 import reusable.FedexnetPage;
 import reusable.KelliPages;
-import reusable.ModifyXML;
+//import reusable.ModifyXML;
 import reusable.O2SLoginPage;
 import reusable.ValidateFilesAfterReceving;
 import utils.Config;

@@ -4,7 +4,7 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.util.Properties;
-
+/*
 import com.hp.lft.sdk.Desktop;
 import com.hp.lft.sdk.GeneralLeanFtException;
 import com.hp.lft.sdk.stdwin.Button;
@@ -15,10 +15,11 @@ import com.hp.lft.sdk.stdwin.Window;
 import com.hp.lft.sdk.stdwin.WindowDescription;
 import com.hp.lft.sdk.te.TextScreen;
 import com.hp.lft.sdk.te.TextScreenDescription;
-
+*/
 import StepDefinition.Steps;
 import utils.Config;
-
+//Commented to remove leanft dependency
+	/*
 public class PuttyLogin {
 
 	public static void puttyLogin() throws InterruptedException, GeneralLeanFtException, AWTException {
@@ -84,4 +85,4 @@ public class PuttyLogin {
 
 		Thread.sleep(2000);
 	}
-}
+}*/

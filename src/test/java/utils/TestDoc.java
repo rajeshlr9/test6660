@@ -8,15 +8,16 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
+/*
 import com.hp.lft.sdk.*;
 import com.hp.lft.sdk.web.Browser;
 import com.hp.lft.sdk.web.BrowserFactory;
 import com.hp.lft.sdk.web.BrowserType;
 import com.hp.lft.verifications.*;
-
+*/
 import unittesting.*;
-
+//Commented to remove leanft dependency
+	/*
 public class TestDoc extends UnitTestClassBase {
 
    
@@ -36,4 +37,4 @@ public class TestDoc extends UnitTestClassBase {
     	
     }
 
-}
+}*/

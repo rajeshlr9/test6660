@@ -16,8 +16,8 @@ public class StepDefFilezilla {
 			System.out.println(e);
 		}
 	}
-
-	@When("user connects to EMC customer and drop an OB order")
+	//Commented to remove leanft dependency
+/*	@When("user connects to EMC customer and drop an OB order")
 	public void orderUpload() throws Throwable {
 		try {
 			//scenario.write("Enterprise code-");
@@ -30,5 +30,5 @@ public class StepDefFilezilla {
 			Steps.testRes = "Failed";
 			System.out.println(e);
 		}
-	}
+	}*/
 }

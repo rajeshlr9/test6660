@@ -13,9 +13,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 
-import com.hp.lft.report.Status;
-import com.hp.lft.unittesting.TestNgUnitTestBase;
-
+//import com.hp.lft.report.Status;
+//import com.hp.lft.unittesting.TestNgUnitTestBase;
+//Commented to remove leanft dependency
+	/*
 public class UnitTestClassBase extends TestNgUnitTestBase {
     
     @BeforeSuite(alwaysRun=true)
@@ -72,4 +73,4 @@ public class UnitTestClassBase extends TestNgUnitTestBase {
 
     protected ThreadLocal<String> className = new ThreadLocal<String>();
     protected ThreadLocal<String> testName = new ThreadLocal<String>();
-}
+}*/

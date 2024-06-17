@@ -327,7 +327,7 @@ Scenario: ASN Creation with Serial Items  using EDI file and validate ASN in Man
 #	Then user log out from O2S application
 
 @InBoundScenario_ATM_10	@IBRegScenarios_ATM @Regression_ATM @ATM_SingleLinePO_NormalItem
-Scenario: ASN Creation with Normal Items  using EDI file and validate ASN in Manhattan
+Scenario: ASN Creation with Normal Items using EDI file and validate ASN in Manhattan
 	Given I have excel data 
 		| ATM_IBScenario003|
 	Given User Open the chrome browser using selenium 

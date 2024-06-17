@@ -4,7 +4,7 @@ import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.List;
-
+/*
 import com.hp.lft.sdk.Desktop;
 import com.hp.lft.sdk.GeneralLeanFtException;
 import com.hp.lft.sdk.stdwin.Button;
@@ -21,7 +21,7 @@ import com.hp.lft.sdk.stdwin.TreeView;
 import com.hp.lft.sdk.stdwin.TreeViewDescription;
 import com.hp.lft.sdk.stdwin.TreeViewNode;
 import com.hp.lft.sdk.stdwin.Window;
-import com.hp.lft.sdk.stdwin.WindowDescription;
+import com.hp.lft.sdk.stdwin.WindowDescription;*/
 
 //import com.hp.lft.sdk.web.Browser;
 //import com.hp.lft.sdk.web.BrowserDescription;
@@ -32,11 +32,11 @@ import com.hp.lft.sdk.stdwin.WindowDescription;
 //import com.hp.lft.sdk.web.EditFieldDescription;
 //import com.hp.lft.sdk.web.Link;
 //import com.hp.lft.sdk.web.LinkDescription;
-import unittesting.UnitTestClassBase;
-
+//import unittesting.UnitTestClassBase;
+//Commented to remove leanft dependency
+/*
 public class Filezilla extends UnitTestClassBase {
-
-    public static void uploadOrder() throws GeneralLeanFtException, InterruptedException, IOException, AWTException {
+	  public static void uploadOrder() throws GeneralLeanFtException, InterruptedException, IOException, AWTException {
     	
     	Robot robot= new Robot();
     	System.out.println("ho");
@@ -136,4 +136,4 @@ public class Filezilla extends UnitTestClassBase {
 	}
     
    
-}
+}*/

@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -20,6 +21,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.Assert;
 
 import com.cucumber.listener.Reporter;
+/*
 import com.hp.lft.sdk.GeneralLeanFtException;
 import com.hp.lft.sdk.stdwin.Window;
 import com.hp.lft.sdk.web.Browser;
@@ -32,7 +34,7 @@ import com.hp.lft.sdk.web.EditField;
 import com.hp.lft.sdk.web.EditFieldDescription;
 import com.hp.lft.sdk.web.NumericField;
 import com.hp.lft.sdk.web.NumericFieldDescription;
-
+*/
 import cucumber.api.DataTable;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -55,8 +57,8 @@ import utils.Config;
 
 public class Steps {
 	public static WebDriver seleniumDriver;
-	public static Browser LeanFTDriver;
-	public static Window winApp;
+//	public static Browser LeanFTDriver;
+//	public static Window winApp;
 	String pageTitle;
 	public static Robot robot;
 	public static Scenario scenario;
@@ -115,14 +117,16 @@ public class Steps {
 	 * scenario; System.out.println("here"); }
 	 */
 	@After
-	public void afterClass() throws GeneralLeanFtException {
+	public void afterClass() throws Exception {
 
 		System.out.println("after scenario");
 		
 		System.out.println(testRes);
 		 
 		if ("Failed".equals(testRes)) {
-			
+		
+			//Commented to remove leanft dependency
+			/*
 			if (LeanFTDriver != null) {
 				try {
 					globalFunc.Screenshots.LeanFTSnapshot(LeanFTDriver);
@@ -142,7 +146,7 @@ public class Steps {
 					e.printStackTrace();
 					System.out.println("raka3");
 				}
-			}
+			}*/
 			if (seleniumDriver != null) {
 				try {
 					globalFunc.Screenshots.seleniumSnapshot(seleniumDriver);
@@ -166,10 +170,12 @@ public class Steps {
 				}
 			}
 		}
+		//Commented to remove leanft dependency
+		/*
 		if (LeanFTDriver != null) {
 			LeanFTDriver.close();
 			LeanFTDriver = null;
-		}
+		}*/
 		if (seleniumDriver != null) {
 			seleniumDriver.quit();
 			seleniumDriver = null;
@@ -276,7 +282,8 @@ public class Steps {
 		seleniumDriver = CreateBrowser.CreateChromeBrowserInstance();
 		logger.info("Browser Instance created");
 	}
-
+	//Commented to remove leanft dependency
+		/*
 	@Then("^Attach LeanFT IE browser to seleniumTest$")
 	public void AttachLeanFTIEBrowseTtoSeleniumTest() throws Throwable {
 		try {
@@ -324,7 +331,7 @@ public class Steps {
 		LeanFTDriver.close();
 		LeanFTDriver = null;
 	}
-	
+	*/
 	/**
 	 * This method useful for opening Chrome browser and set the proxy using selenium
 	 * @throws Throwable

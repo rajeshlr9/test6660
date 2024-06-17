@@ -1,24 +1,25 @@
 package entity;
 
 import java.net.URI;
-
+/*
 import com.hp.lft.sdk.ModifiableSDKConfiguration;
 import com.hp.lft.sdk.SDK;
 import com.hp.lft.sdk.web.Browser;
 import com.hp.lft.sdk.web.BrowserFactory;
 import com.hp.lft.sdk.web.BrowserType;
-
+*/
 public class TestSdk {
 	 public static void main(String [] args){
-		 Browser browser;
+		//Commented to remove leanft dependency
+		/* Browser browser;
 	        // initialize the SDK and report only once per process
 	        try{
-	        	/*ModifiableSDKConfiguration config;
+	        	ModifiableSDKConfiguration config;
 	        	
 	    		config =  SDKConfigurationFactory.loadConfigurationFromExternalPropertiesFile("src//main//resources//leanft.properties");
 	    	   System.out.println(config.getAutoLaunch());
 	    	   System.out.println(config.getSDKMode());
-	    		SDK.init(config);*/
+	    		SDK.init(config);
 	        	
 	        	  ModifiableSDKConfiguration config = new ModifiableSDKConfiguration();
 	              config.setServerAddress(new URI("ws://localhost:5095"));
@@ -34,6 +35,6 @@ public class TestSdk {
 	        }
 	        catch(Exception e){
 	        	System.out.println(e);
-	        }
+	        }*/
 }
 }

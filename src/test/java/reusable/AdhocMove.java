@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Properties;
 
 import org.testng.Assert;
-
+/*
 import com.hp.lft.sdk.Desktop;
 import com.hp.lft.sdk.GeneralLeanFtException;
 import com.hp.lft.sdk.stdwin.Window;
@@ -17,14 +17,15 @@ import com.hp.lft.sdk.stdwin.WindowDescription;
 import com.hp.lft.sdk.te.Position;
 import com.hp.lft.sdk.te.TextScreen;
 import com.hp.lft.sdk.te.TextScreenDescription;
-
+*/
 import StepDefinition.Steps;
 import cucumber.api.DataTable;
-import unittesting.UnitTestClassBase;
+//import unittesting.UnitTestClassBase;
 import utils.Config;
-
+//Commented to remove leanft dependency
+/*
 public class AdhocMove extends UnitTestClassBase {
-
+	
 	public static void adhocMove(DataTable usercredentials, Window putty)
 			throws IOException, GeneralLeanFtException, AWTException, InterruptedException {
 
@@ -215,4 +216,4 @@ public class AdhocMove extends UnitTestClassBase {
 		}
 
 	}
-}
+}*/

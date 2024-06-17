@@ -12,9 +12,10 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 import com.cucumber.listener.Reporter;
+/*
 import com.hp.lft.sdk.stdwin.Window;
 import com.hp.lft.sdk.web.Browser;
-
+*/
 import utils.Config;
 
 public class Screenshots {
@@ -38,8 +39,9 @@ public class Screenshots {
 		File DestFile = new File("./resources/Screenshots/" +Config.getProperty("Build_Number")+"_"+Config.getProperty("Account")+"_" + DateTime.strDate3 + ".png");
 		FileUtils.copyFile(SrcFile, DestFile);
 	}
-
-	public static void LeanFTSnapshot(Browser leanFTDriver) throws Exception {
+	
+	//Commented to remove leanft dependency
+/*	public static void LeanFTSnapshot(Browser leanFTDriver) throws Exception {
 		RenderedImage srcFile = leanFTDriver.getSnapshot();
 		File fileObj = new File("resources\\Screenshots\\" + DateTime.strDate3 + ".jpeg");
 		try {
@@ -58,7 +60,7 @@ public class Screenshots {
 			e.printStackTrace();
 		}
 	}
-	
+	*/
 	public static void addingScreenshottoExentReport() throws Exception {
 	
 	if(Config.getProperty("RunEnvironment").equals("Jenkins")) {

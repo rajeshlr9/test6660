@@ -22,7 +22,8 @@ public class StepDefPutty {
 			e.printStackTrace();
 		}
 	}
-	
+	//Commented to remove leanft dependency
+		/*
 	@When("user login to Putty")
 	public void puttyLogin() throws Throwable {
 		try {
@@ -44,7 +45,7 @@ public class StepDefPutty {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	@Then("Items are moved successfully")
 	public void adhocmoveValidation() throws IOException {

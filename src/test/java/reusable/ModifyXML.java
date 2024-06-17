@@ -6,11 +6,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import com.hp.lft.sdk.GeneralLeanFtException;
+//import com.hp.lft.sdk.GeneralLeanFtException;
 
 import StepDefinition.Steps;
-import unittesting.UnitTestClassBase;
-
+//import unittesting.UnitTestClassBase;
+//Commented to remove leanft dependency
+/*
 public class ModifyXML extends UnitTestClassBase {
 
    
@@ -61,8 +62,8 @@ public class ModifyXML extends UnitTestClassBase {
 	reader.close();
 	writer.close();
         }
-}
-	//    			    
+}*/
+	  			    
  
  
     	

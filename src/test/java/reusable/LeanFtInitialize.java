@@ -2,11 +2,12 @@ package reusable;
 
 import java.net.URI;
 
-import com.hp.lft.sdk.ModifiableSDKConfiguration;
-import com.hp.lft.sdk.SDK;
-
+//import com.hp.lft.sdk.ModifiableSDKConfiguration;
+//import com.hp.lft.sdk.SDK;
+//Commented to remove leanft dependency
+	/*
 public class LeanFtInitialize {
-
+	
 	public static void initializeLeanFt() {
 		
 		try {
@@ -18,4 +19,4 @@ public class LeanFtInitialize {
 		} 
 	}
 	
-}
+}*/
