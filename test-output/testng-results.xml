@@ -1,28 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="0" passed="0" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
+    <line>
+      <![CDATA[Execution started for : Single Line Normal Items and Verify the ASN details in Manhattan and Vendor Portal]]>
+    </line>
   </reporter-output>
-  <suite started-at="2024-06-26T05:31:15 UTC" name="Default suite" finished-at="2024-06-26T05:31:16 UTC" duration-ms="1075">
+  <suite started-at="2024-06-26T10:54:19 UTC" name="Default suite" finished-at="2024-06-26T11:00:41 UTC" duration-ms="382247">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@6200f9cb]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2024-06-26T05:31:15 UTC" name="Default test" finished-at="2024-06-26T05:31:16 UTC" duration-ms="1075">
+    <test started-at="2024-06-26T10:54:19 UTC" name="Default test" finished-at="2024-06-26T11:00:41 UTC" duration-ms="382247">
       <class name="TestRunner.Runner">
-        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-06-26T05:31:15 UTC" name="createExtentReport" finished-at="2024-06-26T05:31:15 UTC" duration-ms="53" status="PASS">
+        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-06-26T10:54:19 UTC" name="createExtentReport" finished-at="2024-06-26T10:54:19 UTC" duration-ms="52" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createExtentReport -->
-        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-06-26T05:31:15 UTC" name="setUpClass" finished-at="2024-06-26T05:31:15 UTC" duration-ms="237" status="PASS">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-06-26T10:54:19 UTC" name="setUpClass" finished-at="2024-06-26T10:54:19 UTC" duration-ms="232" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-06-26T05:31:15 UTC" name="tearDownClass" finished-at="2024-06-26T05:31:16 UTC" duration-ms="506" status="PASS">
+        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-06-26T10:54:20 UTC" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2024-06-26T11:00:41 UTC" duration-ms="381415" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[This feature file contains COM customer Vendor Portal Scenarios]]>
+              </value>
+            </param>
+          </params>
+          <exception class="cucumber.runtime.CucumberException">
+            <message>
+              <![CDATA[java.lang.AssertionError: expected [Complete] but found [Completed]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[cucumber.runtime.CucumberException: java.lang.AssertionError: expected [Complete] but found [Completed]
+at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
+at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:739)
+at org.testng.TestRunner.run(TestRunner.java:614)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+Caused by: java.lang.AssertionError: expected [Complete] but found [Completed]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+at org.testng.Assert.assertEquals(Assert.java:132)
+at org.testng.Assert.assertEquals(Assert.java:656)
+at org.testng.Assert.assertEquals(Assert.java:666)
+at pages.VendorPortalHomePage.vpReceive(VendorPortalHomePage.java:288)
+at StepDefinition.StepDefInBound.user_completes_receiving_in_vendor_portal(StepDefInBound.java:1751)
+at ✽.And user completes receiving in vendor portal(COMVendorPortalScenariosUpdated.feature:20)
+]]>
+            </full-stacktrace>
+          </exception> <!-- cucumber.runtime.CucumberException -->
+          <reporter-output>
+            <line>
+              <![CDATA[Execution started for : Single Line Normal Items and Verify the ASN details in Manhattan and Vendor Portal]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- feature -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-06-26T11:00:41 UTC" name="tearDownClass" finished-at="2024-06-26T11:00:41 UTC" duration-ms="258" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-06-26T05:31:16 UTC" name="writeExtentReport" finished-at="2024-06-26T05:31:16 UTC" duration-ms="16" status="PASS">
+        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-06-26T11:00:41 UTC" name="writeExtentReport" finished-at="2024-06-26T11:00:41 UTC" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- writeExtentReport -->

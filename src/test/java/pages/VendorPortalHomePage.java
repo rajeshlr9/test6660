@@ -205,7 +205,7 @@ public class VendorPortalHomePage {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, expASNNumInSearchResult, 300);
 		SeleniumTestHelper.scrollToElement(driver, expASNNumInSearchResult);
 		
-		System.out.println("Expected shipmentVal: "+Items.getShipmentNum());
+		System.out.println("Expected shipmentVal: "+Items.getPONumber());
 		System.out.println("Actual shipmentVal: "+expASNNumInSearchResult.getText());
 		System.out.println("Item: "+Steps.ItemDataMap.get(0).get("Item"));
 		System.out.println("UOM: "+Steps.ItemDataMap.get(0).get("UOM"));
@@ -274,7 +274,7 @@ public class VendorPortalHomePage {
 		
 		receiveButton.click();
 		 Thread.sleep(2000);
-		String status = "Completed";
+		String status = "Complete";
 		
 		 String AsnreceiveStatus = receiveStatus.getText();
 			int count = 0;
@@ -285,7 +285,7 @@ public class VendorPortalHomePage {
 			  count++; 
 			  }
 			  System.out.println("AsnreceiveStatus:"+AsnreceiveStatus);
-		//Assert.assertEquals(status, AsnreceiveStatus);
+			  Assert.assertEquals( AsnreceiveStatus,status);
 		
 	}
 		
