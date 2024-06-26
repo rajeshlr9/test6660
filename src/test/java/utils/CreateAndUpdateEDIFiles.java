@@ -76,11 +76,18 @@ public class CreateAndUpdateEDIFiles {
 
 	public String TRNEDIOutboundFilePath = dirPath + "/src/test/resources/testdata/"+"TRN" + "/850/"+"TRN"+"-850_InputFile.x12";
 	
-	public String ATMSingleLineLotItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"ATM" + "/856/"+"ATM"+"-LotItem-WIP.x12";
+	public String ATMSingleLineHazItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"ATM" + "/856/"+"ATM"+"-HazItem-WIP.x12";
+	public String ATMSingleLineExpSerialItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"ATM" + "/856/"+"ATM"+"-ExpSerialItem-WIP.x12";
 	public String ATMSingleLineSerialItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"ATM" + "/856/"+"ATM"+"-SerialItem-WIP.x12";
 	public String ATMSingleLineNormalItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"ATM" + "/856/"+"ATM"+"-NormalItem-WIP.x12";
 
 	public String ATMEDIInboundFilePath = dirPath + "/src/test/resources/testdata/"+"ATM" + "/856/"+"ATM"+"_856_InputFile.x12";
+
+	public String COMSingleLineLotItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"COM" + "/856/"+"COM"+"-LotItem-WIP.x12";
+	public String COMSingleLineSerialItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"COM" + "/856/"+"COM"+"-SerialItem-WIP.x12";
+	public String COMSingleLineNormalItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"COM" + "/856/"+"COM"+"-NormalItem-WIP.x12";
+
+	public String COMEDIInboundFilePath = dirPath + "/src/test/resources/testdata/"+"COM" + "/856/"+"COM"+"_856_InputFile.x12";
 
 	public void user_create_EDI_file(String fileType)
 			throws FileNotFoundException, XPathExpressionException, IOException, SAXException,
@@ -110,10 +117,14 @@ public class CreateAndUpdateEDIFiles {
 				Steps.logger.info("Contents Copy from : " + MultiLineSerialItemIBFilePath);
 				Steps.logger.info("Contents Copy to : " + APCEDIInboundFilePath);
 				user_copy_edi_file_content_from_source_to_target(MultiLineSerialItemIBFilePath, APCEDIInboundFilePath);
-			}else if(fileType.equals("ATM SingleLine PO - LotItems")) {
-				Steps.logger.info("Contents Copy from : " + ATMSingleLineLotItemIBFilePath);
+			}else if(fileType.equals("ATM SingleLine PO - HazItems")) {
+				Steps.logger.info("Contents Copy from : " + ATMSingleLineHazItemIBFilePath);
 				Steps.logger.info("Contents Copy to : " + ATMEDIInboundFilePath);//ATM SingleLine PO - SerialItems
-				user_copy_edi_file_content_from_source_to_target(ATMSingleLineLotItemIBFilePath, ATMEDIInboundFilePath);
+				user_copy_edi_file_content_from_source_to_target(ATMSingleLineHazItemIBFilePath, ATMEDIInboundFilePath);
+			}else if(fileType.equals("ATM SingleLine PO - ExpItems")) {
+				Steps.logger.info("Contents Copy from : " + ATMSingleLineExpSerialItemIBFilePath);
+				Steps.logger.info("Contents Copy to : " + ATMEDIInboundFilePath);//ATM SingleLine PO - SerialItems
+				user_copy_edi_file_content_from_source_to_target(ATMSingleLineExpSerialItemIBFilePath, ATMEDIInboundFilePath);
 			}else if(fileType.equals("ATM SingleLine PO - SerialItems")) {
 				Steps.logger.info("Contents Copy from : " + ATMSingleLineSerialItemIBFilePath);
 				Steps.logger.info("Contents Copy to : " + ATMEDIInboundFilePath);//ATM SingleLine PO - SerialItems
@@ -122,6 +133,18 @@ public class CreateAndUpdateEDIFiles {
 				Steps.logger.info("Contents Copy from : " + ATMSingleLineNormalItemIBFilePath);
 				Steps.logger.info("Contents Copy to : " + ATMEDIInboundFilePath);//ATM SingleLine PO - SerialItems
 				user_copy_edi_file_content_from_source_to_target(ATMSingleLineNormalItemIBFilePath, ATMEDIInboundFilePath);
+			}else if(fileType.equals("COM SingleLine PO - LotItems")) {
+				Steps.logger.info("Contents Copy from : " + COMSingleLineLotItemIBFilePath);
+				Steps.logger.info("Contents Copy to : " + COMEDIInboundFilePath);//ATM SingleLine PO - SerialItems
+				user_copy_edi_file_content_from_source_to_target(COMSingleLineLotItemIBFilePath, COMEDIInboundFilePath);
+			}else if(fileType.equals("COM SingleLine PO - SerialItems")) {
+				Steps.logger.info("Contents Copy from : " + COMSingleLineSerialItemIBFilePath);
+				Steps.logger.info("Contents Copy to : " + COMEDIInboundFilePath);//ATM SingleLine PO - SerialItems
+				user_copy_edi_file_content_from_source_to_target(COMSingleLineSerialItemIBFilePath, COMEDIInboundFilePath);
+			}else if(fileType.equals("COM SingleLine PO - NormalItems")) {
+				Steps.logger.info("Contents Copy from : " + COMSingleLineNormalItemIBFilePath);
+				Steps.logger.info("Contents Copy to : " + COMEDIInboundFilePath);//ATM SingleLine PO - SerialItems
+				user_copy_edi_file_content_from_source_to_target(COMSingleLineNormalItemIBFilePath, COMEDIInboundFilePath);
 			}
 		} else if (fileType.contains("DO")) {
 //			if (fileType.equals("APC SingleLine DO - LotItems")) {
@@ -242,7 +265,12 @@ public class CreateAndUpdateEDIFiles {
 				path = APCEDIInboundFilePath;
 				PODONumber = "APOC000000" + randomNum + "-" + strDate11;
 
-			} else {
+			} else if(Steps.scenarioData.get("Account").equals("COM")) {
+				path = COMEDIInboundFilePath;
+				PODONumber = "COM" + randomNum + "24" + strDate11 +"VMS";
+
+			}
+			else {
 				System.out.println("Account Name didn't match.Please check the Account Name");
 			}
 			Items.setPONumber(PODONumber);
@@ -255,7 +283,13 @@ public class CreateAndUpdateEDIFiles {
 			String uom = null;
 			System.out.println(Steps.scenarioData.get("Account") + " SingleLine PO");
 			if (fileType.contains(Steps.scenarioData.get("Account") + " SingleLine PO")) {
-				if (Steps.scenarioData.get("Account").equals("ATM")) {
+				if (Steps.scenarioData.get("Account").equals("COM")) {
+					modifyEDIFile(COMEDIInboundFilePath, "yyMMdd", strDate5);
+
+					modifyEDIFile(COMEDIInboundFilePath, "COMddHHmmsssVMS", PODONumber);
+					modifyEDIFile(COMEDIInboundFilePath, "HHmmss", strDate6);
+					modifyEDIFile(COMEDIInboundFilePath, "MMddHH", strDate14);
+				} else if (Steps.scenarioData.get("Account").equals("ATM")) {
 					modifyEDIFile(ATMEDIInboundFilePath, "yyMMdd", strDate5);
 
 					modifyEDIFile(ATMEDIInboundFilePath, "ATMddHHmmsssBLY", PODONumber);
@@ -285,7 +319,22 @@ public class CreateAndUpdateEDIFiles {
 				for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 					Steps.logger.info("Steps.ItemDataMap Size" + Steps.ItemDataMap.size());
 					itemName = Steps.ItemDataMap.get(i).get("Item");
-					if (Steps.scenarioData.get("Account").equals("ATM")) {
+					if (Steps.scenarioData.get("Account").equals("COM")) {
+						modifyEDIFile(COMEDIInboundFilePath, "XXXItemId", itemName);
+						Steps.logger.info("Item : " + itemName + " has been updated successfully");
+						Steps.logger.info("Item : " + itemName + " has been updated successfully");
+
+						shpQty = Steps.ItemDataMap.get(i).get("ShippedQty");
+						modifyEDIFile(COMEDIInboundFilePath, "XXXItemQty", shpQty);
+						Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
+						Steps.logger.info("Shipped Qty : " + shpQty + " has been updated successfully");
+
+						uom = Steps.ItemDataMap.get(i).get("UOM");
+						modifyEDIFile(COMEDIInboundFilePath, "XXXUOM", uom);
+						modifyEDIFile(COMEDIInboundFilePath, "XXXItemUOM", shpQty);
+						Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
+						Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
+					} else if (Steps.scenarioData.get("Account").equals("ATM")) {
 						modifyEDIFile(ATMEDIInboundFilePath, "XXXItemId", itemName);
 						Steps.logger.info("Item : " + itemName + " has been updated successfully");
 						Steps.logger.info("Item : " + itemName + " has been updated successfully");

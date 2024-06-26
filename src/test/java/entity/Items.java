@@ -67,6 +67,15 @@ public class Items {
 	public static String iLPNRef;
 	private static String RefSerialNum;
 	private static String O2SOrderID;
+	private static String shipmentVal;
+	
+	public static String getShipmentNum() {
+		return shipmentVal;
+	}
+
+	public static void setShipmentNum(String shipmentVal) {
+		Items.shipmentVal = shipmentVal;
+	}
 	
 	public static String getItemName() {
 		return ItemName;
@@ -603,6 +612,7 @@ public class Items {
 		iLPNRef= null;
 		RefSerialNum = null;
 		O2SOrderID = null;
+		shipmentVal = null;
 	}
 
 	public static String getPdfCOntent() {

@@ -74,6 +74,14 @@ public class O2SHomePage {
 	
 	@FindBy(xpath = "//*[@id='identifyCustomerForm:phone1']")
 	public WebElement custPhoneNum;
+	
+	@FindBy(xpath = "//a[@title='OMS']")
+	public WebElement omsLink;
+	
+	@FindBy(xpath = "//a[text()='Orders']")
+	public WebElement ordersLink;
+	
+	
 	/**
 	 * This method logoutFormO2SApp use for logout from the O2S application 
 	 * @throws Exception
@@ -108,6 +116,32 @@ public class O2SHomePage {
 		SeleniumTestHelper.WaitForPageLoad();
 	}
 	
+	public void logoutFormVendorPortalApp() throws Exception {
+		System.out.println("Click on Logout");
+		try {
+		SeleniumTestHelper.scrollUp();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		omsLink.click();
+		Thread.sleep(5000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ordersLink, 180);
+		ordersLink.click();
+		Thread.sleep(5000);
+		//SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(logout));
+		if(SeleniumTestHelper.isElementDisplayed(logout)) {
+			SeleniumTestHelper.clickOnButton(logout);
+		}else if(SeleniumTestHelper.isElementDisplayed(logoutLink)){
+			SeleniumTestHelper.clickOnButton(logoutLink);
+		}else {
+			//SeleniumTestHelper.clickOnButton(logout);
+			SeleniumTestHelper.assertEquals(SeleniumTestHelper.isElementDisplayed(logout),true,"Logout Element xpath didn't match");
+		}
+		//logout.click();
+		Steps.logger.info("Clicked on Logout Button");
+		//Thread.sleep(10000);
+		SeleniumTestHelper.WaitForPageLoad();
+	}
 	//4 Customer update
 	/**
 	 * This method createOrderFirstStep use for Create an Order using Caller ID and Location Code as first step

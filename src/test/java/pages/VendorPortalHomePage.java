@@ -1,5 +1,8 @@
 package pages;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.server.handler.GetCurrentUrl;
@@ -88,6 +91,25 @@ public class VendorPortalHomePage {
 	
 	@FindBy(xpath = "//div[contains(@class,'fx-error-banner')]/p")
 	public WebElement errorBanner;
+	
+	@FindBy(xpath = "//*[@id='receiveTable']/tbody/tr[2]/td[10]/input")
+	public WebElement putawayLocation;
+	
+	@FindBy(xpath = "//*[@id='receiveTable']")
+	public WebElement receiveTable;
+	
+	@FindBy(xpath = "//button[@id='receiveButton']")
+	public WebElement receiveButton;
+	
+	@FindBy(xpath = "//table[@id='receiveTable']//following::td[12]")
+	public WebElement receiveStatus;
+	
+	@FindBy(xpath = "//input[@name='shipmentNbr']")
+	public WebElement shipmentNbr;
+	
+	@FindBy(xpath = "//input[@id='SHIPBYDATE_0_1']")
+	public WebElement shipmentByDt;
+	
 		
 	public void naviagateAndClickReceiveTab() throws InterruptedException {
 		Thread.sleep(5000);
@@ -114,6 +136,14 @@ public class VendorPortalHomePage {
 			SeleniumTestHelper.scrollToElement(driver, tableDataWithNodeAMIAM);
 			SeleniumTestHelper.click(tableDataWithNodeAMIAM);
 			Thread.sleep(5000);
+		}else if (account.equalsIgnoreCase("COM")) {
+			// SeleniumTestHelper.enterText(nodeFilterField, "MEM1");
+			SeleniumTestHelper.enterText(nodeFilterField, "AMI");
+			Thread.sleep(2000);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, tableDataWithNodeAMIAM, 180);
+			SeleniumTestHelper.scrollToElement(driver, tableDataWithNodeAMIAM);
+			SeleniumTestHelper.click(tableDataWithNodeAMIAM);
+			Thread.sleep(5000);
 		}
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, reasonCodeSelector, 180);
 		SeleniumTestHelper.selectFromDropDown(reasonCodeSelector, "Training", DropDownMode.VALUE);
@@ -123,7 +153,11 @@ public class VendorPortalHomePage {
 		Thread.sleep(2000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, selectEnterPrise, 180);
 		SeleniumTestHelper.scrollToElement(driver, selectEnterPrise);
+		if (account.equalsIgnoreCase("ATM")) {
 		SeleniumTestHelper.selectFromDropDown(selectEnterPrise, "ATM", DropDownMode.VALUE);
+		}else if (account.equalsIgnoreCase("COM")) {
+			SeleniumTestHelper.selectFromDropDown(selectEnterPrise, "COM", DropDownMode.VALUE);
+		}
 		Thread.sleep(2000);
 	}
 	
@@ -134,6 +168,15 @@ public class VendorPortalHomePage {
 		SeleniumTestHelper.enterText(receiptNumber, Items.getAsnNumber());
 		clickOnLoadShipment();
 	}
+	
+	public void searchUsingShipmentNumber() throws InterruptedException {
+		Thread.sleep(2000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipmentNbr, 180);
+		SeleniumTestHelper.scrollToElement(driver, shipmentNbr);
+		SeleniumTestHelper.enterText(shipmentNbr, Items.getPONumber());
+		clickOnLoadShipment();
+	}
+	
 	public void searchUsingLotNumber() throws InterruptedException {
 		Thread.sleep(2000);
 		System.out.println("Enter Lot Number and Receipt Number");
@@ -159,20 +202,22 @@ public class VendorPortalHomePage {
 	
 	public void validateDataInReceiveTable() throws Exception {
 		System.out.println("Validate the Expected data in Receive Table");
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, expASNNumInSearchResult, 180);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, expASNNumInSearchResult, 300);
 		SeleniumTestHelper.scrollToElement(driver, expASNNumInSearchResult);
-		System.out.println(expASNNumInSearchResult.getText());
-		System.out.println(Steps.ItemDataMap.get(0).get("Item"));
-		System.out.println(Steps.ItemDataMap.get(0).get("UOM"));
-		System.out.println(Steps.ItemDataMap.get(0).get("ShippedQty"));
+		
+		System.out.println("Expected shipmentVal: "+Items.getShipmentNum());
+		System.out.println("Actual shipmentVal: "+expASNNumInSearchResult.getText());
+		System.out.println("Item: "+Steps.ItemDataMap.get(0).get("Item"));
+		System.out.println("UOM: "+Steps.ItemDataMap.get(0).get("UOM"));
+		System.out.println("ShippedQty: "+Steps.ItemDataMap.get(0).get("ShippedQty"));
 		System.out.println(itemQtyInSearchResult.getAttribute("value"));
-		Assert.assertEquals(Items.getAsnNumber().contains(expASNNumInSearchResult.getText()), true, "Actual and Expected ASN Number didn't matched");
+		Reporter.addStepLog("Item: " + itemIdInSearchResult.getText()+";"+"Item Quantity: " + itemQtyInSearchResult.getAttribute("value")+";"+"UOM: " + uOMInSearchResult.getText());
+		Reporter.addStepLog("ASN: " + expASNNumInSearchResult.getText()+";"+"Status: " + statusInSearchResult.getText());
+		Assert.assertEquals(Items.getShipmentNum().contains(expASNNumInSearchResult.getText()), true, "Actual and Expected ASN Number didn't matched");
 		Assert.assertEquals(statusInSearchResult.getText(), "Shipped", "Actual and Expected Status didn't matched");
 		Assert.assertEquals(itemIdInSearchResult.getText(), Steps.ItemDataMap.get(0).get("Item"), "Actual and Expected item didn't matched");
 		Assert.assertEquals(uOMInSearchResult.getText(), Steps.ItemDataMap.get(0).get("UOM"), "Actual and Expected UOM didn't matched");
 		Assert.assertEquals(itemQtyInSearchResult.getAttribute("value"), Steps.ItemDataMap.get(0).get("ShippedQty"), "Actual and Expected Item Qty didn't matched");
-		Reporter.addStepLog("Item: " + itemIdInSearchResult.getText()+";"+"Item Quantity: " + itemQtyInSearchResult.getAttribute("value")+";"+"UOM: " + uOMInSearchResult.getText());
-		Reporter.addStepLog("ASN: " + expASNNumInSearchResult.getText()+";"+"Status: " + statusInSearchResult.getText());
 		Thread.sleep(5000);
 	}
 	public void validateLotNumberInReceiveTable() throws InterruptedException {
@@ -211,6 +256,37 @@ public class VendorPortalHomePage {
 			Reporter.addStepLog("Error : " + errorBanner.getText());
 			Assert.assertTrue(false, errorBanner.getText());
 		}
+	}
+	
+	public void vpReceive() throws InterruptedException {
+		int rows =  driver.findElements(By.xpath("//table[@id='receiveTable']/tbody//following::tr")).size();
+		for(int i=2;i<=rows;i++) {
+			driver.findElement(By.xpath("//*[@id='receiveTable']/tbody/tr["+i+"]/td[10]/input")).click();
+			 Thread.sleep(2000);
+			driver.findElement(By.xpath("//*[@id='receiveTable']/tbody/tr["+i+"]/td[10]/input")).sendKeys(Steps.ItemDataMap.get(i-2).get("RecLocation"));
+			 Thread.sleep(2000);
+			 if(Steps.ItemDataMap.get(i-2).get("ShipByDate")!="") {
+				 shipmentByDt.sendKeys("11112035");
+			 }
+			//putawayLocation.click();
+			//putawayLocation.sendKeys(Steps.ItemDataMap.get(i-2).get("RecLocation"));
+		}
+		
+		receiveButton.click();
+		 Thread.sleep(2000);
+		String status = "Completed";
+		
+		 String AsnreceiveStatus = receiveStatus.getText();
+			int count = 0;
+			  while (!AsnreceiveStatus.equals(status) && (count != 20)) { 
+
+			  AsnreceiveStatus = receiveStatus.getText();
+			  Thread.sleep(6000);			 
+			  count++; 
+			  }
+			  System.out.println("AsnreceiveStatus:"+AsnreceiveStatus);
+		//Assert.assertEquals(status, AsnreceiveStatus);
+		
 	}
 		
 }

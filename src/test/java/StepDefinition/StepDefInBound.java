@@ -91,19 +91,6 @@ public class StepDefInBound {
 		// CreateBrowser.CreateBrowserInstance(); this.driver = Steps.seleniumDriver;
 	}
 
-	/*
-	 * @Before public void intiate(Scenario scenario) {
-	 * 
-	 * }
-	 * 
-	 * @After public void cleanUp(Scenario scenario) {
-	 * 
-	 * }
-	 * 
-	 */
-	
-	
-
 	@Given("user log in to the Manhattan application")
 	public void user_log_in_to_the_Manhattan_application() {
 		try {
@@ -118,7 +105,7 @@ public class StepDefInBound {
 				driver.get(Config.getProperty("ManhattanURL_STAGE"));
 				Steps.logger.info("UA Environment");
 			}
-			
+
 			manhattanLoginPage.loginToManhattanApp();
 		} catch (Exception e) {
 			System.out.println(e);
@@ -142,9 +129,9 @@ public class StepDefInBound {
 				driver.get(Config.getProperty("ManhattanURL_L2"));
 				Steps.logger.info("L2 Environment");
 			}
-				else if (env.equalsIgnoreCase("L4")) {
-					driver.get(Config.getProperty("ManhattanURL_L4"));
-					Steps.logger.info("L4 Environment");
+			else if (env.equalsIgnoreCase("L4")) {
+				driver.get(Config.getProperty("ManhattanURL_L4"));
+				Steps.logger.info("L4 Environment");
 			}
 			manhattanLoginPage.loginToManhattanApp(userType);
 		} catch (Exception e) {
@@ -167,8 +154,8 @@ public class StepDefInBound {
 				driver.get(Config.getProperty("ManhattanURL_L2"));
 				Steps.logger.info("L2 Environment");
 			} else if (env.equalsIgnoreCase("L4")) {
-					driver.get(Config.getProperty("ManhattanURL_L4"));
-					Steps.logger.info("L4 Environment Manhattan URL :"+Config.getProperty("ManhattanURL_L4"));
+				driver.get(Config.getProperty("ManhattanURL_L4"));
+				Steps.logger.info("L4 Environment Manhattan URL :"+Config.getProperty("ManhattanURL_L4"));
 			}else if (env.equalsIgnoreCase("L5")) {
 				driver.get(Config.getProperty("ManhattanURL_L5"));
 				Steps.logger.info("L5 Environment");
@@ -180,10 +167,8 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
 
-
-//only for sanity check
+	//only for sanity check
 	@And("user logs into Manhattan application for \"([^\"]*)\" customer")
 	public void user_logs_into_the_Manhattan_application2(String customer) {
 		try {
@@ -197,8 +182,8 @@ public class StepDefInBound {
 				driver.get(Config.getProperty("ManhattanURL_L2"));
 				Steps.logger.info("L2 Environment");
 			} else if (env.equalsIgnoreCase("L4")) {
-					driver.get(Config.getProperty("ManhattanURL_L4"));
-					Steps.logger.info("L4 Environment Manhattan URL :"+Config.getProperty("ManhattanURL_L4"));
+				driver.get(Config.getProperty("ManhattanURL_L4"));
+				Steps.logger.info("L4 Environment Manhattan URL :"+Config.getProperty("ManhattanURL_L4"));
 			}else if (env.equalsIgnoreCase("L5")) {
 				driver.get(Config.getProperty("ManhattanURL_L5"));
 				Steps.logger.info("L5 Environment");
@@ -210,12 +195,12 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 
 	//********************************************FedexNet******************************************
-		//FedexNet
-		@Then("^user logs into the FedexNet application$")
-		public void user_logs_into_the_FedexNet_application() {
+	//FedexNet
+	@Then("^user logs into the FedexNet application$")
+	public void user_logs_into_the_FedexNet_application() {
 		try {
 			String env = Config.getProperty("Environment");
 			System.out.println("Environment:"+env);
@@ -223,13 +208,13 @@ public class StepDefInBound {
 			if (env.equalsIgnoreCase("L1")|| env.equalsIgnoreCase("@Env") || env.equalsIgnoreCase("L2")) {
 				driver.get(Config.getProperty("FedexNetURL_DEV"));
 				Steps.logger.info("Dev Environment");
-				
+
 			} else if (env.equalsIgnoreCase("L3") ) {
 				driver.get(Config.getProperty("FedexNetURL_TEST"));
 				Steps.logger.info("TEST Environment");
 			}else if (env.equalsIgnoreCase("L4")) {
-					driver.get(Config.getProperty("FedexNetURL_STAGE"));
-					Steps.logger.info("STAGE Environment");
+				driver.get(Config.getProperty("FedexNetURL_STAGE"));
+				Steps.logger.info("STAGE Environment");
 			}else if (env.equalsIgnoreCase("L5")) {
 				driver.get(Config.getProperty("FedexNetURL_DEV"));
 				Steps.logger.info("Dev Environment");
@@ -240,30 +225,34 @@ public class StepDefInBound {
 			System.out.println(e);
 			Assert.assertTrue(false, e.getMessage());
 		}
-		}
-		
-		@And("^user upload \"([^\"]*)\" XML file in fedexnet$")
-		public void user_upload_the_xml_in_fedexnet(String fileType) {
+	}
+
+	@And("^user upload \"([^\"]*)\" XML file in fedexnet$")
+	public void user_upload_the_xml_in_fedexnet(String fileType) {
 		try {
 			String env = ManhattanLoginPage.environment;
 			String account = Config.getProperty("Account");
 			String dropEnv=null;
 			if (env.equalsIgnoreCase("L1")|| env.equalsIgnoreCase("@Env") || env.equalsIgnoreCase("L2")) {
 				dropEnv="FSCS";
-				
+
 			} else if (env.equalsIgnoreCase("L3") ) {
 				dropEnv="FSCSQA";
 			}
-				else if (env.equalsIgnoreCase("L4")) {
-					dropEnv="FSCSQA";
+			else if (env.equalsIgnoreCase("L4")) {
+				dropEnv="FSCSQA";
 			}
-				else if (env.equalsIgnoreCase("L5")) {
-					System.out.println("L5 Env - FSCSUA");
-					dropEnv="FSCSUA";
+			else if (env.equalsIgnoreCase("L5")) {
+				System.out.println("L5 Env - FSCSUA");
+				dropEnv="FSCSUA";
 			}
 			if(fileType.equals("856")||fileType.equals("943")) {
-				if (account.equalsIgnoreCase("APC") || account.equalsIgnoreCase("ATM")) {
+				if (account.equalsIgnoreCase("ATM") ) {
 					FedexnetPage.dropOrder(dropEnv, fileType, createUpdateEdiInput.ATMEDIInboundFilePath);
+				} else if (account.equalsIgnoreCase("COM") ) {
+					FedexnetPage.dropOrder(dropEnv, fileType, createUpdateEdiInput.COMEDIInboundFilePath);
+				} else if (account.equalsIgnoreCase("APC") ) {
+					FedexnetPage.dropOrder(dropEnv, fileType, createUpdateEdiInput.APCEDIInboundFilePath);
 				} else {
 					FedexnetPage.dropOrder(dropEnv, fileType, xmlInput.inputEDIInboundFilePath);
 				}
@@ -271,25 +260,25 @@ public class StepDefInBound {
 				if (account.equalsIgnoreCase("APC")) {
 					FedexnetPage.dropOrder(dropEnv, fileType, createUpdateEdiInput.APCEDIOutboundFilePath);
 				} else {
-				FedexnetPage.dropOrder(dropEnv, fileType, xmlInput.inputEDIOutboundFilePath);
+					FedexnetPage.dropOrder(dropEnv, fileType, xmlInput.inputEDIOutboundFilePath);
 				}
 			}
 		}catch(Exception e){
 			System.out.println(e);
 		}
-		}
-		
-		@Then("^user log out from Fedenxet application$")
-		public void user_logout_from_fedexnet() {
-			try {
-				FedexnetPage.logoutApplication();
+	}
+
+	@Then("^user log out from Fedenxet application$")
+	public void user_logout_from_fedexnet() {
+		try {
+			FedexnetPage.logoutApplication();
 		}catch(Exception e){
 			System.out.println(e);
 		}
-		}
-		
+	}
+
 	//********************************************FedexNet******************************************
-	
+
 	@When("^user create xml file with Item Value updated with DeliveryStartDate for ReceivingASN$")
 	public void user_create_xml_file_with_updated_DeliveryStartDate_for_ReceivingASN() throws Exception {
 		try {
@@ -360,7 +349,7 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	@When("^user update \"([^\"]*)\" for dropping into fedexnet application$")
 	public void user_update_EDI_XML_file_for(String xmlType)	throws Exception {
 		try {
@@ -380,7 +369,7 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	@When("^user update \"([^\"]*)\" for dropping into fedexnet application with \"([^\"]*)\",\"([^\"]*)\"$")
 	public void user_update_for_dropping_into_fedexnet_application_with(String arg1, String arg2, String arg3) throws Throwable {
 		try {
@@ -393,8 +382,6 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
-	
 
 	@And("^user update xml itemDetails from excel sheet$")
 	public void user_update_xml_itemDetails_from_sheet_for_Scenario() throws Exception {
@@ -435,9 +422,9 @@ public class StepDefInBound {
 		// String isjenkinJob = Runner.jenkinJobName;
 		BufferedReader reader = null;
 		try {
-		homePage.menuItemsIntegrationSelection("Post Message");
-		Steps.logger.info("Open Post message screen");
-		Screenshots.captureSnapshot(driver);
+			homePage.menuItemsIntegrationSelection("Post Message");
+			Steps.logger.info("Open Post message screen");
+			Screenshots.captureSnapshot(driver);
 
 			reader = new BufferedReader(new FileReader(new File(xmlInput.inputIBFilePath)));
 			StringBuffer targetString = new StringBuffer();
@@ -501,7 +488,7 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	@And("^fetches the actual ASN number and PO Number uploaded from Kelli$")
 	public void fetch_ASN_And_PO_Number() {
 		try {
@@ -516,6 +503,21 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
+	@And("^user fetches the actual ASN number and PO Number uploaded from Optional Field$")
+	public void fetch_ASN_And_PO_Number_OptionalField() {
+		try {
+			asnsPage.getASNandPONumberUsingOptionalFields(KelliPages.partialASNValue);
+			Steps.logger.info("ASN_No:"+Items.getAsnNumber());
+			Reporter.addStepLog("ASN_No:"+Items.getAsnNumber());
+			Steps.logger.info("PO_No:"+Items.getPONumber());
+			Reporter.addStepLog("PO_No:"+Items.getPONumber());
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
 	@And("^verify ASN not created and reached to Manhattan$")
 	public void verify_ASN_Not_ReachedTo_Manhattan() {
 		try {
@@ -534,22 +536,21 @@ public class StepDefInBound {
 		// asnsPage.verifyAsnsStatus(Items.getAsnNumber(), status);
 		try {
 			asnsPage.verifyAsn(Items.getAsnNumber());
-			
+
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
-	
+
 	@Then("^user opens ASN screen and searches for the ASN and verify its status \"([^\"]*)\"$")
 	public void user_opens_ASN_screen_and_searches_for_the_ASN_and_verify_its_status(String status) throws Exception {
 
 		// asnsPage.verifyAsnsStatus(Items.getAsnNumber(), status);
 		try {
 			asnsPage.verifyAsnsStatus(Items.getAsnNumber(), status);
-			
+
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
@@ -557,29 +558,41 @@ public class StepDefInBound {
 		}
 	}
 	
-	
-	
+	@Then("^user opens ASN screen and searches for the Shipment and verify its status \"([^\"]*)\"$")
+	public void user_opens_ASN_screen_and_searches_for_the_Shipment_and_verify_its_status(String status) throws Exception {
+
+		// asnsPage.verifyAsnsStatus(Items.getAsnNumber(), status);
+		try {
+			asnsPage.verifyAsnsStatusUsingShipment(Items.getAsnNumber(), status);
+
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+
 	@Then("^user opens ASN screen and searches for the 2nd ASN and verify its status \"([^\"]*)\"$")
 	public void user_opens_ASN_screen_and_searches_for_the_2nd_ASN_and_verify_its_status(String status) throws Exception {
 
 		// asnsPage.verifyAsnsStatus(Items.getAsnNumber(), status);
 		try {
 			asnsPage.verifyAsnsStatus(Items.getAsnNumber2(), status);
-			
+
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	@And("^user verifies the ASN \"([^\"]*)\"$")
 	public void user_verifies_ASN(String VerifyASN) throws Exception {
 
 		try {
 			asnsPage.searchForTheASN(Items.getAsnNumber());
 			asnsPage.verifyASN(VerifyASN);
-		Reporter.addStepLog("Receiving Verified");
+			Reporter.addStepLog("Receiving Verified");
 			Steps.logger.info("Receiving Verified");
 			homePage.userClosesOpenedwindow("ASNs");
 			Steps.logger.info("Close ASN window");
@@ -590,7 +603,8 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-//After ASN creation
+	
+	//After ASN creation
 	@And("^user views ASN, get and verify item details$")
 	public void user_views_ASNscreen_and_get_itemdetails() throws Exception {
 		// asnsPage.searchForTheASN(Items.getAsnNumber());
@@ -610,6 +624,7 @@ public class StepDefInBound {
 			SeleniumTestHelper.WaitForPageLoad();
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			Screenshots.captureSnapshot(driver);
+			Items.setShipmentNum(asnsPage.ShipmentId.getText());
 			asnsPage.GetItemDetails();
 			System.out.println("Verifed Item details");
 			asnsPage.verifyLotNumberInASnPage();
@@ -627,6 +642,47 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
+	
+	
+	
+	//After ASN creation
+		@And("^user views Shipment, get and verify item details$")
+		public void user_views_ASNscreen_with_Shipment_and_get_itemdetails() throws Exception {
+			// asnsPage.searchForTheASN(Items.getAsnNumber());
+			try {
+				System.out.println("Verify Item details");
+				//Thread.sleep(5000);
+				SeleniumTestHelper.WaitForPageLoad();
+				asnsPage.searchForTheShipment(Items.getPONumber());
+				Steps.logger.info("Search for item details");
+				SeleniumTestHelper.waitForElementToBeClickable(driver, asnsPage.searchedASNChkbox, 50);
+				asnsPage.searchedASNChkbox.click();
+				//Thread.sleep(2000);
+				SeleniumTestHelper.WaitForPageLoad();
+				asnsPage.viewASNBtn.click();
+				Steps.logger.info("Click on view ASN");
+				//Thread.sleep(5000);
+				SeleniumTestHelper.WaitForPageLoad();
+				SeleniumTestHelper.switchToInnerFrame(driver);
+				Screenshots.captureSnapshot(driver);
+				asnsPage.GetItemDetails();
+				System.out.println("Verifed Item details");
+				asnsPage.verifyLotNumberInASnPage();
+				//Thread.sleep(5000);
+				SeleniumTestHelper.WaitForPageLoad();
+				System.out.println("Trying to close the Advance Ship Notice Window");
+				homePage.userClosesOpenedwindow("Advance Ship Notice");
+				//Thread.sleep(5000);
+				SeleniumTestHelper.WaitForPageLoad();
+				SeleniumTestHelper.Close_OpenedWindow("ASNs", driver);
+				Steps.logger.info("Close ASN window");
+			} catch (Exception e) {
+				Steps.testRes = "Failed";
+				e.printStackTrace();
+				Assert.assertTrue(false, e.getMessage());
+			}
+		}
+	
 	//after receiving
 	@Then("^user views ASN, and validate ASN details$")
 	public void user_opens_ASN_screen_and_validate_ASN_details() throws Exception {
@@ -653,6 +709,7 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
+	
 	@Then("^user views ASN, and validate ASN details after deleting a line from iLPN$")
 	public void user_opens_ASN_screen_and_validate_ASN_details_after_deleting_a_line_from_an_iLPN() throws Exception {
 
@@ -678,33 +735,32 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	@And("^user views ASN, and validate ASN details after consuming an iLPN$")
 	public void user_opens_ASN_screen_and_validate_ASN_details_after_consuming_an_iLPN() throws Exception {
-	try {
-		asnsPage.searchForTheASN(Items.getAsnNumber());
-		String asnStatus=asnsPage.asnStatus.getText();
-		Steps.logger.info("Search for item details");
-		SeleniumTestHelper.waitForElementToBeClickable(driver, asnsPage.searchedASNChkbox, 50);
-		asnsPage.searchedASNChkbox.click();
-		asnsPage.viewASNBtn.click();
-		Steps.logger.info("Click on view ASN");
-		// Thread.sleep(5000);
-		Screenshots.captureSnapshot(driver);
-		SeleniumTestHelper.switchToInnerFrame(driver);
-		asnsPage.GetLineDetails(asnStatus);
-		homePage.userClosesOpenedwindow("Advance Ship Notice");
-		// Thread.sleep(3000);
-		SeleniumTestHelper.Close_OpenedWindow("ASNs", driver);
-		Steps.logger.info("Close ASN window");
-	} catch (Exception e) {
-		Steps.testRes = "Failed";
-		e.printStackTrace();
-		Assert.assertTrue(false, e.getMessage());
+		try {
+			asnsPage.searchForTheASN(Items.getAsnNumber());
+			String asnStatus=asnsPage.asnStatus.getText();
+			Steps.logger.info("Search for item details");
+			SeleniumTestHelper.waitForElementToBeClickable(driver, asnsPage.searchedASNChkbox, 50);
+			asnsPage.searchedASNChkbox.click();
+			asnsPage.viewASNBtn.click();
+			Steps.logger.info("Click on view ASN");
+			// Thread.sleep(5000);
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.switchToInnerFrame(driver);
+			asnsPage.GetLineDetails(asnStatus);
+			homePage.userClosesOpenedwindow("Advance Ship Notice");
+			// Thread.sleep(3000);
+			SeleniumTestHelper.Close_OpenedWindow("ASNs", driver);
+			Steps.logger.info("Close ASN window");
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
 	}
-}
-	
-	
+
 	@Then("^user log out from application$")
 	public void user_log_out_from_application() throws Exception {
 		try {
@@ -770,16 +826,16 @@ public class StepDefInBound {
 			default:
 				System.out.println("Account Name Needed.");
 			}
-//			SeleniumTestHelper.switchToInnerFrame(driver);
-//			if (account.equalsIgnoreCase("APC")) {
-//				rfMenu.ASNReceivingProcessForAPC(receivingMethod);
-//			}if (account.equalsIgnoreCase("THH")) {
-//				rfMenu.ASNReceivingProcessForAPC(receivingMethod);
-//			} if (account.equalsIgnoreCase("FUJ")) {
-//				rfMenu.ASNReceivingProcessForAPC(receivingMethod);
-//			}else {
-//				rfMenu.ASNReceivingProcess(receivingMethod);
-//			}
+			//			SeleniumTestHelper.switchToInnerFrame(driver);
+			//			if (account.equalsIgnoreCase("APC")) {
+			//				rfMenu.ASNReceivingProcessForAPC(receivingMethod);
+			//			}if (account.equalsIgnoreCase("THH")) {
+			//				rfMenu.ASNReceivingProcessForAPC(receivingMethod);
+			//			} if (account.equalsIgnoreCase("FUJ")) {
+			//				rfMenu.ASNReceivingProcessForAPC(receivingMethod);
+			//			}else {
+			//				rfMenu.ASNReceivingProcess(receivingMethod);
+			//			}
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
@@ -787,7 +843,7 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	@And ("^user opens RF menu and completes \"([^\"]*)\" operation in Misc menu$")
 	public void user_opens_RF_menu_and_perform_transaction_in_Misc_option(String operation) throws Exception {
 		try {
@@ -802,7 +858,7 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	@And("^user opens RF menu and completes Putaway using \"([^\"]*)\" menu$")
 	public void user_opens_RF_menu_and_completes_Putaway(String putawayMethod) throws Exception {
 		try {
@@ -811,14 +867,14 @@ public class StepDefInBound {
 			Steps.logger.info("Open RF menu");
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
-//			if (account.equalsIgnoreCase("APC")) {
-//				rfMenu.putawayProcessForAPC(putawayMethod);
-//			} else if (account.equalsIgnoreCase("THH")){
-//				rfMenu.doPutawayProcess(putawayMethod);
-//			}else {
-//				rfMenu.putawayProcess(putawayMethod);
-//			}
-			
+			//			if (account.equalsIgnoreCase("APC")) {
+			//				rfMenu.putawayProcessForAPC(putawayMethod);
+			//			} else if (account.equalsIgnoreCase("THH")){
+			//				rfMenu.doPutawayProcess(putawayMethod);
+			//			}else {
+			//				rfMenu.putawayProcess(putawayMethod);
+			//			}
+
 			switch(account) {
 			case "APC":
 				rfMenu.putawayProcessForAPC(putawayMethod);
@@ -853,7 +909,7 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	@And("^user open reserve locations & naviagtes to \"([^\"]*)\" zone and fetches the current quantity$")
 	public void fetch_current_qty_from_inspection_zone(String INSZone) throws Exception {
 		try {
@@ -861,10 +917,10 @@ public class StepDefInBound {
 			Steps.logger.info("Open Reserve Locations");
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
-			
+
 			String env = ManhattanLoginPage.environment;
 			System.out.println("Environment:"+env);
-			
+
 			resLocPage.fetchQty(INSZone);
 			System.out.println("reserveLocationqty:"+resLocPage.reserveLocationqty);
 			homePage.user_closes_openedwindow("Reserve Locations - Reserve Location");
@@ -873,9 +929,9 @@ public class StepDefInBound {
 			e.printStackTrace();
 			Assert.assertTrue(false, e.getMessage());
 		}
-		
+
 	}
-	
+
 	//Rakesh
 	@And("^user open reserve locations and naviagtes to validate iLPN$")
 	public void  user_open_reserve_locations_and_naviagtes_to_validate_iLPN() throws Exception {
@@ -886,7 +942,7 @@ public class StepDefInBound {
 			Steps.logger.info("Open Reserve Locations");
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.switchToInnerFrame(driver);
-			
+
 			switch(account) {
 			case "APC":
 				resLocPage.validateiLPNinReserveLocForAPC();
@@ -922,9 +978,9 @@ public class StepDefInBound {
 			e.printStackTrace();
 			Assert.assertTrue(false, e.getMessage());
 		}
-		
+
 	}
-	
+
 	@Then("^user navigates to reserve locations & validates that the quantity is increased in \"([^\"]*)\" by no of iLPN's moved$")
 	public void user_navigates_to_reserve_locations_validates_that_the_quantity_is_increased_in_by_no_of_iLPN_s_moved(String inspectionZone) throws Exception {
 		try {
@@ -940,7 +996,6 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
 
 	@Then("^validates that the iLPN is also moved to inspection zone \"([^\"]*)\"$")
 	public void validates_that_the_iLPN_is_also_moved_to_inspection_zone(String inspectionZone) throws Exception {
@@ -957,7 +1012,6 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-		
 
 	@And("^user opens RF menu and go to invenorty & perform \"([^\"]*)\" operation$")
 	public void user_opens_RF_menu_and_create_iLPN(String menuOption) throws Exception {
@@ -973,7 +1027,7 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	@And("^user opens RF menu and \"([^\"]*)\" iLPN quantity using \"([^\"]*)\" menu in Inventory$")
 	public void user_opens_RF_menu_and_modify_iLPN(String operation, String menuOption) throws Exception {
 		try {
@@ -988,7 +1042,7 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	@And("^user opens RF menu and \"([^\"]*)\" from an iLPN using \"([^\"]*)\" menu in Inventory$")
 	public void user_opens_RF_menu_and_delete_line_from_an_iLPN(String operation, String menuOption) throws Exception {
 		try {
@@ -1004,10 +1058,10 @@ public class StepDefInBound {
 		}
 	}
 
-	
+
 	@Then("^user opens iLPN screen and validate iLPN status \"([^\"]*)\"$")
-		public void user_opens_iLPN_screen_and_validates_iLPN_status(String iLPNStatus) throws Exception {
-		
+	public void user_opens_iLPN_screen_and_validates_iLPN_status(String iLPNStatus) throws Exception {
+
 		try {
 			homePage.MenuItems_Distribution_Selection("iLPNs");
 			Screenshots.captureSnapshot(driver);
@@ -1020,9 +1074,9 @@ public class StepDefInBound {
 			e.printStackTrace();
 			Assert.assertTrue(false, e.getMessage());
 		}
-		
+
 	}
-	
+
 	@Then("^user opens Inventory by location screen and validates the LPN created$")
 	public void user_opens_InventoryByLocation_screen_and_validates_the_LPN_created() throws Exception {
 		try {
@@ -1034,10 +1088,10 @@ public class StepDefInBound {
 			for (int i = 0; i < Steps.ItemDataMap.size(); i++) {
 				int actualQty = itemInvenByLocationPage.GetLPNQuantityByItemandLoc(Items.getItemsForReceivingASN(i),
 						rfMenu.newSysSuggestedLoc, rfMenu.LPNVal);
-			System.out.println(actualQty);
+				System.out.println(actualQty);
 				SeleniumTestHelper.assertEquals(actualQty, Integer.parseInt(Steps.ItemDataMap.get(i).get("RecQty")));
 				//Reporter.addStepLog("Actual Qty is- " + actualQty + " & Expected qty is- "
-					//	+ Integer.parseInt(Steps.ItemDataMap.get(i).get("RecQty")));
+				//	+ Integer.parseInt(Steps.ItemDataMap.get(i).get("RecQty")));
 				Reporter.addStepLog("iLPN is created & it matches the qty received");
 				homePage.user_closes_openedwindow("Item Inventory by Location - iLPNs");
 			}
@@ -1056,21 +1110,21 @@ public class StepDefInBound {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
 			Assert.assertTrue(false, e.getMessage());
-			
+
 		}
 	}
-	
+
 	@Then("^user search for the LPN in iLPN screen, and validate the modification \"([^\"]*)\" in iLPN$")
-			public void user_opens_iLPN_and_validate_change_in_iLPN(String opeartion) throws Exception {
-				try {
-						iLPNPage.validateiLPNModification(opeartion);
-				} catch (Exception e) {
-					Steps.testRes = "Failed";
-					e.printStackTrace();
-					Assert.assertTrue(false, e.getMessage());
-				}
-			}
-	
+	public void user_opens_iLPN_and_validate_change_in_iLPN(String opeartion) throws Exception {
+		try {
+			iLPNPage.validateiLPNModification(opeartion);
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+
 	@Then("^user search for the LPN in iLPN screen, and validate the iLPN status$")
 	public void user_opens_iLPN_and_validate_iLPN_status() throws Exception {
 		homePage.MenuItems_Distribution_Selection("iLPNs");
@@ -1110,7 +1164,7 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	@And("user open iLPN and unlock the existing code")
 	public void user_opens_iLPN_and_unlock_the_exisitng_code() throws Exception {
 		try {
@@ -1118,7 +1172,7 @@ public class StepDefInBound {
 			Screenshots.captureSnapshot(driver);
 			Steps.logger.info("Open iLPN screen");
 			SeleniumTestHelper.switchToInnerFrame(driver);
-		//	for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
+			//	for (int i = 0; i < RFMenuPage.iLPNz.size(); i++) {
 			for (int i = 0; i < Items.getLpnsLength(); i++) {			
 				//iLPNPage.searchForTheILPNAndViewIt(RFMenuPage.iLPNz.get(i));
 				iLPNPage.searchForTheILPNAndViewIt(Items.getLpns(i));
@@ -1131,10 +1185,10 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	@And("^validates the PIX Transactions \"([^\"]*)\" for this operation$")
 	public void validate_PIX_transaction(String PixCode) throws Exception {
-		
+
 		try {
 			String[] pixCodeArr = null;
 			if (PixCode.contains(",")) {
@@ -1149,10 +1203,10 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	@And("^validates the PIX message \"([^\"]*)\"$")
 	public void validate_PIX_transactions(String PixTrans) throws Exception {
-		
+
 		try {
 			pixTransaction.checkForPixTransaction(PixTrans);
 		} catch (Exception e) {
@@ -1161,10 +1215,10 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	@And("^validates the PIX Transactions \"([^\"]*)\" for modifying iLPN$")
 	public void validate_PIX_transaction_for_modifying_iLPN(String PixCode) throws Exception {
-		
+
 		try {
 			String[] pixCodeArr = null;
 			if (PixCode.contains(",")) {
@@ -1178,13 +1232,13 @@ public class StepDefInBound {
 			e.printStackTrace();
 			Assert.assertTrue(false, e.getMessage());
 		}
-		
+
 	}
-	
+
 
 	@And("^validates the PIX Transactions \"([^\"]*)\" for consuming iLPN$")
 	public void validate_PIX_transaction_for_consuming_iLPN(String PixCode) throws Exception {
-		
+
 		try {
 			String[] pixCodeArr = null;
 			if (PixCode.contains(",")) {
@@ -1198,7 +1252,7 @@ public class StepDefInBound {
 			e.printStackTrace();
 			Assert.assertTrue(false, e.getMessage());
 		}
-		
+
 	}
 
 	@Then("^user opens Inventory by location screen and validates the LPN moved$")
@@ -1210,8 +1264,8 @@ public class StepDefInBound {
 			Reporter.addStepLog("Open Item Inventory by Location menu");
 			SeleniumTestHelper.switchToInnerFrame(driver);
 			itemInvenByLocationPage.GetMovedLPNQuantityByItemandLoc(Items.getItemsForReceivingASN(0),Steps.scenarioData.get("RecLocation"),Items.getAllLpns());
-					//Steps.scenarioData.get("RecLocation"), rfMenu.iLPNz);
-					
+			//Steps.scenarioData.get("RecLocation"), rfMenu.iLPNz);
+
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
@@ -1263,7 +1317,7 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	@Then("^user opens Items screen and validate Item creation$")
 	public void validate_Item_Creation() {
 		try {
@@ -1274,7 +1328,7 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	@Then("^user opens Items screen and find putaway type$")
 	public void find_putaway_type() {
 		try {
@@ -1292,7 +1346,7 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	/*
 	 * @Then("user opens RF menu and completes Receiving using \"([^\"]*)\" menu for (\\d+)$"
 	 * ) public void
@@ -1302,7 +1356,7 @@ public class StepDefInBound {
 	 * SeleniumTestHelper.switchToInnerFrame(driver);
 	 * rfMenu.ASNReceivingProcess(noOfItems, receivingMethod); }
 	 */
-	
+
 	@And ("^user opens RF menu and completes split move using \"([^\"]*)\" operation in Misc menu$")
 	public void user_opens_RF_menu_and_completes_split_move_in_Misc_option(String operation) throws Exception {
 		try {
@@ -1319,7 +1373,7 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	@And ("^user opens RF menu and performs split move using \"([^\"]*)\" operation in Misc menu$")
 	public void user_opens_RF_menu_and_performs_split_move_in_Misc_option(String operation) throws Exception {
 		try {
@@ -1336,7 +1390,7 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	@And("^user verify the \"([^\"]*)\" file in fedexnet$")
 	public void user_verify_the_861_file_in_fedexnet(String fileType) throws Exception {
 		try {
@@ -1377,7 +1431,7 @@ public class StepDefInBound {
 					Steps.logger.info(fileNameRetrieved);
 					FileUtilities.verifyOrderNumIn856File(fileNameRetrieved);
 				}
-				
+
 				Reporter.addStepLog("Verified the 856 Files");
 			} else if (fileType.equals("850") || fileType.equals("940")) {
 				Steps.logger.info("Verify 850 Files");
@@ -1415,7 +1469,7 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	//Login to FedexNet for Verify 861 and 856 files
 	@Then("^user logs into the FedexNet application for verify files$")
 	public void user_logs_into_the_FedexNet_application_for_verify_files()throws Exception {
@@ -1445,7 +1499,7 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	//
 	@When("^user update EDI file \"([^\"]*)\" for dropping into fedexnet application$")
 	public void user_update_EDI_file_for(String fileType)	throws Exception {
@@ -1473,8 +1527,8 @@ public class StepDefInBound {
 				driver.get(Config.getProperty("O2SApp_L2_URL"));
 				Steps.logger.info("L2 Environment");
 			} else if (env.equalsIgnoreCase("L4")) {
-					driver.get(Config.getProperty("O2SApp_L4_URL"));
-					Steps.logger.info("L4 Environment Manhattan URL :"+Config.getProperty("ManhattanURL_L4"));
+				driver.get(Config.getProperty("O2SApp_L4_URL"));
+				Steps.logger.info("L4 Environment Manhattan URL :"+Config.getProperty("ManhattanURL_L4"));
 			}else if (env.equalsIgnoreCase("L5")) {
 				driver.get(Config.getProperty("O2SApp_L5_URL"));
 				System.out.println(driver.getCurrentUrl());
@@ -1492,13 +1546,24 @@ public class StepDefInBound {
 	public void user_logout_from_O2S() {
 		try {
 			o2sHomePage.logoutFormO2SApp();
-	}catch(Exception e){
-		Steps.testRes = "Failed";
-		e.printStackTrace();
-		Assert.assertTrue(false, e.getMessage());
+		}catch(Exception e){
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
 	}
+	
+	@Then("^user log out from Vendor Portal application$")
+	public void user_logout_from_VendorPortal() {
+		try {
+			o2sHomePage.logoutFormVendorPortalApp();
+		}catch(Exception e){
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
 	}
-		
+
 	@Then("^user create an order in O2S application for \"([^\"]*)\"$")
 	public void user_create_an_order_in_O2S(String orderType) {
 		try {
@@ -1524,7 +1589,7 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	//created for sanity check
 	@Then("^user create an order for \"([^\"]*)\" customer in O2S application for \"([^\"]*)\"$")
 	public void user_create_an_order_for_a_customer_in_O2S(String customer,String orderType) {
@@ -1551,7 +1616,7 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	@Then("^user verify order created successfuly$")
 	public void user_verify_order_created_successfuly() throws Throwable {
 		try {
@@ -1567,11 +1632,11 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	@Then("^user search order and verify status is booked$")
 	public void user_Search_Order_And_Verify_Status_is_Booked() throws Throwable {
 		try {
-			
+
 			o2sHomePage.moveToSearchOrderMenuandClickSearchOrder();
 			o2sSearchOrderDetails.enterOrderNumberToSearchDetails();
 			o2sSearchOrderDetails.verifyTheOrderStatusIsBookedOrNot();
@@ -1620,7 +1685,7 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-	
+
 	@Then("^user navigate to VendorPortal Tab$")
 	public void user_navigate_to_vendorportal_tab() {
 		try {
@@ -1629,7 +1694,7 @@ public class StepDefInBound {
 			//vendorPortalHomePage.enterMandatoryDetails();
 			Steps.logger.info("User navigate to Vendor Portal App");
 			Screenshots.captureSnapshot(driver);
-			
+
 		} catch (Exception e) {
 			Steps.testRes = "Failed";
 			e.printStackTrace();
@@ -1666,6 +1731,9 @@ public class StepDefInBound {
 				vendorPortalHomePage.searchUsingSerialNumber();
 				vendorPortalHomePage.validateDataInReceiveTable();
 				vendorPortalHomePage.validateSerialNumberInReceiveTable();
+			}else if (searchField.equalsIgnoreCase("Shipment Number")) {
+				vendorPortalHomePage.searchUsingShipmentNumber();
+				vendorPortalHomePage.validateDataInReceiveTable();
 			}
 			Steps.logger.info("User navigate to Vendor Portal App");
 			Screenshots.captureSnapshot(driver);
@@ -1676,11 +1744,24 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
-
+	
+	@Then("^user completes receiving in vendor portal$")
+	public void user_completes_receiving_in_vendor_portal() {
+		try {
+			vendorPortalHomePage.vpReceive();
+			
+			
+		
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
 	@Then("^user Search Order And verify status of order is \"([^\"]*)\" and Item status is \"([^\"]*)\"$")
 	public void user_Search_Order_And_Verify_Status_of_order(String orderStatus, String ItemStatus) throws Throwable {
 		try {
-			
+
 			o2sHomePage.moveToSearchOrderMenuandClickSearchOrder();
 			o2sSearchOrderDetails.enterOrderNumberToSearchDetails2();
 			o2sSearchOrderDetails.verifyTheOrderStatusandItemStatus(orderStatus,ItemStatus);

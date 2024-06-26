@@ -41,8 +41,16 @@ public class AsnsPage {
 
 	@FindBy(xpath = "(//label[text()='Primary Fields']//following::input[@role='combobox' and @data-ref='inputEl'])[1]")
 	public WebElement primaryField;
+	@FindBy(xpath = "//label[text()='Optional Fields']//following::div[12]/input[@role='combobox' and @data-ref='inputEl']")
+	public WebElement optionalField;
+	@FindBy(xpath = "//label[text()='Optional Fields']//following::div[12]/input[@role='combobox' and @data-ref='inputEl']/following::input[2]")
+	public WebElement optionalFieldInput;
+	
+	
 	@FindBy(xpath = "//input[@name='asnId']")
 	public WebElement asnIdInput;
+	@FindBy(xpath = "//input[@name='Shipment']")
+	public WebElement ShipmentInput;
 	//@FindBy(xpath = "//A/SPAN[@role='presentation']/SPAN[@role='presentation' and normalize-space()='Apply']/SPAN[2]")
 	//@FindBy(xpath = "(//span[text()='Apply'])[2]")
 	//@FindBy(xpath = "//*[text()='Apply'][1]")
@@ -76,7 +84,10 @@ public class AsnsPage {
 
 	@FindBy(xpath = "//span[text()='View']")
 	public WebElement viewASNBtn;
-
+	
+	@FindBy(xpath = "//span[@id='dataForm:TCShipmentIdString1']")
+	public WebElement ShipmentId;
+	
 	@FindBy(xpath = "//tr[@class='  x-grid-row']//td//div[@class='x-grid-row-checker']")
 	public WebElement searchedASNChkbox;
 
@@ -190,6 +201,41 @@ public class AsnsPage {
 		driver.findElement(By.xpath("//span[contains(text(),'Done')]")).click();
 		homepage.userClosesOpenedwindow("ASNs");
 	}
+	
+	public void getASNandPONumberUsingOptionalFields(String asnId) throws Exception {
+		String account = Config.getProperty("Account");
+		homepage.MenuItems_Distribution_Selection("ASNs");
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 120);
+		optionalField.sendKeys("BOL Number");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, optionalFieldInput, 50);
+		optionalFieldInput.click();
+		optionalFieldInput.sendKeys(asnId);
+		
+		Thread.sleep(1000);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, applyBtn, 50);
+		 
+		applyBtn.click();
+		Thread.sleep(2000);
+		int temp=0;
+		 while (!SeleniumTestHelper.isElementDisplayed(asnStatus) && (temp != 10)) {
+			 applyBtn.click();
+			 Thread.sleep(3000);
+			 temp++;
+		 }
+		
+		
+		Thread.sleep(1000);
+				
+		String ASNvalue = driver.findElement(By.xpath("(//div[contains(@class,'x-grid-cell-inner')])[3]")).getText();
+		Items.setAsnNumber(ASNvalue);
+		StringBuffer PONum = new StringBuffer(ASNvalue);
+		PONum.delete(PONum.length() - 2, PONum.length());
+		String PONumber = PONum.toString();
+		Items.setPONumber(PONumber);
+		
+		homepage.userClosesOpenedwindow("ASNs");
+	}
 //for negative scenario with wrong 
 	public void verifyAsn(String asnId) throws Exception {
 		homepage.MenuItems_Distribution_Selection("ASNs");
@@ -239,6 +285,86 @@ public class AsnsPage {
 		driver.findElement(By.xpath(
 				"//DIV[3]/DIV[1]/DIV[@role=\"presentation\"][1]/DIV[@role=\"presentation\"][1]/DIV[@role=\"presentation\"][1]/DIV[1]/DIV[1]/DIV[1]/DIV[1]/INPUT[@role=\"combobox\"][1]"))
 				.sendKeys(asnId);
+		
+		
+	//	Screenshots.captureSnapshot(driver);
+		/*
+		 * Actions action = new Actions(driver);
+		 * action.moveToElement(asnIdInput).build().perform(); asnIdInput.click();
+		 * asnIdInput.sendKeys(asnId);
+		 */
+		//Thread.sleep(1000);
+		SeleniumTestHelper.WaitForPageLoad();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, applyBtn, 50);
+		 
+		applyBtn.click();
+		//Thread.sleep(2000);
+		SeleniumTestHelper.WaitForPageLoad();
+		int temp=0;
+		 while (!SeleniumTestHelper.isElementDisplayed(asnStatus) && (temp != 20)) {
+			 applyBtn.click();
+			 //Thread.sleep(5000);
+			 SeleniumTestHelper.WaitForPageLoad();
+			 temp++;
+		 }
+		//driver.findElement(By.xpath("(//span[text()='Apply'])[2]")).click();
+		// List<WebElement>links = driver.findElements(By.xpath("//A/SPAN[@role='presentation']/SPAN[@role='presentation' and normalize-space()='Apply']/SPAN[2]"));
+		  //  int total_count = links.size();       
+		    //System.out.println("Total size :=" +total_count);   
+		// Thread.sleep(3000);
+	//	SeleniumTestHelper.waitForElementToBeDisplayed(driver, collapseLeft, 70);
+		//collapseLeft.click();
+		//SeleniumTestHelper.waitForElementToBeDisplayed(driver, refreshBtn, 50);
+		String AsnStatus = asnStatus.getText();
+		int count = 0;
+		  while (!AsnStatus.equals(status) && (count != 20)) { 
+			  applyBtn.click();
+		  //Thread.sleep(1000); 
+			  SeleniumTestHelper.WaitForPageLoad();
+		  AsnStatus = asnStatus.getText();
+		  //Thread.sleep(5000);
+		  SeleniumTestHelper.WaitForPageLoad();
+		  count++; 
+		  }
+		 
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, collapseLeft, 70);
+		collapseLeft.click();
+		//Thread.sleep(1000);
+		SeleniumTestHelper.WaitForPageLoad();
+		
+			SeleniumTestHelper.assertEquals(AsnStatus, status);
+			
+			if(SeleniumTestHelper.isElementDisplayed(ASNmessage)) {
+				String message= ASNmessage.getAttribute("src");
+				System.out.println(message);
+						if(message.contains("error")) {
+							System.out.println("ASN created with some errors");
+							Reporter.addStepLog("ASN Created but it has some errors");
+							Steps.testRes = "Failed";
+							Assert.assertTrue(false);
+						}
+			}
+		
+		Screenshots.captureSnapshot(driver);
+		System.out.println("Status : " + AsnStatus + " has been verified successfully for ASN : " + asnId);
+		Reporter.addStepLog("Status of ASN is " + AsnStatus);
+		homepage.userClosesOpenedwindow("ASNs");
+
+	}
+	
+	public void verifyAsnsStatusUsingShipment(String asnId, String status) throws Exception {
+		StringBuffer PONum = new StringBuffer(asnId);
+		PONum.delete(PONum.length() - 2, PONum.length());
+		String PONumber = PONum.toString();
+		Items.setPONumber(PONumber);
+		
+		homepage.MenuItems_Distribution_Selection("ASNs");
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 120);
+		primaryField.sendKeys("Shipment");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ShipmentInput, 50);
+		ShipmentInput.click();
+		ShipmentInput.sendKeys(PONumber);
 		
 		
 	//	Screenshots.captureSnapshot(driver);
@@ -382,6 +508,24 @@ public class AsnsPage {
 		SeleniumTestHelper.WaitForPageLoad();
 		applyBtn.click();
 		Screenshots.captureSnapshot(driver);
+	}
+	
+	public void searchForTheShipment(String PONum) throws Exception {
+		homepage.MenuItems_Distribution_Selection("ASNs");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 120);
+		Screenshots.captureSnapshot(driver);
+		primaryField.sendKeys("Shipment");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ShipmentInput, 50);
+		Actions action = new Actions(driver);
+		action.moveToElement(ShipmentInput).build().perform();
+		ShipmentInput.click();
+		
+		ShipmentInput.sendKeys(PONum);
+		//SeleniumTestHelper.waitForElementToBeDisplayed(driver, applyBtn, 50);
+		//Thread.sleep(1000);
+		SeleniumTestHelper.WaitForPageLoad();
+		applyBtn.click();
+		//Screenshots.captureSnapshot(driver);
 	}
 
 	public void verifyILPNStatusForAllItems(int noOfItem, String iLPNStatus) throws InterruptedException {
