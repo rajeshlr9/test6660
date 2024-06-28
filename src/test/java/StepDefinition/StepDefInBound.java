@@ -802,6 +802,9 @@ public class StepDefInBound {
 			case "APC":
 				rfMenu.ASNReceivingProcessForAPC(receivingMethod);
 				break;
+			case "ATM":
+				rfMenu.ASNReceivingProcessForATM(receivingMethod);
+				break;
 			case "THH":
 				rfMenu.ASNReceivingProcessForAPC(receivingMethod);
 				break;
@@ -879,6 +882,9 @@ public class StepDefInBound {
 			case "APC":
 				rfMenu.putawayProcessForAPC(putawayMethod);
 				break;
+			case "ATM":
+				rfMenu.putawayProcessForATM(putawayMethod);
+				break;
 			case "THH":
 				rfMenu.doPutawayProcess(putawayMethod);
 				break;
@@ -945,6 +951,9 @@ public class StepDefInBound {
 
 			switch(account) {
 			case "APC":
+				resLocPage.validateiLPNinReserveLocForAPC();
+				break;
+			case "ATM":
 				resLocPage.validateiLPNinReserveLocForAPC();
 				break;
 			case "THH":

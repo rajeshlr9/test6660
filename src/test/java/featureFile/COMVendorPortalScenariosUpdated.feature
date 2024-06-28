@@ -44,7 +44,7 @@ Scenario: ASN Creation with Normal Items using EDI file and validate ASN in Manh
   And user completes receiving in vendor portal
 	Then user log out from Vendor Portal application
 	And user logs into the Manhattan application
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
 	Then user log out from application
 	
 
@@ -112,7 +112,7 @@ Scenario: ASN Creation with Hazardous Items  using EDI file and validate ASN in 
 	And user completes receiving in vendor portal
 	Then user log out from Vendor Portal application
 	And user logs into the Manhattan application
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
 	Then user log out from application
 	
 	@InBoundScenario_COM_New6	@IBRegScenarios_COM @Regression_COM @COM_SingleLinePO_NormalItem

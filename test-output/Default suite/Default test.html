@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Wed Jun 26 10:54:19 UTC 2024</td>
+<td>Started on:</td><td>Fri Jun 28 09:34:10 UTC 2024</td>
 </tr>
-<tr><td>Total time:</td><td>382 seconds (382247 ms)</td>
+<tr><td>Total time:</td><td>452 seconds (452242 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,15 +76,15 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='TestRunner.Runner.feature()'><b>feature</b><br>Test class: TestRunner.Runner<br>Test method: Runs Cucumber Feature<br>Parameters: This feature file contains COM customer Vendor Portal Scenarios<br/>
-<a href="#Output-591853434" onClick='toggleBox("Output-591853434", this, "Show output", "Hide output");'>Show output</a>
+<td title='TestRunner.Runner.feature()'><b>feature</b><br>Test class: TestRunner.Runner<br>Test method: Runs Cucumber Feature<br>Parameters: This feature file contains ATM customer Vendor Portal Scenarios<br/>
+<a href="#Output-280150479" onClick='toggleBox("Output-280150479", this, "Show output", "Hide output");'>Show output</a>
 
-<a href="#Output-591853434" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-591853434">
-Execution started for : Single Line Normal Items and Verify the ASN details in Manhattan and Vendor Portal<br/>
+<a href="#Output-280150479" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-280150479">
+Execution started for : Receiving SingleLine Normal Items in Manhattan Application.<br/>
 </div>
 </td>
-<td><div><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: expected [Complete] but found [Completed]
+<td><div><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //div[@data-ref=&apos;targetEl&apos; and @id=&apos;topbar-1012-targetEl&apos;]/a[1]&apos; (tried for 100 second(s) with 500 milliseconds interval) expected [true] but found [false]
 	at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
 	at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -115,18 +115,14 @@ Execution started for : Single Line Normal Items and Verify the ASN details in M
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-Caused by: java.lang.AssertionError: expected [Complete] but found [Completed]
+Caused by: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //div[@data-ref=&apos;targetEl&apos; and @id=&apos;topbar-1012-targetEl&apos;]/a[1]&apos; (tried for 100 second(s) with 500 milliseconds interval) expected [true] but found [false]
 	at org.testng.Assert.fail(Assert.java:111)
 	at org.testng.Assert.failNotEquals(Assert.java:1578)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-	at org.testng.Assert.assertEquals(Assert.java:132)
-	at org.testng.Assert.assertEquals(Assert.java:656)
-	at org.testng.Assert.assertEquals(Assert.java:666)
-	at pages.VendorPortalHomePage.vpReceive(VendorPortalHomePage.java:288)
-	at StepDefinition.StepDefInBound.user_completes_receiving_in_vendor_portal(StepDefInBound.java:1751)
-	at ✽.And user completes receiving in vendor portal(COMVendorPortalScenariosUpdated.feature:20)
-</pre></div><a href='#' onClick='toggleBox("stack-trace591853434", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace591853434'><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: expected [Complete] but found [Completed]
+	at org.testng.Assert.assertTrue(Assert.java:57)
+	at StepDefinition.StepDefInBound.user_opens_RF_menu_and_completes_Putaway(StepDefInBound.java:915)
+	at ✽.And user opens RF menu and completes Putaway using &quot;MM1 Ptwy iLPN&quot; menu(ATMVendorPortalScenariosUpdated.feature:131)
+</pre></div><a href='#' onClick='toggleBox("stack-trace280150479", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace280150479'><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //div[@data-ref=&apos;targetEl&apos; and @id=&apos;topbar-1012-targetEl&apos;]/a[1]&apos; (tried for 100 second(s) with 500 milliseconds interval) expected [true] but found [false]
 	at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
 	at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -157,18 +153,14 @@ Caused by: java.lang.AssertionError: expected [Complete] but found [Completed]
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-Caused by: java.lang.AssertionError: expected [Complete] but found [Completed]
+Caused by: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //div[@data-ref=&apos;targetEl&apos; and @id=&apos;topbar-1012-targetEl&apos;]/a[1]&apos; (tried for 100 second(s) with 500 milliseconds interval) expected [true] but found [false]
 	at org.testng.Assert.fail(Assert.java:111)
 	at org.testng.Assert.failNotEquals(Assert.java:1578)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-	at org.testng.Assert.assertEquals(Assert.java:132)
-	at org.testng.Assert.assertEquals(Assert.java:656)
-	at org.testng.Assert.assertEquals(Assert.java:666)
-	at pages.VendorPortalHomePage.vpReceive(VendorPortalHomePage.java:288)
-	at StepDefinition.StepDefInBound.user_completes_receiving_in_vendor_portal(StepDefInBound.java:1751)
-	at ✽.And user completes receiving in vendor portal(COMVendorPortalScenariosUpdated.feature:20)
+	at org.testng.Assert.assertTrue(Assert.java:57)
+	at StepDefinition.StepDefInBound.user_opens_RF_menu_and_completes_Putaway(StepDefInBound.java:915)
+	at ✽.And user opens RF menu and completes Putaway using &quot;MM1 Ptwy iLPN&quot; menu(ATMVendorPortalScenariosUpdated.feature:131)
 </pre></div></td>
-<td>381</td>
+<td>451</td>
 <td>TestRunner.Runner@6200f9cb</td></tr>
 </table><p>
 </body>

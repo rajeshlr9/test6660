@@ -9,11 +9,11 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Default suite</th></tr>
-<tr><td><a href="#t0">Default test</a></td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">382,247</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Default test</a></td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">452,242</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">TestRunner.Runner</td><td><a href="#m0">feature</a></td><td rowspan="1">1719399260090</td><td rowspan="1">381415</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">TestRunner.Runner</td><td><a href="#m0">feature</a></td><td rowspan="1">1719567251293</td><td rowspan="1">451382</td></tr></tbody>
 </table>
-<h2>Default test</h2><h3 id="m0">TestRunner.Runner#feature</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>This feature file contains COM customer Vendor Portal Scenarios</td></tr><tr><th>Messages</th></tr><tr><td><div class="messages">Execution started for : Single Line Normal Items and Verify the ASN details in Manhattan and Vendor Portal</div></td></tr><tr><th>Exception</th></tr><tr><td><div class="stacktrace">cucumber.runtime.CucumberException: java.lang.AssertionError: expected [Complete] but found [Completed]
+<h2>Default test</h2><h3 id="m0">TestRunner.Runner#feature</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>This feature file contains ATM customer Vendor Portal Scenarios</td></tr><tr><th>Messages</th></tr><tr><td><div class="messages">Execution started for : Receiving SingleLine Normal Items in Manhattan Application.</div></td></tr><tr><th>Exception</th></tr><tr><td><div class="stacktrace">cucumber.runtime.CucumberException: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //div[@data-ref=&apos;targetEl&apos; and @id=&apos;topbar-1012-targetEl&apos;]/a[1]&apos; (tried for 100 second(s) with 500 milliseconds interval) expected [true] but found [false]
 	at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
 	at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -44,16 +44,12 @@
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-Caused by: java.lang.AssertionError: expected [Complete] but found [Completed]
+Caused by: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //div[@data-ref=&apos;targetEl&apos; and @id=&apos;topbar-1012-targetEl&apos;]/a[1]&apos; (tried for 100 second(s) with 500 milliseconds interval) expected [true] but found [false]
 	at org.testng.Assert.fail(Assert.java:111)
 	at org.testng.Assert.failNotEquals(Assert.java:1578)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-	at org.testng.Assert.assertEquals(Assert.java:132)
-	at org.testng.Assert.assertEquals(Assert.java:656)
-	at org.testng.Assert.assertEquals(Assert.java:666)
-	at pages.VendorPortalHomePage.vpReceive(VendorPortalHomePage.java:288)
-	at StepDefinition.StepDefInBound.user_completes_receiving_in_vendor_portal(StepDefInBound.java:1751)
-	at ✽.And user completes receiving in vendor portal(COMVendorPortalScenariosUpdated.feature:20)
+	at org.testng.Assert.assertTrue(Assert.java:57)
+	at StepDefinition.StepDefInBound.user_opens_RF_menu_and_completes_Putaway(StepDefInBound.java:915)
+	at ✽.And user opens RF menu and completes Putaway using &quot;MM1 Ptwy iLPN&quot; menu(ATMVendorPortalScenariosUpdated.feature:131)
 </div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

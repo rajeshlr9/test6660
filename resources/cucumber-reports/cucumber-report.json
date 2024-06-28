@@ -6,7 +6,7 @@
         "before": [
           {
             "result": {
-              "duration": 2930300,
+              "duration": 563000,
               "status": "passed"
             },
             "match": {
@@ -15,7 +15,7 @@
           },
           {
             "result": {
-              "duration": 3611400,
+              "duration": 3839400,
               "status": "passed"
             },
             "match": {
@@ -23,14 +23,14 @@
             }
           }
         ],
-        "line": 4,
-        "name": "Single Line Normal Items and Verify the ASN details in Manhattan and Vendor Portal",
+        "line": 117,
+        "name": "Receiving SingleLine Normal Items in Manhattan Application.",
         "description": "",
-        "id": "this-feature-file-contains-com-customer-vendor-portal-scenarios;single-line-normal-items-and-verify-the-asn-details-in-manhattan-and-vendor-portal",
+        "id": "this-feature-file-contains-atm-customer-vendor-portal-scenarios;receiving-singleline-normal-items-in-manhattan-application.",
         "after": [
           {
             "result": {
-              "duration": 379563500,
+              "duration": 30745831600,
               "status": "passed"
             },
             "match": {
@@ -43,10 +43,10 @@
         "steps": [
           {
             "result": {
-              "duration": 1492832200,
+              "duration": 1389890300,
               "status": "passed"
             },
-            "line": 5,
+            "line": 118,
             "name": "I have excel data",
             "match": {
               "location": "Steps.readExcelData(DataTable)"
@@ -54,19 +54,19 @@
             "rows": [
               {
                 "cells": [
-                  "COM_KelliScenario001"
+                  "ATM_IBScenario006"
                 ],
-                "line": 6
+                "line": 119
               }
             ],
             "keyword": "Given "
           },
           {
             "result": {
-              "duration": 1899396700,
+              "duration": 2027303800,
               "status": "passed"
             },
-            "line": 7,
+            "line": 120,
             "name": "User Open the chrome browser using selenium",
             "match": {
               "location": "Steps.open_the_chrome_and_launch_the_application_using_Selenium_with_proxy_enable()"
@@ -75,70 +75,70 @@
           },
           {
             "result": {
-              "duration": 4709454600,
+              "duration": 168125900,
               "status": "passed"
             },
-            "line": 8,
-            "name": "user logs into the kelli application",
-            "match": {
-              "location": "StepDefKelli.login_to_kelli_application()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 224384800,
-              "status": "passed"
-            },
-            "line": 9,
-            "name": "user updates data in \"Single Line Normal\" Kelli Upload Sheet",
+            "line": 121,
+            "name": "user update EDI file \"ATM SingleLine PO - NormalItems\" for dropping into fedexnet application",
             "match": {
               "arguments": [
                 {
-                  "val": "Single Line Normal",
+                  "val": "ATM SingleLine PO - NormalItems",
                   "offset": 22
                 }
               ],
-              "location": "StepDefKelli.ASNSheet_Update_data(String)"
+              "location": "StepDefInBound.user_update_EDI_file_for(String)"
             },
-            "keyword": "When "
+            "keyword": "Given "
           },
           {
             "result": {
-              "duration": 5328204700,
+              "duration": 4011512800,
               "status": "passed"
             },
-            "line": 10,
-            "name": "user upload the \"Single Line Normal\" Load file in Kelli",
+            "line": 122,
+            "name": "user logs into the FedexNet application",
             "match": {
-              "arguments": [
-                {
-                  "val": "Single Line Normal",
-                  "offset": 17
-                }
-              ],
-              "location": "StepDefKelli.upload_Kelli_file(String)"
+              "location": "StepDefInBound.user_logs_into_the_FedexNet_application()"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 3091845900,
+              "duration": 10474977300,
               "status": "passed"
             },
-            "line": 11,
-            "name": "user logout from the kelli application",
+            "line": 123,
+            "name": "user upload \"856\" XML file in fedexnet",
             "match": {
-              "location": "StepDefKelli.kellilogout()"
+              "arguments": [
+                {
+                  "val": "856",
+                  "offset": 13
+                }
+              ],
+              "location": "StepDefInBound.user_upload_the_xml_in_fedexnet(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 14186072400,
+              "status": "passed"
+            },
+            "line": 124,
+            "name": "user log out from Fedenxet application",
+            "match": {
+              "location": "StepDefInBound.user_logout_from_fedexnet()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 15481979200,
+              "duration": 49457476400,
               "status": "passed"
             },
-            "line": 12,
+            "line": 125,
             "name": "user logs into the Manhattan application",
             "match": {
               "location": "StepDefInBound.user_logs_into_the_Manhattan_application()"
@@ -147,149 +147,109 @@
           },
           {
             "result": {
-              "duration": 14155279400,
+              "duration": 22685677100,
               "status": "passed"
             },
-            "line": 13,
-            "name": "user fetches the actual ASN number and PO Number uploaded from Optional Field",
-            "match": {
-              "location": "StepDefInBound.fetch_ASN_And_PO_Number_OptionalField()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 18503799700,
-              "status": "passed"
-            },
-            "line": 14,
-            "name": "user opens ASN screen and searches for the ASN and verify its status \"20 - InTransit\"",
+            "line": 126,
+            "name": "user opens ASN screen and searches for the Shipment and verify its status \"20 - InTransit\"",
             "match": {
               "arguments": [
                 {
                   "val": "20 - InTransit",
-                  "offset": 70
+                  "offset": 75
                 }
               ],
-              "location": "StepDefInBound.user_opens_ASN_screen_and_searches_for_the_ASN_and_verify_its_status(String)"
+              "location": "StepDefInBound.user_opens_ASN_screen_and_searches_for_the_Shipment_and_verify_its_status(String)"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 23594264300,
+              "duration": 23407329100,
               "status": "passed"
             },
-            "line": 15,
-            "name": "user views ASN, get and verify item details",
+            "line": 127,
+            "name": "user views Shipment, get and verify item details",
             "match": {
-              "location": "StepDefInBound.user_views_ASNscreen_and_get_itemdetails()"
+              "location": "StepDefInBound.user_views_ASNscreen_with_Shipment_and_get_itemdetails()"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 19239006700,
+              "duration": 144397253400,
               "status": "passed"
             },
-            "line": 16,
-            "name": "user log out from application",
-            "match": {
-              "location": "StepDefInBound.user_log_out_from_application()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 24198735200,
-              "status": "passed"
-            },
-            "line": 17,
-            "name": "user logs into the O2S application",
-            "match": {
-              "location": "StepDefInBound.user_logs_into_the_O2S_application()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 70034012200,
-              "status": "passed"
-            },
-            "line": 18,
-            "name": "user navigate to VendorPortal Tab",
-            "match": {
-              "location": "StepDefInBound.user_navigate_to_vendorportal_tab()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 51798343300,
-              "status": "passed"
-            },
-            "line": 19,
-            "name": "user validate the ASN using \"Receipt Number\" search field",
+            "line": 128,
+            "name": "user opens RF menu and completes Receiving using \"MM1 Recv-iLPN\" menu",
             "match": {
               "arguments": [
                 {
-                  "val": "Receipt Number",
-                  "offset": 29
+                  "val": "MM1 Recv-iLPN",
+                  "offset": 50
                 }
               ],
-              "location": "StepDefInBound.user_validate_the_ASN_using_search_field(String)"
+              "location": "StepDefInBound.user_opens_RF_menu_and_completes_Receiving_using_menu(String)"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 126632356100,
-              "error_message": "java.lang.AssertionError: expected [Complete] but found [Completed]\r\n\tat org.testng.Assert.fail(Assert.java:111)\r\n\tat org.testng.Assert.failNotEquals(Assert.java:1578)\r\n\tat org.testng.Assert.assertEqualsImpl(Assert.java:150)\r\n\tat org.testng.Assert.assertEquals(Assert.java:132)\r\n\tat org.testng.Assert.assertEquals(Assert.java:656)\r\n\tat org.testng.Assert.assertEquals(Assert.java:666)\r\n\tat pages.VendorPortalHomePage.vpReceive(VendorPortalHomePage.java:288)\r\n\tat StepDefinition.StepDefInBound.user_completes_receiving_in_vendor_portal(StepDefInBound.java:1751)\r\n\tat ✽.And user completes receiving in vendor portal(COMVendorPortalScenariosUpdated.feature:20)\r\n",
-              "status": "failed"
+              "duration": 19121932300,
+              "status": "passed"
             },
-            "line": 20,
-            "name": "user completes receiving in vendor portal",
-            "match": {
-              "location": "StepDefInBound.user_completes_receiving_in_vendor_portal()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 21,
-            "name": "user log out from Vendor Portal application",
-            "match": {
-              "location": "StepDefInBound.user_logout_from_VendorPortal()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 22,
-            "name": "user logs into the Manhattan application",
-            "match": {
-              "location": "StepDefInBound.user_logs_into_the_Manhattan_application()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "status": "skipped"
-            },
-            "line": 23,
-            "name": "user opens ASN screen and searches for the ASN and verify its status \"40 - Receiving Verified\"",
+            "line": 129,
+            "name": "user opens ASN screen and searches for the Shipment and verify its status \"40 - Receiving Verified\"",
             "match": {
               "arguments": [
                 {
                   "val": "40 - Receiving Verified",
-                  "offset": 70
+                  "offset": 75
                 }
               ],
-              "location": "StepDefInBound.user_opens_ASN_screen_and_searches_for_the_ASN_and_verify_its_status(String)"
+              "location": "StepDefInBound.user_opens_ASN_screen_and_searches_for_the_Shipment_and_verify_its_status(String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 12942352400,
+              "status": "passed"
+            },
+            "line": 130,
+            "name": "user opens Items screen and find putaway type",
+            "match": {
+              "location": "StepDefInBound.find_putaway_type()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 115725725400,
+              "error_message": "java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator \u0027By.xpath: //div[@data-ref\u003d\u0027targetEl\u0027 and @id\u003d\u0027topbar-1012-targetEl\u0027]/a[1]\u0027 (tried for 100 second(s) with 500 milliseconds interval) expected [true] but found [false]\r\n\tat org.testng.Assert.fail(Assert.java:111)\r\n\tat org.testng.Assert.failNotEquals(Assert.java:1578)\r\n\tat org.testng.Assert.assertTrue(Assert.java:57)\r\n\tat StepDefinition.StepDefInBound.user_opens_RF_menu_and_completes_Putaway(StepDefInBound.java:915)\r\n\tat ✽.And user opens RF menu and completes Putaway using \"MM1 Ptwy iLPN\" menu(ATMVendorPortalScenariosUpdated.feature:131)\r\n",
+              "status": "failed"
+            },
+            "line": 131,
+            "name": "user opens RF menu and completes Putaway using \"MM1 Ptwy iLPN\" menu",
+            "match": {
+              "arguments": [
+                {
+                  "val": "MM1 Ptwy iLPN",
+                  "offset": 48
+                }
+              ],
+              "location": "StepDefInBound.user_opens_RF_menu_and_completes_Putaway(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 132,
+            "name": "user search for the LPN in iLPN screen, and validate the lock code",
+            "match": {
+              "location": "StepDefInBound.user_search_for_the_LPN_in_iLPN_screen_and_validate_the_lock_code()"
             },
             "keyword": "Then "
           },
@@ -297,34 +257,49 @@
             "result": {
               "status": "skipped"
             },
-            "line": 24,
+            "line": 133,
+            "name": "user open reserve locations and naviagtes to validate iLPN",
+            "match": {
+              "location": "StepDefInBound.user_open_reserve_locations_and_naviagtes_to_validate_iLPN()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 134,
             "name": "user log out from application",
             "match": {
               "location": "StepDefInBound.user_log_out_from_application()"
             },
-            "keyword": "Then "
+            "keyword": "And "
           }
         ],
         "tags": [
           {
-            "line": 3,
-            "name": "@InBoundScenario_COM_New1"
+            "line": 116,
+            "name": "@InBoundScenario_ATM_New6"
           },
           {
-            "line": 3,
-            "name": "@IBRegScenarios_COM"
+            "line": 116,
+            "name": "@IBRegScenarios_ATM"
           },
           {
-            "line": 3,
-            "name": "@Regression_COM"
+            "line": 116,
+            "name": "@Regression_ATM"
+          },
+          {
+            "line": 116,
+            "name": "@ATM_SingleLinePO_NormalItem"
           }
         ]
       }
     ],
-    "name": "This feature file contains COM customer Vendor Portal Scenarios",
+    "name": "This feature file contains ATM customer Vendor Portal Scenarios",
     "description": "",
-    "id": "this-feature-file-contains-com-customer-vendor-portal-scenarios",
+    "id": "this-feature-file-contains-atm-customer-vendor-portal-scenarios",
     "keyword": "Feature",
-    "uri": "COMVendorPortalScenariosUpdated.feature"
+    "uri": "ATMVendorPortalScenariosUpdated.feature"
   }
 ]

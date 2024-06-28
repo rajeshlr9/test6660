@@ -179,24 +179,27 @@ public class VendorPortalHomePage {
 	
 	public void searchUsingLotNumber() throws InterruptedException {
 		Thread.sleep(2000);
-		System.out.println("Enter Lot Number and Receipt Number");
+		System.out.println("Enter Lot Number");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, lotNumber, 180);
 		SeleniumTestHelper.scrollToElement(driver, lotNumber);
 		SeleniumTestHelper.enterText(lotNumber, Items.getLotNumber());
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, receiptNumber, 180);
-		SeleniumTestHelper.scrollToElement(driver, receiptNumber);
-		SeleniumTestHelper.enterText(receiptNumber, Items.getAsnNumber());
+//		SeleniumTestHelper.waitForElementToBeDisplayed(driver, receiptNumber, 180);
+//		SeleniumTestHelper.scrollToElement(driver, receiptNumber);
+//		SeleniumTestHelper.enterText(receiptNumber, Items.getAsnNumber());
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipmentNbr, 180);
+		SeleniumTestHelper.scrollToElement(driver, shipmentNbr);
+		SeleniumTestHelper.enterText(shipmentNbr, Items.getPONumber());
 		clickOnLoadShipment();
 	}
 	public void searchUsingSerialNumber() throws InterruptedException {
 		Thread.sleep(2000);
-		System.out.println("Enter Serial Number and Receipt Number");
+		System.out.println("Enter Serial Number ");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, serialNumber, 180);
 		SeleniumTestHelper.scrollToElement(driver, serialNumber);
 		SeleniumTestHelper.enterText(serialNumber, Items.getEdiSerialNumber());
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, receiptNumber, 180);
-		SeleniumTestHelper.scrollToElement(driver, receiptNumber);
-		SeleniumTestHelper.enterText(receiptNumber, Items.getAsnNumber());
+//		SeleniumTestHelper.waitForElementToBeDisplayed(driver, receiptNumber, 180);
+//		SeleniumTestHelper.scrollToElement(driver, receiptNumber);
+//		SeleniumTestHelper.enterText(receiptNumber, Items.getAsnNumber());
 		clickOnLoadShipment();
 	}
 	
@@ -213,7 +216,12 @@ public class VendorPortalHomePage {
 		System.out.println(itemQtyInSearchResult.getAttribute("value"));
 		Reporter.addStepLog("Item: " + itemIdInSearchResult.getText()+";"+"Item Quantity: " + itemQtyInSearchResult.getAttribute("value")+";"+"UOM: " + uOMInSearchResult.getText());
 		Reporter.addStepLog("ASN: " + expASNNumInSearchResult.getText()+";"+"Status: " + statusInSearchResult.getText());
-		Assert.assertEquals(Items.getShipmentNum().contains(expASNNumInSearchResult.getText()), true, "Actual and Expected ASN Number didn't matched");
+		if(Steps.scenarioData.get("Order Source").equals("Kelli")) {
+			Assert.assertEquals(Items.getShipmentNum().contains(expASNNumInSearchResult.getText()), true, "Actual and Expected ASN Number didn't matched");
+		}else if(Steps.scenarioData.get("Order Source").equals("FedexNet")) {
+			Assert.assertEquals(Items.getPONumber().contains(expASNNumInSearchResult.getText()), true, "Actual and Expected ASN Number didn't matched");
+		}
+		
 		Assert.assertEquals(statusInSearchResult.getText(), "Shipped", "Actual and Expected Status didn't matched");
 		Assert.assertEquals(itemIdInSearchResult.getText(), Steps.ItemDataMap.get(0).get("Item"), "Actual and Expected item didn't matched");
 		Assert.assertEquals(uOMInSearchResult.getText(), Steps.ItemDataMap.get(0).get("UOM"), "Actual and Expected UOM didn't matched");

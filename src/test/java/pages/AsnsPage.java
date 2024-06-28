@@ -384,7 +384,7 @@ public class AsnsPage {
 		 while (!SeleniumTestHelper.isElementDisplayed(asnStatus) && (temp != 20)) {
 			 applyBtn.click();
 			 //Thread.sleep(5000);
-			 SeleniumTestHelper.WaitForPageLoad();
+			 SeleniumTestHelper.WaitForPageLoad(5000);
 			 temp++;
 		 }
 		//driver.findElement(By.xpath("(//span[text()='Apply'])[2]")).click();
@@ -395,7 +395,11 @@ public class AsnsPage {
 	//	SeleniumTestHelper.waitForElementToBeDisplayed(driver, collapseLeft, 70);
 		//collapseLeft.click();
 		//SeleniumTestHelper.waitForElementToBeDisplayed(driver, refreshBtn, 50);
-		String AsnStatus = asnStatus.getText();
+		
+		 String ASNvalue = driver.findElement(By.xpath("(//div[contains(@class,'x-grid-cell-inner')])[3]")).getText();
+			Items.setUpdatedAsnNumber(ASNvalue);
+		 
+		 String AsnStatus = asnStatus.getText();
 		int count = 0;
 		  while (!AsnStatus.equals(status) && (count != 20)) { 
 			  applyBtn.click();

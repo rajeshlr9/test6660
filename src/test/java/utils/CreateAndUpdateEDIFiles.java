@@ -277,7 +277,7 @@ public class CreateAndUpdateEDIFiles {
 
 			Steps.logger.info("PONumber: " + Items.getPONumber());
 			Reporter.addStepLog("PONumber: " + Items.getPONumber());
-
+			String facility = null;
 			String itemName = null;
 			String shpQty = null;
 			String uom = null;
@@ -347,6 +347,12 @@ public class CreateAndUpdateEDIFiles {
 						uom = Steps.ItemDataMap.get(i).get("UOM");
 						modifyEDIFile(ATMEDIInboundFilePath, "XXXUOM", uom);
 						modifyEDIFile(ATMEDIInboundFilePath, "XXXItemUOM", shpQty);
+						Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
+						Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
+						
+						facility = Steps.scenarioData.get("EDIFacility");
+						modifyEDIFile(ATMEDIInboundFilePath, "XXXFAC", facility);
+						
 						Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
 						Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
 					} else if (Steps.scenarioData.get("Account").equals("APC")) {
