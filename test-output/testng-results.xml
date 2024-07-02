@@ -5,23 +5,23 @@
       <![CDATA[Execution started for : Receiving SingleLine Normal Items in Manhattan Application.]]>
     </line>
   </reporter-output>
-  <suite started-at="2024-07-01T12:10:04 UTC" name="Default suite" finished-at="2024-07-01T12:17:15 UTC" duration-ms="430279">
+  <suite started-at="2024-07-02T12:48:25 UTC" name="Default suite" finished-at="2024-07-02T12:57:35 UTC" duration-ms="549702">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@6200f9cb]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2024-07-01T12:10:04 UTC" name="Default test" finished-at="2024-07-01T12:17:15 UTC" duration-ms="430279">
+    <test started-at="2024-07-02T12:48:25 UTC" name="Default test" finished-at="2024-07-02T12:57:35 UTC" duration-ms="549702">
       <class name="TestRunner.Runner">
-        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-01T12:10:04 UTC" name="createExtentReport" finished-at="2024-07-01T12:10:04 UTC" duration-ms="54" status="PASS">
+        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-02T12:48:25 UTC" name="createExtentReport" finished-at="2024-07-02T12:48:25 UTC" duration-ms="52" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createExtentReport -->
-        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-01T12:10:04 UTC" name="setUpClass" finished-at="2024-07-01T12:10:05 UTC" duration-ms="231" status="PASS">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-02T12:48:25 UTC" name="setUpClass" finished-at="2024-07-02T12:48:25 UTC" duration-ms="241" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-01T12:10:05 UTC" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2024-07-01T12:17:14 UTC" duration-ms="429346" status="PASS">
+        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-02T12:48:26 UTC" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2024-07-02T12:57:34 UTC" duration-ms="548884" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -35,11 +35,11 @@
             </line>
           </reporter-output>
         </test-method> <!-- feature -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-01T12:17:14 UTC" name="tearDownClass" finished-at="2024-07-01T12:17:15 UTC" duration-ms="347" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-02T12:57:34 UTC" name="tearDownClass" finished-at="2024-07-02T12:57:35 UTC" duration-ms="237" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-01T12:17:15 UTC" name="writeExtentReport" finished-at="2024-07-01T12:17:15 UTC" duration-ms="15" status="PASS">
+        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-02T12:57:35 UTC" name="writeExtentReport" finished-at="2024-07-02T12:57:35 UTC" duration-ms="8" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- writeExtentReport -->
