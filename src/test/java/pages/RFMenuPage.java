@@ -9779,6 +9779,7 @@ public class RFMenuPage {
 				inputASN.sendKeys(Keys.ENTER);
 				Screenshots.captureSnapshot(driver);
 				// Thread.sleep(2000);
+				System.out.println("ItemDataMap: "+Steps.ItemDataMap.size());
 				for (int i = 0, j = 1; i < Steps.ItemDataMap.size(); i++, j++) {
 					if (SeleniumTestHelper.isElementDisplayed(destStagingLocn)) {
 						SeleniumTestHelper.assertEquals(destStagingLocnInput.isDisplayed(), true);

@@ -136,3 +136,118 @@ Scenario: ASN Creation with Hazardous Items  using EDI file and validate ASN in 
 	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
 	Then user log out from application
+	
+	@InBoundScenario_COM_New7 @IBRegScenarios_COM @Regression_COM @COM_SingleLinePO_NormalItem
+	Scenario: Receiving SingleLine Normal Items in Manhattan Application.
+	Given I have excel data 
+		| COM_IBScenario007|
+	Given User Open the chrome browser using selenium 
+	Given user update EDI file "COM SingleLine PO - NormalItems" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	Then user opens ASN screen and searches for the Shipment and verify its status "20 - InTransit"
+	And user views Shipment, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
+	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
+	And user opens Items screen and find putaway type 
+	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
+	Then user search for the LPN in iLPN screen, and validate the lock code
+#	And user open reserve locations and naviagtes to validate iLPN 
+	And user log out from application 
+#	And user logs into the FedexNet application for verify files
+#	And user verify the "861" file in fedexnet
+#	Then user log out from Fedenxet application
+	
+	@InBoundScenario_COM_New8 @IBRegScenarios_COM @Regression_COM @COM_SingleLinePO_NormalItem
+	Scenario: Receiving SingleLine Normal Items in Manhattan Application.
+	Given I have excel data 
+		| COM_IBScenario008|
+	Given User Open the chrome browser using selenium 
+	Given user update EDI file "COM SingleLine PO - SerialItems" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	Then user opens ASN screen and searches for the Shipment and verify its status "20 - InTransit"
+	And user views Shipment, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
+	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
+	And user opens Items screen and find putaway type 
+	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
+	Then user search for the LPN in iLPN screen, and validate the lock code
+#	And user open reserve locations and naviagtes to validate iLPN 
+	And user log out from application 
+#	And user logs into the FedexNet application for verify files
+#	And user verify the "861" file in fedexnet
+#	Then user log out from Fedenxet application
+
+@InBoundScenario_COM_New9 @IBRegScenarios_COM @Regression_COM @COM_SingleLinePO_NormalItem
+	Scenario: Receiving SingleLine Normal Items in Manhattan Application.
+	Given I have excel data 
+		| COM_IBScenario009|
+	Given User Open the chrome browser using selenium 
+	Given user update EDI file "COM SingleLine PO - LotItems" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	Then user opens ASN screen and searches for the Shipment and verify its status "20 - InTransit"
+	And user views Shipment, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
+	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
+	And user opens Items screen and find putaway type 
+	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
+	Then user search for the LPN in iLPN screen, and validate the lock code
+#	And user open reserve locations and naviagtes to validate iLPN 
+	And user log out from application 
+#	And user logs into the FedexNet application for verify files
+#	And user verify the "861" file in fedexnet
+#	Then user log out from Fedenxet application
+
+@InBoundScenario_COM_New10 @IBRegScenarios_COM @Regression_COM @COM_SingleLinePO_NormalItem
+	Scenario: Receiving SingleLine Normal Items in Manhattan Application.
+	Given I have excel data 
+		| COM_IBScenario010|
+	Given User Open the chrome browser using selenium 
+	Given user update EDI file "COM SingleLine PO - HazItems" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	Then user opens ASN screen and searches for the Shipment and verify its status "20 - InTransit"
+	And user views Shipment, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
+	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
+	And user opens Items screen and find putaway type 
+	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
+	Then user search for the LPN in iLPN screen, and validate the lock code
+#	And user open reserve locations and naviagtes to validate iLPN 
+	And user log out from application 
+#	And user logs into the FedexNet application for verify files
+#	And user verify the "861" file in fedexnet
+#	Then user log out from Fedenxet application
+
+@InBoundScenario_COM_New11 @IBRegScenarios_COM @Regression_COM @COM_SingleLinePO_NormalItem
+	Scenario: Receiving SingleLine Normal Items in Manhattan Application.
+	Given I have excel data 
+		| COM_IBScenario011|
+	Given User Open the chrome browser using selenium 
+	Given user update EDI file "COM SingleLine PO - ExpItems" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	Then user opens ASN screen and searches for the Shipment and verify its status "20 - InTransit"
+	And user views Shipment, get and verify item details 
+	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
+	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
+	And user opens Items screen and find putaway type 
+	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
+	Then user search for the LPN in iLPN screen, and validate the lock code
+#	And user open reserve locations and naviagtes to validate iLPN 
+	And user log out from application 
+#	And user logs into the FedexNet application for verify files
+#	And user verify the "861" file in fedexnet
+#	Then user log out from Fedenxet application

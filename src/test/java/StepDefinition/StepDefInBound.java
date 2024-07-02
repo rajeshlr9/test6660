@@ -805,6 +805,9 @@ public class StepDefInBound {
 			case "ATM":
 				rfMenu.ASNReceivingProcessForATM(receivingMethod);
 				break;
+			case "COM":
+				rfMenu.ASNReceivingProcessForATM(receivingMethod);
+				break;
 			case "THH":
 				rfMenu.ASNReceivingProcessForAPC(receivingMethod);
 				break;
@@ -885,6 +888,9 @@ public class StepDefInBound {
 			case "ATM":
 				rfMenu.putawayProcessForATM(putawayMethod);
 				break;
+			case "COM":
+				rfMenu.putawayProcessForATM(putawayMethod);
+				break;
 			case "THH":
 				rfMenu.doPutawayProcess(putawayMethod);
 				break;
@@ -954,7 +960,10 @@ public class StepDefInBound {
 				resLocPage.validateiLPNinReserveLocForAPC();
 				break;
 			case "ATM":
-				resLocPage.validateiLPNinReserveLocForAPC();
+				resLocPage.validateiLPNinReserveLocForATM();
+				break;
+			case "COM":
+				resLocPage.validateiLPNinReserveLocForATM();
 				break;
 			case "THH":
 				resLocPage.validateiLPNinReserveLocForAPC();

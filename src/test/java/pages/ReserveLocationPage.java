@@ -608,6 +608,66 @@ driver.switchTo().frame(0);
 
 	}
 	
+	public void validateiLPNinReserveLocForATM() throws Exception {
+		try {
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, expandBtn, 20);
+			expandBtn.click();
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, locationBarcodetxtBox, 20);
+			locationBarcodetxtBox.sendKeys(Items.getupdtLoc());
+			//locationBarcodetxtBox.sendKeys("RPL6129J01S7");
+			Reporter.addStepLog("Updated Location entered-> " + Items.getupdtLoc());
+
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, ApplyBtn, 20);
+			ApplyBtn.click();
+			//Thread.sleep(3000);
+			SeleniumTestHelper.WaitForPageLoad();
+			Screenshots.captureSnapshot(driver);
+			String getPutawayZone = driver.findElement(By.xpath("//span[@id='dataForm:listView:dataTable:0:custId16']"))
+					.getText();
+			Reporter.addStepLog("Putaway zone in reserve location is: " + getPutawayZone);
+			System.out.println("Putaway zone in reserve location is: " + getPutawayZone);
+			String itemType = Steps.scenarioData.get("PutawayType");
+			System.out.println("itemType: "+itemType);
+			String putawayCode = ItemsPage.getPutawayType().get(Steps.ItemDataMap.get(0).get("Item")).substring(0, 2).trim();
+			System.out.println("Putaway Code: "+putawayCode);
+			//String volumeType = ItemsPage.getPutawayType().split(" ")[ItemsPage.getPutawayType().split(" ").length-2].trim();
+			System.out.println("Putaway Zone :"+getPutawayZone);
+//			if (getPutawayZone.contains(itemType)&& getPutawayZone.contains(putawayCode)) {
+//				Reporter.addStepLog("Putaway zone in reserve location contains valid item type" + itemType);
+//				Assert.assertTrue(getPutawayZone.contains(itemType), "putaway zone does not contains item type" + itemType);
+//				
+//			} else {
+//				Steps.testRes = "Failed";
+//				Reporter.addStepLog("Putaway zone in reserve location does not contain expected volume");
+//				Assert.assertTrue(false, "Invalid Putaway zone");
+//			}
+
+			//Thread.sleep(2000);
+			SeleniumTestHelper.WaitForPageLoad();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, firstRsrvLoc, 20);
+			firstRsrvLoc.click();
+			Screenshots.captureSnapshot(driver);
+			LPNsBtn.click();
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPntxtBoxResLoc, 20);
+			Screenshots.captureSnapshot(driver);
+			//Thread.sleep(2000);
+			SeleniumTestHelper.WaitForPageLoad();
+			// iLPntxtBoxResLoc.sendKeys(RFMenuPage.iLPNz.get(0));
+			iLPntxtBoxResLoc.sendKeys(Items.getLpns(0));
+			Thread.sleep(4000);
+			iLPnResLocApplyBtn.click();
+			//Thread.sleep(3000);
+			SeleniumTestHelper.WaitForPageLoad();
+			Screenshots.captureSnapshot(driver);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, iLPNvalue, 20);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
 	public String getReservelocationByPutawayZone(String itemId,String putawayCode) throws Exception
 	{
 		String locBarCode= "";

@@ -86,7 +86,8 @@ public class CreateAndUpdateEDIFiles {
 	public String COMSingleLineLotItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"COM" + "/856/"+"COM"+"-LotItem-WIP.x12";
 	public String COMSingleLineSerialItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"COM" + "/856/"+"COM"+"-SerialItem-WIP.x12";
 	public String COMSingleLineNormalItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"COM" + "/856/"+"COM"+"-NormalItem-WIP.x12";
-
+	public String COMSingleLineHazItemIBFilePath = dirPath + "/src/test/resources/testdata/"+"COM" + "/856/"+"COM"+"-HazItem-WIP.x12";
+	
 	public String COMEDIInboundFilePath = dirPath + "/src/test/resources/testdata/"+"COM" + "/856/"+"COM"+"_856_InputFile.x12";
 
 	public void user_create_EDI_file(String fileType)
@@ -334,6 +335,10 @@ public class CreateAndUpdateEDIFiles {
 						modifyEDIFile(COMEDIInboundFilePath, "XXXItemUOM", shpQty);
 						Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
 						Steps.logger.info("QtyUOM : " + shpQty + " has been updated successfully");
+						
+						facility = Steps.scenarioData.get("EDIFacility");
+						modifyEDIFile(COMEDIInboundFilePath, "XXXFAC", facility);
+						
 					} else if (Steps.scenarioData.get("Account").equals("ATM")) {
 						modifyEDIFile(ATMEDIInboundFilePath, "XXXItemId", itemName);
 						Steps.logger.info("Item : " + itemName + " has been updated successfully");
