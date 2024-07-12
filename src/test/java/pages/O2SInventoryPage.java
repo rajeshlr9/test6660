@@ -50,6 +50,8 @@ public class O2SInventoryPage {
 	@FindBy(xpath = "//*[@id='inputForm:selectUom']")
 	public WebElement UOM;
 	
+	@FindBy(xpath = "//input[@id='inputForm:chkdefectiveItem']")
+	public WebElement productClass;
 	/**
 	 * This method use for add items in add inventory step
 	 * @throws Exception
@@ -82,8 +84,20 @@ public class O2SInventoryPage {
 		// SeleniumTestHelper.enterTextInTextBox(itemQty, "1");
 		Steps.logger.info("Enter item Qty");
 		//Thread.sleep(5000);
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, UOM, 180);
-		SeleniumTestHelper.selectFromDropDown(UOM, Steps.ItemDataMap.get(i).get("UOM"), "value");
+		if(!(Steps.scenarioData.get("Account").equals("THH") || Steps.scenarioData.get("Account").equals("THM"))) {
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, UOM, 180);
+			SeleniumTestHelper.selectFromDropDown(UOM, Steps.ItemDataMap.get(i).get("UOM"), "value");
+		}
+//		if(!(Steps.scenarioData.get("Account")).equals("ATM")) {
+//		SeleniumTestHelper.waitForElementToBeDisplayed(driver, UOM, 180);
+//		SeleniumTestHelper.selectFromDropDown(UOM, Steps.ItemDataMap.get(i).get("UOM"), "value");
+//		}
+		
+		if((Steps.scenarioData.get("Account")).equals("ATM")) {
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, productClass, 180);
+			//SeleniumTestHelper.enterTextInTextBox(productClass, "");
+			SeleniumTestHelper.enterTextInTextBox(productClass, Steps.ItemDataMap.get(i).get("ProductStatus"));
+			}
 		SeleniumTestHelper.WaitForPageLoad(3000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, addItem, 180);
 		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(addItem));

@@ -220,8 +220,8 @@ Creating ASN through FedEx Net and checking status.Upload same Inbound XMl file.
 	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
 
 @ILW001 @SingleLine_ILW @Regression_ILW @IBRegScenarios_ILW
-Scenario: Receving Case : Single ASNLoad file for ILW Using Kelli for Item with Lot Revision and Expary.Complete Putaway.
-Creating ASN through Kelli, checking status of the shipment for Single Line with Lot, Revision and Expary Item. Complete Putaway.
+Scenario: Receving Case : Single ASNLoad file for ILW Using Kelli for Item with Lot Revision and Exipry.Complete Putaway.
+Creating ASN through Kelli, checking status of the shipment for Single Line with Lot, Revision and Exipry Item. Complete Putaway.
 	Given I have excel data
 	| ILW_KelliScenario001 |
 	And Open the chrome browser by selenium

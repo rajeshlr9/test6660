@@ -47,6 +47,9 @@ public class O2SSearchOrderDetails {
 	
 	@FindBy(xpath = "//span[@id='orderSearchform:resultTable:0:cancelledVal']")
 	public WebElement o2sOrderStatus;
+	
+	@FindBy(xpath = "//input[@id='orderSearchform:custRef']")
+	public WebElement orderSearchCustRef;
 	/**
 	 * This method checkOrderSummaryPage ensure Order has been created successfully
 	 * @throws Exception
@@ -60,6 +63,17 @@ public class O2SSearchOrderDetails {
 		Reporter.addStepLog("User entered the order number in search page and clicked on search");
 		Thread.sleep(5000);
 	}
+	
+	public void enterFedexNetOrderNumberToSearchDetails() throws Exception {
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, orderSearchCustRef, 180);
+		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(orderSearchCustRef));
+		SeleniumTestHelper.enterTextInTextBox(orderSearchCustRef, Items.getDONumber());
+		Steps.logger.info("Order number enetered successfully...");
+		SeleniumTestHelper.click(searchButton);
+		Reporter.addStepLog("User entered the order number in search page and clicked on search");
+		Thread.sleep(5000);
+	}
+	
 	public void enterOrderNumberToSearchDetails2() throws Exception {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, orderNumberTextField, 180);
 		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(orderNumberTextField));

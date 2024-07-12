@@ -450,6 +450,21 @@ public class Xpathxml {
 		Steps.logger.info("DeliveryStartDate has been updated as : " + deliveryStartDate);		
 	}
     
+    public void user_create_inputXML_for_outbound_basedOn_xmlType(String xmlType) throws FileNotFoundException, XPathExpressionException, IOException, SAXException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
+    			
+		if(xmlType.equals("Single Line DO")){
+			user_copy_content_from_source_to_target(SingleLineOutboundFilePath, inputEDIOutboundFilePath);
+		}else if(xmlType.equals("Multi Line DO")){
+			user_copy_content_from_source_to_target(IBMasterTwoItemFilePath, inputIBFilePath);
+		}else if(xmlType.equals("Single Line Return DO")) {
+			System.out.println("test");
+			user_copy_content_from_source_to_target(IBMasterOneReturnFilePath, inputIBFilePath);
+		}else if(xmlType.equals("Multi Line Return DO")) {
+			user_copy_content_from_source_to_target(IBMasterTwoReturnFilePath, inputIBFilePath);
+		}
+		
+				
+	}
 	
 	public void create_xmlFile_for_DistributionOrder_to_upload(String xmlType) throws Exception{
 		
@@ -838,6 +853,7 @@ public class Xpathxml {
 			Items.setDONumber(PODONumber);
 			Steps.logger.info("DO Number: "+PODONumber);
 			Reporter.addStepLog("DO Number: "+PODONumber);
+			System.out.println("DO Number: "+PODONumber);
 			
 			String itemName = null;
 			String shpQty = null;
@@ -914,8 +930,8 @@ public class Xpathxml {
 			line = reader.readLine();
 		}
 		globalFunc.DateTime.TimeDateFunc();
-		String newContent = oldContent.replaceAll("yyyyMMddHHmm", globalFunc.DateTime.strDate3);
-		String newcontent_ship = newContent.replaceAll("yymmdd", PODONumber);
+		String newContent = oldContent.replaceAll("yyyyMMddHHmmss", globalFunc.DateTime.strDate32);
+		String newcontent_ship = newContent.replaceAll("YYMMDDHHmmSS", PODONumber);
 		FileWriter writer = new FileWriter(path);
 		writer.write(newcontent_ship);
 		reader.close();

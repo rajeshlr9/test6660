@@ -2342,15 +2342,22 @@ public class DistributionOrdersPage {
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
 		Screenshots.captureSnapshot(driver);
-		primaryField.sendKeys("Fulfillment Status");
-		primaryField.sendKeys(Keys.ENTER);
-		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryFieldStatus, 80);
-		primaryFieldStatus.sendKeys("110 - Released");
-		primaryFieldStatus.sendKeys(Keys.ENTER);
-		Screenshots.captureSnapshot(driver);
+		if(!(Steps.scenarioData.get("Account").equals("ATM"))){
+			primaryField.sendKeys("Fulfillment Status");
+			primaryField.sendKeys(Keys.ENTER);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryFieldStatus, 80);
+			primaryFieldStatus.sendKeys("110 - Released");
+			primaryFieldStatus.sendKeys(Keys.ENTER);
+			Screenshots.captureSnapshot(driver);
+		}
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, optionalField, 80);
-		optionalField.sendKeys("External SO / PO");
-		optionalField.sendKeys(Keys.ENTER);
+		if(!(Steps.scenarioData.get("Account").equals("ATM")&& (! Steps.scenarioData.get("Order Source").equals("O2S")))){
+			optionalField.sendKeys("External SO / PO");
+			optionalField.sendKeys(Keys.ENTER);
+		}else {
+			optionalField.sendKeys("Sales Order");
+			optionalField.sendKeys(Keys.ENTER);
+		}
 		Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, optionalFieldInputText, 50);
 		System.out.println(Items.getDONumber());
@@ -2523,9 +2530,9 @@ public class DistributionOrdersPage {
 		System.out.println("refIlpn: "+refIlpn);
 		homepage.user_closes_openedwindow("DO Detail - oLPN Details");
 		
-		String FirstSerialNum = ilpnPage.searchForTheILPNAndFetchSerialNumber(refIlpn);
-		System.out.println("FirstSerialNum: "+FirstSerialNum);
-		Items.setRefSerialNum(FirstSerialNum);
+//		String FirstSerialNum = ilpnPage.searchForTheILPNAndFetchSerialNumber(refIlpn);
+//		System.out.println("FirstSerialNum: "+FirstSerialNum);
+//		Items.setRefSerialNum(FirstSerialNum);
 	}
 	
 	public void getdGRequiredSstatus(String status) throws Exception {

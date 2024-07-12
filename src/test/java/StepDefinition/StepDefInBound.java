@@ -259,7 +259,15 @@ public class StepDefInBound {
 			}else if(fileType.equals("850")||fileType.equals("940")) {	
 				if (account.equalsIgnoreCase("APC")) {
 					FedexnetPage.dropOrder(dropEnv, fileType, createUpdateEdiInput.APCEDIOutboundFilePath);
-				} else {
+				}else if (account.equalsIgnoreCase("ATM") ) {
+					FedexnetPage.dropOrder(dropEnv, fileType, createUpdateEdiInput.ATMEDIOutboundFilePath);
+				} else if (account.equalsIgnoreCase("COM") ) {
+					FedexnetPage.dropOrder(dropEnv, fileType, createUpdateEdiInput.COMEDIOutboundFilePath);
+				}else if (account.equalsIgnoreCase("TRN") ) {
+					FedexnetPage.dropOrder(dropEnv, fileType, xmlInput.SingleLineOutboundFilePath);
+				}
+				
+				else {
 					FedexnetPage.dropOrder(dropEnv, fileType, xmlInput.inputEDIOutboundFilePath);
 				}
 			}
@@ -350,6 +358,20 @@ public class StepDefInBound {
 		}
 	}
 
+	@When("^user create xml file using \"([^\"]*)\" for DO$")
+	public void user_create_xml__for_DO(String xmlType)
+			throws Exception {
+		try {
+			Steps.logger.info("XML creation started");
+			xmlInput.user_create_inputXML_for_outbound_basedOn_xmlType(xmlType);
+			
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
 	@When("^user update \"([^\"]*)\" for dropping into fedexnet application$")
 	public void user_update_EDI_XML_file_for(String xmlType)	throws Exception {
 		try {
@@ -1668,6 +1690,24 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
+	
+	@Then("^user search order from FedexNet and verify status is booked$")
+	public void user_Search_Order_from_Fedexnet_And_Verify_Status_is_Booked() throws Throwable {
+		try {
+
+			o2sHomePage.moveToSearchOrderMenuandClickSearchOrder();
+			o2sSearchOrderDetails.enterFedexNetOrderNumberToSearchDetails();
+			o2sSearchOrderDetails.verifyTheOrderStatusIsBookedOrNot();
+			Steps.logger.info("Verify the order number generated");
+			o2sSearchOrderDetails.clickOnCreateButton();
+			//Screenshots.captureSnapshot(driver);
+			Reporter.addStepLog("Order number generated successfully");
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
 	@Then("^user opens ASN screen and navigate to LPNs Tab and verify its status \"([^\"]*)\"$")
 	public void user_opens_ASN_screen_and_navigate_to_LPNs_Tab_and_verify_its_status(String status) throws Exception {
 
@@ -1719,6 +1759,23 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
+	
+	@Then("^user navigate to VendorPortal and click on Ship Tab$")
+	public void user_navigate_to_vendorportal_and_click_on_Ship_Tab() {
+		try {
+			o2sHomePage.navigateToWMSApp();
+			vendorPortalHomePage.naviagateAndClickShipTab();
+			//vendorPortalHomePage.enterMandatoryDetails();
+			Steps.logger.info("User navigate to Vendor Portal App");
+			Screenshots.captureSnapshot(driver);
+
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
 	@Then("^user log out from the application$")
 	public void user_log_out_from_the_application() throws Exception {
 		try {
@@ -1763,6 +1820,24 @@ public class StepDefInBound {
 		}
 	}
 	
+	@Then("^user validate the DO search field$")
+	public void user_validate_the_DO_using_search_field(String searchField) {
+		try {
+			// o2sHomePage.navigateToWMSApp();
+			// vendorPortalHomePage.naviagateAndClickReceiveTab();
+			System.out.println("Trying to validate DO and other details using Search option");
+			vendorPortalHomePage.enterShipMandatoryDetails();
+			vendorPortalHomePage.searchUsingShipmentNumber();
+			//ValidateDataInShipTable
+			
+
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
 	@Then("^user completes receiving in vendor portal$")
 	public void user_completes_receiving_in_vendor_portal() {
 		try {
@@ -1776,6 +1851,21 @@ public class StepDefInBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
+	
+	@Then("^user completes pps in vendor portal$")
+	public void user_completes_pps_in_vendor_portal() {
+		try {
+			vendorPortalHomePage.vpPPS();
+			
+			
+		
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			e.printStackTrace();
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
 	@Then("^user Search Order And verify status of order is \"([^\"]*)\" and Item status is \"([^\"]*)\"$")
 	public void user_Search_Order_And_Verify_Status_of_order(String orderStatus, String ItemStatus) throws Throwable {
 		try {

@@ -37,6 +37,9 @@ public class VendorPortalHomePage {
 
 	@FindBy(xpath = "//li[@id='receiveListItem']")
 	public WebElement receiveTab;
+	
+	@FindBy(xpath = "//li[@id='shipListItem']")
+	public WebElement shipTab;
 
 	@FindBy(xpath = "//div[@id='warehouseDetailTable_filter']//input[@type='search']")
 	public WebElement nodeFilterField;
@@ -50,6 +53,9 @@ public class VendorPortalHomePage {
 	@FindBy(xpath = "//select[@id='enterprise']")
 	public WebElement selectEnterPrise;
 
+	@FindBy(xpath = "//select[@id='enterpriseSelect']")
+	public WebElement selectShipEnterPrise;
+	
 	@FindBy(xpath = "//input[@name='receiptNbr']")
 	public WebElement receiptNumber;
 
@@ -58,6 +64,14 @@ public class VendorPortalHomePage {
 
 	@FindBy(xpath = "//button[@id='searchButton']")
 	public WebElement loadShipmentButton;
+	
+	@FindBy(xpath = "//button[@id='loadShipmentButton']")
+	public WebElement loadShipPageShipmentButton;
+	
+	
+	@FindBy(xpath = "//button[@id='ppsButton']")
+	public WebElement ppsButton;
+	//button[@id='ppsButton']
 
 	@FindBy(xpath = "//table[@id='receiveTable']/tbody/tr[contains(@class,'fsc-rcv-tbl-grp-header')]")
 	public WebElement expASNNumInSearchResult;
@@ -122,6 +136,19 @@ public class VendorPortalHomePage {
 		SeleniumTestHelper.clickOnButton(receiveTab);
 		Thread.sleep(10000);
 	}
+	
+	public void naviagateAndClickShipTab() throws InterruptedException {
+		Thread.sleep(5000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, VendorTab, 180);
+		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(VendorTab));
+		SeleniumTestHelper.clickOnButton(VendorTab);
+		Thread.sleep(5000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipTab, 180);
+		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(shipTab));
+		SeleniumTestHelper.clickOnButton(shipTab);
+		Thread.sleep(10000);
+	}
+	
 
 	public void enterMandatoryDetails() throws InterruptedException {
 		Thread.sleep(10000);
@@ -160,6 +187,44 @@ public class VendorPortalHomePage {
 		}
 		Thread.sleep(2000);
 	}
+	
+	public void enterShipMandatoryDetails() throws InterruptedException {
+		Thread.sleep(10000);
+		System.out.println("Enter Mandatory Details");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, nodeFilterField, 180);
+		SeleniumTestHelper.scrollToElement(driver, nodeFilterField);
+		if (account.equalsIgnoreCase("ATM")) {
+			// SeleniumTestHelper.enterText(nodeFilterField, "MEM1");
+			SeleniumTestHelper.enterText(nodeFilterField, "AMI");
+			Thread.sleep(2000);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, tableDataWithNodeAMIAM, 180);
+			SeleniumTestHelper.scrollToElement(driver, tableDataWithNodeAMIAM);
+			SeleniumTestHelper.click(tableDataWithNodeAMIAM);
+			Thread.sleep(5000);
+		}else if (account.equalsIgnoreCase("COM")) {
+			// SeleniumTestHelper.enterText(nodeFilterField, "MEM1");
+			SeleniumTestHelper.enterText(nodeFilterField, "AMI");
+			Thread.sleep(2000);
+			SeleniumTestHelper.waitForElementToBeDisplayed(driver, tableDataWithNodeAMIAM, 180);
+			SeleniumTestHelper.scrollToElement(driver, tableDataWithNodeAMIAM);
+			SeleniumTestHelper.click(tableDataWithNodeAMIAM);
+			Thread.sleep(5000);
+		}
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, reasonCodeSelector, 180);
+		SeleniumTestHelper.selectFromDropDown(reasonCodeSelector, "Training", DropDownMode.VALUE);
+		Thread.sleep(2000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, custName, 180);
+		SeleniumTestHelper.enterText(custName, "CILTest");
+		Thread.sleep(2000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, selectShipEnterPrise, 180);
+		SeleniumTestHelper.scrollToElement(driver, selectShipEnterPrise);
+		if (account.equalsIgnoreCase("ATM")) {
+			SeleniumTestHelper.selectFromDropDown(selectShipEnterPrise, "ATM", DropDownMode.VALUE);
+		}else if (account.equalsIgnoreCase("COM")) {
+			SeleniumTestHelper.selectFromDropDown(selectShipEnterPrise, "COM", DropDownMode.VALUE);
+		}
+		Thread.sleep(2000);
+	}
 
 	public void searchUsingReceiptNumber() throws InterruptedException {
 		Thread.sleep(2000);
@@ -173,8 +238,8 @@ public class VendorPortalHomePage {
 		Thread.sleep(2000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipmentNbr, 180);
 		SeleniumTestHelper.scrollToElement(driver, shipmentNbr);
-		SeleniumTestHelper.enterText(shipmentNbr, Items.getPONumber());
-		clickOnLoadShipment();
+		SeleniumTestHelper.enterText(shipmentNbr, Items.getDONumber());
+		clickOnShipPageLoadShipment();
 	}
 
 	public void searchUsingLotNumber() throws InterruptedException {
@@ -265,6 +330,34 @@ public class VendorPortalHomePage {
 			Assert.assertTrue(false, errorBanner.getText());
 		}
 	}
+	
+	public void clickOnShipPageLoadShipment() throws InterruptedException {
+
+		Thread.sleep(2000);
+		System.out.println("Click on Load Shipment");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, loadShipPageShipmentButton, 180);
+		SeleniumTestHelper.scrollToElement(driver, loadShipPageShipmentButton);
+		SeleniumTestHelper.clickOnButton(loadShipPageShipmentButton);
+		Thread.sleep(5000);
+		if(SeleniumTestHelper.isElementDisplayed(errorBanner)){
+			Reporter.addStepLog("Error : " + errorBanner.getText());
+			Assert.assertTrue(false, errorBanner.getText());
+		}
+	}
+	
+	public void clickOnPickPackShipmentBtn() throws InterruptedException {
+
+		Thread.sleep(2000);
+		System.out.println("Clicking on Pick Pack Shipment");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, ppsButton, 180);
+		SeleniumTestHelper.scrollToElement(driver, ppsButton);
+		SeleniumTestHelper.clickOnButton(ppsButton);
+		Thread.sleep(5000);
+		if(SeleniumTestHelper.isElementDisplayed(errorBanner)){
+			Reporter.addStepLog("Error : " + errorBanner.getText());
+			Assert.assertTrue(false, errorBanner.getText());
+		}
+	}
 
 	public void vpReceive() throws InterruptedException {
 		int rows =  driver.findElements(By.xpath("//table[@id='receiveTable']/tbody//following::tr")).size();
@@ -297,6 +390,49 @@ public class VendorPortalHomePage {
 			System.out.println("rowVal: "+i);
 			while (!rowStatus.equals(status) && (count != 20)) { 
 				rowStatus = driver.findElement(By.xpath("//*[@id='receiveTable']/tbody/tr["+i+"]/td[11]")).getText();
+				System.out.println("count: "+count+" rowStatus: "+rowStatus);
+				Thread.sleep(6000);			 
+				count++; 
+				
+				if(rowStatus.equals(status)) {
+					rowCount++; 
+					System.out.println("rowCount: "+rowCount);
+				}
+			}
+
+
+		}
+		if(rowCount==rows-1) {
+			System.out.println("here1");
+			Assert.assertTrue(true);
+			
+
+		}else {
+			System.out.println("here2");
+			Assert.assertTrue(false);
+		}
+	}
+	
+	public void vpPPS() throws InterruptedException {
+		int rows =  driver.findElements(By.xpath("//table[@id='shipmentDetailsTable']/tbody//following::tr")).size();
+		
+		clickOnPickPackShipmentBtn();
+		Thread.sleep(2000);
+		String status = "Complete";
+		
+		//String AsnreceiveStatus = receiveStatus.getText();
+		
+		int rowCount = 0;
+		// System.out.println("AsnreceiveStatus:"+AsnreceiveStatus);
+		//Assert.assertEquals( AsnreceiveStatus,status);
+
+		System.out.println("rows: "+rows);
+		for(int i=2;i<=rows;i++) {
+			int count = 0;
+			String rowStatus = "";
+			System.out.println("rowVal: "+i);
+			while (!rowStatus.equals(status) && (count != 20)) { 
+				rowStatus = driver.findElement(By.xpath("//*[@id='shipmentDetailsTable']/tbody/tr["+i+"]/td[11]")).getText();
 				System.out.println("count: "+count+" rowStatus: "+rowStatus);
 				Thread.sleep(6000);			 
 				count++; 

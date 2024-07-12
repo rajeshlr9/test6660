@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FGSCSSTDOrder>
+    <FGSCSHdr>
+        <CrtDtTm>20240130211619</CrtDtTm>
+        <MsgID>202401300811512</MsgID>
+        <MsgType>850</MsgType>
+        <SndTPQualCD>ZZ</SndTPQualCD>
+        <SndTP>TRON</SndTP>
+        <RcvTPQualCD>ZZ</RcvTPQualCD>
+        <RcvTP>FSCSQA</RcvTP>
+    </FGSCSHdr>
+    <OrderHdrLp>
+        <OrdType>98</OrdType>
+        <OrdNbr>12024013010</OrdNbr>
+        <AdrLp>
+            <AdrType>ST</AdrType>
+            <AdrName>MOD</AdrName>
+            <AdrFName>Michael</AdrFName>
+            <AdrLName>Heier</AdrLName>
+            <AdrLine1>747 E Brookhaven Cir</AdrLine1>
+            <AdrCity>Berlin</AdrCity>
+            <AdrStProv></AdrStProv>
+            <AdrPstl>10117</AdrPstl>
+            <AdrCntry>DE</AdrCntry>
+            <AdrContNm>Michael Heier</AdrContNm>
+            <AdrPhone>9012212321</AdrPhone>
+        </AdrLp>
+        <TrnsprtLp>
+            <TrnsprtSvcLvl>FEIP</TrnsprtSvcLvl>
+            <TrnsprtSCAC>FDE</TrnsprtSCAC>
+            <TrnsprtFrghtTermsCD>TP</TrnsprtFrghtTermsCD>
+        </TrnsprtLp>
+        <OrdLineItemLp>
+            <ItemLnNbr>1</ItemLnNbr>
+            <ItemID>330336</ItemID>
+            <ItemDesc>100 Bagged TRON ID Nodes</ItemDesc>
+            <ItemQty>1</ItemQty>
+			<RefLp>
+             <RefIDQual>CO</RefIDQual>
+             <RefID>SDPOC050604</RefID>
+        </RefLp>
+        </OrdLineItemLp>
+            </OrderHdrLp>
+</FGSCSSTDOrder>

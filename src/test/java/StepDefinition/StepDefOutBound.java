@@ -409,7 +409,7 @@ public class StepDefOutBound {
 				} else {
 					rfMenu.completePickProcess("MM1 APC Pick PCL");
 				}
-			}else if (acnt.equalsIgnoreCase("THM") || acnt.equalsIgnoreCase("THH") || acnt.equalsIgnoreCase("ILW") || acnt.equalsIgnoreCase("TRN")){
+			}else if (acnt.equalsIgnoreCase("THM") || acnt.equalsIgnoreCase("THH") || acnt.equalsIgnoreCase("ILW") || acnt.equalsIgnoreCase("TRN")|| acnt.equalsIgnoreCase("ATM")){
 				
 					rfMenu.completePickProcess("MM1 Gen Pack");
 				
@@ -443,7 +443,7 @@ public class StepDefOutBound {
 				rfMenu.completePackTasks();
 			}else if (acnt.equalsIgnoreCase("APC")){
 				rfMenu.completePackProcess("MM1 Prt OB Docs");
-			}else if (acnt.equalsIgnoreCase("THM") || acnt.equalsIgnoreCase("THH") || acnt.equalsIgnoreCase("ILW") || acnt.equalsIgnoreCase("TRN")){
+			}else if (acnt.equalsIgnoreCase("THM") || acnt.equalsIgnoreCase("THH") || acnt.equalsIgnoreCase("ILW") || acnt.equalsIgnoreCase("TRN")|| acnt.equalsIgnoreCase("ATM")){
 				rfMenu.completePickProcess("MM1 Locate Carton");
 			}else {
 				rfMenu.completePackTasksForNVI();

@@ -7059,12 +7059,13 @@ public class RFMenuPage {
 						SeleniumTestHelper.WaitForPageLoad();
 
 					}
+					System.out.println("Fail here1");
 					Item_qty.sendKeys(String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")));
 					Screenshots.captureSnapshot(driver);
 					Item_qty.sendKeys(Keys.ENTER);
 					Screenshots.captureSnapshot(driver);
 					Steps.logger.info("Enter Qty: " + String.valueOf(Steps.ItemDataMap.get(i).get("RecQty")));
-
+					System.out.println("Fail here2");
 					if (SeleniumTestHelper.isElementDisplayed(expMM)) {
 						SeleniumTestHelper.waitForElementToBeDisplayed(driver, expMM, 10);
 						expMM.sendKeys(DateTime.strDate71.split("/")[0]);
@@ -7753,7 +7754,7 @@ public class RFMenuPage {
 				Steps.logger.info("Receiving process starting with : " + receivingMethod + " menu");
 				
 			}
-			
+			homepage.userClosesOpenedwindow("RF Menu");
 			//Thread.sleep(3000);
 			SeleniumTestHelper.WaitForPageLoad();
 		} catch (Exception e) {

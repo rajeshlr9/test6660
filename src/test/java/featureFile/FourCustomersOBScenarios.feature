@@ -445,7 +445,9 @@ Scenario: Create an order using O2S application.
 	Given I have excel data
 	| TRN_OBScenario5 |
 	Given Open the chrome browser by selenium
-	Given user update EDI file "TRN SingleLine DO - NormalItems" for dropping into fedexnet application
+	Then user create xml file using "Single Line DO" for DO
+	When user update "Single Line DO" for dropping into fedexnet application
+	#Given user update EDI file "TRN SingleLine DO - SerialItems" for dropping into fedexnet application
 	And user logs into the FedexNet application
 	And user upload "850" XML file in fedexnet
 	Then user log out from Fedenxet application
@@ -487,7 +489,7 @@ Scenario: Create an order using O2S application.
 	Then user verify the DGRequired Status as "YES"
 	Then user verifies the item details in Distribuion Order page 
 	Then user verifies the shipVia populated in Distribuion Order page 
-	And user runs the "TRN PCL Wave"
+	And user runs the "TRN PCL DG Wave"
 	Then user views wave and verify the allocation of inventory 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
 	And fetch the OLPN number
@@ -508,7 +510,7 @@ Scenario: Create an order using O2S application for TRN customer
 	Given I have excel data 
 		| TRN_OBScenario6 |
 	And Open the chrome browser by selenium
-	When user update "TRN_Single_Line_DO" for dropping into fedexnet application	
+	When user update "THH_Single_Line_DO" for dropping into fedexnet application	
 	And user logs into the FedexNet application
 	And user upload "850" XML file in fedexnet
 	Then user log out from Fedenxet application
