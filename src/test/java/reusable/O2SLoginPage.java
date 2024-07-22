@@ -57,6 +57,12 @@ public class O2SLoginPage extends Steps {
 				password.sendKeys(Config.getProperty("O2SApp_L2_Password_Admin"));
 				Steps.logger.info("L4Password: " + Config.getProperty("O2SApp_L4_Password_Admin"));
 			}
+			else if (env.equalsIgnoreCase("L5")) {
+				username.sendKeys(Config.getProperty("O2SApp_L5_Username_Admin"));
+				Steps.logger.info("L5UserName: " + Config.getProperty("O2SApp_L5_Username_Admin"));
+				password.sendKeys(Config.getProperty("O2SApp_L5_Password_Admin"));
+				Steps.logger.info("L5Password: " + Config.getProperty("O2SApp_L5_Password_Admin"));
+			}
 			//2023062350
 			Screenshots.captureSnapshot(driver);
 			SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(signInBtn));

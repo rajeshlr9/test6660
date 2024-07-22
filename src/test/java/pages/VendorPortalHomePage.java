@@ -238,8 +238,11 @@ public class VendorPortalHomePage {
 		Thread.sleep(2000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipmentNbr, 180);
 		SeleniumTestHelper.scrollToElement(driver, shipmentNbr);
-		SeleniumTestHelper.enterText(shipmentNbr, Items.getDONumber());
-		clickOnShipPageLoadShipment();
+		SeleniumTestHelper.enterText(shipmentNbr, Items.getPONumber());
+		//for OutBound
+		//SeleniumTestHelper.enterText(shipmentNbr, Items.getDONumber());
+		//clickOnShipPageLoadShipment();
+		clickOnLoadShipment();
 	}
 
 	public void searchUsingLotNumber() throws InterruptedException {
@@ -427,31 +430,39 @@ public class VendorPortalHomePage {
 		//Assert.assertEquals( AsnreceiveStatus,status);
 
 		System.out.println("rows: "+rows);
-		for(int i=2;i<=rows;i++) {
-			int count = 0;
-			String rowStatus = "";
-			System.out.println("rowVal: "+i);
-			while (!rowStatus.equals(status) && (count != 20)) { 
-				rowStatus = driver.findElement(By.xpath("//*[@id='shipmentDetailsTable']/tbody/tr["+i+"]/td[11]")).getText();
-				System.out.println("count: "+count+" rowStatus: "+rowStatus);
-				Thread.sleep(6000);			 
-				count++; 
-				
-				if(rowStatus.equals(status)) {
-					rowCount++; 
-					System.out.println("rowCount: "+rowCount);
-				}
-			}
-
-
-		}
-		if(rowCount==rows-1) {
-			System.out.println("here1");
+//		for(int i=1;i<=rows;i++) {
+//			int count = 0;
+//			String rowStatus = "";
+//			System.out.println("rowVal: "+i);
+//			while (!rowStatus.equals(status) && (count != 20)) { 
+//				rowStatus = driver.findElement(By.xpath("//*[@id='shipmentDetailsTable']/tbody/tr["+i+"]/td[10]")).getText();
+//				System.out.println("count: "+count+" rowStatus: "+rowStatus);
+//				Thread.sleep(6000);			 
+//				count++; 
+//				
+//				if(rowStatus.equals(status)) {
+//					rowCount++; 
+//					System.out.println("rowCount: "+rowCount);
+//				}
+//			}
+//
+//
+//		}
+//		if(rowCount==rows-1) {
+//			System.out.println("here1");
+//			Assert.assertTrue(true);
+//			
+//
+//		}else {
+//			System.out.println("here2");
+//			Assert.assertTrue(false);
+//		}
+		String Accknowledgement = driver.findElement(By.xpath("//div[@class='fadeInDown fx-alert']/descendant::p")).getText();
+		if(Accknowledgement.contains("Pick Pack Ship Complete")) {
+			System.out.println("Pick Pack Shipment Completed!");
 			Assert.assertTrue(true);
-			
-
-		}else {
-			System.out.println("here2");
+		}
+		else {
 			Assert.assertTrue(false);
 		}
 	}

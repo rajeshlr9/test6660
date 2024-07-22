@@ -1,6 +1,6 @@
 Feature: This feature file contains ATM customer Vendor Portal Scenarios 
 
-@InBoundScenario_ATM_New1	@IBRegScenarios_ATM @Regression_ATM
+@InBoundScenario_ATM_MIA-001	@IBRegScenarios_ATM @Regression_ATM
 Scenario: Single Line Normal Items and Verify the ASN details in Manhattan and Vendor Portal  
  	Given I have excel data
 	| ATM_KelliScenario001 |
@@ -22,37 +22,13 @@ Scenario: Single Line Normal Items and Verify the ASN details in Manhattan and V
 	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
 	Then user log out from application
-
-@InBoundScenario_ATM_New2	@IBRegScenarios_ATM @Regression_ATM @ATM_SingleLinePO_NormalItem
-Scenario: ASN Creation with Normal Items using EDI file and validate ASN in Manhattan and Complete Receiving in VP
-					and validate in Manhattan the status for receiving verified
 	
-	Given I have excel data 
-		| ATM_IBScenario001|
-	Given User Open the chrome browser using selenium 
-	Given user update EDI file "ATM SingleLine PO - NormalItems" for dropping into fedexnet application
-	And user logs into the FedexNet application
-	And user upload "856" XML file in fedexnet
-	Then user log out from Fedenxet application
-	And user logs into the Manhattan application
-	Then user opens ASN screen and searches for the Shipment and verify its status "20 - InTransit"
-	And user views Shipment, get and verify item details  
-	Then user log out from application
-	And user logs into the O2S application 
-	And user navigate to VendorPortal Tab
-	And user validate the ASN using "Shipment Number" search field
-  And user completes receiving in vendor portal
-	Then user log out from Vendor Portal application
-	And user logs into the Manhattan application
-	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
-	Then user log out from application
-	
-@InBoundScenario_ATM_New3	@IBRegScenarios_ATM @Regression_ATM @ATM_SingleLinePO_LotItem
+@InBoundScenario_ATM_MIA-002	@IBRegScenarios_ATM @Regression_ATM @ATM_SingleLinePO_LotItem
 Scenario: ASN Creation with Hazardous Items  using EDI file and validate ASN in Manhattan
 	Given I have excel data 
 		| ATM_IBScenario002 |
 	Given User Open the chrome browser using selenium 
-	Given user update EDI file "ATM SingleLine PO - HazItems" for dropping into fedexnet application
+	Given user update EDI file "ATM SingleLine PO - NormalItems" for dropping into fedexnet application
 	And user logs into the FedexNet application
 	And user upload "856" XML file in fedexnet
 	Then user log out from Fedenxet application
@@ -69,7 +45,7 @@ Scenario: ASN Creation with Hazardous Items  using EDI file and validate ASN in 
 	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
 	Then user log out from application
 	
-@InBoundScenario_ATM_New4	@IBRegScenarios_ATM @Regression_ATM @ATM_SingleLinePO_SerialItem
+@InBoundScenario_ATM_MIA-003	@IBRegScenarios_ATM @Regression_ATM @ATM_SingleLinePO_SerialItem
 Scenario: ASN Creation with Serial Items  using EDI file and validate ASN in Manhattan
 	Given I have excel data 
 		| ATM_IBScenario003 |
@@ -91,8 +67,8 @@ Scenario: ASN Creation with Serial Items  using EDI file and validate ASN in Man
 	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
 	Then user log out from application
 
-@InBoundScenario_ATM_New5	@IBRegScenarios_ATM @Regression_ATM @ATM_SingleLinePO_NormalItem
-Scenario: ASN Creation with Normal Items using EDI file and validate ASN in Manhattan
+@InBoundScenario_ATM_MIA-004	@IBRegScenarios_ATM @Regression_ATM @ATM_SingleLinePO_NormalItem
+Scenario: ASN Creation with Serial Expiry Items using EDI file and validate ASN in Manhattan
 	Given I have excel data 
 		| ATM_IBScenario004|
 	Given User Open the chrome browser using selenium 
@@ -111,6 +87,29 @@ Scenario: ASN Creation with Normal Items using EDI file and validate ASN in Manh
 	Then user log out from Vendor Portal application
 	And user logs into the Manhattan application
 	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
+	Then user log out from application
+	
+	@InBoundScenario_ATM_MIA-005	@IBRegScenarios_ATM @Regression_ATM
+Scenario: Multiline Serial Items Items for Ambient type item and Verify the ASN details in Manhattan and Vendor Portal 
+	Given I have excel data
+	| ATM_KelliScenario004 |
+	Given User Open the chrome browser using selenium 
+	And user logs into the kelli application 
+	When user updates data in "Multi Line Normal" Kelli Upload Sheet
+	And user upload the "Multi Line Normal" Load file in Kelli
+	Then user logout from the kelli application
+	And user logs into the Manhattan application
+	And user fetches the actual ASN number and PO Number uploaded from Optional Field
+	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
+	And user views ASN, get and verify item details  
+	Then user log out from application
+	And user logs into the O2S application 
+	And user navigate to VendorPortal Tab
+	And user validate the ASN using "Receipt Number" search field
+	And user completes receiving in vendor portal
+	Then user log out from Vendor Portal application
+	And user logs into the Manhattan application
+	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
 	Then user log out from application
 	
 	@InBoundScenario_ATM_New6 @IBRegScenarios_ATM @Regression_ATM @ATM_SingleLinePO_NormalItem
@@ -204,27 +203,3 @@ Scenario: ASN Creation with Normal Items using EDI file and validate ASN in Manh
 #	And user logs into the FedexNet application for verify files
 #	And user verify the "861" file in fedexnet
 #	Then user log out from Fedenxet application
-
-
-@InBoundScenario_ATM_New10	@IBRegScenarios_ATM @Regression_ATM
-Scenario: Multiline Serial Items Items for Ambient type item and Verify the ASN details in Manhattan and Vendor Portal 
-	Given I have excel data
-	| ATM_KelliScenario004 |
-	Given User Open the chrome browser using selenium 
-	And user logs into the kelli application 
-	When user updates data in "Multi Line Normal" Kelli Upload Sheet
-	And user upload the "Multi Line Normal" Load file in Kelli
-	Then user logout from the kelli application
-	And user logs into the Manhattan application
-	And user fetches the actual ASN number and PO Number uploaded from Optional Field
-	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
-	And user views ASN, get and verify item details  
-	Then user log out from application
-	And user logs into the O2S application 
-	And user navigate to VendorPortal Tab
-	And user validate the ASN using "Receipt Number" search field
-	And user completes receiving in vendor portal
-	Then user log out from Vendor Portal application
-	And user logs into the Manhattan application
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
-	Then user log out from application

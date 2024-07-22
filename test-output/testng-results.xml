@@ -2,53 +2,39 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
     <line>
-      <![CDATA[Execution started for : Create an order using O2S application.]]>
+      <![CDATA[Execution started for : Multiline Serial Items Items for Ambient type item and Verify the ASN details in Manhattan and Vendor Portal]]>
     </line>
   </reporter-output>
-  <suite started-at="2024-07-11T17:52:51 UTC" name="Default suite" finished-at="2024-07-11T18:05:35 UTC" duration-ms="764049">
+  <suite started-at="2024-07-22T12:46:30 UTC" name="Default suite" finished-at="2024-07-22T12:54:07 UTC" duration-ms="456942">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@6200f9cb]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2024-07-11T17:52:51 UTC" name="Default test" finished-at="2024-07-11T18:05:35 UTC" duration-ms="764049">
+    <test started-at="2024-07-22T12:46:30 UTC" name="Default test" finished-at="2024-07-22T12:54:07 UTC" duration-ms="456942">
       <class name="TestRunner.Runner">
-        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-11T17:52:51 UTC" name="createExtentReport" finished-at="2024-07-11T17:52:51 UTC" duration-ms="55" status="PASS">
+        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-22T12:46:30 UTC" name="createExtentReport" finished-at="2024-07-22T12:46:30 UTC" duration-ms="50" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createExtentReport -->
-        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-11T17:52:51 UTC" name="setUpClass" finished-at="2024-07-11T17:52:51 UTC" duration-ms="227" status="PASS">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-22T12:46:30 UTC" name="setUpClass" finished-at="2024-07-22T12:46:30 UTC" duration-ms="226" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-11T17:52:51 UTC" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2024-07-11T18:05:34 UTC" duration-ms="763148" status="FAIL">
+        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-22T12:46:31 UTC" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2024-07-22T12:54:04 UTC" duration-ms="453584" status="FAIL">
           <params>
             <param index="0">
               <value>
-                <![CDATA[This feature file contains ATM customer Outbound Scenarios]]>
+                <![CDATA[This feature file contains ATM customer Vendor Portal Scenarios]]>
               </value>
             </param>
           </params>
           <exception class="cucumber.runtime.CucumberException">
             <message>
-              <![CDATA[java.lang.AssertionError: unexpected alert open: {Alert text : }
-  (Session info: chrome=126.0.6478.127): {Alert text : 
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'FFDWSYSTEAMT02', ip: '10.60.27.220', os.name: 'Windows Server 2019', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 126.0.6478.127, chrome: {chromedriverVersion: 126.0.6478.126 (d36ace6122e..., userDataDir: C:\Windows\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52153}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(manual, http=http://i..., setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: a3c68d792136c74d9918e84d57d5c91b
-*** Element info: {Using=xpath, value=//tr[@class='  x-grid-row']//td//div[@class='x-grid-row-checker']} expected [true] but found [false]]]>
+              <![CDATA[java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.xpath: //input[@name='identifier']' (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[cucumber.runtime.CucumberException: java.lang.AssertionError: unexpected alert open: {Alert text : }
-  (Session info: chrome=126.0.6478.127): {Alert text : 
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'FFDWSYSTEAMT02', ip: '10.60.27.220', os.name: 'Windows Server 2019', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 126.0.6478.127, chrome: {chromedriverVersion: 126.0.6478.126 (d36ace6122e..., userDataDir: C:\Windows\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52153}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(manual, http=http://i..., setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: a3c68d792136c74d9918e84d57d5c91b
-*** Element info: {Using=xpath, value=//tr[@class='  x-grid-row']//td//div[@class='x-grid-row-checker']} expected [true] but found [false]
+              <![CDATA[cucumber.runtime.CucumberException: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.xpath: //input[@name='identifier']' (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]
 at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
 at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -79,33 +65,26 @@ at org.testng.TestNG.run(TestNG.java:1079)
 at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-Caused by: java.lang.AssertionError: unexpected alert open: {Alert text : }
-  (Session info: chrome=126.0.6478.127): {Alert text : 
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'FFDWSYSTEAMT02', ip: '10.60.27.220', os.name: 'Windows Server 2019', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 126.0.6478.127, chrome: {chromedriverVersion: 126.0.6478.126 (d36ace6122e..., userDataDir: C:\Windows\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52153}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(manual, http=http://i..., setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: a3c68d792136c74d9918e84d57d5c91b
-*** Element info: {Using=xpath, value=//tr[@class='  x-grid-row']//td//div[@class='x-grid-row-checker']} expected [true] but found [false]
+Caused by: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.xpath: //input[@name='identifier']' (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]
 at org.testng.Assert.fail(Assert.java:111)
 at org.testng.Assert.failNotEquals(Assert.java:1578)
 at org.testng.Assert.assertTrue(Assert.java:57)
-at StepDefinition.StepDefOutBound.retrieve_splitted_oLPN_(StepDefOutBound.java:711)
-at ✽.And user opens the OLPN screen and retrieve the splitted oLPN(ATMOBScenarios.feature:90)
+at StepDefinition.StepDefInBound.user_logs_into_the_O2S_application(StepDefInBound.java:1582)
+at ✽.And user logs into the O2S application(ATMVendorPortalScenariosUpdated.feature:106)
 ]]>
             </full-stacktrace>
           </exception> <!-- cucumber.runtime.CucumberException -->
           <reporter-output>
             <line>
-              <![CDATA[Execution started for : Create an order using O2S application.]]>
+              <![CDATA[Execution started for : Multiline Serial Items Items for Ambient type item and Verify the ASN details in Manhattan and Vendor Portal]]>
             </line>
           </reporter-output>
         </test-method> <!-- feature -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-11T18:05:34 UTC" name="tearDownClass" finished-at="2024-07-11T18:05:35 UTC" duration-ms="277" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-22T12:54:04 UTC" name="tearDownClass" finished-at="2024-07-22T12:54:04 UTC" duration-ms="310" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-11T18:05:35 UTC" name="writeExtentReport" finished-at="2024-07-11T18:05:35 UTC" duration-ms="6" status="PASS">
+        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-22T12:54:04 UTC" name="writeExtentReport" finished-at="2024-07-22T12:54:07 UTC" duration-ms="2475" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- writeExtentReport -->

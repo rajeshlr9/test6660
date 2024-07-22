@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -84,7 +85,7 @@ public class O2SInventoryPage {
 		// SeleniumTestHelper.enterTextInTextBox(itemQty, "1");
 		Steps.logger.info("Enter item Qty");
 		//Thread.sleep(5000);
-		if(!(Steps.scenarioData.get("Account").equals("THH") || Steps.scenarioData.get("Account").equals("THM"))) {
+		if(!(Steps.scenarioData.get("Account").equals("THH") || Steps.scenarioData.get("Account").equals("THM") || Steps.scenarioData.get("Account").equals("ATM"))) {
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, UOM, 180);
 			SeleniumTestHelper.selectFromDropDown(UOM, Steps.ItemDataMap.get(i).get("UOM"), "value");
 		}
@@ -123,6 +124,24 @@ public class O2SInventoryPage {
 		SeleniumTestHelper.scrollToElement(driver, inventoryAvailable);
 		Steps.logger.info("Inventory available");
 		
+		driver.findElement(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr[1]/td[4]")).click();
+		System.out.println("Default warehouse unselected!");
+		int Rowcount = driver.findElements(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr")).size();  //2
+		for(int i=1;i<=Rowcount;i++) {
+			String warehouse = driver.findElement(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr["+i+"]/td[2]")).getText();
+			if(warehouse.contains("MEMPHIS")&& Steps.scenarioData.get("EDIFacility").equals("MEM1")) {
+				driver.findElement(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr["+i+"]/td[4]")).click();
+				System.out.println("Selected Warehouse: "+warehouse);
+			}
+			else if(warehouse.contains("AMIAM")&& Steps.scenarioData.get("EDIFacility").equals("AMIAM")){
+				driver.findElement(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr["+i+"]/td[4]")).click();
+				System.out.println("Selected Warehouse: "+warehouse);
+			}
+			else if(warehouse.contains("AALB3")&& Steps.scenarioData.get("EDIFacility").equals("AALB3")){
+				driver.findElement(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr["+i+"]/td[4]")).click();
+				System.out.println("Selected Warehouse: "+warehouse);
+			}
+		}
 		//Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, continueBtn, 180);
 		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(continueBtn));

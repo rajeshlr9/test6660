@@ -1821,7 +1821,7 @@ public class StepDefInBound {
 	}
 	
 	@Then("^user validate the DO search field$")
-	public void user_validate_the_DO_using_search_field(String searchField) {
+	public void user_validate_the_DO_using_search_field() {
 		try {
 			// o2sHomePage.navigateToWMSApp();
 			// vendorPortalHomePage.naviagateAndClickReceiveTab();
