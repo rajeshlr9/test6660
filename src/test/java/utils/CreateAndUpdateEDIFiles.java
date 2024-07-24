@@ -295,7 +295,7 @@ public class CreateAndUpdateEDIFiles {
 
 			} else if (Steps.scenarioData.get("Account").equals("APC")) {
 				path = APCEDIInboundFilePath;
-				PODONumber = "APOC000000" + randomNum + "-" + strDate11;
+				PODONumber = "APOC00" + randomNum + "-" + strDate11;
 
 			} else if(Steps.scenarioData.get("Account").equals("COM")) {
 				path = COMEDIInboundFilePath;
@@ -470,7 +470,7 @@ public class CreateAndUpdateEDIFiles {
 
 			} else if (Steps.scenarioData.get("Account").equals("APC")) {
 				path = APCEDIOutboundFilePath;
-				PODONumber = "APOC000000" + randomNum + "-" + strDate11;
+				PODONumber = "APOC00" + randomNum + "-" + strDate11;
 
 			} else if(Steps.scenarioData.get("Account").equals("COM")) {
 				path = COMEDIInboundFilePath;

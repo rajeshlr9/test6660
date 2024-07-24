@@ -1,5 +1,65 @@
 Feature: This feature file contains ATM customer Outbound Scenarios 
 
+@OutBoundScenario_ATM_MIA-001 @DailyRegression_ATM @OBRegScenarios_ATM
+	Scenario: Create an order using O2S application and do PPS in vendor portal for Normal item. 
+	
+	Given I have excel data 
+		| ATM_OBScenario004 |
+	Given User Open the chrome browser using selenium 
+	And user logs into the O2S application 
+	Then user create an order in O2S application for "singleLineItem"
+	Then user verify order created successfuly 
+	Then user search order and verify status is booked 
+	Then user log out from O2S application 
+	And user logs into the Manhattan application 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	#validate for dgstatus
+#	Then user verify the DGRequired Status as "YES"
+	Then user verifies the item details in Distribuion Order page 
+#	Then user verifies the shipVia populated in Distribuion Order page 
+	And user runs the "MIA - ATM WAVE TEMPLATE"
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	Then user log out from application
+	And user logs into the O2S application 
+	And user navigate to VendorPortal and click on Ship Tab
+	And user validate the DO search field
+	And user completes pps in vendor portal
+	Then user log out from Vendor Portal application
+	And user logs into the Manhattan application 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	Then user log out from application
+	
+	@OutBoundScenario_ATM_MIA-002 @DailyRegression_ATM @OBRegScenarios_ATM
+	Scenario: Create an order using O2S application and do PPS in vendor portal for FIFO item. 
+	
+	Given I have excel data 
+		| ATM_OBScenario005 |
+	Given User Open the chrome browser using selenium 
+	And user logs into the O2S application 
+	Then user create an order in O2S application for "singleLineItem"
+	Then user verify order created successfuly 
+	Then user search order and verify status is booked 
+	Then user log out from O2S application 
+	And user logs into the Manhattan application 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
+	#validate for dgstatus
+#	Then user verify the DGRequired Status as "YES"
+	Then user verifies the item details in Distribuion Order page 
+#	Then user verifies the shipVia populated in Distribuion Order page 
+	And user runs the "MIA - ATM WAVE TEMPLATE"
+	Then user views wave and verify the allocation of inventory 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	Then user log out from application
+	And user logs into the O2S application 
+	And user navigate to VendorPortal and click on Ship Tab
+	And user validate the DO search field
+	And user completes pps in vendor portal
+	Then user log out from Vendor Portal application
+	And user logs into the Manhattan application 
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	Then user log out from application
+
 @ATM_OBScenario001 @DailyRegression_ATM @OBRegScenarios_ATM 
 	Scenario: Create an order using FedexNet and PPS in Manhattan for SingleLine Normal Item in MEM1.
 	Given I have excel data
@@ -93,67 +153,6 @@ Feature: This feature file contains ATM customer Outbound Scenarios
 	#Then user search for DO and confirms it
 	#And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"  
 	Then user log out from application
-	
-	@ATM_OBScenario004 @DailyRegression_ATM @OBRegScenarios_ATM
-	Scenario: Create an order using O2S application and do PPS in vendor portal for Normal item. 
-	
-	Given I have excel data 
-		| ATM_OBScenario004 |
-	Given User Open the chrome browser using selenium 
-	And user logs into the O2S application 
-	Then user create an order in O2S application for "singleLineItem"
-	Then user verify order created successfuly 
-	Then user search order and verify status is booked 
-	Then user log out from O2S application 
-	And user logs into the Manhattan application 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
-	#validate for dgstatus
-#	Then user verify the DGRequired Status as "YES"
-	Then user verifies the item details in Distribuion Order page 
-#	Then user verifies the shipVia populated in Distribuion Order page 
-	And user runs the "MIA - ATM WAVE TEMPLATE"
-	Then user views wave and verify the allocation of inventory 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
-	Then user log out from application
-	And user logs into the O2S application 
-	And user navigate to VendorPortal and click on Ship Tab
-	And user validate the DO search field
-	And user completes pps in vendor portal
-	Then user log out from Vendor Portal application
-	And user logs into the Manhattan application 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
-	Then user log out from application
-	
-	@ATM_OBScenario005 @DailyRegression_ATM @OBRegScenarios_ATM
-	Scenario: Create an order using O2S application and do PPS in vendor portal for FIFO item. 
-	
-	Given I have excel data 
-		| ATM_OBScenario005 |
-	Given User Open the chrome browser using selenium 
-	And user logs into the O2S application 
-	Then user create an order in O2S application for "singleLineItem"
-	Then user verify order created successfuly 
-	Then user search order and verify status is booked 
-	Then user log out from O2S application 
-	And user logs into the Manhattan application 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
-	#validate for dgstatus
-#	Then user verify the DGRequired Status as "YES"
-	Then user verifies the item details in Distribuion Order page 
-#	Then user verifies the shipVia populated in Distribuion Order page 
-	And user runs the "MIA - ATM WAVE TEMPLATE"
-	Then user views wave and verify the allocation of inventory 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
-	Then user log out from application
-	And user logs into the O2S application 
-	And user navigate to VendorPortal and click on Ship Tab
-	And user validate the DO search field
-	And user completes pps in vendor portal
-	Then user log out from Vendor Portal application
-	And user logs into the Manhattan application 
-	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
-	Then user log out from application
-	
 	
 	@ATM_OBScenario006 @DailyRegression_ATM @OBRegScenarios_ATM 
 	Scenario: Create an order using FedexNet and PPS in Manhattan for SingleLine Serial Item in MEM1.

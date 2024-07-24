@@ -22,7 +22,7 @@ import utils.ExtentReportUpdate;
 @CucumberOptions(
 		strict = true,
 		dryRun = false,
-		tags={"@tag5"}, 
+		tags={"@OutBoundScenario_APC_1"}, 
 				
 		features = {"src\\test\\java\\featureFile"},
 		glue = {"StepDefinition"},

@@ -6957,9 +6957,9 @@ public class RFMenuPage {
 				SeleniumTestHelper.WaitForPageLoad();
 				SeleniumTestHelper.waitForElementToBeDisplayed(driver, inputASN, 30);
 				Screenshots.captureSnapshot(driver);
-				inputASN.sendKeys(Items.getAsnNumber());
+				inputASN.sendKeys(Items.getUpdatedAsnNumber());
 				Screenshots.captureSnapshot(driver);
-				Steps.logger.info("Enter ASN number: " + Items.getAsnNumber());
+				Steps.logger.info("Enter ASN number: " + Items.getUpdatedAsnNumber());
 				SeleniumTestHelper.assertTrue(inputASN.isDisplayed());
 				inputASN.sendKeys(Keys.ENTER);
 				Screenshots.captureSnapshot(driver);

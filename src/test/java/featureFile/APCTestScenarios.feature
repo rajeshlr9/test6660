@@ -10,10 +10,10 @@ Scenario: Receiving SingleLine Lot Items for Cooler type item.
 	And user upload "856" XML file in fedexnet
 	Then user log out from Fedenxet application
 	And user logs into the Manhattan application
-	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
-	And user views ASN, get and verify item details
+	Then user opens ASN screen and searches for the Shipment and verify its status "20 - InTransit"
+	And user views Shipment, get and verify item details
 	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
 	And user opens Items screen and find putaway type 
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
@@ -33,10 +33,10 @@ Scenario: Receiving SingleLine Normal Items for Ambient type item.
 	And user upload "856" XML file in fedexnet
 	Then user log out from Fedenxet application
 	And user logs into the Manhattan application
-	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
-	And user views ASN, get and verify item details  
+	Then user opens ASN screen and searches for the Shipment and verify its status "20 - InTransit"
+	And user views Shipment, get and verify item details
 	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
 	And user opens Items screen and find putaway type 
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
@@ -56,10 +56,10 @@ Scenario: Receiving for SingleLine Serial Items for Ambient type item.
 	And user upload "856" XML file in fedexnet
 	Then user log out from Fedenxet application
 	And user logs into the Manhattan application
-	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
-	And user views ASN, get and verify item details
+	Then user opens ASN screen and searches for the Shipment and verify its status "20 - InTransit"
+	And user views Shipment, get and verify item details
 	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
 	And user opens Items screen and find putaway type  
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
@@ -79,10 +79,10 @@ Scenario: Receiving and Putaway for SingleLine Normal Items for Hazmat type item
 	And user upload "856" XML file in fedexnet
 	Then user log out from Fedenxet application
 	And user logs into the Manhattan application
-	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
-	And user views ASN, get and verify item details  
+	Then user opens ASN screen and searches for the Shipment and verify its status "20 - InTransit"
+	And user views Shipment, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
 	And user opens Items screen and find putaway type  
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
@@ -102,11 +102,11 @@ Scenario:  Receiving and Putaway for SingleLine Lot Items for Freezer type item.
 	And user upload "856" XML file in fedexnet
 	Then user log out from Fedenxet application
 	And user logs into the Manhattan application
-	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
-	And user views ASN, get and verify item details
+	Then user opens ASN screen and searches for the Shipment and verify its status "20 - InTransit"
+	And user views Shipment, get and verify item details
 	And user opens Items screen and find putaway type
 	And user opens RF menu and completes Receiving using "MM1 Recv-Ptwy FRZ" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
+	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified" 
 	Then user search for the LPN in iLPN screen, and validate the lock code
 	And user open reserve locations and naviagtes to validate iLPN 
 	And user log out from application
@@ -124,10 +124,10 @@ Scenario: Receiving and Putaway for SingleLine Lot Items for Abaxis type item.
 	And user upload "856" XML file in fedexnet
 	Then user log out from Fedenxet application
 	And user logs into the Manhattan application
-	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
-	And user views ASN, get and verify item details  
+	Then user opens ASN screen and searches for the Shipment and verify its status "20 - InTransit"
+	And user views Shipment, get and verify item details  
 	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified" 
+	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified" 
 	And user opens Items screen and find putaway type
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
@@ -147,10 +147,10 @@ Scenario:  Receiving Multiline Lot Items of Cooler type having both items and qu
 	And user upload "856" XML file in fedexnet
 	Then user log out from Fedenxet application
 	And user logs into the Manhattan application
-	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
-	And user views ASN, get and verify item details  
+	Then user opens ASN screen and searches for the Shipment and verify its status "20 - InTransit"
+	And user views Shipment, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
 	And user opens Items screen and find putaway type 
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
@@ -170,10 +170,10 @@ Scenario:  Receiving Multiline Normal Items of Ambient type having both items an
 	And user upload "856" XML file in fedexnet
 	Then user log out from Fedenxet application
 	And user logs into the Manhattan application
-	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
-	And user views ASN, get and verify item details  
+	Then user opens ASN screen and searches for the Shipment and verify its status "20 - InTransit"
+	And user views Shipment, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
 	And user opens Items screen and find putaway type 
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
@@ -193,10 +193,10 @@ Scenario:  Receiving Multiline Serial Items of Ambient having both items differ 
 	And user upload "856" XML file in fedexnet
 	Then user log out from Fedenxet application
 	And user logs into the Manhattan application
-	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
-	And user views ASN, get and verify item details  
+	Then user opens ASN screen and searches for the Shipment and verify its status "20 - InTransit"
+	And user views Shipment, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
 	And user opens Items screen and find putaway type 
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
@@ -216,10 +216,10 @@ Scenario:  Receiving Multiline Lot Items with Same Items and Same Quantity for A
 	And user upload "856" XML file in fedexnet
 	Then user log out from Fedenxet application
 	And user logs into the Manhattan application
-	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
-	And user views ASN, get and verify item details  
+	Then user opens ASN screen and searches for the Shipment and verify its status "20 - InTransit"
+	And user views Shipment, get and verify item details  
 	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
 	And user opens Items screen and find putaway type  
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code
@@ -239,10 +239,10 @@ Scenario: Rceiving Multiline Normal Items with Same Item and Same Quantity for H
 	And user upload "856" XML file in fedexnet
 	Then user log out from Fedenxet application
 	And user logs into the Manhattan application
-	Then user opens ASN screen and searches for the ASN and verify its status "20 - InTransit"
-	And user views ASN, get and verify item details  
+	Then user opens ASN screen and searches for the Shipment and verify its status "20 - InTransit"
+	And user views Shipment, get and verify item details 
 	And user opens RF menu and completes Receiving using "MM1 Recv-iLPN" menu
-	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
+	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
 	And user opens Items screen and find putaway type  
 	And user opens RF menu and completes Putaway using "MM1 Ptwy iLPN" menu
 	Then user search for the LPN in iLPN screen, and validate the lock code

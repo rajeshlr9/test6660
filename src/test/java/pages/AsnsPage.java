@@ -525,6 +525,7 @@ public class AsnsPage {
 		ShipmentInput.click();
 		
 		ShipmentInput.sendKeys(PONum);
+		System.out.println(PONum);
 		//SeleniumTestHelper.waitForElementToBeDisplayed(driver, applyBtn, 50);
 		//Thread.sleep(1000);
 		SeleniumTestHelper.WaitForPageLoad();

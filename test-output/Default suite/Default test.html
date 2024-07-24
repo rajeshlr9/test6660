@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Mon Jul 22 12:46:30 UTC 2024</td>
+<td>Started on:</td><td>Wed Jul 24 11:12:44 UTC 2024</td>
 </tr>
-<tr><td>Total time:</td><td>456 seconds (456942 ms)</td>
+<tr><td>Total time:</td><td>348 seconds (348249 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,15 +76,15 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='TestRunner.Runner.feature()'><b>feature</b><br>Test class: TestRunner.Runner<br>Test method: Runs Cucumber Feature<br>Parameters: This feature file contains ATM customer Vendor Portal Scenarios<br/>
-<a href="#Output-95295146" onClick='toggleBox("Output-95295146", this, "Show output", "Hide output");'>Show output</a>
+<td title='TestRunner.Runner.feature()'><b>feature</b><br>Test class: TestRunner.Runner<br>Test method: Runs Cucumber Feature<br>Parameters: This feature file contains the APC Regression Scenarios.<br/>
+<a href="#Output-204543210" onClick='toggleBox("Output-204543210", this, "Show output", "Hide output");'>Show output</a>
 
-<a href="#Output-95295146" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-95295146">
-Execution started for : Multiline Serial Items Items for Ambient type item and Verify the ASN details in Manhattan and Vendor Portal<br/>
+<a href="#Output-204543210" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-204543210">
+Execution started for : Receiving SingleLine Lot Items for Cooler type item.<br/>
 </div>
 </td>
-<td><div><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //input[@name=&apos;identifier&apos;]&apos; (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]
+<td><div><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: expected [40 - Receiving Verified] but found [30 - Receiving Started] expected [true] but found [false]
 	at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
 	at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -115,14 +115,17 @@ Execution started for : Multiline Serial Items Items for Ambient type item and V
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-Caused by: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //input[@name=&apos;identifier&apos;]&apos; (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]
+Caused by: java.lang.AssertionError: expected [40 - Receiving Verified] but found [30 - Receiving Started] expected [true] but found [false]
 	at org.testng.Assert.fail(Assert.java:111)
 	at org.testng.Assert.failNotEquals(Assert.java:1578)
 	at org.testng.Assert.assertTrue(Assert.java:57)
-	at StepDefinition.StepDefInBound.user_logs_into_the_O2S_application(StepDefInBound.java:1582)
-	at ✽.And user logs into the O2S application(ATMVendorPortalScenariosUpdated.feature:106)
-</pre></div><a href='#' onClick='toggleBox("stack-trace95295146", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace95295146'><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //input[@name=&apos;identifier&apos;]&apos; (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]
+	at utils.SeleniumTestHelper.fail(SeleniumTestHelper.java:550)
+	at utils.SeleniumTestHelper.assertEquals(SeleniumTestHelper.java:524)
+	at pages.AsnsPage.verifyAsnsStatusUsingShipment(AsnsPage.java:419)
+	at StepDefinition.StepDefInBound.user_opens_ASN_screen_and_searches_for_the_Shipment_and_verify_its_status(StepDefInBound.java:588)
+	at ✽.Then user opens ASN screen and searches for the Shipment and verify its status &quot;40 - Receiving Verified&quot;(APCTestScenarios.feature:16)
+</pre></div><a href='#' onClick='toggleBox("stack-trace204543210", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace204543210'><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: expected [40 - Receiving Verified] but found [30 - Receiving Started] expected [true] but found [false]
 	at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
 	at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -153,14 +156,17 @@ Caused by: java.lang.AssertionError: Expected condition failed: waiting for visi
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-Caused by: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //input[@name=&apos;identifier&apos;]&apos; (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]
+Caused by: java.lang.AssertionError: expected [40 - Receiving Verified] but found [30 - Receiving Started] expected [true] but found [false]
 	at org.testng.Assert.fail(Assert.java:111)
 	at org.testng.Assert.failNotEquals(Assert.java:1578)
 	at org.testng.Assert.assertTrue(Assert.java:57)
-	at StepDefinition.StepDefInBound.user_logs_into_the_O2S_application(StepDefInBound.java:1582)
-	at ✽.And user logs into the O2S application(ATMVendorPortalScenariosUpdated.feature:106)
+	at utils.SeleniumTestHelper.fail(SeleniumTestHelper.java:550)
+	at utils.SeleniumTestHelper.assertEquals(SeleniumTestHelper.java:524)
+	at pages.AsnsPage.verifyAsnsStatusUsingShipment(AsnsPage.java:419)
+	at StepDefinition.StepDefInBound.user_opens_ASN_screen_and_searches_for_the_Shipment_and_verify_its_status(StepDefInBound.java:588)
+	at ✽.Then user opens ASN screen and searches for the Shipment and verify its status &quot;40 - Receiving Verified&quot;(APCTestScenarios.feature:16)
 </pre></div></td>
-<td>453</td>
+<td>345</td>
 <td>TestRunner.Runner@6200f9cb</td></tr>
 </table><p>
 </body>

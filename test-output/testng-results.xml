@@ -2,39 +2,39 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
     <line>
-      <![CDATA[Execution started for : Multiline Serial Items Items for Ambient type item and Verify the ASN details in Manhattan and Vendor Portal]]>
+      <![CDATA[Execution started for : Receiving SingleLine Lot Items for Cooler type item.]]>
     </line>
   </reporter-output>
-  <suite started-at="2024-07-22T12:46:30 UTC" name="Default suite" finished-at="2024-07-22T12:54:07 UTC" duration-ms="456942">
+  <suite started-at="2024-07-24T11:12:44 UTC" name="Default suite" finished-at="2024-07-24T11:18:32 UTC" duration-ms="348249">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@6200f9cb]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2024-07-22T12:46:30 UTC" name="Default test" finished-at="2024-07-22T12:54:07 UTC" duration-ms="456942">
+    <test started-at="2024-07-24T11:12:44 UTC" name="Default test" finished-at="2024-07-24T11:18:32 UTC" duration-ms="348249">
       <class name="TestRunner.Runner">
-        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-22T12:46:30 UTC" name="createExtentReport" finished-at="2024-07-22T12:46:30 UTC" duration-ms="50" status="PASS">
+        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-24T11:12:44 UTC" name="createExtentReport" finished-at="2024-07-24T11:12:44 UTC" duration-ms="77" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createExtentReport -->
-        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-22T12:46:30 UTC" name="setUpClass" finished-at="2024-07-22T12:46:30 UTC" duration-ms="226" status="PASS">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-24T11:12:44 UTC" name="setUpClass" finished-at="2024-07-24T11:12:45 UTC" duration-ms="952" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-22T12:46:31 UTC" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2024-07-22T12:54:04 UTC" duration-ms="453584" status="FAIL">
+        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-24T11:12:46 UTC" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2024-07-24T11:18:32 UTC" duration-ms="345801" status="FAIL">
           <params>
             <param index="0">
               <value>
-                <![CDATA[This feature file contains ATM customer Vendor Portal Scenarios]]>
+                <![CDATA[This feature file contains the APC Regression Scenarios.]]>
               </value>
             </param>
           </params>
           <exception class="cucumber.runtime.CucumberException">
             <message>
-              <![CDATA[java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.xpath: //input[@name='identifier']' (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]]]>
+              <![CDATA[java.lang.AssertionError: expected [40 - Receiving Verified] but found [30 - Receiving Started] expected [true] but found [false]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[cucumber.runtime.CucumberException: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.xpath: //input[@name='identifier']' (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]
+              <![CDATA[cucumber.runtime.CucumberException: java.lang.AssertionError: expected [40 - Receiving Verified] but found [30 - Receiving Started] expected [true] but found [false]
 at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
 at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -65,26 +65,29 @@ at org.testng.TestNG.run(TestNG.java:1079)
 at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-Caused by: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.xpath: //input[@name='identifier']' (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]
+Caused by: java.lang.AssertionError: expected [40 - Receiving Verified] but found [30 - Receiving Started] expected [true] but found [false]
 at org.testng.Assert.fail(Assert.java:111)
 at org.testng.Assert.failNotEquals(Assert.java:1578)
 at org.testng.Assert.assertTrue(Assert.java:57)
-at StepDefinition.StepDefInBound.user_logs_into_the_O2S_application(StepDefInBound.java:1582)
-at ✽.And user logs into the O2S application(ATMVendorPortalScenariosUpdated.feature:106)
+at utils.SeleniumTestHelper.fail(SeleniumTestHelper.java:550)
+at utils.SeleniumTestHelper.assertEquals(SeleniumTestHelper.java:524)
+at pages.AsnsPage.verifyAsnsStatusUsingShipment(AsnsPage.java:419)
+at StepDefinition.StepDefInBound.user_opens_ASN_screen_and_searches_for_the_Shipment_and_verify_its_status(StepDefInBound.java:588)
+at ✽.Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"(APCTestScenarios.feature:16)
 ]]>
             </full-stacktrace>
           </exception> <!-- cucumber.runtime.CucumberException -->
           <reporter-output>
             <line>
-              <![CDATA[Execution started for : Multiline Serial Items Items for Ambient type item and Verify the ASN details in Manhattan and Vendor Portal]]>
+              <![CDATA[Execution started for : Receiving SingleLine Lot Items for Cooler type item.]]>
             </line>
           </reporter-output>
         </test-method> <!-- feature -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-22T12:54:04 UTC" name="tearDownClass" finished-at="2024-07-22T12:54:04 UTC" duration-ms="310" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-24T11:18:32 UTC" name="tearDownClass" finished-at="2024-07-24T11:18:32 UTC" duration-ms="586" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-22T12:54:04 UTC" name="writeExtentReport" finished-at="2024-07-22T12:54:07 UTC" duration-ms="2475" status="PASS">
+        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-07-24T11:18:32 UTC" name="writeExtentReport" finished-at="2024-07-24T11:18:32 UTC" duration-ms="6" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- writeExtentReport -->

@@ -121,7 +121,7 @@ public class VendorPortalHomePage {
 	@FindBy(xpath = "//input[@name='shipmentNbr']")
 	public WebElement shipmentNbr;
 
-	@FindBy(xpath = "//input[@id='SHIPBYDATE_0_1']")
+	@FindBy(xpath = "//input[@id='SHIPBYDATE_0_0']")
 	public WebElement shipmentByDt;
 
 
@@ -243,6 +243,15 @@ public class VendorPortalHomePage {
 		//SeleniumTestHelper.enterText(shipmentNbr, Items.getDONumber());
 		//clickOnShipPageLoadShipment();
 		clickOnLoadShipment();
+	}
+	
+	public void searchUsingShipmentNumberOB() throws InterruptedException {
+		Thread.sleep(2000);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipmentNbr, 180);
+		SeleniumTestHelper.scrollToElement(driver, shipmentNbr);
+		//for OutBound
+		SeleniumTestHelper.enterText(shipmentNbr, Items.getDONumber());
+		clickOnShipPageLoadShipment();
 	}
 
 	public void searchUsingLotNumber() throws InterruptedException {

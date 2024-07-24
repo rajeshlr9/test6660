@@ -1827,7 +1827,7 @@ public class StepDefInBound {
 			// vendorPortalHomePage.naviagateAndClickReceiveTab();
 			System.out.println("Trying to validate DO and other details using Search option");
 			vendorPortalHomePage.enterShipMandatoryDetails();
-			vendorPortalHomePage.searchUsingShipmentNumber();
+			vendorPortalHomePage.searchUsingShipmentNumberOB();
 			//ValidateDataInShipTable
 			
 

@@ -60,10 +60,10 @@ public class KelliPages {
 	public String KelliMultiLineASNfilePathForTRN = dir + "\\TestData\\Kelli\\TRN ASNLoad Multiline.xls";
 	public String KelliASNfilePathForTRN = dir + "\\TestData\\Kelli\\TRN ASNLoad.xls";
 	public String KelliASNfilePathForILW = dir + "\\TestData\\Kelli\\ILW ASNLoad.xls";
-	public String KelliSingleLineNormalForATM = dir + "\\TestData\\Kelli\\ATM ASN Load Single Line.xls";
+	public String KelliSingleLineNormalForATM = dir + "\\TestData\\Kelli\\S1-ATM-SL.xls";
 	public String KelliSingleLineLotForATM = dir + "\\TestData\\Kelli\\ATM ASN Load Single Line Lot.xls";
 	public String KelliSingleLineSerialForATM = dir + "\\TestData\\Kelli\\ATMASNLoadSingleLineSerial.xls";
-	public String KelliMultiLineNormalForATM = dir + "\\TestData\\Kelli\\ATMASNLoadMultiLineNormal.xls";
+	public String KelliMultiLineNormalForATM = dir + "\\TestData\\Kelli\\S5-ATM-ML.xls";
 	public String KelliSingleLineNormalForCOM = dir + "\\TestData\\Kelli\\COM ASN Load Single Line.xls";
 	public String KelliSingleLineLotForCOM = dir + "\\TestData\\Kelli\\COM ASN Load Single Line Lot.xls";
 	public String KelliSingleLineSerialForCOM = dir + "\\TestData\\Kelli\\COMASNLoadSingleLineSerial.xls";
