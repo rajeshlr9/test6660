@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\pam_npcilmanwmsadm10\AppData\Local\Temp\9\testng-eclipse-1324353928\testng-customsuite.xml</span>
+                    <span>C:\Users\pam_npcilmanwmsadm10\AppData\Local\Temp\16\testng-eclipse--664628796\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -130,7 +130,12 @@
                   </a> <!-- feature(This feature file contains the APC Regression Scenarios.) -->
                   <span class="method-name">feature</span>
                   <span class="parameters">(This feature file contains the APC Regression Scenarios.)</span>
-                  <div class="stack-trace">cucumber.runtime.CucumberException: java.lang.AssertionError: expected [40 - Receiving Verified] but found [30 - Receiving Started] expected [true] but found [false]
+                  <div class="stack-trace">cucumber.runtime.CucumberException: java.lang.AssertionError: Expected condition failed: waiting for element to be clickable: [[ChromeDriver: chrome on WINDOWS (4e5271d96a356c9be90df56136b374f9)] -&gt; xpath: //input[@id=&apos;rmButton_1SubmitWave1_100215000&apos;]] (tried for 100 second(s) with 500 milliseconds interval)
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;FFDWSYSTEAMT01&apos;, ip: &apos;10.60.27.141&apos;, os.name: &apos;Windows Server 2019&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.11&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 126.0.6478.183, chrome: {chromedriverVersion: 126.0.6478.182 (5b5d8292ddf..., userDataDir: C:\Windows\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64526}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 4e5271d96a356c9be90df56136b374f9 expected [true] but found [false]
 	at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
 	at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -161,15 +166,18 @@
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-Caused by: java.lang.AssertionError: expected [40 - Receiving Verified] but found [30 - Receiving Started] expected [true] but found [false]
+Caused by: java.lang.AssertionError: Expected condition failed: waiting for element to be clickable: [[ChromeDriver: chrome on WINDOWS (4e5271d96a356c9be90df56136b374f9)] -&gt; xpath: //input[@id=&apos;rmButton_1SubmitWave1_100215000&apos;]] (tried for 100 second(s) with 500 milliseconds interval)
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;FFDWSYSTEAMT01&apos;, ip: &apos;10.60.27.141&apos;, os.name: &apos;Windows Server 2019&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.11&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 126.0.6478.183, chrome: {chromedriverVersion: 126.0.6478.182 (5b5d8292ddf..., userDataDir: C:\Windows\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64526}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 4e5271d96a356c9be90df56136b374f9 expected [true] but found [false]
 	at org.testng.Assert.fail(Assert.java:111)
 	at org.testng.Assert.failNotEquals(Assert.java:1578)
 	at org.testng.Assert.assertTrue(Assert.java:57)
-	at utils.SeleniumTestHelper.fail(SeleniumTestHelper.java:550)
-	at utils.SeleniumTestHelper.assertEquals(SeleniumTestHelper.java:524)
-	at pages.AsnsPage.verifyAsnsStatusUsingShipment(AsnsPage.java:419)
-	at StepDefinition.StepDefInBound.user_opens_ASN_screen_and_searches_for_the_Shipment_and_verify_its_status(StepDefInBound.java:588)
-	at ✽.Then user opens ASN screen and searches for the Shipment and verify its status &quot;40 - Receiving Verified&quot;(APCTestScenarios.feature:16)
+	at pages.DistributionOrdersPage.runWaveTemplate(DistributionOrdersPage.java:1050)
+	at StepDefinition.StepDefOutBound.user_run_the_shipwave_template(StepDefOutBound.java:289)
+	at ✽.And user runs the &quot;APC PCL Pick Wave&quot;(APCTestScenarios.feature:283)
 
 </div> <!-- stack-trace -->
                   <em>
@@ -181,7 +189,7 @@ Caused by: java.lang.AssertionError: expected [40 - Receiving Verified] but foun
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\pam_npcilmanwmsadm10\AppData\Local\Temp\9\testng-eclipse-1324353928\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\pam_npcilmanwmsadm10\AppData\Local\Temp\16\testng-eclipse--664628796\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -242,12 +250,12 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'feature')
 data.setCell(0, 2, 'TestRunner.Runner')
-data.setCell(0, 3, 345801);
+data.setCell(0, 3, 382325);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 5 minutes</span>
+              <span class="suite-total-time">Total running time: 6 minutes</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -261,7 +269,7 @@ return data;
             <div class="reporter-method-div">
               <span class="reporter-method-name">feature(This feature file contains the APC Regression Scenarios.)</span>
               <div class="reporter-method-output-div">
-                <span class="reporter-method-output">Execution started for : Receiving SingleLine Lot Items for Cooler type item.</span>
+                <span class="reporter-method-output">Execution started for : SingleLine Parcel DO Order for Normal Item</span>
               </div> <!-- reporter-method-output-div -->
             </div> <!-- reporter-method-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -286,21 +294,21 @@ return data;
               </div> <!-- configuration-test before -->
               <div class="configuration-class before">
                 <span class="method-name">setUpClass</span>
-                <span class="method-start">180 ms</span>
+                <span class="method-start">135 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
                 <span class="method-name">feature(This feature file contains the APC Regression Scenarios.)</span>
-                <span class="method-start">1800 ms</span>
+                <span class="method-start">1356 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">tearDownClass</span>
-                <span class="method-start">347607 ms</span>
+                <span class="method-start">383697 ms</span>
               </div> <!-- configuration-class after -->
               <div class="configuration-test after">
                 <span class="method-name">writeExtentReport</span>
-                <span class="method-start">348195 ms</span>
+                <span class="method-start">384164 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
