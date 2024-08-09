@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Wed Jul 24 11:54:52 UTC 2024</td>
+<td>Started on:</td><td>Fri Aug 09 13:09:17 UTC 2024</td>
 </tr>
-<tr><td>Total time:</td><td>384 seconds (384187 ms)</td>
+<tr><td>Total time:</td><td>827 seconds (827271 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,20 +76,23 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='TestRunner.Runner.feature()'><b>feature</b><br>Test class: TestRunner.Runner<br>Test method: Runs Cucumber Feature<br>Parameters: This feature file contains the APC Regression Scenarios.<br/>
-<a href="#Output-814945818" onClick='toggleBox("Output-814945818", this, "Show output", "Hide output");'>Show output</a>
+<td title='TestRunner.Runner.feature()'><b>feature</b><br>Test class: TestRunner.Runner<br>Test method: Runs Cucumber Feature<br>Parameters: This feature file contains ATM customer Outbound Scenarios<br/>
+<a href="#Output-584782582" onClick='toggleBox("Output-584782582", this, "Show output", "Hide output");'>Show output</a>
 
-<a href="#Output-814945818" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-814945818">
-Execution started for : SingleLine Parcel DO Order for Normal Item<br/>
+<a href="#Output-584782582" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-584782582">
+Execution started for : Create an order using O2S application and do PPS in vendor portal for serial item.<br/>
 </div>
 </td>
-<td><div><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: Expected condition failed: waiting for element to be clickable: [[ChromeDriver: chrome on WINDOWS (4e5271d96a356c9be90df56136b374f9)] -&gt; xpath: //input[@id=&apos;rmButton_1SubmitWave1_100215000&apos;]] (tried for 100 second(s) with 500 milliseconds interval)
+<td><div><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//div[@class=&apos;fadeInDown fx-alert&apos;]/descendant::p&quot;}
+  (Session info: chrome=127.0.6533.100)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
 Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
 System info: host: &apos;FFDWSYSTEAMT01&apos;, ip: &apos;10.60.27.141&apos;, os.name: &apos;Windows Server 2019&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.11&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 126.0.6478.183, chrome: {chromedriverVersion: 126.0.6478.182 (5b5d8292ddf..., userDataDir: C:\Windows\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64526}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 4e5271d96a356c9be90df56136b374f9 expected [true] but found [false]
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 127.0.6533.100, chrome: {chromedriverVersion: 127.0.6533.99 (f31af5097d90..., userDataDir: C:\Windows\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64330}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(manual, http=http://i..., setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: dd9fd088ef1d9f75cb4e227a59833e7d
+*** Element info: {Using=xpath, value=//div[@class=&apos;fadeInDown fx-alert&apos;]/descendant::p} expected [true] but found [false]
 	at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
 	at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -120,25 +123,30 @@ Session ID: 4e5271d96a356c9be90df56136b374f9 expected [true] but found [false]
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-Caused by: java.lang.AssertionError: Expected condition failed: waiting for element to be clickable: [[ChromeDriver: chrome on WINDOWS (4e5271d96a356c9be90df56136b374f9)] -&gt; xpath: //input[@id=&apos;rmButton_1SubmitWave1_100215000&apos;]] (tried for 100 second(s) with 500 milliseconds interval)
+Caused by: java.lang.AssertionError: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//div[@class=&apos;fadeInDown fx-alert&apos;]/descendant::p&quot;}
+  (Session info: chrome=127.0.6533.100)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
 Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
 System info: host: &apos;FFDWSYSTEAMT01&apos;, ip: &apos;10.60.27.141&apos;, os.name: &apos;Windows Server 2019&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.11&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 126.0.6478.183, chrome: {chromedriverVersion: 126.0.6478.182 (5b5d8292ddf..., userDataDir: C:\Windows\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64526}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 4e5271d96a356c9be90df56136b374f9 expected [true] but found [false]
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 127.0.6533.100, chrome: {chromedriverVersion: 127.0.6533.99 (f31af5097d90..., userDataDir: C:\Windows\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64330}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(manual, http=http://i..., setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: dd9fd088ef1d9f75cb4e227a59833e7d
+*** Element info: {Using=xpath, value=//div[@class=&apos;fadeInDown fx-alert&apos;]/descendant::p} expected [true] but found [false]
 	at org.testng.Assert.fail(Assert.java:111)
 	at org.testng.Assert.failNotEquals(Assert.java:1578)
 	at org.testng.Assert.assertTrue(Assert.java:57)
-	at pages.DistributionOrdersPage.runWaveTemplate(DistributionOrdersPage.java:1050)
-	at StepDefinition.StepDefOutBound.user_run_the_shipwave_template(StepDefOutBound.java:289)
-	at ✽.And user runs the &quot;APC PCL Pick Wave&quot;(APCTestScenarios.feature:283)
-</pre></div><a href='#' onClick='toggleBox("stack-trace814945818", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace814945818'><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: Expected condition failed: waiting for element to be clickable: [[ChromeDriver: chrome on WINDOWS (4e5271d96a356c9be90df56136b374f9)] -&gt; xpath: //input[@id=&apos;rmButton_1SubmitWave1_100215000&apos;]] (tried for 100 second(s) with 500 milliseconds interval)
+	at StepDefinition.StepDefInBound.user_completes_pps_in_vendor_portal(StepDefInBound.java:1865)
+	at ✽.And user completes pps in vendor portal(ATMOBScenarios.feature:213)
+</pre></div><a href='#' onClick='toggleBox("stack-trace584782582", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace584782582'><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//div[@class=&apos;fadeInDown fx-alert&apos;]/descendant::p&quot;}
+  (Session info: chrome=127.0.6533.100)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
 Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
 System info: host: &apos;FFDWSYSTEAMT01&apos;, ip: &apos;10.60.27.141&apos;, os.name: &apos;Windows Server 2019&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.11&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 126.0.6478.183, chrome: {chromedriverVersion: 126.0.6478.182 (5b5d8292ddf..., userDataDir: C:\Windows\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64526}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 4e5271d96a356c9be90df56136b374f9 expected [true] but found [false]
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 127.0.6533.100, chrome: {chromedriverVersion: 127.0.6533.99 (f31af5097d90..., userDataDir: C:\Windows\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64330}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(manual, http=http://i..., setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: dd9fd088ef1d9f75cb4e227a59833e7d
+*** Element info: {Using=xpath, value=//div[@class=&apos;fadeInDown fx-alert&apos;]/descendant::p} expected [true] but found [false]
 	at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
 	at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -169,20 +177,22 @@ Session ID: 4e5271d96a356c9be90df56136b374f9 expected [true] but found [false]
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-Caused by: java.lang.AssertionError: Expected condition failed: waiting for element to be clickable: [[ChromeDriver: chrome on WINDOWS (4e5271d96a356c9be90df56136b374f9)] -&gt; xpath: //input[@id=&apos;rmButton_1SubmitWave1_100215000&apos;]] (tried for 100 second(s) with 500 milliseconds interval)
+Caused by: java.lang.AssertionError: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//div[@class=&apos;fadeInDown fx-alert&apos;]/descendant::p&quot;}
+  (Session info: chrome=127.0.6533.100)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
 Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
 System info: host: &apos;FFDWSYSTEAMT01&apos;, ip: &apos;10.60.27.141&apos;, os.name: &apos;Windows Server 2019&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.11&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 126.0.6478.183, chrome: {chromedriverVersion: 126.0.6478.182 (5b5d8292ddf..., userDataDir: C:\Windows\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64526}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 4e5271d96a356c9be90df56136b374f9 expected [true] but found [false]
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 127.0.6533.100, chrome: {chromedriverVersion: 127.0.6533.99 (f31af5097d90..., userDataDir: C:\Windows\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64330}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(manual, http=http://i..., setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: dd9fd088ef1d9f75cb4e227a59833e7d
+*** Element info: {Using=xpath, value=//div[@class=&apos;fadeInDown fx-alert&apos;]/descendant::p} expected [true] but found [false]
 	at org.testng.Assert.fail(Assert.java:111)
 	at org.testng.Assert.failNotEquals(Assert.java:1578)
 	at org.testng.Assert.assertTrue(Assert.java:57)
-	at pages.DistributionOrdersPage.runWaveTemplate(DistributionOrdersPage.java:1050)
-	at StepDefinition.StepDefOutBound.user_run_the_shipwave_template(StepDefOutBound.java:289)
-	at ✽.And user runs the &quot;APC PCL Pick Wave&quot;(APCTestScenarios.feature:283)
+	at StepDefinition.StepDefInBound.user_completes_pps_in_vendor_portal(StepDefInBound.java:1865)
+	at ✽.And user completes pps in vendor portal(ATMOBScenarios.feature:213)
 </pre></div></td>
-<td>382</td>
+<td>826</td>
 <td>TestRunner.Runner@6200f9cb</td></tr>
 </table><p>
 </body>

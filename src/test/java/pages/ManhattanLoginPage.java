@@ -42,7 +42,7 @@ public class ManhattanLoginPage extends Steps {
 
 	@FindBy(id = "loginButton")
 	public WebElement signInBtn;
-
+	
 	@FindBy(xpath = "//a[@data-qtip='Workspaces']/following-sibling::a[1]")
 	public WebElement userLoggedin;
 
@@ -115,7 +115,7 @@ public class ManhattanLoginPage extends Steps {
 					Steps.logger.info("L1UserName: " + Config.getProperty("DEVUsername_Admin"));
 					password.sendKeys(Config.getProperty("DEVPassword_Admin"));
 					Steps.logger.info("L1Password: " + Config.getProperty("DEVPassword_Admin"));
-
+					
 				} else if (env.equalsIgnoreCase("L2"))  {
 					username.sendKeys(Config.getProperty("TESTUsername_Admin"));
 					Steps.logger.info("TESTUserName: " + Config.getProperty("TESTUsername_Admin"));

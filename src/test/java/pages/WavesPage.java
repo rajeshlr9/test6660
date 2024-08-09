@@ -119,13 +119,16 @@ public class WavesPage {
 				driver.findElement(By.xpath("//span[text()='" + Items.getWaveNumber() + "']")), 50);
 		SeleniumTestHelper.assertTrue(true, "Wave number : " + Items.getWaveNumber() + " displayed");
 		Reporter.addStepLog("Wave number : " + Items.getWaveNumber() + " displayed");
-
+		Thread.sleep(5000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWavechkbox, 50);
 		shipWavechkbox.click();
+		System.out.println("ShipWave checkbox clicked");
 		Screenshots.captureSnapshot(driver);
+		Thread.sleep(5000);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, shipWaveviewBtn, 50);
 		shipWaveviewBtn.click();
-
+		System.out.println("ShipWave View Button clicked");
+		Thread.sleep(5000);
 		//Thread.sleep(2000);
 		SeleniumTestHelper.WaitForPageLoad();
 		Screenshots.captureSnapshot(driver);

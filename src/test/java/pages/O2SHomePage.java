@@ -13,7 +13,6 @@ import com.cucumber.listener.Reporter;
 
 import StepDefinition.Steps;
 import globalFunc.Screenshots;
-import junit.framework.Assert;
 import utils.Config;
 import utils.SeleniumTestHelper;
 
@@ -74,6 +73,12 @@ public class O2SHomePage {
 	
 	@FindBy(xpath = "//*[@id='identifyCustomerForm:phone1']")
 	public WebElement custPhoneNum;
+	
+	@FindBy(xpath="//*[@id='identifyCustomerForm:address1']")
+	public WebElement custAddress;
+	
+	@FindBy(xpath = "//input[@name='identifyCustomerForm:postalCd']")
+	public WebElement postalCode;
 	
 	@FindBy(xpath = "//a[@title='OMS']")
 	public WebElement omsLink;
@@ -229,6 +234,28 @@ public class O2SHomePage {
 			SeleniumTestHelper.WaitForPageLoad(3000);
 		}
 		//Thread.sleep(5000);
+		else if(Steps.scenarioData.get("O2S Loc ID").equals("")) {
+			SeleniumTestHelper.enterTextInTextBox(locationCode, "");
+			SeleniumTestHelper.WaitForPageLoad(3000);
+			locationCode.sendKeys(Keys.ENTER);
+			SeleniumTestHelper.WaitForPageLoad(3000);
+			System.out.println("Entered Location code");
+			
+			SeleniumTestHelper.enterTextInTextBox(custFirstName, String.valueOf(Steps.scenarioData.get("O2S F Name")));
+			SeleniumTestHelper.WaitForPageLoad(3000);
+		//	custFirstName.sendKeys(Keys.ENTER);
+		//	SeleniumTestHelper.WaitForPageLoad(3000);
+			SeleniumTestHelper.enterTextInTextBox(custPhoneNum, String.valueOf(Steps.scenarioData.get("O2S Contact")));
+			SeleniumTestHelper.WaitForPageLoad(3000);
+			
+			SeleniumTestHelper.enterTextInTextBox(custAddress, String.valueOf(Steps.scenarioData.get("O2S Address")));
+			SeleniumTestHelper.WaitForPageLoad(3000);
+			
+			SeleniumTestHelper.enterTextInTextBox(postalCode, String.valueOf(Steps.scenarioData.get("O2S Postal Code")));
+			SeleniumTestHelper.WaitForPageLoad(3000);
+			postalCode.sendKeys(Keys.ENTER);
+			SeleniumTestHelper.WaitForPageLoad(3000);
+		}
 		
 		Steps.logger.info("Enter Location Code");
 		//Thread.sleep(5000);

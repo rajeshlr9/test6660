@@ -1,7 +1,9 @@
 package pages;
 
 import java.awt.AWTException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.OptionalInt;
 
@@ -28,6 +30,7 @@ public class DistributionOrdersPage {
 	WebDriver driver;
 	String oLPN;
 	String pulllocationvalue;
+	public static String strDate70;
 	WavesPage wavespage = new WavesPage();
 	HomePage homepage = new HomePage();
 	//raks 100424
@@ -420,7 +423,9 @@ public class DistributionOrdersPage {
 		//
 		//Items.setDONumber("QSC202112011519");
 		System.out.println(Items.getDONumber());
+//		System.out.println(Items.getDONumber()+" is null");
 		distributionOrderID.sendKeys(Items.getDONumber());
+		//distributionOrderID.sendKeys("AT1978211902-1");
 		Screenshots.captureSnapshot(driver);
 		apply_Btn.click();
 		//raks 100424
@@ -429,10 +434,13 @@ public class DistributionOrdersPage {
 		Screenshots.captureSnapshot(driver);
 		//Thread.sleep(3000);
 		SeleniumTestHelper.WaitForPageLoad();
+		
 		String actualDOstatus = driver.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[text()='"
 				+ Items.getDONumber() + "']//following::td[1]")).getText();
+		//String actualDOstatus = driver.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[text()='AT1978211902-1']//following::td[1]")).getText();
+		//String actualDOstatus = driver.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[text()='AT1978210695-1']//following::td[1]")).getText();
 		//Thread.sleep(3000);
-		SeleniumTestHelper.WaitForPageLoad();
+		SeleniumTestHelper.WaitForPageLoad(15000);
 		if(actualDOstatus.contains("Manifested")) {
 		SeleniumTestHelper.assertEquals(actualDOstatus, expectedDOstatus);
 		}else if(actualDOstatus.contains("Shipped")){
@@ -442,12 +450,97 @@ public class DistributionOrdersPage {
 		}
 		Reporter.addStepLog("DO Order status:" + actualDOstatus);
 		Steps.logger.info("DO Order status:" + actualDOstatus);
-		//Thread.sleep(2000);
-		SeleniumTestHelper.WaitForPageLoad();
-		homepage.user_closes_openedwindow("Distribution Orders");
-
+		if(Steps.scenarioData.get("Tracking Number Update").equalsIgnoreCase("yes")&&actualDOstatus.equals("160 - Weighed")) {
+			homepage.user_closes_openedwindow("Distribution Orders");
+			System.out.println("Closed Distribution Orders");
+			UpdateTrackingNumber();
+		}
+		else {
+			Thread.sleep(2000);
+			homepage.user_closes_openedwindow("Distribution Orders");
+			System.out.println("Closed Distribution Orders");
+		}
+		
+		//SeleniumTestHelper.WaitForPageLoad();
+		
+	
 	}
-
+	
+	public void UpdateTrackingNumber() throws Exception {
+		SeleniumTestHelper.WaitForPageLoad();
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		Screenshots.captureSnapshot(driver);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		Screenshots.captureSnapshot(driver);
+		distributionOrderID.click();
+		//
+		//Items.setDONumber("QSC202112011519");
+		System.out.println(Items.getDONumber());
+//		System.out.println(Items.getDONumber()+" is null");
+		distributionOrderID.sendKeys(Items.getDONumber());
+		//distributionOrderID.sendKeys("AT1978211902-1");
+//		distributionOrderID.sendKeys("AT1978210695-1");
+		Screenshots.captureSnapshot(driver);
+		apply_Btn.click();
+		
+		SeleniumTestHelper.WaitForPageLoad();
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
+		viewBtn.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, lPNSTab, 50);
+		lPNSTab.click();
+		WebElement oLPNS = driver.findElement(By.xpath("//span[contains(@id,'LPNListTPM_Link_NameText_param_out')]"));
+		oLPNS.click();
+		WebElement Header = driver.findElement(By.xpath("//a[@id='LPN_Header_Tab_lnk']"));
+		Header.click();
+		Thread.sleep(1000);
+		WebElement TrackingNumber = driver.findElement(By.xpath("//span[@id='dataForm:ViewLPNHeader_TrackingNbr_outputText66']"));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", TrackingNumber);
+		String TNtext = TrackingNumber.getText();
+		//System.out.println("TNtext :"+TNtext);
+		if(TNtext.equals("")) {
+			System.out.println("Tracking number is Empty");
+			Thread.sleep(1000);
+			WebElement EditHeaderBtn = driver.findElement(By.xpath("//input[@id='dataForm:ViewLPNMain_EditHeaderbutton']"));
+			EditHeaderBtn.click();
+			Thread.sleep(1000);
+			WebElement TrackingNumberField = driver.findElement(By.xpath("//input[@id='dataForm:EditLPNHeaderOutbound_TrackingNbr_inputText']"));
+			Date date = new Date();
+			SimpleDateFormat formatter70 = new SimpleDateFormat("yyMMddHHmmss");              
+	        strDate70= formatter70.format(date);
+			TrackingNumberField.sendKeys(strDate70);
+			Thread.sleep(1000);
+			WebElement SaveBtn = driver.findElement(By.xpath("//input[@id='EditLPNHeader_Savebutton']"));
+			SaveBtn.click();
+			Thread.sleep(2000);
+		}
+		WebElement Header1 = driver.findElement(By.xpath("//a[@id='LPN_Header_Tab_lnk']"));
+		Header1.click();
+		Thread.sleep(5000);
+		WebElement TrackingNumber1 = driver.findElement(By.xpath("//span[@id='dataForm:ViewLPNHeader_TrackingNbr_outputText66']"));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", TrackingNumber1);
+		String TNtext1 = TrackingNumber1.getText();
+		System.out.println("Updated Tracking Number :"+TNtext1 );
+		
+		if(TNtext1.equals(strDate70)) {
+			System.out.println("Tracking number verified!!!");
+		}
+		Thread.sleep(2000);
+		homepage.user_closes_openedwindow("Distribution Orders");
+		Thread.sleep(2000);
+		SeleniumTestHelper.Close_OpenedWindow("DO Detail - oLPN Details", driver);
+		
+//		homepage.user_closes_openedwindow("DO Detail - oLPN Details");
+//		Thread.sleep(5000);
+//		driver.switchTo().defaultContent();
+//
+//		SeleniumTestHelper.WaitForElement(driver.findElement(By.xpath("//a[@data-qtip='Open Windows']")), 50);
+//		driver.findElement(By.xpath("//a[@data-qtip='Open Windows']")).click();
+		}
 	public void checkoLPNSstatus(String expectedDOstatus) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);

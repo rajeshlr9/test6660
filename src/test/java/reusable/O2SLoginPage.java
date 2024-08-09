@@ -54,7 +54,7 @@ public class O2SLoginPage extends Steps {
 			}else if (env.equalsIgnoreCase("L4")) {
 				username.sendKeys(Config.getProperty("O2SApp_L4_Username_Admin"));
 				Steps.logger.info("L4UserName: " + Config.getProperty("O2SApp_L4_Username_Admin"));
-				password.sendKeys(Config.getProperty("O2SApp_L2_Password_Admin"));
+				password.sendKeys(Config.getProperty("O2SApp_L4_Password_Admin"));
 				Steps.logger.info("L4Password: " + Config.getProperty("O2SApp_L4_Password_Admin"));
 			}
 			else if (env.equalsIgnoreCase("L5")) {

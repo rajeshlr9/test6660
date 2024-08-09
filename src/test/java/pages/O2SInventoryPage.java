@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -123,25 +124,84 @@ public class O2SInventoryPage {
 		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(inventoryAvailable));
 		SeleniumTestHelper.scrollToElement(driver, inventoryAvailable);
 		Steps.logger.info("Inventory available");
-		
-		driver.findElement(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr[1]/td[4]")).click();
+		//new code from here
+		int Rowcounts = driver.findElements(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr")).size();
+		System.out.println(Rowcounts);//2
+		for(int i=1;i<=Rowcounts;i++) {
+			//WebElement checkboxes = driver.findElement(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr["+i+"]/td[4]"));
+			if(driver.findElement(By.xpath("(//input[@id='inputInboundForm:warehouseItemCheck'])["+i+"]")).isSelected()) {
+			//if(driver.findElement(By.xpath("(//input[@id='inputInboundForm:warehouseItemCheck'])["+i+"]")).getAttribute("checked").equals("checked")) {
+			driver.findElement(By.xpath("(//input[@id='inputInboundForm:warehouseItemCheck'])["+i+"]")).click();
+			}
+		}
 		System.out.println("Default warehouse unselected!");
-		int Rowcount = driver.findElements(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr")).size();  //2
-		for(int i=1;i<=Rowcount;i++) {
+		for(int i=1;i<=Rowcounts;i++) {
 			String warehouse = driver.findElement(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr["+i+"]/td[2]")).getText();
 			if(warehouse.contains("MEMPHIS")&& Steps.scenarioData.get("EDIFacility").equals("MEM1")) {
 				driver.findElement(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr["+i+"]/td[4]")).click();
 				System.out.println("Selected Warehouse: "+warehouse);
+				if(warehouse.contains("")&& Steps.scenarioData.get("EDIFacility").equals("MEM1")) {
+					i=i+1;
+					driver.findElement(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr["+i+"]/td[4]")).click();
+				}
 			}
 			else if(warehouse.contains("AMIAM")&& Steps.scenarioData.get("EDIFacility").equals("AMIAM")){
 				driver.findElement(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr["+i+"]/td[4]")).click();
 				System.out.println("Selected Warehouse: "+warehouse);
+				if(warehouse.contains("")&& Steps.scenarioData.get("EDIFacility").equals("AMIAM")&&(Steps.ItemDataMap.size()>1)) {
+					i=i+1;
+					driver.findElement(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr["+i+"]/td[4]")).click();
+				}
 			}
 			else if(warehouse.contains("AALB3")&& Steps.scenarioData.get("EDIFacility").equals("AALB3")){
 				driver.findElement(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr["+i+"]/td[4]")).click();
 				System.out.println("Selected Warehouse: "+warehouse);
+				if(warehouse.contains("")&& Steps.scenarioData.get("EDIFacility").equals("AALB3")) {
+					i=i+1;
+					driver.findElement(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr["+i+"]/td[4]")).click();
+				}
 			}
 		}
+		//see if any checkbox is checked
+//		driver.findElement(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr[1]/td[4]")).click();
+		
+		int Rowcount = driver.findElements(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr")).size();  //2
+//		for(int i=1;i<=Rowcount;i++) {
+//			String warehouse = driver.findElement(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr["+i+"]/td[2]")).getText();
+//			if(warehouse.contains("MEMPHIS")&& Steps.scenarioData.get("EDIFacility").equals("MEM1")) {
+//				driver.findElement(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr["+i+"]/td[4]")).click();
+//				System.out.println("Selected Warehouse: "+warehouse);
+//			}
+//			else if(warehouse.contains("AMIAM")&& Steps.scenarioData.get("EDIFacility").equals("AMIAM")){
+//				driver.findElement(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr["+i+"]/td[4]")).click();
+//				System.out.println("Selected Warehouse: "+warehouse);
+//			}
+//			else if(warehouse.contains("AALB3")&& Steps.scenarioData.get("EDIFacility").equals("AALB3")){
+//				driver.findElement(By.xpath("//table[@id='inputInboundForm:whItems']//tbody//child::tr["+i+"]/td[4]")).click();
+//				System.out.println("Selected Warehouse: "+warehouse);
+//			}
+////			else {
+////				Reporter.addStepLog(Steps.scenarioData.get("EDIFacility")+" is not available");
+////				System.out.println(Steps.scenarioData.get("EDIFacility")+" is not available");
+////				Assert.assertTrue(false);	
+////			}
+//		
+//		}
+		for(int i=1;i<Rowcount;i++) {
+			Boolean status = driver.findElement(By.xpath("(//input[@id='inputInboundForm:warehouseItemCheck'])["+i+"]")).isSelected();
+			if(status == true) {
+				System.out.println("Breaking out from for loop");
+				break;
+			}
+			else if(status == false && i<Rowcount) {
+				System.out.println("checking next row!!");;
+			}
+			else if(status == false && i==Rowcount) {
+				System.out.println("Failed due to no warehouse");
+				Assert.assertTrue(false);
+			}
+		}
+	
 		//Screenshots.captureSnapshot(driver);
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, continueBtn, 180);
 		SeleniumTestHelper.assertTrue(SeleniumTestHelper.isElementDisplayed(continueBtn));

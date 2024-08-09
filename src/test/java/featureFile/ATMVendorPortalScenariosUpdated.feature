@@ -112,6 +112,50 @@ Scenario: Multiline Serial Items Items for Ambient type item and Verify the ASN 
 	Then user opens ASN screen and searches for the ASN and verify its status "40 - Receiving Verified"
 	Then user log out from application
 	
+	@InBoundScenario_ATM_MIA-006	@IBRegScenarios_ATM @Regression_ATM @ATM_SingleLinePO_SerialItem
+Scenario: ASN Creation with Lot Items  using EDI file and validate ASN in Manhattan
+	Given I have excel data 
+		| ATM_IBScenario005 |
+	Given User Open the chrome browser using selenium 
+	Given user update EDI file "ATM SingleLine PO - LotItems" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	Then user opens ASN screen and searches for the Shipment and verify its status "20 - InTransit"
+	And user views Shipment, get and verify item details  
+	Then user log out from application
+	And user logs into the O2S application 
+	And user navigate to VendorPortal Tab
+	And user validate the ASN using "Lot Number" search field
+	And user completes receiving in vendor portal
+	Then user log out from Vendor Portal application
+	And user logs into the Manhattan application
+	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
+	Then user log out from application
+	
+	@InBoundScenario_ATM_MIA-007	@IBRegScenarios_ATM @Regression_ATM @ATM_SingleLinePO_SerialItem
+Scenario: ASN Creation with Serial Items  using EDI file and validate ASN in Manhattan
+	Given I have excel data 
+		| ATM_IBScenario006 |
+	Given User Open the chrome browser using selenium 
+	Given user update EDI file "ATM SingleLine PO - SerialItems" for dropping into fedexnet application
+	And user logs into the FedexNet application
+	And user upload "856" XML file in fedexnet
+	Then user log out from Fedenxet application
+	And user logs into the Manhattan application
+	Then user opens ASN screen and searches for the Shipment and verify its status "20 - InTransit"
+	And user views Shipment, get and verify item details  
+	Then user log out from application
+	And user logs into the O2S application 
+	And user navigate to VendorPortal Tab
+	And user validate the ASN using "Serial Number" search field
+	And user completes receiving in vendor portal
+	Then user log out from Vendor Portal application
+	And user logs into the Manhattan application
+	Then user opens ASN screen and searches for the Shipment and verify its status "40 - Receiving Verified"
+	Then user log out from application
+	
 	@InBoundScenario_ATM_New6 @IBRegScenarios_ATM @Regression_ATM @ATM_SingleLinePO_NormalItem
 	Scenario: Receiving SingleLine Normal Items in Manhattan Application.
 	Given I have excel data 
