@@ -251,6 +251,8 @@ public class VendorPortalHomePage {
 		SeleniumTestHelper.scrollToElement(driver, shipmentNbr);
 		//for OutBound
 		SeleniumTestHelper.enterText(shipmentNbr, Items.getDONumber());
+		//SeleniumTestHelper.enterText(shipmentNbr, "AT1978251816-1");
+		
 		clickOnShipPageLoadShipment();
 	}
 
@@ -427,45 +429,22 @@ public class VendorPortalHomePage {
 	
 	public void vpPPS() throws InterruptedException {
 		int rows =  driver.findElements(By.xpath("//table[@id='shipmentDetailsTable']/tbody//following::tr")).size();
+		for(int i=1;i<=rows;i++) {
+			List<WebElement> tagdetatils = driver.findElements(By.xpath("//table[@id='shipmentDetailsTable']/tbody/tr["+i+"]/td[11]/p[1]"));
+			if(tagdetatils.size()>=1) {
+//				driver.findElement(By.xpath("//*[@id='shipmentDetailsTable']/tbody/tr["+i+"]/td[11]//input[1]")).
+//				Thread.sleep(2000);
+				//driver.findElement(By.xpath("//*[@id='shipmentDetailsTable']/tbody/tr["+i+"]/td[11]//input[1]")).sendKeys(Items.getilpnSerialNumbers(i-1));
+				driver.findElement(By.xpath("//*[@id='shipmentDetailsTable']/tbody/tr["+i+"]/td[11]//input[1]")).sendKeys(Items.getilpnSerialNumbers(i-1));
+				Thread.sleep(2000);
+			}
+		}
 		
 		clickOnPickPackShipmentBtn();
 		Thread.sleep(2000);
-		String status = "Complete";
-		
-		//String AsnreceiveStatus = receiveStatus.getText();
-		
-		int rowCount = 0;
-		// System.out.println("AsnreceiveStatus:"+AsnreceiveStatus);
-		//Assert.assertEquals( AsnreceiveStatus,status);
 
 		System.out.println("rows: "+rows);
-//		for(int i=1;i<=rows;i++) {
-//			int count = 0;
-//			String rowStatus = "";
-//			System.out.println("rowVal: "+i);
-//			while (!rowStatus.equals(status) && (count != 20)) { 
-//				rowStatus = driver.findElement(By.xpath("//*[@id='shipmentDetailsTable']/tbody/tr["+i+"]/td[10]")).getText();
-//				System.out.println("count: "+count+" rowStatus: "+rowStatus);
-//				Thread.sleep(6000);			 
-//				count++; 
-//				
-//				if(rowStatus.equals(status)) {
-//					rowCount++; 
-//					System.out.println("rowCount: "+rowCount);
-//				}
-//			}
-//
-//
-//		}
-//		if(rowCount==rows-1) {
-//			System.out.println("here1");
-//			Assert.assertTrue(true);
-//			
-//
-//		}else {
-//			System.out.println("here2");
-//			Assert.assertTrue(false);
-//		}
+
 		String Accknowledgement = driver.findElement(By.xpath("//div[@class='fadeInDown fx-alert']/descendant::p")).getText();
 		if(Accknowledgement.contains("Pick Pack Ship Complete")) {
 			System.out.println("Pick Pack Shipment Completed!");
@@ -473,6 +452,16 @@ public class VendorPortalHomePage {
 		}
 		else {
 			Assert.assertTrue(false);
+		}
+	}
+	
+	public void enterSerialNumber() throws InterruptedException {
+		int rows  = driver.findElements(By.xpath("//table[@id='shipmentDetailsTable']/tbody//following::tr")).size();
+		for(int i=1;i<=rows;i++) {
+			driver.findElement(By.xpath("//*[@id='shipmentDetailsTable']/tbody/tr["+i+"]/td[11]//input[1]")).click();
+			Thread.sleep(2000);
+			driver.findElement(By.xpath("//*[@id='shipmentDetailsTable']/tbody/tr["+i+"]/td[11]//input[1]")).sendKeys(Items.getilpnSerialNumbers(i-1));
+			Thread.sleep(2000);
 		}
 	}
 

@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Fri Aug 09 13:09:17 UTC 2024</td>
+<td>Started on:</td><td>Fri Aug 23 11:36:48 UTC 2024</td>
 </tr>
-<tr><td>Total time:</td><td>827 seconds (827271 ms)</td>
+<tr><td>Total time:</td><td>341 seconds (341516 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -77,22 +77,14 @@ function toggleAllBoxes() {
 </tr>
 <tr>
 <td title='TestRunner.Runner.feature()'><b>feature</b><br>Test class: TestRunner.Runner<br>Test method: Runs Cucumber Feature<br>Parameters: This feature file contains ATM customer Outbound Scenarios<br/>
-<a href="#Output-584782582" onClick='toggleBox("Output-584782582", this, "Show output", "Hide output");'>Show output</a>
+<a href="#Output-859456754" onClick='toggleBox("Output-859456754", this, "Show output", "Hide output");'>Show output</a>
 
-<a href="#Output-584782582" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-584782582">
-Execution started for : Create an order using O2S application and do PPS in vendor portal for serial item.<br/>
+<a href="#Output-859456754" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-859456754">
+Execution started for : Create an order using FedexNet and PPS in Manhattan for SingleLine Serial Item in Vendor Portal.<br/>
 </div>
 </td>
-<td><div><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//div[@class=&apos;fadeInDown fx-alert&apos;]/descendant::p&quot;}
-  (Session info: chrome=127.0.6533.100)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;FFDWSYSTEAMT01&apos;, ip: &apos;10.60.27.141&apos;, os.name: &apos;Windows Server 2019&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.11&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 127.0.6533.100, chrome: {chromedriverVersion: 127.0.6533.99 (f31af5097d90..., userDataDir: C:\Windows\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64330}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(manual, http=http://i..., setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: dd9fd088ef1d9f75cb4e227a59833e7d
-*** Element info: {Using=xpath, value=//div[@class=&apos;fadeInDown fx-alert&apos;]/descendant::p} expected [true] but found [false]
+<td><div><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //span[@id=&apos;orderSearchform:resultTable:0:orderNumberTCS&apos;]&apos; (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]
 	at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
 	at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -123,30 +115,14 @@ Session ID: dd9fd088ef1d9f75cb4e227a59833e7d
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-Caused by: java.lang.AssertionError: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//div[@class=&apos;fadeInDown fx-alert&apos;]/descendant::p&quot;}
-  (Session info: chrome=127.0.6533.100)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;FFDWSYSTEAMT01&apos;, ip: &apos;10.60.27.141&apos;, os.name: &apos;Windows Server 2019&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.11&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 127.0.6533.100, chrome: {chromedriverVersion: 127.0.6533.99 (f31af5097d90..., userDataDir: C:\Windows\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64330}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(manual, http=http://i..., setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: dd9fd088ef1d9f75cb4e227a59833e7d
-*** Element info: {Using=xpath, value=//div[@class=&apos;fadeInDown fx-alert&apos;]/descendant::p} expected [true] but found [false]
+Caused by: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //span[@id=&apos;orderSearchform:resultTable:0:orderNumberTCS&apos;]&apos; (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]
 	at org.testng.Assert.fail(Assert.java:111)
 	at org.testng.Assert.failNotEquals(Assert.java:1578)
 	at org.testng.Assert.assertTrue(Assert.java:57)
-	at StepDefinition.StepDefInBound.user_completes_pps_in_vendor_portal(StepDefInBound.java:1865)
-	at ✽.And user completes pps in vendor portal(ATMOBScenarios.feature:213)
-</pre></div><a href='#' onClick='toggleBox("stack-trace584782582", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace584782582'><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//div[@class=&apos;fadeInDown fx-alert&apos;]/descendant::p&quot;}
-  (Session info: chrome=127.0.6533.100)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;FFDWSYSTEAMT01&apos;, ip: &apos;10.60.27.141&apos;, os.name: &apos;Windows Server 2019&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.11&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 127.0.6533.100, chrome: {chromedriverVersion: 127.0.6533.99 (f31af5097d90..., userDataDir: C:\Windows\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64330}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(manual, http=http://i..., setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: dd9fd088ef1d9f75cb4e227a59833e7d
-*** Element info: {Using=xpath, value=//div[@class=&apos;fadeInDown fx-alert&apos;]/descendant::p} expected [true] but found [false]
+	at StepDefinition.StepDefInBound.user_Search_Order_from_Fedexnet_And_Verify_Status_is_Booked(StepDefInBound.java:1708)
+	at ✽.Then user search order from FedexNet and verify status is booked(ATMOBScenarios.feature:75)
+</pre></div><a href='#' onClick='toggleBox("stack-trace859456754", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace859456754'><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //span[@id=&apos;orderSearchform:resultTable:0:orderNumberTCS&apos;]&apos; (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]
 	at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
 	at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -177,22 +153,14 @@ Session ID: dd9fd088ef1d9f75cb4e227a59833e7d
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-Caused by: java.lang.AssertionError: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//div[@class=&apos;fadeInDown fx-alert&apos;]/descendant::p&quot;}
-  (Session info: chrome=127.0.6533.100)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;FFDWSYSTEAMT01&apos;, ip: &apos;10.60.27.141&apos;, os.name: &apos;Windows Server 2019&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.11&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 127.0.6533.100, chrome: {chromedriverVersion: 127.0.6533.99 (f31af5097d90..., userDataDir: C:\Windows\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64330}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(manual, http=http://i..., setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: dd9fd088ef1d9f75cb4e227a59833e7d
-*** Element info: {Using=xpath, value=//div[@class=&apos;fadeInDown fx-alert&apos;]/descendant::p} expected [true] but found [false]
+Caused by: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //span[@id=&apos;orderSearchform:resultTable:0:orderNumberTCS&apos;]&apos; (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]
 	at org.testng.Assert.fail(Assert.java:111)
 	at org.testng.Assert.failNotEquals(Assert.java:1578)
 	at org.testng.Assert.assertTrue(Assert.java:57)
-	at StepDefinition.StepDefInBound.user_completes_pps_in_vendor_portal(StepDefInBound.java:1865)
-	at ✽.And user completes pps in vendor portal(ATMOBScenarios.feature:213)
+	at StepDefinition.StepDefInBound.user_Search_Order_from_Fedexnet_And_Verify_Status_is_Booked(StepDefInBound.java:1708)
+	at ✽.Then user search order from FedexNet and verify status is booked(ATMOBScenarios.feature:75)
 </pre></div></td>
-<td>826</td>
+<td>339</td>
 <td>TestRunner.Runner@6200f9cb</td></tr>
 </table><p>
 </body>

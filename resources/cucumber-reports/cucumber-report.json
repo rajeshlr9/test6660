@@ -6,7 +6,7 @@
         "before": [
           {
             "result": {
-              "duration": 4633900,
+              "duration": 625400,
               "status": "passed"
             },
             "match": {
@@ -15,7 +15,7 @@
           },
           {
             "result": {
-              "duration": 4794200,
+              "duration": 3945800,
               "status": "passed"
             },
             "match": {
@@ -23,14 +23,14 @@
             }
           }
         ],
-        "line": 192,
-        "name": "Create an order using O2S application and do PPS in vendor portal for serial item.",
+        "line": 66,
+        "name": "Create an order using FedexNet and PPS in Manhattan for SingleLine Serial Item in Vendor Portal.",
         "description": "",
-        "id": "this-feature-file-contains-atm-customer-outbound-scenarios;create-an-order-using-o2s-application-and-do-pps-in-vendor-portal-for-serial-item.",
+        "id": "this-feature-file-contains-atm-customer-outbound-scenarios;create-an-order-using-fedexnet-and-pps-in-manhattan-for-singleline-serial-item-in-vendor-portal.",
         "after": [
           {
             "result": {
-              "duration": 62580214100,
+              "duration": 62934357600,
               "status": "passed"
             },
             "match": {
@@ -43,10 +43,10 @@
         "steps": [
           {
             "result": {
-              "duration": 1467161600,
+              "duration": 2933080900,
               "status": "passed"
             },
-            "line": 194,
+            "line": 67,
             "name": "I have excel data",
             "match": {
               "location": "Steps.readExcelData(DataTable)"
@@ -54,31 +54,91 @@
             "rows": [
               {
                 "cells": [
-                  "ATM_OBScenario010"
+                  "ATM_OBScenario006"
                 ],
-                "line": 195
+                "line": 68
               }
             ],
             "keyword": "Given "
           },
           {
             "result": {
-              "duration": 2164673000,
+              "duration": 3453807700,
               "status": "passed"
             },
-            "line": 196,
-            "name": "User Open the chrome browser using selenium",
+            "line": 69,
+            "name": "Open the chrome browser by selenium",
             "match": {
-              "location": "Steps.open_the_chrome_and_launch_the_application_using_Selenium_with_proxy_enable()"
+              "location": "Steps.open_the_chrome_and_launch_the_application_using_Selenium()"
             },
             "keyword": "Given "
           },
           {
             "result": {
-              "duration": 88230346000,
+              "duration": 265052600,
               "status": "passed"
             },
-            "line": 197,
+            "line": 70,
+            "name": "user update EDI file \"ATM SingleLine DO - SerialItems\" for dropping into fedexnet application",
+            "match": {
+              "arguments": [
+                {
+                  "val": "ATM SingleLine DO - SerialItems",
+                  "offset": 22
+                }
+              ],
+              "location": "StepDefInBound.user_update_EDI_file_for(String)"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 4880598600,
+              "status": "passed"
+            },
+            "line": 71,
+            "name": "user logs into the FedexNet application",
+            "match": {
+              "location": "StepDefInBound.user_logs_into_the_FedexNet_application()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 10828277200,
+              "status": "passed"
+            },
+            "line": 72,
+            "name": "user upload \"850\" XML file in fedexnet",
+            "match": {
+              "arguments": [
+                {
+                  "val": "850",
+                  "offset": 13
+                }
+              ],
+              "location": "StepDefInBound.user_upload_the_xml_in_fedexnet(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 14347349300,
+              "status": "passed"
+            },
+            "line": 73,
+            "name": "user log out from Fedenxet application",
+            "match": {
+              "location": "StepDefInBound.user_logout_from_fedexnet()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 24232432400,
+              "status": "passed"
+            },
+            "line": 74,
             "name": "user logs into the O2S application",
             "match": {
               "location": "StepDefInBound.user_logs_into_the_O2S_application()"
@@ -87,52 +147,22 @@
           },
           {
             "result": {
-              "duration": 186663233900,
-              "status": "passed"
+              "duration": 214948741100,
+              "error_message": "java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator \u0027By.xpath: //span[@id\u003d\u0027orderSearchform:resultTable:0:orderNumberTCS\u0027]\u0027 (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]\r\n\tat org.testng.Assert.fail(Assert.java:111)\r\n\tat org.testng.Assert.failNotEquals(Assert.java:1578)\r\n\tat org.testng.Assert.assertTrue(Assert.java:57)\r\n\tat StepDefinition.StepDefInBound.user_Search_Order_from_Fedexnet_And_Verify_Status_is_Booked(StepDefInBound.java:1708)\r\n\tat ✽.Then user search order from FedexNet and verify status is booked(ATMOBScenarios.feature:75)\r\n",
+              "status": "failed"
             },
-            "line": 198,
-            "name": "user create an order in O2S application for \"singleLineItem\"",
+            "line": 75,
+            "name": "user search order from FedexNet and verify status is booked",
             "match": {
-              "arguments": [
-                {
-                  "val": "singleLineItem",
-                  "offset": 45
-                }
-              ],
-              "location": "StepDefInBound.user_create_an_order_in_O2S(String)"
+              "location": "StepDefInBound.user_Search_Order_from_Fedexnet_And_Verify_Status_is_Booked()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 28108300800,
-              "status": "passed"
+              "status": "skipped"
             },
-            "line": 199,
-            "name": "user verify order created successfuly",
-            "match": {
-              "location": "StepDefInBound.user_verify_order_created_successfuly()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 27692743300,
-              "status": "passed"
-            },
-            "line": 200,
-            "name": "user search order and verify status is booked",
-            "match": {
-              "location": "StepDefInBound.user_Search_Order_And_Verify_Status_is_Booked()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 4678629300,
-              "status": "passed"
-            },
-            "line": 201,
+            "line": 76,
             "name": "user log out from O2S application",
             "match": {
               "location": "StepDefInBound.user_logout_from_O2S()"
@@ -141,10 +171,9 @@
           },
           {
             "result": {
-              "duration": 14915979800,
-              "status": "passed"
+              "status": "skipped"
             },
-            "line": 202,
+            "line": 77,
             "name": "user logs into the Manhattan application",
             "match": {
               "location": "StepDefInBound.user_logs_into_the_Manhattan_application()"
@@ -153,10 +182,9 @@
           },
           {
             "result": {
-              "duration": 15395023700,
-              "status": "passed"
+              "status": "skipped"
             },
-            "line": 203,
+            "line": 78,
             "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"110 - Released\"",
             "match": {
               "arguments": [
@@ -171,10 +199,19 @@
           },
           {
             "result": {
-              "duration": 31016422100,
-              "status": "passed"
+              "status": "skipped"
             },
-            "line": 204,
+            "comments": [
+              {
+                "line": 79,
+                "value": "#validate for dgstatus"
+              },
+              {
+                "line": 80,
+                "value": "#\tThen user verify the DGRequired Status as \"YES\""
+              }
+            ],
+            "line": 81,
             "name": "user verifies the item details in Distribuion Order page",
             "match": {
               "location": "StepDefOutBound.user_verifies_the_item_details_in_Distribuion_Order_page()"
@@ -183,21 +220,20 @@
           },
           {
             "result": {
-              "duration": 98042512400,
-              "status": "passed"
+              "status": "skipped"
             },
             "comments": [
               {
-                "line": 205,
-                "value": "#\tThen user verifies the shipVia populated in Distribuion Order page"
+                "line": 82,
+                "value": "#Then user verifies the shipVia populated in Distribuion Order page"
               }
             ],
-            "line": 206,
-            "name": "user runs the \"MIA - ATM WAVE TEMPLATE\"",
+            "line": 83,
+            "name": "user runs the \"ATM PCL Pick Wave\"",
             "match": {
               "arguments": [
                 {
-                  "val": "MIA - ATM WAVE TEMPLATE",
+                  "val": "ATM PCL Pick Wave",
                   "offset": 15
                 }
               ],
@@ -207,10 +243,9 @@
           },
           {
             "result": {
-              "duration": 28490251600,
-              "status": "passed"
+              "status": "skipped"
             },
-            "line": 207,
+            "line": 84,
             "name": "user views wave and verify the allocation of inventory",
             "match": {
               "location": "StepDefOutBound.user_user_views_wave_and_verify_the_allocation_of_inventory()"
@@ -219,10 +254,9 @@
           },
           {
             "result": {
-              "duration": 41778826100,
-              "status": "passed"
+              "status": "skipped"
             },
-            "line": 208,
+            "line": 85,
             "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"130 - DC Allocated\"",
             "match": {
               "arguments": [
@@ -237,10 +271,9 @@
           },
           {
             "result": {
-              "duration": 19220636900,
-              "status": "passed"
+              "status": "skipped"
             },
-            "line": 209,
+            "line": 86,
             "name": "user log out from application",
             "match": {
               "location": "StepDefInBound.user_log_out_from_application()"
@@ -249,10 +282,9 @@
           },
           {
             "result": {
-              "duration": 22908785000,
-              "status": "passed"
+              "status": "skipped"
             },
-            "line": 210,
+            "line": 87,
             "name": "user logs into the O2S application",
             "match": {
               "location": "StepDefInBound.user_logs_into_the_O2S_application()"
@@ -261,10 +293,9 @@
           },
           {
             "result": {
-              "duration": 76165139600,
-              "status": "passed"
+              "status": "skipped"
             },
-            "line": 211,
+            "line": 88,
             "name": "user navigate to VendorPortal and click on Ship Tab",
             "match": {
               "location": "StepDefInBound.user_navigate_to_vendorportal_and_click_on_Ship_Tab()"
@@ -273,10 +304,9 @@
           },
           {
             "result": {
-              "duration": 56930474000,
-              "status": "passed"
+              "status": "skipped"
             },
-            "line": 212,
+            "line": 89,
             "name": "user validate the DO search field",
             "match": {
               "location": "StepDefInBound.user_validate_the_DO_using_search_field()"
@@ -285,11 +315,9 @@
           },
           {
             "result": {
-              "duration": 19259090500,
-              "error_message": "java.lang.AssertionError: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//div[@class\u003d\u0027fadeInDown fx-alert\u0027]/descendant::p\"}\n  (Session info: chrome\u003d127.0.6533.100)\nFor documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html\nBuild info: version: \u00273.141.59\u0027, revision: \u0027e82be7d358\u0027, time: \u00272018-11-14T08:17:03\u0027\nSystem info: host: \u0027FFDWSYSTEAMT01\u0027, ip: \u002710.60.27.141\u0027, os.name: \u0027Windows Server 2019\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002717.0.11\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCapabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 127.0.6533.100, chrome: {chromedriverVersion: 127.0.6533.99 (f31af5097d90..., userDataDir: C:\\Windows\\SystemTemp\\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64330}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(manual, http\u003dhttp://i..., setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: dd9fd088ef1d9f75cb4e227a59833e7d\n*** Element info: {Using\u003dxpath, value\u003d//div[@class\u003d\u0027fadeInDown fx-alert\u0027]/descendant::p} expected [true] but found [false]\r\n\tat org.testng.Assert.fail(Assert.java:111)\r\n\tat org.testng.Assert.failNotEquals(Assert.java:1578)\r\n\tat org.testng.Assert.assertTrue(Assert.java:57)\r\n\tat StepDefinition.StepDefInBound.user_completes_pps_in_vendor_portal(StepDefInBound.java:1865)\r\n\tat ✽.And user completes pps in vendor portal(ATMOBScenarios.feature:213)\r\n",
-              "status": "failed"
+              "status": "skipped"
             },
-            "line": 213,
+            "line": 90,
             "name": "user completes pps in vendor portal",
             "match": {
               "location": "StepDefInBound.user_completes_pps_in_vendor_portal()"
@@ -300,7 +328,7 @@
             "result": {
               "status": "skipped"
             },
-            "line": 214,
+            "line": 91,
             "name": "user log out from Vendor Portal application",
             "match": {
               "location": "StepDefInBound.user_logout_from_VendorPortal()"
@@ -311,7 +339,7 @@
             "result": {
               "status": "skipped"
             },
-            "line": 215,
+            "line": 92,
             "name": "user logs into the Manhattan application",
             "match": {
               "location": "StepDefInBound.user_logs_into_the_Manhattan_application()"
@@ -322,7 +350,7 @@
             "result": {
               "status": "skipped"
             },
-            "line": 216,
+            "line": 93,
             "name": "user opens DO screen and searches for the DistributionOrder and verify its status \"170 - Manifested\"",
             "match": {
               "arguments": [
@@ -339,7 +367,7 @@
             "result": {
               "status": "skipped"
             },
-            "line": 217,
+            "line": 94,
             "name": "user log out from application",
             "match": {
               "location": "StepDefInBound.user_log_out_from_application()"
@@ -349,15 +377,15 @@
         ],
         "tags": [
           {
-            "line": 191,
-            "name": "@OutBoundScenario_ATM_MIA-007"
+            "line": 65,
+            "name": "@OutBoundScenario_ATM_MIA-003"
           },
           {
-            "line": 191,
+            "line": 65,
             "name": "@DailyRegression_ATM"
           },
           {
-            "line": 191,
+            "line": 65,
             "name": "@OBRegScenarios_ATM"
           }
         ]

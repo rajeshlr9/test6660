@@ -202,10 +202,11 @@ Feature: This feature file contains ATM customer Outbound Scenarios
 	And user logs into the Manhattan application 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
-#	Then user verifies the shipVia populated in Distribuion Order page 
+	Then user verifies the shipVia populated in Distribuion Order page 
 	And user runs the "MIA - ATM WAVE TEMPLATE"
 	Then user views wave and verify the allocation of inventory 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user get the serial numbers from iLPNs menu
 	Then user log out from application
 	And user logs into the O2S application 
 	And user navigate to VendorPortal and click on Ship Tab

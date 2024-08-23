@@ -2,26 +2,26 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
     <line>
-      <![CDATA[Execution started for : Create an order using O2S application and do PPS in vendor portal for serial item.]]>
+      <![CDATA[Execution started for : Create an order using FedexNet and PPS in Manhattan for SingleLine Serial Item in Vendor Portal.]]>
     </line>
   </reporter-output>
-  <suite started-at="2024-08-09T13:09:17 UTC" name="Default suite" finished-at="2024-08-09T13:23:04 UTC" duration-ms="827271">
+  <suite started-at="2024-08-23T11:36:48 UTC" name="Default suite" finished-at="2024-08-23T11:42:30 UTC" duration-ms="341516">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@6200f9cb]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2024-08-09T13:09:17 UTC" name="Default test" finished-at="2024-08-09T13:23:04 UTC" duration-ms="827271">
+    <test started-at="2024-08-23T11:36:48 UTC" name="Default test" finished-at="2024-08-23T11:42:30 UTC" duration-ms="341516">
       <class name="TestRunner.Runner">
-        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-08-09T13:09:17 UTC" name="createExtentReport" finished-at="2024-08-09T13:09:17 UTC" duration-ms="51" status="PASS">
+        <test-method is-config="true" signature="createExtentReport()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-08-23T11:36:48 UTC" name="createExtentReport" finished-at="2024-08-23T11:36:48 UTC" duration-ms="60" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createExtentReport -->
-        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-08-09T13:09:17 UTC" name="setUpClass" finished-at="2024-08-09T13:09:17 UTC" duration-ms="234" status="PASS">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-08-23T11:36:48 UTC" name="setUpClass" finished-at="2024-08-23T11:36:49 UTC" duration-ms="400" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-08-09T13:09:17 UTC" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2024-08-09T13:23:04 UTC" duration-ms="826386" status="FAIL">
+        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-08-23T11:36:49 UTC" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2024-08-23T11:42:29 UTC" duration-ms="339987" status="FAIL">
           <params>
             <param index="0">
               <value>
@@ -31,26 +31,10 @@
           </params>
           <exception class="cucumber.runtime.CucumberException">
             <message>
-              <![CDATA[java.lang.AssertionError: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@class='fadeInDown fx-alert']/descendant::p"}
-  (Session info: chrome=127.0.6533.100)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'FFDWSYSTEAMT01', ip: '10.60.27.141', os.name: 'Windows Server 2019', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 127.0.6533.100, chrome: {chromedriverVersion: 127.0.6533.99 (f31af5097d90..., userDataDir: C:\Windows\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64330}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(manual, http=http://i..., setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: dd9fd088ef1d9f75cb4e227a59833e7d
-*** Element info: {Using=xpath, value=//div[@class='fadeInDown fx-alert']/descendant::p} expected [true] but found [false]]]>
+              <![CDATA[java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.xpath: //span[@id='orderSearchform:resultTable:0:orderNumberTCS']' (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[cucumber.runtime.CucumberException: java.lang.AssertionError: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@class='fadeInDown fx-alert']/descendant::p"}
-  (Session info: chrome=127.0.6533.100)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'FFDWSYSTEAMT01', ip: '10.60.27.141', os.name: 'Windows Server 2019', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 127.0.6533.100, chrome: {chromedriverVersion: 127.0.6533.99 (f31af5097d90..., userDataDir: C:\Windows\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64330}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(manual, http=http://i..., setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: dd9fd088ef1d9f75cb4e227a59833e7d
-*** Element info: {Using=xpath, value=//div[@class='fadeInDown fx-alert']/descendant::p} expected [true] but found [false]
+              <![CDATA[cucumber.runtime.CucumberException: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.xpath: //span[@id='orderSearchform:resultTable:0:orderNumberTCS']' (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]
 at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
 at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -81,34 +65,26 @@ at org.testng.TestNG.run(TestNG.java:1079)
 at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-Caused by: java.lang.AssertionError: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@class='fadeInDown fx-alert']/descendant::p"}
-  (Session info: chrome=127.0.6533.100)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'FFDWSYSTEAMT01', ip: '10.60.27.141', os.name: 'Windows Server 2019', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 127.0.6533.100, chrome: {chromedriverVersion: 127.0.6533.99 (f31af5097d90..., userDataDir: C:\Windows\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64330}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(manual, http=http://i..., setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: dd9fd088ef1d9f75cb4e227a59833e7d
-*** Element info: {Using=xpath, value=//div[@class='fadeInDown fx-alert']/descendant::p} expected [true] but found [false]
+Caused by: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.xpath: //span[@id='orderSearchform:resultTable:0:orderNumberTCS']' (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]
 at org.testng.Assert.fail(Assert.java:111)
 at org.testng.Assert.failNotEquals(Assert.java:1578)
 at org.testng.Assert.assertTrue(Assert.java:57)
-at StepDefinition.StepDefInBound.user_completes_pps_in_vendor_portal(StepDefInBound.java:1865)
-at ✽.And user completes pps in vendor portal(ATMOBScenarios.feature:213)
+at StepDefinition.StepDefInBound.user_Search_Order_from_Fedexnet_And_Verify_Status_is_Booked(StepDefInBound.java:1708)
+at ✽.Then user search order from FedexNet and verify status is booked(ATMOBScenarios.feature:75)
 ]]>
             </full-stacktrace>
           </exception> <!-- cucumber.runtime.CucumberException -->
           <reporter-output>
             <line>
-              <![CDATA[Execution started for : Create an order using O2S application and do PPS in vendor portal for serial item.]]>
+              <![CDATA[Execution started for : Create an order using FedexNet and PPS in Manhattan for SingleLine Serial Item in Vendor Portal.]]>
             </line>
           </reporter-output>
         </test-method> <!-- feature -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-08-09T13:23:04 UTC" name="tearDownClass" finished-at="2024-08-09T13:23:04 UTC" duration-ms="302" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-08-23T11:42:29 UTC" name="tearDownClass" finished-at="2024-08-23T11:42:30 UTC" duration-ms="341" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-08-09T13:23:04 UTC" name="writeExtentReport" finished-at="2024-08-09T13:23:04 UTC" duration-ms="8" status="PASS">
+        <test-method is-config="true" signature="writeExtentReport()[pri:0, instance:TestRunner.Runner@6200f9cb]" started-at="2024-08-23T11:42:30 UTC" name="writeExtentReport" finished-at="2024-08-23T11:42:30 UTC" duration-ms="8" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- writeExtentReport -->
