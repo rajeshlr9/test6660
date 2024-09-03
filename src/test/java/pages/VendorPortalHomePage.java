@@ -1,5 +1,7 @@
 package pages;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -23,6 +25,7 @@ public class VendorPortalHomePage {
 	WebDriver driver;
 
 	public static String TestedBy = null;
+	public static String strDate5;
 
 	public static String environment = Config.getProperty("Environment"); 
 	public static String account = Config.getProperty("Account"); 
@@ -123,6 +126,9 @@ public class VendorPortalHomePage {
 
 	@FindBy(xpath = "//input[@id='SHIPBYDATE_0_0']")
 	public WebElement shipmentByDt;
+	
+	@FindBy(xpath = "//input[@id='SHIPBYDATE_0_1']")
+	public WebElement shipmentByDtOB;
 
 
 	public void naviagateAndClickReceiveTab() throws InterruptedException {
@@ -251,7 +257,7 @@ public class VendorPortalHomePage {
 		SeleniumTestHelper.scrollToElement(driver, shipmentNbr);
 		//for OutBound
 		SeleniumTestHelper.enterText(shipmentNbr, Items.getDONumber());
-		//SeleniumTestHelper.enterText(shipmentNbr, "AT1978251816-1");
+		//SeleniumTestHelper.enterText(shipmentNbr, "AT1978383566-1");
 		
 		clickOnShipPageLoadShipment();
 	}
@@ -430,13 +436,27 @@ public class VendorPortalHomePage {
 	public void vpPPS() throws InterruptedException {
 		int rows =  driver.findElements(By.xpath("//table[@id='shipmentDetailsTable']/tbody//following::tr")).size();
 		for(int i=1;i<=rows;i++) {
-			List<WebElement> tagdetatils = driver.findElements(By.xpath("//table[@id='shipmentDetailsTable']/tbody/tr["+i+"]/td[11]/p[1]"));
-			if(tagdetatils.size()>=1) {
+			//List<WebElement> tagdetatils = driver.findElements(By.xpath("//table[@id='shipmentDetailsTable']/tbody/tr["+i+"]/td[11]/p[1]"));
+			List<WebElement> tagdetatils = driver.findElements(By.xpath("//*[@id='shipmentDetailsTable']/tbody/tr["+i+"]/td[11]//input[1]"));
+			System.out.println("Before if");
+			if(tagdetatils.size()>0) {
+				System.out.println("After if");
 //				driver.findElement(By.xpath("//*[@id='shipmentDetailsTable']/tbody/tr["+i+"]/td[11]//input[1]")).
 //				Thread.sleep(2000);
 				//driver.findElement(By.xpath("//*[@id='shipmentDetailsTable']/tbody/tr["+i+"]/td[11]//input[1]")).sendKeys(Items.getilpnSerialNumbers(i-1));
-				driver.findElement(By.xpath("//*[@id='shipmentDetailsTable']/tbody/tr["+i+"]/td[11]//input[1]")).sendKeys(Items.getilpnSerialNumbers(i-1));
+				if(Steps.ItemDataMap.get(i-1).get("SerialExpSerial").equals("yes")) {
+					Date date = new Date();
+					SimpleDateFormat formatter5 = new SimpleDateFormat("yyMMdd");              
+			        strDate5= formatter5.format(date);
+			        
+					driver.findElement(By.xpath("//*[@id='shipmentDetailsTable']/tbody/tr["+i+"]/td[11]//input[1]")).sendKeys("DC"+strDate5);
+				} else {
+					driver.findElement(By.xpath("//*[@id='shipmentDetailsTable']/tbody/tr["+i+"]/td[11]//input[1]")).sendKeys(Items.getilpnSerialNumbers(i-1));
+				}
 				Thread.sleep(2000);
+				if(Steps.ItemDataMap.get(i-1).get("ShipByDate")!="") {
+					shipmentByDtOB.sendKeys(Items.getilpnShipByDate(i-1));
+				}
 			}
 		}
 		

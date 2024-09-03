@@ -425,7 +425,7 @@ public class DistributionOrdersPage {
 		System.out.println(Items.getDONumber());
 //		System.out.println(Items.getDONumber()+" is null");
 		distributionOrderID.sendKeys(Items.getDONumber());
-		//distributionOrderID.sendKeys("AT1978324401-1");
+		//distributionOrderID.sendKeys("AT9496124318-1");
 		Screenshots.captureSnapshot(driver);
 		apply_Btn.click();
 		//raks 100424
@@ -437,8 +437,8 @@ public class DistributionOrdersPage {
 		
 		String actualDOstatus = driver.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[text()='"
 				+ Items.getDONumber() + "']//following::td[1]")).getText();
-		//String actualDOstatus = driver.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[text()='AT1978324401-1']//following::td[1]")).getText();
-		//Thread.sleep(3000);
+		//String actualDOstatus = driver.findElement(By.xpath("//td[@data-columnid='distributionorderID']/div[text()='AT9496124318-1']//following::td[1]")).getText();
+		Thread.sleep(3000);
 		SeleniumTestHelper.WaitForPageLoad(15000);
 		if(actualDOstatus.contains("Manifested")) {
 		SeleniumTestHelper.assertEquals(actualDOstatus, expectedDOstatus);
@@ -480,7 +480,7 @@ public class DistributionOrdersPage {
 		System.out.println(Items.getDONumber());
 //		System.out.println(Items.getDONumber()+" is null");
 		distributionOrderID.sendKeys(Items.getDONumber());
-		//distributionOrderID.sendKeys("AT1978251816-1");
+		//distributionOrderID.sendKeys("AT9496178487-1");
 		Screenshots.captureSnapshot(driver);
 		apply_Btn.click();
 		
@@ -644,6 +644,126 @@ public class DistributionOrdersPage {
 		Thread.sleep(2000);
 		SeleniumTestHelper.Close_OpenedWindow("DO Detail - Distribution Order", driver);
 	}
+	
+	public void GetShipByDateForSerialExp() throws Exception {
+		
+
+		SeleniumTestHelper.WaitForPageLoad();
+		homepage.MenuItems_Distribution_Selection("Distribution Orders");
+		Screenshots.captureSnapshot(driver);
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
+		Screenshots.captureSnapshot(driver);
+		primaryField.sendKeys("Distribution Order");
+		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
+		Screenshots.captureSnapshot(driver);
+		distributionOrderID.click();
+
+		System.out.println(Items.getDONumber());
+
+		distributionOrderID.sendKeys(Items.getDONumber());
+		//distributionOrderID.sendKeys("AT9496124318-1");
+		Screenshots.captureSnapshot(driver);
+		apply_Btn.click();
+		
+		SeleniumTestHelper.WaitForPageLoad();
+		distributionOrder_chkbox.click();
+		SeleniumTestHelper.waitForElementToBeClickable(driver, viewBtn, 50);
+		viewBtn.click();
+		SeleniumTestHelper.switchToInnerFrame(driver);
+		SeleniumTestHelper.waitForElementToBeClickable(driver, lPNSTab, 50);
+		lPNSTab.click();
+		
+		List<WebElement> oLPNS = driver.findElements(By.xpath("//span[contains(@id,'LPNListTPM_Link_NameText_param_out')]"));
+		for (int i = 0; i < oLPNS.size(); i++) {
+			System.out.println(i);
+			int j = i+1;
+			//WebElement LPNnumber = oLPNS.get(i);
+			WebElement LPNnumber = driver.findElement(By.xpath("(//span[contains(@id,'LPNListTPM_Link_NameText_param_out')])"+"["+j+"]"));
+			LPNnumber.click();
+			
+			WebElement Header = driver.findElement(By.xpath("//a[@id='LPN_Header_Tab_lnk']"));
+			Header.click();
+			Thread.sleep(1000);
+			WebElement ReferenceLPNnoField = driver.findElement(By.xpath("//span[@id='dataForm:ViewLPNHeader_ReferenceLPNNbr_outputText66']"));
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", ReferenceLPNnoField);
+			System.out.println("Started to capture");
+			
+			String ReferenceLPNno = ReferenceLPNnoField.getText();
+			System.out.println("Caputred Referenece LPN number: " +ReferenceLPNno);
+			Thread.sleep(1000);
+			WebElement BackBtn = driver.findElement(By.xpath("//a[@id='backButton']"));
+			//BackBtn.click();
+//			WebElement menuBtn = driver.findElement(By.xpath("//div[@data-ref='targetEl' and @id='topbar-1012-targetEl']/a[1]"));
+//			menuBtn.click();
+//			WebElement inputField = driver.findElement(By.xpath("//input[@id='mps_menusearch-1091-inputEl']"));
+//			inputField.sendKeys("iLPNS");
+//			driver.switchTo().frame(0);
+			driver.switchTo().parentFrame();
+			homepage.MenuItems_Distribution_Selection("iLPNs");
+			
+			driver.switchTo().frame(1);
+			//SeleniumTestHelper.switchToInnerFrame(driver);
+			SeleniumTestHelper.WaitForPageLoad();
+			Thread.sleep(3000);
+			
+			WebElement LPNTextBox = driver.findElement(By.xpath("//input[@id='dataForm:LPNListInOutboundMain_lv:LPNList_Inbound_filterId1:field10value1']"));
+			LPNTextBox.sendKeys(ReferenceLPNno);
+			Thread.sleep(3000);
+			WebElement LPNApplyBtn = driver.findElement(By.xpath("//input[@id='dataForm:LPNListInOutboundMain_lv:LPNList_Inbound_filterId1:LPNList_Inbound_filterId1apply']"));
+			LPNApplyBtn.click();
+			Thread.sleep(2000);
+			
+			WebElement LPNcheckBox = driver.findElement(By.xpath("//input[@id='checkAll_c0_dataForm:LPNListInOutboundMain_lv:dataTable']"));
+			LPNcheckBox.click();
+			Thread.sleep(3000);
+			WebElement LPNviewBtn = driver.findElement(By.xpath("//input[@id='LPNListInboundMain_commandbutton_view']"));
+			LPNviewBtn.click();
+			Thread.sleep(2000);
+			
+			WebElement Header1 = driver.findElement(By.xpath("//a[@id='LPN_Header_Tab_lnk']"));
+			Header1.click();
+			Thread.sleep(5000);
+			WebElement ShipByDate = driver.findElement(By.xpath("//table[@id='dataForm:ViewLPNHeader_PanelGrid_AllocationAttributes_Panel1']/tbody/tr[2]/td[5]"));
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", ShipByDate);
+			String ShipByDatetext = ShipByDate.getText();
+			System.out.println("ShipByDate:"+ShipByDatetext+"1");
+			if(ShipByDatetext.equals("")) {
+				Reporter.addStepLog("ShipByDate is not populated");
+				Steps.logger.info("ShipByDate is not populated");
+				System.out.println("Ship By Date is not populated..");
+				SeleniumTestHelper.assertTrue(false);
+				
+			}
+			Reporter.addStepLog("ShipByDate:" + ShipByDatetext);
+			Steps.logger.info("ShipByDate:" + ShipByDatetext);
+			Thread.sleep(5000);
+			Items.setilpnShipByDate(ShipByDatetext);
+			
+			homepage.user_closes_openedwindow("iLPNs - iLPN Details");
+			//homepage.user_closes_openedwindow("iLPNs - iLPN Details");
+			WebElement OpeneWindows = driver.findElement(By.xpath("//span[@id='button-1027-btnIconEl']"));
+			OpeneWindows.click();
+			Thread.sleep(2000);
+			driver.switchTo().frame(0);
+			//WebElement BackBtn = driver.findElement(By.xpath("//a[@id='backButton']"));
+			BackBtn.click();
+			
+			Thread.sleep(2000);
+			lPNSTab.click();
+		}
+		System.out.println("ShipBy Dates fetched: ");
+		for(int i=0;i<Steps.ItemDataMap.size();i++) {
+	
+			System.out.println(Items.getilpnShipByDate(i));
+		}
+		
+		Thread.sleep(2000);
+		homepage.user_closes_openedwindow("Distribution Orders");
+		Thread.sleep(2000);
+		SeleniumTestHelper.Close_OpenedWindow("DO Detail - Distribution Order", driver);
+	
+	}
+
 	public void checkoLPNSstatus(String expectedDOstatus) throws Exception {
 		homepage.MenuItems_Distribution_Selection("Distribution Orders");
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, primaryField, 80);
@@ -2087,6 +2207,7 @@ public class DistributionOrdersPage {
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrderID, 50);
 		distributionOrderID.click();
 		distributionOrderID.sendKeys(Items.getDONumber());
+		//distributionOrderID.sendKeys("AT9496178487-1");
 		Screenshots.captureSnapshot(driver);
 		apply_Btn.click();
 		SeleniumTestHelper.waitForElementToBeDisplayed(driver, distributionOrder_chkbox, 50);

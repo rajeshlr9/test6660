@@ -4,7 +4,7 @@ Feature: This feature file contains ATM customer Outbound Scenarios
 	Scenario: Create an order using O2S application and do PPS in vendor portal for Normal item. 
 	
 	Given I have excel data 
-		| ATM_OBScenario004 |
+		| ATM_OBScenario001 |
 	Given User Open the chrome browser using selenium 
 	And user logs into the O2S application 
 	Then user create an order in O2S application for "singleLineItem"
@@ -36,7 +36,7 @@ Feature: This feature file contains ATM customer Outbound Scenarios
 	Scenario: Create an order using O2S application and do PPS in vendor portal for FIFO item. 
 	
 	Given I have excel data 
-		| ATM_OBScenario005 |
+		| ATM_OBScenario002 |
 	Given User Open the chrome browser using selenium 
 	And user logs into the O2S application 
 	Then user create an order in O2S application for "singleLineItem"
@@ -65,7 +65,7 @@ Feature: This feature file contains ATM customer Outbound Scenarios
 	@OutBoundScenario_ATM_MIA-003 @DailyRegression_ATM @OBRegScenarios_ATM 
 	Scenario: Create an order using FedexNet and PPS in Manhattan for SingleLine Serial Item in Vendor Portal.
 	Given I have excel data
-	| ATM_OBScenario006 |
+	| ATM_OBScenario003 |
 	Given Open the chrome browser by selenium
 	Given user update EDI file "ATM SingleLine DO - SerialItems" for dropping into fedexnet application
 	And user logs into the FedexNet application
@@ -80,9 +80,10 @@ Feature: This feature file contains ATM customer Outbound Scenarios
 #	Then user verify the DGRequired Status as "YES"
 	Then user verifies the item details in Distribuion Order page 
 	#Then user verifies the shipVia populated in Distribuion Order page 
-	And user runs the "ATM PCL Pick Wave"
+	And user runs the "MIA - ATM WAVE TEMPLATE"
 	Then user views wave and verify the allocation of inventory 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user get the serial numbers from iLPNs menu
 	Then user log out from application
 	And user logs into the O2S application 
 	And user navigate to VendorPortal and click on Ship Tab
@@ -96,7 +97,7 @@ Feature: This feature file contains ATM customer Outbound Scenarios
 	@OutBoundScenario_ATM_MIA-004 @DailyRegression_ATM @OBRegScenarios_ATM 
 	Scenario: Create an order using FedexNet and PPS in Manhattan for SingleLine Serial Expiry Item in Vendor Portal.
 	Given I have excel data
-	| ATM_OBScenario007 |
+	| ATM_OBScenario004 |
 	Given Open the chrome browser by selenium
 	Given user update EDI file "ATM SingleLine DO - ExpItems" for dropping into fedexnet application
 	And user logs into the FedexNet application
@@ -108,12 +109,13 @@ Feature: This feature file contains ATM customer Outbound Scenarios
 	And user logs into the Manhattan application 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	#validate for dgstatus
-#	Then user verify the DGRequired Status as "YES"
+	#Then user verify the DGRequired Status as "YES"
 	Then user verifies the item details in Distribuion Order page 
 	#Then user verifies the shipVia populated in Distribuion Order page 
-	And user runs the "ATM PCL Pick Wave"
+	And user runs the "MIA - ATM WAVE TEMPLATE"
 	Then user views wave and verify the allocation of inventory 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
+	And user get the ship by date from iLPNs menu
 	Then user log out from application
 	And user logs into the O2S application 
 	And user navigate to VendorPortal and click on Ship Tab
@@ -122,14 +124,14 @@ Feature: This feature file contains ATM customer Outbound Scenarios
 	Then user log out from Vendor Portal application
 	And user logs into the Manhattan application 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "160 - Weighed"
-  Then user search for DO and confirms it
-  And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
+	Then user search for DO and confirms it
+	And user opens DO screen and searches for the DistributionOrder and verify its status "190 - Shipped"
 	Then user log out from application
 
 @OutBoundScenario_ATM_MIA-005 @DailyRegression_ATM @OBRegScenarios_ATM 
 	Scenario: Create an order using FedexNet and PPS in Manhattan for SingleLine Normal Item in Vendor Portal.
 	Given I have excel data
-	| ATM_OBScenario008 |
+	| ATM_OBScenario005 |
 	Given Open the chrome browser by selenium
 	Given user update EDI file "ATM SingleLine DO - NormalItems" for dropping into fedexnet application
 	And user logs into the FedexNet application
@@ -140,11 +142,8 @@ Feature: This feature file contains ATM customer Outbound Scenarios
 	Then user log out from O2S application
 	And user logs into the Manhattan application 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
-	#validate for dgstatus
-#	Then user verify the DGRequired Status as "YES"
 	Then user verifies the item details in Distribuion Order page 
-	#Then user verifies the shipVia populated in Distribuion Order page 
-	And user runs the "ATM PCL Pick Wave"
+	And user runs the "MIA - ATM WAVE TEMPLATE"
 	Then user views wave and verify the allocation of inventory 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
 	Then user log out from application
@@ -162,7 +161,7 @@ Feature: This feature file contains ATM customer Outbound Scenarios
 	@OutBoundScenario_ATM_MIA-006 @DailyRegression_ATM @OBRegScenarios_ATM 
 	Scenario: Create an order using FedexNet and PPS in Manhattan for SingleLine Lot Item in Vendor Portal.
 	Given I have excel data
-	| ATM_OBScenario009 |
+	| ATM_OBScenario006 |
 	Given Open the chrome browser by selenium
 	Given user update EDI file "ATM SingleLine DO - LotItems" for dropping into fedexnet application
 	And user logs into the FedexNet application
@@ -175,7 +174,7 @@ Feature: This feature file contains ATM customer Outbound Scenarios
 	And user opens DO screen and searches for the DistributionOrder and verify its status "110 - Released" 
 	Then user verifies the item details in Distribuion Order page 
 	#Then user verifies the shipVia populated in Distribuion Order page 
-	And user runs the "ATM PCL Pick Wave"
+	And user runs the "MIA - ATM WAVE TEMPLATE"
 	Then user views wave and verify the allocation of inventory 
 	And user opens DO screen and searches for the DistributionOrder and verify its status "130 - DC Allocated"
 	Then user log out from application
@@ -192,7 +191,7 @@ Feature: This feature file contains ATM customer Outbound Scenarios
 	Scenario: Create an order using O2S application and do PPS in vendor portal for serial item. 
 	
 	Given I have excel data 
-		| ATM_OBScenario010 |
+		| ATM_OBScenario007 |
 	Given User Open the chrome browser using selenium 
 	And user logs into the O2S application 
 	Then user create an order in O2S application for "singleLineItem"

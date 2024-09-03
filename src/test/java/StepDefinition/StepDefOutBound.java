@@ -207,6 +207,18 @@ public class StepDefOutBound {
 			Assert.assertTrue(false, e.getMessage());
 		}
 	}
+	
+	@And("^user get the ship by date from iLPNs menu$")
+	public void user_gets_shipByDate() {
+		try {
+			doPage.GetShipByDateForSerialExp();
+		} catch (Exception e) {
+			Steps.testRes = "Failed";
+			System.out.println(e);
+			Assert.assertTrue(false, e.getMessage());
+		}
+	}
+	
 	@And("^user opens DO screen and searches for the DO$")
 	public void user_opens_DOscreen_andsearches_for_DO()	throws Exception {
 		try {

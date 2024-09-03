@@ -25,10 +25,11 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.xml.sax.SAXException;
 
-import com.aventstack.extentreports.gherkin.model.Scenario;
+//import com.aventstack.extentreports.gherkin.model.Scenario;
 import com.cucumber.listener.Reporter;
 
 import StepDefinition.Steps;
+import cucumber.api.Scenario;
 import entity.Items;
 
 /**
@@ -498,7 +499,7 @@ public class CreateAndUpdateEDIFiles {
 			
 			if (Steps.scenarioData.get("Account").equals("ATM")) {
 				path = ATMEDIOutboundFilePath;
-				PODONumber = "ATM" + randomNum + "24" + strDate11 +"BLY";
+				PODONumber = "ATM" + Steps.scenarioName.substring(Steps.scenarioName.length()-3) + "AM" + strDate11 +"BLY";
 				System.out.println("PODONumber: "+PODONumber);
 
 			} else if (Steps.scenarioData.get("Account").equals("APC")) {

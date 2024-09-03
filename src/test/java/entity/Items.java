@@ -70,6 +70,7 @@ public class Items {
 	private static String O2SOrderID;
 	private static String shipmentVal;
 	private static List<String> ilpnSerialNumbers = new ArrayList<>();
+	private static List<String> ilpnShipByDates = new ArrayList<>();
 	
 	public static String getShipmentNum() {
 		return shipmentVal;
@@ -625,6 +626,7 @@ public class Items {
 		O2SOrderID = null;
 		shipmentVal = null;
 		ilpnSerialNumbers.clear();
+		ilpnShipByDates.clear();
 	}
 
 	public static String getPdfCOntent() {
@@ -690,6 +692,14 @@ public class Items {
 
 	public static void setilpnSerialNumbers(String serialNumber) {
 		ilpnSerialNumbers.add(serialNumber);
+	}
+	
+	public static String getilpnShipByDate(int i) {
+		return ilpnShipByDates.get(i);
+	}
+
+	public static void setilpnShipByDate(String ShipByDate) {
+		ilpnShipByDates.add(ShipByDate);
 	}
 }
 

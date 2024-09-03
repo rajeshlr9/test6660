@@ -70,6 +70,7 @@ public class Steps {
 	public static HashMap<String, String> scenarioData;
 	public static Map<Integer, Map<String, String>> ItemDataMap;
 	public static Map<Integer, Map<String, String>> ServiceMap;
+	public static String scenarioName;
 
 	// ManhattanLoginPage manhattanLoginPage = new ManhattanLoginPage();
 
@@ -199,6 +200,8 @@ public class Steps {
 		try {
 			
 			List<List<String>> data = scenarioName.raw();
+			this.scenarioName = data.get(0).get(0);
+			System.out.println("Scenario Name: "+scenarioName);
 			scenarioData = ob.getExcelData(data.get(0).get(0), "ScenarioData", Config.getProperty("TestDataPath"));
 			System.out.println("scenarioData: "+scenarioData);
 			ItemDataMap = ob.filterData(ob.readData(Config.getProperty("TestDataPath"), "ItemData"),

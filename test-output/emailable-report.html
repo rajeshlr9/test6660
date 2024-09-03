@@ -9,11 +9,11 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Default suite</th></tr>
-<tr><td><a href="#t0">Default test</a></td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">341,516</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Default test</a></td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">117,567</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">TestRunner.Runner</td><td><a href="#m0">feature</a></td><td rowspan="1">1724413009713</td><td rowspan="1">339987</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">TestRunner.Runner</td><td><a href="#m0">feature</a></td><td rowspan="1">1725346177663</td><td rowspan="1">116623</td></tr></tbody>
 </table>
-<h2>Default test</h2><h3 id="m0">TestRunner.Runner#feature</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>This feature file contains ATM customer Outbound Scenarios</td></tr><tr><th>Messages</th></tr><tr><td><div class="messages">Execution started for : Create an order using FedexNet and PPS in Manhattan for SingleLine Serial Item in Vendor Portal.</div></td></tr><tr><th>Exception</th></tr><tr><td><div class="stacktrace">cucumber.runtime.CucumberException: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //span[@id=&apos;orderSearchform:resultTable:0:orderNumberTCS&apos;]&apos; (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]
+<h2>Default test</h2><h3 id="m0">TestRunner.Runner#feature</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>This feature file contains ATM customer Outbound Scenarios</td></tr><tr><th>Messages</th></tr><tr><td><div class="messages">Execution started for : Create an order using FedexNet and PPS in Manhattan for SingleLine Serial Expiry Item in Vendor Portal.</div></td></tr><tr><th>Exception</th></tr><tr><td><div class="stacktrace">cucumber.runtime.CucumberException: java.lang.AssertionError: expected [true] but found [false]
 	at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
 	at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -44,12 +44,18 @@
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-Caused by: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //span[@id=&apos;orderSearchform:resultTable:0:orderNumberTCS&apos;]&apos; (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]
+Caused by: java.lang.AssertionError: expected [true] but found [false]
 	at org.testng.Assert.fail(Assert.java:111)
 	at org.testng.Assert.failNotEquals(Assert.java:1578)
-	at org.testng.Assert.assertTrue(Assert.java:57)
-	at StepDefinition.StepDefInBound.user_Search_Order_from_Fedexnet_And_Verify_Status_is_Booked(StepDefInBound.java:1708)
-	at ✽.Then user search order from FedexNet and verify status is booked(ATMOBScenarios.feature:75)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+	at org.testng.Assert.assertEquals(Assert.java:132)
+	at org.testng.Assert.assertEquals(Assert.java:644)
+	at utils.SeleniumTestHelper.assertEquals(SeleniumTestHelper.java:497)
+	at utils.SeleniumTestHelper.assertTrue(SeleniumTestHelper.java:533)
+	at utils.SeleniumTestHelper.assertTrue(SeleniumTestHelper.java:537)
+	at pages.DistributionOrdersPage.GetShipByDateForSerialExp(DistributionOrdersPage.java:731)
+	at StepDefinition.StepDefOutBound.user_gets_shipByDate(StepDefOutBound.java:214)
+	at ✽.And user get the ship by date from iLPNs menu(ATMOBScenarios.feature:118)
 </div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

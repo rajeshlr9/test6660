@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Fri Aug 23 11:36:48 UTC 2024</td>
+<td>Started on:</td><td>Tue Sep 03 06:49:37 UTC 2024</td>
 </tr>
-<tr><td>Total time:</td><td>341 seconds (341516 ms)</td>
+<tr><td>Total time:</td><td>117 seconds (117567 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -77,14 +77,14 @@ function toggleAllBoxes() {
 </tr>
 <tr>
 <td title='TestRunner.Runner.feature()'><b>feature</b><br>Test class: TestRunner.Runner<br>Test method: Runs Cucumber Feature<br>Parameters: This feature file contains ATM customer Outbound Scenarios<br/>
-<a href="#Output-859456754" onClick='toggleBox("Output-859456754", this, "Show output", "Hide output");'>Show output</a>
+<a href="#Output-129165617" onClick='toggleBox("Output-129165617", this, "Show output", "Hide output");'>Show output</a>
 
-<a href="#Output-859456754" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-859456754">
-Execution started for : Create an order using FedexNet and PPS in Manhattan for SingleLine Serial Item in Vendor Portal.<br/>
+<a href="#Output-129165617" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-129165617">
+Execution started for : Create an order using FedexNet and PPS in Manhattan for SingleLine Serial Expiry Item in Vendor Portal.<br/>
 </div>
 </td>
-<td><div><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //span[@id=&apos;orderSearchform:resultTable:0:orderNumberTCS&apos;]&apos; (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]
+<td><div><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: expected [true] but found [false]
 	at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
 	at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -115,14 +115,20 @@ Execution started for : Create an order using FedexNet and PPS in Manhattan for 
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-Caused by: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //span[@id=&apos;orderSearchform:resultTable:0:orderNumberTCS&apos;]&apos; (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]
+Caused by: java.lang.AssertionError: expected [true] but found [false]
 	at org.testng.Assert.fail(Assert.java:111)
 	at org.testng.Assert.failNotEquals(Assert.java:1578)
-	at org.testng.Assert.assertTrue(Assert.java:57)
-	at StepDefinition.StepDefInBound.user_Search_Order_from_Fedexnet_And_Verify_Status_is_Booked(StepDefInBound.java:1708)
-	at ✽.Then user search order from FedexNet and verify status is booked(ATMOBScenarios.feature:75)
-</pre></div><a href='#' onClick='toggleBox("stack-trace859456754", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace859456754'><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //span[@id=&apos;orderSearchform:resultTable:0:orderNumberTCS&apos;]&apos; (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]
+	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+	at org.testng.Assert.assertEquals(Assert.java:132)
+	at org.testng.Assert.assertEquals(Assert.java:644)
+	at utils.SeleniumTestHelper.assertEquals(SeleniumTestHelper.java:497)
+	at utils.SeleniumTestHelper.assertTrue(SeleniumTestHelper.java:533)
+	at utils.SeleniumTestHelper.assertTrue(SeleniumTestHelper.java:537)
+	at pages.DistributionOrdersPage.GetShipByDateForSerialExp(DistributionOrdersPage.java:731)
+	at StepDefinition.StepDefOutBound.user_gets_shipByDate(StepDefOutBound.java:214)
+	at ✽.And user get the ship by date from iLPNs menu(ATMOBScenarios.feature:118)
+</pre></div><a href='#' onClick='toggleBox("stack-trace129165617", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace129165617'><pre>cucumber.runtime.CucumberException: java.lang.AssertionError: expected [true] but found [false]
 	at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
 	at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -153,14 +159,20 @@ Caused by: java.lang.AssertionError: Expected condition failed: waiting for visi
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-Caused by: java.lang.AssertionError: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //span[@id=&apos;orderSearchform:resultTable:0:orderNumberTCS&apos;]&apos; (tried for 180 second(s) with 500 milliseconds interval) expected [true] but found [false]
+Caused by: java.lang.AssertionError: expected [true] but found [false]
 	at org.testng.Assert.fail(Assert.java:111)
 	at org.testng.Assert.failNotEquals(Assert.java:1578)
-	at org.testng.Assert.assertTrue(Assert.java:57)
-	at StepDefinition.StepDefInBound.user_Search_Order_from_Fedexnet_And_Verify_Status_is_Booked(StepDefInBound.java:1708)
-	at ✽.Then user search order from FedexNet and verify status is booked(ATMOBScenarios.feature:75)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+	at org.testng.Assert.assertEquals(Assert.java:132)
+	at org.testng.Assert.assertEquals(Assert.java:644)
+	at utils.SeleniumTestHelper.assertEquals(SeleniumTestHelper.java:497)
+	at utils.SeleniumTestHelper.assertTrue(SeleniumTestHelper.java:533)
+	at utils.SeleniumTestHelper.assertTrue(SeleniumTestHelper.java:537)
+	at pages.DistributionOrdersPage.GetShipByDateForSerialExp(DistributionOrdersPage.java:731)
+	at StepDefinition.StepDefOutBound.user_gets_shipByDate(StepDefOutBound.java:214)
+	at ✽.And user get the ship by date from iLPNs menu(ATMOBScenarios.feature:118)
 </pre></div></td>
-<td>339</td>
+<td>116</td>
 <td>TestRunner.Runner@6200f9cb</td></tr>
 </table><p>
 </body>
