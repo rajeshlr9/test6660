@@ -383,6 +383,7 @@ public class ILPNPage {
 			 
 			SeleniumTestHelper.waitForElementToBeDisplayed(driver, backButton, 20);
 			backButton.click();
+			
 			//Thread.sleep(3000);
 			SeleniumTestHelper.WaitForPageLoad();
 		}

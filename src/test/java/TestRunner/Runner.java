@@ -22,7 +22,7 @@ import utils.ExtentReportUpdate;
 @CucumberOptions(
 		strict = true,
 		dryRun = false,
-		tags={"tag5"}, 
+		tags={"@InBoundScenario_ATM_MIA-002"}, 
 				
 		features = {"src\\test\\java\\featureFile"},
 		glue = {"StepDefinition"},

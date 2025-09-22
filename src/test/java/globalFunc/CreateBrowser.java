@@ -96,6 +96,9 @@ public class CreateBrowser {
 				prefs.put("credentials_enable_service", false);
 				options.setExperimentalOption("prefs", prefs);
 				options.addArguments("disable-infobars");
+				
+				
+				
 	
 				seleniumDriver = new ChromeDriver(options);
 				seleniumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
